@@ -1,0 +1,2608 @@
+[
+    {
+        "type": "text",
+        "text": "INSIDE the Student’s Mind: Jointly Modeling Latent Reasoning and Action in LLM Student Simulators",
+        "text_level": 1,
+        "bbox": [
+            171,
+            98,
+            826,
+            140
+        ],
+        "page_idx": 0
+    },
+    {
+        "type": "text",
+        "text": "Rose Niousha<sup>∗</sup>, Minwoo Kang, Narges Norouzi",
+        "bbox": [
+            181,
+            165,
+            540,
+            179
+        ],
+        "page_idx": 0
+    },
+    {
+        "type": "text",
+        "text": "Department of Electrical Engineering and Computer Sciences",
+        "bbox": [
+            181,
+            179,
+            629,
+            194
+        ],
+        "page_idx": 0
+    },
+    {
+        "type": "text",
+        "text": "University of California, Berkeley",
+        "bbox": [
+            181,
+            194,
+            429,
+            208
+        ],
+        "page_idx": 0
+    },
+    {
+        "type": "text",
+        "text": "{rose.n, minwoo\\_kang, norouzi}@berkeley.edu",
+        "bbox": [
+            181,
+            208,
+            539,
+            222
+        ],
+        "page_idx": 0
+    },
+    {
+        "type": "text",
+        "text": "Abstract",
+        "text_level": 2,
+        "bbox": [
+            459,
+            257,
+            539,
+            273
+        ],
+        "page_idx": 0
+    },
+    {
+        "type": "text",
+        "text": "Large Language Model (LLM)-based simulators often reproduce observable actions but fail to capture the underlying reasoning behind them. In education, where student simulation is increasingly used for various applications such as evaluating tutoring systems, this gap is especially pronounced. Two students may submit identical submissions for entirely different reasons. We present INTERNAL STUDENT DIALOGUE (INSIDE), a student modeling framework that fine-tunes LLMs not only to act like students but also to think like them. INSIDE generates internal dialogue grounded in Bloom’s Taxonomy across cognitive, affective, and action dimensions, and fine-tunes models on paired think traces and actions. We baseline against different prompting frameworks and evaluate on two axes: fidelity of simulated actions and quality of generated internal dialogue. Our evaluations show that INSIDE improves simulation fidelity in both action fidelity, matching code generation of real students, and reasoning alignment, achieving the highest alignment across models up to 57.9%.",
+        "bbox": [
+            228,
+            287,
+            767,
+            498
+        ],
+        "page_idx": 0
+    },
+    {
+        "type": "text",
+        "text": "1 Introduction",
+        "text_level": 2,
+        "bbox": [
+            173,
+            523,
+            320,
+            540
+        ],
+        "page_idx": 0
+    },
+    {
+        "type": "text",
+        "text": "Large Language Models (LLMs) are increasingly applied to simulate human behavior across a range of domains (Park et al., 2024; Yang et al., 2024; Suh et al., 2025), including education (Macina et al., 2023; Miroyan et al., 2025; Ross et al., 2026) where student modeling has long been a foundational research problem in building tutoring systems. Recent approaches promise improved fidelity in predicting student actions (Markel et al., 2023; Khalil et al., 2025; Xu et al., 2025), surpassing traditional approaches. However, LLM-based simulations are often limited to replicating surface-level patterns of user behavior, rather than modeling the latent processes underpinning observable outcomes (Li et al., 2026; Wu et al., 2026).",
+        "bbox": [
+            169,
+            554,
+            826,
+            667
+        ],
+        "page_idx": 0
+    },
+    {
+        "type": "text",
+        "text": "In educational settings, understanding the reasoning behind observed actions is crucial for applications such as diagnosing misconceptions, generating targeted feedback, and evaluating tutoring systems (Brown & Burton, 1978). Two students may arrive at the same solution through entirely different reasoning processes, or produce the same incorrect answer for fundamentally different reasons. Research in psychology highlights the importance of accessing internal reasoning processes (Stanovich & West, 2000; Johnson-Laird, 2010) and has proposed methods such as think-aloud protocols (Ericsson & Simon, 1993) to surface them: emphasizing that observable actions provide only a partial view of cognition, as similar behaviors can arise from very different underlying reasoning.",
+        "bbox": [
+            169,
+            670,
+            826,
+            797
+        ],
+        "page_idx": 0
+    },
+    {
+        "type": "text",
+        "text": "With LLMs, it is indeed feasible to elicit verbalization of internal reasoning prior to a generated action. Yet existing work on reasoning in LLMs has largely focused on improving correctness, encouraging models to produce logically consistent or factually accurate outputs (Wei et al., 2022; Yao et al., 2023a; Shao et al., 2024). Human actions, however, are not always rational or correct: people frequently make errors, hold misconceptions, or apply incomplete strategies. In education especially, modeling such incorrect or partial reasoning is essential, as mistakes are a central part of the learning process.",
+        "bbox": [
+            169,
+            800,
+            828,
+            898
+        ],
+        "page_idx": 0
+    },
+    {
+        "type": "aside_text",
+        "text": "arXiv:2608.10492v1 [cs.AI] 11 Aug 2026",
+        "bbox": [
+            29,
+            359,
+            65,
+            799
+        ],
+        "page_idx": 0
+    },
+    {
+        "type": "header",
+        "text": "Published as a conference paper at COLM 2026",
+        "bbox": [
+            171,
+            31,
+            516,
+            47
+        ],
+        "page_idx": 0
+    },
+    {
+        "type": "page_footnote",
+        "text": "<sup>∗</sup>Corresponding author: rose.n@berkeley.edu",
+        "bbox": [
+            191,
+            910,
+            498,
+            924
+        ],
+        "page_idx": 0
+    },
+    {
+        "type": "page_number",
+        "text": "1",
+        "bbox": [
+            493,
+            948,
+            503,
+            959
+        ],
+        "page_idx": 0
+    },
+    {
+        "type": "image",
+        "img_path": "images/6cce4bf111c8444c4e002e39a6df6bb64a0d32034d66cfc36fbc11fbdc631dd1.jpg",
+        "image_caption": [
+            "Figure 1: INTERNAL STUDENT DIALOGUE (INSIDE). We propose INSIDE, a framework that fine-tunes LLMs to model both the internal reasoning and the observable action of students. In the context of AI tutor-assisted programming exercises, our trained LLM generates a verbalized chain-of-thought trajectory imitating how the student contextualizes previous code submissions and AI tutor feedback; conditioned on the inferred internal dialogue, the model simulates code submission, closely matching what the ground-truth student has generated."
+        ],
+        "image_footnote": [],
+        "bbox": [
+            186,
+            109,
+            812,
+            320
+        ],
+        "page_idx": 1
+    },
+    {
+        "type": "text",
+        "text": "To address this gap, we propose INTERNAL STUDENT DIALOGUE (INSIDE), a student modeling framework that generates reasoning followed by action (Figure 1). We argue that the key affordance of student models lies in providing access to processes that are not directly observable in real students. Unlike prior approaches that treat student behavior as a black box and focus solely on predicting outcomes, our framework explicitly models the latent reasoning process that precedes each action. Closest to our work, Ross & Andreas (2025) models incorrect student reasoning by inferring misconceptions from erroneous answers—capturing the relationship between beliefs and errors, but doing so reconstructively (i.e., explaining post-hoc why an error occurred). In contrast, INSIDE introduces internal dialogue as an intermediate cognitive layer that precedes student actions during learning interactions, capturing the intent that leads to each attempt rather than only explaining mistakes after the fact. By modeling both how and why students act, INSIDE opens new directions for evaluation and human-centered optimization of tutoring systems. <sup>1</sup> In particular, our work makes the following contributions:",
+        "bbox": [
+            169,
+            450,
+            826,
+            648
+        ],
+        "page_idx": 1
+    },
+    {
+        "type": "text",
+        "text": "• Reconstruction of pedagogically grounded reasoning traces. We reconstruct latent reasoning traces from student interaction data via retrospective inference with a teacher model, conditioning on prior context and observed code edits. The resulting traces are grounded in educational theory and enable models to generate interpretable internal dialogue despite the absence of ground-truth reasoning.",
+        "bbox": [
+            212,
+            666,
+            826,
+            739
+        ],
+        "page_idx": 1
+    },
+    {
+        "type": "text",
+        "text": "• A student modeling framework with internal dialogue. We propose INSIDE, a framework that jointly models student code generation and the underlying reasoning process by conditioning actions on inferred internal dialogue.",
+        "bbox": [
+            214,
+            743,
+            826,
+            789
+        ],
+        "page_idx": 1
+    },
+    {
+        "type": "text",
+        "text": "• A two-dimensional evaluation of simulation fidelity. We evaluate our framework on (1) actionfidelity, the similarity between generated and real student code, and (2) reasoning quality, defined as the alignment between generated reasoning and ground-truth code edits without requiring observed reasoning traces. We show that INSIDE improves action fidelity (lower Wasserstein distance) and achieves the highest reasoning alignment (up to 57.9%) across models.",
+        "bbox": [
+            214,
+            792,
+            826,
+            880
+        ],
+        "page_idx": 1
+    },
+    {
+        "type": "header",
+        "text": "Published as a conference paper at COLM 2026",
+        "bbox": [
+            173,
+            32,
+            517,
+            47
+        ],
+        "page_idx": 1
+    },
+    {
+        "type": "page_footnote",
+        "text": "<sup>1</sup>We release our code at https://github.com/rosensh/inside.",
+        "bbox": [
+            191,
+            909,
+            598,
+            924
+        ],
+        "page_idx": 1
+    },
+    {
+        "type": "page_number",
+        "text": "2",
+        "bbox": [
+            491,
+            946,
+            504,
+            959
+        ],
+        "page_idx": 1
+    },
+    {
+        "type": "text",
+        "text": "2 Related Work",
+        "text_level": 2,
+        "bbox": [
+            171,
+            102,
+            330,
+            118
+        ],
+        "page_idx": 2
+    },
+    {
+        "type": "text",
+        "text": "2.1 LLM-Based Human and Student Simulation",
+        "text_level": 2,
+        "bbox": [
+            171,
+            131,
+            544,
+            147
+        ],
+        "page_idx": 2
+    },
+    {
+        "type": "text",
+        "text": "Recent literature proposes utilizing language models to simulate human behavior across various social sciences (Simmons, 2023; Hartmann et al., 2023; Wu et al., 2023; Bail et al., 2023; Fatouros et al., 2024; Horton, 2023; Serapio-García et al., 2023; Hilliard et al., 2024; Qian et al., 2025). By conditioning on virtual user personas, researchers have demonstrated LLMs can mimic patterns of human reasoning and social interaction across diverse contexts (Park et al., 2023; 2024; Santurkar et al., 2023; Argyle et al., 2023; Suh et al., 2025).",
+        "bbox": [
+            169,
+            155,
+            826,
+            241
+        ],
+        "page_idx": 2
+    },
+    {
+        "type": "text",
+        "text": "Towards applications in education, researchers have similarly explored generative simulations of students (Markel et al., 2023; Yue et al., 2024; Khalil et al., 2025; Xu et al., 2025; Tseng et al., 2024). Prior work (Miroyan et al., 2025) presents that fine-tuning LLMs on real student code trajectories improves models to capture realistic error patterns, stylistic variation, and incremental revision behavior. However, this work still fails to emphasize modeling internal, latent reasoning of students that leads to replicating the observed actions, nor do the analyses measure fidelity and quality of the inferred internal dialogue by language models. Our work directly addresses this gap by introducing structured internal reasoning traces grounded in pedagogical theory as a new training signal.",
+        "bbox": [
+            169,
+            243,
+            826,
+            372
+        ],
+        "page_idx": 2
+    },
+    {
+        "type": "text",
+        "text": "2.2 LLM Reasoning for (In)Correct Responses",
+        "text_level": 2,
+        "bbox": [
+            171,
+            385,
+            527,
+            400
+        ],
+        "page_idx": 2
+    },
+    {
+        "type": "text",
+        "text": "Our proposed method models internal reasoning processes underlying learner behavior as a form of verbalized chain-of-thought (CoT) (Wei et al., 2022). While the idea of CoT is widely researched as a means to improve the likelihood of producing correct, rational, or helpful responses from LLMs (Yao et al., 2023b; Kojima et al., 2022; Zhou et al., 2022), we note that this work concerns training models to generate CoT with fundamentally different goals and characteristics: replicating the potentially erroneous reasoning efforts naturally exhibiting uncertainty that real students would internally produce during the learning process. In fact, model post-training towards correct reasoning (Shao et al., 2024; Guo et al., 2025; Yang et al., 2025a) is in conflict with our goals of simulating human-like reasoning behavior, as reported in prior literature on human simulation (Moon et al., 2024; Kang et al., 2025; Wu et al., 2026). In Section 3.3, we discuss the internal dialogue generation process, and in Section 4.2 we discuss evaluation criteria measuring quality and fidelity of the model-generated CoT in representing student-like internal thinking.",
+        "bbox": [
+            169,
+            407,
+            828,
+            592
+        ],
+        "page_idx": 2
+    },
+    {
+        "type": "text",
+        "text": "2.3 Cognitive and Pedagogical Frameworks for Learning",
+        "text_level": 2,
+        "bbox": [
+            171,
+            604,
+            607,
+            621
+        ],
+        "page_idx": 2
+    },
+    {
+        "type": "text",
+        "text": "Bloom’s Taxonomy (Bloom et al., 1956; Anderson et al., 2001) provides a hierarchical classification of cognitive objectives—from basic recall through Apply, Analyze, Evaluate, and Create—and recent work finds that current benchmarks disproportionately probe lowerorder skills (Huber & Niklaus, 2025), motivating our explicit structuring of simulation data around these levels. Knowledge-tracing approaches, including Bayesian Knowledge Tracing (Corbett & Anderson, 1994; Anderson et al., 1995) and its deep learning successors (Piech et al., 2015) track what students know but not why they err; our fine-tuning approach trains LLMs to generate cognitively grounded reasoning traces with rich, explicit demonstration of the cognitive processes driving observable student behavior.",
+        "bbox": [
+            169,
+            628,
+            828,
+            756
+        ],
+        "page_idx": 2
+    },
+    {
+        "type": "text",
+        "text": "3 Methodology",
+        "text_level": 2,
+        "bbox": [
+            171,
+            772,
+            326,
+            790
+        ],
+        "page_idx": 2
+    },
+    {
+        "type": "text",
+        "text": "3.1 Data",
+        "text_level": 2,
+        "bbox": [
+            171,
+            803,
+            251,
+            816
+        ],
+        "page_idx": 2
+    },
+    {
+        "type": "text",
+        "text": "We study student code generation in an introductory programming course at the University of California, Berkeley, with ∼900 students per semester. The course spans core programming topics, including functions, recursion, sequences, trees, linked lists, and object-oriented programming. Each semester, students complete ∼10 homework assignments of 3–6 problems each. An autograder provides instant feedback on test case results, and students may resubmit freely until all tests pass, producing a multi-attempt submission stream for each student–problem pair. Beyond autograder feedback, each submission that fails at least one test case may also receive natural-language feedback from an LLM-based tutor (Zamfirescu-Pereira et al., 2025) if the student has consented to use the AI tutor. Every attempt is recorded, capturing the student’s code, autograder results, and tutor feedback. Our data spans two semesters (Spring 2024 and Spring 2025) focusing on the first five homework assignments about Python programming. We partition the data by semester, using Spring 2025 for training (445 students, 2,022 submission streams, 6,911 total submissions) and Spring 2024 for testing (479 students, 1,546 submission streams, 6,316 total submissions). Further details regarding IRB and data privacy are provided in Appendix A.",
+        "bbox": [
+            169,
+            827,
+            828,
+            926
+        ],
+        "page_idx": 2
+    },
+    {
+        "type": "header",
+        "text": "Published as a conference paper at COLM 2026",
+        "bbox": [
+            171,
+            31,
+            517,
+            47
+        ],
+        "page_idx": 2
+    },
+    {
+        "type": "page_number",
+        "text": "3",
+        "bbox": [
+            491,
+            946,
+            504,
+            960
+        ],
+        "page_idx": 2
+    },
+    {
+        "type": "text",
+        "text": "",
+        "bbox": [
+            169,
+            103,
+            828,
+            217
+        ],
+        "page_idx": 3
+    },
+    {
+        "type": "text",
+        "text": "To evaluate generalization, we define two test subsets:",
+        "bbox": [
+            171,
+            219,
+            568,
+            234
+        ],
+        "page_idx": 3
+    },
+    {
+        "type": "text",
+        "text": "test\\_OP (Old Problems) contains 5,262 code submissions from new test-semester students (Spring 2024) on problems that also appear in the training set. This set evaluates generalization to unseen students on familiar problems.",
+        "bbox": [
+            169,
+            238,
+            826,
+            281
+        ],
+        "page_idx": 3
+    },
+    {
+        "type": "text",
+        "text": "test\\_NP (New Problems) contains 1,054 code submissions from Spring 2024 students solving problems not present in the training data. This set evaluates generalization to both unseen students and unseen problems.",
+        "bbox": [
+            169,
+            285,
+            825,
+            328
+        ],
+        "page_idx": 3
+    },
+    {
+        "type": "text",
+        "text": "When reporting problem-specific results, we select one representative problem from each subset with comparable difficulty, measured by the number of submissions per student submission stream: test\\_OP\\_1 (968 submissions; 3.89 ± 4.48 submissions per stream) and test\\_NP\\_1 (695 submissions; 3.46 ± 2.84 submissions per stream). Results for an additional representative problem from each subset, test\\_OP\\_2 (759 submissions) and test\\_NP\\_2 (359 submissions), are provided in Appendix B.",
+        "bbox": [
+            169,
+            332,
+            826,
+            417
+        ],
+        "page_idx": 3
+    },
+    {
+        "type": "text",
+        "text": "3.2 Problem Formulation",
+        "text_level": 2,
+        "bbox": [
+            171,
+            431,
+            374,
+            446
+        ],
+        "page_idx": 3
+    },
+    {
+        "type": "text",
+        "text": "We formalize the problem of student code generation as follows: given a student $s _ { i }$ (the i-th student) and a programming problem $p _ { u }$ (the u-th problem), an LLM generates the next code submission at time step t $, c _ { t , s _ { i } , p _ { u } }$ conditioned on the student’s prior submission history $\\{ c _ { < t , s _ { i } , p _ { u } } \\}$ and the corresponding natural-language feedback instances from an AI tutor $\\dot { \\{ f _ { < t , s _ { i } , p _ { u } } \\} }$ . The model sees up to k prior submissions $( k \\le 1 0 )$ with feedback context. Each student–problem pair is represented by a stream of sequential code submissions, from the first to the final attempt.",
+        "bbox": [
+            169,
+            455,
+            826,
+            555
+        ],
+        "page_idx": 3
+    },
+    {
+        "type": "text",
+        "text": "3.3 Internal Dialogue Generation",
+        "text_level": 2,
+        "bbox": [
+            171,
+            570,
+            436,
+            585
+        ],
+        "page_idx": 3
+    },
+    {
+        "type": "text",
+        "text": "We define the interaction context at time step t as:",
+        "bbox": [
+            169,
+            594,
+            534,
+            609
+        ],
+        "page_idx": 3
+    },
+    {
+        "type": "equation",
+        "img_path": "images/f736c4609760e4951812b9dd66dcf55800187b07aac680147ea851e9f52c85e3.jpg",
+        "text": "$$\nx _ { t } = \\left( p _ { u } , \\left\\{ c _ { < t , s _ { i } , p _ { u } } , \\ : f _ { < t , s _ { i } , p _ { u } } \\right\\} \\right) .\n$$",
+        "text_format": "latex",
+        "bbox": [
+            400,
+            612,
+            594,
+            628
+        ],
+        "page_idx": 3
+    },
+    {
+        "type": "text",
+        "text": "At inference-time, a language model M generates internal dialogue $z _ { t , s _ { i } , p _ { u } }$ that represents the reasoning process leading to the next code submission: $c _ { t , s _ { i } , p _ { u } } \\colon$",
+        "bbox": [
+            169,
+            635,
+            825,
+            665
+        ],
+        "page_idx": 3
+    },
+    {
+        "type": "equation",
+        "img_path": "images/9ccad582173b05083f96f7f6b76f7f1a434e3d54e94b11f55abfd81546e4bc9b.jpg",
+        "text": "$$\n\\begin{array} { r } { z _ { t , s _ { i } , p _ { u } } \\sim \\mathcal { M } \\big ( \\cdot \\mid x _ { t } \\big ) , \\quad c _ { t , s _ { i } , p _ { u } } \\sim \\mathcal { M } \\big ( \\cdot \\mid z _ { t , s _ { i } , p _ { u } } , \\ x _ { t } \\big ) . } \\end{array}\n$$",
+        "text_format": "latex",
+        "bbox": [
+            341,
+            666,
+            651,
+            684
+        ],
+        "page_idx": 3
+    },
+    {
+        "type": "text",
+        "text": "When generating the training data, we perform retrospective inference with a teacher model T, where the teacher conditions on the interaction context $x _ { t }$ and the observed (ground-truth, student-generated) next submission:",
+        "bbox": [
+            169,
+            689,
+            826,
+            733
+        ],
+        "page_idx": 3
+    },
+    {
+        "type": "equation",
+        "img_path": "images/b9c7a7bd874ccb6662870a48c2d14db51168d4dcaa2dfc97c98391b92a45ed63.jpg",
+        "text": "$$\nz _ { t , s _ { i } , p _ { u } } \\sim \\mathcal { T } ( \\cdot \\mid x _ { t } , ~ c _ { t , s _ { i } , p _ { u } } ) .\n$$",
+        "text_format": "latex",
+        "bbox": [
+            415,
+            734,
+            581,
+            751
+        ],
+        "page_idx": 3
+    },
+    {
+        "type": "text",
+        "text": "Generation proceeds in two stages. First, the teacher LLM infers the student’s internal state in third person, producing structured summaries of each cognitive, affective, and action states, inspired by three domains in Bloom’s Taxonomy (Bloom et al., 1956). Next, given these inferred states, the model generates a first-person internal dialogue (a think trace) reflecting the student’s reasoning process prior to the observed submission. These generated internal dialogue traces approximate the student’s latent reasoning process underlying the observed submission. We use GPT-5 (OpenAI, 2025) as the teacher model to generate these traces. The prompt used for generation is shown in Appendix E.",
+        "bbox": [
+            169,
+            756,
+            826,
+            871
+        ],
+        "page_idx": 3
+    },
+    {
+        "type": "text",
+        "text": "3.4 Experiments",
+        "text_level": 2,
+        "bbox": [
+            171,
+            885,
+            308,
+            900
+        ],
+        "page_idx": 3
+    },
+    {
+        "type": "text",
+        "text": "We evaluate the LLM’s ability to generate student code under two settings.",
+        "bbox": [
+            169,
+            909,
+            715,
+            925
+        ],
+        "page_idx": 3
+    },
+    {
+        "type": "header",
+        "text": "Published as a conference paper at COLM 2026",
+        "bbox": [
+            171,
+            31,
+            517,
+            47
+        ],
+        "page_idx": 3
+    },
+    {
+        "type": "page_number",
+        "text": "4",
+        "bbox": [
+            493,
+            948,
+            504,
+            959
+        ],
+        "page_idx": 3
+    },
+    {
+        "type": "text",
+        "text": "Experiment 1 (without CoT). Generate the code submission at a given timestamp t for student s on problem $p _ { u } ,$ conditioned on the student’s prior k code submissions and their associated AI tutor feedback for the same problem, without intermediate CoT generation.",
+        "bbox": [
+            171,
+            103,
+            826,
+            147
+        ],
+        "page_idx": 4
+    },
+    {
+        "type": "text",
+        "text": "Experiment 2 (with CoT). Generate both the internal dialogue and the code submission at timestamp t for student s on problem $p _ { u } ,$ conditioned on the student’s prior k code submissions and their associated tutor feedback for the same problem. The model generates $z _ { t , s _ { i } , p _ { u } }$ and $c _ { t , s _ { i } , p _ { u } }$ as a single sequence, with the reasoning trace produced before the code.",
+        "bbox": [
+            169,
+            150,
+            826,
+            209
+        ],
+        "page_idx": 4
+    },
+    {
+        "type": "text",
+        "text": "3.5 Models",
+        "text_level": 2,
+        "bbox": [
+            171,
+            222,
+            271,
+            237
+        ],
+        "page_idx": 4
+    },
+    {
+        "type": "text",
+        "text": "We compare fine-tuning and prompting methods across both experiments. For fine-tuning, we train the model on the target outputs; in Experiment 2, this includes internal dialogue generated by the teacher model T , which supervises the reasoning trace. For prompting, we provide the same interaction context and instruct the model to first generate a reasoning trace and then produce code. To isolate the effect of reasoning, we evaluate two prompting variants within Experiment 2: Experiment 2.1 uses standard CoT prompting, while Experiment 2.2 uses a structured CoT inspired by Bloom’s Taxonomy, aligning with the supervision used in fine-tuning.",
+        "bbox": [
+            169,
+            246,
+            826,
+            359
+        ],
+        "page_idx": 4
+    },
+    {
+        "type": "text",
+        "text": "• Fine-tuning. We fine-tune Qwen2.5-7B (Yang et al., 2025b), Qwen2.5-Coder-7B (Hui et al., 2024), Qwen3-8B-Base (Yang et al., 2025a), and LLaMA-3-8B (Meta, 2024) separately for Experiment 1 and 2 using LoRA (Hu et al., 2022) $( r = 1 6 , \\alpha = 3 2 )$ , for two epochs with a learning rate of $1 0 ^ { - 4 }$",
+        "bbox": [
+            214,
+            368,
+            826,
+            426
+        ],
+        "page_idx": 4
+    },
+    {
+        "type": "text",
+        "text": "• Prompting. We evaluate instruction-tuned variants of each base model used for fine-tuning, including Qwen2.5-7B-Instruct, Qwen2.5-Coder-7B-Instruct, Qwen3- 8B, and LLaMA-3-8B-Instruct, as well as GPT-5. Models are prompted with the same interaction context as fine-tuning inference and instructed to generate an internal reasoning trace followed by the next code submission. To study the effect of reasoning at scale, we additionally evaluate reasoning models Qwen3-14B and Qwen3-32B under prompting for Experiment 2.2 only.",
+        "bbox": [
+            214,
+            429,
+            826,
+            530
+        ],
+        "page_idx": 4
+    },
+    {
+        "type": "text",
+        "text": "Throughout the paper, we refer to models using experiment-specific naming conventions:",
+        "bbox": [
+            171,
+            537,
+            821,
+            555
+        ],
+        "page_idx": 4
+    },
+    {
+        "type": "text",
+        "text": "• Fine-tuning",
+        "bbox": [
+            214,
+            563,
+            321,
+            578
+        ],
+        "page_idx": 4
+    },
+    {
+        "type": "text",
+        "text": "– Experiment 1 models (w/o CoT): {model\\_name}-SFT",
+        "bbox": [
+            245,
+            582,
+            650,
+            598
+        ],
+        "page_idx": 4
+    },
+    {
+        "type": "text",
+        "text": "– Experiment 2 models (w/ CoT): {model\\_name}-INSIDE",
+        "bbox": [
+            245,
+            599,
+            669,
+            616
+        ],
+        "page_idx": 4
+    },
+    {
+        "type": "text",
+        "text": "• Prompting Baselines",
+        "bbox": [
+            214,
+            619,
+            385,
+            636
+        ],
+        "page_idx": 4
+    },
+    {
+        "type": "text",
+        "text": "– Experiment 2.1 models (w/ CoT): {model\\_name}-CoT",
+        "bbox": [
+            245,
+            640,
+            656,
+            655
+        ],
+        "page_idx": 4
+    },
+    {
+        "type": "text",
+        "text": "– Experiment 2.2 models (w/ Bloom-Inspired CoT): {model\\_name}-BloomCoT",
+        "bbox": [
+            245,
+            657,
+            820,
+            674
+        ],
+        "page_idx": 4
+    },
+    {
+        "type": "text",
+        "text": "Here, we mainly report results on Qwen models and GPT-5 in Section 5, and report additional results based on the LLaMA models in Appendix B. Details on the prompting templates are provided in Appendix F.",
+        "bbox": [
+            169,
+            683,
+            826,
+            728
+        ],
+        "page_idx": 4
+    },
+    {
+        "type": "text",
+        "text": "4 Evaluation",
+        "text_level": 2,
+        "bbox": [
+            171,
+            744,
+            303,
+            761
+        ],
+        "page_idx": 4
+    },
+    {
+        "type": "text",
+        "text": "4.1 Fidelity of Action",
+        "text_level": 2,
+        "bbox": [
+            171,
+            773,
+            346,
+            790
+        ],
+        "page_idx": 4
+    },
+    {
+        "type": "text",
+        "text": "Because students’ internal reasoning is not directly observable, we evaluate action fidelity through their code submissions, measuring how closely model-generated code matches real student submissions. For each student–problem instance, the model generates a single next-attempt submission conditioned on prior interaction history. We then compare the generated code against the real student code using the functionality and stylistic metrics introduced by Miroyan et al. (2025), which are drawn from metrics commonly used to assess student code in programming education. We report the Wasserstein distance (Earth Mover’s Distance) for each metric to capture distributional similarity between generated and real student code, where lower values indicate closer alignment between distributions.",
+        "bbox": [
+            169,
+            797,
+            826,
+            925
+        ],
+        "page_idx": 4
+    },
+    {
+        "type": "header",
+        "text": "Published as a conference paper at COLM 2026",
+        "bbox": [
+            171,
+            31,
+            517,
+            47
+        ],
+        "page_idx": 4
+    },
+    {
+        "type": "page_number",
+        "text": "5",
+        "bbox": [
+            493,
+            946,
+            504,
+            960
+        ],
+        "page_idx": 4
+    },
+    {
+        "type": "text",
+        "text": "4.1.1 Code Functionality",
+        "text_level": 2,
+        "bbox": [
+            171,
+            103,
+            367,
+            119
+        ],
+        "page_idx": 5
+    },
+    {
+        "type": "text",
+        "text": "We evaluate functional correctness using the same autograder test suite used for real student submissions. For each instance, the generated code is executed against the full test suite, and we report the fraction of tests passed (pass rate).",
+        "bbox": [
+            169,
+            126,
+            828,
+            170
+        ],
+        "page_idx": 5
+    },
+    {
+        "type": "text",
+        "text": "4.1.2 Code Complexity and Style",
+        "text_level": 2,
+        "bbox": [
+            171,
+            181,
+            426,
+            196
+        ],
+        "page_idx": 5
+    },
+    {
+        "type": "text",
+        "text": "To capture stylistic and complexity fidelity, we extract the following metrics:",
+        "bbox": [
+            169,
+            204,
+            725,
+            220
+        ],
+        "page_idx": 5
+    },
+    {
+        "type": "text",
+        "text": "• Code length: Measured by lines of code (LOC), reflecting verbosity.",
+        "bbox": [
+            212,
+            229,
+            723,
+            244
+        ],
+        "page_idx": 5
+    },
+    {
+        "type": "text",
+        "text": "• Abstract Syntax Tree (AST) structure: AST depth and width (Noonan, 1985), capturing structural complexity.",
+        "bbox": [
+            214,
+            247,
+            826,
+            277
+        ],
+        "page_idx": 5
+    },
+    {
+        "type": "text",
+        "text": "• PEP 8 violations: Number of deviations from Python’s style guide (PEP 8) (van Rossum et al., 2025), computed using pycodestyle<sup>2</sup>.",
+        "bbox": [
+            214,
+            279,
+            825,
+            309
+        ],
+        "page_idx": 5
+    },
+    {
+        "type": "text",
+        "text": "4.2 Quality of Internal Dialogue",
+        "text_level": 2,
+        "bbox": [
+            171,
+            321,
+            428,
+            338
+        ],
+        "page_idx": 5
+    },
+    {
+        "type": "text",
+        "text": "We evaluate the quality of the generated internal dialogue through alignment: whether the generated internal dialogue reflects the real student’s code changes. Higher alignment suggests a closer approximation of the reasoning process underlying the student’s observed behavior. For each instance at time step t, we provide an LLM judge (GPT-5-mini) with the student’s code $c _ { t - 1 , s _ { i } , p _ { u } } ,$ the feedback $f _ { t - 1 , s _ { i } , p _ { u } } ,$ the real student’s next submission $c _ { t , s _ { i } , p _ { u } } ,$ the model-generated internal dialogue $\\hat { z } _ { t , s _ { i } , p _ { u } } ,$ and the model-generated next submission $\\hat { c } _ { t , s _ { i } , p _ { u } }$ . We compute code diffs between $c _ { t - 1 , s _ { i } , p _ { u } }$ and $c _ { t , s _ { i } , p _ { u } }$ to capture the ground-truth changes. The judge decomposes the synthetic internal dialogue into a set of atomic claims $\\bar { \\mathcal { V } _ { t } } =$ $\\{ v ^ { ( 1 ) } , \\ldots , v ^ { ( n ) } \\}$ representing intended actions. Each claim is evaluated against the groundtruth diff using a binary indicator:",
+        "bbox": [
+            169,
+            345,
+            826,
+            487
+        ],
+        "page_idx": 5
+    },
+    {
+        "type": "equation",
+        "img_path": "images/ebfe628bf596ea9d8253e01f27d6378cfc814004133a0f07dcbfc292536ff039.jpg",
+        "text": "$$\n\\mathbb { 1 } _ { \\mathrm { g t } } ( v ^ { ( i ) } ) = { \\left\\{ \\begin{array} { l l } { 1 } & { { \\mathrm { i f ~ } } v ^ { ( i ) } { \\mathrm { ~ i s ~ r e f l e c t e d ~ i n ~ } } c _ { t - 1 , s _ { i } , p _ { u } } \\to c _ { t , s _ { i } , p _ { u } } } \\\\ { 0 } & { { \\mathrm { o t h e r w i s e } } } \\end{array} \\right. }\n$$",
+        "text_format": "latex",
+        "bbox": [
+            318,
+            489,
+            673,
+            523
+        ],
+        "page_idx": 5
+    },
+    {
+        "type": "text",
+        "text": "We compute the fraction of supported claims:",
+        "bbox": [
+            169,
+            527,
+            504,
+            542
+        ],
+        "page_idx": 5
+    },
+    {
+        "type": "equation",
+        "img_path": "images/70d2dfd897d94928261dae0065698b80ab7a2118eb44c6762b61a1dce6e185bc.jpg",
+        "text": "$$\n\\mathsf { A l i g n m e n t } _ { t } = \\frac { 1 } { | \\mathscr { V } _ { t } | } \\sum _ { i = 1 } ^ { | \\mathscr { V } _ { t } | } \\mathbb { 1 } _ { \\mathrm { g t } } ( \\boldsymbol { v } ^ { ( i ) } ) .\n$$",
+        "text_format": "latex",
+        "bbox": [
+            393,
+            546,
+            599,
+            580
+        ],
+        "page_idx": 5
+    },
+    {
+        "type": "text",
+        "text": "We report alignment as proportions averaged across all instances. The prompt for the LLM-judge framework is provided in Appendix G. To validate the labels assigned by the LLM judge, we evaluate it on the internal dialogue generated by the teacher model in Section 3.3, paired with their corresponding code edits, where the judge should ideally assign full coverage. On a sample of code submissions from the training data $( n = 2 0 9 )$ , the judge assigns an average alignment score of 95.2% for transitions $c _ { t - 1 , s _ { i } , p _ { u } } \\to c _ { t , s _ { i } , p _ { i } }$ given $z _ { t , s _ { i } , p _ { u } } ,$ indicating that the metric reliably attributes stated reasoning to observed code changes. Furthermore, we randomly sampled 25 generated internal dialogues across all models and manually annotated whether each extracted claim was reflected in the corresponding code edit. The manual annotations achieved 88.0% agreement with the LLM judge labels $( \\kappa =$ 0.754), indicating substantial agreement between the LLM judge and human annotations.",
+        "bbox": [
+            169,
+            583,
+            826,
+            739
+        ],
+        "page_idx": 5
+    },
+    {
+        "type": "text",
+        "text": "5 Results",
+        "text_level": 2,
+        "bbox": [
+            171,
+            755,
+            274,
+            771
+        ],
+        "page_idx": 5
+    },
+    {
+        "type": "text",
+        "text": "5.1 Action Fidelity",
+        "text_level": 2,
+        "bbox": [
+            171,
+            785,
+            326,
+            800
+        ],
+        "page_idx": 5
+    },
+    {
+        "type": "text",
+        "text": "To measure distributional similarity between model-generated and student code, we use the Wasserstein distance over each evaluation metric. For each metric, we compare the distribution of generated outputs against the real student distribution. We estimate Wasserstein distance via bootstrap resampling (500 resamples) and report the results in Table 1.",
+        "bbox": [
+            169,
+            808,
+            826,
+            866
+        ],
+        "page_idx": 5
+    },
+    {
+        "type": "text",
+        "text": "Across both settings, fine-tuned models substantially outperform prompting-based methods, and within prompting approaches, more structured strategies improve alignment:",
+        "bbox": [
+            169,
+            868,
+            828,
+            900
+        ],
+        "page_idx": 5
+    },
+    {
+        "type": "header",
+        "text": "Published as a conference paper at COLM 2026",
+        "bbox": [
+            171,
+            31,
+            517,
+            47
+        ],
+        "page_idx": 5
+    },
+    {
+        "type": "page_number",
+        "text": "6",
+        "bbox": [
+            493,
+            948,
+            504,
+            960
+        ],
+        "page_idx": 5
+    },
+    {
+        "type": "page_footnote",
+        "text": "<sup>2</sup>https://pycodestyle.pycqa.org",
+        "bbox": [
+            191,
+            909,
+            418,
+            925
+        ],
+        "page_idx": 5
+    },
+    {
+        "type": "text",
+        "text": "Table 1: Summary of distributional similarity between model-generated and student code. Each cell reports the Wasserstein distance between the distribution of model-generated outputs and real student submissions for each metric. Metrics span pass rate, LOC, AST depth and width, and PEP 8 violations. Models fine-tuned with INSIDE produce code distributions closest to student data on test\\_OP, and maintain comparable alignment to SFT on test\\_NP. Bolded and underlined values indicate the lowest (best) Wasserstein distances.",
+        "bbox": [
+            169,
+            102,
+            826,
+            188
+        ],
+        "page_idx": 6
+    },
+    {
+        "type": "table",
+        "img_path": "images/68edd642af9bb060a408f7224187471634980cd0fa15b3f1897c612686c634d5.jpg",
+        "table_caption": [
+            "(a) test\\_OP"
+        ],
+        "table_footnote": [],
+        "table_body": "<table><tr><td rowspan=\"2\"></td><td rowspan=\"2\">Pass Rate ↓</td><td rowspan=\"2\">LOC↓</td><td colspan=\"2\">AST↓</td><td rowspan=\"2\">PEP8↓</td></tr><tr><td>Depth</td><td>Width</td></tr><tr><td>GPT-5</td><td>0.60</td><td>0.74</td><td>0.54</td><td>1.08</td><td>1.29</td></tr><tr><td>Qwen2.5-7B-Instruct</td><td>0.39</td><td>0.71</td><td>0.60</td><td>0.98</td><td>1.12</td></tr><tr><td>Qwen2.5-Coder-7B-Instruct</td><td>0.46</td><td>0.80</td><td>0.68</td><td>1.78</td><td>1.13</td></tr><tr><td>Qwen3-8B</td><td>0.44</td><td>1.05</td><td>0.54</td><td>1.33</td><td>1.38</td></tr><tr><td>Qwen2.5-7B-SFT</td><td>0.14</td><td>0.29</td><td>0.29</td><td>0.52</td><td>0.18</td></tr><tr><td>Qwen2.5-Coder-7B-SFT</td><td>0.15</td><td>0.29</td><td>0.29</td><td>0.51</td><td>0.19</td></tr><tr><td>Qwen3-8B-SFT</td><td>0.15</td><td>0.28</td><td>0.28</td><td>0.55</td><td>0.16</td></tr><tr><td>GPT-5-CoT</td><td>0.61</td><td>1.10</td><td>0.72</td><td>1.20</td><td>1.37</td></tr><tr><td>Qwen2.5-7B-Instruct-CoT</td><td>0.38</td><td>0.67</td><td>0.60</td><td>0.98</td><td>1.16</td></tr><tr><td>Qwen2.5-Coder-7B-Instruct-CoT</td><td>0.47</td><td>0.93</td><td>0.75</td><td>1.50</td><td>1.25</td></tr><tr><td>Qwen3-8B-CoT</td><td>0.48</td><td>1.08</td><td>0.59</td><td>1.46</td><td>1.38</td></tr><tr><td>GPT-5-BloomCoT</td><td>0.60</td><td>1.24</td><td>0.69</td><td>1.19</td><td>1.38</td></tr><tr><td>Qwen2.5-7B-Instruct-BloomCoT</td><td>0.35</td><td>0.67</td><td>0.58</td><td>0.90</td><td>1.17</td></tr><tr><td>Qwen2.5-Coder-7B-Instruct-BloomCoT</td><td>0.43</td><td>0.88</td><td>0.71</td><td>1.40</td><td>1.19</td></tr><tr><td>Qwen3-8B-BloomCoT</td><td>0.47</td><td>0.98</td><td>0.54</td><td>1.30</td><td>1.37</td></tr><tr><td>Qwen2.5-7B-INSIDE</td><td>0.05</td><td>0.26</td><td>0.27</td><td>0.39</td><td>0.18</td></tr><tr><td>Qwen2.5-Coder-7B-INSIDE</td><td>0.05</td><td>0.21</td><td>0.21</td><td>0.40</td><td>0.16</td></tr><tr><td>Qwen3-8B-INSIDE</td><td>0.05</td><td>0.28</td><td>0.20</td><td>0.42</td><td>0.21</td></tr></table>",
+        "bbox": [
+            174,
+            212,
+            488,
+            388
+        ],
+        "page_idx": 6
+    },
+    {
+        "type": "table",
+        "img_path": "images/6d302ddbd3f26086c0eebc1ea41ba447ece1d8e08461475c1307264a8071b68a.jpg",
+        "table_caption": [
+            "(b) test\\_NP"
+        ],
+        "table_footnote": [],
+        "table_body": "<table><tr><td rowspan=\"2\"></td><td rowspan=\"2\">Pass Rate ↓</td><td rowspan=\"2\">LOC↓</td><td colspan=\"2\">AST ↓</td><td rowspan=\"2\">PEP8↓</td></tr><tr><td>Depth</td><td>Width</td></tr><tr><td>GPT-5</td><td>0.52</td><td>0.64</td><td>1.24</td><td>2.72</td><td>1.36</td></tr><tr><td>Qwen2.5-7B-Instruct</td><td>0.37</td><td>0.86</td><td>0.50</td><td>1.05</td><td>0.82</td></tr><tr><td>Qwen2.5-Coder-7B-Instruct</td><td>0.45</td><td>0.85</td><td>0.52</td><td>0.71</td><td>1.01</td></tr><tr><td>Qwen3-8B</td><td>0.45</td><td>1.10</td><td>0.61</td><td>1.05</td><td>1.13</td></tr><tr><td>Qwen2.5-7B-SFT</td><td>0.01</td><td>0.20</td><td>0.19</td><td>0.28</td><td>0.14</td></tr><tr><td>Qwen2.5-Coder-7B-SFT</td><td>0.03</td><td>0.35</td><td>0.18</td><td>0.39</td><td>0.16</td></tr><tr><td>Qwen3-8B-SFT</td><td>0.02</td><td>0.23</td><td>0.17</td><td>0.28</td><td>0.12</td></tr><tr><td>GPT-5-CoT</td><td>0.53</td><td>0.78</td><td>1.33</td><td>2.56</td><td>1.41</td></tr><tr><td>Qwen2.5-7B-Instruct-CoT</td><td>0.36</td><td>0.90</td><td>0.52</td><td>1.21</td><td>1.00</td></tr><tr><td>Qwen2.5-Coder-7B-Instruct-CoT</td><td>0.43</td><td>0.81</td><td>0.57</td><td>0.85</td><td>1.06</td></tr><tr><td>Qwen3-8B-CoT</td><td>0.44</td><td>1.06</td><td>0.74</td><td>1.37</td><td>1.21</td></tr><tr><td>GPT-5-BloomCoT</td><td>0.51</td><td>0.94</td><td>1.12</td><td>1.86</td><td>1.42</td></tr><tr><td>Qwen2.5-7B-Instruct-BloomCoT</td><td>0.33</td><td>0.84</td><td>0.47</td><td>0.96</td><td>0.95</td></tr><tr><td>Qwen2.5-Coder-7B-Instruct-BloomCoT</td><td>0.41</td><td>0.82</td><td>0.58</td><td>1.13</td><td>0.92</td></tr><tr><td>Qwen3-8B-BloomCoT</td><td>0.42</td><td>1.01</td><td>0.68</td><td>1.19</td><td>1.18</td></tr><tr><td>Qwen2.5-7B-INSIDE</td><td>0.04</td><td>0.16</td><td>0.22</td><td>0.37</td><td>0.18</td></tr><tr><td>Qwen2.5-Coder-7B-INSIDE</td><td>0.05</td><td>0.20</td><td>0.18</td><td>0.14</td><td>0.19</td></tr><tr><td>Qwen3-8B-INSIDE</td><td>0.04</td><td>0.20</td><td>0.19</td><td>0.40</td><td>0.18</td></tr></table>",
+        "bbox": [
+            511,
+            212,
+            823,
+            388
+        ],
+        "page_idx": 6
+    },
+    {
+        "type": "text",
+        "text": "BloomCoT generally achieves lower Wasserstein distances, though it still underperforms compared to fine-tuning.",
+        "bbox": [
+            171,
+            401,
+            825,
+            431
+        ],
+        "page_idx": 6
+    },
+    {
+        "type": "text",
+        "text": "On test\\_OP (Table 1a), INSIDE consistently achieves the lowest Wasserstein distances across all metrics, indicating the closest match to real student code distributions. Compared to the SFT baseline, incorporating internal dialogue improves alignment not only in functionality but also in stylistic and structural properties of code. On test\\_NP (Table 1b), results are more mixed: models fine-tuned with regular SFT and INSIDE perform comparably across most metrics, with smaller Wasserstein distances compared to test\\_OP.",
+        "bbox": [
+            169,
+            434,
+            826,
+            520
+        ],
+        "page_idx": 6
+    },
+    {
+        "type": "text",
+        "text": "One possible explanation for the smaller improvement of INSIDE over SFT on test\\_NP is that the two evaluation splits have different student pass-rate distributions. In particular, test\\_NP contains a higher proportion of successful student submissions than test\\_OP. This matters because fine-tuning on student trajectories already substantially reduces the over-competence bias observed in prompted models, bringing SFT closer to the target student distribution. When student failures are more common, as in test\\_OP, this remaining mismatch is larger, so INSIDE has more room to improve by better matching the student pass-rate distribution. When student successes are more common, as in test\\_NP, SFT is already close to the target distribution, leaving less mismatch for INSIDE to correct. We provide a detailed distributional analysis in Appendix D.",
+        "bbox": [
+            169,
+            522,
+            826,
+            665
+        ],
+        "page_idx": 6
+    },
+    {
+        "type": "text",
+        "text": "5.1.1 Action Fidelity Results on Representative Problem",
+        "text_level": 2,
+        "bbox": [
+            171,
+            675,
+            594,
+            690
+        ],
+        "page_idx": 6
+    },
+    {
+        "type": "text",
+        "text": "Figure 2 shows how pass rates evolve for model-generated code compared to real students. In this analysis, we focus on the effect of reasoning by comparing models with and without internal dialogue (CoT vs. no CoT). For prompting-based methods, we report results using BloomCoT, as it achieves stronger action fidelity overall than standard CoT, as shown in Section 5.1. Pass rate serves as a primary indicator of student progress in our setting, where students iteratively interact with AI feedback and make incremental code revisions toward a correct solution. Because these dynamics are problem-dependent, we report representative results on one problem from each setting: test\\_OP\\_1 and test\\_NP\\_1. Across both problems, real students start with low pass rates and exhibit a sharp increase near the final steps, reflecting incremental progress. SFT models closely track this trajectory. In contrast, prompting-based models maintain relatively high pass rates (≈ 80%) from the beginning, with little variation across steps.",
+        "bbox": [
+            169,
+            696,
+            826,
+            866
+        ],
+        "page_idx": 6
+    },
+    {
+        "type": "text",
+        "text": "To quantify alignment with student behavior, we compute the Mean Absolute Error (MAE) between model and student pass rates, averaged over the steps within each experiment. On test\\_OP\\_1, the top three models are Qwen3-8B-INSIDE (0.094), Qwen2.5-Coder-7B-INSIDE (0.098), and Qwen2.5-7B-INSIDE (0.113). On test\\_NP\\_1, the closest models are Qwen2.5-",
+        "bbox": [
+            169,
+            867,
+            828,
+            925
+        ],
+        "page_idx": 6
+    },
+    {
+        "type": "header",
+        "text": "Published as a conference paper at COLM 2026",
+        "bbox": [
+            171,
+            31,
+            517,
+            47
+        ],
+        "page_idx": 6
+    },
+    {
+        "type": "page_number",
+        "text": "7",
+        "bbox": [
+            493,
+            946,
+            504,
+            959
+        ],
+        "page_idx": 6
+    },
+    {
+        "type": "chart",
+        "img_path": "images/3b533ce5fd18a9271769b8e699e9df1dbce9088e69677e4b75f654bf90294d1a.jpg",
+        "content": "",
+        "chart_caption": [
+            "(a) test\\_OP\\_1 (Representative Problem: n = 968)"
+        ],
+        "chart_footnote": [],
+        "bbox": [
+            181,
+            117,
+            816,
+            289
+        ],
+        "page_idx": 7
+    },
+    {
+        "type": "chart",
+        "img_path": "images/91183409d41ec0e75f12e03b7d0ccfaadbcc611b7e2a0ecf15dde2ec57d964b6.jpg",
+        "content": "",
+        "chart_caption": [
+            "(b) test\\_NP\\_1 (Representative Problem: n = 695)",
+            "Figure 2: Pass rate trajectories over submission steps. Submission steps correspond to attempt indices; steps are aligned such that final submissions map to a shared terminal step, enabling comparison across trajectories of different lengths. Real students exhibit low initial pass rates, followed by a sharp increase near the final step, reflecting incremental problem-solving. Fine-tuned models capture this pattern, and we observe INSIDE further improves alignment with real student patterns. In contrast, prompting-based approaches consistently maintain artificially high pass rates."
+        ],
+        "chart_footnote": [],
+        "bbox": [
+            181,
+            347,
+            816,
+            520
+        ],
+        "page_idx": 7
+    },
+    {
+        "type": "text",
+        "text": "Coder-7B-INSIDE (0.162), Qwen2.5-7B-SFT (0.181), and Qwen2.5-7B-INSIDE (0.182). This suggests that conditioning on inferred internal dialogue may enable the model to better reason and reflect on received AI tutor feedback before generating code, contributing to closer alignment with the incremental progress observed in student pass rate trajectories.",
+        "bbox": [
+            169,
+            672,
+            826,
+            733
+        ],
+        "page_idx": 7
+    },
+    {
+        "type": "text",
+        "text": "5.2 Quality of Internal Dialogue",
+        "text_level": 2,
+        "bbox": [
+            171,
+            756,
+            428,
+            772
+        ],
+        "page_idx": 7
+    },
+    {
+        "type": "text",
+        "text": "Table 2 shows alignment score (Section 4.2) between generated internal dialogue and ground truth code edits. This evaluation is restricted to models that generate CoT before code gener ation (Experiment 2). Overall, INSIDE achieves the highest alignment across both settings. On test\\_OP, Qwen2.5-7B-INSIDE reaches 51.8%, outperforming the best prompting baseline, Qwen2.5-7B-Instruct-BloomCoT. On test\\_NP, Qwen3-8B-INSIDE achieves 57.9% compared to 56.0% for the strongest BloomCoT model. Although scores on test\\_NP are higher overall, this split contains substantially fewer samples, resulting in larger standard errors (≈ 2.0–2.3 vs. ≈ 0.8–0.9), which limits direct comparison across settings. Interestingly, larger and more capable models (e.g., GPT-5 and Qwen3-32B) tend to achieve lower alignment scores, suggesting that stronger reasoning ability does not necessarily translate to reasoning that matches student-like code edits. We additionally report self-consistency results, measuring alignment between generated internal dialogue and model-generated code, in Appendix C. Furthermore, alignment should be interpreted jointly with action fidelity. High alignment alone does not indicate realistic student modeling if the generated code does not follow plausible solution trajectories. This is a challenging task: the model must generate reasoning that aligns with specific code edits, rather than producing plausible but generic explanations. While some prompting-based models show alignment comparable to INSIDE (e.g., Qwen2.5-7B-Instruct-BloomCoT on test\\_OP), as shown in Section 5.1, these models exhibit poor action fidelity and unrealistic solution trajectories, indicating a disconnect between explanation and behavior. In contrast, INSIDE achieves both high alignment and strong action fidelity, producing reasoning that is consistent with the observed edits while also generating code that follows realistic student progression. This joint improvement suggests that internal dialogue helps bridge the gap between explanation and behavior, rather than optimizing for alignment alone. We provide qualitative examples of model-generated internal dialogue in Appendix H.",
+        "bbox": [
+            169,
+            784,
+            828,
+            926
+        ],
+        "page_idx": 7
+    },
+    {
+        "type": "header",
+        "text": "Published as a conference paper at COLM 2026",
+        "bbox": [
+            171,
+            31,
+            517,
+            47
+        ],
+        "page_idx": 7
+    },
+    {
+        "type": "page_number",
+        "text": "8",
+        "bbox": [
+            493,
+            948,
+            504,
+            960
+        ],
+        "page_idx": 7
+    },
+    {
+        "type": "table",
+        "img_path": "images/e414cc33280795fbc01409bd6f17ba85b321367d786ed02ae27c442b8e9690c7.jpg",
+        "table_caption": [
+            "Table 2: Alignment between generated internal dialogue and ground-truth code edits. Each cell reports alignment (%) with standard error in parentheses. Results are shown for models that generate internal dialogue (Experiment 2). INSIDE achieves the highest alignment across both settings, indicating closer correspondence between generated reasoning and observed code edits. Higher values indicate better alignment. Bolded and underlined values denote the best-performing model in each setting.",
+            "(a) test\\_OP"
+        ],
+        "table_footnote": [],
+        "table_body": "<table><tr><td>Model</td><td>Alignment (%)</td></tr><tr><td>GPT-5-BloomCoT Qwen2.5-7B-Instruct-BloomCoT</td><td>45.5 (0.8) 49.6 (0.9)</td></tr><tr><td>Qwen2.5-Coder-7B-Instruct-BloomCoT</td><td>46.0 (0.8)</td></tr><tr><td>Qwen3-8B-BloomCoT</td><td>47.9 (0.8)</td></tr><tr><td>Qwen3-14B-BloomCoT</td><td>46.5 (0.8)</td></tr><tr><td>Qwen3-32B-BloomCoT</td><td>44.4 (0.8)</td></tr><tr><td>Qwen2.5-7B-INSIDE Qwen2.5-Coder-7B-INSIDE</td><td>51.8 (0.8)</td></tr></table>",
+        "bbox": [
+            176,
+            212,
+            488,
+            351
+        ],
+        "page_idx": 8
+    },
+    {
+        "type": "table",
+        "img_path": "images/0aed421ba87948c139f064974593ce6aa225c1aedeec8f9a02367ed007194e91.jpg",
+        "table_caption": [
+            "(b) test\\_NP"
+        ],
+        "table_footnote": [],
+        "table_body": "<table><tr><td>Model</td><td>Alignment (%)</td></tr><tr><td>GPT-5-BloomCoT Qwen2.5-7B-Instruct-BloomCoT</td><td>53.5 (2.1)</td></tr><tr><td>Qwen2.5-Coder-7B-Instruct-BloomCoT</td><td>55.1 (2.2)</td></tr><tr><td>Qwen3-8B-BloomCoT</td><td>51.3 (2.2)</td></tr><tr><td>Qwen3-14B-BloomCoT</td><td>56.0 (2.3)</td></tr><tr><td>Qwen3-32B-BloomCoT</td><td>55.6 (2.3)</td></tr><tr><td>Qwen2.5-7B-INSIDE</td><td>52.4 (2.2)</td></tr></table>",
+        "bbox": [
+            514,
+            212,
+            823,
+            351
+        ],
+        "page_idx": 8
+    },
+    {
+        "type": "text",
+        "text": "",
+        "bbox": [
+            169,
+            369,
+            826,
+            587
+        ],
+        "page_idx": 8
+    },
+    {
+        "type": "text",
+        "text": "6 Limitations and Future Work",
+        "text_level": 2,
+        "bbox": [
+            171,
+            613,
+            465,
+            630
+        ],
+        "page_idx": 8
+    },
+    {
+        "type": "text",
+        "text": "A key limitation of our approach is that internal dialogue is reconstructed rather than observed. The reasoning traces are generated by a teacher LLM through retrospective inference, and therefore represent an approximation of the student’s latent cognition. Importantly, because LLMs are typically trained to produce expert-like reasoning, they may struggle to faithfully reconstruct novice reasoning patterns, even in a reconstruction setting. As a result, the generated traces may reflect more coherent or structured reasoning than what real students exhibit. While this provides a useful proxy, it remains a best-effort estimate of what the student might have been thinking. Future work can further validate and calibrate these reconstructed traces through human-centered methods such as think-aloud studies or retrospective verbalization protocols.",
+        "bbox": [
+            169,
+            650,
+            826,
+            791
+        ],
+        "page_idx": 8
+    },
+    {
+        "type": "text",
+        "text": "Our evaluation also has a distributional limitation: the splits between test\\_OP and test\\_NP differ not only in whether problems are seen or unseen, but also in their underlying student pass-rate distributions, which can affect the interpretation of the results. Additionally, while INSIDE achieves the highest alignment among models (reaching ∼58%), this shows that a majority of generated claims explain student code edits, with remaining gaps indicating room for further improvement.",
+        "bbox": [
+            169,
+            792,
+            826,
+            878
+        ],
+        "page_idx": 8
+    },
+    {
+        "type": "text",
+        "text": "Moreover, compared to the near-perfect alignment of teacher-generated traces, this suggests opportunities to better capture reasoning that consistently accounts for student actions. Future work can explore alternative approaches to reasoning generation, such as reinforcement learning methods (Wu et al., 2026), which encourage reasoning to emerge through reward modeling rather than supervised fine-tuning.",
+        "bbox": [
+            169,
+            881,
+            828,
+            926
+        ],
+        "page_idx": 8
+    },
+    {
+        "type": "header",
+        "text": "Published as a conference paper at COLM 2026",
+        "bbox": [
+            171,
+            31,
+            517,
+            47
+        ],
+        "page_idx": 8
+    },
+    {
+        "type": "page_number",
+        "text": "9",
+        "bbox": [
+            493,
+            946,
+            504,
+            959
+        ],
+        "page_idx": 8
+    },
+    {
+        "type": "text",
+        "text": "",
+        "bbox": [
+            169,
+            103,
+            825,
+            133
+        ],
+        "page_idx": 9
+    },
+    {
+        "type": "text",
+        "text": "Despite these limitations, incorporating internal dialogue does not degrade action fidelity compared to SFT. On test\\_OP, INSIDE more closely matches student behavior, and on test\\_NP, performance remains comparable. This highlights a key affordance of student simulators: beyond replicating behavior, they provide access to otherwise unobservable signals—internal dialogue. This enables new applications in educational systems. Student simulators are increasingly used to evaluate and optimize AI tutors prior to deployment (Dinucu-Jianu et al., 2025). By modeling both actions and reasoning, INSIDE allows evaluating whether feedback resolves misconceptions and supports counterfactual analysis of alternative interventions. Beyond evaluation, INSIDE enables learner-facing tools. Externalizing internal dialogue can support reflection and metacognition (Kumar et al., 2024), and provide richer student representations for clustering based on reasoning patterns rather than noisy surface behavior (Lu et al., 2025).",
+        "bbox": [
+            169,
+            136,
+            828,
+            304
+        ],
+        "page_idx": 9
+    },
+    {
+        "type": "text",
+        "text": "7 Conclusion",
+        "text_level": 2,
+        "bbox": [
+            171,
+            321,
+            308,
+            338
+        ],
+        "page_idx": 9
+    },
+    {
+        "type": "text",
+        "text": "We presented INSIDE, a student simulation framework that jointly models student actions and internal reasoning. Incorporating internal dialogue improves alignment with student behavior and achieves the highest reasoning quality among methods. Thus, modeling reasoning beyond observable actions is key to building more realistic student simulators and enables new opportunities for evaluating and improving tutoring systems. Beyond observed outcome simulation fidelity, INSIDE points to LLM-based simulations grounded in cognitively plausible internal reasoning, presenting opportunities for developing tutoring systems equipped with misconception-aware interventions.",
+        "bbox": [
+            169,
+            352,
+            826,
+            465
+        ],
+        "page_idx": 9
+    },
+    {
+        "type": "text",
+        "text": "References",
+        "text_level": 2,
+        "bbox": [
+            171,
+            483,
+            276,
+            500
+        ],
+        "page_idx": 9
+    },
+    {
+        "type": "list",
+        "sub_type": "ref_text",
+        "list_items": [
+            "John R Anderson, Albert T Corbett, Kenneth R Koedinger, and Ray Pelletier. Cognitive tutors: Lessons learned. In The Journal of the Learning Sciences, volume 4, pp. 167–207. Taylor & Francis, 1995.",
+            "Lorin W Anderson, David R Krathwohl, Peter W Airasian, Kathleen A Cruikshank, Richard E Mayer, Paul R Pintrich, James Raths, and Merlin C Wittrock. A Taxonomy for Learning, Teaching, and Assessing: A Revision of Bloom’s Taxonomy of Educational Objectives. Longman, New York, 2001.",
+            "Lisa P Argyle, Ethan C Busby, Nancy Fulda, Joshua R Gubler, Christopher Rytting, and David Wingate. Out of one, many: Using language models to simulate human samples. Political Analysis, 31(3):337–351, 2023.",
+            "Christopher A Bail, D Sunshine Hillygus, Alexander Volfovsky, Max Allamong, Fatima Alqabandi, Diana ME Jordan, Graham Tierney, Christina Tucker, Andrew Trexler, and Austin van Loon. Do we need a social media accelerator? SocArXiv doi, 10, 2023.",
+            "Benjamin S Bloom, Max D Engelhart, Edward J Furst, Walker H Hill, and David R Krathwohl. Taxonomy of Educational Objectives: The Classification of Educational Goals. Handbook I: Cognitive Domain. David McKay Company, New York, 1956.",
+            "John Seely Brown and Richard R Burton. Diagnostic models for procedural bugs in basic mathematical skills. Cognitive science, 2(2):155–192, 1978.",
+            "Albert T Corbett and John R Anderson. Knowledge tracing: Modeling the acquisition of procedural knowledge. User Modeling and User-Adapted Interaction, 4(4):253–278, 1994.",
+            "David Dinucu-Jianu, Jakub Macina, Nico Daheim, Ido Hakimi, Iryna Gurevych, and Mrinmaya Sachan. From problem-solving to teaching problem-solving: Aligning llms with pedagogy using reinforcement learning. In Proceedings of the 2025 Conference on Empirical Methods in Natural Language Processing, pp. 272–292, 2025."
+        ],
+        "bbox": [
+            173,
+            507,
+            825,
+            550
+        ],
+        "page_idx": 9
+    },
+    {
+        "type": "header",
+        "text": "Published as a conference paper at COLM 2026",
+        "bbox": [
+            171,
+            32,
+            517,
+            47
+        ],
+        "page_idx": 9
+    },
+    {
+        "type": "page_number",
+        "text": "10",
+        "bbox": [
+            488,
+            946,
+            509,
+            959
+        ],
+        "page_idx": 9
+    },
+    {
+        "type": "list",
+        "sub_type": "ref_text",
+        "list_items": [
+            "K Anders Ericsson and Herbert A Simon. Protocol Analysis: Verbal Reports as Data. MIT Press, 1993.",
+            "George Fatouros, Konstantinos Metaxas, John Soldatos, and Dimosthenis Kyriazis. Can large language models beat wall street? unveiling the potential of ai in stock selection. Unveiling the Potential of AI in Stock Selection (January 13, 2024), 2024.",
+            "Daya Guo, Dejian Yang, Haowei Zhang, et al. DeepSeek-R1: Incentivizing reasoning capability in LLMs via reinforcement learning. arXiv preprint arXiv:2501.12948, 2025.",
+            "Jochen Hartmann, Jasper Schwenzow, and Maximilian Witte. The political ideology of conversational ai: Converging evidence on chatgpt’s pro-environmental, left-libertarian orientation. arXiv preprint arXiv:2301.01768, 2023.",
+            "Airlie Hilliard, Cristian Munoz, Zekun Wu, and Adriano Soares Koshiyama. Eliciting personality traits in large language models. arXiv preprint arXiv:2402.08341, 2024.",
+            "John J Horton. Large language models as simulated economic agents: What can we learn from homo silicus? Technical report, National Bureau of Economic Research, 2023.",
+            "Edward J Hu, yelong shen, Phillip Wallis, Zeyuan Allen-Zhu, Yuanzhi Li, Shean Wang, Lu Wang, and Weizhu Chen. LoRA: Low-rank adaptation of large language models. In International Conference on Learning Representations, 2022. URL https://openreview.net/ forum?id=nZeVKeeFYf9.",
+            "Thomas Huber and Christina Niklaus. LLMs meet Bloom’s taxonomy: A cognitive view on large language model evaluations. In Proceedings of the 31st International Conference on Computational Linguistics, pp. 5211–5246, 2025.",
+            "Binyuan Hui, Jian Yang, Zeyu Cui, Jiaxi Yang, Dayiheng Liu, Lei Zhang, Tianyu Liu, Jiajun Zhang, Bowen Yu, Keming Lu, et al. Qwen2.5-coder technical report. arXiv preprint arXiv:2409.12186, 2024.",
+            "Philip N Johnson-Laird. Mental models and human reasoning. Proceedings of the National Academy ofSciences, 107(43):18243–18250, 2010.",
+            "Minwoo Kang, Suhong Moon, Seung Hyeong Lee, Ayush Raj, Joseph Suh, and David M. Chan. Deep binding of language model virtual personas: A study on approximating political partisan misperceptions. In Proceedings of the Conference on Language Modeling (COLM), 2025.",
+            "Mohammad Khalil, Farhad Vadiee, Ronas Shakya, and Qinyi Liu. Creating artificial students that never existed: Leveraging large language models and cTGANs for synthetic data generation. In Proceedings of the 15th International Learning Analytics and Knowledge Conference, pp. 439–450, 2025.",
+            "Takeshi Kojima, Shixiang Shane Gu, Machel Reid, Yutaka Matsuo, and Yusuke Iwasawa. Large language models are zero-shot reasoners. In Advances in Neural Information Processing Systems, volume 35, pp. 22199–22213, 2022.",
+            "Harsh Kumar, Ruiwei Xiao, Benjamin Lawson, Ilya Musabirov, Jiakai Shi, Xinyuan Wang, Huayin Luo, Joseph Jay Williams, Anna N Rafferty, John Stamper, et al. Supporting self-reflection at scale with large language models: Insights from randomized field experi ments in classrooms. In Proceedings of the eleventh ACM conference on learning@ scale, pp. 86–97, 2024.",
+            "Juho Leinonen, Paul Denny, Olli Kiljunen, Stephen MacNeil, Sami Sarsa, and Arto Hellas. Llm-itation is the sincerest form of data: Generating synthetic buggy code submissions for computing education. In Proceedings of the 27th Australasian Computing Education Conference, ACE ’25, pp. 56–63. Association for Computing Machinery, 2025. ISBN 9798400714252. doi: 10.1145/3716640.3716647. URL https://doi.org/10.1145/3716640.3716647."
+        ],
+        "bbox": [
+            171,
+            103,
+            826,
+            132
+        ],
+        "page_idx": 10
+    },
+    {
+        "type": "header",
+        "text": "Published as a conference paper at COLM 2026",
+        "bbox": [
+            171,
+            31,
+            517,
+            47
+        ],
+        "page_idx": 10
+    },
+    {
+        "type": "page_number",
+        "text": "11",
+        "bbox": [
+            488,
+            948,
+            508,
+            960
+        ],
+        "page_idx": 10
+    },
+    {
+        "type": "list",
+        "sub_type": "ref_text",
+        "list_items": [
+            "Chance Jiajie Li, Jiayi Wu, Zhenze Mo, Ao Qu, Yuhan Tang, Kaiya Zhao, Yulu Gan, Jie Fan, Jiangbo Yu, Jinhua Zhao, et al. Simulating society requires simulating thought. Advances in Neural Information Processing Systems, 38, 2026.",
+            "Yuan Lu, Soonja Yeom, Jamal Maktoubian, Mohammad Mustaneer Rahman, and Soo-Hyung Kim. Improve student risk prediction with clustering techniques: A systematic review in education data mining. Education Sciences, 15(12):1695, 2025.",
+            "Jakub Macina, Nico Daheim, Sankalan Chowdhury, Tanmay Sinha, Manu Kapur, Iryna Gurevych, and Mrinmaya Sachan. Mathdial: A dialogue tutoring dataset with rich pedagogical properties grounded in math reasoning problems. In Findings of the Association for Computational Linguistics: EMNLP 2023, pp. 5602–5621, 2023.",
+            "Julia M Markel, Steven G Opferman, James A Landay, and Chris Piech. GPTeach: Interactive TA training with GPT-based students. In Proceedings of the Tenth ACM Conference on Learning @ Scale, pp. 226–236, 2023.",
+            "Meta. Meta Llama 3, 2024. URL https://llama.meta.com/llama3/.",
+            "Mihran Miroyan, Rose Niousha, Joseph E Gonzalez, Gireeja Ranade, and Narges Norouzi. ParaStudent: Generating and evaluating realistic student code by teaching LLMs to struggle. arXiv preprint arXiv:2507.12674, 2025.",
+            "Suhong Moon, Marwa Abdulhai, Minwoo Kang, Joseph Suh, Widyadewi Soedarmadji, Eran Kohen Behar, and David M Chan. Virtual personas for language models via an anthology of backstories. In Proceedings of the 2024 conference on empirical methods in natural language processing, pp. 19864–19897, 2024.",
+            "Robert E. Noonan. An algorithm for generating abstract syntax trees. Comput. Lang., 10 (3–4):225–236, 1985. ISSN 0096-0551. doi: 10.1016/0096-0551(85)90018-9. URL https: //doi.org/10.1016/0096-0551(85)90018-9.",
+            "OpenAI. Gpt-5 is here, 2025. URL https://openai.com/gpt-5/.",
+            "Joon Sung Park, Joseph O’Brien, Carrie Jun Cai, Meredith Ringel Morris, Percy Liang, and Michael S Bernstein. Generative agents: Interactive simulacra of human behavior. In Proceedings of the 36th annual acm symposium on user interface software and technology, pp. 1–22, 2023.",
+            "Joon Sung Park, Carolyn Q Zou, Aaron Shaw, Benjamin Mako Hill, Carrie Cai, Meredith Ringel Morris, Robb Willer, Percy Liang, and Michael S Bernstein. Generative agent simulations of 1,000 people. arXiv preprint arXiv:2411.10109, 2024.",
+            "Chris Piech, Jonathan Bassen, Jonathan Huang, Surya Ganguli, Mehran Sahami, Leonidas J Guibas, and Jascha Sohl-Dickstein. Deep knowledge tracing. In Advances in Neural Information Processing Systems, volume 28, 2015.",
+            "Crystal Qian, Aaron T Parisi, Clémentine Bouleau, Vivian Tsai, Maël Lebreton, and Lucas Dixon. To mask or to mirror: Human-ai alignment in collective reasoning. In Proceedings of the 2025 Conference on Empirical Methods in Natural Language Processing, pp. 2398–2423, 2025.",
+            "Alexis Ross and Jacob Andreas. Learning to make mistakes: Modeling incorrect student thinking and key errors. arXiv preprint arXiv:2510.11502, 2025.",
+            "Alexis Ross, Megha Srivastava, Jeremiah Blanchard, and Jacob Andreas. Modeling student learning with 3.8 million program traces. In Artificial Intelligence in Education: 27th International Conference, AIED 2026, Seoul, South Korea, June 27–July 3, 2026, Proceedings, Part II, pp. 324–338, Berlin, Heidelberg, 2026. Springer-Verlag. ISBN 978-3-032-29754-9. doi: 10.1007/978-3-032-29755-6\\_22. URL https://doi.org/10.1007/978-3-032-29755-6\\_22.",
+            "Shibani Santurkar, Esin Durmus, Faisal Ladhak, Cinoo Lee, Percy Liang, and Tatsunori Hashimoto. Whose opinions do language models reflect? In International Conference on Machine Learning, pp. 29971–30004. PMLR, 2023."
+        ],
+        "bbox": [
+            171,
+            103,
+            826,
+            147
+        ],
+        "page_idx": 11
+    },
+    {
+        "type": "header",
+        "text": "Published as a conference paper at COLM 2026",
+        "bbox": [
+            171,
+            31,
+            517,
+            47
+        ],
+        "page_idx": 11
+    },
+    {
+        "type": "page_number",
+        "text": "12",
+        "bbox": [
+            488,
+            946,
+            509,
+            959
+        ],
+        "page_idx": 11
+    },
+    {
+        "type": "list",
+        "sub_type": "ref_text",
+        "list_items": [
+            "Greg Serapio-García, Mustafa Safdari, Clément Crepy, Luning Sun, Stephen Fitz, Peter Romero, Marwa Abdulhai, Aleksandra Faust, and Maja Matari´c. Personality traits in large language models. arXiv preprint arXiv:2307.00184, 2023.",
+            "Zhihong Shao, Peiyi Wang, Qihao Zhu, Runxin Xu, Junxiao Song, Xiao Bi, Haowei Zhang, Mingchuan Zhang, YK Li, Yang Wu, et al. Deepseekmath: Pushing the limits of mathematical reasoning in open language models. arXiv preprint arXiv:2402.03300, 2024.",
+            "Gabriel Simmons. Moral mimicry: Large language models produce moral rationalizations tailored to political identity. In Vishakh Padmakumar, Gisela Vallejo, and Yao Fu (eds.), Proceedings of the 61st Annual Meeting of the Association for Computational Linguistics (Volume 4: Student Research Workshop), pp. 282–297, Toronto, Canada, July 2023. Association for Computational Linguistics. doi: 10.18653/v1/2023.acl-srw.40. URL https://aclanthology.org/2023.acl-srw.40/.",
+            "Keith E Stanovich and Richard F West. Advancing the rationality debate. Behavioral and brain sciences, 23(5):701–717, 2000.",
+            "Joseph Suh, Erfan Jahanparast, Suhong Moon, Minwoo Kang, and Serina Chang. Language model fine-tuning on scaled survey data for predicting distributions of public opinions. In Proceedings of the 63rd Annual Meeting of the Association for Computational Linguistics (Volume 1: Long Papers), pp. 21147–21170, 2025.",
+            "Yu-Min Tseng, Yu-Chao Huang, Teng-Yun Hsiao, Wei-Lin Chen, Chao-Wei Huang, Yu Meng, and Yun-Nung Chen. Two tales of persona in LLMs: A survey of role-playing and personalization. In Findings of the Association for Computational Linguistics: EMNLP 2024, pp. 16612–16631, 2024.",
+            "Guido van Rossum, Barry Warsaw, and Alyssa Coghlan. Pep 8 – style guide for python code, 4 2025. URL https://peps.python.org/pep-0008/.",
+            "Jason Wei, Xuezhi Wang, Dale Schuurmans, Maarten Bosma, Ed Chi, Quoc Le, and Denny Zhou. Chain-of-thought prompting elicits reasoning in large language models. In Advances in Neural Information Processing Systems, volume 35, pp. 24824–24837, 2022.",
+            "Patrick Y. Wu, Jonathan Nagler, Joshua A. Tucker, and Solomon Messing. Large language models can be used to scale the ideologies of politicians in a zero-shot learning setting, 2023.",
+            "Shirley Wu, Evelyn Choi, Arpandeep Khatua, Zhanghan Wang, Joy He-Yueya, Tharindu Cyril Weerasooriya, Wei Wei, Diyi Yang, Jure Leskovec, and James Zou. Humanlm: Simulating users with state alignment beats response imitation. In Proceedings of the International Conference on Machine Learning (ICML), 2026.",
+            "Songlin Xu, Xinran Zhang, et al. Classroom simulacra: Building contextual student generative agents in online education for learning behavioral simulation. In Proceedings ofthe CHI Conference on Human Factors in Computing Systems, 2025.",
+            "An Yang, Anfeng Li, Baosong Yang, Beichen Zhang, Binyuan Hui, Bo Zheng, Bowen Yu, Chang Gao, Chengen Huang, Chenxu Lv, et al. Qwen3 technical report. arXiv preprint arXiv:2505.09388, 2025a.",
+            "An Yang, Baosong Yang, Beichen Zhang, Binyuan Hui, Bo Zheng, Bowen Yu, Chengyuan Li, Dayiheng Liu, Fei Huang, Haoran Wei, Huan Lin, Jian Yang, Jianhong Tu, Jianwei Zhang, Jianxin Yang, Jiaxi Yang, Jingren Zhou, Junyang Lin, Kai Dang, Keming Lu, Keqin Bao, Kexin Yang, Le Yu, Mei Li, Mingfeng Xue, Pei Zhang, Qin Zhu, Rui Men, Runji Lin, Tianhao Li, Tianyi Tang, Tingyu Xia, Xingzhang Ren, Xuancheng Ren, Yang Fan, Yang Su, Yichang Zhang, Yu Wan, Yuqiong Liu, Zeyu Cui, Zhenru Zhang, and Zihan Qiu. Qwen2.5 technical report, 2025b. URL https://arxiv.org/abs/2412.15115.",
+            "Qisen Yang, Zekun Wang, Honghui Chen, Shenzhi Wang, Yifan Pu, Xin Gao, Wenhao Huang, Shiji Song, and Gao Huang. PsychoGAT: A novel psychological measurement paradigm through interactive fiction games with LLM agents. In Lun-Wei Ku, Andre"
+        ],
+        "bbox": [
+            173,
+            103,
+            826,
+            147
+        ],
+        "page_idx": 12
+    },
+    {
+        "type": "header",
+        "text": "Published as a conference paper at COLM 2026",
+        "bbox": [
+            171,
+            31,
+            517,
+            47
+        ],
+        "page_idx": 12
+    },
+    {
+        "type": "page_number",
+        "text": "13",
+        "bbox": [
+            488,
+            946,
+            509,
+            960
+        ],
+        "page_idx": 12
+    },
+    {
+        "type": "list",
+        "sub_type": "ref_text",
+        "list_items": [
+            "Martins, and Vivek Srikumar (eds.), Proceedings of the 62nd Annual Meeting of the Association for Computational Linguistics (Volume 1: Long Papers), pp. 14470–14505, Bangkok, Thailand, August 2024. Association for Computational Linguistics. doi: 10.18653/v1/2024.acl-long. 779. URL https://aclanthology.org/2024.acl-long.779/.",
+            "Shunyu Yao, Dian Yu, Jeffrey Zhao, Izhak Shafran, Tom Griffiths, Yuan Cao, and Karthik Narasimhan. Tree of thoughts: Deliberate problem solving with large language models. Advances in neural information processing systems, 36:11809–11822, 2023a.",
+            "Shunyu Yao, Jeffrey Zhao, Dian Yu, Nan Du, Izhak Shafran, Karthik R Narasimhan, and Yuan Cao. React: Synergizing reasoning and acting in language models. In The eleventh international conference on learning representations, 2023b.",
+            "Murong Yue, Wijdane Mifdal, Yixuan Zhang, Jennifer Suh, and Ziyu Yao. MathVC: An LLM-simulated multi-character virtual classroom for mathematics education. In arXiv preprint arXiv:2404.06711, 2024.",
+            "J.D. Zamfirescu-Pereira, Laryn Qi, Björn Hartmann, John DeNero, and Narges Norouzi. 61a bot report: Ai assistants in cs1 save students homework time and reduce demands on staff. (now what?). In Proceedings of the 56th ACM Technical Symposium on Computer Science Education V. 1, SIGCSETS 2025, pp. 1309–1315, New York, NY, USA, 2025. Association for Computing Machinery. ISBN 9798400705311. doi: 10.1145/3641554.3701864. URL https://doi.org/10.1145/3641554.3701864.",
+            "Denny Zhou, Nathanael Schärli, Le Hou, Jason Wei, Nathan Scales, Xuezhi Wang, Dale Schuurmans, Claire Cui, Olivier Bousquet, Quoc V Le, et al. Least-to-most prompting enables complex reasoning in large language models. In The eleventh international conference on learning representations, 2022."
+        ],
+        "bbox": [
+            186,
+            103,
+            826,
+            160
+        ],
+        "page_idx": 13
+    },
+    {
+        "type": "header",
+        "text": "Published as a conference paper at COLM 2026",
+        "bbox": [
+            171,
+            32,
+            517,
+            47
+        ],
+        "page_idx": 13
+    },
+    {
+        "type": "page_number",
+        "text": "14",
+        "bbox": [
+            488,
+            946,
+            509,
+            960
+        ],
+        "page_idx": 13
+    },
+    {
+        "type": "text",
+        "text": "A Data Privacy",
+        "text_level": 2,
+        "bbox": [
+            169,
+            102,
+            326,
+            119
+        ],
+        "page_idx": 14
+    },
+    {
+        "type": "text",
+        "text": "We received IRB approval for the research use of the dataset (protocol ID: 2023-09-16725), after which the AI tutor was deployed in the course. When students submitted their code to the autograder as part of the regular course practice, they were asked whether they would like to receive AI tutor feedback on their code, and if so, were asked whether they would like their data to be used for research. Students were still able to receive AI feedback even if they did not wish their data to be used in research. Only students who explicitly consented were included in our analysis. Additionally, all student identifiers (e.g., IDs and emails) were fully anonymized prior to passing the data to the LLM and any further analysis. As part of our system design, any data from LLM calls from our educational platform to the model providers will not be retained on third-party servers and will not be used for further fine-tuning of those models.",
+        "bbox": [
+            168,
+            138,
+            828,
+            294
+        ],
+        "page_idx": 14
+    },
+    {
+        "type": "text",
+        "text": "B Extended Action Fidelity Results",
+        "text_level": 2,
+        "bbox": [
+            171,
+            324,
+            504,
+            342
+        ],
+        "page_idx": 14
+    },
+    {
+        "type": "text",
+        "text": "This section provides extended results that complement the main paper. First, we report results on test\\_OP\\_2 and test\\_NP\\_2 to evaluate model performance on additional test problems. The progression of pass rate is shown in Figure 3, exhibiting trends consistent with test\\_OP\\_1 and test\\_NP\\_1. Second, we report additional results for LLaMA and its Wasserstein distance metrics in Table 3.",
+        "bbox": [
+            169,
+            361,
+            826,
+            433
+        ],
+        "page_idx": 14
+    },
+    {
+        "type": "chart",
+        "img_path": "images/5474d0c7108f8862305f719aaf3fc236a6bd8c8d88bf42fe09d7886c5188d1f2.jpg",
+        "content": "",
+        "chart_caption": [
+            "(a) test\\_OP\\_2 (Representative Problem: n = 759)"
+        ],
+        "chart_footnote": [],
+        "bbox": [
+            179,
+            449,
+            816,
+            622
+        ],
+        "page_idx": 14
+    },
+    {
+        "type": "chart",
+        "img_path": "images/90ec5ce925819b0eafe92245026491d751033d7f327923902b9328fddf9b056d.jpg",
+        "content": "",
+        "chart_caption": [
+            "(b) test\\_NP\\_2 (Representative Problem: n = 359)",
+            "Figure 3: Pass rate trajectories over normalized submission steps on test\\_OP\\_2 and test\\_NP\\_2."
+        ],
+        "chart_footnote": [],
+        "bbox": [
+            179,
+            679,
+            816,
+            853
+        ],
+        "page_idx": 14
+    },
+    {
+        "type": "header",
+        "text": "Published as a conference paper at COLM 2026",
+        "bbox": [
+            171,
+            31,
+            517,
+            47
+        ],
+        "page_idx": 14
+    },
+    {
+        "type": "page_number",
+        "text": "15",
+        "bbox": [
+            488,
+            946,
+            509,
+            960
+        ],
+        "page_idx": 14
+    },
+    {
+        "type": "table",
+        "img_path": "images/ded15c05c5ba78d77fc04167d77ca568e79062bf77caf43fc78594e7b7295643.jpg",
+        "table_caption": [
+            "Table 3: LLaMA results (Wasserstein distances)."
+        ],
+        "table_footnote": [],
+        "table_body": "<table><tr><td>Model</td><td>Pass Rate↓</td><td>LOC↓</td><td></td><td>AST Depth ↓ AST Width ↓</td><td>PEP8↓</td></tr><tr><td>LLaMA-3-8B-Instruct</td><td>0.20</td><td>0.99</td><td>0.52</td><td>1.12</td><td>0.98</td></tr><tr><td>LLaMA-3-8B-Instruct-CoT</td><td>0.18</td><td>0.85</td><td>0.48</td><td>1.00</td><td>1.01</td></tr><tr><td>LLaMA-3-8B-Instruct-BloomCoT</td><td>0.17</td><td>0.78</td><td>0.45</td><td>1.03</td><td>1.16</td></tr><tr><td>LLaMA-3-8B-SFT</td><td>0.07</td><td>0.32</td><td>0.17</td><td>0.37</td><td>0.20</td></tr><tr><td>LLaMA-3-8B-INSIDE</td><td>0.06</td><td>0.26</td><td>0.22</td><td>0.48</td><td>0.21</td></tr></table>",
+        "bbox": [
+            181,
+            122,
+            813,
+            213
+        ],
+        "page_idx": 15
+    },
+    {
+        "type": "text",
+        "text": "C Self-Consistency of the Models",
+        "text_level": 2,
+        "bbox": [
+            171,
+            226,
+            491,
+            243
+        ],
+        "page_idx": 15
+    },
+    {
+        "type": "text",
+        "text": "Table 4 reports self-consistency, a variant of the alignment metric described in Section 4.2, measuring alignment between generated internal dialogue and the model’s own generated code. Formally, we replace the ground-truth transition $c _ { t - 1 , s _ { i } , p _ { u } } \\ \\to \\ c _ { t , s _ { i } , p _ { u } }$ with the modelgenerated transition $c _ { t - 1 , s _ { i } , p _ { u } } \\to \\hat { c } _ { t , s _ { i } , p _ { u } }$ and compute",
+        "bbox": [
+            169,
+            255,
+            826,
+            314
+        ],
+        "page_idx": 15
+    },
+    {
+        "type": "equation",
+        "img_path": "images/b54c380e997bb62067b2fd16ee41860737bd9faa50084b48a3c27c21cc6433f7.jpg",
+        "text": "$$\n\\mathsf { S e l f C o n s i s t e n c y } _ { t } = \\frac { 1 } { | \\mathscr { V } _ { t } | } \\sum _ { i = 1 } ^ { | \\mathscr { V } _ { t } | } \\mathbb { 1 } _ { \\mathsf { s e l f } } ( v ^ { ( i ) } ) ,\n$$",
+        "text_format": "latex",
+        "bbox": [
+            367,
+            316,
+            629,
+            351
+        ],
+        "page_idx": 15
+    },
+    {
+        "type": "text",
+        "text": "where $\\mathbb { 1 } _ { \\mathrm { s e l f } } ( v ^ { ( i ) } ) = 1$ if claim $\\boldsymbol { v } ^ { ( i ) }$ is reflected in the model-generated code diff and 0 otherwise. Prompting-based models achieve high self-consistency scores (86.9%–99.0% across both test sets), with GPT-5 attaining the highest scores. However, as shown in our action fidelity evaluation (Section 5.1), GPT-5 performs among the worst in terms of reproducing realistic student code trajectories. Taken together, these results suggest that strong consistency between a model’s reasoning and its own generated code does not necessarily imply alignment with real student reasoning or behavior. While prompting-based methods naturally exhibit higher self-consistency due to explicit CoT prompting, INSIDE also achieves competitive self-consistency (83.0%–87.3% across both test sets), indicating that its generated reasoning remains coherent with its generated code while better matching real student code edits.",
+        "bbox": [
+            169,
+            353,
+            826,
+            501
+        ],
+        "page_idx": 15
+    },
+    {
+        "type": "text",
+        "text": "Table 4: Self-consistency between generated internal dialogue and model-generated code. Each cell reports self-consistency (%) with standard error in parentheses. Higher values indicate better agreement between the generated reasoning and the model’s own generated code.",
+        "bbox": [
+            169,
+            503,
+            826,
+            560
+        ],
+        "page_idx": 15
+    },
+    {
+        "type": "table",
+        "img_path": "images/a920453831558d694c7067edf56135cdfd1d0c65bcbc070730c7a9819ebd69de.jpg",
+        "table_caption": [
+            "(a) test\\_OP"
+        ],
+        "table_footnote": [],
+        "table_body": "<table><tr><td>Model</td><td>Self-consistency (%)</td></tr><tr><td>GPT-5-BloomCoT</td><td>97.6 (0.3)</td></tr><tr><td>Qwen2.5-7B-Instruct-BloomCoT</td><td>86.9 (0.6)</td></tr><tr><td>Qwen2.5-Coder-7B-Instruct-BloomCoT</td><td>89.6 (0.5)</td></tr><tr><td>Qwen3-8B-BloomCoT</td><td>91.9 (0.5)</td></tr><tr><td>Qwen3-14B-BloomCoT</td><td>92.3 (0.5)</td></tr><tr><td>Qwen3-32B-BloomCoT</td><td>90.9 (0.5)</td></tr><tr><td>Qwen2.5-7B-INSIDE</td><td>85.0 (0.6)</td></tr><tr><td>Qwen2.5-Coder-7B-INSIDE</td><td>86.3 (0.6)</td></tr><tr><td>Qwen3-8B-INSIDE</td><td>83.0 (0.7)</td></tr></table>",
+        "bbox": [
+            176,
+            588,
+            488,
+            712
+        ],
+        "page_idx": 15
+    },
+    {
+        "type": "table",
+        "img_path": "images/85699822ce604e1b73cc0924a6856702c2b897af44c83cccd9405aa14c76dc92.jpg",
+        "table_caption": [
+            "(b) test\\_NP"
+        ],
+        "table_footnote": [],
+        "table_body": "<table><tr><td>Model</td><td>Self-consistency (%)</td></tr><tr><td>GPT-5-BloomCoT</td><td>99.0 (0.3)</td></tr><tr><td>Qwen2.5-7B-Instruct-BloomCoT</td><td>90.3 (1.4)</td></tr><tr><td>Qwen2.5-Coder-7B-Instruct-BloomCoT</td><td>91.7 (1.2)</td></tr><tr><td>Qwen3-8B-BloomCoT</td><td>93.2 (1.1)</td></tr><tr><td>Qwen3-14B-BloomCoT</td><td>91.3 (1.3)</td></tr><tr><td>Qwen3-32B-BloomCoT</td><td>92.2 (1.3)</td></tr><tr><td>Qwen2.5-7B-INSIDE</td><td>85.3 (1.6)</td></tr><tr><td>Qwen2.5-Coder-7B-INSIDE</td><td>87.3 (1.4)</td></tr><tr><td>Qwen3-8B-INSIDE</td><td>83.8 (1.6)</td></tr></table>",
+        "bbox": [
+            513,
+            588,
+            823,
+            712
+        ],
+        "page_idx": 15
+    },
+    {
+        "type": "header",
+        "text": "Published as a conference paper at COLM 2026",
+        "bbox": [
+            171,
+            31,
+            517,
+            47
+        ],
+        "page_idx": 15
+    },
+    {
+        "type": "page_number",
+        "text": "16",
+        "bbox": [
+            488,
+            946,
+            509,
+            960
+        ],
+        "page_idx": 15
+    },
+    {
+        "type": "text",
+        "text": "D Student Pass-Rate Distribution Across Test Splits",
+        "text_level": 2,
+        "bbox": [
+            169,
+            102,
+            655,
+            119
+        ],
+        "page_idx": 16
+    },
+    {
+        "type": "text",
+        "text": "We compare empirical student and model pass-rate distributions in Figure 4, since pass rate directly captures whether models generate submissions at student-like correctness levels.",
+        "bbox": [
+            169,
+            131,
+            825,
+            161
+        ],
+        "page_idx": 16
+    },
+    {
+        "type": "text",
+        "text": "Both test\\_OP and test\\_NP student distributions are concentrated at the endpoints, with 83% and 81% of mass at pass rates 0 and 1, respectively. However, their failure/success balance differs: test\\_OP students fail at 55% and succeed at 28% (roughly 2:1), whereas test\\_NP students fail at 47% and succeed at 34% (roughly 1.4:1). This helps explain the smaller INSIDE–SFT gap on test\\_NP. On test\\_OP, SFT underestimates complete failure (43% vs. 55%) and overestimates complete success (40% vs. 28%), reflecting residual overcompetence from the base model; INSIDE better corrects this mismatch. On test\\_NP, where students fail less and succeed more, SFT is already closer to the student distribution, leaving less mismatch for INSIDE to correct.",
+        "bbox": [
+            169,
+            164,
+            826,
+            290
+        ],
+        "page_idx": 16
+    },
+    {
+        "type": "text",
+        "text": "This also helps explain why Wasserstein distances are smaller on test\\_NP, especially for SFT. Figure 4 suggests that SFT’s smaller pass-rate Wasserstein distances on test\\_NP are driven largely by its close match to fully passing submissions. Since fully correct solutions in introductory Python problems often share similar structure, including LOC, AST shape, and style, SFT’s calibration at pass rate 1.0 can also reduce distances on related action-fidelity metrics.",
+        "bbox": [
+            169,
+            292,
+            826,
+            378
+        ],
+        "page_idx": 16
+    },
+    {
+        "type": "chart",
+        "img_path": "images/62f4df26f778f7a263ceba944c504837011a73c42f120019d62431712835965f.jpg",
+        "content": "",
+        "chart_caption": [
+            "Figure 4: Exact pass-rate mass by split: Student vs. SFT vs. INSIDE. Each panel shows the probability mass of student, SFT, and INSIDE submissions at each exact pass rate, faceted by test split (test\\_OP top, test\\_NP bottom). Both splits show student distributions concentrated at the endpoints (pass rate 0 or 1), but differ in their failure/success ratio, which helps explain the asymmetric INSIDE–SFT gap across splits."
+        ],
+        "chart_footnote": [],
+        "bbox": [
+            228,
+            401,
+            751,
+            662
+        ],
+        "page_idx": 16
+    },
+    {
+        "type": "header",
+        "text": "Published as a conference paper at COLM 2026",
+        "bbox": [
+            171,
+            31,
+            517,
+            47
+        ],
+        "page_idx": 16
+    },
+    {
+        "type": "page_number",
+        "text": "17",
+        "bbox": [
+            488,
+            946,
+            509,
+            960
+        ],
+        "page_idx": 16
+    },
+    {
+        "type": "text",
+        "text": "E Internal Dialogue Generation Prompt",
+        "text_level": 2,
+        "bbox": [
+            171,
+            102,
+            547,
+            121
+        ],
+        "page_idx": 17
+    },
+    {
+        "type": "text",
+        "text": "We provide the full prompt used to generate synthetic internal dialogue with the teacher model in Figure 5. The prompt performs retrospective inference over real student prior code, feedback, and the observed next submission, producing structured cognitive, affective, and action states followed by a first-person think trace inspired by Bloom et al. (1956). These generated traces are used as supervision for training INSIDE.",
+        "bbox": [
+            168,
+            132,
+            828,
+            207
+        ],
+        "page_idx": 17
+    },
+    {
+        "type": "code",
+        "sub_type": "algorithm",
+        "code_caption": [],
+        "code_footnote": [],
+        "code_body": "System Prompt   \nYou are analyzing a novice student interacting with an AI programming tutor and reconstructing the   \ninternal dialogue behind the code edits they make.   \nThis is a retrospective reconstruction task. You are given:   \n- the full past interaction history, including previously inferred student dialogue   \n- the most recent submission and the feedback on that submission   \n- the subsequent submission   \nStudents differ in background, experience, confidence, and problem-solving style. They may misunderstand   \nfeedback, partially apply it, over-apply it, or ignore parts of it. They often make small local edits   \ninstead of fully restructuring their code.   \nYour task has two steps.   \n### STEP 1: Infer the student's internal state from the context   \nWrite these fields from a third-person analyst perspective describing the student, not in the student's   \nown voice.   \nThe states correspond to three learning dimensions commonly used in educational theory: cognitive   \n(knowledge and reasoning), affective (emotions and attitudes toward learning), and action (the concrete   \nproblem-solving step the student is taking).   \nUse exactly these tags:   \n<cognitive>   \nIn one sentence, describe the student's current understanding of the problem or feedback. This may   \ninclude recalling relevant concepts, interpreting the feedback, applying a rule, analyzing the cause of   \na bug, or forming a hypothesis about how to fix the code. Include both correct and incorrect beliefs or   \nmisconceptions suggested by the code changes.   \n</cognitive>   \n<affective>   \nIn one sentence, describe the student's emotional or motivational state toward the task, such as   \nconfusion, uncertainty, frustration, confidence, curiosity, or persistence. This reflects how the   \nstudent is reacting to the feedback and the difficulty of the problem.   \n</affective>   \n<action>   \nIn one sentence, describe the concrete programming step the student appears to take next based on the   \nsubsequent submission. This should reflect the student's problem-solving action.   \n</action>   \n### STEP 2: Generate the student's internal dialogue.   \n<think>   \nWrite the student's internal dialogue in first-person voice, based on the inferred states above   \n(cognitive, affective, action).   \nThe dialogue should reflect what the student likely thought before producing the subsequent submission   \n(i.e., the \"voice in their head\"). It should read like a brief think-aloud explanation of their   \nreasoning.   \nThe thought should sound like a novice programmer thinking through the problem: informal, tentative, and   \nsometimes incomplete. It may include uncertainty, guesses, or small misunderstandings, and may   \noccasionally include questions the student asks themselves.   \n</think>   \nOutput exactly in this format and nothing else:   \n<cognitive>...</cognitive>   \n<affective>...</affective>   \n<action>...</action>   \n<think>...</think>",
+        "bbox": [
+            173,
+            218,
+            823,
+            920
+        ],
+        "page_idx": 17
+    },
+    {
+        "type": "header",
+        "text": "Published as a conference paper at COLM 2026",
+        "bbox": [
+            171,
+            31,
+            517,
+            47
+        ],
+        "page_idx": 17
+    },
+    {
+        "type": "page_number",
+        "text": "18",
+        "bbox": [
+            488,
+            946,
+            509,
+            960
+        ],
+        "page_idx": 17
+    },
+    {
+        "type": "image",
+        "img_path": "images/143b9e92b9e682ca9de54524c6b2cd0bb553f8b0d1e1329e79e55efa7db06a32.jpg",
+        "image_caption": [
+            "Figure 5: Prompt used for internal dialogue generation from real student code submission traces to use for the fine-tuning of INSIDE."
+        ],
+        "image_footnote": [],
+        "bbox": [
+            173,
+            101,
+            823,
+            469
+        ],
+        "page_idx": 18
+    },
+    {
+        "type": "header",
+        "text": "Published as a conference paper at COLM 2026",
+        "bbox": [
+            173,
+            31,
+            517,
+            47
+        ],
+        "page_idx": 18
+    },
+    {
+        "type": "page_number",
+        "text": "19",
+        "bbox": [
+            488,
+            946,
+            509,
+            960
+        ],
+        "page_idx": 18
+    },
+    {
+        "type": "text",
+        "text": "F Student Code Simulation Prompts",
+        "text_level": 2,
+        "bbox": [
+            171,
+            101,
+            516,
+            121
+        ],
+        "page_idx": 19
+    },
+    {
+        "type": "text",
+        "text": "We provide the prompt templates used across all settings: fine-tuning (Figure 6), standard prompting without CoT (Figure 7), CoT prompting (Figure 8), and Bloom’s Taxonomyinspired structured CoT prompting (Figure 9).",
+        "bbox": [
+            169,
+            128,
+            828,
+            176
+        ],
+        "page_idx": 19
+    },
+    {
+        "type": "code",
+        "sub_type": "algorithm",
+        "code_caption": [
+            "Figure 6: Prompt template for fine-tuned models. The same template is used during both training and inference. Given this input, SFT outputs only the next code submission (<code>...</code>), while INSIDE generates both internal dialogue (<think>...</think>) and the next code (<code>...</code>)."
+        ],
+        "code_footnote": [],
+        "code_body": "PROBLEM INSTRUCTIONS :   \n{ instructions }   \nFIXED CODE :   \n<code >{ fixed\\_code }</ code >   \nTODO CODE :   \n<code >{ skeleton\\_code }</ code >   \nSUBMISSION HISTORY ( CODE + FEEDBACK ):   \n{ submissions\\_with\\_feedback }",
+        "bbox": [
+            173,
+            180,
+            823,
+            329
+        ],
+        "page_idx": 19
+    },
+    {
+        "type": "code",
+        "sub_type": "algorithm",
+        "code_caption": [],
+        "code_footnote": [],
+        "code_body": "System Prompt   \nYou are simulating a student taking an introduction to Python programming course.   \nGenerate the student's next attempt at the TODO CODE of the current problem, using both their prior   \nsubmissions and the feedback they received.   \n- When writing the code, you must wrap the generated code in <code> and </code> tags.   \n- Only write the contents of the TODO CODE. Do not include docstrings or anything outside it.   \n- As a novice student, your attempts may include mistakes or partial fixes.   \n- FIXED CODE is provided - do not copy, modify, or include it.   \n- Use prior feedback to inform your code revision.   \n- If the generated attempt is the student's final submission, append \"<SUBMIT>\" at the end.   \n- Use the Python programming language",
+        "bbox": [
+            173,
+            401,
+            821,
+            573
+        ],
+        "page_idx": 19
+    },
+    {
+        "type": "image",
+        "img_path": "images/6107dc15ea5a1d7dff2248b262bf132d6fc4cceed88471c06f5995d7a7f727c2.jpg",
+        "image_caption": [],
+        "image_footnote": [],
+        "bbox": [
+            171,
+            585,
+            823,
+            755
+        ],
+        "page_idx": 19
+    },
+    {
+        "type": "code",
+        "sub_type": "algorithm",
+        "code_caption": [
+            "Figure 7: Prompt template for prompting models without CoT. The model is instructed to generate only the next code submission (<code>...</code>). These prompts are adapted from prior work (Leinonen et al., 2025), which used LLMs to mimic the distribution of error types and test case failure frequencies of real student datasets."
+        ],
+        "code_footnote": [],
+        "code_body": "System Prompt   \nYou are simulating a student taking an introduction to Python programming course.   \nGenerate the student's next attempt at the TODO CODE of the current problem, using both their prior   \nsubmissions and the feedback they received.",
+        "bbox": [
+            173,
+            827,
+            823,
+            921
+        ],
+        "page_idx": 19
+    },
+    {
+        "type": "header",
+        "text": "Published as a conference paper at COLM 2026",
+        "bbox": [
+            171,
+            31,
+            517,
+            47
+        ],
+        "page_idx": 19
+    },
+    {
+        "type": "page_number",
+        "text": "20",
+        "bbox": [
+            488,
+            946,
+            509,
+            960
+        ],
+        "page_idx": 19
+    },
+    {
+        "type": "code",
+        "sub_type": "algorithm",
+        "code_caption": [],
+        "code_footnote": [],
+        "code_body": "PROBLEM INSTRUCTIONS:   \n{instructions}   \nFIXED CODE:   \n<code>{fixed\\_code}</code>   \nTODO CODE:   \n<code>{skeleton\\_code}</code>   \nSUBMISSION HISTORY (CODE + FEEDBACK):   \n{submissions\\_with\\_feedback}",
+        "bbox": [
+            191,
+            420,
+            419,
+            551
+        ],
+        "page_idx": 20
+    },
+    {
+        "type": "code",
+        "sub_type": "code",
+        "code_caption": [],
+        "code_footnote": [],
+        "code_body": "```markdown\nYour task has two steps.\n### STEP 1: Generate the student's internal dialogue before their next submission using <think> and\n</think> tags.\n<think>\nWrite the student's internal dialogue in first-person voice.\nThe dialogue should reflect what the student likely thought before producing the subsequent submission\n(i.e., the \"voice in their head\"). It should read like a brief think-aloud explanation of their\nreasoning.\nThe thought should sound like a novice programmer thinking through the problem: informal, tentative, and\nsometimes incomplete. It may include uncertainty, guesses, or small misunderstandings, and may\noccasionally include questions the student asks themselves.\n</think>\n### STEP 2: Generate the student's next code submission.\n- Use the internal dialogue above to inform the code the student writes next.\n- When writing the code, you must wrap the generated code in <code> and </code> tags.\n- Only write the contents of the TODO CODE. Do not include docstrings or anything outside it.\n- As a novice student, your attempts may include mistakes or partial fixes.\n- FIXED CODE is provided - do not copy, modify, or include it.\n- Use prior feedback to inform your code revision.\n- If the generated attempt is the student's final submission, append \"<SUBMIT>\" at the end.\n- Use Python programming language\n```",
+        "bbox": [
+            179,
+            102,
+            820,
+            372
+        ],
+        "page_idx": 20
+    },
+    {
+        "type": "code",
+        "sub_type": "algorithm",
+        "code_caption": [
+            "Figure 8: Prompt template for CoT-based prompting models. The model is instructed to first generate an internal dialogue (<think>...</think>) and then produce the next code submission (<code>...</code>)."
+        ],
+        "code_footnote": [],
+        "code_body": "System Prompt   \nYou are simulating a student taking an introduction to Python programming course.   \nGenerate the student's next attempt at the TODO CODE of the current problem, using both their prior   \nsubmissions and the feedback they received.   \nYour task has three steps.   \n## STEP 1: Infer the student's internal state right after receiving the most recent feedback.   \nWrite these fields from a third-person analyst perspective describing the student, not in the student's   \nown voice.   \nThe states correspond to three learning dimensions commonly used in educational theory: cognitive   \n(knowledge and reasoning), affective (emotions and attitudes toward learning), and action (the concrete   \nproblem-solving step the student is about to take).   \nUse exactly these tags:   \n<cognitive>   \nIn one sentence, describe the student's current understanding of the problem or feedback. This may   \ninclude recalling relevant concepts, interpreting the feedback, applying a rule, analyzing the cause of   \na bug, or forming a hypothesis about how to fix the code. Include both correct and incorrect beliefs or   \nmisconceptions suggested by the code changes.   \n</cognitive>   \n<affective>",
+        "bbox": [
+            173,
+            626,
+            823,
+            921
+        ],
+        "page_idx": 20
+    },
+    {
+        "type": "header",
+        "text": "Published as a conference paper at COLM 2026",
+        "bbox": [
+            171,
+            31,
+            517,
+            47
+        ],
+        "page_idx": 20
+    },
+    {
+        "type": "page_number",
+        "text": "21",
+        "bbox": [
+            488,
+            946,
+            508,
+            959
+        ],
+        "page_idx": 20
+    },
+    {
+        "type": "code",
+        "sub_type": "algorithm",
+        "code_caption": [],
+        "code_footnote": [],
+        "code_body": "In one sentence, describe the student's emotional or motivational state toward the task, such as   \nconfusion, uncertainty, frustration, confidence, curiosity, or persistence. This reflects how the   \nstudent is reacting to the feedback and the difficulty of the problem.   \n</affective>   \n<action>   \nIn one sentence, describe the concrete programming step the student is about to take next. This should   \nreflect the student's problem-solving action.   \n</action>   \n## STEP 2: Generate the student's internal dialogue before their next submission using <think> and   \n</think> tags.   \n<think>   \nWrite the student's internal dialogue in first-person voice, based on the inferred states above   \n(cognitive, affective, action).   \nThe dialogue should reflect what the student likely thought before producing the subsequent submission   \n(i.e., the \"voice in their head\"). It should read like a brief think-aloud explanation of their   \nreasoning.   \nThe thought should sound like a novice programmer thinking through the problem: informal, tentative, and   \nsometimes incomplete. It may include uncertainty, guesses, or small misunderstandings, and may   \noccasionally include questions the student asks themselves.   \n</think>   \n## STEP 3: Generate the student's next code submission.   \n- Use the internal dialogue above to inform the code the student writes next.   \n- When writing the code, you must wrap the generated code in <code> and </code> tags.   \n- Only write the contents of the TODO CODE. Do not include docstrings or anything outside it.   \n- As a novice student, your attempts may include mistakes or partial fixes.   \n- FIXED CODE is provided - do not copy, modify, or include it.   \n- Use prior feedback to inform your code revision.   \n- If the generated attempt is the student's final submission, append \"<SUBMIT>\" at the end.   \n- Use Python programming language",
+        "bbox": [
+            169,
+            99,
+            825,
+            465
+        ],
+        "page_idx": 21
+    },
+    {
+        "type": "image",
+        "img_path": "images/292ea29e510bbffbdc71aa0064f40cf0d88234425fc54bcfac77d8bf26542134.jpg",
+        "image_caption": [
+            "Figure 9: Bloom’s Taxonomy-inspired prompt template for structured CoT prompting. The model first infers the student’s internal state across cognitive, affective, and action dimensions, then generates an internal dialogue (<think>...</think>), followed by the next code submission (<code>...</code>)."
+        ],
+        "image_footnote": [],
+        "bbox": [
+            171,
+            478,
+            823,
+            646
+        ],
+        "page_idx": 21
+    },
+    {
+        "type": "header",
+        "text": "Published as a conference paper at COLM 2026",
+        "bbox": [
+            171,
+            31,
+            517,
+            47
+        ],
+        "page_idx": 21
+    },
+    {
+        "type": "page_number",
+        "text": "22",
+        "bbox": [
+            488,
+            946,
+            509,
+            960
+        ],
+        "page_idx": 21
+    },
+    {
+        "type": "text",
+        "text": "G LLM Judge Evaluation Prompt",
+        "text_level": 2,
+        "bbox": [
+            171,
+            101,
+            488,
+            121
+        ],
+        "page_idx": 22
+    },
+    {
+        "type": "text",
+        "text": "We provide the full prompt used for LLM-based evaluation of the model-generated internal dialogue alignment in Figure 10. The prompt instructs the judge (GPT-5-mini) to decompose the generated reasoning into atomic claims and assess whether each claim is supported by the real student’s code edits.",
+        "bbox": [
+            169,
+            133,
+            826,
+            191
+        ],
+        "page_idx": 22
+    },
+    {
+        "type": "code",
+        "sub_type": "algorithm",
+        "code_caption": [],
+        "code_footnote": [],
+        "code_body": "System Prompt   \nYou are evaluating a model that simulates a novice student working on a Python programming assignment.   \nExtract each distinct claim or intention from the Synthetic Think (e.g., \"I will add a base case\", \"I'll   \nuse n % 10\"). For each claim, evaluate it against both diffs:   \n- \\*\\*Task 1\\*\\* - Does the claim appear in the \\*\\*synthetic code diff\\*\\* (t-1 -> synthetic t)?   \n- \\*\\*Task 2\\*\\* - Does the same claim appear in the \\*\\*GT code diff\\*\\* (t-1 -> GT t)?   \nIf a claim is reflected in both, it suggests the synthetic think captures the same intent as the ground   \ntruth.   \n## Output Format   \nRespond in this exact JSON format:   \n{   \n\"claims\": [   \n{   \n\"claim\": \"<claim extracted from synthetic think>\",   \n\"task1\\_rationale\": \"<why this claim is/isn't reflected in the synthetic diff>\",   \n\"task1\\_reflected\": true or false,   \n\"task2\\_rationale\": \"<why this claim is/isn't reflected in the GT diff>\",   \n\"task2\\_reflected\": true or false   \n},<sub>{</sub>   \n\"claim\": \"<claim extracted from synthetic think>\",   \n\"task1\\_rationale\": \"<why this claim is/isn't reflected in the synthetic diff>\",   \n\"task1\\_reflected\": true or false,   \n\"task2\\_rationale\": \"<why this claim is/isn't reflected in the GT diff>\",   \n\"task2\\_reflected\": true or false   \n}   \n]   \n}",
+        "bbox": [
+            171,
+            199,
+            821,
+            542
+        ],
+        "page_idx": 22
+    },
+    {
+        "type": "code",
+        "sub_type": "code",
+        "code_caption": [
+            "Figure 10: Prompt used for claim-level evaluation of the internal dialogue. A single call produces both judgments: task2\\_reflected against the ground-truth diff gives the alignment score reported in Section 4.2, and task1\\_reflected against the model-generated diff gives the self-consistency score reported in Appendix C."
+        ],
+        "code_footnote": [],
+        "code_body": "```tcl\nUser Prompt\n### Problem Description:\n{instructions}\n### Student's Code at Time t-1 (most recent prior submission):\n{code_tm1}\n### Feedback the Student Received at Time t-1:\n{feedback_tm1}\n### Ground Truth Code at Time t (what the real student submitted next):\n{gt_code_t}\n### Synthetic Think at Time t-1 (what the model thinks the student thought):\n{syn_think_tm1}\n### Synthetic Code at Time t (what the model predicts the student will submit next):\n{syn_code_t}\n### Code Diff (t-1 -> synthetic t):\n{syn_diff}\n### Code Diff (t-1 -> GT t):\n{gt_diff}\n```",
+        "bbox": [
+            171,
+            563,
+            825,
+            852
+        ],
+        "page_idx": 22
+    },
+    {
+        "type": "header",
+        "text": "Published as a conference paper at COLM 2026",
+        "bbox": [
+            171,
+            31,
+            517,
+            47
+        ],
+        "page_idx": 22
+    },
+    {
+        "type": "page_number",
+        "text": "23",
+        "bbox": [
+            488,
+            946,
+            509,
+            960
+        ],
+        "page_idx": 22
+    },
+    {
+        "type": "text",
+        "text": "H Qualitative Examples",
+        "text_level": 2,
+        "bbox": [
+            171,
+            101,
+            406,
+            121
+        ],
+        "page_idx": 23
+    },
+    {
+        "type": "text",
+        "text": "H.1 INSIDE vs. Prompting Model",
+        "text_level": 2,
+        "bbox": [
+            171,
+            130,
+            447,
+            147
+        ],
+        "page_idx": 23
+    },
+    {
+        "type": "text",
+        "text": "We provide qualitative examples comparing generated internal dialogue and code against real student behavior in Figure 11. These examples illustrate how INSIDE captures reasoning that aligns with observed code edits, in contrast to prompting-based methods.",
+        "bbox": [
+            169,
+            154,
+            826,
+            200
+        ],
+        "page_idx": 23
+    },
+    {
+        "type": "code",
+        "sub_type": "code",
+        "code_caption": [],
+        "code_footnote": [],
+        "code_body": "```python\nReal student code t-1:\ndef make_repeater(f, n):\ndef func(x):\nfor _ in range(n):\nf = f(f)\nreturn f\nreturn fun c ()\n# new = f\n# for _ in range(n):\n# new = f(new)\n# return new()\nFeedback t-1:\nYou’re on the right track with the helper function, but there’s a small mistake. In the loop, you’re trying\nto reassign ‘f’ to ‘f(f)’, but ‘f’ is a function and you should be applying ‘f’ to an argument, not to the\nfunction ‘f’ itself. Also, you’re trying to call ‘func()’ at the end, but ‘func’ should be returned as a\nfunction, not called. Try to apply ‘f’ to ‘x’ in the loop and return ‘func’ instead of ‘func()’.\nQwen3-8B-BloomCoT Internal dialogue (Alignment: 50%):\nOkay, I need to make a function that applies ‘f’ ‘n’ times. I think I should create a helper function\ninside ‘make_repeater’ that takes ‘x’ and applies ‘f’ repeatedly. Let me try to loop ‘n’ times and apply\n‘f’ to the result each time. Oh right, I should start with ‘x’ and then apply ‘f’ to it in each iteration.\nLet me make sure I’m not calling ‘f’ incorrectly.\nQwen3-8B-INSIDE Internal dialogue (Alignment: 100%):\nOkay, they said I should apply f to an argument, so maybe I can do f = f(f(x)) inside the loop and then\nreturn f at the end. I’ll keep the helper and return it—hopefully this counts as applying f n times.\nReal student code t:\ndef make_repeater(f, n):\ndef func(x):\nfor _ in range(n):\nf = f(f (x) )\nreturn f\nreturn func\n# new = f\n# for _ in range(n):\n# new = f(new)\n# return new()\n```",
+        "bbox": [
+            178,
+            209,
+            818,
+            707
+        ],
+        "page_idx": 23
+    },
+    {
+        "type": "text",
+        "text": "Figure 11: A qualitative comparison of synthetic internal dialogue generated by Qwen3- 8B-BloomCoT and Qwen3-8B-INSIDE for the same student code and feedback (red highlights indicate code removed from the previous student submission, while green highlights indicate code added in the next student submission). BloomCoT generates a clean, competent think trace reasoning toward the correct solution, yet the resulting student code remains buggy and misaligned with that reasoning. INSIDE generates a messier, uncertain think trace that mirrors how a novice might partially misinterpret the feedback — producing f = f(f(x)) as a guess — which faithfully matches the actual student code change. This example illustrates that INSIDE captures the kind of confused, partially-correct reasoning real students exhibit, rather than generating idealized reasoning decoupled from the student’s actual behavior.",
+        "bbox": [
+            169,
+            714,
+            828,
+            872
+        ],
+        "page_idx": 23
+    },
+    {
+        "type": "header",
+        "text": "Published as a conference paper at COLM 2026",
+        "bbox": [
+            171,
+            31,
+            517,
+            47
+        ],
+        "page_idx": 23
+    },
+    {
+        "type": "page_number",
+        "text": "24",
+        "bbox": [
+            488,
+            946,
+            509,
+            959
+        ],
+        "page_idx": 23
+    },
+    {
+        "type": "text",
+        "text": "H.2 Failure Mode Analysis",
+        "text_level": 2,
+        "bbox": [
+            171,
+            103,
+            390,
+            119
+        ],
+        "page_idx": 24
+    },
+    {
+        "type": "text",
+        "text": "We conducted a qualitative error analysis of INSIDE’s failure cases. From the generated traces of the INSIDE models, we randomly sampled 25 examples from the bottom quartile of alignment scores and inspected the student’s code $c _ { t - 1 , s _ { i } , p _ { u } . }$ , the feedback $f _ { t - 1 , s _ { i } , p _ { u } }$ , the generated internal dialogue $\\hat { \\mathcal { Z } } _ { t , s _ { i } , p _ { u } }$ , and the student’s next submission $c _ { t , s _ { i } , p _ { u } }$ . We grouped the observations into three recurring failure categories: no student edit (48%), where the student resubmitted the same code despite the feedback; overestimating feedback uptake (44%), where the generated dialogue described a more feedback-responsive repair than the student implemented; and underestimating feedback uptake (8%), where the dialogue failed to anticipate a partial improvement the student made. Representative examples are shown in Figure 12, Figure 13, and Figure 14.",
+        "bbox": [
+            169,
+            126,
+            826,
+            268
+        ],
+        "page_idx": 24
+    },
+    {
+        "type": "code",
+        "sub_type": "algorithm",
+        "code_caption": [
+            "Figure 12: Representative example for “No student edit.” Despite receiving detailed feedback outlining a recursive approach, the real student resubmits an empty function stub unchanged. The INSIDE-generated internal dialogue, in contrast, reflects a plausible and largely correct plan for solving the problem (using n % 10 and n // 10 with a base case), illustrating a case where the model’s inferred reasoning is more feedback-responsive than the student’s actual (lack of) action."
+        ],
+        "code_footnote": [],
+        "code_body": "Real student code t-1:   \ndef num\\_eights(n):   \nFeedback t-1:   \nIt seems like you haven’t written any code for the num\\_eights function yet. Remember, you need to use   \nrecursion to solve this problem. Think about how you can break down the problem: you can check if the last   \ndigit of the number is 8, and then recursively call the function on the rest of the number. How can you   \nget the last digit and the rest of the number?   \nQwen3-8B-INSIDE Internal dialogue:   \nOkay, I can check the last digit with n % 10 and if it’s 8 add 1, then call the function on n // 10. I’ll   \nwrite a base case for n == 0 and just return 0 there—this should work without loops or assignments.   \nReal student code t:   \ndef num\\_eights(n):",
+        "bbox": [
+            173,
+            273,
+            823,
+            502
+        ],
+        "page_idx": 24
+    },
+    {
+        "type": "code",
+        "sub_type": "algorithm",
+        "code_caption": [],
+        "code_footnote": [],
+        "code_body": "Real student code t-1:   \ndef num\\_eights(n):   \nif n // 10 == 0 and n % 10 == 8:   \nreturn 1   \nelif n // 10 == 0 and n % 10 != 8:   \nreturn 0   \nelse:   \nreturn num\\_eights(n // 10) + 1   \nFeedback t-1:   \nYou’re almost there! However, you’re currently adding 1 to the count of 8’s in every recursive call, not   \njust when the last digit is 8. You should only add 1 if the last digit is 8. Try to fix this issue and run   \nyour code again.   \nQwen3-8B-INSIDE Internal dialogue:   \nOh, I was adding 1 every time—so I should only add 1 when the last digit is 8. I’ll keep my base cases and   \njust return 1 + num\\_eights(n // 10) when n % 10 == 8, otherwise just recurse on n // 10.   \nReal student code t:   \ndef num\\_eights(n):   \nif n // 10 == 0 and n % 10 == 8:   \nreturn 1   \nelif n // 10 == 0 and n % 10 != 8:   \nreturn 0",
+        "bbox": [
+            173,
+            603,
+            823,
+            920
+        ],
+        "page_idx": 24
+    },
+    {
+        "type": "header",
+        "text": "Published as a conference paper at COLM 2026",
+        "bbox": [
+            171,
+            31,
+            517,
+            47
+        ],
+        "page_idx": 24
+    },
+    {
+        "type": "page_number",
+        "text": "25",
+        "bbox": [
+            488,
+            946,
+            509,
+            960
+        ],
+        "page_idx": 24
+    },
+    {
+        "type": "code",
+        "sub_type": "algorithm",
+        "code_caption": [
+            "Figure 13: Representative example for “Overestimating feedback uptake” (red highlights indicate code removed from the previous student submission, while green highlights indicate code added in the next student submission). The generated internal dialogue anticipates a targeted fix conditioning the increment on n % 10 == 8, but the real student’s actual edit only reorders the existing expression, moving + 1 in front of the recursive call and wrapping it in parentheses."
+        ],
+        "code_footnote": [],
+        "code_body": "else:   \nreturn (1 + num\\_eights(n // 10) )",
+        "bbox": [
+            173,
+            101,
+            823,
+            152
+        ],
+        "page_idx": 25
+    },
+    {
+        "type": "code",
+        "sub_type": "algorithm",
+        "code_caption": [
+            "Figure 14: Representative example for “Underestimating feedback uptake” (red highlights indicate code removed from the previous student submission, while green highlights indicate code added in the next student submission). The generated internal dialogue anticipates only an incremental fix within the existing loop-based structure, but the real student makes a more substantial revision by introducing a lambda to return a function, a change the dialogue fails to anticipate."
+        ],
+        "code_footnote": [],
+        "code_body": "Real student code t-1:   \ndef make\\_repeater(f, n):   \nk = 0   \nx = ()   \nwhile k < n:   \nx = f(x)   \nk += 1   \nreturn f(x)   \nFeedback t-1:   \nYou’re still returning a value, not a function. Remember, make\\_repeater should return a function that, when   \ncalled with an argument x, applies f to x n times. This returned function should take one argument. Also,   \nyou’re still trying to use x before it’s defined. You should define x inside the function you’re returning,   \nnot in make\\_repeater.   \nQwen2.5-Coder-7B-INSIDE Internal dialogue:   \nThey keep saying return a function, but maybe if I just loop n times and update x with f(x), then return   \nx, that shows it applied f multiple times. I’m not sure how to make the returned function take x, but at   \nleast this uses f in a loop and returns something.   \nReal student code t:   \ndef make\\_repeater(f, n):   \nk = 0   \nwhile k < n:   \nf = f(x)   \nk += 1   \nreturn lambda x: f(x)",
+        "bbox": [
+            173,
+            256,
+            823,
+            626
+        ],
+        "page_idx": 25
+    },
+    {
+        "type": "header",
+        "text": "Published as a conference paper at COLM 2026",
+        "bbox": [
+            171,
+            31,
+            517,
+            47
+        ],
+        "page_idx": 25
+    },
+    {
+        "type": "page_number",
+        "text": "26",
+        "bbox": [
+            488,
+            946,
+            509,
+            960
+        ],
+        "page_idx": 25
+    }
+]

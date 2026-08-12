@@ -1,0 +1,233 @@
+# Nutrition Data Infrastructure for the AI Era: Operationalizing FAIR for Agent-Mediated Research
+
+Lin Liao
+
+Peng Li
+
+lin@8up.ai
+
+peng@8up.ai
+
+August 12, 2026
+
+## Abstract
+
+AI agents can accelerate nutrition research, but their analyses inherit the identity, semantic, and release ambiguities of the underlying data. We present Nutrition Data Service (NDS), source-preserving infrastructure that operationalizes FAIR for automated use: description resolution makes release-specific records findable; typed crosswalks connect independently released resources; machine-readable interfaces expose versioned sources and crosswalks, making AI agents’ work replayable and auditable. On fooddescription benchmarks, NDS shows strong held-out accuracy and outperforms the best published language-model result on NutriBench. External and blinded crosswalk evaluations show that its typed contract favors defensible links and rejects unsupported mappings. In a person-level glycemic-index analysis, pinned NDS inputs produce identical outputs across models and repeated runs, while open-web reconstruction remains unstable. The central result is that agent-mediated nutrition research requires a new data infrastructure for data identity, search, and crosswalk.
+
+## 1 Introduction
+
+AI agents can retrieve literature, operate research tools, write and execute analysis code, and combine evidence across sources. We use agent-mediated research for a human-directed workflow in which an agent performs bounded operations—finding evidence, reconciling datasets, running analyses, and recording artifacts—while the researcher sets the question, constraints, and scientific interpretation [21]. Its promise is not merely faster answers, but a shorter path from hypothesis to auditable sensitivity analysis.
+
+Nutrition makes both the opportunity and the constraint unusually clear. A single study may span food-composition tables, dietary surveys, branded-product catalogs, prices, biomarkers, and health outcomes. An agent must not only retrieve a plausible nutrient value; it must select the intended food record, preserve its source and release, interpret analytical bases, and make cross-source joins that remain auditable. Retrieval grounding reduces reliance on parametric memory, but it cannot repair ambiguous identifiers or missing context in the evidence itself [11, 13].
+
+The present food-data landscape makes those failures likely. An assessment of 101 food-composition databases covering 110 countries found that only 32% ofered an API and only 17 satisfied all 13 evaluated criteria of the FAIR principles (findable, accessible, interoperable, and reusable) [4]. The review also reports that nutrient-intake estimates for an identical diet can vary by 20–45% with the database selected [4]. Interoperability is especially dificult because no database can provide it alone [10, 14]. Food sources rarely share stable identifiers, while names vary with geography, species, preparation, edible portion, processing, brand, and database purpose. A string join can silently conflate nutritionally distinct foods; flattening sources into one table can erase the very release history and analytical semantics needed to detect the mistake. Bridging independently released sources instead requires an explicit mapping assertion: which records are related, by what relation, with what evidence and confidence, under which endpoint releases, and with an explicit unsupported outcome when no defensible link exists. Description-driven food matching is thus not an application added to the infrastructure; it is the mechanism that makes otherwise disconnected sources interoperable.
+
+We therefore use FAIR as the requirements vocabulary. AI does not redefine FAIR; it raises the standard for a suficient implementation. Context that a careful researcher might recover from documentation must be machine-actionable, and ambiguous joins must fail visibly rather than be improvised at query time.
+
+We present Nutrition Data Service (NDS), source-preserving infrastructure built toward these requirements. NDS retains independently addressable source records and nutrient observations; resolves natural-language descriptions with hybrid retrieval, contextual ranking, and abstention; constructs auditable crosswalks without collapsing their endpoints; and exposes structured data through REST, bulk export, and Model Context Protocol (MCP) tools.
+
+We make three contributions. (1) Infrastructure: a deployed data model and access layer that retain source identity, release, nutrient semantics, and stored lineage. (2) Resolution and crosswalks: a shared description-driven pipeline for natural-language lookup and cross-source mapping, demonstrated in a deployed crosswalk from the Food and Nutrient Database for Dietary Studies (FNDDS) to glycemic-index (GI) records. (3) Evaluation: tests of record resolution, end-to-end nutrient estimation, open-set alignment, crosswalk quality, and reproducible agent use, with source reconciliation as supporting validation.
+
+Section 2 discusses related work, Section 3 derives the AI-era FAIR criteria; Section 4 describes the system; and Sections 5 and 6 report the evidence and its limits.
+
+## 2 Related Work
+
+Food-composition data and harmonization. Food-composition databases are foundational to nutrition science, yet their fragmentation and uneven stewardship are well documented. Global assessments identify infrequent updates, extensive reuse of secondary data, and geographic disparities in FAIR adoption [4]; published studies also often omit the database version needed for reproducibility [14]. Crosswalks are sparse across composition, price, environmental, and geospatial sources [10]. EuroFIR and emerging minimum-information standards address harmonization at compilation time [3, 18]. We instead connect independently released composition, survey, and branded-food sources that did not adopt a common standard [7].
+
+Food semantics and mapping standards. FoodOn transforms much of LanguaL’s vocabulary into an OWL ontology with explicit relations among food products, ingredients, qualities, and processes [6]. The Simple Standard for Sharing Ontological Mappings (SS-SOM) provides a complementary schema for exchanging mappings with typed relations, justification, provenance, and confidence metadata [15]. These standards make foods and mappings more machine-readable, but do not determine which record-level mappings to assert, when to abstain, or how to maintain mappings as source releases change.
+
+Food record matching. Prior systems map food descriptions using fuzzy distances, embeddings, and large language models (LLMs). Morales-Garzón et al. [17] show that one description may admit defensible candidates at several levels of specificity. NutriBench evaluates carbohydrate estimation from meal descriptions [5]. Lemay et al. [12] make abstention a first-class outcome and show that similarity thresholds do not cleanly separate matches from non-matches. NutriMatch [9] combines LLM normalization, embedding retrieval, and LLM validation to expand nutrient coverage across national databases. These systems motivate our focus on matching as infrastructure: not only selecting a record, but publishing the relation, evidence, release scope, and abstention needed to audit or replay that choice.
+
+LLMs as the nutrition access layer. Benchmarks such as NGQA now test personalized reasoning over National Health and Nutrition Examination Survey (NHANES) profiles and FNDDS foods [22]. LLMs are also being evaluated as direct interfaces for guidelineadherent nutrition information [19], raising the stakes for grounding answers in versioned, source-preserving data. Yet model answers are dificult to cite or replay and remain prone to hallucination [11]. Retrieval grounding [13] helps only when the interface preserves the source, release, and mapping context of the evidence it returns.
+
+## 3 FAIR Principles in the AI Era
+
+FAIR addresses both human researchers and computational agents. It describes properties of digital research objects—including data, metadata, algorithms, and workflows—without prescribing a storage or search architecture [20]. Applying it therefore requires domainspecific interpretation [8].
+
+For agent-mediated nutrition research, the relevant objects range from a dataset release to a record, value, or mapping. Table 1 states the criteria used in this paper and the corresponding NDS mechanisms.
+
+Table 1 | FAIR criteria and NDS mechanisms for agent-mediated nutrition research.
+<table><tr><td>FAIR requirement</td><td>Agent-mediated criterion</td><td>NDS mechanism</td></tr><tr><td>Findable</td><td>An agent can discover the intended release, record, or mapping by identifier or description, without confusing discovery with identity.</td><td>Source-derived identifiers, release metadata, indexed fields, hybrid description resolution, and explicit unsupported results.</td></tr><tr><td>Accessible</td><td>An agent can retrieve data and interpretive metadata by identifier through machine-readable, authentication-aware interfaces.</td><td>REST, bulk export, and MCP interfaces preserve source and release identity in identifier-based retrieval.</td></tr><tr><td>Interoperable</td><td>An agent can combine independent objects through shared representations and qualified references without inventing unsupported relationships.</td><td>Shared food and nutrient models, preserved source semantics, typed mappings, abstention, and standards-oriented alignment</td></tr><tr><td>Reusable</td><td>An agent can judge whether and how an object may be reused from its semantics, constraints, provenance, and version.</td><td>exports. Preserved units, bases, and absent-versus-zero observations; stored source and transformation lineage; and pinned mapping resolution.</td></tr></table>
+
+## 4 System
+
+## 4.1 Architecture
+
+![](images/c403000d32fb4dd83dc9e9ba082e20d2888b0ed58e49252156c25172a680f445.jpg)  
+Figure 1 | Nutrition Data Service (NDS) separates authoritative source storage, a rebuildable retrieval index, and access for AI agents and applications.
+
+Figure 1 shows a high-level architecture of NDS. Ofline indexing builds a search index from source descriptions. Online requests use that index to retrieve and rerank candidates, then expose selected source records through MCP or REST. MCP is an open protocol through which agents discover and invoke named external tools [1]. Authoritative values remain in the source store; the retrieval index is a rebuildable aid to discovery, not scientific evidence.
+
+The figure focuses on food matching; ingestion, caching, and bulk export are omitted for clarity.
+
+## 4.2 Storage
+
+NDS imports heterogeneous sources into DynamoDB while preserving records that appear to describe the same food. Each food receives the deterministic key food\_uid = uuid5(source\_id<sub>,</sub> source\_record\_id), so re-importing a release reproduces the same identity. The record also carries its source system, dataset, and release as explicit fields; for example, an FNDDS record names both its survey cycle and the FoodData Central release from which it was imported.
+
+Physical tables separate non-branded foods, branded products, surveys, indicators and references, and crosswalk records. This avoids forcing very diferent access patterns into one schema while retaining stable links among records.
+
+Food matching uses PostgreSQL with pgvector as a separate retrieval index. Each description has an embedding for semantic similarity, a normalized name for lexical search, and structured facets for nutritionally meaningful traits: base food, cooked state, cooking method, form, preservation, coating, dish type, and preparation additives.
+
+## 4.3 Description-driven food matching
+
+When an identifier is known, NDS retrieves the record directly. Otherwise it uses the name or description common to most sources. The English-language path has three stages: parsing, high-recall retrieval, and precision-oriented reranking.
+
+Query parsing. An LLM constrained by a structured schema decomposes the description into the same normalized base food and closed-vocabulary facets used in the index. On a parse failure, the system falls back to the normalized description.
+
+Hybrid retrieval. Two channels nominate candidates independently. The semantic channel retrieves nearby base-food embeddings and scores cosine similarity adjusted for specified facet agreement; the deployed weighting is 0<sub>.</sub>70 <sup>·</sup> cosine <sup>+</sup> 0<sub>.</sub>30 <sup>·</sup> facet, with the facet term normalized over facets present in the query. Unknown candidate facets receive half credit, while unspecified query facets are ignored. The lexical channel full-text searches normalized names. Reciprocal rank fusion combines the lists: a candidate receives $1 / ( k + r )$ for rank � in each returning channel (deployed �=60), favoring records found by both. The reranker receives the top fused candidates.
+
+LLM-based reranking. One listwise LLM call compares the candidates using the original description, candidate names, and facets, with emphasis on preparation, physical form, defining ingredients, and brand. It returns a verdict, score, and ordering.
+
+Configuration. The evaluated deployment parses and reranks with gemini-3.6-flash and uses 1,536-dimensional gemini-embedding-2-preview vectors in an hierarchical navigable small-world (HNSW) cosine index. The semantic and lexical channels retrieve up to 250 and 25 records, respectively; the reranker receives the top 25 fused candidates and returns at most 5.
+
+If no candidate is defensible, NDS returns an explicit unsupported result rather than silently substituting the nearest food.
+
+## 4.4 Access layer
+
+NDS provides a REST API for applications, named MCP operations for agents, and Parquet exports for analyses larger than an interactive request. MCP returns structured records rather than asking agents to extract values from prose.
+
+Responses identify the source system, dataset, and release; food details include external identifiers, nutrient amounts with units and basis, and portions. Serving operations are read-only, while ingestion and indexing run ofline.
+
+## 4.5 Crosswalk
+
+A crosswalk is a versioned set of directed edges between records that lack shared identifiers. It relates records without merging them or asserting universal equivalence: both endpoints remain addressable, and each edge states the relation supported for a declared use and pair of endpoint releases. This matters because records may describe related foods while difering in preparation, formulation, geography, analytical basis, or specificity.
+
+Construction. Crosswalk construction reuses the matching pipeline, treating a source record as the query and a target release as the corpus. Parent and child labels provide context when the target has a hierarchy, and invalid target entities are removed before reranking. The decision contract returns the target identifier, relation, confidence, justification, and policy version, or an explicit no-match decision. Candidate retrieval and relation adjudication remain separate so that a policy can reject the nearest candidate.
+
+Typed relations. Relations are directed from source to target. exact denotes the same food; broad means the target is more general; narrow means it is more specific; and close denotes related records that do not subsume one another. no-match records that no defensible edge exists. These distinctions prevent a category or related preparation from being treated silently as identical and let clients choose relations appropriate to an analysis.
+
+Release-aware mappings. A mapping release is immutable and records its source and target releases, construction policy, and content identity. Each edge carries stable endpoint identifiers, relation, confidence, and justification, but does not copy values from either endpoint. Measurements and mapping decisions therefore remain separately auditable.
+
+A release becomes visible only through an atomic commit. A workflow pins a watermark, an opaque committed snapshot, and resolution returns the concrete mapping release and policy selected at that snapshot. Later releases cannot change a pinned analysis.
+
+Interchange format. The runtime representation remains deliberately small; SSSOM is an exchange profile rather than the internal query model. Positive edges can use SKOS predicates such as skos:exactMatch and skos:broadMatch while retaining endpoint versions, confidence, mapping justification, provider, and mapping-set identity [15, 16].
+
+## 5 Evaluation
+
+We evaluate three operations in an agent-mediated workflow: resolving descriptions to source records, aligning independent resources, and reusing those alignments through a pinned agent interface. They test Findability, Interoperability, and Accessibility/Reusability, respectively; source reconciliation provides supporting validation.
+
+## 5.1 Evaluation: description-driven food matching
+
+The first experiment asks whether NDS can turn a free-text meal into release-specific food evidence. NutriBench [5] evaluates end-to-end carbohydrate estimation but publishes nutrient targets rather than the database records underlying each meal. We therefore pair it with an identifier-preserving set generated from NHANES recalls.
+
+Record-level resolution. We generate 1,000 held-out meal descriptions from NHANES recalls while retaining 3,597 originating FNDDS codes, similar to the data generation in [5]. NDS may return a record or abstain; we pool decisions to calculate precision, recall, and $\mathrm { F _ { 1 } }$
+
+Table 2 | Record-level resolution on 1,000 held-out meals (3,597 reference foods). Precision and recall score the top-ranked record; recall@5 asks whether the intended record is anywhere in the set the reranker accepted.
+<table><tr><td>Scoring rule</td><td>Recall@5</td><td>Precision</td><td>Recall</td><td> $\mathrm { F _ { 1 } }$ </td></tr><tr><td>Strict source identifier</td><td>0.942</td><td>0.879</td><td>0.872</td><td>0.875</td></tr><tr><td>Equivalence-aware</td><td>一</td><td>0.917</td><td>0.911</td><td>0.914</td></tr></table>
+
+Strict identity $\mathrm { F _ { 1 } }$ is 0.875. The intended record appears among the accepted candidates for 94.2% of reference foods but is top-ranked for 87.2%; much of the gap is a choice among dense FNDDS variants distinguished by venue, packaging, or another attribute omitted from the meal text. A secondary equivalence score credits siblings with matching energy and macronutrients and raises $\mathrm { F _ { 1 } }$ to 0.914; it does not establish identity or micronutrient equivalence. The remaining error is therefore driven more by ranking among near-duplicate records than by failure to retrieve a plausible record.
+
+End-to-end estimation on NutriBench. We evaluate all 11,857 NutriBench v1 queries. The pipeline follows the abstention policy in Section 4.3.
+
+Table 3 | Carbohydrate estimation on all 11,857 NutriBench v1 queries. Answer rate is the share of queries receiving a supported estimate. Acc@7.5 g is the share of answered queries whose absolute carbohydrate error is at most 7.5 g; mean absolute error (MAE) is also calculated over those answers.
+<table><tr><td>Condition</td><td>Queries</td><td>Acc@7.5 g</td><td>MAE (g)</td><td>Answer rate</td></tr><tr><td>NDS</td><td>11,857</td><td>84.6%</td><td>4.3</td><td>96.4%</td></tr><tr><td>GPT-4o CoT (best published)</td><td>11,857</td><td>66.8%</td><td>8.6</td><td>99.2%</td></tr></table>
+
+NDS answers 96.4% of queries; among those answers, 84.6% are within 7.5 g and MAE is 4.3 g, compared with the best published GPT-4o result of 66.8% and 8.6 g. The comparison is unpaired because published per-query outputs are unavailable. The gain indicates that grounding meal descriptions in source records improves nutrient estimation, while the unsupported 3.6%—mostly foreign meals—exposes a remaining source-coverage limitation.
+
+## 5.2 Evaluation: crosswalk
+
+The second experiment tests alignment without treating every similar food as equivalent. We first use an external open-set benchmark, then audit the deployed FNDDS-to-GI crosswalk.
+
+External crosswalk benchmark: NHANES-to-DFG2 Lemay et al. [12] publish 1,304 NHANES ingredient descriptions labeled match or no-match against 256 Davis Food Glycopedia 2.0 (DFG2) reference foods (693 matchable and 611 no-match). We evaluate the contract on top-25 NDS candidate slates. Before scoring, we fix the binary projection: exact, broad, narrow, and close are matches; abstention is no-match.
+
+Table 4 | Accuracy by label in the NHANES-to-DFG2 benchmark of Lemay et al. [12]. Parentheses state the expected decision; � is the number of foods.
+<table><tr><td>Benchmark subset</td><td>n</td><td>NDS contract</td><td>Published system</td></tr><tr><td>All labeled foods</td><td>1,304</td><td>0.688</td><td>0.654</td></tr><tr><td>Matchable (link expected)</td><td>693</td><td>0.745</td><td>0.822</td></tr><tr><td>No-match (abstention expected)</td><td>611</td><td>0.624</td><td>0.466</td></tr></table>
+
+Table 4 shows a deliberate precision–recall trade-of. NDS gains 15.8 accuracy points on the 611 no-match foods and loses 7.7 on the 693 matchable foods, raising overall accuracy from 0.654 to 0.688. Of its 177 errors on matchable foods, 139 are abstentions; emitted targets agree with the benchmark 93.1% of the time. Most lost match accuracy therefore comes from refusing a link, not selecting the wrong target.
+
+Refusals concentrate where the benchmark’s matching policy is looser. For example, it accepts raw broccoli linked to steamed broccoli florets, whereas NDS avoids the rawto-cooked transfer and ofers frozen broccoli florets. This protects preparation-sensitive downstream analyses but sacrifices recall under the benchmark labels. The comparison uses the published aggregate because per-food outputs are unavailable.
+
+FNDDS-to-GI crosswalk evaluation FNDDS reports nutrients and ingredients but no GI. NDS therefore links it to the 2021 International Tables of Glycemic Index [2] through 18,222 many-to-many typed edges. We sample 125 deployed edges from each relation (500 total) and ask an independent LLM judge (Claude Fable 5) to classify the pair from the food descriptions and rubric, without seeing the crosswalk decision or GI value.
+
+Table 5 | Blinded audit of 500 served FNDDS-to-GI mappings, 125 per asserted relation. Defensible means the judge assigns some relation rather than no-match; as asserted means the judge’s relation equals the crosswalk’s. Rows are unweighted: every sampled mapping counts equally.
+<table><tr><td>Asserted relation</td><td>Defensible</td><td>As asserted</td><td>Dominant confusion</td></tr><tr><td>exact</td><td>96.8%</td><td>73.6%</td><td>→ broad (16/125)</td></tr><tr><td>broad</td><td>92.8%</td><td>76.8%</td><td>→ close (18/125)</td></tr><tr><td>narrow</td><td>98.4%</td><td>63.2%</td><td>→ close (37/125)</td></tr><tr><td>close</td><td>96.8%</td><td>94.4%</td><td></td></tr><tr><td>Unweighted mean</td><td>96.2%</td><td>77.0%</td><td></td></tr></table>
+
+Of the audited mappings, 96.2% are defensible and 77.0% receive the asserted relation. Most disagreement concerns typing rather than whether a mapping exists: 37 of 125 narrow edges are judged close, often where one side specifies a brand and the other a formulation. Judge confidence on these calls is 0.59, versus 0.78 when it agrees with narrow, indicating that the boundary itself is uncertain. In one case, “Cake, pound, commercially prepared, other than all butter, enriched” maps to “Pound cake (Sara Lee)”: the crosswalk calls it narrow, while the judge calls it close because one side fixes a formulation and the other a brand. Thus the main audited weakness is relation granularity, not spurious linking.
+
+Because no complete gold-standard crosswalk exists, we cannot calculate recall directly. We instead ask a narrower question: when NDS abstains, is it missing a defensible mapping? The blinded audit contains 200 cases: 125 sampled from the 2,058 GI-applicable FNDDS foods without a measured mapping, plus 75 known mappings whose links are hidden as positive controls. The judge recovers 69 of 75 controls, including all 30 exact controls, showing that the audit can detect clear mappings but is not perfectly sensitive.
+
+Among the 125 actual abstentions, 60 (48%) have no defensible target and 55 (44%) have only a dominant-component proxy that the whole-food contract intentionally rejects. For example, white bread is a relevant component of an almond-butter sandwich on white bread, but not a mapping for the whole dish. The remaining 10 (8%) have a missed close or narrow target; none has a missed exact target. Thus 115 of 125 abstentions are consistent with the conservative contract, while the observed misses concern looser relations rather than exact mappings. These counts are LLM-judged agreement diagnostics, not a calibrated error rate or an exhaustive recall estimate.
+
+## 5.3 Reproducible agent-mediated research
+
+Agents may retrieve diferent pages or make diferent joins across runs even under the same instructions. We test whether moving those choices into a pinned interface makes the resulting analysis repeatable.
+
+We compute daily glycemic load $( \mathrm { G L } , \sum _ { i } \mathrm { c a r b } _ { i } \mathrm { G I } _ { i } / 1 0 0 )$ for 50 adults sampled from NHANES 2017–2020 day 1: 830 records and 422 distinct foods. A DIY arm joins foods to the 2021 International Tables of Glycemic Index available on the web; an NDS arm uses the NDS MCP, including the resolve\_crosswalk MCP operation. Each arm runs three times with four models (Sonnet 5, Haiku 4.5, Opus 5, and Fable 5, all from Claude), for 24 isolated runs. The primary metric is each person’s GL coeficient of variation (CV) across the 12 runs in an arm: the standard deviation of that person’s GL divided by its mean, a unit-free measure of run-to-run variation that is comparable across people.
+
+Table 6 | Agent-mediated per-person GL over 12 runs per arm (4 models <sup>×</sup> 3 repetitions) on the same 50-person cohort.
+<table><tr><td>Metric</td><td>DIY web</td><td>NDS MCP</td></tr><tr><td>Per-person GL CV across runs (mean over people)</td><td>0.293</td><td>0.000</td></tr><tr><td>Per-person GL CV across runs (worst person)</td><td>0.816</td><td>0.000</td></tr><tr><td>People stable within ±10%</td><td>2.0%</td><td>100.0%</td></tr><tr><td>Same GL tertile in every run</td><td>32.0%</td><td>100.0%</td></tr><tr><td>False-abstention rate (LLM-judged)</td><td>14%</td><td>4%</td></tr><tr><td>Mean per-person carbohydrate coverage</td><td>74.0%</td><td>83.1%</td></tr></table>
+
+All 12 NDS runs return the same 207 food-to-GI assignments across models and repetitions, so every person’s GL is invariant. The DIY arm produces 12 diferent assignment counts (146–272); only one participant remains within <sup>±</sup>10% across runs. Against the blinded reference, NDS also has fewer false abstentions (4% versus 14%). Thus model choice changes the web reconstruction but not the pinned result because record discovery, joining, and selection have moved into the interface. This experiment evaluates repeatability; its LLM-adjudicated reference does not establish clinical validity of the GI values.
+
+## 5.4 Infrastructure validation
+
+The three experiments above assume that imported values retain their source meaning. We validate a defined subset of the data stored in NDS, not the full repository: the listed Foundation, FNDDS, and SR Legacy records and a deterministic 1,000-record sample of Branded foods. Within this subset, we reconcile nutrient amounts, units, bases, portions, and absent values versus reported zeros against the source releases. Table 7 reports zero failures across 3.5 million checks in this evaluated subset.
+
+Table 7 | Record-level source reconciliation for the evaluated subset of four USDA FoodData Central releases.
+<table><tr><td>Release</td><td>Foods</td><td>Source checks</td><td>Failures</td></tr><tr><td>Foundation</td><td>365</td><td>60,301</td><td>0</td></tr><tr><td>FNDDS 2021–2023</td><td>5,432</td><td>1,289,129</td><td>0</td></tr><tr><td>SR Legacy</td><td>7,793</td><td>2,096,999</td><td>0</td></tr><tr><td>Branded (1,000-record deterministic sample)</td><td>1,000</td><td>54,625</td><td>0</td></tr><tr><td>Total</td><td>14,590</td><td>3,501,054</td><td>0</td></tr></table>
+
+## 6 Limitations
+
+Geographic and source coverage. NDS has not yet imported the full range of international and country-level nutrition datasets. Its coverage outside the United States therefore remains incomplete.
+
+Licensed and protected data. NDS emphasizes public datasets and does not yet mediate subscriptions, user-specific entitlements, or payment. It has not been evaluated for protected clinical data, whose consent, privacy, security, and governance requirements extend beyond this work. Accessibility therefore applies only within source rights and restrictions; FAIR access does not imply open access.
+
+Evaluation scope and reference quality. The evaluation covers selected food-matching and crosswalk tasks, not the full range of foods or research workflows. Some comparisons rely on published aggregate results because per-item outputs are unavailable, and several reference labels are adjudicated by an LLM rather than by domain experts. Broader evaluation with expert adjudication is therefore still needed.
+
+Evidence quality and downstream responsibility. NDS makes sources, versions, and mapping decisions explicit, but it does not guarantee that the underlying evidence is clinically valid or appropriate for every analysis. Crosswalks may be incomplete and are not yet systematically reviewed by nutrition experts. Downstream researchers and agents must therefore assess fitness for purpose and must not treat NDS outputs as causal, diagnostic, or therapeutic conclusions.
+
+## 7 Conclusion
+
+Agent-mediated nutrition research requires a new data infrastructure for data identity, search, and crosswalk. Language models can interpret natural-language requests, but reproducibility fails if every run must rediscover records and improvise joins. Identity should bind evidence to stable, versioned sources; search should resolve descriptions to records rather than plausible names; and crosswalks should state relation type, endpoint versions, provenance, and abstention conditions.
+
+NDS makes this architecture concrete. It provides unified access to heterogeneous nutrition resources while preserving their source and release boundaries. It turns food descriptions into traceable record selections and serves cross-dataset links as typed, versioned mappings rather than opaque joins. Exposing these operations through an agent-callable interface moves identity, retrieval, and mapping policy out of individual prompts and into infrastructure that can be inspected, audited, and replayed.
+
+FAIR principles provide the foundation, but agent use raises the operational standard. Nutrition infrastructure must do more than return plausible values: it must make identity, search scope, mapping semantics, uncertainty, and unsupported operations machineactionable. This does not replace scientific judgment. It gives agents a reliable evidence layer so that researchers can inspect and reuse the same data choices instead of reconstructing them for every analysis.
+
+## References
+
+[1] Anthropic. Model context protocol. Open protocol specification, version 2024-11-05, 2024. URL https://modelcontextprotocol.io/specification/2024-11-05/.
+
+[2] Fiona S. Atkinson, Jennie C. Brand-Miller, Kaye Foster-Powell, Anette Buyken, and Janina Goletzke. International tables of glycemic index and glycemic load values 2021: A systematic review. The American Journal ofClinical Nutrition, 114(5):1625–1632, 2021. doi: 10.1093/ajcn/nqab233.
+
+[3] Kai L. Blumberg, Kyle McKillop, Pamela R. Pehrsson, and Naomi K. Fukagawa. Call to action: a need for community-driven minimum information standards for food composition data. The American Journal of Clinical Nutrition, 122(3):703–711, 2025. doi: 10.1016/j.ajcnut.2025.06.027.
+
+[4] Sarah Brinkley, Jenny J. Gallo-Franco, Natalia Vázquez-Manjarrez, et al. The state of food composition databases: data attributes and FAIR data harmonization in the era of digital innovation. Frontiers in Nutrition, 12:1552367, 2025. doi: 10.3389/fnut.2025.1552367.
+
+[5] Mehak Preet Dhaliwal, Andong Hua, Laya Pullela, Ryan Burke, and Yao Qin. NutriBench: A dataset for evaluating large language models in nutrition estimation from meal descriptions. In International Conference on Learning Representations (ICLR), 2025. URL https://openreview.net/forum?id=6LtdZCyuZR. arXiv:2407.12843.
+
+[6] Damion M. Dooley, Emma J. Grifiths, Gurinder S. Gosal, et al. FoodOn: a harmonized food ontology to increase global food traceability, quality control and data integration. npj Science ofFood, 2(1):23, 2018. doi: 10.1038/s41538-018-0032-6.
+
+[7] Naomi K. Fukagawa, Kyle McKillop, Pamela R. Pehrsson, Alanna Moshfegh, James Harnly, and John Finley. USDA’s FoodData Central: what is it and why is it needed today? The American Journal of Clinical Nutrition, 115(3):619–624, 2022. doi: 10.1093/ ajcn/nqab397.
+
+[8] Annika Jacobsen, Ricardo de Miranda Azevedo, Nick Juty, et al. FAIR principles: Interpretations and implementation considerations. Data Intelligence, 2(1–2):10–29, 2020. doi: 10.1162/dint\_r\_00024.
+
+[9] Adam Jankelow, Anastasia Godneva, Michal Rein, Dorit Samocha-Bonet, Daphna Weissglas-Volkov, Shahar Zohar, Tal Shor, and Eran Segal. NutriMatch: harmonizing food composition databases with large language models for enhanced nutritional prediction. npj Digital Public Health, 1(1):1, 2026. doi: 10.1038/s44482-025-00001-7.
+
+[10] Emily M. Jennings-Dobbs, Shavawn M. Forester, and Adam Drewnowski. Visualizing data interoperability for food systems sustainability research—from spider webs to neural networks. Current Developments in Nutrition, 7(11):102006, 2023. doi: 10.1016/j. cdnut.2023.102006.
+
+[11] Ziwei Ji, Nayeon Lee, Rita Frieske, Tiezheng Yu, Dan Su, Yan Xu, Etsuko Ishii, Ye Jin Bang, Andrea Madotto, and Pascale Fung. Survey of hallucination in natural language generation. ACM Computing Surveys, 55(12):1–38, 2023. doi: 10.1145/3571730.
+
+[12] Danielle G. Lemay, Michael P. Strohmeier, Richard B. Stoker, Jules A. Larke, and Stephanie M. G. Wilson. Evaluation of large language models for mapping dietary data to food databases. The Journal of Nutrition, 156(8):101678, 2026. doi: 10.1016/j. tjnut.2026.101678.
+
+[13] Patrick Lewis, Ethan Perez, Aleksandra Piktus, Fabio Petroni, Vladimir Karpukhin, Naman Goyal, Heinrich Küttler, Mike Lewis, Wen-tau Yih, Tim Rocktäschel, Sebastian Riedel, and Douwe Kiela. Retrieval-augmented generation for knowledge-intensive NLP tasks. In Advances in Neural Information Processing Systems (NeurIPS), volume 33, pages 9459–9474, 2020.
+
+[14] Zhaoping Li, Shavawn Forester, Emily Jennings-Dobbs, and David Heber. Perspective: A comprehensive evaluation of data quality in nutrient databases. Advances in Nutrition, 14(3):379–391, 2023. doi: 10.1016/j.advnut.2023.02.005.
+
+[15] Nicolas Matentzoglu, James P. Balhof, Susan M. Bello, et al. A simple standard for sharing ontological mappings (SSSOM). Database, 2022:baac035, 2022. doi: 10.1093/ database/baac035.
+
+[16] Alistair Miles and Sean Bechhofer. SKOS simple knowledge organization system reference. W3C Recommendation, 2009. URL https://www.w3.org/TR/skos-reference/.
+
+[17] Andrea Morales-Garzón, Juan Gómez-Romero, and M. J. Martin-Bautista. A word embedding model for mapping food composition databases using fuzzy logic. In Information Processing and Management of Uncertainty in Knowledge-Based Systems (IPMU), volume 1238 of Communications in Computer and Information Science, pages 635–647. Springer, 2020. doi: 10.1007/978-3-030-50143-3\_50.
+
+[18] Heikki Pakkala, Tue Christensen, Ignacio Martínez de Victoria, Karl Presser, and Alja Kadvan. Harmonised information exchange between decentralised food composition
+
+database systems. European Journal of Clinical Nutrition, 64(Suppl 3):S58–S63, 2010. doi: 10.1038/ejcn.2010.212.
+
+[19] Vĳaya Parameswaran, Jenna Bernard, Alec Bernard, Neil Deo, Sean Tsung, Kalle Lyytinen, Christopher Sharp, Fatima Rodriguez, David J. Maron, and Rajesh Dash. Evaluating large language models and retrieval-augmented generation enhancement for delivering guideline-adherent nutrition information for cardiovascular disease prevention: Cross-sectional study. Journal of Medical Internet Research, 27:e78625, 2025. doi: 10.2196/78625.
+
+[20] Mark D. Wilkinson, Michel Dumontier, Ĳsbrand Jan Aalbersberg, et al. The FAIR guiding principles for scientific data management and stewardship. Scientific Data, 3: 160018, 2016. doi: 10.1038/sdata.2016.18.
+
+[21] Hongliang Xin, John R. Kitchin, and Heather J. Kulik. Towards agentic science for advancing scientific discovery. Nature Machine Intelligence, 7:1373–1375, 2025. doi: 10.1038/s42256-025-01110-x.
+
+[22] Zheyuan Zhang, Yiyang Li, Nhi Ha Lan Le, Zehong Wang, Tianyi Ma, Vincent Galassi, Keerthiram Murugesan, Nuno Moniz, Werner Geyer, Nitesh V. Chawla, Chuxu Zhang, and Yanfang Ye. NGQA: A nutritional graph question answering benchmark for personalized health-aware nutritional reasoning. In Proceedings of the 63rd Annual Meeting of the Association for Computational Linguistics (Volume 1: Long Papers), pages 5934–5966. Association for Computational Linguistics, 2025. doi: 10.18653/v1/2025. acl-long.296. URL https://aclanthology.org/2025.acl-long.296/.
