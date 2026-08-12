@@ -1,0 +1,3645 @@
+[
+    [
+        {
+            "type": "title",
+            "content": {
+                "title_content": [
+                    {
+                        "type": "text",
+                        "content": "Causality Sum Rules in Conventional Scattering Matrices"
+                    }
+                ],
+                "level": 1
+            },
+            "bbox": [
+                152,
+                85,
+                821,
+                108
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "Ning Han<sup>1,2,3,†</sup>, Rui Zhao<sup>1,2,†</sup>, Shuxing Yang<sup>1,2,†</sup>, Mingzhu Li<sup>4</sup>, Hongsheng Chen<sup>1,2,5,*</sup>, Yihao Yang<sup>1,2,5,*</sup>"
+                    }
+                ]
+            },
+            "bbox": [
+                146,
+                118,
+                831,
+                154
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "<sup>1</sup> Interdisciplinary Center for Quantum Information, State Key Laboratory of Extreme Photonics and Instrumentation, ZJU-Hangzhou Global Scientific and Technological Innovation Center, Zhejiang University, Hangzhou 310027, China"
+                    }
+                ]
+            },
+            "bbox": [
+                146,
+                160,
+                852,
+                211
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "<sup>2</sup> International Joint Innovation Center, The Electromagnetics Academy at Zhejiang University, Zhejiang University, Haining 314400, China"
+                    }
+                ]
+            },
+            "bbox": [
+                146,
+                210,
+                850,
+                243
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "<sup>3</sup> College of Optical and Electronic Technology, China Jiliang University, Hangzhou 310018, China"
+                    }
+                ]
+            },
+            "bbox": [
+                146,
+                243,
+                850,
+                261
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "<sup>4</sup> School of Information and Electrical Engineering, Hangzhou City University, Hangzhou 310015, China"
+                    }
+                ]
+            },
+            "bbox": [
+                146,
+                260,
+                850,
+                292
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "<sup>5</sup> Key Laboratory of Advanced Micro/Nano Electronic Devices & Smart Systems of Zhejiang, Jinhua Institute of Zhejiang University, Zhejiang University, Jinhua 321099, China"
+                    }
+                ]
+            },
+            "bbox": [
+                146,
+                294,
+                850,
+                328
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "<sup>†</sup>These authors contributed equally to this work."
+                    }
+                ]
+            },
+            "bbox": [
+                146,
+                328,
+                507,
+                344
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "<sup>*</sup>Corresponding author. Email:"
+                    }
+                ]
+            },
+            "bbox": [
+                146,
+                344,
+                379,
+                361
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "yangyihao@zju.edu.cn (Y. Y.);"
+                    }
+                ]
+            },
+            "bbox": [
+                146,
+                362,
+                381,
+                380
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "hansomchen@zju.edu.cn (H. C.)"
+                    }
+                ]
+            },
+            "bbox": [
+                146,
+                380,
+                396,
+                397
+            ]
+        }
+    ],
+    [
+        {
+            "type": "title",
+            "content": {
+                "title_content": [
+                    {
+                        "type": "text",
+                        "content": "Abstract"
+                    }
+                ],
+                "level": 2
+            },
+            "bbox": [
+                457,
+                83,
+                542,
+                103
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "Scattering matrices are the standard experimental and computational description of photonic and electromagnetic devices. Passivity is explicit in the conventional incoming-outgoing matrix, whereas causality sum rules are usually formulated only after transforming the response into auxiliary variables. Here we show that these rules can be written directly in the conventional scattering matrix by removing the time advance introduced by the reference domain. Using the earliest-arrival delay of each channel, we define a domain-delayed matrix that preserves real-frequency passivity while restoring the causal time origin. Under explicit analyticity, transparency, and regularity assumptions, this matrix becomes a Schur function, enabling a Cayley-Herglotz construction. The resulting projected and determinant bounds constrain coherent channel superpositions and aggregate multichannel loss. The framework recovers Rozanov’s absorber limit and spherical-multipole sum rules, while extending causality bounds to measurable quantities including insertion loss, suppressed singularvalue channels, and conditional lossless delay-bandwidth trade-offs. Our work directly connects fundamental causality theory with experimentally accessible scattering data. The initial theoretical route is autonomously explored by Qiushi Engine, an AI research system for open-ended scientific discovery, and subsequently verified, refined, and developed by the authors, demonstrating a hybrid AI-human discovery workflow."
+                    }
+                ]
+            },
+            "bbox": [
+                144,
+                118,
+                853,
+                587
+            ]
+        }
+    ],
+    [
+        {
+            "type": "title",
+            "content": {
+                "title_content": [
+                    {
+                        "type": "text",
+                        "content": "Introduction"
+                    }
+                ],
+                "level": 2
+            },
+            "bbox": [
+                146,
+                85,
+                263,
+                102
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "Scattering matrices are the working language of photonic and electromagnetic devices. They are what network analyzers measure, what full-wave solvers return, and what designers use to describe absorbers, antennas, metasurfaces, photonic switches, interferometer meshes, and phased arrays. A conventional incoming-outgoing matrix S( ) ω at the operating frequency ω contains reflection, transmission, insertion loss, mode conversion, and coherent multiport interference in one experimentally accessible object. In this representation, passivity is almost immediate: for a power-normalized passive system, "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "S ^ { \\dagger } ( \\omega ) S ( \\omega ) \\preceq I"
+                    },
+                    {
+                        "type": "text",
+                        "content": "on the real-frequency axis, where † is the conjugate transpose operator and I is the unit matrix. Causality is not so directly visible. It is a statement about the temporal order of response, and in frequency space it appears through analyticity, dispersion relations, and sum rules that connect all frequencies. Thus, the matrix most natural for experiments and simulations makes energy conservation simple, but does not by itself display the full causality constraint."
+                    }
+                ]
+            },
+            "bbox": [
+                144,
+                122,
+                853,
+                455
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "This separation has a long history. In the 1920s, Kramers and Kronig related causal response to analyticity in the complex-frequency plane<sup>1-3</sup>. Around the same period and into the 1950s, Foster’s reactance theorem and Bode-Fano matching theory showed how passivity and analyticity impose bandwidth limits on passive networks<sup>4-6</sup>. From the 1950s to the 1970s, bounded-real scattering matrices and S-matrix dispersion theory brought these ideas closer to network and scattering language<sup>3,7</sup>. Since the 2000s, electromagnetic sum rules have led to sharper physical limits, including Rozanov’s absorber bound, spherical-multipole scattering bounds, antenna bandwidth limits, and more recent Green-function, local-conservation, and volume-T-operator bounds<sup>8-23</sup>. These developments established a broad principle: passive causal systems carry finite budgets in bandwidth, size, depth, loss, and delay. However, the causal bound formulations are usually obtained in alternative representations, such as Green functions, local conservation formulations, and volume T-operator approaches<sup>21-23</sup>. The missing link is a sum-rule formulation that acts directly on the conventional multichannel scattering matrix S( )ω itself <sup>24</sup>."
+                    }
+                ]
+            },
+            "bbox": [
+                144,
+                462,
+                855,
+                846
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "Here we show that causality sum rules can be written directly in the conventional scattering matrix once the reference-domain time advance is removed, thereby establishing a direct connection between experimentally accessible scattering measurements and fundamental causality limits. Our approach is based on separating the geometry-dependent reference contribution from the physical scattering response through a domain-delay correction. This transformation converts the conventional scattering matrix into a causal analytic object compatible with Schur-Cayley theory."
+                    }
+                ]
+            },
+            "bbox": [
+                144,
+                853,
+                853,
+                898
+            ]
+        }
+    ],
+    [
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": []
+            },
+            "bbox": [
+                144,
+                93,
+                853,
+                216
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "From this construction, we derive two universal causality sum rules: a projected bound for coherent channel superpositions and a basis-independent determinant bound for aggregate multichannel attenuation. These results recover established scalar limits, including Rozanov’s absorber bound and spherical-multipole scattering bounds, while extending causality constraints to experimentally accessible multichannel quantities such as coherent suppression, insertion loss, and delay-bandwidth trade-offs. This connection enables causality constraints to be formulated directly in the experimentally accessible scattering representation."
+                    }
+                ]
+            },
+            "bbox": [
+                144,
+                224,
+                853,
+                425
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "Beyond the theoretical results, this work demonstrates a hybrid AI-human discovery workflow. Human researchers first defined the open-ended scientific question and research objective without prescribing a solution path. Qiushi Engine, an autonomous research system designed for sustained, thousand-step scientific reasoning<sup>25</sup>, then conducted the exploration, developed derivations and numerical checks, and generated a traceable record of data, code, figures, research notes, and reports. The system identified the core theoretical route and produced the initial result, which the authors subsequently verified, refined into a rigorous theory, and physically interpreted, while retaining full responsibility for scientific validation and oversight."
+                    }
+                ]
+            },
+            "bbox": [
+                144,
+                434,
+                853,
+                661
+            ]
+        },
+        {
+            "type": "title",
+            "content": {
+                "title_content": [
+                    {
+                        "type": "text",
+                        "content": "Main Text"
+                    }
+                ],
+                "level": 2
+            },
+            "bbox": [
+                146,
+                670,
+                242,
+                687
+            ]
+        },
+        {
+            "type": "title",
+            "content": {
+                "title_content": [
+                    {
+                        "type": "text",
+                        "content": "Domain-delayed Schur construction"
+                    }
+                ],
+                "level": 2
+            },
+            "bbox": [
+                146,
+                707,
+                463,
+                724
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "We now construct the causal scattering representation required for the sum-rule formulation. The conventional scattering matrix contains a geometry-induced temporal advance arising from the finite scattering domain and the choice of channel reference surfaces. This reference-dependent contribution appears as a phase factor a <sup>i T</sup> e<sup>−</sup> ω , where "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "T _ { a }"
+                    },
+                    {
+                        "type": "text",
+                        "content": "is the earliest-arrival delay operator, and obscures the causal analytic structure required for direct application of Schur-Cayley theory. To remove this reference contribution, we introduce the earliest-arrival delay operator "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "T _ { _ a } = \\mathrm { d i a g } ( \\tau _ { \\alpha } ) _ { \\alpha } , \\ \\tau _ { \\alpha } \\geq 0"
+                    },
+                    {
+                        "type": "text",
+                        "content": "where "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "\\tau _ { \\alpha }"
+                    },
+                    {
+                        "type": "text",
+                        "content": "denotes the earliest arrival time of output channel "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "_ { \\alpha . }"
+                    },
+                    {
+                        "type": "text",
+                        "content": "For spherical-wave scattering of an object enclosed by a sphere of radius "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "^ { a , }"
+                    },
+                    {
+                        "type": "text",
+                        "content": "all channels share the same delay, "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "\\tau _ { \\alpha } = 2 a / c"
+                    },
+                    {
+                        "type": "text",
+                        "content": ". The corresponding domain-delay operator is defined as "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "D _ { a } = e ^ { i \\omega T _ { a } }"
+                    },
+                    {
+                        "type": "text",
+                        "content": "， and the domain-delayed scattering matrix is given by"
+                    }
+                ]
+            },
+            "bbox": [
+                144,
+                733,
+                853,
+                909
+            ]
+        }
+    ],
+    [
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": []
+            },
+            "bbox": [
+                144,
+                92,
+                850,
+                189
+            ]
+        },
+        {
+            "type": "equation_interline",
+            "content": {
+                "math_content": "\\tilde { S } ( \\omega ) = D _ { a } ( \\omega ) S ( \\omega ) .\\tag{1}",
+                "math_type": "latex",
+                "image_source": {
+                    "path": "images/f5bc0c7c96c604a272853ba9471539321d6dd0904544a6ba6d68684cc297d694.jpg"
+                }
+            },
+            "bbox": [
+                416,
+                195,
+                583,
+                215
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "Because "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "D _ { a } ( \\omega )"
+                    },
+                    {
+                        "type": "text",
+                        "content": "is unitary on the real-frequency axis, "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "D _ { a } ^ { \\dagger } ( \\omega ) D _ { a } ( \\omega ) = I"
+                    },
+                    {
+                        "type": "text",
+                        "content": ", this transformation preserves the real-frequency power balance, "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "\\tilde { S } ^ { \\dagger } ( \\omega ) \\tilde { S } ( \\omega ) = S ^ { \\dagger } ( \\omega ) S ( \\omega )"
+                    },
+                    {
+                        "type": "text",
+                        "content": "Therefore, the passivity condition "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "S ^ { \\dagger } ( \\omega ) S ( \\omega ) \\preceq I"
+                    },
+                    {
+                        "type": "text",
+                        "content": "is unchanged by the domain-delay correction. The transformation only removes the reference-dependent temporal advance and restores the causal analytic structure of the scattering response, as shown in Figs. 1a-c."
+                    }
+                ]
+            },
+            "bbox": [
+                144,
+                224,
+                852,
+                373
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "More precisely, the corrected scattering matrix "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "\\tilde { S } ( \\omega )"
+                    },
+                    {
+                        "type": "text",
+                        "content": "belongs to the class of operator Schur functions: it is analytic in the upper half-plane "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "\\mathbb { C } ^ { + }"
+                    },
+                    {
+                        "type": "text",
+                        "content": "and satisfies "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "\\left. \\tilde { S } ( \\omega ) \\right. _ { o p } \\leq 1 , z \\in \\mathbb { C } ^ { + }"
+                    },
+                    {
+                        "type": "text",
+                        "content": ". This is the central mathematical step of the construction. The construction assumes causal response, appropriate high-frequency transparency, and the regularity conditions required for the logarithmic Schur representation. The detailed proof is provided in Lemma S2.1 of the Supplementary Note 2. This result follows from the combination of causality, which provides the Hardy-class analytic continuation after the time-advance correction, and passivity, which preserves the contractive property on the real-frequency axis. The Schur property establishes the missing mathematical connection between experimentally accessible scattering data and causality-based sum rules. Applying the matrix Cayley transform, "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "W ( \\omega ) = i [ 1 + \\tilde { S } ( \\omega ) ] [ 1 - \\tilde { S } ( \\omega ) ] ^ { - 1 }"
+                    },
+                    {
+                        "type": "text",
+                        "content": ", maps the contractive scattering representation into an operator Herglotz function satisfying Im "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "W ( z ) \\succeq 0 , z \\in \\mathbb { C } ^ { + }"
+                    },
+                    {
+                        "type": "text",
+                        "content": ". The Herglotz representation then converts the analyticity and passivity constraints of the corrected scattering matrix into a spectral integral relation, whose low-frequency expansion is determined by the geometric delay operator "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "T _ { a }"
+                    },
+                    {
+                        "type": "text",
+                        "content": ". This relation provides the universal mechanism for extracting causality sum rules from experimentally accessible scattering responses. Notably, the entire route is accomplished through the cooperation of a hybrid AI-human discovery workflow, and the specific workflow is shown in Fig. 1d."
+                    }
+                ]
+            },
+            "bbox": [
+                144,
+                381,
+                853,
+                871
+            ]
+        }
+    ],
+    [
+        {
+            "type": "image",
+            "content": {
+                "image_source": {
+                    "path": "images/f1d2e0ce89d3afdf0bddb3cd038bd673d8fbc0c7f9b0b3d1ec68123af0196deb.jpg"
+                },
+                "image_caption": [
+                    {
+                        "type": "text",
+                        "content": "C"
+                    }
+                ],
+                "image_footnote": []
+            },
+            "bbox": [
+                147,
+                84,
+                852,
+                186
+            ]
+        },
+        {
+            "type": "image",
+            "content": {
+                "image_source": {
+                    "path": "images/fe15449e46a973d8ee92913e4471aca78b4855fa38b1b13b0da927ee46492ec7.jpg"
+                },
+                "image_caption": [],
+                "image_footnote": []
+            },
+            "bbox": [
+                179,
+                252,
+                828,
+                346
+            ]
+        },
+        {
+            "type": "image",
+            "content": {
+                "image_source": {
+                    "path": "images/2c87f24f2943e99a0d4c717872fcba9c65f6930096cafe92d8c78af07b757e30.jpg"
+                },
+                "image_caption": [
+                    {
+                        "type": "text",
+                        "content": "d"
+                    },
+                    {
+                        "type": "text",
+                        "content": "Fig. 1 | Physical principle and AI-human hybrid scientific discovery workflow. a, Finite reference domain defined by the scattering geometry and channel reference surfaces. b, Schur-Cayley-Herglotz machinery. c, Schematic of shifting the causal response to remove the time advance. A finite reference domain makes the conventional scattering matrix contain a channeldependent apparent time-advance phase, even though the system is passive on the real-frequency axis. Multiplication by the domain-delay factor "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "D _ { a } = e ^ { i \\omega T _ { a } }"
+                    },
+                    {
+                        "type": "text",
+                        "content": "removes this reference phase without changing real-frequency power balance. The time axis indicates the raw apparent start at "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "t = - \\tau _ { \\alpha }"
+                    },
+                    {
+                        "type": "text",
+                        "content": "and the corrected causal start at t = 0 . Under the stated analyticity and transparency assumptions, the relative matrix "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "{ \\tilde { S } } = D _ { a } S"
+                    },
+                    {
+                        "type": "text",
+                        "content": "is the Schur object to which the Cayley-Herglotz and logarithmic sumrule machinery applies. d, Hybrid human-AI scientific discovery workflow. Human scientists define open-ended research questions, while the Qiushi Engine proposes research roadmaps, explores candidate solutions, and generates extensive data, notes, reports, and code scripts. Subsequently, human scientists review, evaluate, and extend the generated outputs, and provide feedback when necessary."
+                    }
+                ],
+                "image_footnote": []
+            },
+            "bbox": [
+                149,
+                374,
+                835,
+                594
+            ]
+        }
+    ],
+    [
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "For a delay eigenvector v satisfying "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "T _ { a } \\nu = \\tau _ { \\nu } \\nu _ { : }"
+                    },
+                    {
+                        "type": "text",
+                        "content": ", the scalar projection "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "\\left. \\nu , W ( \\omega ) \\nu \\right."
+                    },
+                    {
+                        "type": "text",
+                        "content": "inherits the Herglotz property. Its low-frequency expansion contains the causal delay contribution "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "\\tau _ { \\nu } { : }"
+                    },
+                    {
+                        "type": "text",
+                        "content": ", while the Herglotz integral representation relates this expansion coefficient to a weighted logarithmic integral of the scattering response. This yields the first projected causality sum rule."
+                    }
+                ]
+            },
+            "bbox": [
+                144,
+                92,
+                852,
+                215
+            ]
+        },
+        {
+            "type": "title",
+            "content": {
+                "title_content": [
+                    {
+                        "type": "text",
+                        "content": "Projected sum rule"
+                    }
+                ],
+                "level": 2
+            },
+            "bbox": [
+                146,
+                227,
+                317,
+                242
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "The first result establishes a coherent-return suppression limit for channel superpositions within a common-delay subspace. Let v be a unit incident superposition, and measure the component of the scattered field in the same superposition. The resulting amplitude is "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "S _ { \\nu } ( \\omega ) = \\langle \\nu , S ( \\omega ) \\nu \\rangle"
+                    },
+                    {
+                        "type": "text",
+                        "content": ". To remove the domain phase without changing this scalar projection, v must lie in an eigenspace of the delay operator, "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "T _ { a } \\nu = \\tau _ { \\nu } \\nu"
+                    },
+                    {
+                        "type": "text",
+                        "content": ". Then "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "\\tilde { s } _ { \\nu } ( \\omega ) = \\langle \\nu , \\tilde { S } ( \\omega ) \\nu \\rangle = e ^ { i \\omega \\tau _ { \\nu } } \\langle \\nu , S ( \\omega ) \\nu \\rangle"
+                    },
+                    {
+                        "type": "text",
+                        "content": ". Consequently, "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "\\mid \\widetilde { S } _ { \\nu } \\mid = \\mid s _ { \\nu } \\mid"
+                    },
+                    {
+                        "type": "text",
+                        "content": "on the real axis. If v combines channels with different values of "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "\\tau _ { \\alpha }"
+                    },
+                    {
+                        "type": "text",
+                        "content": ", the correction cannot be factored out as a single phase, and the scalar argument below does not apply. Thus, the positive Herglotz measure is set by the logarithmic suppression of the measured coherent return. Its first inverse-frequency moment is determined by the derivative of "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "h _ { \\nu }"
+                    },
+                    {
+                        "type": "text",
+                        "content": "at the origin. See details in Supplementary Note 3."
+                    }
+                ]
+            },
+            "bbox": [
+                144,
+                259,
+                853,
+                539
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "Expanding at low frequency separates the geometric delay from the zero and phaseslope terms, convergence of the logarithmic integral and Blaschke product, and the angular-derivative condition, which ensures that the non-geometric terms do not increase the low-frequency coefficient: "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "h \\nu ^ { \\prime } \\leq \\tau _ { \\nu } = \\left. \\nu , T _ { a } \\nu \\right."
+                    },
+                    {
+                        "type": "text",
+                        "content": ". The Herglotz moment identity then yields"
+                    }
+                ]
+            },
+            "bbox": [
+                144,
+                548,
+                852,
+                669
+            ]
+        },
+        {
+            "type": "equation_interline",
+            "content": {
+                "math_content": "\\int _ { 0 } ^ { \\infty } \\frac { \\ln \\mid \\langle \\nu , S ( \\omega ) \\nu \\rangle \\mid } { \\omega ^ { 2 } } \\mathrm { d } \\omega \\Bigg \\vert \\leq \\frac { \\pi } { 2 } \\big \\langle \\nu , T _ { a } \\nu \\big \\rangle .\\tag{2}",
+                "math_type": "latex",
+                "image_source": {
+                    "path": "images/c850dfef5ba3e33677e2ff7bd0148f49e0d170492a02f9ae10dfebbae87a0869.jpg"
+                }
+            },
+            "bbox": [
+                388,
+                669,
+                655,
+                713
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "Equation (2) limits the bandwidth-integrated logarithmic suppression of return into the selected channel superposition v by its domain-delay time "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "\\tau _ { \\nu }"
+                    },
+                    {
+                        "type": "text",
+                        "content": ". Deep suppression over a broad band therefore requires a correspondingly large delay budget. For spherical waves, "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "T _ { a } = ( 2 a / c ) I"
+                    },
+                    {
+                        "type": "text",
+                        "content": "and the result holds for every superposition in the truncated channel space. For unequal channel delays, it holds within each common-delay eigenspace."
+                    }
+                ]
+            },
+            "bbox": [
+                144,
+                724,
+                852,
+                872
+            ]
+        }
+    ],
+    [
+        {
+            "type": "title",
+            "content": {
+                "title_content": [
+                    {
+                        "type": "text",
+                        "content": "Determinant sum rule"
+                    }
+                ],
+                "level": 2
+            },
+            "bbox": [
+                146,
+                85,
+                344,
+                102
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "The projected sum rule characterizes individual coherent scattering channels. To obtain a basis-independent constraint on the total multichannel response, we apply the same Schur-Cayley construction to the determinant of the domain-delayed scattering matrix det "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "\\tilde { S } ."
+                    }
+                ]
+            },
+            "bbox": [
+                144,
+                121,
+                852,
+                217
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "For a finite-dimensional N-channel system, the determinant magnitude satisfies | det "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "S \\left| = \\prod \\sigma _ { j } ( S ) \\right."
+                    },
+                    {
+                        "type": "text",
+                        "content": ", where "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "\\sigma _ { j } ( \\boldsymbol { S } )"
+                    },
+                    {
+                        "type": "text",
+                        "content": "are the singular values of S. Therefore, ln | det− "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "\\stackrel { j = 1 } { S } \\left| = \\sum \\right."
+                    },
+                    {
+                        "type": "text",
+                        "content": "ln − "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "\\sigma _ { j }"
+                    },
+                    {
+                        "type": "text",
+                        "content": "quantifies the aggregate logarithmic attenuation of the complete channel map. Unlike individual matrix elements or projected amplitudes, this quantity is invariant under unitary transformations of the input and output channel bases. Taking the determinant of the domain-delayed matrix gives det ( ) detS ω = <sup></sup> "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "D _ { a } ( \\omega )"
+                    },
+                    {
+                        "type": "text",
+                        "content": "det "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "S ( \\omega ) = e ^ { i \\omega \\mathrm { t r } T _ { a } }"
+                    },
+                    {
+                        "type": "text",
+                        "content": "det "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "S ( \\omega )"
+                    },
+                    {
+                        "type": "text",
+                        "content": ". Because "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "\\tilde { S } ( \\omega )"
+                    },
+                    {
+                        "type": "text",
+                        "content": "is an operator Schur function, det "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "\\tilde { S }"
+                    },
+                    {
+                        "type": "text",
+                        "content": "is a scalar Schur function. Applying the determinant form of the logarithmic Herglotz representation under the corresponding convergence, lowfrequency unimodularity, and angular-derivative conditions yields the aggregated causality sum rule (See more details in Supplementary Note 4):"
+                    }
+                ]
+            },
+            "bbox": [
+                144,
+                225,
+                852,
+                506
+            ]
+        },
+        {
+            "type": "equation_interline",
+            "content": {
+                "math_content": "\\left| \\int _ { 0 } ^ { \\infty } \\frac { \\ln \\mid \\operatorname* { d e t } S ( \\omega ) \\mid } { \\omega ^ { 2 } } \\mathrm { d } \\omega \\right| { \\leq } \\frac { \\pi } { 2 } \\mathrm { t r } T _ { a } .\\tag{3}",
+                "math_type": "latex",
+                "image_source": {
+                    "path": "images/833c52682db1575fc5598678cbbfc003f54d1e7197a69f62ddc2a6ffa40fbf01.jpg"
+                }
+            },
+            "bbox": [
+                406,
+                507,
+                648,
+                544
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "The determinant bound provides a basis-independent constraint on the aggregate logarithmic attenuation of the multichannel scattering operator. While the projected bound describes suppression along a selected coherent channel, the determinant bound captures the collective contraction of all singular channels, including interchannel coupling and mode conversion. Therefore, it represents a genuinely multichannel causality constraint that cannot be obtained by independently applying scalar bounds to individual matrix elements."
+                    }
+                ]
+            },
+            "bbox": [
+                144,
+                557,
+                853,
+                732
+            ]
+        },
+        {
+            "type": "title",
+            "content": {
+                "title_content": [
+                    {
+                        "type": "text",
+                        "content": "Physical consequences of the sum rules"
+                    }
+                ],
+                "level": 2
+            },
+            "bbox": [
+                146,
+                743,
+                489,
+                759
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "The projected and determinant sum rules lead to three directly measurable consequences: a depth-bandwidth constraint for a selected coherent return, an aggregate attenuation bound for the singular-value spectrum, and a bound on the number of independently suppressed singular channels, as shown in Fig. 2."
+                    }
+                ]
+            },
+            "bbox": [
+                144,
+                771,
+                853,
+                846
+            ]
+        }
+    ],
+    [
+        {
+            "type": "image",
+            "content": {
+                "image_source": {
+                    "path": "images/ab2428af62ffd9d8c7bed00836ba0d85cebec7457cd61dd0b3a74031c906fffe.jpg"
+                },
+                "image_caption": [
+                    {
+                        "type": "text",
+                        "content": "Fig. 2 | From the conventional scattering matrix to observable bounds. Removing the referencedomain advance gives the Schur matrix "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "{ \\tilde { S } } = D _ { a } S"
+                    },
+                    {
+                        "type": "text",
+                        "content": ". A projection constrains coherent return, whereas the determinant constrains aggregate singular-value attenuation and suppressed-channel count. The determinant-phase branch is a separate conditional extension for lossless systems."
+                    }
+                ],
+                "image_footnote": []
+            },
+            "bbox": [
+                149,
+                86,
+                848,
+                242
+            ]
+        },
+        {
+            "type": "title",
+            "content": {
+                "title_content": [
+                    {
+                        "type": "text",
+                        "content": "From full-frequency constraints to finite-band bounds"
+                    }
+                ],
+                "level": 2
+            },
+            "bbox": [
+                146,
+                336,
+                620,
+                353
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "The operator-level sum rules constrain the frequency-integrated logarithmic attenuation over the entire spectrum. To connect these universal constraints with experimentally relevant performance metrics, we convert the full-frequency integrals into finite-band depth-bandwidth relations."
+                    }
+                ]
+            },
+            "bbox": [
+                144,
+                372,
+                852,
+                468
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "Consider a dimensionless scattering observable A( ) ω satisfying "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "0 < | \\ A ( \\omega ) | \\leq A _ { 1 } < 1"
+                    },
+                    {
+                        "type": "text",
+                        "content": "for "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "\\omega \\in [ \\omega _ { 0 } , \\omega _ { 0 } + B ]"
+                    },
+                    {
+                        "type": "text",
+                        "content": ". The contribution of this frequency interval to the logarithmic integral is bounded by | ln A "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "{ \\prod _ { \\omega _ { 0 } } ^ { \\omega _ { 0 } + B } \\omega ^ { - 2 } d \\omega }"
+                    },
+                    {
+                        "type": "text",
+                        "content": ". For a narrow fractional bandwidth "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "\\beta = B / \\omega _ { \\mathrm { 0 } } \\ll 1"
+                    },
+                    {
+                        "type": "text",
+                        "content": ", this contribution can be approximated as | ln "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "A _ { \\mathrm { l } } \\mid B / \\omega _ { \\mathrm { 0 } } ^ { 2 }"
+                    }
+                ]
+            },
+            "bbox": [
+                146,
+                476,
+                852,
+                573
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "Therefore, the full-frequency sum rules impose finite-band constraints on the achievable attenuation depth, bandwidth, and physical size. For the projected sum rule, the relevant quantity is the coherent return amplitude "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "S _ { \\nu } \\left( \\omega \\right) = \\langle \\nu , S ( \\omega ) \\nu \\rangle"
+                    },
+                    {
+                        "type": "text",
+                        "content": ". If the coherent response remains below "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "| s _ { \\nu } ( \\omega ) | \\leq s _ { 0 }"
+                    },
+                    {
+                        "type": "text",
+                        "content": "over a fractional bandwidth "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "\\beta = B / \\omega _ { 0 }"
+                    },
+                    {
+                        "type": "text",
+                        "content": ", the integral constraint gives a depth-bandwidth limitation determined by the available delay budget "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "\\langle \\nu , T _ { a } \\nu \\rangle"
+                    }
+                ]
+            },
+            "bbox": [
+                146,
+                581,
+                852,
+                731
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "For the determinant sum rule, the corresponding quantity is the aggregate channel response | det ( ) | . S ω "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "\\mathrm { I f } \\ | \\operatorname* { d e t } S ( \\omega ) | \\leq \\Delta _ { 0 }"
+                    },
+                    {
+                        "type": "text",
+                        "content": "within the operating band, the finite-band constraint becomes a limit on the total multichannel attenuation budget determined by tr "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "T _ { a }"
+                    },
+                    {
+                        "type": "text",
+                        "content": "."
+                    }
+                ]
+            },
+            "bbox": [
+                146,
+                738,
+                852,
+                835
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "The narrowband approximation "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "\\beta \\ll 1"
+                    },
+                    {
+                        "type": "text",
+                        "content": "is used for the expressions and figures below. The exact conversion between the full-frequency integral constraints and finite-band performance metrics, including finite-band corrections beyond the narrowband limit, is provided in Supplementary Note 5."
+                    }
+                ]
+            },
+            "bbox": [
+                146,
+                843,
+                852,
+                887
+            ]
+        }
+    ],
+    [
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": []
+            },
+            "bbox": [
+                144,
+                92,
+                852,
+                136
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "Consistency checks: scalar limits."
+                    }
+                ]
+            },
+            "bbox": [
+                146,
+                148,
+                440,
+                164
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "The two operator-level sum rules recover several established scalar causality bounds as limiting cases. These reductions demonstrate that the domain-delayed Schur-Cayley construction provides a unified scattering-matrix formulation of previously known fundamental limits."
+                    }
+                ]
+            },
+            "bbox": [
+                146,
+                184,
+                852,
+                279
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "First, consider a single-channel passive system, where the scattering matrix reduces to a scalar reflection coefficient, "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "S ( \\omega ) = \\Gamma ( \\omega )"
+                    },
+                    {
+                        "type": "text",
+                        "content": ". For a planar absorber of thickness d backed by a perfect conductor, the earliest round-trip arrival time is "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "\\tau _ { \\nu } = 2 d / c ."
+                    },
+                    {
+                        "type": "text",
+                        "content": "Substituting this into the projected sum rule [see Eq. (2)], gives "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "\\int _ { 0 } ^ { \\infty } - \\ln \\left| \\Gamma ( \\omega ) \\right| / \\omega ^ { 2 } \\mathrm { d } \\omega \\leq \\pi \\tau _ { \\nu } / 2 = \\pi d / c ."
+                    },
+                    {
+                        "type": "text",
+                        "content": ". This directly recovers the Rozanov absorber bound<sup>8</sup>. In the narrowband approximation, where the reflection magnitude is approximately constant within a bandwidth B centered at "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "\\omega _ { 0 }"
+                    },
+                    {
+                        "type": "text",
+                        "content": ", the above inequality becomes "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "\\left| \\ln R _ { 0 } \\right| B / \\omega _ { 0 } \\leq \\pi d / \\lambda _ { 0 }"
+                    },
+                    {
+                        "type": "text",
+                        "content": ", where "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "R _ { 0 } = \\mid \\Gamma ( \\omega _ { 0 } ) \\mid , \\ \\lambda _ { 0 } = 2 \\pi c / \\omega _ { 0 }"
+                    },
+                    {
+                        "type": "text",
+                        "content": ". Thus, the conventional thickness-bandwidth trade-off of absorbers emerges as a special case of the general projected sum rule."
+                    }
+                ]
+            },
+            "bbox": [
+                144,
+                288,
+                852,
+                542
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "A second recovery follows for spherical-wave scattering. Consider a passive scatterer enclosed by a sphere of radius a . For spherical multipole channels, the earliest arrival delay is identical for all channels, "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "T _ { a } = ( 2 a / c ) I"
+                    },
+                    {
+                        "type": "text",
+                        "content": ". Therefore, every normalized channel superposition satisfies the delay-eigenvector condition, "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "T _ { a } \\nu = ( 2 a / c ) \\nu"
+                    },
+                    {
+                        "type": "text",
+                        "content": ". Choosing a single spherical multipole basis vector, "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "\\textstyle \\nu = e _ { n } ^ { ( \\sigma ) }"
+                    },
+                    {
+                        "type": "text",
+                        "content": ", the projected sum rule reduces to "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "\\int _ { 0 } ^ { \\infty } - \\ln \\mid s _ { n } ^ { ( \\sigma ) } ( \\omega ) \\mid / \\omega ^ { 2 } { \\mathrm { d } } \\omega \\leq \\pi a / c ."
+                    },
+                    {
+                        "type": "text",
+                        "content": ", which exactly recovers the Bernland-Gustafsson spherical-multipole scattering bound<sup>9,10</sup>. However, unlike the original diagonal formulation, the present result extends this constraint from individual multipole channels to arbitrary coherent superpositions within a common-delay eigenspace."
+                    }
+                ]
+            },
+            "bbox": [
+                146,
+                550,
+                853,
+                777
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "These recoveries confirm that the known scalar limits are embedded within the general S-matrix formulation. The remaining advantage of the operator-level theory is its ability to constrain collective scattering behavior beyond individual coefficients. We next explore these multichannel consequences, beginning with coherent return suppression in common-delay channel subspaces."
+                    }
+                ]
+            },
+            "bbox": [
+                144,
+                785,
+                852,
+                908
+            ]
+        }
+    ],
+    [
+        {
+            "type": "title",
+            "content": {
+                "title_content": [
+                    {
+                        "type": "text",
+                        "content": "Consequence 1: coherent-return suppression."
+                    }
+                ],
+                "level": 2
+            },
+            "bbox": [
+                146,
+                86,
+                541,
+                102
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "The projected sum rule establishes a fundamental limit on coherent return suppression for channel superpositions within a common-delay subspace, extending conventional bounds beyond individual diagonal scattering coefficients to coherent combinations of channels."
+                    }
+                ]
+            },
+            "bbox": [
+                144,
+                122,
+                852,
+                217
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "For a normalized channel superposition v, the coherent return amplitude is "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "s _ { \\nu } = \\langle \\nu , S ( \\omega ) \\nu \\rangle"
+                    },
+                    {
+                        "type": "text",
+                        "content": ". When v is a delay eigenvector satisfying "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "T _ { a } \\nu = \\tau _ { \\nu } \\nu _ { : }"
+                    },
+                    {
+                        "type": "text",
+                        "content": ", the projected sum rule gives "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "\\left| \\int _ { 0 } ^ { \\infty } - \\ln \\left| s _ { \\nu } ( \\omega ) \\right| / \\omega ^ { 2 } \\mathrm { d } \\omega \\right| \\leq \\pi \\tau _ { \\nu } / 2"
+                    },
+                    {
+                        "type": "text",
+                        "content": ". which directly relates the achievable broadband coherent suppression to the available causal delay budget of the scattering structure."
+                    }
+                ]
+            },
+            "bbox": [
+                146,
+                227,
+                852,
+                348
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "To illustrate the physical meaning, consider spherical-wave scattering from an object enclosed by a sphere of radius a. In this case, "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "T _ { a } = ( 2 a / c ) I _ { \\mathrm { : } }"
+                    },
+                    {
+                        "type": "text",
+                        "content": ", so every coherent superposition of spherical channels satisfies the delay-eigenvector condition with "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "\\tau _ { \\nu } = 2 a / c"
+                    },
+                    {
+                        "type": "text",
+                        "content": ". Therefore, the suppression of any coherent multipole superposition is fundamentally limited by the physical size of the scatterer:"
+                    }
+                ]
+            },
+            "bbox": [
+                146,
+                356,
+                852,
+                479
+            ]
+        },
+        {
+            "type": "equation_interline",
+            "content": {
+                "math_content": "\\left| \\int _ { 0 } ^ { \\infty } \\frac { - \\ln \\left| \\left. \\nu , S ( \\omega ) \\nu \\right. \\right| } { \\omega ^ { 2 } } \\mathrm { d } \\omega \\right| \\leq \\pi a / c .\\tag{4}",
+                "math_type": "latex",
+                "image_source": {
+                    "path": "images/5d9a745fa35685f41a836eef0d8374290c099f55a5409631db52ef41cd890ad8.jpg"
+                }
+            },
+            "bbox": [
+                391,
+                489,
+                653,
+                532
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "This result shows that the same causal delay budget constrains not only individual multipole channels but also coherent combinations of channels."
+                    }
+                ]
+            },
+            "bbox": [
+                144,
+                545,
+                850,
+                588
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "For a coherent return satisfying "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "| s _ { \\nu } ( \\omega ) | \\leq \\rho _ { \\nu }"
+                    },
+                    {
+                        "type": "text",
+                        "content": "over a fractional bandwidth "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "\\beta = B / \\omega _ { 0 }"
+                    },
+                    {
+                        "type": "text",
+                        "content": "， define the coherent suppression depth as "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "D _ { \\nu } = 2 0 \\log _ { 1 0 } ( 1 / \\rho _ { \\nu } )"
+                    },
+                    {
+                        "type": "text",
+                        "content": ", Using the narrowband approximation, the bound becomes "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "D _ { \\nu } \\leq ( 2 0 \\pi / \\ln 1 0 ) k _ { \\scriptscriptstyle 0 } a / \\beta ."
+                    }
+                ]
+            },
+            "bbox": [
+                146,
+                598,
+                852,
+                668
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "Figure 3a shows this depth-bandwidth-size boundary for different electrical sizes "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "k _ { 0 } a"
+                    },
+                    {
+                        "type": "text",
+                        "content": ". The suppression depths below each curve satisfy the causal sum-rule constraint. For example, a 60-dB return suppression over a 10% fractional bandwidth corresponds to "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "\\rho _ { _ { \\nu } } = 1 0 ^ { - 3 }"
+                    },
+                    {
+                        "type": "text",
+                        "content": "and requires "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "k _ { 0 } a \\gtrsim 0 . 2 2"
+                    },
+                    {
+                        "type": "text",
+                        "content": ". This is a necessary causality condition rather than a sufficient design criterion."
+                    }
+                ]
+            },
+            "bbox": [
+                146,
+                676,
+                852,
+                797
+            ]
+        },
+        {
+            "type": "title",
+            "content": {
+                "title_content": [
+                    {
+                        "type": "text",
+                        "content": "Consequence 2: aggregate and geometric-mean attenuation."
+                    }
+                ],
+                "level": 2
+            },
+            "bbox": [
+                146,
+                809,
+                665,
+                826
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "The coherent-return suppression limit characterizes attenuation along a selected coherent channel superposition. By contrast, the determinant sum rule provides a complementary constraint on the collective attenuation of the full multichannel scattering operator."
+                    }
+                ]
+            },
+            "bbox": [
+                146,
+                845,
+                852,
+                889
+            ]
+        }
+    ],
+    [
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": []
+            },
+            "bbox": [
+                144,
+                92,
+                850,
+                136
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "For an N-channel scattering system, | det "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "S \\left| = \\prod _ { . } ^ { N } \\sigma _ { { } _ { j } } [ S ( \\omega ) ] \\right."
+                    },
+                    {
+                        "type": "text",
+                        "content": ", where "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "\\sigma _ { j } ( \\boldsymbol { S } )"
+                    },
+                    {
+                        "type": "text",
+                        "content": "are the singular values of the scattering matrix. Therefore, ln | det− "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "S \\left| = \\sum - \\ln \\sigma _ { j } \\right."
+                    },
+                    {
+                        "type": "text",
+                        "content": ", measures the aggregate logarithmic attenuation accumulated over all singular scattering channels."
+                    }
+                ]
+            },
+            "bbox": [
+                144,
+                141,
+                852,
+                216
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "Unlike individual matrix elements or projected coherent amplitudes, the determinant is invariant under unitary transformations of the input and output channel bases. Therefore, it provides a basis-independent measure of the collective contraction of the scattering operator."
+                    }
+                ]
+            },
+            "bbox": [
+                144,
+                224,
+                852,
+                321
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "The determinant constrains aggregate logarithmic attenuation across the included singular channels, rather than the attenuation of an individual multipole or matrix element. This quantity can be interpreted as absorption only when the retained scattering channels contain all power-carrying output channels. Otherwise, a reduced determinant magnitude may also arise from radiation or coupling into omitted channels."
+                    }
+                ]
+            },
+            "bbox": [
+                144,
+                328,
+                852,
+                450
+            ]
+        },
+        {
+            "type": "chart",
+            "content": {
+                "image_source": {
+                    "path": "images/f8c531a2f5c7922ec9470ebb9c9d20a479e2f50459a1f67d54dbbd8b216d74b0.jpg"
+                },
+                "content": "",
+                "chart_caption": [
+                    {
+                        "type": "text",
+                        "content": "a"
+                    }
+                ],
+                "chart_footnote": []
+            },
+            "bbox": [
+                152,
+                461,
+                363,
+                576
+            ]
+        },
+        {
+            "type": "chart",
+            "content": {
+                "image_source": {
+                    "path": "images/a2f54a18ff5aa6ea2f47379f90f07d90cba329893dc9bb13841b05e8b047b38b.jpg"
+                },
+                "content": "",
+                "chart_caption": [
+                    {
+                        "type": "text",
+                        "content": "b"
+                    }
+                ],
+                "chart_footnote": []
+            },
+            "bbox": [
+                369,
+                460,
+                586,
+                574
+            ]
+        },
+        {
+            "type": "chart",
+            "content": {
+                "image_source": {
+                    "path": "images/ffbd2a0a83d73513e2d2adbe9e7abc3740994294d9c90067ca5d37df46a6d7f3.jpg"
+                },
+                "content": "",
+                "chart_caption": [
+                    {
+                        "type": "text",
+                        "content": "Fig. 3 | Finite-band consequences of the projected and determinant sum rules. a, Maximum coherent-return depth "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "D _ { \\nu } = 2 0 \\log _ { 1 0 } \\left( 1 / \\rho _ { \\nu } \\right)"
+                    },
+                    {
+                        "type": "text",
+                        "content": "for a prescribed fractional bandwidth and electrical size. b, Upper bound on the geometric-mean singular-value depth after normalizing the determinant result by the number of channels; this upper bound is independent of N. c, Maximum fraction "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "m _ { \\operatorname* { m a x } } / N"
+                    },
+                    {
+                        "type": "text",
+                        "content": "of singular channels that can remain below the prescribed threshold "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "\\rho _ { \\sigma }"
+                    },
+                    {
+                        "type": "text",
+                        "content": "across the operating bandwidth."
+                    }
+                ],
+                "chart_footnote": []
+            },
+            "bbox": [
+                594,
+                457,
+                848,
+                576
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "For a spherical-wave basis truncated at multipole order "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "n = N _ { \\operatorname* { m a x } }"
+                    },
+                    {
+                        "type": "text",
+                        "content": ", accounting for the "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "2 n + 1"
+                    },
+                    {
+                        "type": "text",
+                        "content": "azimuthal orders and two polarizations for each multipole order, the finite truncation contains "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "N = 2 { N _ { \\mathrm { m a x } } } ( { N _ { \\mathrm { m a x } } + 2 } )"
+                    },
+                    {
+                        "type": "text",
+                        "content": "open scattering channels. For a spherical reference domain, "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "\\begin{array} { r } { T _ { a } = \\left( 2 a / c \\right) I _ { \\mathrm { ~ \\normalfont ~ * ~ } } } \\end{array}"
+                    },
+                    {
+                        "type": "text",
+                        "content": ", and therefore tr "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "T a = 2 a N / c"
+                    },
+                    {
+                        "type": "text",
+                        "content": ". Applying the determinant sum rule gives the aggregate attenuation bound"
+                    }
+                ]
+            },
+            "bbox": [
+                146,
+                711,
+                852,
+                834
+            ]
+        },
+        {
+            "type": "equation_interline",
+            "content": {
+                "math_content": "\\int _ { 0 } ^ { \\infty } \\frac { - \\ln \\mid \\operatorname* { d e t } S ( \\omega ) \\mid } { \\omega ^ { 2 } } \\mathrm { d } \\omega \\leq \\frac { N \\pi a } { c } .\\tag{5}",
+                "math_type": "latex",
+                "image_source": {
+                    "path": "images/86493e3696ea0ba1411ebd0020af2105f6e0d8ba8a927fedfa3a670ced08c471.jpg"
+                }
+            },
+            "bbox": [
+                389,
+                840,
+                633,
+                877
+            ]
+        }
+    ],
+    [
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "To obtain a finite-band form, define the determinant modulus within an operating band as "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "\\begin{array} { r l } { \\Delta _ { 0 } = } & { { } \\ \\operatorname* { s u p } \\quad | \\operatorname* { d e t } S ( \\omega ) | } \\end{array}"
+                    },
+                    {
+                        "type": "text",
+                        "content": ". Using the narrowband approximation, the <sub>0 0</sub>[ , ]B ∈ + determinant constraint becomes "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "\\ln \\Delta _ { 0 } \\big | B / \\omega _ { 0 } \\pi \\leq N k _ { 0 } a"
+                    },
+                    {
+                        "type": "text",
+                        "content": ". Equivalently, defining the aggregate determinant suppression depth "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "D _ { \\mathrm { d e t } } = 2 0 \\log _ { 1 0 } ( 1 / \\Delta _ { 0 } )"
+                    },
+                    {
+                        "type": "text",
+                        "content": ", we obtain "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "D _ { \\mathrm { d e t } } B / \\omega _ { 0 } \\leq 2 7 . 3 N k _ { 0 } a"
+                    },
+                    {
+                        "type": "text",
+                        "content": "(See more details in Supplementary Note 6)."
+                    }
+                ]
+            },
+            "bbox": [
+                146,
+                93,
+                852,
+                217
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "The total determinant budget grows linearly with the number of channels N, but the number of singular values sharing this budget also grows linearly. Therefore, after normalization by the channel number, the geometric-mean attenuation exhibits an "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "N -"
+                    },
+                    {
+                        "type": "text",
+                        "content": "independent causal limit. Define the geometric-mean singular value "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "\\overline { { \\sigma } } _ { g } = \\rvert \\operatorname* { d e t } S \\rvert ^ { 1 / N }"
+                    },
+                    {
+                        "type": "text",
+                        "content": "and its depth "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "\\overline { { D } } _ { g } = - 2 0 \\log _ { 1 0 } \\overline { { \\sigma } } _ { g }"
+                    },
+                    {
+                        "type": "text",
+                        "content": ". Dividing the determinant constraint by N gives an upper bound on the geometric-mean singular-value depth "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "\\overline { { D } } _ { g } B / \\omega _ { 0 } \\leq ( 2 0 \\pi / \\ln 1 0 ) k _ { \\scriptscriptstyle 0 } a"
+                    },
+                    {
+                        "type": "text",
+                        "content": ", which is independent of the number of channels, as shown in Fig. 3b. This is an average constraint and does not require equal attenuation across all singular channels; different channels may experience different suppression levels while the geometric mean remains bounded by the available causal delay budget. For N = 70 , a determinant depth of 80 dB corresponds to a geometric-mean depth of "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "8 0 / 7 0 \\simeq 1 . 1"
+                    },
+                    {
+                        "type": "text",
+                        "content": "dB. This does not imply equal suppression of every singular channel."
+                    }
+                ]
+            },
+            "bbox": [
+                144,
+                224,
+                853,
+                530
+            ]
+        },
+        {
+            "type": "title",
+            "content": {
+                "title_content": [
+                    {
+                        "type": "text",
+                        "content": "Consequence 3: suppressed-channel count."
+                    }
+                ],
+                "level": 2
+            },
+            "bbox": [
+                146,
+                541,
+                519,
+                557
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "The geometric-mean attenuation bound constrains the average suppression of the singular-value spectrum, but it does not determine how many independent scattering channels can simultaneously achieve a prescribed attenuation level. We therefore derive a bound on the number of suppressed singular channels."
+                    }
+                ]
+            },
+            "bbox": [
+                144,
+                576,
+                852,
+                671
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "Choose a suppression threshold "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "0 < \\rho _ { \\sigma } < 1"
+                    },
+                    {
+                        "type": "text",
+                        "content": ". If at least m singular values satisfy "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "\\sigma _ { { } _ { j } } ( S ) \\le \\rho _ { { } _ { \\sigma } }"
+                    },
+                    {
+                        "type": "text",
+                        "content": "throughout an operating band, then passivity gives | det "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "S \\left. \\leq \\rho _ { \\sigma } ^ { m } \\right."
+                    },
+                    {
+                        "type": "text",
+                        "content": "Combining this inequality with the determinant sum rule and the finite-band approximation yields "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "m \\leq \\pi N k _ { 0 } a / ( \\left| \\ln \\rho _ { 0 } \\right| B / \\omega _ { 0 } )"
+                    },
+                    {
+                        "type": "text",
+                        "content": ", together with "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "m \\leq N"
+                    },
+                    {
+                        "type": "text",
+                        "content": ", this gives the maximum number of singular channels that can simultaneously maintain a target suppression level over a finite bandwidth (See more details in Supplementary Note 7). Here m counts orthogonal incident singular vectors, not physical ports. Figure 3c plots the maximum fraction m N/ for "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "\\rho _ { \\sigma } = 0 . 1"
+                    }
+                ]
+            },
+            "bbox": [
+                146,
+                681,
+                852,
+                882
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "When the scattering matrix contains all power-carrying exterior output channels, the singular values can be related to absorption eigenchannels through "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "A _ { j } = 1 - \\sigma _ { j } ^ { 2 }"
+                    },
+                    {
+                        "type": "text",
+                        "content": "Requiring at least m eigenchannels to satisfy "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "A _ { j } \\geq A _ { 0 }"
+                    },
+                    {
+                        "type": "text",
+                        "content": "throughout the operating band is equivalent to "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "\\rho _ { \\sigma } = \\sqrt { 1 - A _ { 0 } }"
+                    },
+                    {
+                        "type": "text",
+                        "content": "and gives "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "m \\leq 2 \\pi N k _ { 0 } a / \\left( \\left| \\ln ( 1 - A _ { 0 } \\right| B / \\omega _ { 0 } ) \\right."
+                    },
+                    {
+                        "type": "text",
+                        "content": ". For a channelcomplete "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "N = 3 0"
+                    },
+                    {
+                        "type": "text",
+                        "content": "model, maintaining "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "A _ { j } \\geq 0 . 9 9"
+                    },
+                    {
+                        "type": "text",
+                        "content": "in all 30 eigenchannels over a 10% fractional bandwidth requires "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "k _ { 0 } a \\ge 7 . 3 \\times 1 0 ^ { - 2 }"
+                    },
+                    {
+                        "type": "text",
+                        "content": ". This is a necessary condition from the determinant budget, rather than a sufficient condition for constructing such a device."
+                    }
+                ]
+            },
+            "bbox": [
+                166,
+                890,
+                850,
+                907
+            ]
+        }
+    ],
+    [
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": []
+            },
+            "bbox": [
+                144,
+                92,
+                852,
+                242
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "If the retained scattering channels do not include all power-carrying output channels, a small singular value indicates only that power has left the measured subspace. It does not distinguish absorption from radiation or coupling into unmeasured channels. Therefore, the absorption interpretation requires a channel-complete scattering description or a closed reducing subspace with no coupling to omitted channels."
+                    }
+                ]
+            },
+            "bbox": [
+                144,
+                250,
+                852,
+                373
+            ]
+        },
+        {
+            "type": "title",
+            "content": {
+                "title_content": [
+                    {
+                        "type": "text",
+                        "content": "Conditional phase-delay extension for lossless multiport systems"
+                    }
+                ],
+                "level": 2
+            },
+            "bbox": [
+                146,
+                384,
+                704,
+                399
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "The preceding consequences follow from the projected and determinant logarithmic sum rules and constrain attenuation-related observables. Lossless systems represent a distinct regime: because "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "| \\operatorname* { d e t } S | = 1"
+                    },
+                    {
+                        "type": "text",
+                        "content": ", on the real-frequency axis, the logarithmic attenuation bounds become trivial. In this case, the relevant causal quantity is the accumulated scattering phase rather than the modulus."
+                    }
+                ]
+            },
+            "bbox": [
+                144,
+                419,
+                852,
+                541
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "For a lossless multiport system, S is unitary and "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "\\left| \\operatorname* { d e t } S \\right| = 1"
+                    },
+                    {
+                        "type": "text",
+                        "content": ", the determinant can be expressed as det "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "S ( \\omega ) = e ^ { i \\Theta ( \\omega ) }"
+                    },
+                    {
+                        "type": "text",
+                        "content": ". The Wigner-Smith time-delay operator is defined as "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "Q ( \\omega ) = - i S ^ { \\dagger } \\partial _ { \\omega } S"
+                    },
+                    {
+                        "type": "text",
+                        "content": ", which gives the phase-delay identity "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "\\Theta ^ { \\prime } ( \\omega ) = \\mathrm { t r } Q ( \\omega )"
+                    },
+                    {
+                        "type": "text",
+                        "content": ". Therefore, tr ( )Q ω represents the total delay accumulated over all scattering channels."
+                    }
+                ]
+            },
+            "bbox": [
+                146,
+                549,
+                852,
+                645
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "Define the band-averaged delay trace as "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "\\overline { { \\mathrm { t r } \\mathcal { Q } } } = \\frac { 1 } { B } \\int _ { \\omega _ { 0 } } ^ { \\omega _ { 0 } + B } \\mathrm { t r } \\mathcal { Q } ( \\omega ) \\mathrm { d } \\omega ,"
+                    },
+                    {
+                        "type": "text",
+                        "content": "Unlike the attenuation bounds, obtaining a universal delay-bandwidth estimate requires an additional spectral-counting assumption. Let  denote the effective propagation length entering the modal-count model, and "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "\\lambda _ { 0 } = 2 \\pi c / \\omega _ { 0 }"
+                    },
+                    {
+                        "type": "text",
+                        "content": ". If the delay-corrected determinant contains no singular inner factor and its Blaschke phase accumulation satisfies the modal-count hypothesis "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "H _ { B }"
+                    },
+                    {
+                        "type": "text",
+                        "content": "(see details in Supplementary Note 8), then"
+                    }
+                ]
+            },
+            "bbox": [
+                144,
+                650,
+                852,
+                803
+            ]
+        },
+        {
+            "type": "equation_interline",
+            "content": {
+                "math_content": "\\overline { { { \\mathrm { t r } } Q } } B \\leq 4 \\pi ^ { 2 } N \\frac { \\ell } { \\lambda _ { 0 } } .\\tag{6}",
+                "math_type": "latex",
+                "image_source": {
+                    "path": "images/9b127bbd55d9817f0108990e6690ee505430d17e82e0df18ea340096c702a755.jpg"
+                }
+            },
+            "bbox": [
+                413,
+                804,
+                564,
+                841
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "By using the fractional bandwidth "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "\\beta = B / \\omega _ { 0 }"
+                    },
+                    {
+                        "type": "text",
+                        "content": ", the delay-bandwidth relation can be written as "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "\\overline { { \\operatorname { t r } \\mathscr { Q } } } \\omega _ { 0 } \\leq 4 \\pi ^ { 2 } N ( \\ell / \\lambda _ { 0 } ) / \\beta ."
+                    },
+                    {
+                        "type": "text",
+                        "content": "For the mean delay per channel "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "q = \\overline { { \\operatorname { t r } Q } } / { \\cal N }"
+                    },
+                    {
+                        "type": "text",
+                        "content": ", one obtains the basis-independent form "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "q B \\leq 4 \\pi ^ { 2 } \\ell / \\lambda _ { 0 }"
+                    },
+                    {
+                        "type": "text",
+                        "content": "(See more details in Supplementary Notes 8 and 9)."
+                    }
+                ]
+            },
+            "bbox": [
+                146,
+                852,
+                850,
+                896
+            ]
+        }
+    ],
+    [
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": []
+            },
+            "bbox": [
+                146,
+                92,
+                850,
+                136
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "For example, consider a target mean normalized delay of "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "q \\omega _ { 0 } = 1 0 ^ { 6 }"
+                    },
+                    {
+                        "type": "text",
+                        "content": "over a fractional bandwidth 1%. The required delay-bandwidth product is then "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "q B = 1 0 ^ { 4 }"
+                    },
+                    {
+                        "type": "text",
+                        "content": ". Under the modal-count hypothesis, this requires "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "\\ell / \\lambda _ { 0 } \\gtrsim 2 . 5 { \\times } 1 0 ^ { 2 }"
+                    },
+                    {
+                        "type": "text",
+                        "content": ". Thus, achieving extremely large delay over finite bandwidth necessarily requires a correspondingly large effective propagation length. For an N-channel implementation, the aggregate delay trace scales as "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "\\mathrm { t r } Q = N q"
+                    }
+                ]
+            },
+            "bbox": [
+                144,
+                145,
+                852,
+                294
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "Figure 4a illustrates the linear scaling of the aggregate delay budget with the number of channels N at fixed "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "\\ell / \\lambda _ { 0 }"
+                    },
+                    {
+                        "type": "text",
+                        "content": ", while Fig. 4b shows the reciprocal trade-off between delay and fractional bandwidth. These relations are relevant to delay lines, beamforming networks, and interferometric photonic architectures."
+                    }
+                ]
+            },
+            "bbox": [
+                144,
+                302,
+                852,
+                398
+            ]
+        },
+        {
+            "type": "chart",
+            "content": {
+                "image_source": {
+                    "path": "images/6f7e020514c76aceff42e1bf3c9df6e0a78dfe0b531a1bfbadbe19bc95a9606e.jpg"
+                },
+                "content": "",
+                "chart_caption": [
+                    {
+                        "type": "text",
+                        "content": "a"
+                    }
+                ],
+                "chart_footnote": []
+            },
+            "bbox": [
+                186,
+                407,
+                489,
+                575
+            ]
+        },
+        {
+            "type": "chart",
+            "content": {
+                "image_source": {
+                    "path": "images/cad568a1290c421004fdeae4aac9cf893a279d323923c5aa50c4e4fa3e2847cf.jpg"
+                },
+                "content": "",
+                "chart_caption": [
+                    {
+                        "type": "text",
+                        "content": "b"
+                    },
+                    {
+                        "type": "text",
+                        "content": "Fig. 4 | Conditional delay-bandwidth estimates. a, Aggregate delay-bandwidth envelope at "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "\\ell / \\lambda _ { 0 } = 1 0 0"
+                    },
+                    {
+                        "type": "text",
+                        "content": "and illustrative network scales. b, Equivalent bound on "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "\\mathrm { t r } Q \\omega _ { \\mathrm { 0 } }"
+                    },
+                    {
+                        "type": "text",
+                        "content": "as a function of fractional bandwidth. Additional high-Q phase winding is not included."
+                    }
+                ],
+                "chart_footnote": []
+            },
+            "bbox": [
+                509,
+                410,
+                816,
+                575
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "Importantly, the delay-bandwidth estimate relies on the modal-count hypothesis "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "H _ { B }"
+                    },
+                    {
+                        "type": "text",
+                        "content": "Sharp resonances can introduce additional Blaschke phase accumulation beyond the assumed spectral count. An additional phase contribution "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "k _ { \\mathrm { e x t r a } }"
+                    },
+                    {
+                        "type": "text",
+                        "content": "modifies the bound by an additive term "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "2 \\pi k _ { \\mathrm { e x t r a } }"
+                    },
+                    {
+                        "type": "text",
+                        "content": "in the integrated trace delay. Therefore, Eq. (6) should be interpreted as conditional spectral-counting estimates rather than universal limits applicable to arbitrary high-Q resonant or slow-light systems."
+                    }
+                ]
+            },
+            "bbox": [
+                146,
+                659,
+                852,
+                810
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "On the use of Qiushi Engine. Because there is growing interest in whether autonomous AI systems can contribute to real scientific discovery, we state explicitly how Qiushi Engine entered this work. The path to the present theory also illustrates a new mode of scientific discovery. Qiushi Engine participated as an autonomous exploration partner within a hybrid human-AI discovery workflow. Given the open problem of formulating causality sum rules directly in the conventional scattering matrix, the system explored candidate mathematical routes, identified the domain-delay correction strategy, generated preliminary derivations, and organized intermediate research artifacts. These outputs were not treated as proofs. The authors subsequently audited the analytic assumptions, corrected the functional-analytic formulation, verified scalar recoveries, examined numerical consequences, and established the final physical interpretation. This division of roles demonstrates a research paradigm in which AI expands the space of candidate scientific pathways, while human researchers retain rigorous validation and scientific responsibility. Supplementary Note 10 records this workflow."
+                    }
+                ]
+            },
+            "bbox": [
+                144,
+                816,
+                852,
+                914
+            ]
+        }
+    ],
+    [
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": []
+            },
+            "bbox": [
+                144,
+                93,
+                853,
+                373
+            ]
+        },
+        {
+            "type": "title",
+            "content": {
+                "title_content": [
+                    {
+                        "type": "text",
+                        "content": "Discussion"
+                    }
+                ],
+                "level": 2
+            },
+            "bbox": [
+                146,
+                382,
+                245,
+                399
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "The domain-delayed Schur-Cayley-Herglotz construction provides a direct route to formulating causality sum rules in the conventional scattering matrix. Removing the apparent time advance introduced by the finite reference domain restores the analytic structure required for the sum-rule construction. This leads to two operator-level results: a projected sum rule for coherent channel superpositions and a basis-independent determinant sum rule for aggregate multichannel attenuation. The framework recovers established scalar limits, including Rozanov’s absorber bound and spherical-multipole scattering sum rules, while extending them to measurable multichannel quantities such as coherent suppression, determinant insertion loss, singular-channel suppression, and lossless delay."
+                    }
+                ]
+            },
+            "bbox": [
+                144,
+                419,
+                853,
+                674
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "Working in the conventional scattering representation keeps these bounds directly connected to the input-output data obtained from experiments, full-wave simulations, and inverse design. The framework complements approaches based on polarizabilities, Green functions, and volume (T)-operators<sup>21-23</sup>, which express causality through material or source variables, by providing an equivalent formulation at the scattering level. The projected rule constrains a selected coherent channel superposition, whereas the determinant rule captures the collective attenuation of the full multichannel response."
+                    }
+                ]
+            },
+            "bbox": [
+                144,
+                681,
+                853,
+                883
+            ]
+        }
+    ],
+    [
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "More broadly, this work connects fundamental causality theory with the scattering data routinely used in photonics and electromagnetism. Qiushi Engine contributed to the initial exploration of the theoretical route, including candidate formulations, preliminary derivations, numerical checks, and research records. The authors then verified the assumptions, completed the derivation, and established the final physical interpretation. This workflow provides a concrete example of how autonomous research systems can support theoretical discovery while rigorous validation and scientific judgement remain with the researchers."
+                    }
+                ]
+            },
+            "bbox": [
+                144,
+                92,
+                853,
+                294
+            ]
+        },
+        {
+            "type": "title",
+            "content": {
+                "title_content": [
+                    {
+                        "type": "text",
+                        "content": "Methods"
+                    }
+                ],
+                "level": 2
+            },
+            "bbox": [
+                146,
+                309,
+                230,
+                324
+            ]
+        },
+        {
+            "type": "title",
+            "content": {
+                "title_content": [
+                    {
+                        "type": "text",
+                        "content": "Scattering convention and channel normalization"
+                    }
+                ],
+                "level": 2
+            },
+            "bbox": [
+                146,
+                340,
+                576,
+                356
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "We use the time dependence exp( ) −i t ω . Incoming and outgoing channel amplitudes are collected in vectors "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "a ( \\omega )"
+                    },
+                    {
+                        "type": "text",
+                        "content": "and "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "b ( \\omega )"
+                    },
+                    {
+                        "type": "text",
+                        "content": "and related by"
+                    }
+                ]
+            },
+            "bbox": [
+                146,
+                375,
+                850,
+                419
+            ]
+        },
+        {
+            "type": "equation_interline",
+            "content": {
+                "math_content": "b ( \\omega ) = S ( \\omega ) a ( \\omega ) .",
+                "math_type": "latex",
+                "image_source": {
+                    "path": "images/220fc4eb57b5797db662729a2ba0c5decce95327ccf7891ed106b987c7012c08.jpg"
+                }
+            },
+            "bbox": [
+                431,
+                428,
+                584,
+                445
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "The channels are power normalized, so that "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "\\left\\| a \\right\\| ^ { 2 }"
+                    },
+                    {
+                        "type": "text",
+                        "content": "and "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "\\left\\| b \\right\\| ^ { 2 }"
+                    },
+                    {
+                        "type": "text",
+                        "content": "represent incident and outgoing powers. Passivity therefore gives"
+                    }
+                ]
+            },
+            "bbox": [
+                146,
+                453,
+                852,
+                498
+            ]
+        },
+        {
+            "type": "equation_interline",
+            "content": {
+                "math_content": "S ^ { \\dagger } ( \\omega ) S ( \\omega ) \\preceq I ,",
+                "math_type": "latex",
+                "image_source": {
+                    "path": "images/15485b238affc3a9b02402efd1167e0cad834d4d305f0700e997da44857d592a.jpg"
+                }
+            },
+            "bbox": [
+                440,
+                506,
+                579,
+                524
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "on the real-frequency axis. Determinants are taken only after restricting the channel map to a finite set of propagating channels. When attenuation is interpreted as absorption, this set must include all propagating output channels into which the chosen inputs can scatter. Otherwise, the missing power may represent radiation or mode conversion into omitted channels rather than dissipation."
+                    }
+                ]
+            },
+            "bbox": [
+                144,
+                533,
+                852,
+                655
+            ]
+        },
+        {
+            "type": "title",
+            "content": {
+                "title_content": [
+                    {
+                        "type": "text",
+                        "content": "Domain-delay correction"
+                    }
+                ],
+                "level": 2
+            },
+            "bbox": [
+                146,
+                665,
+                368,
+                682
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "The conventional scattering matrix depends on the reference surfaces and on the finite domain used to define the incoming and outgoing channels. For output channel "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "\\alpha"
+                    },
+                    {
+                        "type": "text",
+                        "content": ", let "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "\\tau _ { \\alpha } \\geq 0"
+                    },
+                    {
+                        "type": "text",
+                        "content": "denote the magnitude of the earliest apparent time advance introduced by this convention. The correction times are assembled into"
+                    }
+                ]
+            },
+            "bbox": [
+                146,
+                702,
+                852,
+                797
+            ]
+        },
+        {
+            "type": "equation_interline",
+            "content": {
+                "math_content": "\\begin{array} { r } { T _ { a } = \\mathrm { d i a g } ( \\tau _ { \\alpha } ) _ { \\alpha } , } \\end{array}",
+                "math_type": "latex",
+                "image_source": {
+                    "path": "images/3d1da634acb24239ab19c5e0c637e7711176577468a432c5d9cb8168d1fff9c4.jpg"
+                }
+            },
+            "bbox": [
+                435,
+                806,
+                563,
+                825
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "and the domain-delay operator is"
+                    }
+                ]
+            },
+            "bbox": [
+                146,
+                833,
+                420,
+                848
+            ]
+        },
+        {
+            "type": "equation_interline",
+            "content": {
+                "math_content": "D _ { a } ( \\omega ) = \\exp ( i \\omega T _ { a } ) = \\mathrm { d i a g } \\big ( \\exp ( i \\omega \\tau _ { \\alpha } ) \\big ) _ { \\alpha } .",
+                "math_type": "latex",
+                "image_source": {
+                    "path": "images/10fc6f3f24f6cfd0991a641e16d7ec3fd0a3b91979cc6438679bef3b85f53c4d.jpg"
+                }
+            },
+            "bbox": [
+                334,
+                858,
+                663,
+                878
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "We then define the corrected scattering matrix"
+                    }
+                ]
+            },
+            "bbox": [
+                166,
+                885,
+                546,
+                902
+            ]
+        }
+    ],
+    [
+        {
+            "type": "equation_interline",
+            "content": {
+                "math_content": "\\tilde { S } ( \\omega ) = D _ { a } ( \\omega ) S ( \\omega ) .",
+                "math_type": "latex",
+                "image_source": {
+                    "path": "images/03c4f8a8f845d35556fdbe9e852b440108f3b9d8ba3e6a80b75a843c8129327c.jpg"
+                }
+            },
+            "bbox": [
+                415,
+                91,
+                579,
+                110
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "Because "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "D _ { a }"
+                    },
+                    {
+                        "type": "text",
+                        "content": "is unitary for real "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "\\omega"
+                    },
+                    {
+                        "type": "text",
+                        "content": ", this transformation preserves the real-frequency power balance. In the time domain, if the uncorrected impulse response "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "s _ { \\alpha \\beta } ( t )"
+                    },
+                    {
+                        "type": "text",
+                        "content": "can begin at "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "t = - \\tau _ { \\alpha }"
+                    },
+                    {
+                        "type": "text",
+                        "content": ", multiplication by "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "\\exp ( i \\omega \\tau _ { \\alpha } )"
+                    },
+                    {
+                        "type": "text",
+                        "content": "gives"
+                    }
+                ]
+            },
+            "bbox": [
+                144,
+                118,
+                852,
+                190
+            ]
+        },
+        {
+            "type": "equation_interline",
+            "content": {
+                "math_content": "\\widetilde { s } _ { \\alpha \\beta } ( t ) = s _ { \\alpha \\beta } ( t - \\tau _ { \\alpha } ) ,",
+                "math_type": "latex",
+                "image_source": {
+                    "path": "images/7907190489b552e35ace49d77a6067b898d3a9f40859b1d222412bb96d8d00cc.jpg"
+                }
+            },
+            "bbox": [
+                418,
+                197,
+                579,
+                216
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "whose support begins at "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "t = 0"
+                    },
+                    {
+                        "type": "text",
+                        "content": ". Thus, "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "\\tau _ { \\alpha }"
+                    },
+                    {
+                        "type": "text",
+                        "content": "is a reference-domain correction time. It is not a resonance lifetime, a Wigner-Smith group delay, or the delay of an output-pulse maximum. For a spherical reference surface of radius "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "^ { a }"
+                    },
+                    {
+                        "type": "text",
+                        "content": ", the open spherical-wave channels have "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "\\tau _ { \\alpha } = 2 a / c"
+                    }
+                ]
+            },
+            "bbox": [
+                144,
+                223,
+                852,
+                321
+            ]
+        },
+        {
+            "type": "title",
+            "content": {
+                "title_content": [
+                    {
+                        "type": "text",
+                        "content": "Acknowledgments"
+                    }
+                ],
+                "level": 2
+            },
+            "bbox": [
+                146,
+                330,
+                312,
+                348
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "The work at Zhejiang University sponsored by the Key Research and Development Program of the Ministry of Science and Technology under Grants No. 2022YFA1405200 (Y.Y.), No. 2022YFA1404900 (Y.Y.), and No 2022YFA1404704 (H.C.), the Fundamental Research Funds for the Zhejiang Provincial Universities No. 226-2025-00231 (Y.Y.), the Science Challenge Project No. TZ2025015 (Y.Y.), the National Natural Science Foundation of China No. U25D8017 (Y.Y.), the National Natural Science Foundation of China (NSFC) under grant No. 61975176 (H.C.), the Key Research and development Program of Zhejiang Province under grant no. 2022C01036 (H.C.), the National Natural Science Foundation of China (NSFC) under Grant No. 12504497 (N.H.), the National Natural Science Foundation of China (NSFC) under Grant No. 12304472 (M.L.), the Baima Lake Laboratory Joint Fund of the Zhejiang Provincial Natural Science Foundation of China under Grants No. LBMHY25A040002 (M.L.), the Hangzhou Natural Science Foundation under Grants No. 2024SZRYBF050004 (M.L.), and the Natural Science Foundation of Zhejiang Province under Grant No. LQN26A040006 (N.H.)."
+                    }
+                ]
+            },
+            "bbox": [
+                144,
+                363,
+                853,
+                612
+            ]
+        },
+        {
+            "type": "title",
+            "content": {
+                "title_content": [
+                    {
+                        "type": "text",
+                        "content": "Author contributions"
+                    }
+                ],
+                "level": 2
+            },
+            "bbox": [
+                146,
+                624,
+                337,
+                640
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "Y.Y. conceived the project; N.H., R.Z., S.Y. and M.L. verified the assumptions, limiting cases and numerical examples; H.C. and Y.Y. supervised the project; N.H. and R.Z. wrote the manuscript with input from S.Y., M.L., H.C. and Y.Y. All authors discussed the results and reviewed the manuscript."
+                    }
+                ]
+            },
+            "bbox": [
+                144,
+                653,
+                852,
+                730
+            ]
+        },
+        {
+            "type": "title",
+            "content": {
+                "title_content": [
+                    {
+                        "type": "text",
+                        "content": "Competing interests"
+                    }
+                ],
+                "level": 2
+            },
+            "bbox": [
+                146,
+                745,
+                327,
+                763
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "The authors declare no competing interests."
+                    }
+                ]
+            },
+            "bbox": [
+                146,
+                776,
+                504,
+                793
+            ]
+        },
+        {
+            "type": "title",
+            "content": {
+                "title_content": [
+                    {
+                        "type": "text",
+                        "content": "Data and materials availability"
+                    }
+                ],
+                "level": 2
+            },
+            "bbox": [
+                146,
+                806,
+                420,
+                824
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "All data that support the findings of this study are present in the paper and the Supplementary Information. Any additional information may be available from the corresponding authors upon request."
+                    }
+                ]
+            },
+            "bbox": [
+                144,
+                837,
+                852,
+                888
+            ]
+        }
+    ],
+    [
+        {
+            "type": "title",
+            "content": {
+                "title_content": [
+                    {
+                        "type": "text",
+                        "content": "References"
+                    }
+                ],
+                "level": 2
+            },
+            "bbox": [
+                146,
+                84,
+                248,
+                102
+            ]
+        },
+        {
+            "type": "list",
+            "content": {
+                "list_type": "reference_list",
+                "list_items": [
+                    {
+                        "item_type": "text",
+                        "item_content": [
+                            {
+                                "type": "text",
+                                "content": "1. Kramers, H. A. La diffusion de la lumière par les atomes. Atti Congr. Internazionale Dei Fis. 2, 545-557 (1927)."
+                            }
+                        ]
+                    },
+                    {
+                        "item_type": "text",
+                        "item_content": [
+                            {
+                                "type": "text",
+                                "content": "2. Kronig, R. de L. On the theory of dispersion of X-rays. J. Opt. Soc. Am. 12, 547- 557 (1926)."
+                            }
+                        ]
+                    },
+                    {
+                        "item_type": "text",
+                        "item_content": [
+                            {
+                                "type": "text",
+                                "content": "3. Nussenzveig, H. M. Causality and Dispersion Relations. (Academic Press, New York, 1972)."
+                            }
+                        ]
+                    },
+                    {
+                        "item_type": "text",
+                        "item_content": [
+                            {
+                                "type": "text",
+                                "content": "4. Foster, R. M. A reactance theorem. Bell Syst. Tech. J. 3, 259-267 (1924)."
+                            }
+                        ]
+                    },
+                    {
+                        "item_type": "text",
+                        "item_content": [
+                            {
+                                "type": "text",
+                                "content": "5. Bode, H. W. Network Analysis and Feedback Amplifier Design. (Van Nostrand, New York, 1945)."
+                            }
+                        ]
+                    },
+                    {
+                        "item_type": "text",
+                        "item_content": [
+                            {
+                                "type": "text",
+                                "content": "6. Fano, R. M. Theoretical limitations on the broadband matching of arbitrary impedances. J. Frankl. Inst. 249, 57-83 (1950)."
+                            }
+                        ]
+                    },
+                    {
+                        "item_type": "text",
+                        "item_content": [
+                            {
+                                "type": "text",
+                                "content": "7. Youla, D. C., Castriota, L. J. & Carlin, H. J. Bounded real scattering matrices and the foundations of linear passive network theory. IRE Trans. Circuit Theory 6, 102- 124 (1959)."
+                            }
+                        ]
+                    },
+                    {
+                        "item_type": "text",
+                        "item_content": [
+                            {
+                                "type": "text",
+                                "content": "8. Rozanov, K. N. Ultimate thickness to bandwidth ratio of radar absorbers. IEEE Trans. Antennas Propag. 48, 1230-1234 (2000)."
+                            }
+                        ]
+                    },
+                    {
+                        "item_type": "text",
+                        "item_content": [
+                            {
+                                "type": "text",
+                                "content": "9. Bernland, A., Gustafsson, M. & Nordebo, S. Physical limitations on the scattering of electromagnetic vector spherical waves. J. Phys. Math. Theor. 44, 145401 (2011)."
+                            }
+                        ]
+                    },
+                    {
+                        "item_type": "text",
+                        "item_content": [
+                            {
+                                "type": "text",
+                                "content": "10. Bernland, A. Bandwidth limitations for scattering of higher order electromagnetic spherical waves with implications for the antenna scattering matrix. IEEE Trans. Antennas Propag. 60, 4345-4353 (2012)."
+                            }
+                        ]
+                    },
+                    {
+                        "item_type": "text",
+                        "item_content": [
+                            {
+                                "type": "text",
+                                "content": "11. Bernland, A., Luger, A. & Gustafsson, M. Sum rules and constraints on passive systems. J. Phys. Math. Theor. 44, 145205 (2011)."
+                            }
+                        ]
+                    }
+                ]
+            },
+            "bbox": [
+                146,
+                115,
+                850,
+                166
+            ]
+        }
+    ],
+    [
+        {
+            "type": "list",
+            "content": {
+                "list_type": "reference_list",
+                "list_items": [
+                    {
+                        "item_type": "text",
+                        "item_content": [
+                            {
+                                "type": "text",
+                                "content": "12. Sohl, C., Gustafsson, M. & Kristensson, G. Physical limitations on broadband scattering by heterogeneous obstacles. J. Phys. Math. Theor. 40, 11165-11182 (2007)."
+                            }
+                        ]
+                    },
+                    {
+                        "item_type": "text",
+                        "item_content": [
+                            {
+                                "type": "text",
+                                "content": "13. Sohl, C., Larsson, C., Gustafsson, M. & Kristensson, G. A scattering and absorption identity for metamaterials: experimental results and comparison with theory. J. Appl. Phys. 103, 054906 (2008)."
+                            }
+                        ]
+                    },
+                    {
+                        "item_type": "text",
+                        "item_content": [
+                            {
+                                "type": "text",
+                                "content": "14. Gustafsson, M., Sohl, C., Larsson, C. & Sjöberg, D. Physical bounds on the allspectrum transmission through periodic arrays. EPL 87, 34002 (2009)."
+                            }
+                        ]
+                    },
+                    {
+                        "item_type": "text",
+                        "item_content": [
+                            {
+                                "type": "text",
+                                "content": "15. Biehs, S.-A., Rousseau, E. & Greffet, J.-J. Mesoscopic description of radiative heat transfer at the nanoscale. Phys. Rev. Lett. 105, 234301 (2010)."
+                            }
+                        ]
+                    },
+                    {
+                        "item_type": "text",
+                        "item_content": [
+                            {
+                                "type": "text",
+                                "content": "16. Gustafsson, M., Vakili, I., Keskin, S. E. B., Sjöberg, D. & Larsson, C. Optical theorem and forward scattering sum rule for periodic structures. IEEE Trans. Antennas Propag. 60, 3818-3826 (2012)."
+                            }
+                        ]
+                    },
+                    {
+                        "item_type": "text",
+                        "item_content": [
+                            {
+                                "type": "text",
+                                "content": "17. Miller, O. D., Johnson, S. G. & Rodriguez, A. W. Shape-independent limits to nearfield radiative heat transfer. Phys. Rev. Lett. 115, 204302 (2015)."
+                            }
+                        ]
+                    },
+                    {
+                        "item_type": "text",
+                        "item_content": [
+                            {
+                                "type": "text",
+                                "content": "18. Shim, H., Fan, L., Johnson, S. G. & Miller, O. D. Fundamental limits to near-field optical response over any bandwidth. Phys. Rev. X 9, 011043 (2019)."
+                            }
+                        ]
+                    },
+                    {
+                        "item_type": "text",
+                        "item_content": [
+                            {
+                                "type": "text",
+                                "content": "19. Molesky, S., Jin, W., Venkataram, P. S. & Rodriguez, A. W. T-operator bounds on angle-integrated absorption and thermal radiation for arbitrary objects. Phys. Rev. Lett. 123, 257401 (2019)."
+                            }
+                        ]
+                    },
+                    {
+                        "item_type": "text",
+                        "item_content": [
+                            {
+                                "type": "text",
+                                "content": "20. Kuang, Z. & Miller, O. D. Computational bounds to light–matter interactions via local conservation laws. Phys. Rev. Lett. 125, 263607 (2020)."
+                            }
+                        ]
+                    },
+                    {
+                        "item_type": "text",
+                        "item_content": [
+                            {
+                                "type": "text",
+                                "content": "21. Molesky, S., Chao, P., Jin, W. & Rodriguez, A. W. Global T operator bounds on electromagnetic scattering: upper bounds on far-field cross sections. Phys. Rev. Res. 2, 033172 (2020)."
+                            }
+                        ]
+                    }
+                ]
+            },
+            "bbox": [
+                147,
+                84,
+                853,
+                168
+            ]
+        }
+    ],
+    [
+        {
+            "type": "list",
+            "content": {
+                "list_type": "reference_list",
+                "list_items": [
+                    {
+                        "item_type": "text",
+                        "item_content": [
+                            {
+                                "type": "text",
+                                "content": "22. Molesky, S., Chao, P., Mohajan, J., Reinhart, W., Chi, H. & Rodriguez, A. W. Toperator limits on optical communication: metaoptics, computation, and inputoutput transformations. Phys. Rev. Res. 4, 013020 (2022)."
+                            }
+                        ]
+                    },
+                    {
+                        "item_type": "text",
+                        "item_content": [
+                            {
+                                "type": "text",
+                                "content": "23. Zhang, L., Monticone, F. & Miller, O. D. All electromagnetic scattering bodies are matrix-valued oscillators. Nat. Commun. 14, 7724 (2023)."
+                            }
+                        ]
+                    },
+                    {
+                        "item_type": "text",
+                        "item_content": [
+                            {
+                                "type": "text",
+                                "content": "24. O. D. Miller and F. Monticone, Fundamental limits in photonics and electromagnetics: a tutorial, arXiv:2605.24738, 2026."
+                            }
+                        ]
+                    },
+                    {
+                        "item_type": "text",
+                        "item_content": [
+                            {
+                                "type": "text",
+                                "content": "25. Yang, S., et al. End-to-end autonomous scientific discovery on a real optical platform, arXiv:2604.27092 (2026)."
+                            }
+                        ]
+                    }
+                ]
+            },
+            "bbox": [
+                147,
+                85,
+                852,
+                168
+            ]
+        }
+    ]
+]
