@@ -1,0 +1,1248 @@
+[
+    {
+        "type": "text",
+        "text": "Coordinating the Unknown Lipschitz Constant in Multiplayer Bandits",
+        "text_level": 1,
+        "bbox": [
+            101,
+            63,
+            895,
+            131
+        ],
+        "page_idx": 0
+    },
+    {
+        "type": "text",
+        "text": "Ricardo Parada",
+        "bbox": [
+            161,
+            151,
+            281,
+            167
+        ],
+        "page_idx": 0
+    },
+    {
+        "type": "text",
+        "text": "Chenzhang Zhao",
+        "bbox": [
+            423,
+            151,
+            555,
+            167
+        ],
+        "page_idx": 0
+    },
+    {
+        "type": "text",
+        "text": "William Chang",
+        "bbox": [
+            707,
+            151,
+            826,
+            167
+        ],
+        "page_idx": 0
+    },
+    {
+        "type": "text",
+        "text": "University of California, Riverside",
+        "bbox": [
+            102,
+            167,
+            339,
+            183
+        ],
+        "page_idx": 0
+    },
+    {
+        "type": "text",
+        "text": "Riverside, CA, USA",
+        "bbox": [
+            145,
+            184,
+            292,
+            199
+        ],
+        "page_idx": 0
+    },
+    {
+        "type": "text",
+        "text": "University of California, Los Angeles",
+        "bbox": [
+            362,
+            167,
+            617,
+            184
+        ],
+        "page_idx": 0
+    },
+    {
+        "type": "text",
+        "text": "University of California, Los Angeles",
+        "bbox": [
+            640,
+            167,
+            895,
+            184
+        ],
+        "page_idx": 0
+    },
+    {
+        "type": "text",
+        "text": "Los Angeles, CA, USA",
+        "bbox": [
+            403,
+            184,
+            570,
+            199
+        ],
+        "page_idx": 0
+    },
+    {
+        "type": "text",
+        "text": "Los Angeles, CA, USA",
+        "bbox": [
+            679,
+            184,
+            848,
+            199
+        ],
+        "page_idx": 0
+    },
+    {
+        "type": "text",
+        "text": "rparadaumanzor@gmail.com",
+        "bbox": [
+            122,
+            200,
+            320,
+            215
+        ],
+        "page_idx": 0
+    },
+    {
+        "type": "text",
+        "text": "zhaochenzhang03@g.ucla.edu",
+        "bbox": [
+            385,
+            200,
+            591,
+            215
+        ],
+        "page_idx": 0
+    },
+    {
+        "type": "text",
+        "text": "chang314@g.ucla.edu",
+        "bbox": [
+            689,
+            200,
+            843,
+            215
+        ],
+        "page_idx": 0
+    },
+    {
+        "type": "text",
+        "text": "Abstract—Motivated by decentralized applications, we study cooperative multi-agent bandits in continuous (Lipschitz) action spaces when the Lipschitz constant is unknown. We consider three information structures: (A) unobserved actions with common rewards, (B) observed actions with independent rewards, and (C) unobserved actions with independent rewards. In each case we design and analyze an algorithm that estimates the Lipschitz constant, chooses a discretization of the joint action space, and applies a cooperative bandit method to the induced discrete problem. Players never communicate once learning starts, so the central difficulty is that they must reach the same discretization from their own data. We prove regret guarantees showing that common rewards and observable actions each supply this agreement for free, and that in their absence agreement can still be bought, through a dithered quantization of the estimate, at no cost in the leading order of the regret.",
+        "bbox": [
+            75,
+            258,
+            493,
+            460
+        ],
+        "page_idx": 0
+    },
+    {
+        "type": "text",
+        "text": "Index Terms—Lipschitz bandits, multiplayer bandits, informa tion asymmetry, discretization.",
+        "bbox": [
+            75,
+            460,
+            493,
+            487
+        ],
+        "page_idx": 0
+    },
+    {
+        "type": "text",
+        "text": "I. INTRODUCTION",
+        "text_level": 2,
+        "bbox": [
+            217,
+            497,
+            349,
+            511
+        ],
+        "page_idx": 0
+    },
+    {
+        "type": "text",
+        "text": "The multi-armed bandit (MAB) problem is a central model in sequential decision-making: an agent repeatedly chooses among actions with unknown rewards, balancing exploration and exploitation to maximize cumulative reward. Many deployments are inherently distributed, with several decision-makers acting concurrently and observing only part of the system feedback. In wireless systems, multiple users opportunistically access channels whose availabilities are unknown and time-varying, often without explicit coordination, as in cognitive radio and dynamic spectrum access [1], [2]. Similar abstractions arise in distributed sensing and radar networks, where nodes select waveforms or frequency bands while attempting to avoid mutual interference [3]. These settings motivate cooperative multiplayer bandits in which agents coordinate implicitly under information constraints, and the relevant information structure is dictated by what each agent can observe: actions, rewards, or both.",
+        "bbox": [
+            73,
+            515,
+            493,
+            771
+        ],
+        "page_idx": 0
+    },
+    {
+        "type": "text",
+        "text": "To model continuously many actions we work with Lipschitz bandits, where the mean reward varies smoothly over a metric space so that nearby actions have similar rewards. Discretization-based methods exploit this structure, but the resolution they should use depends on the Lipschitz constant L. We therefore study the setting in which L is not given in advance, extending the multiplayer Lipschitz bandits of [4]. Three forms of information asymmetry, described in Section III-A and referred to as Problems A, B, and C, are treated in turn: unobserved actions with common rewards, observed actions with independent rewards, and unobserved actions with independent rewards. Because players cannot communicate once learning begins, an unknown L creates a difficulty absent in the single-agent problem: each player estimates L from its own observations, and if these estimates disagree the players build different grids and can no longer be regarded as playing a common discrete bandit. Coordination, rather than estimation accuracy, is the binding constraint.",
+        "bbox": [
+            73,
+            771,
+            495,
+            909
+        ],
+        "page_idx": 0
+    },
+    {
+        "type": "text",
+        "text": "",
+        "bbox": [
+            503,
+            257,
+            923,
+            395
+        ],
+        "page_idx": 0
+    },
+    {
+        "type": "text",
+        "text": "Contributions. We give a meta-algorithm, mECAB, that estimates an upper confidence bound on L by uniform exploration of a coarse grid, fixes a discretization, and runs an existing cooperative multiplayer MAB subroutine; we prove regret bounds for all three information structures, each resting on a different agreement mechanism, namely shared rewards in Problem A, signalling through observed actions in Problem B, and a dithered quantization of the estimate in Problem C, the last of which makes the agreement probability independent of the instance in a way no deterministic rounding rule can; and we report simulations comparing Lipschitz-adaptive with non-adaptive discretization.",
+        "bbox": [
+            503,
+            397,
+            924,
+            580
+        ],
+        "page_idx": 0
+    },
+    {
+        "type": "text",
+        "text": "A. Related Work",
+        "text_level": 2,
+        "bbox": [
+            504,
+            616,
+            622,
+            631
+        ],
+        "page_idx": 0
+    },
+    {
+        "type": "text",
+        "text": "The Lipschitz bandit literature originates with the continuumarmed bandit (CAB) model [5], in which arms lie in a continuum and the mean reward obeys a continuity condition; sharper discretization strategies followed [6], and the zooming algorithm [7] treats general metric spaces through the covering dimension. Closest to our starting point is [8], which removes the need to know L a priori by estimating it from a uniform grid; our estimator and notation follow that work.",
+        "bbox": [
+            503,
+            647,
+            924,
+            768
+        ],
+        "page_idx": 0
+    },
+    {
+        "type": "text",
+        "text": "Multi-player extensions introduce collisions and asymmetric feedback; see [9] for a survey. Recent work on cooperative learning under different information structures adapts UCBtype ideas to obtain near-optimal guarantees [4], [10], [11], and we use those algorithms as subroutines. To the best of our knowledge no existing multi-player algorithm addresses Lipschitz bandits with an unknown Lipschitz constant; the closest work is [12], which assumes a maximal Lipschitz constant but does not learn L.",
+        "bbox": [
+            503,
+            771,
+            924,
+            909
+        ],
+        "page_idx": 0
+    },
+    {
+        "type": "aside_text",
+        "text": "arXiv:2608.10526v1 [cs.LG] 11 Aug 2026",
+        "bbox": [
+            29,
+            353,
+            63,
+            800
+        ],
+        "page_idx": 0
+    },
+    {
+        "type": "text",
+        "text": "II. PRELIMINARIES",
+        "text_level": 2,
+        "bbox": [
+            212,
+            63,
+            354,
+            77
+        ],
+        "page_idx": 1
+    },
+    {
+        "type": "text",
+        "text": "Consider a d-dimensional compact set of arms $X = [ 0 , 1 ] ^ { d } ,$ $d \\geq 1$ . Each arm x carries a reward distribution $\\nu _ { x }$ supported on [0, 1], with mean-payoff function $f : [ 0 , 1 ] ^ { d } \\to [ \\bar { 0 , 1 } ] .$ . At each round $t \\geq 1$ the player selects $\\mathbf { \\Delta } _ { \\mathbf { \\mathcal { X } } _ { t } }$ and receives $Y _ { t } \\sim \\nu _ { x _ { t } }$ drawn independently across rounds.",
+        "bbox": [
+            73,
+            82,
+            493,
+            157
+        ],
+        "page_idx": 1
+    },
+    {
+        "type": "text",
+        "text": "Assumption. $f$ is twice differentiable with Hessian uniformly bounded by $N :$ for all x, y, $\\begin{array} { r } { | \\pmb { y } ^ { \\top } H _ { f } ( \\pmb { x } ) \\pmb { y } | \\le N \\| \\pmb { y } \\| _ { \\infty } ^ { 2 } . } \\end{array}$ The map $\\| \\nabla f \\| _ { 1 }$ is continuous and attains its maximum $L$ on $[ 0 , 1 ] ^ { d }$ , so $f$ is L-Lipschitz with respect to $\\| \\cdot \\| _ { \\infty }$ . Write $\\mathcal { F } _ { L , N }$ for the class of mean-payoff functions satisfying both conditions with parameters $L$ and $N ;$ all suprema below are over this class, and neither parameter is known to the players. With $f ^ { \\star } = \\operatorname* { m a x } _ { x } f ( x )$ , the expected regret at horizon $T$ is $\\begin{array} { r } { R _ { T } = \\mathbb { E } [ T f ^ { \\star } - \\sum _ { t = 1 } ^ { T } f ( \\pmb { x } _ { t } ) ] } \\end{array}$ , the expectation being over the draws of $Y _ { t }$ and any internal randomization. The goal is to minimize $R _ { T }$ without knowing $L .$",
+        "bbox": [
+            73,
+            159,
+            493,
+            325
+        ],
+        "page_idx": 1
+    },
+    {
+        "type": "text",
+        "text": "III. MAIN RESULTS",
+        "text_level": 2,
+        "bbox": [
+            210,
+            334,
+            356,
+            349
+        ],
+        "page_idx": 1
+    },
+    {
+        "type": "text",
+        "text": "A. Extension to the Multi-Agent Setting",
+        "text_level": 2,
+        "bbox": [
+            73,
+            354,
+            348,
+            371
+        ],
+        "page_idx": 1
+    },
+    {
+        "type": "text",
+        "text": "Let $P _ { 1 } , \\ldots , P _ { M }$ be players, each holding a d-dimensional set of arms $A _ { i } = [ 0 , 1 ] ^ { d }$ , so the joint action space is $\\mathcal { A } = A _ { 1 } \\times \\cdot \\cdot \\cdot \\times$ $A _ { M } = [ 0 , 1 ] ^ { M d }$ , with joint arms $\\pmb { a } = ( a _ { 1 } , \\ldots , a _ { M d } )$ . Players may agree on a strategy, and on any shared randomness it uses, before learning begins, but cannot communicate afterwards. At each round every player chooses ${ \\pmb a } _ { t } ^ { i } \\in [ 0 , 1 ] ^ { d }$ simultaneously, forming ${ \\mathbf { } } _ { \\mathbf { } } \\mathbf { } _ { \\mathbf { } } \\mathbf { ; }$ with $f : { \\mathcal { A } }  [ 0 , 1 ]$ in $\\mathcal { F } _ { L , N }$ , the objective is again to minimize $R _ { T }$ when L is unknown.",
+        "bbox": [
+            73,
+            373,
+            491,
+            496
+        ],
+        "page_idx": 1
+    },
+    {
+        "type": "text",
+        "text": "Problem A: unobserved actions, common rewards. Every player receives the same reward $Y _ { t }$ but does not observe the actions of the others.",
+        "bbox": [
+            73,
+            494,
+            491,
+            540
+        ],
+        "page_idx": 1
+    },
+    {
+        "type": "text",
+        "text": "Problem B: observed actions, independent rewards. Every player observes the actions of all others, but rewards are i.i.d. across players and player i sees only its own reward $Y _ { t } ^ { i }$ . The regret $\\begin{array} { r } { R _ { T } ^ { i } = \\mathbb { E } [ T f ^ { \\star } - \\sum _ { t } f ( { \\pmb a } _ { t } ) ] } \\end{array}$ does not depend on $i ,$ since the rewards are identically distributed.",
+        "bbox": [
+            73,
+            541,
+            493,
+            616
+        ],
+        "page_idx": 1
+    },
+    {
+        "type": "text",
+        "text": "Problem C: unobserved actions, independent rewards. The two difficulties combine: rewards are i.i.d. across players and actions are unobserved.",
+        "bbox": [
+            73,
+            616,
+            493,
+            662
+        ],
+        "page_idx": 1
+    },
+    {
+        "type": "text",
+        "text": "B. The Main Algorithm",
+        "text_level": 2,
+        "bbox": [
+            75,
+            671,
+            240,
+            686
+        ],
+        "page_idx": 1
+    },
+    {
+        "type": "text",
+        "text": "The algorithm is motivated by [8] and follows the classical CAB template of [6]: use the Lipschitz constant to discretize the space, then run a standard MAB algorithm on the resulting finite set. When $L$ is known this yields sublinear regret; when it is unknown we must first estimate it.",
+        "bbox": [
+            73,
+            690,
+            491,
+            767
+        ],
+        "page_idx": 1
+    },
+    {
+        "type": "text",
+        "text": "During exploration each player splits its own action set into $m ^ { d }$ bins, inducing $m ^ { M d }$ joint bins, and estimates an upper bound on L from the differences between neighboring bins. Write $\\overline { { L } } _ { m }$ for the expectation of the estimator of [8], which approaches L as m grows.",
+        "bbox": [
+            73,
+            767,
+            493,
+            843
+        ],
+        "page_idx": 1
+    },
+    {
+        "type": "text",
+        "text": "Lemma 1 (Bubeck et al. $I 8 J ) .$ : For $\\begin{array} { r } { m \\geq 3 , L - \\frac { 7 N } { m } \\leq \\overline { { L } } _ { m } \\leq } \\end{array}$ L, where N is the Hessian bound.",
+        "bbox": [
+            76,
+            842,
+            490,
+            873
+        ],
+        "page_idx": 1
+    },
+    {
+        "type": "text",
+        "text": "Lemma 2: If each joint bin is explored with $E ^ { \\prime }$ samples, then with probability at least $\\begin{array} { r } { 1 - \\delta , \\left| \\widehat { L } _ { m } - \\overline { { L } } _ { m } \\right| \\leq m \\sqrt { \\frac { 2 } { E ^ { \\prime } } \\ln \\frac { 2 m ^ { M d } } { \\delta } } } \\end{array}$",
+        "bbox": [
+            75,
+            873,
+            491,
+            910
+        ],
+        "page_idx": 1
+    },
+    {
+        "type": "code",
+        "sub_type": "algorithm",
+        "code_caption": [],
+        "code_footnote": [],
+        "code_body": "Algorithm 1: mECAB   \nInput: Horizon T, coarse bins m, exploration budget   \n$E ,$ dimension $d .$   \n1 Initialize: each player divides $A _ { i } = [ 0 , 1 ] ^ { d }$ into $m ^ { d }$   \nbins, inducing joint bins $\\underline { { k } } \\in \\{ 0 , \\ldots \\dot { , } m ^ { M d } - 1 \\}$   \n2 Pre-learning: players agree on an ordering of the joint   \nbins, and in Problem C on a dither $U \\sim \\mathrm { U n i f } [ 0 , 1 )$   \n3 Exploration:   \n4 for each joint bin $\\underline { { k } } \\in \\{ 0 , \\dots , m ^ { M d } - 1 \\}$ do   \n5 Each player samples E actions uniformly from its   \nown bin and observes the resulting rewards.   \n6 Compute the empirical bin mean $\\widehat { \\mu } _ { \\underline { { k } } }$ (resp. $\\widehat { \\mu } _ { \\underline { { k } } } ^ { i } )$   \n7 end   \n8 Form $\\widehat { L }$ from (2), (3), or (4) according to the problem,   \nand set   \n$\\begin{array} { r } { \\widetilde { L } = \\widetilde { L } + m \\sqrt { \\frac { 2 } { E ^ { \\prime } } \\ln ( 2 m ^ { M d } T ) } , \\widetilde { m } = \\big [ \\widetilde { L } ^ { \\frac { 2 } { M d + 2 } } T ^ { \\frac { 1 } { M d + 2 } } \\big ] , } \\end{array}$   \n(1)   \nwith $E ^ { \\prime } = M E$ in Problem B and $E ^ { \\prime } = E$ otherwise.   \n9 Exploitation:   \n10 for $t = E m ^ { M d } + 1$ to $T$ do   \n11 Play the multiplayer MAB subroutine on the $\\widetilde { m } ^ { M d }$   \njoint actions.   \n12 end",
+        "bbox": [
+            503,
+            60,
+            919,
+            428
+        ],
+        "page_idx": 1
+    },
+    {
+        "type": "text",
+        "text": "Adding the deviation of Lemma 2 to $\\widehat { L } _ { m }$ produces an upper confidence bound $\\widetilde { L }$ on $\\overline { { L } } _ { m } ,$ which sets the discretization me ; combining the two lemmas with $\\delta = 1 / T$ gives the two-sided control used in all of the proofs.",
+        "bbox": [
+            503,
+            460,
+            923,
+            521
+        ],
+        "page_idx": 1
+    },
+    {
+        "type": "text",
+        "text": "Corollary 3: Fix $\\delta = 1 / T$ and let E<sup>′</sup> denote the number of samples per joint bin available to a player, so $E ^ { \\prime } = M E$ in Problem B and $E ^ { \\prime } = E$ in Problems A and C. With probability at least $1 - 1 / T$",
+        "bbox": [
+            503,
+            521,
+            923,
+            583
+        ],
+        "page_idx": 1
+    },
+    {
+        "type": "equation",
+        "img_path": "images/5f9b5f04a0fb6de65d175685fd3aef6a232ad0ae22a54756cc1cdf5c1bda3782.jpg",
+        "text": "$$\n\\begin{array} { r } { \\overline { { L } } _ { m } \\leq \\widetilde { L } _ { m } \\leq L + 1 + 2 m \\sqrt { \\frac { 2 } { E ^ { \\prime } } \\ln ( 2 m ^ { M d } T ) } , } \\end{array}\n$$",
+        "text_format": "latex",
+        "bbox": [
+            552,
+            592,
+            872,
+            617
+        ],
+        "page_idx": 1
+    },
+    {
+        "type": "text",
+        "text": "and if in addition $m \\geq 8 N / L$ then $\\widetilde { L } _ { m } \\geq L / 8 - 1 .$",
+        "bbox": [
+            504,
+            627,
+            854,
+            643
+        ],
+        "page_idx": 1
+    },
+    {
+        "type": "text",
+        "text": "The lower bound prevents the algorithm from choosing too coarse a grid and is the only place where the Hessian bound $N$ enters: the condition $m \\geq 8 N / L$ asks that the coarse grid already resolve the curvature of $f ,$ and it holds for all large T under the choice of m made in the proofs. Any multiplayer MAB algorithm, for instance [10], [11], is then run on the discretized joint space; Algorithm 1 collects the steps.",
+        "bbox": [
+            503,
+            643,
+            923,
+            751
+        ],
+        "page_idx": 1
+    },
+    {
+        "type": "text",
+        "text": "IV. PROBLEM A: ACTION INFORMATION ASYMMETRY",
+        "text_level": 2,
+        "bbox": [
+            519,
+            763,
+            906,
+            779
+        ],
+        "page_idx": 1
+    },
+    {
+        "type": "text",
+        "text": "Here the environment produces a single common reward observed by all players, while each player does not observe the others’ actions. Unobserved actions prevent coordination during play, and the unknown smoothness must be estimated without access to the exploration of the others. What rescues the situation is that the reward is shared, which makes the exploration statistics shared as well once the schedule is fixed in advance.",
+        "bbox": [
+            503,
+            786,
+            923,
+            909
+        ],
+        "page_idx": 1
+    },
+    {
+        "type": "text",
+        "text": "Concretely, the players agree on an ordering of the $m ^ { M d }$ joint bins and each samples uniformly inside the scheduled bin. Only the bin index affects the statistic collected, not the particular arm chosen inside it, so all players obtain the same empirical mean $\\begin{array} { r } { \\widehat { \\mu } _ { \\underline { { k } } } = \\frac { 1 } { E } \\sum _ { j = 1 } ^ { E } Z _ { \\underline { { k } } , j } } \\end{array}$ for every joint bin $\\underline { { k } } ,$ and each is free to choose any arm within its own bin. Consequently every player forms the same estimate",
+        "bbox": [
+            73,
+            61,
+            493,
+            169
+        ],
+        "page_idx": 2
+    },
+    {
+        "type": "equation",
+        "img_path": "images/ebec5e8ef939c4e2cc07710277eaf35a4d7193cffc96df0e1d70712438ce8980.jpg",
+        "text": "$$\n\\widehat { L } = m \\operatorname* { m a x } _ { \\substack { k \\in [ m - 2 ] ^ { M d } , s \\in \\{ - 1 , 1 \\} ^ { M d } } } \\Big | \\widehat { \\mu } _ { k } - \\widehat { \\mu } _ { k + s } \\Big | ,\\tag{2}\n$$",
+        "text_format": "latex",
+        "bbox": [
+            133,
+            179,
+            431,
+            207
+        ],
+        "page_idx": 2
+    },
+    {
+        "type": "text",
+        "text": "hence the same $\\widetilde { L }$ and ${ \\widetilde { m } } ,$ and the ordering of the coarse bins induces a consistent ordering of the finer me -level grid that everyone can follow.",
+        "bbox": [
+            73,
+            219,
+            493,
+            266
+        ],
+        "page_idx": 2
+    },
+    {
+        "type": "text",
+        "text": "Theorem 4: Let $m \\geq 8 N / L$ and use m-UCB of [10] with $\\widehat { L }$ from (2). Then mECAB satisfies",
+        "bbox": [
+            73,
+            266,
+            493,
+            299
+        ],
+        "page_idx": 2
+    },
+    {
+        "type": "equation",
+        "img_path": "images/bb64feb2e3d500e7f6c6e7b12073a46d2ba68740980132f6e103f3aef07cba6a.jpg",
+        "text": "$$\n\\begin{array} { r l } & { \\underset { \\mathcal { F } _ { L , N } } { \\operatorname* { s u p } } R _ { T } \\leq T ^ { ( M d + 1 ) / ( M d + 2 ) } } \\\\ & { \\cdot \\left( 9 L ^ { M d / ( M d + 2 ) } + 5 \\left( 2 m \\sqrt { \\frac { 2 } { E } \\ln { ( 2 T ^ { M d + 1 } ) } } \\right) ^ { M d / ( M d + 2 ) } \\right) } \\\\ & { \\qquad + E m ^ { M d } + 3 2 \\sqrt { T \\widetilde { m } ^ { M d } \\log { T } } + 1 . } \\end{array}\n$$",
+        "text_format": "latex",
+        "bbox": [
+            81,
+            313,
+            486,
+            405
+        ],
+        "page_idx": 2
+    },
+    {
+        "type": "text",
+        "text": "On the event of Corollary 3 the subroutine term is $O ( T ^ { ( M d + 1 ) / ( M d + 2 ) } ( L + 1 ) ^ { M d / ( M d + 2 ) } \\sqrt { \\log T } )$ , matching the <sub>leading</sub> <sub>term</sub> <sub>up</sub> <sub>to</sub> √<sub>log</sub> <sub>T;</sub> <sub>the</sub> <sub>same</sub> <sub>holds</sub> <sub>in</sub> <sub>Theorems</sub> <sub>5</sub> and 7.",
+        "bbox": [
+            73,
+            420,
+            493,
+            479
+        ],
+        "page_idx": 2
+    },
+    {
+        "type": "text",
+        "text": "In the single-agent problem with unknown $L ,$ discretization yields the familiar scaling $T ^ { ( d + 1 ) / ( d + 2 ) }$ , and Problem A behaves the same way on the joint space with M d in place of $d .$ The action asymmetry therefore costs nothing beyond this dimensional effect, precisely because the common reward and the pre-agreed schedule force identical bin means, an identical ${ \\widehat { L } } ,$ and an identical grid. The dependence on the size of the discretized joint set is also unavoidable, since with K actions each the induced finite problem has $K ^ { M }$ joint arms, to which the standard finite-armed lower bound applies.",
+        "bbox": [
+            73,
+            481,
+            493,
+            633
+        ],
+        "page_idx": 2
+    },
+    {
+        "type": "text",
+        "text": "V. PROBLEM B: REWARD INFORMATION ASYMMETRY",
+        "text_level": 2,
+        "bbox": [
+            89,
+            651,
+            475,
+            667
+        ],
+        "page_idx": 2
+    },
+    {
+        "type": "text",
+        "text": "Problem B reverses the structure: actions are observable but reward observations are not shared. The free synchronization of Problem A breaks, since the bin means $\\widehat { \\mu } _ { k } ^ { i }$ may differ across players and would lead to different grids if nothing further were done.",
+        "bbox": [
+            73,
+            679,
+            493,
+            755
+        ],
+        "page_idx": 2
+    },
+    {
+        "type": "text",
+        "text": "The remedy is to exploit action observability to share reward information implicitly. Since every action is observed by everyone, an action can carry a signal encoding the sender’s statistics, and in a continuum this needs no departure from the action space: after collecting E − 1 samples from a bin, a player devotes its final action in that bin to encoding its empirical mean, which the others decode and fold into their own estimate. Nothing analogous exists in Problem A, where actions are hidden, nor in finite-action models, where there is no room to encode a real number without distorting the learning problem. At a cost of one sample, each player thus gains $( M - 1 ) ( E - 1 )$ further samples for every bin, and forms",
+        "bbox": [
+            73,
+            756,
+            493,
+            909
+        ],
+        "page_idx": 2
+    },
+    {
+        "type": "text",
+        "text": "",
+        "bbox": [
+            503,
+            61,
+            921,
+            94
+        ],
+        "page_idx": 2
+    },
+    {
+        "type": "equation",
+        "img_path": "images/f4f300a1807a02b62e582005ee99c64af03a58bf875256c455ec008c8bb0e27c.jpg",
+        "text": "$$\n\\widehat { L } = m \\operatorname* { m a x } _ { \\substack { k \\in [ m - 2 ] ^ { M d } , s \\in \\{ - 1 , 1 \\} ^ { M d } } } \\left| \\frac { 1 } { M } \\sum _ { i = 1 } ^ { M } \\bigl ( \\widehat { \\mu } _ { k } ^ { i } - \\widehat { \\mu } _ { k + s } ^ { i } \\bigr ) \\right| .\\tag{3}\n$$",
+        "text_format": "latex",
+        "bbox": [
+            521,
+            98,
+            885,
+            140
+        ],
+        "page_idx": 2
+    },
+    {
+        "type": "text",
+        "text": "The effective sample size entering the concentration of $\\widehat { L }$ is multiplied by M, which sharpens the estimate and improves the grid. Problem A had perfect alignment of the bin means but no way to convey anything beyond the common scalar reward; Problem B lacks common rewards but recovers most of the benefit of centralized averaging by broadcasting estimates through actions.",
+        "bbox": [
+            503,
+            146,
+            923,
+            253
+        ],
+        "page_idx": 2
+    },
+    {
+        "type": "text",
+        "text": "Theorem 5: Let $m ~ \\geq ~ 8 N / L$ and use the multiplayer subroutine of [11] for Problem B. Then mECAB satisfies",
+        "bbox": [
+            503,
+            253,
+            923,
+            285
+        ],
+        "page_idx": 2
+    },
+    {
+        "type": "equation",
+        "img_path": "images/093f4d0d058017031d6867d99f0d3701eb3bcb0038223a8c49676d2d3010990f.jpg",
+        "text": "$$\n\\begin{array} { c } { { \\mathrm { s u p ~ } R _ { T } \\leq T ^ { ( M d + 1 ) / ( M d + 2 ) } } } \\\\ { { \\ } } \\\\ { { \\qquad \\times \\left( 9 L ^ { M d / ( M d + 2 ) } \\right. } } \\\\ { { \\qquad \\left. + 5 \\left( 2 m \\sqrt { \\frac { 2 } { M E } \\ln { ( 2 T ^ { M d + 1 } ) } } \\right) ^ { M d / ( M d + 2 ) } \\right) } } \\\\ { { \\qquad + E m ^ { M d } + 3 2 \\sqrt { T \\widetilde { m } ^ { M d } \\log { T } } + 1 . } } \\end{array}\n$$",
+        "text_format": "latex",
+        "bbox": [
+            521,
+            292,
+            906,
+            398
+        ],
+        "page_idx": 2
+    },
+    {
+        "type": "text",
+        "text": "Compared with Theorem 4 the sample size inside the square root improves from E to ME, which is exactly the pooling gain from the other players’ samples.",
+        "bbox": [
+            503,
+            406,
+            923,
+            453
+        ],
+        "page_idx": 2
+    },
+    {
+        "type": "text",
+        "text": "VI. PROBLEM C: REWARD AND ACTION INFORMATION ASYMMETRY",
+        "text_level": 2,
+        "bbox": [
+            516,
+            459,
+            910,
+            489
+        ],
+        "page_idx": 2
+    },
+    {
+        "type": "text",
+        "text": "Problem C is the hardest of the three: rewards are not shared, so the mechanism of Problem A is unavailable, and actions are not observed, so the signalling of Problem B is unavailable too. If each player simply used (2) on its own data, the estimates would differ and the induced grids me would differ with them, destroying the common discrete problem the subroutine needs.",
+        "bbox": [
+            503,
+            493,
+            924,
+            585
+        ],
+        "page_idx": 2
+    },
+    {
+        "type": "text",
+        "text": "We restore agreement by quantizing the estimate, so that small discrepancies between players do not change the value they act on. Let $X ^ { i } = m \\bar { \\operatorname * { m a x } } _ { k , s } | \\widehat { \\mu } _ { k } ^ { i } - \\widehat { \\mu } _ { k + s } ^ { i } |$ be the raw estimate of player i, the maximum running over $k \\in [ m - 2 ] ^ { M d }$ and $s \\in \\{ - \\bar { 1 } , \\bar { 1 } \\} ^ { M d }$ as above. A deterministic rounding will not do: if $\\overline { { L } } _ { m }$ sits near a rounding boundary, two players whose estimates straddle it round differently however many samples they collect, and the failure probability approaches $1 / 2$ regardless of E. The boundaries are fixed while $\\overline { { L } } _ { m }$ is a property of the instance, so no deterministic rule avoids this. Instead the players agree in advance on a dither $U \\sim \\mathrm { U n i f } [ 0 , 1 )$ shared randomness requiring no communication, and set",
+        "bbox": [
+            501,
+            584,
+            923,
+            767
+        ],
+        "page_idx": 2
+    },
+    {
+        "type": "equation",
+        "img_path": "images/837ea10e0b69a84807bb5ed03d542ca5f4bd08547a08444bab62660eb103c34f.jpg",
+        "text": "$$\n{ \\widehat { L } } ^ { i } = \\lfloor X ^ { i } + U \\rfloor .\\tag{4}\n$$",
+        "text_format": "latex",
+        "bbox": [
+            651,
+            770,
+            771,
+            791
+        ],
+        "page_idx": 2
+    },
+    {
+        "type": "text",
+        "text": "Randomizing the offset makes the distance from $\\overline { { L } } _ { m }$ to the nearest boundary uniform rather than instance-dependent, so the probability of disagreement can be bounded with no reference to where $\\overline { { L } } _ { m }$ lies.",
+        "bbox": [
+            503,
+            796,
+            923,
+            858
+        ],
+        "page_idx": 2
+    },
+    {
+        "type": "text",
+        "text": "Lemma 6: For any $\\delta > 0$ and any player i,",
+        "bbox": [
+            519,
+            858,
+            815,
+            873
+        ],
+        "page_idx": 2
+    },
+    {
+        "type": "equation",
+        "img_path": "images/8b810465630a8618d433516566054665d4c216663861059fe5fa812063413da5.jpg",
+        "text": "$$\nP \\big ( | X ^ { i } - \\overline { { { L } } } _ { m } | > \\delta \\big ) \\leq 4 ( 2 m ) ^ { M d } \\exp \\left( - \\frac { E \\delta ^ { 2 } } { 3 2 m ^ { 2 } } \\right) .\n$$",
+        "text_format": "latex",
+        "bbox": [
+            544,
+            877,
+            880,
+            911
+        ],
+        "page_idx": 2
+    },
+    {
+        "type": "text",
+        "text": "Consequently, with $\\widehat { L } ^ { i }$ as in (4) and $A : = 4 M ( 2 m ) ^ { M d }$ , the probability that the M players do not all obtain the same value of $\\widehat { L }$ is at most 17 $m \\sqrt { \\ln ( A ) / E }$",
+        "bbox": [
+            73,
+            60,
+            491,
+            108
+        ],
+        "page_idx": 3
+    },
+    {
+        "type": "text",
+        "text": "When the players do agree they share the same $\\widetilde { m } .$ , and Problem C reduces to running the same discretized strategy as before; when they do not, they may follow different grids and we pay for that event in the regret.",
+        "bbox": [
+            73,
+            107,
+            491,
+            167
+        ],
+        "page_idx": 3
+    },
+    {
+        "type": "text",
+        "text": "Theorem 7: Let $m \\geq 8 N / L$ , let $A = 4 M ( 2 m ) ^ { M d }$ , and use the multiplayer subroutine of [10] with $\\widehat { L }$ from (4). Then",
+        "bbox": [
+            75,
+            166,
+            491,
+            199
+        ],
+        "page_idx": 3
+    },
+    {
+        "type": "equation",
+        "img_path": "images/07c4c0e0f37432a517836f0d5535ed3581ac72485e63b57458de33bfe74d5cdd.jpg",
+        "text": "$$\n\\begin{array} { r l } { } & { \\underset { \\mathcal { F } _ { L , N } } { \\operatorname* { s u p } } R _ { T } \\leq T ^ { ( M d + 1 ) / ( M d + 2 ) } } \\\\ { } & { \\times \\left( 9 L ^ { M d / ( M d + 2 ) } + 5 \\left( 2 m \\sqrt { \\frac { 2 } { E } \\ln \\left( 2 T ^ { M d + 1 } \\right) } \\right) ^ { M d / ( M d + 2 ) } \\right) } \\\\ { } & { \\qquad + E m ^ { M d } + C \\log T \\sqrt { T \\widetilde { m } ^ { M d } } + 1 7 T m \\sqrt { \\ln ( A ) / E } . } \\end{array}\n$$",
+        "text_format": "latex",
+        "bbox": [
+            78,
+            207,
+            488,
+            299
+        ],
+        "page_idx": 3
+    },
+    {
+        "type": "text",
+        "text": "In particular, if $E \\ge m ^ { 2 } T ^ { 2 / ( M d + 2 ) }$ ln A the last term is at most $1 7 T ^ { ( M d + 1 ) / ( M d + 2 ) }$",
+        "bbox": [
+            75,
+            305,
+            491,
+            335
+        ],
+        "page_idx": 3
+    },
+    {
+        "type": "text",
+        "text": "Problem C therefore isolates what each kind of observability buys. Common rewards make $\\widehat { L }$ shared automatically and no agreement term is needed; observable actions permit pooling and sharpen the concentration, improving $E$ to $M E ;$ when neither is available, agreement must be built from concentration together with dithered quantization. Its price is the final term, which is instance-independent and, for the stated exploration budget, of the same order as the leading one, so Problem C matches Problems A and B up to constants once E is large enough.",
+        "bbox": [
+            73,
+            337,
+            493,
+            488
+        ],
+        "page_idx": 3
+    },
+    {
+        "type": "text",
+        "text": "VII. EXPERIMENTS",
+        "text_level": 2,
+        "bbox": [
+            210,
+            496,
+            356,
+            510
+        ],
+        "page_idx": 3
+    },
+    {
+        "type": "text",
+        "text": "We simulate a cooperative bandit with $M = 2$ players and action dimension $d = 1$ each, so $M d = 2 .$ , over $T = 1 0 ^ { 5 }$ rounds and 10 independent trials for each configuration. A maximizer $a ^ { \\star }$ is drawn uniformly from $[ 0 , 1 ] ^ { M d }$ once in each trial and the mean reward is $f ( a ) = - L \\| a - a ^ { \\star } \\| _ { \\infty } ,$ which is L-Lipschitz with respect to $\\ell _ { \\infty }$ and satisfies $f ( a ^ { \\star } ) = 0 ;$ rewards are Gaussian with unit variance. We report cumulative pseudo-regret $\\begin{array} { r } { \\sum _ { t } ( f ( a ^ { \\star } ) - f ( a _ { t } ) ) } \\end{array}$ averaged over trials, with ±1 standard deviation shading.",
+        "bbox": [
+            73,
+            515,
+            491,
+            650
+        ],
+        "page_idx": 3
+    },
+    {
+        "type": "text",
+        "text": "Both algorithms discretize the joint space and run UCB on the resulting grid, differing only in how the resolution is set. Est-L explores a coarse grid of $m$ bins in each coordinate with E uniform samples in each bin, estimates $\\widehat { L } _ { b } ~ = ~ m \\operatorname* { m a x } _ { ( b , b ^ { \\prime } ) \\in { \\mathcal N } } | \\widehat { \\mu } ( b ) - \\widehat { \\mu } ( b ^ { \\prime } )$ | over neighboring bin pairs ${ \\mathcal { N } } .$ , pads it as in (1), and sets me from the result; this phase is not aimed at collecting reward, so regret grows roughly linearly while it runs. $N o { - } L$ skips exploration and takes $\\dot { \\widetilde { m } } = \\lceil T ^ { 1 \\dot { / } ( M d + 2 ) } \\rceil$ ⌉, avoiding the up-front cost but risking a resolution mismatched to the smoothness of $f .$",
+        "bbox": [
+            73,
+            651,
+            491,
+            801
+        ],
+        "page_idx": 3
+    },
+    {
+        "type": "text",
+        "text": "The three information structures are modelled at the level of the feedback reaching each player rather than through the signalling and quantization mechanisms themselves: Problem A supplies a common reward, Problem B pools the M independent rewards of a round, the idealized effect of encoding empirical means in actions, and Problem C uses a single reward stream without pooling. This isolates the effect of feedback quality on the accuracy of $\\widetilde { L } ;$ simulating the signalling and dithering steps directly is left to an extended version.",
+        "bbox": [
+            73,
+            801,
+            493,
+            909
+        ],
+        "page_idx": 3
+    },
+    {
+        "type": "chart",
+        "img_path": "images/9117c9a9641470fd1de7a8923b3fc4df2885a68988d0ac279fa467090abdf39d.jpg",
+        "content": "",
+        "chart_caption": [],
+        "chart_footnote": [],
+        "bbox": [
+            506,
+            60,
+            921,
+            265
+        ],
+        "page_idx": 3
+    },
+    {
+        "type": "chart",
+        "img_path": "images/82dd59621c3ffcf1a5e8c582c08e020d0e3fe54f5a39a6a40e37dacc0ced5e74.jpg",
+        "content": "",
+        "chart_caption": [
+            "Fig. 1. Cumulative regret averaged over trials with ±1 standard deviation shading, for a small Lipschitz constant (L=1, top) and a large one $\\scriptstyle ( L = 1 0 0 0 ,$ bottom). Each panel overlays Problems A, B, and C under Est-L and No-L discretization."
+        ],
+        "chart_footnote": [],
+        "bbox": [
+            503,
+            272,
+            916,
+            489
+        ],
+        "page_idx": 3
+    },
+    {
+        "type": "text",
+        "text": "",
+        "bbox": [
+            503,
+            577,
+            921,
+            608
+        ],
+        "page_idx": 3
+    },
+    {
+        "type": "text",
+        "text": "Fig. 1 compares the two rules for a small $( L = 1 )$ and a large $( L = 1 0 0 0 )$ Lipschitz constant, everything else held fixed. In all three cases the Est-L curves grow linearly during coarse exploration and then bend into a visibly sublinear phase once UCB begins on the refined grid, which is the tradeoff the method makes. When $L$ is small the two rules produce comparable resolutions and finish at similar levels; when L is large, fixing the resolution without reference to $L$ gives a grid too coarse for the variation of $f ,$ and Est-L overtakes it despite the initial linear segment. The information structure modulates the gain: pooling in Problem B makes $\\widetilde { L }$ more accurate and flattens the later slope relative to Problems A and C, while Problem C, with the weakest feedback, is the most variable.",
+        "bbox": [
+            503,
+            608,
+            923,
+            805
+        ],
+        "page_idx": 3
+    },
+    {
+        "type": "text",
+        "text": "VIII. CONCLUSION",
+        "text_level": 2,
+        "bbox": [
+            640,
+            813,
+            785,
+            827
+        ],
+        "page_idx": 3
+    },
+    {
+        "type": "text",
+        "text": "We extended cooperative multiplayer bandits to Lipschitz action spaces with an unknown Lipschitz constant, where the players’ estimates of $L$ must agree for a common discretization to exist. Common rewards and observable actions each deliver that agreement for free, and when neither is present a dithered quantization delivers it at no cost in the leading order of the regret. Natural next steps are adversarial rewards and structural assumptions beyond Lipschitz continuity.",
+        "bbox": [
+            503,
+            832,
+            923,
+            909
+        ],
+        "page_idx": 3
+    },
+    {
+        "type": "text",
+        "text": "",
+        "bbox": [
+            73,
+            61,
+            491,
+            108
+        ],
+        "page_idx": 4
+    },
+    {
+        "type": "text",
+        "text": "APPENDIX",
+        "text_level": 2,
+        "bbox": [
+            245,
+            118,
+            323,
+            132
+        ],
+        "page_idx": 4
+    },
+    {
+        "type": "text",
+        "text": "A. Proof of Lemma 6",
+        "text_level": 2,
+        "bbox": [
+            75,
+            138,
+            227,
+            154
+        ],
+        "page_idx": 4
+    },
+    {
+        "type": "text",
+        "text": "Proof: Fix $\\delta > 0$ and let ${ \\overline { { f } } _ { m } } ( k )$ denote the mean of f over bin k. By Hoeffding’s inequality, for any bin k,",
+        "bbox": [
+            73,
+            157,
+            491,
+            189
+        ],
+        "page_idx": 4
+    },
+    {
+        "type": "equation",
+        "img_path": "images/e2a426bad4d18c47d0e2dfc92505f41769bcb8114ad65c0fbd294728802fa4c3.jpg",
+        "text": "$$\n\\begin{array} { r } { P \\big ( | \\widehat { \\mu } _ { k } - \\overline { { f } } _ { m } ( k ) | > \\frac { \\delta } { 2 m } \\big ) \\leq 2 \\exp \\left( - \\frac { E \\delta ^ { 2 } } { 3 2 m ^ { 2 } } \\right) . } \\end{array}\\tag{5}\n$$",
+        "text_format": "latex",
+        "bbox": [
+            127,
+            195,
+            437,
+            229
+        ],
+        "page_idx": 4
+    },
+    {
+        "type": "text",
+        "text": "For a neighboring pair $( k , k ^ { \\prime } )$ , the triangle inequality and (5) give",
+        "bbox": [
+            73,
+            236,
+            491,
+            267
+        ],
+        "page_idx": 4
+    },
+    {
+        "type": "equation",
+        "img_path": "images/4ac8f5f48fb20766d9748f67ec297c0e41785b22df18ba2c5c4afead22bbe776.jpg",
+        "text": "$$\n\\begin{array} { r l } & { P \\big ( | | \\widehat { \\mu } _ { k } - \\widehat { \\mu } _ { k ^ { \\prime } } | - | \\overline { { f } } _ { m } ( k ) - \\overline { { f } } _ { m } ( k ^ { \\prime } ) | \\big | > \\frac { \\delta } { m } \\big ) } \\\\ & { \\quad \\leq P \\big ( | \\widehat { \\mu } _ { k } - \\overline { { f } } _ { m } ( k ) | > \\frac { \\delta } { 2 m } \\big ) + P \\big ( | \\widehat { \\mu } _ { k ^ { \\prime } } - \\overline { { f } } _ { m } ( k ^ { \\prime } ) | > \\frac { \\delta } { 2 m } \\big ) } \\\\ & { \\quad \\leq 4 \\exp \\biggl ( - \\frac { E \\delta ^ { 2 } } { 3 2 m ^ { 2 } } \\biggr ) . } \\end{array}\n$$",
+        "text_format": "latex",
+        "bbox": [
+            84,
+            273,
+            480,
+            347
+        ],
+        "page_idx": 4
+    },
+    {
+        "type": "text",
+        "text": "There are at most $m ^ { M d } 2 ^ { M d } = ( 2 m ) ^ { M d }$ pairs $( k , s )$ in the maximum defining $X ^ { i }$ , so a union bound over them and multiplication by m yield the first claim.",
+        "bbox": [
+            73,
+            353,
+            491,
+            401
+        ],
+        "page_idx": 4
+    },
+    {
+        "type": "text",
+        "text": "For the second, let $\\Delta _ { U }$ be the distance from $\\overline { { L } } _ { m } + U$ to the nearest integer; since U is uniform on $[ 0 , 1 ) , \\Delta _ { U }$ is uniform on [0, <sup>1</sup> ]. If $| X ^ { i } - \\overline { { L } } _ { m } | < \\Delta _ { U }$ for every i, then all the $X ^ { i } + U$ lie in the same unit interval and every player obtains the same $\\widehat { L }$ Writing $a = E / ( 3 2 m ^ { 2 } )$ and $A = 4 M ( 2 m ) ^ { M d }$ , a union bound over the M players and the first claim give, conditionally on $U ,$ a disagreement probability of at most min $\\left\\{ 1 , A e ^ { - a \\Delta _ { U } ^ { 2 } } \\right\\}$ . Let $\\delta _ { 0 } = m \\sqrt { 3 2 \\ln ( A ) / E } .$ , so that $A e ^ { - a \\delta _ { 0 } ^ { 2 } } = \\dot { 1 }$ . Averaging over $U ,$ , whose density is 2 on $[ 0 , \\textstyle { \\frac { 1 } { 2 } } ]$",
+        "bbox": [
+            73,
+            400,
+            493,
+            540
+        ],
+        "page_idx": 4
+    },
+    {
+        "type": "equation",
+        "img_path": "images/adaa2ea7a9b4e98b2a19996b6684bbf46b81bc48b6e04b336f76099d76f04fd4.jpg",
+        "text": "$$\n\\begin{array} { l } { { \\displaystyle P \\mathrm { ( d i s a g r e e m e n t ) } \\le 2 \\delta _ { 0 } + 2 A \\int _ { \\delta _ { 0 } } ^ { \\infty } e ^ { - a \\delta ^ { 2 } } d \\delta } } \\\\ { { \\displaystyle \\qquad \\le 2 \\delta _ { 0 } + \\frac { A e ^ { - a \\delta _ { 0 } ^ { 2 } } } { a \\delta _ { 0 } } = 2 \\delta _ { 0 } + \\frac { 3 2 m ^ { 2 } } { E \\delta _ { 0 } } } } \\\\ { { \\displaystyle \\qquad \\le 3 \\delta _ { 0 } \\le 1 7 m \\sqrt { \\ln ( A ) / E } , } } \\end{array}\n$$",
+        "text_format": "latex",
+        "bbox": [
+            111,
+            547,
+            454,
+            635
+        ],
+        "page_idx": 4
+    },
+    {
+        "type": "text",
+        "text": "where the second inequality uses $\\begin{array} { r } { \\int _ { \\delta _ { 0 } } ^ { \\infty } e ^ { - a \\delta ^ { 2 } } d \\delta \\leq e ^ { - a \\delta _ { 0 } ^ { 2 } } / ( 2 a \\delta _ { 0 } ) } \\end{array}$ and the third uses ln $A \\geq 1$",
+        "bbox": [
+            73,
+            643,
+            493,
+            676
+        ],
+        "page_idx": 4
+    },
+    {
+        "type": "text",
+        "text": "B. Proof of Theorems 4, 5 and 7",
+        "text_level": 2,
+        "bbox": [
+            75,
+            688,
+            305,
+            702
+        ],
+        "page_idx": 4
+    },
+    {
+        "type": "text",
+        "text": "Proof: We give the argument once, writing $E ^ { \\prime }$ for the samples per joint bin available to a player, so $E ^ { \\prime } = M E$ in Problem B and $E ^ { \\prime } = E$ otherwise, and $\\mathcal { R } ( K , T )$ for the regret of the multiplayer subroutine on K joint arms. Exploration costs at most $E m ^ { M d }$ , the discretization bias costs $L T / \\widetilde { m }$ , and the subroutine contributes $\\mathcal { R } ( \\widetilde { m } ^ { M d } , T )$ , so",
+        "bbox": [
+            73,
+            707,
+            491,
+            799
+        ],
+        "page_idx": 4
+    },
+    {
+        "type": "equation",
+        "img_path": "images/d02ff86bc9e641b47e8fd56a9ce5fd9c6ba5763a23b02b59ff3c83ff4f14bd04.jpg",
+        "text": "$$\n\\operatorname* { s u p } _ { \\mathcal { F } _ { L , N } } R _ { T } \\leq E m ^ { M d } + \\mathbb { E } \\bigg [ \\frac { L T } { \\widetilde { m } } + \\mathcal { R } ( \\widetilde { m } ^ { M d } , T ) \\bigg ] + \\Xi ,\\tag{6}\n$$",
+        "text_format": "latex",
+        "bbox": [
+            111,
+            805,
+            455,
+            839
+        ],
+        "page_idx": 4
+    },
+    {
+        "type": "text",
+        "text": "where $\\Xi = 0$ in Problems A and B, since all players hold the same me by construction, and $\\Xi = T \\cdot 1 7 m \\sqrt { \\ln ( A ) / E }$ in Problem C by Lemma 6, bounding the regret on the disagreement event by T.",
+        "bbox": [
+            73,
+            845,
+            491,
+            909
+        ],
+        "page_idx": 4
+    },
+    {
+        "type": "text",
+        "text": "Writing $x = \\widetilde { L } _ { m } ^ { 2 / ( M d + 2 ) } T ^ { 1 / ( M d + 2 ) }$ , (1) gives $\\widetilde m \\le x ( 1 +$ $1 / x )$ , and when $x \\geq M d$ we may use $( 1 + 1 / x ) ^ { M d } \\leq e$ Substituting into (6),",
+        "bbox": [
+            503,
+            59,
+            923,
+            108
+        ],
+        "page_idx": 4
+    },
+    {
+        "type": "equation",
+        "img_path": "images/a6b714a31bdaf7b4560721ccebc96f4e7a97e5d848354004addac6fe865f3cc9.jpg",
+        "text": "$$\n\\begin{array} { r l } { \\underset { \\mathcal { F } _ { L , N } } { \\operatorname* { s u p } } R _ { T } \\leq { { E m } ^ { M d } } + \\Xi } \\\\ { + \\mathbb { E } \\Bigg [ T ^ { ( M d + 1 ) / ( M d + 2 ) } \\frac { L + 1 } { { \\widetilde { L } _ { m } ^ { 2 / ( M d + 2 ) } } } } \\\\ { + C \\log T \\sqrt { T e \\big ( T ^ { 1 / ( M d + 2 ) } { \\widetilde { L } _ { m } ^ { 2 / ( M d + 2 ) } } \\big ) ^ { M d } } \\Bigg ] . } \\end{array}\n$$",
+        "text_format": "latex",
+        "bbox": [
+            509,
+            114,
+            915,
+            209
+        ],
+        "page_idx": 4
+    },
+    {
+        "type": "text",
+        "text": "By Corollary 3, which applies since $m \\ \\geq \\ 8 N / L$ , with probability at least $1 - 1 / T$",
+        "bbox": [
+            503,
+            217,
+            921,
+            248
+        ],
+        "page_idx": 4
+    },
+    {
+        "type": "equation",
+        "img_path": "images/9c041fce9375384232fff5abaded56a48f6cc289e9771af5f5f3ac42806496da.jpg",
+        "text": "$$\n\\begin{array} { r l } & { C \\log T \\sqrt { T e \\left( T ^ { 1 / ( M d + 2 ) } \\widetilde { L } _ { m } ^ { 2 / ( M d + 2 ) } \\right) ^ { M d } } } \\\\ & { \\quad \\le C \\log T \\sqrt { e } T ^ { ( M d + 1 ) / ( M d + 2 ) } } \\\\ & { \\qquad \\cdot \\left( ( L + 1 ) ^ { \\frac { M d } { M d + 2 } } + \\left( 2 m \\sqrt { \\frac { 2 } { E ^ { \\prime } } \\ln ( 2 m ^ { M d } T ) } \\right) ^ { \\frac { M d } { M d + 2 } } \\right) , } \\end{array}\n$$",
+        "text_format": "latex",
+        "bbox": [
+            524,
+            253,
+            898,
+            340
+        ],
+        "page_idx": 4
+    },
+    {
+        "type": "text",
+        "text": "while $\\widetilde { L } _ { m } ~ \\ge ~ L / 8 ~ - ~ 1$ controls the first term; on the complementary event, of probability below $1 / T ,$ , the regret is at most $T$ and contributes at most 1. Bounding m by T inside the logarithm and choosing $\\begin{array} { c c } { { m } } & { { = } } & { { \\lfloor T ^ { \\alpha } \\rfloor } } \\end{array}$ and $E \\ = \\ m ^ { 2 M } \\lceil T ^ { 2 \\gamma ( \\widecheck M d + 2 ) / ( M d ) } \\rceil$ for suitable $\\alpha , \\gamma ~ > ~ 0$ gives the stated bounds, with $\\mathcal { R } ( \\widetilde { m } ^ { M d } , T ) ~ = ~ 3 2 \\sqrt { T \\widetilde { m } ^ { M d } \\log T }$ for Problem A by [10] and for Problem B by [11], and $\\mathcal { R } ( \\widetilde { m } ^ { M d } , T ) = C \\log T \\sqrt { T \\widetilde { m } ^ { M d } }$ for Problem C by [10]. For the final claim of Theorem $7 , E \\ge m ^ { 2 } T ^ { 2 / ( M d + 2 ) }$ ln A gives $1 7 T m \\sqrt { \\ln ( A ) / E } \\leq 1 7 T ^ { ( M d + 1 ) / ( \\overline { { M } } d + 2 ) }$ ■",
+        "bbox": [
+            501,
+            348,
+            923,
+            502
+        ],
+        "page_idx": 4
+    },
+    {
+        "type": "text",
+        "text": "REFERENCES",
+        "text_level": 2,
+        "bbox": [
+            665,
+            510,
+            763,
+            523
+        ],
+        "page_idx": 4
+    },
+    {
+        "type": "list",
+        "sub_type": "ref_text",
+        "list_items": [
+            "[1] K. Liu and Q. Zhao, “Distributed learning in multi-armed bandit with multiple players,” IEEE Transactions on Signal Processing, vol. 58, no. 11, pp. 5667–5681, Nov. 2010.",
+            "[2] A. Anandkumar, N. Michael, A. K. Tang, and A. Swami, “Distributed algorithms for learning and cognitive medium access with logarithmic regret,” IEEE Journal on Selected Areas in Communications, vol. 29, no. 4, pp. 731–745, Apr. 2011.",
+            "[3] W. W. Howard, C. E. Thornton, A. F. Martone, and R. M. Buehrer, “Multiplayer bandits for distributed cognitive radar,” 2021, arXiv:2102.00274.",
+            "[4] W. Chang and A. Kartik, “Multiplayer information asymmetric bandits in metric spaces,” 2025, arXiv:2503.08004.",
+            "[5] R. Agrawal, “The continuum-armed bandit problem,” SIAM Journal on Control and Optimization, vol. 33, no. 6, pp. 1926–1951, 1995.",
+            "[6] R. Kleinberg, “Nearly tight bounds for the continuum-armed bandit problem,” in Advances in Neural Information Processing Systems 17. MIT Press, 2004, pp. 697–704.",
+            "[7] R. Kleinberg, A. Slivkins, and E. Upfal, “Multi-armed bandits in metric spaces,” 2008, arXiv:0809.4882.",
+            "[8] S. Bubeck, G. Stoltz, and J. Y. Yu, “Lipschitz bandits without the lipschitz constant,” 2011, arXiv:1105.5041.",
+            "[9] E. Boursier and V. Perchet, “A survey on multi-player bandits,” 2024, arXiv:2211.16275.",
+            "[10] W. Chang, M. Jafarnia-Jahromi, and R. Jain, “Online learning for cooperative multi-player multi-armed bandits,” CoRR, vol. abs/2109.03818, 2021.",
+            "[11] W. Chang and Y. Lu, “Optimal cooperative multiplayer learning bandits with noisy rewards and no communication,” arXiv preprint arXiv:2311.06210, 2023.",
+            "[12] I. Bistritz and N. Bambos, “Cooperative multi-player bandit optimization,” in Advances in Neural Information Processing Systems 33. Curran Associates, Inc., 2020, pp. 697–707."
+        ],
+        "bbox": [
+            513,
+            531,
+            921,
+            565
+        ],
+        "page_idx": 4
+    }
+]

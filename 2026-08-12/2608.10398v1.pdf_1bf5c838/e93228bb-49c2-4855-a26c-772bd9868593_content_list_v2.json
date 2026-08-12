@@ -1,0 +1,3849 @@
+[
+    [
+        {
+            "type": "title",
+            "content": {
+                "title_content": [
+                    {
+                        "type": "text",
+                        "content": "ELVAE: Evidential Learning-Based Variational Autoencoder for Uncertainty-Aware Generation"
+                    }
+                ],
+                "level": 1
+            },
+            "bbox": [
+                129,
+                85,
+                867,
+                131
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "Ge Wang"
+                    }
+                ]
+            },
+            "bbox": [
+                459,
+                137,
+                539,
+                154
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "Biomedical Imaging Center, Rensselaer Polytechnic Institute, Troy, New York, USA"
+                    }
+                ]
+            },
+            "bbox": [
+                222,
+                155,
+                776,
+                170
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "Abstract: Variational autoencoders (VAEs) generate samples from probabilistic latent representations but do not explicitly distinguish uncertainty in the latent location from variability around that location. We formulate ELVAE, an evidential learning-based VAE in which each latent coordinate is governed by an input-dependent normal-inverse-gamma (NIG) posterior. The hierarchy yields an explicit latent-location uncertainty, "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "u _ { \\mathrm { e p i } } = \\beta / [ \\nu ( \\alpha - 1 ) ]"
+                    },
+                    {
+                        "type": "text",
+                        "content": ", that can stratify posterior anchors and modulate generation. In a 10,000-image MNIST pilot, samples were ranked by within-class "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "u _ { \\mathrm { e p i } }"
+                    },
+                    {
+                        "type": "text",
+                        "content": "and evaluated with a classifier trained only on real MNIST. Classifier error increased from 26.30% in the bottom 20% of uncertainty to 37.80% in the top 20% (1.437×, 95% bootstrap CI 1.33–1.58). A zero-displacement control, "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "z = \\gamma"
+                    },
+                    {
+                        "type": "text",
+                        "content": "retained most of this contrast (1.395×), showing that the dominant efect reflects anchor re-generation reliability. Among anchors correctly re-generated at "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "z = \\gamma"
+                    },
+                    {
+                        "type": "text",
+                        "content": ", an uncertainty-scaled perturbation induced semantic failure in 1.97% of the low- "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "- u _ { \\mathrm { e p i } }"
+                    },
+                    {
+                        "type": "text",
+                        "content": "group versus 5.92% of the high- "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "- u _ { \\mathrm { e p i } }"
+                    },
+                    {
+                        "type": "text",
+                        "content": "group (3.01×, 95% CI 2.03–4.75). Two caveats are reported alongside the headline: under unnormalized global "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "u _ { \\mathrm { e p i } }"
+                    },
+                    {
+                        "type": "text",
+                        "content": "ranking the contrast is essentially null (1.015×), so within-class normalization is not cosmetic, and across three random seeds the headline ratio ranges from 1.126 to 1.437. The formulation is also mathematically well posed: the ELVAE objective is an exact ELBO for the corresponding hierarchical generative model, and direct NIG-to-NIG regularization identifies an uncertainty decomposition that the marginalized Student-� latent law alone does not. These results support "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "u _ { \\mathrm { e p i } }"
+                    },
+                    {
+                        "type": "text",
+                        "content": "as a useful variable for posterior-anchored uncertainty-aware generation, while distinguishing anchor reliability from perturbation-attributable failure."
+                    }
+                ]
+            },
+            "bbox": [
+                111,
+                185,
+                885,
+                428
+            ]
+        },
+        {
+            "type": "list",
+            "content": {
+                "list_type": "text_list",
+                "attribute": "unordered",
+                "list_items": [
+                    {
+                        "item_type": "text",
+                        "item_content": [
+                            {
+                                "type": "text",
+                                "content": "Keywords: evidential learning; variational autoencoder; uncertainty-aware generation; synthetic data; stress testing;"
+                            }
+                        ]
+                    },
+                    {
+                        "item_type": "text",
+                        "item_content": [
+                            {
+                                "type": "text",
+                                "content": "normal-inverse-gamma; epistemic uncertainty; generative AI."
+                            }
+                        ]
+                    }
+                ]
+            },
+            "bbox": [
+                112,
+                428,
+                885,
+                458
+            ]
+        },
+        {
+            "type": "title",
+            "content": {
+                "title_content": [
+                    {
+                        "type": "text",
+                        "content": "1 Introduction"
+                    }
+                ],
+                "level": 2
+            },
+            "bbox": [
+                114,
+                481,
+                281,
+                500
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "Generative AI is typically evaluated by realism, fidelity, diversity, or downstream usefulness. For training-data generation and robustness testing, however, a second question is equally important: how uncertain is the model about the latent state from which a particular synthetic image is generated? Two generated images can both look plausible while one lies in a well-constrained latent region and the other is produced from a latent location for which the model has weak evidence."
+                    }
+                ]
+            },
+            "bbox": [
+                111,
+                512,
+                885,
+                574
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "A conventional VAE models"
+                    }
+                ]
+            },
+            "bbox": [
+                132,
+                574,
+                325,
+                588
+            ]
+        },
+        {
+            "type": "equation_interline",
+            "content": {
+                "math_content": "q _ { \\phi } ( z \\mid y ) = N \\Big ( \\mu _ { \\phi } ( y ) , \\mathrm { d i a g } \\sigma _ { \\phi } ^ { 2 } ( y ) \\Big ) ,\\tag{1}",
+                "math_type": "latex",
+                "image_source": {
+                    "path": "images/e2b6ab3d608314415c222e926b6553c61ac037a1a08d2d3ca5922a1854abbb06.jpg"
+                }
+            },
+            "bbox": [
+                375,
+                584,
+                619,
+                608
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "where "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "\\mu _ { \\phi }"
+                    },
+                    {
+                        "type": "text",
+                        "content": "and "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "\\sigma _ { \\phi } ^ { 2 }"
+                    },
+                    {
+                        "type": "text",
+                        "content": "are deterministic network outputs [2]. This provides stochastic generation, but the model has only one level of latent uncertainty. Evidential learning suggests a richer construction: place a distribution over the latent mean and variance themselves [4]. We call the resulting model ELVAE"
+                    }
+                ]
+            },
+            "bbox": [
+                111,
+                614,
+                885,
+                661
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "ELVAE turns uncertainty into a generation control variable: low uncertainty can identify more reliable synthetic samples, while high uncertainty can be deliberately retained to create dificult stress-test samples."
+                    }
+                ]
+            },
+            "bbox": [
+                151,
+                671,
+                844,
+                717
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "This is particularly attractive for scientific and medical generation, where synthetic images may be used to enlarge scarce training sets or to probe failure modes of a downstream network."
+                    }
+                ]
+            },
+            "bbox": [
+                111,
+                727,
+                883,
+                758
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "Relation to prior evidential and autoencoder work. Autoencoders have been used for representation learning since [1], and the variational formulation of [2] made the latent code an explicit probabilistic object. Evidential learning replaces a point prediction with parameters of a higher-order distribution, first for classification through a Dirichlet output [3] and then for regression through the NIG family [4]; the latter supplies the hierarchy used here. Itkina et al. [7] apply an evidential treatment to the discrete latent distribution of a conditional VAE to prune implausible modes, while Baykal et al. [8] use a Dirichlet evidential distribution over discrete VQ-VAE codebook assignments to mitigate codebook collapse. Catoni et al. [9] study uncertainty representations in continuous VAEs and introduce an Explaining-Away VAE with an additional global scaling latent variable; they evaluate latent uncertainty on natural, MNIST, and medical-image domains. ELVAE addresses a diferent question: it places a coordinate-wise NIG hierarchy directly over continuous latent location and variance, identifies the higher-order uncertainty decomposition through NIG-to-NIG regularization, and exposes the latent-location variance "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "u _ { \\mathrm { e p i } }"
+                    },
+                    {
+                        "type": "text",
+                        "content": "as a variable for posterior-anchored generation. Known pathologies of evidential regression objectives [5, 6] remain relevant and motivate direct regularization of the full NIG hierarchy."
+                    }
+                ]
+            },
+            "bbox": [
+                111,
+                776,
+                887,
+                912
+            ]
+        },
+        {
+            "type": "page_aside_text",
+            "content": {
+                "page_aside_text_content": [
+                    {
+                        "type": "text",
+                        "content": "arXiv:2608.10398v1 [cs.LG] 11 Aug 2026"
+                    }
+                ]
+            },
+            "bbox": [
+                29,
+                353,
+                65,
+                799
+            ]
+        },
+        {
+            "type": "page_number",
+            "content": {
+                "page_number_content": [
+                    {
+                        "type": "text",
+                        "content": "1"
+                    }
+                ]
+            },
+            "bbox": [
+                493,
+                935,
+                503,
+                948
+            ]
+        }
+    ],
+    [
+        {
+            "type": "image",
+            "content": {
+                "image_source": {
+                    "path": "images/e01be7a045275a96eb3f65d9359fd30ea9d144eed7efe238a74878e5835c5d4f.jpg"
+                },
+                "image_caption": [
+                    {
+                        "type": "text",
+                        "content": "Figure 1: ELVAE training and the posterior-anchored generation pilot. (a) Training: the encoder predicts a NIG posterior over latent location and variance, regularized toward a fixed NIG prior. (b) Generation: the pilot uses the NIG-derived "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "u _ { \\mathrm { e p i } }"
+                    },
+                    {
+                        "type": "text",
+                        "content": "both to rank anchors and to scale a controlled Gaussian perturbation, and a frozen classifier tests whether the intended class survives. The dashed control branch sets "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "\\tau _ { \\mathrm { e p i } } = 0"
+                    },
+                    {
+                        "type": "text",
+                        "content": ", yielding "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "z = \\gamma _ { i }"
+                    },
+                    {
+                        "type": "text",
+                        "content": ", while retaining "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "u _ { \\mathrm { e p i } }"
+                    },
+                    {
+                        "type": "text",
+                        "content": "for ranking."
+                    }
+                ],
+                "image_footnote": []
+            },
+            "bbox": [
+                158,
+                89,
+                839,
+                271
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": []
+            },
+            "bbox": [
+                111,
+                366,
+                885,
+                426
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "Figure 1 summarizes the training and generation pipeline. The present study makes four contributions. First, we formulate a continuous NIG hierarchy for VAE latent variables and define an explicit latent-location uncertainty "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "u _ { \\mathrm { e p i } }"
+                    },
+                    {
+                        "type": "text",
+                        "content": "Second, we show that direct NIG regularization is required to identify the uncertainty decomposition and that the resulting training objective is an exact ELBO. Third, we perform a direct generation pilot: ELVAE generates labeled MNIST variants from posterior anchors, low- and high- "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "- u _ { \\mathrm { e p i } }"
+                    },
+                    {
+                        "type": "text",
+                        "content": "images are displayed, and one frozen classifier quantifies whether "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "\\mathrm { \\ h i g h } { - u _ { \\mathrm { e p i } } }"
+                    },
+                    {
+                        "type": "text",
+                        "content": "generated samples are more likely to lose their intended semantic class. Fourth, we separate that efect into an anchor-quality component and a generation-attributable component by means of a "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "z = \\gamma"
+                    },
+                    {
+                        "type": "text",
+                        "content": "control, and report both."
+                    }
+                ]
+            },
+            "bbox": [
+                111,
+                426,
+                885,
+                534
+            ]
+        },
+        {
+            "type": "title",
+            "content": {
+                "title_content": [
+                    {
+                        "type": "text",
+                        "content": "2 Methodology"
+                    }
+                ],
+                "level": 2
+            },
+            "bbox": [
+                112,
+                556,
+                284,
+                575
+            ]
+        },
+        {
+            "type": "title",
+            "content": {
+                "title_content": [
+                    {
+                        "type": "text",
+                        "content": "2.1 Evidential latent hierarchy"
+                    }
+                ],
+                "level": 2
+            },
+            "bbox": [
+                112,
+                588,
+                385,
+                606
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "For each latent coordinate "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "k = 1 , \\ldots , K ."
+                    },
+                    {
+                        "type": "text",
+                        "content": ", the encoder predicts four NIG parameters"
+                    }
+                ]
+            },
+            "bbox": [
+                111,
+                613,
+                655,
+                628
+            ]
+        },
+        {
+            "type": "equation_interline",
+            "content": {
+                "math_content": "( \\gamma _ { k } , \\nu _ { k } , \\alpha _ { k } , \\beta _ { k } ) , \\qquad \\nu _ { k } > 0 , \\alpha _ { k } > 1 , \\beta _ { k } > 0 ,\\tag{2}",
+                "math_type": "latex",
+                "image_source": {
+                    "path": "images/abcc09d7c34314f52f0e53c90aaa4d2cb1ecdc11ed3c01d035fed16f0edb3479.jpg"
+                }
+            },
+            "bbox": [
+                344,
+                641,
+                651,
+                656
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "which define"
+                    }
+                ]
+            },
+            "bbox": [
+                112,
+                669,
+                202,
+                683
+            ]
+        },
+        {
+            "type": "equation_interline",
+            "content": {
+                "math_content": "\\sigma _ { k } ^ { 2 } \\mid y \\sim \\mathrm { I n v G a m m a } ( \\alpha _ { k } , \\beta _ { k } ) , \\qquad \\mu _ { k } \\mid \\sigma _ { k } ^ { 2 } , y \\sim { \\cal N } \\bigg ( \\gamma _ { k } , \\frac { \\sigma _ { k } ^ { 2 } } { \\nu _ { k } } \\bigg ) , \\qquad z _ { k } \\mid \\mu _ { k } , \\sigma _ { k } ^ { 2 } \\sim { \\cal N } ( \\mu _ { k } , \\sigma _ { k } ^ { 2 } ) .\\tag{3}",
+                "math_type": "latex",
+                "image_source": {
+                    "path": "images/15b02f337d87869346cc9341f825d73bc237edd14cbbd31393efa306822a81d8.jpg"
+                }
+            },
+            "bbox": [
+                194,
+                693,
+                799,
+                732
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "Thus"
+                    }
+                ]
+            },
+            "bbox": [
+                132,
+                744,
+                171,
+                757
+            ]
+        },
+        {
+            "type": "equation_interline",
+            "content": {
+                "math_content": "q _ { \\phi } ( \\mu _ { k } , \\sigma _ { k } ^ { 2 } \\mid \\boldsymbol { y } ) = \\mathrm { N I G } ( \\gamma _ { k } , \\nu _ { k } , \\alpha _ { k } , \\beta _ { k } ) .\\tag{4}",
+                "math_type": "latex",
+                "image_source": {
+                    "path": "images/a4a943329f2d24a7ee1b1bbd30e9502f0a275523c6081afbca02c8080c71c948.jpg"
+                }
+            },
+            "bbox": [
+                369,
+                757,
+                625,
+                775
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "We enforce positivity by softplus transforms, with the standard +1 ofset on � so that "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "\\mathbb { E } [ \\sigma ^ { 2 } ]"
+                    },
+                    {
+                        "type": "text",
+                        "content": "exists [4]."
+                    }
+                ]
+            },
+            "bbox": [
+                111,
+                781,
+                782,
+                796
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "The hierarchy separates two statistically diferent sources of latent spread:"
+                    }
+                ]
+            },
+            "bbox": [
+                132,
+                796,
+                619,
+                811
+            ]
+        },
+        {
+            "type": "equation_interline",
+            "content": {
+                "math_content": "u _ { \\mathrm { v a r } , k } \\equiv \\mathbb { E } [ \\sigma _ { k } ^ { 2 } \\mid \\boldsymbol { y } ] = \\frac { \\beta _ { k } } { \\alpha _ { k } - 1 } ,\\tag{5}",
+                "math_type": "latex",
+                "image_source": {
+                    "path": "images/d22dec931d48e6ddd451f5fabcb6e844841e5826cff97626d548634b023a5268.jpg"
+                }
+            },
+            "bbox": [
+                397,
+                821,
+                596,
+                853
+            ]
+        },
+        {
+            "type": "equation_interline",
+            "content": {
+                "math_content": "u _ { \\mathrm { e p i } , k } \\equiv \\mathrm { V a r } ( \\mu _ { k } \\mid y ) = \\frac { \\beta _ { k } } { \\nu _ { k } ( \\alpha _ { k } - 1 ) } ,\\tag{6}",
+                "math_type": "latex",
+                "image_source": {
+                    "path": "images/33d47548af1eab7dd0a8e2343a0f697625217a7527fa2359ac3a863b4c4c241d.jpg"
+                }
+            },
+            "bbox": [
+                398,
+                856,
+                635,
+                886
+            ]
+        },
+        {
+            "type": "equation_interline",
+            "content": {
+                "math_content": "\\operatorname { V a r } ( z _ { k } \\mid y ) = u _ { \\mathrm { v a r } , k } + u _ { \\mathrm { e p i } , k } .\\tag{7}",
+                "math_type": "latex",
+                "image_source": {
+                    "path": "images/e78e4bf911901eae74524517bd5937ba681b7684bc9d9fc308f1a14425e0a7e1.jpg"
+                }
+            },
+            "bbox": [
+                361,
+                888,
+                552,
+                905
+            ]
+        },
+        {
+            "type": "page_number",
+            "content": {
+                "page_number_content": [
+                    {
+                        "type": "text",
+                        "content": "2"
+                    }
+                ]
+            },
+            "bbox": [
+                493,
+                935,
+                504,
+                946
+            ]
+        }
+    ],
+    [
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "In this paper we call Eq. (6) epistemic latent uncertainty because it quantifies uncertainty in the latent location itself, while Eq. (5) quantifies variability around that location. For one image we summarize"
+                    }
+                ]
+            },
+            "bbox": [
+                111,
+                92,
+                885,
+                122
+            ]
+        },
+        {
+            "type": "equation_interline",
+            "content": {
+                "math_content": "u _ { \\mathrm { e p i } } ( y ) = \\frac { 1 } { K } \\sum _ { k = 1 } ^ { K } u _ { \\mathrm { e p i } , k } ( y ) .\\tag{8}",
+                "math_type": "latex",
+                "image_source": {
+                    "path": "images/ff20930d6b80218e18693c941cdaa24231e2177f0072adaa919c9681c0cf080a.jpg"
+                }
+            },
+            "bbox": [
+                408,
+                132,
+                584,
+                172
+            ]
+        },
+        {
+            "type": "title",
+            "content": {
+                "title_content": [
+                    {
+                        "type": "text",
+                        "content": "2.2 Training objective"
+                    }
+                ],
+                "level": 2
+            },
+            "bbox": [
+                112,
+                189,
+                315,
+                207
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "With � input pixels and � latent coordinates, we use"
+                    }
+                ]
+            },
+            "bbox": [
+                111,
+                214,
+                460,
+                229
+            ]
+        },
+        {
+            "type": "equation_interline",
+            "content": {
+                "math_content": "L _ { \\mathrm { E L V A E } } ( y ) = L _ { \\mathrm { r e c o n } } ( y ) + \\lambda _ { \\mathrm { N I G } } L _ { \\mathrm { N I G } } ( y ) ,\\tag{9}",
+                "math_type": "latex",
+                "image_source": {
+                    "path": "images/8f9233653db077b05a07683f3abdddc2628a16009529870b457d3725a4025faa.jpg"
+                }
+            },
+            "bbox": [
+                367,
+                241,
+                627,
+                257
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "where"
+                    }
+                ]
+            },
+            "bbox": [
+                112,
+                268,
+                158,
+                282
+            ]
+        },
+        {
+            "type": "equation_interline",
+            "content": {
+                "math_content": "L _ { \\mathrm { r e c o n } } = \\frac { 1 } { P } \\mathbb { E } \\| y - g _ { \\theta } ( z ) \\| _ { 2 } ^ { 2 } ,\\tag{10}",
+                "math_type": "latex",
+                "image_source": {
+                    "path": "images/f1e7e0b68e00922c3dcbe333f10516c324b0e9603bdf300a985851b5c3d5cd38.jpg"
+                }
+            },
+            "bbox": [
+                406,
+                279,
+                589,
+                308
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "and"
+                    }
+                ]
+            },
+            "bbox": [
+                112,
+                313,
+                143,
+                327
+            ]
+        },
+        {
+            "type": "equation_interline",
+            "content": {
+                "math_content": "L _ { \\mathrm { N I G } } = \\frac { 1 } { K } \\sum _ { k = 1 } ^ { K } D _ { \\mathrm { K L } } [ \\mathrm { N I G } ( \\gamma _ { k } , \\gamma _ { k } , \\alpha _ { k } , \\beta _ { k } ) \\| \\mathrm { N I G } ( \\gamma _ { 0 } , \\gamma _ { 0 } , \\alpha _ { 0 } , \\beta _ { 0 } ) ] .\\tag{11}",
+                "math_type": "latex",
+                "image_source": {
+                    "path": "images/3db8a8602341e20dcf70317c874a7936cc8947bfdd0a1bda6d9625f079e6b2fd.jpg"
+                }
+            },
+            "bbox": [
+                287,
+                324,
+                707,
+                364
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "The NIG KL directly regularizes the higher-order quantities to which uncertainty meaning is assigned. Because � is the coordinate average, the total higher-order KL is "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "K L _ { \\mathrm { { N I G } } }"
+                    },
+                    {
+                        "type": "text",
+                        "content": ". For "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "q = \\mathrm { N I G } ( \\gamma , \\nu , \\alpha , \\beta )"
+                    },
+                    {
+                        "type": "text",
+                        "content": "and "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "p _ { 0 } = \\mathrm { N I G } ( \\gamma _ { 0 } , \\gamma _ { 0 } , \\alpha _ { 0 } , \\beta _ { 0 } )"
+                    },
+                    {
+                        "type": "text",
+                        "content": "under the inverse-gamma parameterization of Eq. (3), the coordinate-wise divergence is"
+                    }
+                ]
+            },
+            "bbox": [
+                111,
+                369,
+                883,
+                416
+            ]
+        },
+        {
+            "type": "equation_interline",
+            "content": {
+                "math_content": "\\begin{array} { l } { { \\displaystyle { \\cal D } _ { \\mathrm { K L } } ( q \\| p _ { 0 } ) = \\alpha _ { 0 } \\log \\displaystyle \\frac { \\beta } { \\beta _ { 0 } } - \\log \\Gamma ( \\alpha ) + \\log \\Gamma ( \\alpha _ { 0 } ) + ( \\alpha - \\alpha _ { 0 } ) \\psi ( \\alpha ) - \\alpha + \\frac { \\alpha \\beta _ { 0 } } { \\beta } } } \\\\ { { + \\displaystyle \\frac { 1 } { 2 } \\left[ \\log \\displaystyle \\frac { \\nu } { \\nu _ { 0 } } + \\frac { \\nu _ { 0 } } { \\nu } - 1 + \\frac { \\nu _ { 0 } \\alpha ( \\gamma - \\gamma _ { 0 } ) ^ { 2 } } { \\beta } \\right] , } } \\end{array}\\tag{12}",
+                "math_type": "latex",
+                "image_source": {
+                    "path": "images/2da9b3aded263c61484bf3505e3b8248ed499b967058e85165352088929a9a77.jpg"
+                }
+            },
+            "bbox": [
+                245,
+                422,
+                750,
+                492
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "where "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "\\psi"
+                    },
+                    {
+                        "type": "text",
+                        "content": "is the digamma function. This is the KL between the inverse-gamma factors plus the expected KL between the conditional normal distributions of "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "\\mu ."
+                    }
+                ]
+            },
+            "bbox": [
+                111,
+                502,
+                883,
+                534
+            ]
+        },
+        {
+            "type": "title",
+            "content": {
+                "title_content": [
+                    {
+                        "type": "text",
+                        "content": "2.3 ELBO interpretation and determination of the NIG weight"
+                    }
+                ],
+                "level": 2
+            },
+            "bbox": [
+                112,
+                551,
+                651,
+                568
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "Starting directly from Eq. (9), the only apparent free balance is "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "\\lambda _ { \\mathrm { { N I G } } }"
+                    },
+                    {
+                        "type": "text",
+                        "content": ", which weights the NIG regularizer relative to the reconstruction term. This weight has a likelihood interpretation rather than being an arbitrary tuning parameter. Consider the hierarchical generative model"
+                    }
+                ]
+            },
+            "bbox": [
+                111,
+                577,
+                885,
+                622
+            ]
+        },
+        {
+            "type": "equation_interline",
+            "content": {
+                "math_content": "p ( \\mu , \\sigma ^ { 2 } ) = p _ { 0 } , \\qquad p ( z \\mid \\mu , \\sigma ^ { 2 } ) = N ( \\mu , \\sigma ^ { 2 } ) , \\qquad p ( y \\mid z ) = N \\Big ( g _ { \\theta } ( z ) , s ^ { 2 } I _ { P } \\Big ) ,\\tag{13}",
+                "math_type": "latex",
+                "image_source": {
+                    "path": "images/7e0412be5bf2e46c90b5610eaf022efc06bb0e61e88a56d9be2d343cad35243e.jpg"
+                }
+            },
+            "bbox": [
+                233,
+                633,
+                759,
+                656
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "with inference model "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "q ( \\mu , \\sigma ^ { 2 } , z \\mid y ) = q _ { \\phi } ( \\mu , \\sigma ^ { 2 } \\mid y ) p ( z \\mid \\mu , \\sigma ^ { 2 } )"
+                    },
+                    {
+                        "type": "text",
+                        "content": ". The scalar "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "s ^ { 2 }"
+                    },
+                    {
+                        "type": "text",
+                        "content": "is the homoscedastic observation variance in image space."
+                    }
+                ]
+            },
+            "bbox": [
+                112,
+                669,
+                883,
+                699
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "For this model, the negative ELBO is"
+                    }
+                ]
+            },
+            "bbox": [
+                132,
+                700,
+                380,
+                714
+            ]
+        },
+        {
+            "type": "equation_interline",
+            "content": {
+                "math_content": "- \\mathrm { E L B O } ( y ) = \\frac { P } { 2 } \\log ( 2 \\pi s ^ { 2 } ) + \\frac { P } { 2 s ^ { 2 } } { \\cal L } _ { \\mathrm { r e c o n } } ( y ) + \\mathrm { K } { \\cal L } _ { \\mathrm { N I G } } ( y ) .\\tag{14}",
+                "math_type": "latex",
+                "image_source": {
+                    "path": "images/d974586190e6321efb1b2072fd0def24707d702c278ca0f4d34ab26150b2e682.jpg"
+                }
+            },
+            "bbox": [
+                310,
+                723,
+                686,
+                755
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "The chain-rule KL reduces to "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "D _ { \\mathrm { K L } } [ q _ { \\phi } ( \\mu , \\sigma ^ { 2 } \\mid \\boldsymbol { y } ) \\| p _ { 0 } ]"
+                    },
+                    {
+                        "type": "text",
+                        "content": "because "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "q ( z \\mid \\mu , \\sigma ^ { 2 } )"
+                    },
+                    {
+                        "type": "text",
+                        "content": "is chosen to equal "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "p ( z \\mid \\mu , \\sigma ^ { 2 } )"
+                    },
+                    {
+                        "type": "text",
+                        "content": ". The Gaussian observation model supplies the first two terms in Eq. (14)."
+                    }
+                ]
+            },
+            "bbox": [
+                112,
+                765,
+                883,
+                795
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "Multiplying Eq. (9) by "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "P / ( 2 s ^ { 2 } )"
+                    },
+                    {
+                        "type": "text",
+                        "content": "gives"
+                    }
+                ]
+            },
+            "bbox": [
+                132,
+                795,
+                382,
+                810
+            ]
+        },
+        {
+            "type": "equation_interline",
+            "content": {
+                "math_content": "\\frac { P } { 2 s ^ { 2 } } L _ { \\mathrm { E L V A E } } = \\frac { P } { 2 s ^ { 2 } } L _ { \\mathrm { r e c o n } } + \\frac { P \\lambda _ { \\mathrm { N I G } } } { 2 s ^ { 2 } } L _ { \\mathrm { N I G } } .\\tag{15}",
+                "math_type": "latex",
+                "image_source": {
+                    "path": "images/46f3ab6d6084ce058e36c65c477f41ef9c2750409f86bc78e56eb653e6701c1e.jpg"
+                }
+            },
+            "bbox": [
+                367,
+                819,
+                629,
+                852
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "Matching the coeficient of "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "L _ { \\mathrm { { N I G } } }"
+                    },
+                    {
+                        "type": "text",
+                        "content": "in Eqs. (14) and (15) gives"
+                    }
+                ]
+            },
+            "bbox": [
+                112,
+                859,
+                509,
+                875
+            ]
+        },
+        {
+            "type": "equation_interline",
+            "content": {
+                "math_content": "\\lambda _ { \\mathrm { N I G } } = \\frac { 2 s ^ { 2 } K } { P } , \\qquad \\mathrm { o r e q u i v a l e n t l y } \\qquad s ^ { 2 } = \\frac { P \\lambda _ { \\mathrm { N I G } } } { 2 K } .\\tag{16}",
+                "math_type": "latex",
+                "image_source": {
+                    "path": "images/6693305248421bc40db1d765c1ae8cd199e4dcac505ea46a370f8dea887eac77.jpg"
+                }
+            },
+            "bbox": [
+                323,
+                885,
+                671,
+                916
+            ]
+        },
+        {
+            "type": "page_number",
+            "content": {
+                "page_number_content": [
+                    {
+                        "type": "text",
+                        "content": "3"
+                    }
+                ]
+            },
+            "bbox": [
+                493,
+                935,
+                504,
+                948
+            ]
+        }
+    ],
+    [
+        {
+            "type": "list",
+            "content": {
+                "list_type": "text_list",
+                "attribute": "unordered",
+                "list_items": [
+                    {
+                        "item_type": "text",
+                        "item_content": [
+                            {
+                                "type": "text",
+                                "content": "Thus "
+                            },
+                            {
+                                "type": "equation_inline",
+                                "content": "\\lambda _ { \\mathrm { { N I G } } }"
+                            },
+                            {
+                                "type": "text",
+                                "content": "and the assumed image-space residual variance are two parameterizations of the same relative weighting."
+                            }
+                        ]
+                    },
+                    {
+                        "item_type": "text",
+                        "item_content": [
+                            {
+                                "type": "text",
+                                "content": "Fixing one determines the other."
+                            }
+                        ]
+                    }
+                ]
+            },
+            "bbox": [
+                111,
+                92,
+                885,
+                121
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "The observation variance can itself be estimated from reconstruction residuals. "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "\\operatorname { I f } s ^ { 2 }"
+                    },
+                    {
+                        "type": "text",
+                        "content": "is treated as an unknown scalar and Eq. (14) is minimized with respect to "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "s ^ { 2 }"
+                    },
+                    {
+                        "type": "text",
+                        "content": "while the encoder and decoder are held fixed, then"
+                    }
+                ]
+            },
+            "bbox": [
+                111,
+                121,
+                885,
+                152
+            ]
+        },
+        {
+            "type": "equation_interline",
+            "content": {
+                "math_content": "\\widehat { s } ^ { 2 } = \\frac 1 P \\mathbb E _ { y , z } \\lVert y - g _ { \\theta } ( z ) \\rVert _ { 2 } ^ { 2 } = L _ { \\mathrm { r e c o n } } ,\\tag{17}",
+                "math_type": "latex",
+                "image_source": {
+                    "path": "images/3d2b9419aac35929c613f6130f1e5a14c294731f7437b2b639e112d36260a3da.jpg"
+                }
+            },
+            "bbox": [
+                380,
+                162,
+                614,
+                191
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "where "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "L _ { \\mathrm { r e c o n } }"
+                    },
+                    {
+                        "type": "text",
+                        "content": "denotes the reconstruction MSE averaged over the data distribution and latent sampling. Substituting Eq. (17) into Eq. (16) yields the practical calibration"
+                    }
+                ]
+            },
+            "bbox": [
+                111,
+                200,
+                883,
+                232
+            ]
+        },
+        {
+            "type": "equation_interline",
+            "content": {
+                "math_content": "\\widehat { \\lambda } _ { \\mathrm { N I G } } = \\frac { 2 K } { P } L _ { \\mathrm { r e c o n } } .\\tag{18}",
+                "math_type": "latex",
+                "image_source": {
+                    "path": "images/d03d36da9145f3bd34060d85325997a4370a4225a069b7741a0908748fbd3396.jpg"
+                }
+            },
+            "bbox": [
+                434,
+                241,
+                560,
+                272
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "Therefore, once the reconstruction MSE is measured, "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "\\lambda _ { \\mathrm { { N I G } } }"
+                    },
+                    {
+                        "type": "text",
+                        "content": "can be determined from the likelihood model instead of selected independently. The relevant quantity is the dataset-averaged, approximately converged reconstruction MSE, not the error of one image or one mini-batch. Because "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "\\lambda _ { \\mathrm { { N I G } } }"
+                    },
+                    {
+                        "type": "text",
+                        "content": "also afects training, a fully self-consistent implementation can use a short warm-up, estimate "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "L _ { \\mathrm { { r e c o n } } } ."
+                    },
+                    {
+                        "type": "text",
+                        "content": ", update �<sub>NIG</sub> using Eq. (18), and optionally repeat; an even cleaner alternative is to learn log "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "s ^ { 2 }"
+                    },
+                    {
+                        "type": "text",
+                        "content": "jointly in the unscaled ELBO of Eq. (14)."
+                    }
+                ]
+            },
+            "bbox": [
+                111,
+                281,
+                885,
+                356
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "Because Eq. (18) is a testable identity rather than a recommendation, we report the test. On the trained pilot model the held-out reconstruction MSE under the sampled hierarchy is "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "L _ { \\mathrm { r e c o n } } = 0 . 0 4 0 8"
+                    },
+                    {
+                        "type": "text",
+                        "content": ", so Eq. (18) gives "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "\\widehat { \\lambda } _ { \\mathrm { N I G } } = \\bar { 8 . 3 3 } \\times 1 0 ^ { - 4 }"
+                    },
+                    {
+                        "type": "text",
+                        "content": "whereas the fixed value used for training is "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "5 \\times 1 0 ^ { - 4 }"
+                    },
+                    {
+                        "type": "text",
+                        "content": "(equivalently "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "s ^ { 2 } = 0 . 0 2 4 5 )"
+                    },
+                    {
+                        "type": "text",
+                        "content": ". The fixed weight is therefore roughly a factor of 1.67 smaller than its own likelihood-consistent value: the pilot places somewhat less weight on the NIG regularizer than the observation model would imply. We retain the fixed setting used in the reported pilot and flag the discrepancy explicitly rather than leaving Eq. (18) as an unverified claim. Closing the gap by one fixed-point iteration is an important next step for a study in which �<sub>NIG</sub> is varied deliberately."
+                    }
+                ]
+            },
+            "bbox": [
+                111,
+                356,
+                885,
+                464
+            ]
+        },
+        {
+            "type": "title",
+            "content": {
+                "title_content": [
+                    {
+                        "type": "text",
+                        "content": "2.4 Why the full NIG hierarchy must be regularized"
+                    }
+                ],
+                "level": 2
+            },
+            "bbox": [
+                112,
+                481,
+                563,
+                498
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "Marginalizing "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "( \\mu , \\sigma ^ { 2 } )"
+                    },
+                    {
+                        "type": "text",
+                        "content": "yields a Student-� latent distribution. However, that marginal does not identify the decomposition in Eqs. (5)–(6)."
+                    }
+                ]
+            },
+            "bbox": [
+                111,
+                506,
+                883,
+                536
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "Proposition 1 (Marginal non-identifiability). Under Eq. "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "( 3 ) , z _ { k }"
+                    },
+                    {
+                        "type": "text",
+                        "content": "is Student-� with 2� degrees of freedom, location "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "\\gamma ,"
+                    },
+                    {
+                        "type": "text",
+                        "content": "and squared scale "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "\\beta ( 1 + 1 / \\nu ) / \\alpha"
+                    },
+                    {
+                        "type": "text",
+                        "content": ". Therefore the marginal depends on "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "( \\nu , \\beta )"
+                    },
+                    {
+                        "type": "text",
+                        "content": "only through "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "c = \\beta ( 1 + 1 / \\nu )"
+                    },
+                    {
+                        "type": "text",
+                        "content": ". Along the curve "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "\\beta ( 1 + 1 / \\nu ) = c _ { \\mathrm { : } }"
+                    },
+                    {
+                        "type": "text",
+                        "content": ", the marginal distribution of "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "z"
+                    },
+                    {
+                        "type": "text",
+                        "content": "is unchanged while"
+                    }
+                ]
+            },
+            "bbox": [
+                111,
+                536,
+                885,
+                583
+            ]
+        },
+        {
+            "type": "equation_interline",
+            "content": {
+                "math_content": "u _ { \\mathrm { v a r } } = \\frac { c } { \\alpha - 1 } \\frac { \\nu } { 1 + \\nu } , \\qquad u _ { \\mathrm { e p i } } = \\frac { c } { \\alpha - 1 } \\frac { 1 } { 1 + \\nu }\\tag{19}",
+                "math_type": "latex",
+                "image_source": {
+                    "path": "images/2bc3f55e89d8551311b84ba6eb0d2eb672ad7531805fbf3b1ffa655bfcd7cd51.jpg"
+                }
+            },
+            "bbox": [
+                352,
+                593,
+                642,
+                623
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "can trade continuously against one another."
+                    }
+                ]
+            },
+            "bbox": [
+                111,
+                632,
+                398,
+                646
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "The practical consequence is important for generation: if "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "u _ { \\mathrm { e p i } }"
+                    },
+                    {
+                        "type": "text",
+                        "content": "is to control which images are treated as reliable or challenging, the hierarchy that defines "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "u _ { \\mathrm { e p i } }"
+                    },
+                    {
+                        "type": "text",
+                        "content": "must itself be constrained. A loss written only on the marginalized "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "p ( z )"
+                    },
+                    {
+                        "type": "text",
+                        "content": "cannot supply that identification [5, 6]."
+                    }
+                ]
+            },
+            "bbox": [
+                111,
+                647,
+                883,
+                694
+            ]
+        },
+        {
+            "type": "title",
+            "content": {
+                "title_content": [
+                    {
+                        "type": "text",
+                        "content": "2.5 Prior and pilot architecture"
+                    }
+                ],
+                "level": 2
+            },
+            "bbox": [
+                112,
+                712,
+                392,
+                728
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "We use"
+                    }
+                ]
+            },
+            "bbox": [
+                112,
+                737,
+                166,
+                751
+            ]
+        },
+        {
+            "type": "equation_interline",
+            "content": {
+                "math_content": "( \\gamma _ { 0 } , \\gamma _ { 0 } , \\alpha _ { 0 } , \\beta _ { 0 } ) = ( 0 , 1 , 3 , 1 ) .\\tag{20}",
+                "math_type": "latex",
+                "image_source": {
+                    "path": "images/7c66d1babe2dc08b704399c83ca1ae43ba9436e47668503cdd3575ab14e451f6.jpg"
+                }
+            },
+            "bbox": [
+                401,
+                752,
+                593,
+                767
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "This gives "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "\\mathbb { E } [ \\sigma ^ { 2 } ] = 1 / 2 , \\operatorname { V a r } ( \\mu ) = 1 / 2"
+                    },
+                    {
+                        "type": "text",
+                        "content": ", and hence "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "\\mathrm { V a r } ( z ) = 1"
+                    },
+                    {
+                        "type": "text",
+                        "content": ", preserving the familiar centered unit-variance latent convention while explicitly separating the two components."
+                    }
+                ]
+            },
+            "bbox": [
+                111,
+                773,
+                883,
+                804
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "The pilot ELVAE uses an MLP encoder "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "7 8 4  1 2 8  6 4"
+                    },
+                    {
+                        "type": "text",
+                        "content": ", latent dimension "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "K = 8 ."
+                    },
+                    {
+                        "type": "text",
+                        "content": ", and a mirrored decoder. It is trained for four epochs with Adam, learning rate "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "1 0 ^ { - 3 }"
+                    },
+                    {
+                        "type": "text",
+                        "content": ", batch size 1024, and "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "\\lambda _ { \\mathrm { N I G } } = 5 \\times 1 0 ^ { - 4 }"
+                    },
+                    {
+                        "type": "text",
+                        "content": ". With "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "P = 7 8 4"
+                    },
+                    {
+                        "type": "text",
+                        "content": "and "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "K = 8"
+                    },
+                    {
+                        "type": "text",
+                        "content": ", Eq. (16) shows that this fixed weight corresponds to an assumed observation variance "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "s ^ { 2 } = 0 . 0 2 4 5"
+                    },
+                    {
+                        "type": "text",
+                        "content": ". The goal is not maximum MNIST generation quality; it is a compact test of whether the learned "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "u _ { \\mathrm { e p i } }"
+                    },
+                    {
+                        "type": "text",
+                        "content": "provides useful generation stratification."
+                    }
+                ]
+            },
+            "bbox": [
+                111,
+                804,
+                885,
+                880
+            ]
+        },
+        {
+            "type": "page_number",
+            "content": {
+                "page_number_content": [
+                    {
+                        "type": "text",
+                        "content": "4"
+                    }
+                ]
+            },
+            "bbox": [
+                493,
+                935,
+                504,
+                946
+            ]
+        }
+    ],
+    [
+        {
+            "type": "title",
+            "content": {
+                "title_content": [
+                    {
+                        "type": "text",
+                        "content": "3 Uncertainty-Aware Generation"
+                    }
+                ],
+                "level": 2
+            },
+            "bbox": [
+                112,
+                87,
+                464,
+                107
+            ]
+        },
+        {
+            "type": "title",
+            "content": {
+                "title_content": [
+                    {
+                        "type": "text",
+                        "content": "3.1 Uncertainty-scaled posterior-anchored generation"
+                    }
+                ],
+                "level": 2
+            },
+            "bbox": [
+                112,
+                119,
+                578,
+                137
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "For a labeled anchor "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "( y _ { i } , c _ { i } )"
+                    },
+                    {
+                        "type": "text",
+                        "content": ", the encoder gives "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "( \\gamma _ { i } , \\nu _ { i } , \\alpha _ { i } , \\beta _ { i } )"
+                    },
+                    {
+                        "type": "text",
+                        "content": "and the coordinate-wise uncertainty vector"
+                    }
+                ]
+            },
+            "bbox": [
+                111,
+                145,
+                800,
+                161
+            ]
+        },
+        {
+            "type": "equation_interline",
+            "content": {
+                "math_content": "u _ { \\mathrm { e p i } , i } = \\beta _ { i } \\oslash { \\bigl [ } \\nu _ { i } \\odot ( \\alpha _ { i } - 1 ) { \\bigr ] } ,\\tag{21}",
+                "math_type": "latex",
+                "image_source": {
+                    "path": "images/9c7afdbf2157e3fc7dbaac864beec4cd1ac65cd08ed861d15a438e4ac5a6b50d.jpg"
+                }
+            },
+            "bbox": [
+                400,
+                167,
+                594,
+                184
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "where ⊘ and ⊙ denote elementwise division and multiplication. The exact NIG marginal of the latent location "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "\\mu _ { i }"
+                    },
+                    {
+                        "type": "text",
+                        "content": "is Student-�. To isolate "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "u _ { \\mathrm { e p i } }"
+                    },
+                    {
+                        "type": "text",
+                        "content": "as a generation-control amplitude without introducing the ordinary "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "z \\mid \\mu , \\sigma ^ { 2 }"
+                    },
+                    {
+                        "type": "text",
+                        "content": "variability, the pilot instead uses the variance-matched Gaussian perturbation"
+                    }
+                ]
+            },
+            "bbox": [
+                111,
+                189,
+                883,
+                234
+            ]
+        },
+        {
+            "type": "equation_interline",
+            "content": {
+                "math_content": "z _ { i } ^ { \\mathrm { e p i } } = \\gamma _ { i } + \\sqrt { u _ { \\mathrm { e p i } , i } } \\odot \\epsilon , \\qquad \\epsilon \\sim N ( 0 , I ) ,\\tag{22}",
+                "math_type": "latex",
+                "image_source": {
+                    "path": "images/c1ddee2c3bd3a8c2a34bf63d43826c7de6b7ec8264d6f4e6951c6cdd37acef18.jpg"
+                }
+            },
+            "bbox": [
+                361,
+                239,
+                633,
+                260
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "followed by"
+                    }
+                ]
+            },
+            "bbox": [
+                112,
+                263,
+                196,
+                279
+            ]
+        },
+        {
+            "type": "equation_interline",
+            "content": {
+                "math_content": "x _ { i } ^ { \\mathrm { g e n } } = g _ { \\theta } ( z _ { i } ^ { \\mathrm { e p i } } ) .\\tag{23}",
+                "math_type": "latex",
+                "image_source": {
+                    "path": "images/a454ddc03a9bc2efeca30922eb3e1a6d38afd750f1e8e64f73c244cb00411d2e.jpg"
+                }
+            },
+            "bbox": [
+                442,
+                279,
+                552,
+                297
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "Equation (22) is therefore not an exact sample from the NIG/Student-� posterior. It is a controlled Gaussian perturbation centered at "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "\\gamma _ { i }"
+                    },
+                    {
+                        "type": "text",
+                        "content": "whose coordinate-wise variance matches "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "\\operatorname { V a r } ( \\mu _ { i } \\mid y _ { i } ) = u _ { \\mathrm { e p i } , i }"
+                    },
+                    {
+                        "type": "text",
+                        "content": ". This deliberate construction tests whether the learned uncertainty is useful as a generation variable while keeping the reported pilot simple and interpretable."
+                    }
+                ]
+            },
+            "bbox": [
+                111,
+                300,
+                883,
+                344
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "For exact posterior generation one can instead draw "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "\\sigma ^ { 2 } \\sim"
+                    },
+                    {
+                        "type": "text",
+                        "content": "InvGamma "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "( \\alpha , \\beta )"
+                    },
+                    {
+                        "type": "text",
+                        "content": ", then "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "\\mu \\sim { \\cal N } ( \\gamma , \\sigma ^ { 2 } / \\nu )"
+                    },
+                    {
+                        "type": "text",
+                        "content": "and "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "z \\sim \\mathcal { N } ( \\mu , \\sigma ^ { 2 } )"
+                    },
+                    {
+                        "type": "text",
+                        "content": ". For control-oriented generation, the variance-matched rule can be generalized to"
+                    }
+                ]
+            },
+            "bbox": [
+                111,
+                344,
+                883,
+                376
+            ]
+        },
+        {
+            "type": "equation_interline",
+            "content": {
+                "math_content": "z = \\gamma + \\tau _ { \\mathrm { e p i } } \\sqrt { u _ { \\mathrm { e p i } } } \\odot \\epsilon _ { \\mathrm { e p i } } + \\tau _ { \\mathrm { v a r } } \\sqrt { u _ { \\mathrm { v a r } } } \\odot \\epsilon _ { \\mathrm { v a r } } ,\\tag{24}",
+                "math_type": "latex",
+                "image_source": {
+                    "path": "images/e422e61fedad4aabe5beb0d52fbccb0e59f24e7837d88cbf37ffdcad6bc3d998.jpg"
+                }
+            },
+            "bbox": [
+                357,
+                382,
+                640,
+                398
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "with two interpretable amplitudes. This second expression is likewise a variance-matched control parameterization rather than an exact draw from the hierarchical posterior. Low "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "\\tau _ { \\mathrm { e p i } }"
+                    },
+                    {
+                        "type": "text",
+                        "content": "favors conservative posterior-anchored variation, whereas increasing "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "\\tau _ { \\mathrm { e p i } }"
+                    },
+                    {
+                        "type": "text",
+                        "content": "deliberately probes sensitivity to latent-location uncertainty."
+                    }
+                ]
+            },
+            "bbox": [
+                111,
+                404,
+                885,
+                450
+            ]
+        },
+        {
+            "type": "title",
+            "content": {
+                "title_content": [
+                    {
+                        "type": "text",
+                        "content": "3.2 Separating anchor reliability from perturbation-attributable efects"
+                    }
+                ],
+                "level": 2
+            },
+            "bbox": [
+                111,
+                467,
+                725,
+                484
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "Equation (22) makes "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "u _ { \\mathrm { e p i } }"
+                    },
+                    {
+                        "type": "text",
+                        "content": "serve two distinct roles: it is (i) an uncertainty score computed from the NIG posterior and used to rank anchors, and (ii) the scale of the random displacement applied to �. A raw comparison of classifier error between low- and "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "\\mathrm { \\ h i g h } { - u _ { \\mathrm { e p i } } }"
+                    },
+                    {
+                        "type": "text",
+                        "content": "populations therefore cannot say which role produced the diference. Anchors with large "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "u _ { \\mathrm { e p i } }"
+                    },
+                    {
+                        "type": "text",
+                        "content": "may simply be atypical digits that the encoder–decoder pair represents poorly, in which case the decoded image can lose its class even with no uncertainty-scaled displacement."
+                    }
+                ]
+            },
+            "bbox": [
+                111,
+                492,
+                885,
+                568
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "The distinction can be written explicitly as"
+                    }
+                ]
+            },
+            "bbox": [
+                132,
+                568,
+                416,
+                582
+            ]
+        },
+        {
+            "type": "equation_interline",
+            "content": {
+                "math_content": "\\underbrace { u _ { \\mathrm { e p i } } = { \\frac { \\beta } { \\nu ( \\alpha - 1 ) } } } _ { \\begin{array} { c } { { \\mathrm { e s t i m a t e d ~ f o r ~ e v e r y ~ a n c h o r } } } \\\\ { { \\mathrm { a n d ~ r e t a i n e d ~ f o r ~ r a n k i n g } } } \\end{array} } \\quad \\begin{array} { c } { { \\mathrm { v e r s u s } } } \\\\ { { \\mathrm { ~ } } } \\\\ { { \\mathrm { u s e ~ o f ~ t h a t ~ u n c e r t a i n t y } } } \\end{array}  \\quad \\underbrace { \\tau _ { \\mathrm { e p i } } { \\sqrt { u _ { \\mathrm { e p i } } } } { \\epsilon } } _ { \\begin{array} { c } { { \\mathrm { a } } } \\\\ { { \\mathrm { u s e ~ o f ~ t h a t ~ u n c e r t a i n t y } } } \\\\ { { \\mathrm { i n ~ p e r t u r b a t i o n } } } \\end{array} }",
+                "math_type": "latex",
+                "image_source": {
+                    "path": "images/42d0ccab211a659806418d531e822b0d0027e9a442c678f2f477ec29d0761c26.jpg"
+                }
+            },
+            "bbox": [
+                295,
+                588,
+                700,
+                654
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "Setting "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "z = \\gamma"
+                    },
+                    {
+                        "type": "text",
+                        "content": "switches of only the second quantity by setting "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "\\tau _ { \\mathrm { e p i } } = 0"
+                    },
+                    {
+                        "type": "text",
+                        "content": ". It does not set "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "u _ { \\mathrm { e p i } } = 0"
+                    },
+                    {
+                        "type": "text",
+                        "content": ", and it does not prevent the decoder from generating "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "g _ { \\theta } ( \\gamma )"
+                    }
+                ]
+            },
+            "bbox": [
+                112,
+                660,
+                883,
+                689
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "We therefore use three conditions, all sharing one trained ELVAE, one frozen classifier, and one realization of �:"
+                    }
+                ]
+            },
+            "bbox": [
+                130,
+                690,
+                867,
+                705
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "(A) Uncertainty-scaled generation."
+                    }
+                ]
+            },
+            "bbox": [
+                112,
+                710,
+                357,
+                724
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "<sub>�</sub> = <sub>�</sub> + √�<sub>epi</sub> ⊙ �, i.e. Eq. (22). This is the primary uncertainty-scaled generation condition."
+                    }
+                ]
+            },
+            "bbox": [
+                145,
+                726,
+                754,
+                741
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "(C) Zero-displacement control."
+                    }
+                ]
+            },
+            "bbox": [
+                112,
+                748,
+                333,
+                762
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "equation_inline",
+                        "content": "z = \\gamma ,"
+                    },
+                    {
+                        "type": "text",
+                        "content": "equivalently "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "\\tau _ { \\mathrm { e p i } } = 0"
+                    },
+                    {
+                        "type": "text",
+                        "content": "in Eq. (24) (with "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "\\tau _ { \\mathrm { v a r } } = 0"
+                    },
+                    {
+                        "type": "text",
+                        "content": "in this pilot). The encoder still produces "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "u _ { \\mathrm { e p i } }"
+                    },
+                    {
+                        "type": "text",
+                        "content": "for each anchor and the samples are still ranked by "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "u _ { \\mathrm { e p i } } ;"
+                    },
+                    {
+                        "type": "text",
+                        "content": "only uncertainty-scaled displacement is disabled. Any low/high stratification surviving here is therefore associated with anchor representation/re-generation reliability rather than with uncertainty-scaled perturbation."
+                    }
+                ]
+            },
+            "bbox": [
+                140,
+                763,
+                883,
+                824
+            ]
+        },
+        {
+            "type": "title",
+            "content": {
+                "title_content": [
+                    {
+                        "type": "text",
+                        "content": "(I) Generation-attributable failure."
+                    }
+                ],
+                "level": 2
+            },
+            "bbox": [
+                112,
+                832,
+                361,
+                845
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "Restrict attention to anchors whose condition-(C) generation is already classified correctly, and measure the failure rate under condition (A). Every failure counted here was induced by uncertainty-scaled perturbation."
+                    }
+                ]
+            },
+            "bbox": [
+                143,
+                845,
+                883,
+                877
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "Condition (C) is the required zero-displacement baseline. Statistic (I) isolates the part of the result attributable to the uncertainty-scaled perturbation."
+                    }
+                ]
+            },
+            "bbox": [
+                111,
+                881,
+                883,
+                912
+            ]
+        },
+        {
+            "type": "page_number",
+            "content": {
+                "page_number_content": [
+                    {
+                        "type": "text",
+                        "content": "5"
+                    }
+                ]
+            },
+            "bbox": [
+                493,
+                935,
+                504,
+                948
+            ]
+        }
+    ],
+    [
+        {
+            "type": "title",
+            "content": {
+                "title_content": [
+                    {
+                        "type": "text",
+                        "content": "3.3 Low-uncertainty augmentation and high-uncertainty stress testing"
+                    }
+                ],
+                "level": 2
+            },
+            "bbox": [
+                112,
+                89,
+                715,
+                108
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "For a class-conditional or posterior-anchored application, generated samples can be divided by "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "u _ { \\mathrm { e p i } }"
+                    }
+                ]
+            },
+            "bbox": [
+                112,
+                114,
+                766,
+                131
+            ]
+        },
+        {
+            "type": "table",
+            "content": {
+                "image_source": {
+                    "path": "images/429cd557a66a0748a8e9ed6eda858bcda784c4a011d6269f68a110d50344da7e.jpg"
+                },
+                "table_caption": [],
+                "table_footnote": [],
+                "html": "<table><tr><td>Generation region</td><td>Interpretation</td><td>Intended use</td></tr><tr><td>Low  $u _ { \\mathrm { e p i } }$ </td><td>latent location is comparatively well deter- mined</td><td>higher-confidence synthetic augmentation after task-specific validity checks</td></tr><tr><td>Intermediate  $u _ { \\mathrm { e p i } }$ </td><td>moderate uncertainty/diversity</td><td>exploratory generation and data enrichment</td></tr><tr><td>High  $u _ { \\mathrm { e p i } }$ </td><td>latent location is weakly determined</td><td>stress testing, failure analysis, and hard-example generation</td></tr></table>",
+                "table_type": "simple_table",
+                "table_nest_level": 1
+            },
+            "bbox": [
+                129,
+                138,
+                867,
+                237
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "High- "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "\\cdot u _ { \\mathrm { e p i } }"
+                    },
+                    {
+                        "type": "text",
+                        "content": "images are not automatically “bad” images. They are images generated from an anchor whose latent location ELVAE estimates less precisely. Some remain semantically correct; others cross a task boundary. The value of "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "u _ { \\mathrm { e p i } }"
+                    },
+                    {
+                        "type": "text",
+                        "content": "is therefore statistical stratification, not deterministic rejection. Because much of the low/high contrast is inherited from the anchor, the table is best read as a policy over anchors to be re-generated, with the additional sampling-induced risk quantified separately by statistic (I)."
+                    }
+                ]
+            },
+            "bbox": [
+                111,
+                247,
+                885,
+                324
+            ]
+        },
+        {
+            "type": "title",
+            "content": {
+                "title_content": [
+                    {
+                        "type": "text",
+                        "content": "4 Generation Pilot on MNIST"
+                    }
+                ],
+                "level": 2
+            },
+            "bbox": [
+                111,
+                345,
+                433,
+                364
+            ]
+        },
+        {
+            "type": "title",
+            "content": {
+                "title_content": [
+                    {
+                        "type": "text",
+                        "content": "4.1 Study design"
+                    }
+                ],
+                "level": 2
+            },
+            "bbox": [
+                112,
+                378,
+                269,
+                396
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "The 70,000 MNIST digit images [10] were pooled and partitioned into 60,000 training images and 10,000 held-out images. ELVAE is trained without using digit labels. The labels are used only to define the intended semantic identity of each posterior anchor and to evaluate the generated images."
+                    }
+                ]
+            },
+            "bbox": [
+                111,
+                404,
+                883,
+                449
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "A separate MLP classifier 784 → 256 → 128 → 10 is trained only on the real 60,000-image training set for three epochs and then frozen. It achieves 96.85% accuracy on the held-out real images. No generated image is used to train or tune this classifier."
+                    }
+                ]
+            },
+            "bbox": [
+                111,
+                449,
+                885,
+                494
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "For each held-out anchor, one image is generated using Eq. (22). The scalar "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "u _ { \\mathrm { e p i } }"
+                    },
+                    {
+                        "type": "text",
+                        "content": "is the mean of the eight coordinatewise uncertainties from Eq. (8). A generation error occurs when the frozen classifier prediction difers from the anchor label. Because the baseline scale of "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "u _ { \\mathrm { e p i } }"
+                    },
+                    {
+                        "type": "text",
+                        "content": "difers across digit classes, uncertainty is ranked within the intended digit class before pooling. This prevents an intrinsically high-uncertainty but easy class from dominating the high "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "- u _ { \\mathrm { e p i } }"
+                    },
+                    {
+                        "type": "text",
+                        "content": "group."
+                    }
+                ]
+            },
+            "bbox": [
+                111,
+                494,
+                885,
+                556
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "If "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "u _ { \\mathrm { e p i } }"
+                    },
+                    {
+                        "type": "text",
+                        "content": "is instead ranked globally across all 10,000 held-out images, the bottom-versus-top 20% contrast is 26.70% versus 27.10%, a ratio of 1.015×—essentially no efect. All of the reported stratification therefore lives within digit classes and none of it survives pooling across classes. The reason is that the class-level mean of "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "u _ { \\mathrm { e p i } }"
+                    },
+                    {
+                        "type": "text",
+                        "content": "and class-level digit dificulty are not aligned, so global ranking mixes an easy high- "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "- u _ { \\mathrm { e p i } }"
+                    },
+                    {
+                        "type": "text",
+                        "content": "class into the high-uncertainty group and cancels the within-class trend. This is a legitimate use of stratification rather than a selection efect, but it means the unconditional model produces a "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "u _ { \\mathrm { e p i } }"
+                    },
+                    {
+                        "type": "text",
+                        "content": "scale that is only comparable within a class. A conditional ELVAE would be required for applications in which anchors of diferent classes must be ranked against each other."
+                    }
+                ]
+            },
+            "bbox": [
+                111,
+                555,
+                885,
+                661
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "The primary quantitative comparison is classifier error in the bottom and top 20% of within-class "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "u _ { \\mathrm { e p i } }"
+                    },
+                    {
+                        "type": "text",
+                        "content": ". A classstratified bootstrap with 800 replicates gives confidence intervals. We also report error across ten within-class uncertainty deciles. Every quantity is additionally reported under conditions (A), (C), and (I) of Sec. 3.2, and the whole pilot is repeated for three random seeds so that run-to-run spread is visible."
+                    }
+                ]
+            },
+            "bbox": [
+                111,
+                661,
+                885,
+                722
+            ]
+        },
+        {
+            "type": "title",
+            "content": {
+                "title_content": [
+                    {
+                        "type": "text",
+                        "content": "4.2 Qualitative visualization"
+                    }
+                ],
+                "level": 2
+            },
+            "bbox": [
+                112,
+                739,
+                367,
+                757
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "Figure 2 shows three rows of empirical ELVAE generations. The top row is the "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "\\tau _ { \\mathrm { e p i } } = 0"
+                    },
+                    {
+                        "type": "text",
+                        "content": "zero-displacement control: the decoder is evaluated at "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "z = \\gamma"
+                    },
+                    {
+                        "type": "text",
+                        "content": "for an anchor at the median within-class "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "u _ { \\mathrm { e p i } }"
+                    },
+                    {
+                        "type": "text",
+                        "content": "of each digit class. The encoder still computes a nonzero "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "u _ { \\mathrm { e p i } }"
+                    },
+                    {
+                        "type": "text",
+                        "content": "for each anchor; that score is shown above each image but is not used to perturb �. "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "\\mathbf { A } \\mathbf { t } z = \\boldsymbol { \\gamma }"
+                    },
+                    {
+                        "type": "text",
+                        "content": "the frozen classifier errs on 28.28% of the 10,000 anchors, reflecting information loss in the deliberately small MLP encoder–decoder. The second and third rows are empirical ELVAE generations selected at approximately the 10th and 90th within-class "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "u _ { \\mathrm { e p i } }"
+                    },
+                    {
+                        "type": "text",
+                        "content": "percentiles. Their titles give intended class → frozen-classifier prediction and the absolute "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "u _ { \\mathrm { e p i } }"
+                    },
+                    {
+                        "type": "text",
+                        "content": "value. These rows are selected by uncertainty percentile only, not by classifier outcome."
+                    }
+                ]
+            },
+            "bbox": [
+                111,
+                765,
+                885,
+                872
+            ]
+        },
+        {
+            "type": "page_number",
+            "content": {
+                "page_number_content": [
+                    {
+                        "type": "text",
+                        "content": "6"
+                    }
+                ]
+            },
+            "bbox": [
+                493,
+                935,
+                504,
+                948
+            ]
+        }
+    ],
+    [
+        {
+            "type": "image",
+            "content": {
+                "image_source": {
+                    "path": "images/e0486af3f0a111500486300f0dde957c0e3724246ddad95904e0dbf32be97268.jpg"
+                },
+                "image_caption": [
+                    {
+                        "type": "text",
+                        "content": "Figure 2: Visualization of posterior-anchored uncertainty-aware generation. Top row: condition (C), the measured zero-displacement control "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "z = \\gamma"
+                    },
+                    {
+                        "type": "text",
+                        "content": "with "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "\\tau _ { \\mathrm { e p i } } = 0 ;"
+                    },
+                    {
+                        "type": "text",
+                        "content": "; the displayed "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "u _ { \\mathrm { e p i } }"
+                    },
+                    {
+                        "type": "text",
+                        "content": "values remain the NIG-derived uncertainty scores used for ranking. The top-row anchors are at the median within-class "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "u _ { \\mathrm { e p i } }"
+                    },
+                    {
+                        "type": "text",
+                        "content": "of each class. Middle row: approximately the 10th within-class "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "u _ { \\mathrm { e p i } }"
+                    },
+                    {
+                        "type": "text",
+                        "content": "percentile. Bottom row: approximately the 90th percentile. Each image reports intended class and frozen-classifier result as "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "c \\to { \\hat { c } } ,"
+                    },
+                    {
+                        "type": "text",
+                        "content": "together with its �<sub>epi</sub> value; red titles mark generations whose class was lost."
+                    }
+                ],
+                "image_footnote": []
+            },
+            "bbox": [
+                120,
+                92,
+                877,
+                310
+            ]
+        },
+        {
+            "type": "table",
+            "content": {
+                "image_source": {
+                    "path": "images/1e8f4690c1a9cc570f868da4d6d19a255b7f61d279d8613c01894a98d3c6bb5d.jpg"
+                },
+                "table_caption": [
+                    {
+                        "type": "text",
+                        "content": "Table 1: Generation pilot result."
+                    }
+                ],
+                "table_footnote": [],
+                "html": "<table><tr><td>Quantity</td><td>Result</td></tr><tr><td>Frozen classifier accuracy on held-out real MNIST</td><td>96.85%</td></tr><tr><td>Classifier error on all ELVAE generations</td><td>29.06%</td></tr><tr><td>Bottom 20% within-class  $u _ { \\mathrm { e p i } } { : }$  classifier error</td><td>26.30%</td></tr><tr><td>Top 20% within-class  $u _ { \\mathrm { e p i } } { \\mathrm { : } }$  classifier error</td><td>37.80%</td></tr><tr><td>High/low error ratio</td><td>1.437× (95% CI 1.33–1.58)</td></tr><tr><td>High-minus-low absolute increase</td><td>11.50 points (95% CI 8.99–14.53)</td></tr><tr><td>Top  $u _ { \\mathrm { e p i } }$  decile error</td><td>43.00%</td></tr><tr><td>AUROC of within-class  $u _ { \\mathrm { e p i } }$  percentile for failure</td><td>0.556</td></tr><tr><td>Classifier error at  $z = \\gamma$  (control C)</td><td>28.28%</td></tr><tr><td>Global (unnormalized)  $u _ { \\mathrm { e p i } }$  high/low ratio Held-out reconstruction MSE</td><td>1.015×</td></tr><tr><td> $L _ { \\mathrm { r e c o n } }$ </td><td>0.0408</td></tr><tr><td>λNIG from Eq. (18)</td><td> $8 . 3 3 \\times 1 0 ^ { - 4 }$ </td></tr></table>",
+                "table_type": "simple_table",
+                "table_nest_level": 1
+            },
+            "bbox": [
+                230,
+                434,
+                767,
+                631
+            ]
+        },
+        {
+            "type": "title",
+            "content": {
+                "title_content": [
+                    {
+                        "type": "text",
+                        "content": "4.3 Quantitative result with a fixed classifier"
+                    }
+                ],
+                "level": 2
+            },
+            "bbox": [
+                112,
+                656,
+                500,
+                674
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "Table 1 collects the pilot results. Across all 10,000 generated images, the frozen classifier error was 29.06%. Uncertainty stratified this error. In the bottom 20% of within-class "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "u _ { \\mathrm { e p i } } ."
+                    },
+                    {
+                        "type": "text",
+                        "content": ", classifier error was 26.30%; in the top 20%, it was 37.80%. Thus the high- "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "- u _ { \\mathrm { e p i } }"
+                    },
+                    {
+                        "type": "text",
+                        "content": "group had an 11.50 percentage-point higher error, or a 1.437× error rate. The class-stratified bootstrap gave a 95% CI of "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "8 . 9 9 \\mathrm { - } 1 4 . 5 3"
+                    },
+                    {
+                        "type": "text",
+                        "content": "percentage points for the diference and 1.33–1.58 for the ratio. A two-proportion chi-square test gave "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "p = 6 . 5 6 \\times 1 0 ^ { - 1 5 }"
+                    }
+                ]
+            },
+            "bbox": [
+                111,
+                683,
+                885,
+                757
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "Table 2 places the result next to the controls and changes how it should be read. Under condition (C), with uncertainty-scaled displacement removed entirely, the bottom-versus-top contrast is 26.30% versus 36.70%, a ratio of 1.395×. Almost the whole condition-(A) stratification is therefore already present before uncertainty-scaled perturbation is applied. This does not mean “before generation” and does not mean "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "u _ { \\mathrm { e p i } } = 0 \\colon"
+                    },
+                    {
+                        "type": "text",
+                        "content": "the decoder still generates "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "g _ { \\theta } ( \\gamma )"
+                    },
+                    {
+                        "type": "text",
+                        "content": ", and the encoder-derived "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "u _ { \\mathrm { e p i } }"
+                    },
+                    {
+                        "type": "text",
+                        "content": "is still used to define the low/high groups. Uncertainty-scaled perturbation raises overall error only from 28.28% to 29.06%. The appropriate reading is that "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "u _ { \\mathrm { e p i } }"
+                    },
+                    {
+                        "type": "text",
+                        "content": "ranks anchors by how faithfully the model can re-encode and re-decode them, which is a useful property of the evidential posterior but is not, by itself, a perturbation-induced efect."
+                    }
+                ]
+            },
+            "bbox": [
+                111,
+                757,
+                885,
+                878
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "The generation-attributable statistic (I) isolates what uncertainty-scaled perturbation does. Among anchors that condition (C) already classifies correctly, the perturbation causes failure in 1.97% of the "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "\\mathrm { \\ l o w { - } \\it { u } _ { \\mathrm { e p i } } }"
+                    },
+                    {
+                        "type": "text",
+                        "content": "group and 5.92% of the "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "\\mathrm { \\ h i g h } { - u _ { \\mathrm { e p i } } }"
+                    },
+                    {
+                        "type": "text",
+                        "content": "group, a ratio of "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "3 . 0 1 \\times ( 9 5 \\% \\mathrm { C I } 2 . 0 3 \\ – 4 . 7 5 )"
+                    },
+                    {
+                        "type": "text",
+                        "content": ". The relative efect is larger than the headline ratio, but the base rate is small, so the number of images actually destabilized by uncertainty-scaled perturbation is modest. Figure 4 gives the corresponding decile trend. A stress-testing protocol built on Eq. (22) at "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "\\tau _ { \\mathrm { e p i } } = 1"
+                    },
+                    {
+                        "type": "text",
+                        "content": "will therefore produce hard examples at a low yield. Increasing "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "\\tau _ { \\mathrm { e p i } }"
+                    },
+                    {
+                        "type": "text",
+                        "content": "is the natural next experiment."
+                    }
+                ]
+            },
+            "bbox": [
+                111,
+                878,
+                885,
+                910
+            ]
+        },
+        {
+            "type": "page_number",
+            "content": {
+                "page_number_content": [
+                    {
+                        "type": "text",
+                        "content": "7"
+                    }
+                ]
+            },
+            "bbox": [
+                493,
+                935,
+                504,
+                948
+            ]
+        }
+    ],
+    [
+        {
+            "type": "table",
+            "content": {
+                "image_source": {
+                    "path": "images/d0390cdd8743496cd40cb4546fde5cdff1619a187562fb4a8ff52359bcf9a8e6.jpg"
+                },
+                "table_caption": [
+                    {
+                        "type": "text",
+                        "content": "Table 2: The same trained model and frozen classifier under conditions "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "( \\mathbf { A } ) , ( \\mathbf { C } )"
+                    },
+                    {
+                        "type": "text",
+                        "content": ", and (I). Condition (C) keeps "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "u _ { \\mathrm { e p i } }"
+                    },
+                    {
+                        "type": "text",
+                        "content": "as the ranking variable but disables its sampling role by setting "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "\\tau _ { \\mathrm { e p i } } = 0"
+                    }
+                ],
+                "table_footnote": [],
+                "html": "<table><tr><td>Condition</td><td>Bottom 20%</td><td>Top 20%</td><td>Ratio</td></tr><tr><td>(A) Uncertainty-scaled generation  $z = \\gamma + \\sqrt { u _ { \\mathrm { e p i } } } \\odot \\epsilon$ </td><td>26.30%</td><td>37.80%</td><td>1.437×</td></tr><tr><td> $ { \\left( \\mathbf { C } \\right) } z = \\gamma , \\tau _ { \\mathrm { e p i } } = 0 ; u _ { \\mathrm { e p i } }$  retained for ranking</td><td>26.30%</td><td>36.70%</td><td>1.395×</td></tr><tr><td>(I) Generation-attributable failures</td><td>1.97%</td><td>5.92%</td><td>3.01×</td></tr></table>",
+                "table_type": "simple_table",
+                "table_nest_level": 1
+            },
+            "bbox": [
+                220,
+                128,
+                777,
+                199
+            ]
+        },
+        {
+            "type": "chart",
+            "content": {
+                "image_source": {
+                    "path": "images/d4ff9044cd2e4f73be371d3c1bc1645ba860dd809765a4e9a0944e1cb288c60b.jpg"
+                },
+                "content": "",
+                "chart_caption": [
+                    {
+                        "type": "text",
+                        "content": "Figure 3: Frozen-classifier error versus within-class ELVAE epistemic-uncertainty decile. The dashed control curve is "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "z = \\gamma"
+                    },
+                    {
+                        "type": "text",
+                        "content": "and tracks the uncertainty-scaled-generation curve closely. In this control "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "\\tau _ { \\mathrm { e p i } } = 0"
+                    },
+                    {
+                        "type": "text",
+                        "content": "while "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "u _ { \\mathrm { e p i } }"
+                    },
+                    {
+                        "type": "text",
+                        "content": "is retained for ranking. The top uncertainty decile reaches 43.00% error."
+                    }
+                ],
+                "chart_footnote": []
+            },
+            "bbox": [
+                168,
+                222,
+                828,
+                494
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": []
+            },
+            "bbox": [
+                111,
+                583,
+                883,
+                643
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "Figure 3 gives the full decile trend with the condition-(C) curve overlaid. The curve is not strictly monotone in every low-uncertainty bin, but the upper uncertainty range shows a clear increase and the highest decile has the largest error. The lowest decile is also elevated relative to deciles 2–4, and this shape reproduces across seeds; a plausible reading is that the very lowest- "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "- u _ { \\mathrm { e p i } }"
+                    },
+                    {
+                        "type": "text",
+                        "content": "coordinates are those closest to the prior mean, where the decoder has the least anchor-specific information to work with. Because decile 1 sits inside the bottom-20% group, it dilutes the reference level and makes the headline ratio conservative. On a sample-by-sample basis the association is modest: the AUROC of within-class "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "u _ { \\mathrm { e p i } }"
+                    },
+                    {
+                        "type": "text",
+                        "content": "percentile for classifier failure is 0.556, and Spearman correlation with the binary failure indicator is 0.088. These values are safeguards against overclaiming. The result supports population-level uncertainty stratification, not a claim that "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "u _ { \\mathrm { e p i } }"
+                    },
+                    {
+                        "type": "text",
+                        "content": "alone perfectly predicts which individual image will fail."
+                    }
+                ]
+            },
+            "bbox": [
+                111,
+                643,
+                885,
+                781
+            ]
+        },
+        {
+            "type": "title",
+            "content": {
+                "title_content": [
+                    {
+                        "type": "text",
+                        "content": "5 Discussion and Conclusion"
+                    }
+                ],
+                "level": 2
+            },
+            "bbox": [
+                112,
+                804,
+                421,
+                821
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "The pilot supports a focused and testable claim. ELVAE produces a continuous uncertainty variable that can be attached to the generation process, and populations selected by that variable difer substantially in semantic reliability. The "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "z = \\gamma"
+                    },
+                    {
+                        "type": "text",
+                        "content": "control shows that most of the low/high diference survives when uncertainty-scaled perturbation is switched of, even though "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "u _ { \\mathrm { e p i } }"
+                    },
+                    {
+                        "type": "text",
+                        "content": "itself is still measured and used for ranking. Thus this dominant component is best described as an anchor representation/re-generation reliability efect, whereas only the smaller component isolated by statistic (I) is caused by uncertainty-scaled perturbation itself. Both components are useful: the anchor-level component can help decide which examples are safer to re-generate for augmentation, whereas the generation-attributable component informs how hard to push the sampler for stress testing."
+                    }
+                ]
+            },
+            "bbox": [
+                111,
+                835,
+                885,
+                911
+            ]
+        },
+        {
+            "type": "page_number",
+            "content": {
+                "page_number_content": [
+                    {
+                        "type": "text",
+                        "content": "8"
+                    }
+                ]
+            },
+            "bbox": [
+                493,
+                935,
+                504,
+                948
+            ]
+        }
+    ],
+    [
+        {
+            "type": "table",
+            "content": {
+                "image_source": {
+                    "path": "images/b506ecccc557c92dc587398416128d5100d0d29aac6f44fb1b5aa3d7438ee247.jpg"
+                },
+                "table_caption": [
+                    {
+                        "type": "text",
+                        "content": "Table 3: Seed-to-seed variability of the pilot. Each row repeats the entire pipeline from a diferent random key."
+                    }
+                ],
+                "table_footnote": [],
+                "html": "<table><tr><td>Random key</td><td>Real acc.</td><td>Error (A)</td><td>Ratio (A)</td><td>Ratio (C)</td><td>Ratio (I)</td></tr><tr><td>20260809</td><td>96.85%</td><td>29.06%</td><td>1.437×</td><td>1.395×</td><td>3.01×</td></tr><tr><td>1</td><td>96.90%</td><td>30.40%</td><td>1.126×</td><td>1.097×</td><td>1.74×</td></tr><tr><td>2</td><td>96.96%</td><td>31.79%</td><td>1.209×</td><td>1.219×</td><td>1.59×</td></tr></table>",
+                "table_type": "simple_table",
+                "table_nest_level": 1
+            },
+            "bbox": [
+                266,
+                116,
+                730,
+                185
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": []
+            },
+            "bbox": [
+                111,
+                212,
+                883,
+                257
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "The low/high comparison should not be interpreted as a universal threshold. First, "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "u _ { \\mathrm { e p i } }"
+                    },
+                    {
+                        "type": "text",
+                        "content": "is class dependent in the present unconditional model, which is why the pilot uses within-class rankings; the efect does not survive global ranking. A conditional ELVAE is therefore a prerequisite for cross-class use rather than a minor refinement. Second, the association is probabilistic and modest at the single-image level. Third, classifier error is only a semantic proxy for image utility; medical imaging applications would require task-specific validity checks, physics constraints, or expert review. Fourth, the current MLP generator is intentionally small and generates blurry digits, and its lossiness is exactly what makes the condition-(C) error rate as high as 28.28%; a stronger decoder would lower that baseline and would let condition (I) be measured on a much larger population of correctly re-generated anchors. A stronger decoder or a hybrid ELVAE-conditioning mechanism for modern difusion or flow models could preserve the same uncertainty principle while greatly improving image fidelity. Fifth, as Table 3 shows, the headline ratio varies from 1.126 to 1.437 across three seeds, so single-seed reporting of a number like 1.437× overstates the precision of the pilot."
+                    }
+                ]
+            },
+            "bbox": [
+                111,
+                257,
+                885,
+                424
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "The experiment also clarifies what high uncertainty should mean operationally. "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "\\mathrm { H i g h } { - u _ { \\mathrm { e p i } } }"
+                    },
+                    {
+                        "type": "text",
+                        "content": "images should not simply be discarded. If the objective is trusted augmentation, they can be down-weighted or rejected. If the objective is robustness analysis, those same samples are valuable because they are more likely to induce semantic instability. This turns one uncertainty quantity into two complementary data-generation policies."
+                    }
+                ]
+            },
+            "bbox": [
+                111,
+                424,
+                885,
+                484
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "A natural next experiment is downstream retraining: train one classifier with an equal number of "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "\\mathrm { l o w } { - u _ { \\mathrm { e p i } } }"
+                    },
+                    {
+                        "type": "text",
+                        "content": "synthetic images and another with unfiltered synthetic images, then compare real-test accuracy and robustness. A second extension is to vary "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "\\tau _ { \\mathrm { e p i } }"
+                    },
+                    {
+                        "type": "text",
+                        "content": "in Eq. (24) and measure whether task error increases smoothly as uncertainty-scaled perturbation is strengthened; given the small base rate of condition (I) at "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "\\tau _ { \\mathrm { e p i } } = 1"
+                    },
+                    {
+                        "type": "text",
+                        "content": ", this is the most informative single experiment remaining, since it directly tests whether "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "u _ { \\mathrm { e p i } }"
+                    },
+                    {
+                        "type": "text",
+                        "content": "acts as a usable generation knob rather than only as an anchor-quality score. In medical imaging, the same framework could generate low-uncertainty anatomy for augmentation and high-uncertainty anatomy or acquisition conditions for controlled stress testing."
+                    }
+                ]
+            },
+            "bbox": [
+                111,
+                484,
+                885,
+                590
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "ELVAE replaces the deterministic latent mean and variance outputs ofa conventional VAE with an input-dependent NIG posterior over latent location and latent variance. This produces an explicit latent-location uncertainty "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "u _ { \\mathrm { e p i } } = \\beta / [ \\nu ( \\alpha - 1 ) ]"
+                    },
+                    {
+                        "type": "text",
+                        "content": "that is mathematically identified by direct higher-order regularization and can be used as a generation control variable. The likelihood analysis in Sec. 2.3 further shows that �<sub>NIG</sub> need not be regarded as an arbitrary balance parameter: under the homoscedastic Gaussian observation model it is determined by the residual variance, which can in turn be estimated by the converged reconstruction MSE."
+                    }
+                ]
+            },
+            "bbox": [
+                111,
+                590,
+                885,
+                680
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "In conclusion, the MNIST pilot establishes two separable findings. First, "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "u _ { \\mathrm { e p i } }"
+                    },
+                    {
+                        "type": "text",
+                        "content": "stratifies posterior anchors by re-generation reliability: the top 20% uncertainty group has 37.80% classification error against 26.30% in the bottom 20%, a 1.437× increase, of which a 1.395× ratio remains when "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "\\tau _ { \\mathrm { e p i } } = 0 ."
+                    },
+                    {
+                        "type": "text",
+                        "content": ". In that control "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "u _ { \\mathrm { e p i } }"
+                    },
+                    {
+                        "type": "text",
+                        "content": "is still present and used for ranking; only uncertainty-scaled perturbation is absent. Second, uncertainty-scaled perturbation itself induces semantic failure 3.01× more often in high- "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "- u _ { \\mathrm { e p i } }"
+                    },
+                    {
+                        "type": "text",
+                        "content": "anchors than in low- "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "- u _ { \\mathrm { e p i } }"
+                    },
+                    {
+                        "type": "text",
+                        "content": "anchors. The first finding is the larger anchor-reliability efect; the second is the specifically sampling-attributable generation efect. Together they support ELVAE as a framework that can stratify anchors and, to a lesser but measurable degree, control generation by model uncertainty."
+                    }
+                ]
+            },
+            "bbox": [
+                111,
+                680,
+                885,
+                787
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "Reproducibility. The pilot uses the publicly available MNIST dataset [10], partitioned into 60,000 training and 10,000 held-out images. The ELVAE encoder is an MLP 784 → 128 → 64 with � = 8 latent coordinates and a mirrored decoder, trained for four epochs with Adam, learning rate "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "1 0 ^ { - 3 }"
+                    },
+                    {
+                        "type": "text",
+                        "content": ", batch size 1024, and "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "\\lambda _ { \\mathrm { N I G } } = 5 \\times 1 0 ^ { - 4 }"
+                    },
+                    {
+                        "type": "text",
+                        "content": ". The frozen evaluation classifier is an MLP 784 → 256 → 128 → 10 trained for three epochs on the real training split only. Confidence intervals use a class-stratified bootstrap with 800 replicates. Results in Tables 1 and 2 use random key 20260809; Table 3 repeats the entire pipeline for keys 1 and 2."
+                    }
+                ]
+            },
+            "bbox": [
+                111,
+                804,
+                885,
+                896
+            ]
+        },
+        {
+            "type": "page_number",
+            "content": {
+                "page_number_content": [
+                    {
+                        "type": "text",
+                        "content": "9"
+                    }
+                ]
+            },
+            "bbox": [
+                493,
+                935,
+                504,
+                946
+            ]
+        }
+    ],
+    [
+        {
+            "type": "chart",
+            "content": {
+                "image_source": {
+                    "path": "images/56d9ee292da61f68f37ead40764b0879ec69665de8700ca2d402cbfb2a686db7.jpg"
+                },
+                "content": "",
+                "chart_caption": [
+                    {
+                        "type": "text",
+                        "content": "Figure 4: Generation-attributable failure rate by within-class "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "u _ { \\mathrm { e p i } }"
+                    },
+                    {
+                        "type": "text",
+                        "content": "decile, condition (I). Only anchors already classified correctly at "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "z = \\gamma"
+                    },
+                    {
+                        "type": "text",
+                        "content": "are counted, so every failure shown was induced by uncertainty-scaled perturbation. The relative trend is steeper than in Fig. 3, but on a much smaller base rate."
+                    }
+                ],
+                "chart_footnote": []
+            },
+            "bbox": [
+                176,
+                95,
+                820,
+                329
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "Author–AI Collaboration. The author conceptualized ELVAE and the uncertainty-aware generation study and made the methodological decisions, interpreted the results, and takes responsibility for the content. Generative AI tools were used to assist with discussion, mathematical checking, computational analysis, drafting, and editing."
+                    }
+                ]
+            },
+            "bbox": [
+                111,
+                417,
+                885,
+                465
+            ]
+        },
+        {
+            "type": "title",
+            "content": {
+                "title_content": [
+                    {
+                        "type": "text",
+                        "content": "References"
+                    }
+                ],
+                "level": 2
+            },
+            "bbox": [
+                112,
+                487,
+                228,
+                506
+            ]
+        },
+        {
+            "type": "list",
+            "content": {
+                "list_type": "reference_list",
+                "list_items": [
+                    {
+                        "item_type": "text",
+                        "item_content": [
+                            {
+                                "type": "text",
+                                "content": "[1] G. E. Hinton and R. R. Salakhutdinov, “Reducing the Dimensionality of Data with Neural Networks,” Science, vol. 313, no. 5786, pp. 504–507, 2006."
+                            }
+                        ]
+                    },
+                    {
+                        "item_type": "text",
+                        "item_content": [
+                            {
+                                "type": "text",
+                                "content": "[2] D. P. Kingma and M. Welling, “Auto-Encoding Variational Bayes,” in International Conference on Learning Representations, 2014."
+                            }
+                        ]
+                    },
+                    {
+                        "item_type": "text",
+                        "item_content": [
+                            {
+                                "type": "text",
+                                "content": "[3] M. Sensoy, L. Kaplan, and M. Kandemir, “Evidential Deep Learning to Quantify Classification Uncertainty,” in Advances in Neural Information Processing Systems, vol. 31, 2018."
+                            }
+                        ]
+                    },
+                    {
+                        "item_type": "text",
+                        "item_content": [
+                            {
+                                "type": "text",
+                                "content": "[4] A. Amini, W. Schwarting, A. Soleimany, and D. Rus, “Deep Evidential Regression,” in Advances in Neural Information Processing Systems, vol. 33, 2020."
+                            }
+                        ]
+                    },
+                    {
+                        "item_type": "text",
+                        "item_content": [
+                            {
+                                "type": "text",
+                                "content": "[5] V. Bengs, E. H¨ullermeier, and W. Waegeman, “Pitfalls of Epistemic Uncertainty Quantification through Loss Minimisation,” in Advances in Neural Information Processing Systems, vol. 35, 2022."
+                            }
+                        ]
+                    },
+                    {
+                        "item_type": "text",
+                        "item_content": [
+                            {
+                                "type": "text",
+                                "content": "[6] N. Meinert, J. Gawlikowski, and A. Lavin, “The Unreasonable Efectiveness of Deep Evidential Regression,” in Proceedings of the AAAI Conference on Artificial Intelligence, vol. 37, pp. 9134–9142, 2023."
+                            }
+                        ]
+                    },
+                    {
+                        "item_type": "text",
+                        "item_content": [
+                            {
+                                "type": "text",
+                                "content": "[7] M. Itkina, B. Ivanovic, R. Senanayake, M. J. Kochenderfer, and M. Pavone, “Evidential Sparsification of Multimodal Latent Spaces in Conditional Variational Autoencoders,” in Advances in Neural Information Processing Systems, vol. 33, 2020."
+                            }
+                        ]
+                    },
+                    {
+                        "item_type": "text",
+                        "item_content": [
+                            {
+                                "type": "text",
+                                "content": "[8] G. Baykal, M. Kandemir, and G. Unal, “EdVAE: Mitigating Codebook Collapse with Evidential Discrete Variational Autoencoders,” Pattern Recognition, vol. 156, Art. no. 110792, 2024."
+                            }
+                        ]
+                    },
+                    {
+                        "item_type": "text",
+                        "item_content": [
+                            {
+                                "type": "text",
+                                "content": "[9] J. Catoni, D. Martos, F. Csikor, E. Ferrante, D. H. Milone, B. Meszena, G. Orb´ an, and R. Echeveste, “Rem-´ edying Uncertainty Representations in Visual Inference through Explaining-Away Variational Autoencoders,” arXiv:2404.15390, 2024 (revised 2026)."
+                            }
+                        ]
+                    }
+                ]
+            },
+            "bbox": [
+                120,
+                518,
+                883,
+                549
+            ]
+        },
+        {
+            "type": "page_number",
+            "content": {
+                "page_number_content": [
+                    {
+                        "type": "text",
+                        "content": "10"
+                    }
+                ]
+            },
+            "bbox": [
+                490,
+                935,
+                509,
+                948
+            ]
+        }
+    ],
+    [
+        {
+            "type": "list",
+            "content": {
+                "list_type": "reference_list",
+                "list_items": [
+                    {
+                        "item_type": "text",
+                        "item_content": [
+                            {
+                                "type": "text",
+                                "content": "[10] Y. LeCun, L. Bottou, Y. Bengio, and P. Hafner, “Gradient-Based Learning Applied to Document Recognition,” Proceedings ofthe IEEE, vol. 86, no. 11, pp. 2278–2324, 1998."
+                            }
+                        ]
+                    }
+                ]
+            },
+            "bbox": [
+                114,
+                90,
+                885,
+                121
+            ]
+        },
+        {
+            "type": "page_number",
+            "content": {
+                "page_number_content": [
+                    {
+                        "type": "text",
+                        "content": "11"
+                    }
+                ]
+            },
+            "bbox": [
+                488,
+                935,
+                508,
+                948
+            ]
+        }
+    ]
+]

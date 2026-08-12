@@ -1,0 +1,3226 @@
+[
+    [
+        {
+            "type": "title",
+            "content": {
+                "title_content": [
+                    {
+                        "type": "text",
+                        "content": "Robust Multi-Agent Bandits with Heavy-Tailed Rewards and Information Asymmetry"
+                    }
+                ],
+                "level": 1
+            },
+            "bbox": [
+                116,
+                63,
+                880,
+                131
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "Daphne Feng<sup>∗</sup>, Ricardo Parada<sup>†</sup>, Lily Jiang<sup>∗</sup>, Sophia Yi<sup>∗</sup>, William Chang<sup>∗</sup>"
+                    }
+                ]
+            },
+            "bbox": [
+                220,
+                151,
+                776,
+                167
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "<sup>∗</sup>Department of Mathematics, University of California, Los Angeles, Los Angeles, CA, USA"
+                    }
+                ]
+            },
+            "bbox": [
+                183,
+                167,
+                813,
+                183
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "<sup>†</sup>Department of Mathematics, University of California, Riverside, Riverside, CA, USA"
+                    }
+                ]
+            },
+            "bbox": [
+                205,
+                183,
+                794,
+                199
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "Abstract—The multi-armed bandit problem is a central framework in sequential decision-making, extensively studied under sub-Gaussian reward assumptions. However, real-world applications often involve heavy-tailed reward distributions and decentralized, information-asymmetric interactions. We study multiagent multi-armed bandits with heavy-tailed rewards under three information-asymmetry regimes: unobserved actions with common rewards, observed actions with independent rewards, and unobserved actions with independent rewards. We develop robust decentralized algorithms for each setting and derive regret guarantees that nearly match centralized heavy-tailed rates. Experiments on a Pareto-distributed reward environment validate our theoretical findings and illustrate the trade-offs between synchronization, coordination, and exploration across the three regimes."
+                    }
+                ]
+            },
+            "bbox": [
+                75,
+                228,
+                493,
+                417
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "Index Terms—Multi-armed bandits, heavy-tailed rewards, decentralized learning, information asymmetry"
+                    }
+                ]
+            },
+            "bbox": [
+                75,
+                417,
+                491,
+                445
+            ]
+        },
+        {
+            "type": "title",
+            "content": {
+                "title_content": [
+                    {
+                        "type": "text",
+                        "content": "I. INTRODUCTION"
+                    }
+                ],
+                "level": 2
+            },
+            "bbox": [
+                217,
+                462,
+                349,
+                474
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "The multi-armed bandit (MAB) problem is a core model for sequential decision-making under uncertainty, originating in work on adaptive experimentation and Bayesian selection [1], [2]. At each round a learner selects an action and observes a random payoff, balancing exploration of uncertain actions against exploitation of apparently good ones. Bandit models underpin data-driven decision systems—online experimentation, recommendation, resource allocation, spectrum access, multi-robot coordination—which are typically distributed in ways not captured by single-agent abstractions: several agents learn simultaneously while each observes only part of the system state."
+                    }
+                ]
+            },
+            "bbox": [
+                73,
+                483,
+                493,
+                665
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "The multi-player MAB (MMAB) literature spans several information structures. In one line, players share information over communication graphs or gossip protocols [3], [4]. Another has players choose from a common arm set where collisions couple outcomes [5], [6]. More recently, cooperative MMAB has been studied under limited or no communication with structured observation asymmetries [7], [8]; see [9] for a survey. These works show that even without explicit messaging, agents can sometimes coordinate through shared structure or pre-agreed protocols."
+                    }
+                ]
+            },
+            "bbox": [
+                73,
+                665,
+                493,
+                816
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "A largely orthogonal challenge is that many reward signals are heavy-tailed: rare extreme events dominate observations, producing weak concentration and rendering sub-Gaussian analyses inaccurate. Heavy tails arise naturally in financial returns, network traffic bursts, and outlier-prone performance metrics. Robust algorithms for heavy-tailed rewards include robust-UCB methods [10] and deterministic exploration– exploitation schedules [11], with extensions to pure exploration [12], linear bandits [13], and minimax-optimal procedures [14], while Catoni-style confidence sequences sharpen what is achievable under weak moment assumptions [15]."
+                    }
+                ]
+            },
+            "bbox": [
+                73,
+                816,
+                493,
+                909
+            ]
+        },
+        {
+            "type": "table",
+            "content": {
+                "image_source": {
+                    "path": "images/e8d054b7cac27bbb9ff965e3cb64816ddaafb4940bb47e3532ab25072c7487fa.jpg"
+                },
+                "table_caption": [
+                    {
+                        "type": "text",
+                        "content": "TABLE I"
+                    },
+                    {
+                        "type": "text",
+                        "content": "SUMMARY OF INFORMATION STRUCTURES AND REGRET BOUNDS."
+                    }
+                ],
+                "table_footnote": [],
+                "html": "<table><tr><td></td><td>Prob. A</td><td>Prob. B</td><td>Prob. C</td></tr><tr><td>Actions observed?</td><td>No</td><td>Yes</td><td>No</td></tr><tr><td>Rewards shared?</td><td>Yes</td><td>No (i.i.d.)</td><td>No (i.i.d.)</td></tr><tr><td>Algorithm</td><td>mRUCB-A</td><td>mRUCB-Int.</td><td>mHT-DSEE</td></tr><tr><td>Regret</td><td> $O \\left( \\frac { \\log T } { \\Delta ^ { 1 / \\varepsilon } } \\right)$ </td><td> $O \\left( \\frac { \\log T } { \\Delta ^ { 1 / \\varepsilon } } \\right)$ </td><td> $O ( \\log ^ { 2 } T )$ </td></tr></table>",
+                "table_type": "simple_table",
+                "table_nest_level": 1
+            },
+            "bbox": [
+                526,
+                262,
+                900,
+                340
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": []
+            },
+            "bbox": [
+                503,
+                366,
+                923,
+                443
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "The intersection of cooperative multi-agent bandits, heavytailed rewards, and decentralized operation with no online communication remains underexplored. Existing multi-agent heavy-tailed work relies on explicit communication: [16] considers delayed message passing and [17] studies graphbased communication. We ask: what is achievable when agents coordinate implicitly via a pre-agreed protocol?"
+                    }
+                ]
+            },
+            "bbox": [
+                503,
+                443,
+                923,
+                547
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "Our contributions. We introduce three problem formulations capturing distinct information asymmetries in multiagent heavy-tailed bandits: common rewards with unobserved actions (Problem A), independent rewards with observed actions (Problem B), and independent rewards with unobserved actions (Problem C). For each we develop a robust decentralized algorithm—mRUCB-A, mRUCB-Intervals, and mHT-DSEE—and prove regret guarantees summarized in Table I. The robust mean estimator and the single-agent concentration arguments are adapted from [10], [11]; our contribution lies in the multi-agent formulation, in the use of intentional action deviations as an implicit signaling channel, and in a unified comparison of what each information structure costs."
+                    }
+                ]
+            },
+            "bbox": [
+                503,
+                547,
+                923,
+                758
+            ]
+        },
+        {
+            "type": "title",
+            "content": {
+                "title_content": [
+                    {
+                        "type": "text",
+                        "content": "II. PRELIMINARIES"
+                    }
+                ],
+                "level": 2
+            },
+            "bbox": [
+                642,
+                766,
+                784,
+                780
+            ]
+        },
+        {
+            "type": "title",
+            "content": {
+                "title_content": [
+                    {
+                        "type": "text",
+                        "content": "A. Heavy-tailed bandits"
+                    }
+                ],
+                "level": 2
+            },
+            "bbox": [
+                503,
+                785,
+                673,
+                800
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "Consider a stochastic MAB with K arms. Each arm "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "{ \\textbf { \\em a } } \\in"
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "\\mathcal { A } : = \\{ 1 , \\ldots , K \\}"
+                    },
+                    {
+                        "type": "text",
+                        "content": "has an unknown reward distribution "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "\\nu _ { a }"
+                    },
+                    {
+                        "type": "text",
+                        "content": "with mean "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "\\mu _ { a }"
+                    },
+                    {
+                        "type": "text",
+                        "content": ". At round t, the agent selects arm "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "\\mathbf { } \\mathbf { a } _ { t }"
+                    },
+                    {
+                        "type": "text",
+                        "content": "and observes a reward drawn from "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "\\nu _ { a _ { t } }"
+                    },
+                    {
+                        "type": "text",
+                        "content": ". The expected regret at horizon "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "T"
+                    },
+                    {
+                        "type": "text",
+                        "content": "is"
+                    }
+                ]
+            },
+            "bbox": [
+                503,
+                804,
+                921,
+                864
+            ]
+        },
+        {
+            "type": "equation_interline",
+            "content": {
+                "math_content": "R _ { T } = T \\mu ^ { \\star } - \\sum _ { t = 1 } ^ { T } \\mathbb { E } [ \\mu _ { a _ { t } } ] = \\sum _ { a \\in \\mathcal { A } } \\Delta _ { a } \\mathbb { E } [ n _ { a } ( T ) ] ,\\tag{1}",
+                "math_type": "latex",
+                "image_source": {
+                    "path": "images/93138f760982a0eebd6727e2ba46d89ac4c9f2ecb9803ce79dd46f6bc8eb6703.jpg"
+                }
+            },
+            "bbox": [
+                555,
+                869,
+                870,
+                912
+            ]
+        },
+        {
+            "type": "page_aside_text",
+            "content": {
+                "page_aside_text_content": [
+                    {
+                        "type": "text",
+                        "content": "arXiv:2608.10529v1 [cs.LG] 11 Aug 2026"
+                    }
+                ]
+            },
+            "bbox": [
+                29,
+                353,
+                63,
+                800
+            ]
+        }
+    ],
+    [
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "where "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "\\begin{array} { r } { \\mu ^ { \\star } = \\operatorname* { m a x } _ { a } \\mu _ { a } , \\Delta _ { a } = \\mu ^ { \\star } - \\mu _ { a } } \\end{array}"
+                    },
+                    {
+                        "type": "text",
+                        "content": "is the suboptimality gap, and "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "n _ { a } ( T )"
+                    },
+                    {
+                        "type": "text",
+                        "content": "is the number of pulls. We assume heavytailed rewards: there exist "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "\\varepsilon \\in ( 0 , 1 ]"
+                    },
+                    {
+                        "type": "text",
+                        "content": "and "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "v > 0"
+                    },
+                    {
+                        "type": "text",
+                        "content": "such that for all "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "a \\in { \\mathcal { A } } ."
+                    }
+                ]
+            },
+            "bbox": [
+                73,
+                61,
+                493,
+                122
+            ]
+        },
+        {
+            "type": "equation_interline",
+            "content": {
+                "math_content": "\\mathbb { E } [ | X _ { a } - \\mu _ { a } | ^ { 1 + \\varepsilon } ] \\leq v .\\tag{2}",
+                "math_type": "latex",
+                "image_source": {
+                    "path": "images/681037d3d59df8f3e2192dd31946ca771bce36438df50689e96ef2ab582296a6.jpg"
+                }
+            },
+            "bbox": [
+                205,
+                125,
+                361,
+                142
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "This allows distributions with infinite variance (when "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "\\varepsilon < 1 )"
+                    },
+                    {
+                        "type": "text",
+                        "content": "capturing Pareto, Student-t, and other heavy-tailed families; smaller ε corresponds to heavier tails."
+                    }
+                ]
+            },
+            "bbox": [
+                73,
+                151,
+                491,
+                198
+            ]
+        },
+        {
+            "type": "title",
+            "content": {
+                "title_content": [
+                    {
+                        "type": "text",
+                        "content": "B. Multi-agent extension"
+                    }
+                ],
+                "level": 2
+            },
+            "bbox": [
+                75,
+                212,
+                248,
+                227
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "We extend the setting to M players, where player i has an individual action set "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "A _ { i }"
+                    },
+                    {
+                        "type": "text",
+                        "content": "of size "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "K _ { i }"
+                    },
+                    {
+                        "type": "text",
+                        "content": ". The joint action space is "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "\\mathcal { A } = \\mathcal { A } _ { 1 } \\times \\cdot \\cdot \\cdot \\times \\mathcal { A } _ { M }"
+                    },
+                    {
+                        "type": "text",
+                        "content": ", containing "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "\\begin{array} { r } { K ^ { M } : = \\prod _ { i = 1 } ^ { M } K _ { i } } \\end{array}"
+                    },
+                    {
+                        "type": "text",
+                        "content": "joint arms. At each round "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "t ,"
+                    },
+                    {
+                        "type": "text",
+                        "content": "each player simultaneously selects an arm, forming joint arm "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "\\pmb { a } ( t ) = ( a _ { 1 } ( t ) , \\ldots , a _ { M } ( t ) )"
+                    },
+                    {
+                        "type": "text",
+                        "content": ", and then observes a reward sampled from "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "\\nu _ { a ( t ) }"
+                    },
+                    {
+                        "type": "text",
+                        "content": ". The cumulative regret is "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "\\begin{array} { r } { R _ { T } = T \\mu ^ { \\star } - \\sum _ { t = 1 } ^ { T } \\mathbb { E } [ X _ { \\pmb { a } ( t ) } ] } \\end{array}"
+                    },
+                    {
+                        "type": "text",
+                        "content": ", where "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "\\mu ^ { \\star } = \\operatorname* { m a x } _ { \\pmb { a } \\in \\mathcal { A } } \\mu _ { \\pmb { a } } ."
+                    },
+                    {
+                        "type": "text",
+                        "content": "Players may agree on a strategy beforehand and know each other’s action spaces, but cannot communicate during learning. We consider three information structures, each matching a distinct class of deployment."
+                    }
+                ]
+            },
+            "bbox": [
+                73,
+                232,
+                491,
+                400
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "Problem A (action asymmetry). All players observe the same reward realization "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "X _ { a ( t ) }"
+                    },
+                    {
+                        "type": "text",
+                        "content": "but not each other’s actions. This is the situation of a team optimizing a single aggregate metric: transmitters in a shared spectrum band that observe total network throughput, or advertising channels evaluated against one conversion count, where the aggregate is instrumented but attribution to individual actions is not."
+                    }
+                ]
+            },
+            "bbox": [
+                73,
+                401,
+                493,
+                507
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "Problem B (reward asymmetry). Players observe the joint action "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "\\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf \\Psi \\mathbf { } \\Psi \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf \\Psi \\Psi \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf \\Psi \\Psi \\mathbf { } \\mathbf { } \\mathbf \\Psi \\Psi \\mathbf { } \\mathbf \\Psi \\Psi \\mathbf { } \\mathbf \\Psi \\Psi \\mathbf { } \\mathbf \\Psi \\Psi \\mathbf { } \\mathbf \\Psi \\mathbf { } \\mathbf \\Psi \\Psi \\mathbf \\Psi \\Psi \\Psi \\mathbf \\Psi \\Psi \\mathbf \\Psi \\Psi \\Psi \\mathbf \\Psi \\Psi \\mathbf \\Psi \\Psi \\mathbf \\Psi \\Psi \\mathbf \\Psi \\Psi \\mathbf \\Psi \\Psi \\mathbf \\Psi \\mathbf \\Psi \\mathbf \\Psi \\Psi \\mathbf \\Psi \\mathbf \\Psi \\mathbf \\Psi \\mathbf"
+                    },
+                    {
+                        "type": "text",
+                        "content": "but each receives an independent sample "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "X _ { { \\pmb a } ( t ) } ^ { i } \\sim"
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "\\nu _ { a ( t ) }"
+                    },
+                    {
+                        "type": "text",
+                        "content": ". This matches federated or multi-site experimentation: a configuration is chosen jointly and logged centrally, so every site knows what was deployed, while each site measures only its own privately held outcomes."
+                    }
+                ]
+            },
+            "bbox": [
+                73,
+                507,
+                493,
+                598
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "Problem C (full asymmetry). Players observe neither others actions nor a common reward; each receives an i.i.d. sample. This models fully decentralized deployments such as sensor or robot teams operating with no backhaul, where each unit sees only its own measurements."
+                    }
+                ]
+            },
+            "bbox": [
+                73,
+                598,
+                491,
+                674
+            ]
+        },
+        {
+            "type": "title",
+            "content": {
+                "title_content": [
+                    {
+                        "type": "text",
+                        "content": "C. Robust upper confidence bounds"
+                    }
+                ],
+                "level": 2
+            },
+            "bbox": [
+                75,
+                688,
+                321,
+                703
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "Throughout, "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "{ \\widehat { \\mu } } _ { a } ( t )"
+                    },
+                    {
+                        "type": "text",
+                        "content": "is the truncated mean of [10]: writing "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "X _ { a , 1 } , \\ldots , X _ { a , n _ { a } ( t ) }"
+                    },
+                    {
+                        "type": "text",
+                        "content": "for the rewards observed from arm a,"
+                    }
+                ]
+            },
+            "bbox": [
+                75,
+                709,
+                491,
+                741
+            ]
+        },
+        {
+            "type": "equation_interline",
+            "content": {
+                "math_content": "\\widehat { \\mu } _ { a } ( t ) = \\frac { 1 } { n _ { a } ( t ) } \\sum _ { s = 1 } ^ { n _ { a } ( t ) } X _ { a , s } \\mathbf { 1 } \\bigg \\{ | X _ { a , s } | \\leq \\left( \\frac { v s } { \\log ( T ^ { \\gamma } ) } \\right) ^ { \\frac { 1 } { 1 + \\varepsilon } } \\bigg \\} .\\tag{3}",
+                "math_type": "latex",
+                "image_source": {
+                    "path": "images/247690f5f5fca005cbf03aa002ed24f4af8f2cbd2f905161c1a99016f25ea1fc.jpg"
+                }
+            },
+            "bbox": [
+                84,
+                752,
+                457,
+                792
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "The robust upper confidence bound (RUCB) for joint arm a is"
+                    }
+                ]
+            },
+            "bbox": [
+                73,
+                801,
+                491,
+                830
+            ]
+        },
+        {
+            "type": "equation_interline",
+            "content": {
+                "math_content": "\\mathrm { R U C B } _ { a } ( t ) = \\left\\{ \\begin{array} { l l } { \\infty } & { \\mathrm { i f ~ } n _ { a } ( t ) = 0 , } \\\\ { \\widehat { \\mu } _ { a } ( t ) + \\alpha _ { a } ( t ) } & { \\mathrm { o t h e r w i s e , } } \\end{array} \\right.\\tag{4}",
+                "math_type": "latex",
+                "image_source": {
+                    "path": "images/fa3f6902df356c2547559ea1105819f78a4d43915588920b9073ff06a014d620.jpg"
+                }
+            },
+            "bbox": [
+                124,
+                829,
+                441,
+                869
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "where the first case marks an arm from which nothing has yet been observed, so that "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "{ \\widehat { \\mu } } _ { a } ( t )"
+                    },
+                    {
+                        "type": "text",
+                        "content": "is undefined; setting the index"
+                    }
+                ]
+            },
+            "bbox": [
+                73,
+                877,
+                493,
+                909
+            ]
+        },
+        {
+            "type": "code",
+            "content": {
+                "code_caption": [],
+                "code_content": [
+                    {
+                        "type": "text",
+                        "content": "Algorithm 1 mRUCB-A 1: Players agree on a lexicographic ordering of A. 2: Init. "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "n _ { a } ( 0 ) \\gets 0 , \\widehat { \\mu } _ { a } ( 0 ) \\gets 0"
+                    },
+                    {
+                        "type": "text",
+                        "content": "for all "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "a \\in { \\mathcal { A } } ."
+                    },
+                    {
+                        "type": "text",
+                        "content": "3: for "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "t = 1 , \\dots , T"
+                    },
+                    {
+                        "type": "text",
+                        "content": "do 4: Compute "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "\\mathrm { R U C B } _ { a } ( t )"
+                    },
+                    {
+                        "type": "text",
+                        "content": "for all "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "\\mathbf { \\pmb { a } } \\in \\mathcal { A }"
+                    },
+                    {
+                        "type": "text",
+                        "content": "via (4). 5: Select "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "\\begin{array} { r } { \\mathbf { \\boldsymbol { a } } ( t ) \\gets \\operatorname * { a r g m a x } _ { a } \\operatorname { R U C B } _ { a } ( t ) } \\end{array}"
+                    },
+                    {
+                        "type": "text",
+                        "content": "(ties: lexicographic). 6: Pull individual arm; observe common reward; update statistics."
+                    }
+                ],
+                "code_footnote": [],
+                "code_language": "latex"
+            },
+            "bbox": [
+                506,
+                58,
+                921,
+                199
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "to ∞ forces every joint arm to be played at least once before any comparison is made. The confidence radius is"
+                    }
+                ]
+            },
+            "bbox": [
+                501,
+                224,
+                921,
+                256
+            ]
+        },
+        {
+            "type": "equation_interline",
+            "content": {
+                "math_content": "\\alpha _ { \\pm } ( t ) = v ^ { \\frac { 1 } { 1 + \\varepsilon } } \\biggl ( \\frac { c \\log ( T ^ { \\gamma } ) } { n _ { a } ( t ) } \\biggr ) ^ { \\frac { \\varepsilon } { 1 + \\varepsilon } } ,\\tag{5}",
+                "math_type": "latex",
+                "image_source": {
+                    "path": "images/a212f24d632e2a6f00c32e8f37499909acfc88d0b9351790ebd53d07e8d251de.jpg"
+                }
+            },
+            "bbox": [
+                602,
+                261,
+                823,
+                297
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "with "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "c , \\gamma > 0"
+                    },
+                    {
+                        "type": "text",
+                        "content": ", and [10, Prop. 1] gives "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "\\operatorname* { P r } ( | \\widehat { \\mu } _ { a } ( t ) - \\mu _ { a } | >"
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "\\alpha _ { a } ( t ) ) \\leq t ^ { - \\gamma }"
+                    },
+                    {
+                        "type": "text",
+                        "content": ". Only this concentration property is used below, so any estimator obeying a bound of the form (5)—medianof-means, or the Catoni-style confidence sequences of [15]— may be substituted. Such a substitution changes the constant c and the way v enters, and hence the constants in all three theorems, but not the rates; Catoni-style estimators give the sharpest constants as "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "\\varepsilon \\to 1"
+                    },
+                    {
+                        "type": "text",
+                        "content": ", at the cost of solving an implicit equation at each round."
+                    }
+                ]
+            },
+            "bbox": [
+                503,
+                301,
+                923,
+                439
+            ]
+        },
+        {
+            "type": "title",
+            "content": {
+                "title_content": [
+                    {
+                        "type": "text",
+                        "content": "III. PROBLEM A: COMMON REWARDS, UNOBSERVED ACTIONS"
+                    }
+                ],
+                "level": 2
+            },
+            "bbox": [
+                521,
+                446,
+                903,
+                477
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "In Problem A, all players observe the same reward but cannot see others’ actions. Two technical challenges arise. First, since actions are hidden, miscoordination may occur if the players’ internal estimates diverge, and the observed reward is then attributed to the wrong joint action. Second, the reward distributions are heavy-tailed, requiring robust estimators to control estimation error under weak moment assumptions. However, because rewards are shared, all players’ estimates remain identical under the same deterministic update rule—the key simplifying feature. We impose a lexicographic ordering on A for consistent tie-breaking: "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "\\textbf { \\textit { a } } < \\textbf { \\textit { b } }"
+                    },
+                    {
+                        "type": "text",
+                        "content": "if there exists n such that "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "a _ { i } \\ = \\ b _ { i }"
+                    },
+                    {
+                        "type": "text",
+                        "content": "for all "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "i < n"
+                    },
+                    {
+                        "type": "text",
+                        "content": "and "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "a _ { n } < b _ { n }"
+                    },
+                    {
+                        "type": "text",
+                        "content": ". Each player then computes "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "\\mathrm { R U C B } _ { a } ( t )"
+                    },
+                    {
+                        "type": "text",
+                        "content": "for every joint arm and selects the highest, breaking ties lexicographically, yielding mRUCB-A (Algorithm 1)."
+                    }
+                ]
+            },
+            "bbox": [
+                501,
+                481,
+                923,
+                709
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "Theorem 1. Under condition (2), if all players "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "f o l -"
+                    },
+                    {
+                        "type": "text",
+                        "content": "low mRUCB-A, the expected regret satisfies "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "\\begin{array} { r l } { R _ { T } } & { { } = } \\end{array}"
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "\\begin{array} { r } { O \\Big ( \\log ( T ) \\sum _ { { \\pmb { a } } \\in \\mathcal { A } } \\Delta _ { \\pmb { a } } ^ { - 1 / \\varepsilon } \\Big ) } \\end{array}"
+                    }
+                ]
+            },
+            "bbox": [
+                503,
+                714,
+                921,
+                767
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "Proof. Since all players observe the same reward and use the same deterministic update rule with consistent tie-breaking, every player selects the same joint arm at every round. The problem thus reduces to a single-agent heavy-tailed bandit over "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "K ^ { M }"
+                    },
+                    {
+                        "type": "text",
+                        "content": "arms, and the analysis follows [10]. For each suboptimal arm a with gap "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "\\Delta _ { a } > 0"
+                    },
+                    {
+                        "type": "text",
+                        "content": ", define the good event at round "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "t \\colon \\mathcal { G } _ { t } : | \\widehat { \\mu } _ { a } ( t ) - \\mu _ { a } | \\leq \\alpha _ { a } ( t )"
+                    },
+                    {
+                        "type": "text",
+                        "content": "for all a. By the concentration bound of Section II-C, "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "\\Pr ( \\mathcal { G } _ { t } ^ { c } ) ~ \\leq ~ K ^ { M } t ^ { - \\gamma }"
+                    },
+                    {
+                        "type": "text",
+                        "content": "Under "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "\\mathcal { G } _ { t }"
+                    },
+                    {
+                        "type": "text",
+                        "content": ", selection of a requires "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "\\widehat { \\mu } _ { a } ( t ) + \\alpha _ { a } ( t ) \\geq \\widehat { \\mu } _ { a ^ { \\star } } ( t ) +"
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "\\alpha _ { { \\pmb a } ^ { \\star } } ( t )"
+                    },
+                    {
+                        "type": "text",
+                        "content": ", which implies "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "2 \\alpha _ { a } ( t ) \\geq \\Delta _ { a }"
+                    },
+                    {
+                        "type": "text",
+                        "content": ". This fails after "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "\\tau _ { a } ="
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "c \\gamma \\log ( T ) ( 2 v ^ { 1 / ( 1 + \\dot { \\varepsilon } ) } / \\Delta _ { a } ) ^ { ( 1 + \\dot { \\varepsilon } ) / \\varepsilon }"
+                    },
+                    {
+                        "type": "text",
+                        "content": "pulls. Hence "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "\\mathbb { E } [ n _ { \\pmb { a } } ( T ) ] ~ \\le"
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "\\begin{array} { r } { \\tau _ { \\mathbf { a } } + \\sum _ { t = 1 } ^ { T } \\operatorname* { P r } ( \\mathcal { G } _ { t } ^ { c } ) } \\end{array}"
+                    },
+                    {
+                        "type": "text",
+                        "content": ", where the tail sum converges for "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "\\gamma > 1"
+                    },
+                    {
+                        "type": "text",
+                        "content": "Summing "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "\\Delta _ { a } \\cdot \\mathbb { E } [ n _ { a } ( T ) ]"
+                    },
+                    {
+                        "type": "text",
+                        "content": "] over all suboptimal arms gives the result. □"
+                    }
+                ]
+            },
+            "bbox": [
+                503,
+                771,
+                923,
+                910
+            ]
+        }
+    ],
+    [
+        {
+            "type": "algorithm",
+            "content": {
+                "algorithm_caption": [],
+                "algorithm_content": [
+                    {
+                        "type": "text",
+                        "content": "Algorithm 2 mRUCB-Intervals 1: Players agree on an ordering of "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "\\mathcal { A } ;"
+                    },
+                    {
+                        "type": "text",
+                        "content": "set "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "S  A , P  \\emptyset"
+                    },
+                    {
+                        "type": "text",
+                        "content": "2: while "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "t \\leq T"
+                    },
+                    {
+                        "type": "text",
+                        "content": "do 3: for each "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "\\mathbf { \\Delta } \\mathbf { a } \\in S"
+                    },
+                    {
+                        "type": "text",
+                        "content": "in order do 4: if some player i finds "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "I _ { a } ^ { i } ( t )"
+                    },
+                    {
+                        "type": "text",
+                        "content": "strictly below the interval of another arm of S then 5: That player pulls a different individual arm; all players observe "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "\\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf \\mathbf { } \\mathbf { } \\mathbf \\mathbf { } \\mathbf { } \\mathbf \\mathbf { } \\mathbf \\mathbf { } \\mathbf { } \\mathbf \\mathbf { } \\mathbf \\mathbf { } \\mathbf \\mathbf { } \\mathbf \\mathbf { } \\mathbf \\mathbf { } \\mathbf \\mathbf { } \\mathbf \\mathbf { } \\mathbf \\mathbf \\mathbf { } \\mathbf \\mathbf { } \\mathbf \\mathbf \\mathbf { } \\mathbf \\mathbf \\mathbf { } \\mathbf \\mathbf \\mathbf { } \\mathbf \\mathbf \\mathbf { } \\mathbf \\mathbf \\mathbf \\mathbf { } \\mathbf \\mathbf \\mathbf \\mathbf { } \\mathbf \\mathbf \\mathbf \\mathbf \\mathbf { } \\mathbf \\mathbf \\mathbf \\mathbf \\mathbf \\mathbf { } \\mathbf \\mathbf \\mathbf \\mathbf \\mathbf \\mathbf { } \\mathbf \\mathbf \\mathbf \\mathbf"
+                    },
+                    {
+                        "type": "text",
+                        "content": "and set "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "P \\gets P \\cup \\{ a \\}"
+                    },
+                    {
+                        "type": "text",
+                        "content": "the reward of this round is discarded. 6: else 7: All players pull the components of "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "{ \\bf \\delta a } ;"
+                    },
+                    {
+                        "type": "text",
+                        "content": "player i observes "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "X _ { a } ^ { i }"
+                    },
+                    {
+                        "type": "text",
+                        "content": "and updates "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "I _ { a } ^ { i }"
+                    },
+                    {
+                        "type": "text",
+                        "content": "via (6); "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "n _ { a } \\gets n _ { a } + 1"
+                    },
+                    {
+                        "type": "text",
+                        "content": "8: "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "S \\gets S \\setminus P ; P \\gets \\emptyset ."
+                    }
+                ],
+                "algorithm_footnote": []
+            },
+            "bbox": [
+                76,
+                58,
+                490,
+                262
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": []
+            },
+            "bbox": [
+                73,
+                290,
+                491,
+                366
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "This matches the optimal single-agent heavy-tailed rate over "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "K ^ { M }"
+                    },
+                    {
+                        "type": "text",
+                        "content": "arms. Since the "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "K ^ { M }"
+                    },
+                    {
+                        "type": "text",
+                        "content": "dependence is unavoidable even for a centralized learner, the decentralized agents incur no additional cost from action asymmetry."
+                    }
+                ]
+            },
+            "bbox": [
+                73,
+                375,
+                493,
+                436
+            ]
+        },
+        {
+            "type": "title",
+            "content": {
+                "title_content": [
+                    {
+                        "type": "text",
+                        "content": "IV. PROBLEM B: INDEPENDENT REWARDS, OBSERVED ACTIONS"
+                    }
+                ],
+                "level": 2
+            },
+            "bbox": [
+                88,
+                444,
+                478,
+                474
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "In Problem B, players observe the joint action but receive independent reward samples "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "X _ { \\pmb { a } ( t ) } ^ { 1 } , \\ldots , X _ { \\pmb { a } ( t ) } ^ { M } \\overset { \\mathrm { i . i . d . } } { \\sim } \\nu _ { \\pmb { a } ( t ) }"
+                    },
+                    {
+                        "type": "text",
+                        "content": ". This reverses Problem A’s structure: players see all actions but their estimates diverge because each empirical mean uses different samples, so one player may conclude that an arm is suboptimal while another player’s interval still overlaps. An index rule applied independently by each player would therefore cause persistent miscoordination. mRUCB-Intervals avoids this by replacing index maximization with round-robin elimination: players cycle through a common active set S, and an arm leaves S only through a signal that every player observes."
+                    }
+                ]
+            },
+            "bbox": [
+                73,
+                479,
+                493,
+                647
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "For each joint arm a and player i the algorithm maintains"
+                    }
+                ]
+            },
+            "bbox": [
+                89,
+                647,
+                488,
+                662
+            ]
+        },
+        {
+            "type": "equation_interline",
+            "content": {
+                "math_content": "I _ { \\pmb { a } } ^ { i } ( t ) = \\left[ \\widehat { \\mu } _ { \\pmb { a } } ^ { i } ( t ) - \\alpha _ { \\pmb { a } } ( t ) , \\widehat { \\mu } _ { \\pmb { a } } ^ { i } ( t ) + \\alpha _ { \\pmb { a } } ( t ) \\right] ,\\tag{6}",
+                "math_type": "latex",
+                "image_source": {
+                    "path": "images/85daaddde46c05791291958e9a1c01e8c689d8771459842a5407dc0505673ca3.jpg"
+                }
+            },
+            "bbox": [
+                140,
+                670,
+                426,
+                689
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "where "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "\\alpha _ { a } ( t )"
+                    },
+                    {
+                        "type": "text",
+                        "content": "is common to all players because it depends only on the shared pull count "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "n _ { a } ( t )"
+                    },
+                    {
+                        "type": "text",
+                        "content": ". Elimination proceeds in three stages. Detection: if player i finds that "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "I _ { a } ^ { i } ( t )"
+                    },
+                    {
+                        "type": "text",
+                        "content": "lies strictly below and disjoint from the interval of another active arm, then a is dominated from player "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "i \\mathrm { \\ ' } _ { \\mathrm { s } }"
+                    },
+                    {
+                        "type": "text",
+                        "content": "perspective. Signaling: player i then deviates from the prescribed action by pulling a different individual arm, the only form of implicit communication available. Propagation: since actions are observable, all players detect the mismatch between the scheduled joint arm "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "\\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf \\Psi \\mathbf { } \\Psi \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf \\Psi \\Psi \\mathbf { } \\mathbf { } \\mathbf \\Psi \\Psi \\mathbf { } \\mathbf { } \\mathbf \\Psi \\Psi \\mathbf { } \\mathbf \\Psi \\Psi \\mathbf { } \\mathbf \\Psi \\Psi \\mathbf { } \\mathbf \\Psi \\mathbf { } \\mathbf \\Psi \\Psi \\mathbf { } \\mathbf \\Psi \\mathbf \\Psi \\Psi \\mathbf { } \\mathbf \\Psi \\mathbf \\Psi \\Psi \\Psi \\mathbf \\Psi \\Psi \\mathbf \\Psi \\Psi \\mathbf \\Psi \\Psi \\mathbf \\Psi \\Psi \\mathbf \\Psi \\Psi \\mathbf \\Psi \\mathbf \\Psi \\Psi \\mathbf \\Psi \\mathbf \\Psi \\mathbf \\Psi \\mathbf \\Psi"
+                    },
+                    {
+                        "type": "text",
+                        "content": "and the realized one "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "{ \\pmb a } ^ { \\prime } ( t )"
+                    },
+                    {
+                        "type": "text",
+                        "content": ", and mark "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "\\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf \\Psi \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf \\Psi \\mathbf { } \\mathbf { } \\mathbf { } \\mathbf \\Psi \\mathbf { } \\mathbf { } \\mathbf \\Psi \\mathbf { } \\mathbf { } \\mathbf \\Psi \\mathbf { } \\mathbf \\Psi \\Psi \\mathbf { } \\mathbf \\Psi \\mathbf { } \\mathbf \\Psi \\mathbf { } \\mathbf \\Psi \\mathbf { } \\mathbf \\mathbf { } \\mathbf \\mathbf \\Psi \\Psi \\Psi \\mathbf { } \\mathbf \\mathbf \\Psi \\Psi \\mathbf { } \\mathbf \\mathbf \\Psi \\mathbf \\Psi \\Psi \\mathbf \\Psi \\Psi \\mathbf \\Psi \\Psi \\mathbf \\Psi \\mathbf \\Psi \\mathbf \\Psi \\Psi \\mathbf \\Psi"
+                    },
+                    {
+                        "type": "text",
+                        "content": "for removal regardless of whether their own intervals support it. Two conventions keep the players’ statistics aligned: the reward of a signaling round is discarded, and removals take effect at the end of the current cycle. Algorithm 2 gives the procedure."
+                    }
+                ]
+            },
+            "bbox": [
+                73,
+                695,
+                493,
+                910
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "Lemma 1. Under mRUCB-Intervals, at every round all players hold the same active set "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "S ( t )"
+                    },
+                    {
+                        "type": "text",
+                        "content": "and the same pull counts "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "n _ { a } ( t )"
+                    },
+                    {
+                        "type": "text",
+                        "content": ". Moreover, if a is the arm scheduled at round t, then "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "n _ { b } ( t ) \\geq n _ { a } ( t )"
+                    },
+                    {
+                        "type": "text",
+                        "content": "for every "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "b \\in S ( t )"
+                    }
+                ]
+            },
+            "bbox": [
+                503,
+                61,
+                923,
+                123
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "Proof. Both claims follow by induction on t. Initially "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "S = A"
+                    },
+                    {
+                        "type": "text",
+                        "content": "and all counts are zero. The scheduled arm is a deterministic function of "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "S"
+                    },
+                    {
+                        "type": "text",
+                        "content": "and the position in the cycle, which are common by hypothesis. Since actions are observed, every player sees the realized joint arm and applies the same count update, and removals are triggered only by observed deviations, so S remains common. Within a cycle each active arm is scheduled exactly once and signaling rounds increment no counts, so all active arms have equal counts at cycle boundaries and, at any point inside a cycle, the arms not yet scheduled—including the scheduled arm itself—have the smallest counts. □"
+                    }
+                ]
+            },
+            "bbox": [
+                503,
+                130,
+                923,
+                297
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "Theorem 2. If all players follow mRUCB-Intervals under (2), then"
+                    }
+                ]
+            },
+            "bbox": [
+                503,
+                308,
+                921,
+                338
+            ]
+        },
+        {
+            "type": "equation_interline",
+            "content": {
+                "math_content": "\\begin{array} { l } { { \\displaystyle R _ { T } \\leq c \\gamma 4 ^ { \\frac { 1 + \\varepsilon } { \\varepsilon } } v ^ { \\frac 1 \\varepsilon } \\log ( T ) \\sum _ { a \\neq a ^ { \\star } } \\Delta _ { a } ^ { - 1 / \\varepsilon } } } \\\\ { { \\displaystyle \\quad \\quad + \\sum _ { a \\neq a ^ { \\star } } \\Delta _ { a } + ( K ^ { M } - 1 ) \\Delta _ { \\operatorname* { m a x } } + O ( 1 ) , } } \\end{array}\\tag{7}",
+                "math_type": "latex",
+                "image_source": {
+                    "path": "images/dd3166e92b2c5166c19742d32213a37e40f4661d480a41eaceddc23d916fa559.jpg"
+                }
+            },
+            "bbox": [
+                553,
+                343,
+                870,
+                412
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "where the O(1) term collects the contribution of the failure event and is independent of "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "T f o r \\gamma > 1"
+                    }
+                ]
+            },
+            "bbox": [
+                503,
+                421,
+                921,
+                453
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "Proof. Let "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "\\mathcal { G } _ { t }"
+                    },
+                    {
+                        "type": "text",
+                        "content": "be the event that "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "| \\widehat { \\mu } _ { a } ^ { i } ( t ) - \\mu _ { a } | \\leq \\alpha _ { a } ( t )"
+                    },
+                    {
+                        "type": "text",
+                        "content": "for all i and all a; by Section II-C and a union bound over the "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "M K ^ { M }"
+                    },
+                    {
+                        "type": "text",
+                        "content": "player-arm pairs, "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "\\operatorname* { P r } ( \\mathcal G _ { t } ^ { c } ) \\le M K ^ { M } t ^ { - \\gamma }"
+                    }
+                ]
+            },
+            "bbox": [
+                503,
+                458,
+                921,
+                506
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "Step "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "1 \\div a ^ { \\star }"
+                    },
+                    {
+                        "type": "text",
+                        "content": "is never eliminated. Under "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "\\mathcal { G } _ { t }"
+                    },
+                    {
+                        "type": "text",
+                        "content": ", for every player i and every active b, the lower end of "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "I _ { a } ^ { i } ,"
+                    },
+                    {
+                        "type": "text",
+                        "content": "satisfies "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "\\widehat { \\mu } _ { \\pmb { a } ^ { \\star } } ^ { i } + \\alpha _ { \\pmb { a } ^ { \\star } } \\geq"
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "\\mu ^ { \\star } \\geq \\mu _ { b } \\geq \\widehat { \\mu } _ { b } ^ { i } - \\alpha _ { b }"
+                    },
+                    {
+                        "type": "text",
+                        "content": ", so "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "I _ { a } ^ { i } ."
+                    },
+                    {
+                        "type": "text",
+                        "content": "<sub>⋆</sub> never lies strictly below the interval of another active arm. No player signals on "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "\\mathbf { \\delta } _  \\mathbf { \\alpha } \\mathbf { \\alpha } \\mathbf { \\alpha } \\mathbf { \\alpha } \\mathbf { \\alpha } \\mathbf { \\alpha } \\mathbf { \\alpha } \\mathbf { \\beta } _  \\mathbf { \\alpha } \\mathbf { \\alpha } \\mathbf { \\alpha } \\mathbf { \\alpha } \\mathbf { \\alpha } \\mathbf { \\alpha } \\mathbf { \\beta } _ { \\mathbf { \\alpha \\beta } \\mathbf { \\alpha } \\mathbf { \\alpha } \\mathbf { \\beta } _ { \\mathbf { \\alpha \\beta } \\mathbf { \\alpha } \\mathbf { \\alpha \\beta } _ { \\mathrm { \\alpha \\beta } \\mathbf { \\alpha } \\mathbf { \\beta } _ { \\mathrm \\alpha \\mathbf { \\beta } \\mathbf { \\alpha \\beta } \\mathbf { \\alpha \\beta } _ { \\mathrm \\beta \\alpha \\mathbf { \\beta \\alpha } \\mathbf { \\alpha \\beta }  \\frac { \\beta _ { \\alpha \\mathbf { \\beta \\alpha \\beta } \\mathbf { \\alpha \\beta } \\mathbf { \\alpha \\beta } \\mathbf { \\alpha \\beta } _ { \\beta \\alpha \\beta \\alpha \\beta } } } } } } } }"
+                    },
+                    {
+                        "type": "text",
+                        "content": ", and by Lemma 1 no player removes it."
+                    }
+                ]
+            },
+            "bbox": [
+                503,
+                506,
+                921,
+                580
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "Step 2: Elimination time. Let "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "\\mathbf { \\pmb { a } } \\neq \\mathbf { \\pmb { a } } ^ { \\star }"
+                    },
+                    {
+                        "type": "text",
+                        "content": "be scheduled at round t. By Lemma 1, "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "n _ { { \\pmb a } ^ { \\star } } ( t ) \\geq n _ { { \\pmb a } } ( t )"
+                    },
+                    {
+                        "type": "text",
+                        "content": "and hence "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "\\alpha _ { { \\pmb a } ^ { \\star } } ( t ) \\leq \\alpha _ { { \\pmb a } } ( t )"
+                    },
+                    {
+                        "type": "text",
+                        "content": "Under "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "\\mathcal { G } _ { t }"
+                    },
+                    {
+                        "type": "text",
+                        "content": "the upper end of "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "I _ { a } ^ { i }"
+                    },
+                    {
+                        "type": "text",
+                        "content": "is at most "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "\\mu _ { a } + 2 \\alpha _ { a } ( t )"
+                    },
+                    {
+                        "type": "text",
+                        "content": "and the lower end of "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "I _ { a } ^ { i }"
+                    },
+                    {
+                        "type": "text",
+                        "content": "is at least "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "\\mu ^ { \\star } - 2 \\alpha _ { a } ( t )"
+                    },
+                    {
+                        "type": "text",
+                        "content": ", so every player detects domination as soon as "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "4 \\alpha _ { a } ( t ) < \\Delta _ { a } . \\mathrm { B y }"
+                    },
+                    {
+                        "type": "text",
+                        "content": "(5) this holds once "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "n _ { a } ( t )"
+                    },
+                    {
+                        "type": "text",
+                        "content": "exceeds"
+                    }
+                ]
+            },
+            "bbox": [
+                503,
+                582,
+                921,
+                674
+            ]
+        },
+        {
+            "type": "equation_interline",
+            "content": {
+                "math_content": "\\tau _ { a } = c \\gamma \\log ( T ) \\left( \\frac { 4 v ^ { 1 / ( 1 + \\varepsilon ) } } { \\Delta _ { a } } \\right) ^ { ( 1 + \\varepsilon ) / \\varepsilon } ,\\tag{8}",
+                "math_type": "latex",
+                "image_source": {
+                    "path": "images/e2faf8e11d4d1ff1bfd0d3e06f70d7c294d924a7ae62eb0973d871d913244058.jpg"
+                }
+            },
+            "bbox": [
+                584,
+                679,
+                841,
+                718
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "so that "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "n _ { \\pmb { a } } ( T ) \\leq \\tau _ { \\pmb { a } } + 1"
+                    },
+                    {
+                        "type": "text",
+                        "content": ": the arm is signaled the next time it is scheduled and is removed at the end of that cycle. Note that the detection threshold is "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "4 \\alpha _ { a }"
+                    },
+                    {
+                        "type": "text",
+                        "content": ", rather than the "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "2 \\alpha _ { a }"
+                    },
+                    {
+                        "type": "text",
+                        "content": "of an index comparison, because separating two intervals requires both radii to be small."
+                    }
+                ]
+            },
+            "bbox": [
+                503,
+                726,
+                921,
+                801
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "Step 3: Signaling cost. Each arm is removed exactly once, and by Lemma 1 its removal consumes exactly one round in which the realized joint action is unintended, contributing regret at most "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "\\Delta _ { \\mathrm { m a x } }"
+                    },
+                    {
+                        "type": "text",
+                        "content": ". Simultaneous deviations by several players still consume a single round, so the total signaling cost is at most "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "( K ^ { M } - 1 ) \\Delta _ { \\operatorname* { m a x } }"
+                    },
+                    {
+                        "type": "text",
+                        "content": ", independent of both T and M."
+                    }
+                ]
+            },
+            "bbox": [
+                501,
+                801,
+                923,
+                907
+            ]
+        }
+    ],
+    [
+        {
+            "type": "algorithm",
+            "content": {
+                "algorithm_caption": [],
+                "algorithm_content": [
+                    {
+                        "type": "text",
+                        "content": "Algorithm 3 mHT-DSEE 1: Players agree on an ordering of A and on "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "w ( t ) \\uparrow \\infty ;"
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "N \\gets 0 ."
+                    },
+                    {
+                        "type": "text",
+                        "content": "2: for "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "t = 1 , \\dots , T"
+                    },
+                    {
+                        "type": "text",
+                        "content": "do 3: if "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "N < K ^ { M } \\left\\lceil w ( t ) \\log t \\right\\rceil"
+                    },
+                    {
+                        "type": "text",
+                        "content": "then Play the next joint arm in the cyclic order; "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "N \\gets"
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "N + 1 ;"
+                    },
+                    {
+                        "type": "text",
+                        "content": "each player stores its own reward. 5: else 6: Player i plays its own component of arg max<sub>a</sub> "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "\\mathrm { \\Omega } _ { \\mathrm { } } \\mathrm { R U C B } _ { \\mathbf { } a } ^ { i } ( t )"
+                    },
+                    {
+                        "type": "text",
+                        "content": ", computed from exploration samples."
+                    }
+                ],
+                "algorithm_footnote": []
+            },
+            "bbox": [
+                75,
+                56,
+                490,
+                231
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "Step 4: Summing. By Step 2, "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "\\begin{array} { r } { \\sum _ { a \\neq a ^ { \\star } } \\Delta _ { a } ( \\tau _ { a } + 1 ) } \\end{array}"
+                    },
+                    {
+                        "type": "text",
+                        "content": "gives the first two terms of (7). Adding the failure contribution "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "\\begin{array} { r } { \\sum _ { t < T } \\mathrm { P r } ( \\mathcal G _ { t } ^ { c } ) \\Delta _ { \\operatorname* { m a x } } \\ \\le \\ M K ^ { M } \\Delta _ { \\operatorname* { m a x } } \\sum _ { t > 1 } t ^ { - \\gamma } \\ = \\ O ( 1 ) } \\end{array}"
+                    },
+                    {
+                        "type": "text",
+                        "content": "for "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "\\gamma > 1"
+                    },
+                    {
+                        "type": "text",
+                        "content": ", together with Step 3, yields the bound. □"
+                    }
+                ]
+            },
+            "bbox": [
+                73,
+                258,
+                491,
+                321
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "The leading term matches Problem A up to the constant "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "4 ^ { ( 1 + \\varepsilon ) / \\varepsilon }"
+                    },
+                    {
+                        "type": "text",
+                        "content": "in place of "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "2 ^ { ( 1 + \\varepsilon ) / \\varepsilon }"
+                    },
+                    {
+                        "type": "text",
+                        "content": ", and the remaining terms are independent of the horizon. The mechanism thus uses action deviations as a 1-bit implicit communication channel; this suffices because "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "\\alpha _ { a } ( t )"
+                    },
+                    {
+                        "type": "text",
+                        "content": "is common across players, so a single detection is enough to eliminate an arm for everyone."
+                    }
+                ]
+            },
+            "bbox": [
+                73,
+                330,
+                493,
+                422
+            ]
+        },
+        {
+            "type": "title",
+            "content": {
+                "title_content": [
+                    {
+                        "type": "text",
+                        "content": "V. PROBLEM C: INDEPENDENT REWARDS, UNOBSERVED ACTIONS"
+                    }
+                ],
+                "level": 2
+            },
+            "bbox": [
+                81,
+                433,
+                485,
+                463
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "Problem C combines both asymmetries, eliminating the coordination mechanisms of Problems A (shared rewards) and B (observable actions). A player cannot tell whether the realized reward corresponds to the intended joint arm or to a different one caused by another player’s deviation, and independent samples simultaneously prevent synchronized estimates. Adaptive, index-driven coordination is therefore unavailable, and exploration must be scheduled deterministically from the round index alone, which every player can reproduce."
+                    }
+                ]
+            },
+            "bbox": [
+                73,
+                470,
+                493,
+                607
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "mHT-DSEE (Algorithm 3) follows the DSEE framework [11]. Fix an increasing "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "w ( t ) \\to \\infty"
+                    },
+                    {
+                        "type": "text",
+                        "content": "and let "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "D ( t ) \\ ="
+                    },
+                    {
+                        "type": "text",
+                        "content": "⌈w(t) log t⌉ be the target number of samples of each joint arm by round t. If fewer than "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "K ^ { M } D ( t )"
+                    },
+                    {
+                        "type": "text",
+                        "content": "exploration rounds have been used, round t is an exploration round and the next joint arm in a fixed cyclic order is played; otherwise every player commits to the maximizer of its own RUCB, computed from exploration samples only. Because the test "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "N ( t ) < K ^ { M } D ( t )"
+                    },
+                    {
+                        "type": "text",
+                        "content": "depends only on t, players stay synchronized without communication. Two features matter for the analysis: the schedule is anytime, requiring neither T nor the gaps, and the confidence radius uses log t rather than log T."
+                    }
+                ]
+            },
+            "bbox": [
+                73,
+                607,
+                491,
+                790
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "Theorem 3. Under (2), if all players follow mHT-DSEE with "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "\\gamma > 1"
+                    },
+                    {
+                        "type": "text",
+                        "content": ", then"
+                    }
+                ]
+            },
+            "bbox": [
+                73,
+                796,
+                490,
+                827
+            ]
+        },
+        {
+            "type": "equation_interline",
+            "content": {
+                "math_content": "R _ { T } \\leq \\Delta _ { \\operatorname* { m a x } } K ^ { M } D ( T ) + \\Delta _ { \\operatorname* { m a x } } t _ { 0 } + O ( 1 ) ,\\tag{9}",
+                "math_type": "latex",
+                "image_source": {
+                    "path": "images/5b6207ba1f4779e027a76e2b34cdeaaed362fc345fa5c3e3ce24cdf05e1d0be9.jpg"
+                }
+            },
+            "bbox": [
+                140,
+                835,
+                426,
+                853
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "where "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "t _ { 0 } ~ = ~ \\operatorname* { m i n } \\{ t ~ : ~ w ( t ) ~ > ~ c \\gamma ( 2 v ^ { 1 / ( 1 + \\varepsilon ) } / \\Delta _ { \\operatorname* { m i n } } ) ^ { ( 1 + \\varepsilon ) / \\varepsilon } \\}"
+                    },
+                    {
+                        "type": "text",
+                        "content": "depends on ε, v and the gaps but not on T. With "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "w ( t ) = \\lceil \\log t \\rceil"
+                    },
+                    {
+                        "type": "text",
+                        "content": "this gives "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "R _ { T } = O ( K ^ { \\bar { M } } \\log ^ { 2 } T )"
+                    }
+                ]
+            },
+            "bbox": [
+                73,
+                861,
+                490,
+                909
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "Proof. Step 1: Exploration. At most "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "K ^ { M } D ( T )"
+                    },
+                    {
+                        "type": "text",
+                        "content": "rounds are exploration rounds, each contributing regret at most "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "\\Delta _ { \\mathrm { m a x } } ,"
+                    },
+                    {
+                        "type": "text",
+                        "content": "which is the first term."
+                    }
+                ]
+            },
+            "bbox": [
+                503,
+                61,
+                921,
+                107
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "Step 2: Good event. At an exploitation round t every arm has "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "D ( t )"
+                    },
+                    {
+                        "type": "text",
+                        "content": "samples for each player. By Section II-C with confidence level "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "t ^ { - \\gamma }"
+                    },
+                    {
+                        "type": "text",
+                        "content": "and a union bound over the "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "M K ^ { M }"
+                    },
+                    {
+                        "type": "text",
+                        "content": "player-arm pairs, the event "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "\\mathcal { G } _ { t }"
+                    },
+                    {
+                        "type": "text",
+                        "content": "that "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "| \\widehat { \\mu } _ { a } ^ { i } - \\mu _ { a } | \\leq \\alpha ( D ( t ) )"
+                    },
+                    {
+                        "type": "text",
+                        "content": "for all "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "i , \\pmb { a }"
+                    },
+                    {
+                        "type": "text",
+                        "content": "has "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "\\operatorname* { P r } ( \\mathcal G _ { t } ^ { c } ) \\leq"
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "M K ^ { M } t ^ { - \\gamma }"
+                    },
+                    {
+                        "type": "text",
+                        "content": ", where "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "\\overset { \\bullet } { \\alpha } ( \\overset { \\cdot } { n } ) = v ^ { 1 / ( 1 + \\varepsilon ) } \\overset { \\cdot } { ( } c \\log ( t ^ { \\gamma } ) / n ) ^ { \\varepsilon / ( 1 + \\varepsilon ) }"
+                    },
+                    {
+                        "type": "text",
+                        "content": "Step 3: Coordination. On "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "\\mathcal { G } _ { t } , \\mathrm { { R U C B } } _ { a } ^ { i } \\le \\mu _ { a } + 2 \\alpha ( D ( t ) )"
+                    },
+                    {
+                        "type": "text",
+                        "content": "and "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "\\operatorname { R U C B } _ { a ^ { \\star } } ^ { i } \\geq \\mu ^ { \\star }"
+                    },
+                    {
+                        "type": "text",
+                        "content": "for every player "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "i ,"
+                    },
+                    {
+                        "type": "text",
+                        "content": "so every player selects "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "\\mathbf { \\pmb { a } } ^ { \\star }"
+                    },
+                    {
+                        "type": "text",
+                        "content": "once "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "2 \\alpha ( D ( t ) ) < \\Delta _ { \\mathrm { m i n } } ,"
+                    },
+                    {
+                        "type": "text",
+                        "content": "i.e. once"
+                    }
+                ]
+            },
+            "bbox": [
+                503,
+                107,
+                921,
+                229
+            ]
+        },
+        {
+            "type": "equation_interline",
+            "content": {
+                "math_content": "D ( t ) > c \\gamma \\log ( t ) \\left( \\frac { 2 v ^ { 1 / ( 1 + \\varepsilon ) } } { \\Delta _ { \\mathrm { m i n } } } \\right) ^ { ( 1 + \\varepsilon ) / \\varepsilon } = : \\kappa \\log t .\\tag{10}",
+                "math_type": "latex",
+                "image_source": {
+                    "path": "images/20540bdce7c7d16b5931c09ac3f800e82fdfbf019c18baedf18567256cb61032.jpg"
+                }
+            },
+            "bbox": [
+                531,
+                233,
+                866,
+                273
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "The threshold does not depend on the player index, so the players agree; and since "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "D ( t ) \\geq w ( t ) \\log t ,"
+                    },
+                    {
+                        "type": "text",
+                        "content": "condition (10) holds as soon as "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "w ( t ) > \\kappa ,"
+                    },
+                    {
+                        "type": "text",
+                        "content": ", that is for every "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "t \\geq t _ { 0 }"
+                    },
+                    {
+                        "type": "text",
+                        "content": ". This is the role of the anytime schedule: both sides of (10) scale with log t, so the crossing time "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "t _ { 0 }"
+                    },
+                    {
+                        "type": "text",
+                        "content": "is determined by w and the gaps alone and does not grow with the horizon. Each player then plays its component of "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "\\mathbf { \\delta } _  \\mathbf { \\alpha } \\mathbf { \\alpha } \\mathbf { \\alpha } \\mathbf { \\alpha } \\mathbf { \\alpha } \\mathbf { \\alpha } \\mathbf { \\alpha } \\mathbf { \\beta } _  \\mathbf { \\alpha } \\mathbf { \\alpha } \\mathbf { \\alpha } \\mathbf { \\alpha } \\mathbf { \\alpha } \\mathbf { \\alpha } \\mathbf { \\beta } _ { \\mathbf { \\alpha \\beta } \\mathbf { \\alpha } \\mathbf { \\alpha } \\mathbf { \\beta } _ { \\mathbf { \\alpha \\beta } \\mathbf { \\alpha } \\mathbf { \\alpha \\beta } _ { \\mathrm { \\alpha \\beta } \\mathbf { \\alpha } \\mathbf { \\beta } _ { \\mathrm \\alpha \\mathbf { \\beta } \\mathbf { \\alpha \\beta } \\mathbf { \\alpha \\beta } _ { \\mathrm \\beta \\alpha \\mathbf { \\beta \\alpha } \\mathbf { \\alpha \\beta }  \\frac { \\beta _ { \\alpha \\mathbf { \\beta \\alpha \\beta } \\mathbf { \\alpha \\beta } \\mathbf { \\alpha \\beta } \\mathbf { \\alpha \\beta } _ { \\beta \\alpha \\beta \\alpha \\beta } } } } } } } }"
+                    },
+                    {
+                        "type": "text",
+                        "content": ", and the realized joint arm is exactly "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "\\mathbf { \\pmb { a } } ^ { \\star }"
+                    }
+                ]
+            },
+            "bbox": [
+                501,
+                279,
+                923,
+                398
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "Step 4: Exploitation regret. Exploitation rounds with "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "t < t _ { 0 }"
+                    },
+                    {
+                        "type": "text",
+                        "content": "contribute at most "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "\\Delta _ { \\mathrm { m a x } } t _ { 0 }"
+                    },
+                    {
+                        "type": "text",
+                        "content": ". For "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "t \\geq t _ { 0 } ."
+                    },
+                    {
+                        "type": "text",
+                        "content": ", regret is incurred only on "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "\\mathcal { G } _ { t } ^ { c }"
+                    },
+                    {
+                        "type": "text",
+                        "content": ", contributing at most "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "\\begin{array} { r } { M K ^ { M } \\Delta _ { \\operatorname* { m a x } } \\sum _ { t > 1 } t ^ { - \\gamma } = O ( \\mathrm { i } ) } \\end{array}"
+                    },
+                    {
+                        "type": "text",
+                        "content": "for "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "\\gamma > 1"
+                    },
+                    {
+                        "type": "text",
+                        "content": ". Adding Step 1 gives (9). Taking "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "\\bar { \\boldsymbol { w } } ( t ) = \\lceil \\log t \\rceil"
+                    },
+                    {
+                        "type": "text",
+                        "content": "gives "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "D ( T ) = O ( \\log ^ { 2 } T )"
+                    },
+                    {
+                        "type": "text",
+                        "content": "□"
+                    }
+                ]
+            },
+            "bbox": [
+                503,
+                398,
+                921,
+                476
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "Remark 1. The choice of w trades the two terms of (9) against each other: faster growth shortens "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "t _ { 0 }"
+                    },
+                    {
+                        "type": "text",
+                        "content": "but enlarges the exploration budget "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "D ( T )"
+                    },
+                    {
+                        "type": "text",
+                        "content": ". Any w "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "\\uparrow \\infty"
+                    },
+                    {
+                        "type": "text",
+                        "content": "yields "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "o ( \\log ^ { 1 + \\eta } T )"
+                    },
+                    {
+                        "type": "text",
+                        "content": "regret for the corresponding η, and knowledge of "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "\\Delta _ { \\mathrm { m i n } }"
+                    },
+                    {
+                        "type": "text",
+                        "content": "would allow the constant schedule "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "w \\equiv \\kappa"
+                    },
+                    {
+                        "type": "text",
+                        "content": "and hence "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "{ \\cal O } ( \\log T )"
+                    },
+                    {
+                        "type": "text",
+                        "content": "; the extra factor is the price of not knowing the gaps."
+                    }
+                ]
+            },
+            "bbox": [
+                501,
+                482,
+                923,
+                574
+            ]
+        },
+        {
+            "type": "title",
+            "content": {
+                "title_content": [
+                    {
+                        "type": "text",
+                        "content": "VI. EXPERIMENTS"
+                    }
+                ],
+                "level": 2
+            },
+            "bbox": [
+                643,
+                582,
+                784,
+                597
+            ]
+        },
+        {
+            "type": "title",
+            "content": {
+                "title_content": [
+                    {
+                        "type": "text",
+                        "content": "A. Setup"
+                    }
+                ],
+                "level": 2
+            },
+            "bbox": [
+                503,
+                602,
+                571,
+                617
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "We take "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "M = 2"
+                    },
+                    {
+                        "type": "text",
+                        "content": "players, "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "K = 2"
+                    },
+                    {
+                        "type": "text",
+                        "content": "individual arms "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "( K ^ { M } = 4"
+                    },
+                    {
+                        "type": "text",
+                        "content": "joint arms), and horizon "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "T = 1 0 ^ { 6 }"
+                    },
+                    {
+                        "type": "text",
+                        "content": ", averaging over 10 independent runs on the fixed instance "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "\\pmb { \\mu } = ( 0 . 4 4 , 0 . 5 7 , 0 . 9 1 , 0 . 2 5 )"
+                    },
+                    {
+                        "type": "text",
+                        "content": "so that the gaps are "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "( 0 . 4 6 , 0 . 3 4 , - , 0 . 6 5 )"
+                    },
+                    {
+                        "type": "text",
+                        "content": ". Pulling joint arm a yields a Pareto reward with shape "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "a _ { 0 } ~ = ~ 2"
+                    },
+                    {
+                        "type": "text",
+                        "content": "and scale "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "x _ { m } = \\mu _ { a } ( a _ { 0 } - 1 ) / a _ { 0 }"
+                    },
+                    {
+                        "type": "text",
+                        "content": ", so that "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "\\mathbb { E } [ X _ { a } ] = \\mu _ { a }"
+                    },
+                    {
+                        "type": "text",
+                        "content": ". This distribution has finite mean and infinite variance: its centered moments of order "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "1 + \\varepsilon"
+                    },
+                    {
+                        "type": "text",
+                        "content": "are finite exactly for "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "\\varepsilon < 1"
+                    },
+                    {
+                        "type": "text",
+                        "content": ". We therefore set "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "\\varepsilon \\ = \\ 0 . 5 ."
+                    },
+                    {
+                        "type": "text",
+                        "content": ", for which E "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "| X _ { a } - \\mu _ { a } | ^ { 1 . 5 } \\ \\leq \\ 0 . 7 5 \\ < \\ 1 \\ = \\ v"
+                    },
+                    {
+                        "type": "text",
+                        "content": "for every "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "\\mu _ { a } \\in [ 0 , 1 ]"
+                    },
+                    {
+                        "type": "text",
+                        "content": ", so (2) holds; taking "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "\\varepsilon = 1"
+                    },
+                    {
+                        "type": "text",
+                        "content": "would instead require a finite second moment and is not admissible for this reward family. All three algorithms use the truncated-mean estimator (3) with "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "( c , \\gamma ) = ( 1 , 2 )"
+                    },
+                    {
+                        "type": "text",
+                        "content": ", i.e. exactly the estimator the analysis assumes, and mHT-DSEE uses "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "w ( t ) = \\lceil \\log t \\rceil"
+                    }
+                ]
+            },
+            "bbox": [
+                501,
+                619,
+                923,
+                834
+            ]
+        },
+        {
+            "type": "title",
+            "content": {
+                "title_content": [
+                    {
+                        "type": "text",
+                        "content": "B. Results"
+                    }
+                ],
+                "level": 2
+            },
+            "bbox": [
+                504,
+                842,
+                583,
+                857
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "Figure 1 shows mean cumulative regret. All three curves are clearly sublinear, confirming that each algorithm identifies "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "\\mathbf { \\pmb { a } } ^ { \\star }"
+                    },
+                    {
+                        "type": "text",
+                        "content": "under infinite-variance rewards and with the robust estimator in place. mRUCB-A ends at 214±24 and mHT-DSEE at "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "2 9 2 \\pm 2 1"
+                    },
+                    {
+                        "type": "text",
+                        "content": "both still growing slowly, while mRUCB-Intervals ends at "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "4 1 1 5 \\pm 2 8 5"
+                    },
+                    {
+                        "type": "text",
+                        "content": "but is exactly flat beyond "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "{ \\approx } 7 \\times 1 0 ^ { 4 }"
+                    },
+                    {
+                        "type": "text",
+                        "content": "rounds."
+                    }
+                ]
+            },
+            "bbox": [
+                503,
+                862,
+                923,
+                909
+            ]
+        }
+    ],
+    [
+        {
+            "type": "chart",
+            "content": {
+                "image_source": {
+                    "path": "images/230c2b4d8bcab18c5c86f84fa3d0f2f50eac38b7903bfcc064d8c193f8837b1f.jpg"
+                },
+                "content": "",
+                "chart_caption": [
+                    {
+                        "type": "text",
+                        "content": "Fig. 1. Mean cumulative regret over 10 runs under Pareto rewards with infinite variance (M=2, K=2, T=10<sup>6</sup>), log–log axes."
+                    }
+                ],
+                "chart_footnote": []
+            },
+            "bbox": [
+                98,
+                61,
+                470,
+                246
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": []
+            },
+            "bbox": [
+                73,
+                314,
+                490,
+                359
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "The ordering at this horizon is governed by constants rather than by rates, and is instructive. Elimination in Problem B requires two intervals to separate, i.e. "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "4 \\alpha _ { a } < \\Delta _ { a }"
+                    },
+                    {
+                        "type": "text",
+                        "content": ", whereas the index comparisons of Problems A and C need only "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "2 \\alpha _ { a } < \\Delta _ { a }"
+                    },
+                    {
+                        "type": "text",
+                        "content": "; by (5) this is "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "2 ^ { ( 1 + \\varepsilon ) / \\varepsilon } = 8"
+                    },
+                    {
+                        "type": "text",
+                        "content": "times more samples of each arm when "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "\\varepsilon = 0 . 5"
+                    },
+                    {
+                        "type": "text",
+                        "content": ", which is what the early growth of the orange curve buys. The payoff is that once the active set collapses, mRUCB-Intervals incurs no further regret at all, whereas the other two keep exploring; the curves would therefore cross at larger horizons. Similarly, mHT-DSEE is inexpensive here because its exploration budget "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "K ^ { M } \\lceil \\log ^ { 2 } t \\rceil"
+                    },
+                    {
+                        "type": "text",
+                        "content": "is only ≈760 rounds at "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "T = 1 0 ^ { 6 }"
+                    },
+                    {
+                        "type": "text",
+                        "content": ", even though its rate is the worst of the three. The experiments thus support the theory while showing that the hierarchy of Table I is asymptotic: at moderate horizons the constants attached to each coordination mechanism dominate. A further practical caveat is that the joint action space grows as "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "K ^ { M }"
+                    },
+                    {
+                        "type": "text",
+                        "content": ", so larger instances lengthen the exploration phases of mHT-DSEE and slow the elimination cascade of mRUCB-Intervals."
+                    }
+                ]
+            },
+            "bbox": [
+                73,
+                359,
+                493,
+                647
+            ]
+        },
+        {
+            "type": "title",
+            "content": {
+                "title_content": [
+                    {
+                        "type": "text",
+                        "content": "VII. CONCLUSION"
+                    }
+                ],
+                "level": 2
+            },
+            "bbox": [
+                214,
+                659,
+                352,
+                672
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "We studied multi-agent bandits with heavy-tailed rewards under three information asymmetries. Our algorithms show that effective decentralized learning is achievable even under significant asymmetry and non-sub-Gaussian noise: shared rewards (Problem A) enable costless synchronization; observed actions (Problem B) provide an implicit signaling channel whose cost is independent of the horizon and of the number of players; and the fully asymmetric setting (Problem C) requires a pre-committed anytime schedule at a log T factor of additional cost. That observable actions compensate for the loss of shared rewards at leading order is a notable positive result, while the barrier between Problems B and C shows the value of even minimal observability."
+                    }
+                ]
+            },
+            "bbox": [
+                73,
+                680,
+                493,
+                877
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "Two limitations point to future work. First, our guarantees, like those of [10], [11], assume that (ε, v) are known: a conservative choice (smaller ε or larger v) keeps every bound valid but inflates the confidence radius and hence the regret, so adapting to unknown tail heaviness—plausibly through selfnormalized constructions such as [15]—remains open. Second, tighter lower bounds for Problem C would clarify whether the extra log T factor is necessary without shared information. Extensions to adversarial or non-stationary rewards, and structured reward models such as linear or factored bandits that would mitigate the exponential "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "K ^ { M }"
+                    },
+                    {
+                        "type": "text",
+                        "content": "dependence, are also natural directions."
+                    }
+                ]
+            },
+            "bbox": [
+                73,
+                877,
+                493,
+                909
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": []
+            },
+            "bbox": [
+                503,
+                63,
+                923,
+                213
+            ]
+        },
+        {
+            "type": "title",
+            "content": {
+                "title_content": [
+                    {
+                        "type": "text",
+                        "content": "REFERENCES"
+                    }
+                ],
+                "level": 2
+            },
+            "bbox": [
+                665,
+                222,
+                761,
+                236
+            ]
+        },
+        {
+            "type": "list",
+            "content": {
+                "list_type": "reference_list",
+                "list_items": [
+                    {
+                        "item_type": "text",
+                        "item_content": [
+                            {
+                                "type": "text",
+                                "content": "[1] H. E. Robbins, “Some aspects of the sequential design of experiments,” Bulletin of the American Mathematical Society, vol. 58, pp. 527–535, 1952."
+                            }
+                        ]
+                    },
+                    {
+                        "item_type": "text",
+                        "item_content": [
+                            {
+                                "type": "text",
+                                "content": "[2] W. R. Thompson, “On the likelihood that one unknown probability exceeds another in view of the evidence of two samples,” Biometrika, vol. 25, no. 3/4, pp. 285–294, 1933."
+                            }
+                        ]
+                    },
+                    {
+                        "item_type": "text",
+                        "item_content": [
+                            {
+                                "type": "text",
+                                "content": "[3] B. Awerbuch and R. Kleinberg, “Competitive collaborative learning,” Journal of Computer and System Sciences, vol. 74, no. 8, pp. 1271– 1288, 2008. Learning Theory 2005."
+                            }
+                        ]
+                    },
+                    {
+                        "item_type": "text",
+                        "item_content": [
+                            {
+                                "type": "text",
+                                "content": "[4] B. Szorenyi, R. Busa-Fekete, I. Hegedus, R. Ormandi, M. Jelasity, and B. Kegl, “Gossip-based distributed stochastic bandit algorithms,” in Proceedings of the 30th International Conference on Machine Learning (S. Dasgupta and D. McAllester, eds.), vol. 28 of Proceedings of Machine Learning Research, (Atlanta, Georgia, USA), pp. 19–27, PMLR, 17–19 Jun 2013."
+                            }
+                        ]
+                    },
+                    {
+                        "item_type": "text",
+                        "item_content": [
+                            {
+                                "type": "text",
+                                "content": "[5] D. Kalathil, N. Nayyar, and R. Jain, “Decentralized learning for multiplayer multiarmed bandits,” IEEE Transactions on Information Theory, vol. 60, no. 4, pp. 2331–2345, 2014."
+                            }
+                        ]
+                    },
+                    {
+                        "item_type": "text",
+                        "item_content": [
+                            {
+                                "type": "text",
+                                "content": "[6] C. Shi and C. Shen, “Multi-player multi-armed bandits with collisiondependent reward distributions,” IEEE Transactions on Signal Processing, vol. 69, p. 4385–4402, 2021."
+                            }
+                        ]
+                    },
+                    {
+                        "item_type": "text",
+                        "item_content": [
+                            {
+                                "type": "text",
+                                "content": "[7] W. Chang, M. Jafarnia-Jahromi, and R. Jain, “Online learning for cooperative multi-player multi-armed bandits,” CoRR, vol. abs/2109.03818, 2021."
+                            }
+                        ]
+                    },
+                    {
+                        "item_type": "text",
+                        "item_content": [
+                            {
+                                "type": "text",
+                                "content": "[8] W. Chang and Y. Lu, “Optimal cooperative multiplayer learning bandits with noisy rewards and no communication,” arXiv preprint arXiv:2311.06210, 2023."
+                            }
+                        ]
+                    },
+                    {
+                        "item_type": "text",
+                        "item_content": [
+                            {
+                                "type": "text",
+                                "content": "[9] E. Boursier and V. Perchet, “A survey on multi-player bandits,” 2024."
+                            }
+                        ]
+                    },
+                    {
+                        "item_type": "text",
+                        "item_content": [
+                            {
+                                "type": "text",
+                                "content": "[10] S. Bubeck, N. Cesa-Bianchi, and G. Lugosi, “Bandits with heavy tail,” 2012."
+                            }
+                        ]
+                    },
+                    {
+                        "item_type": "text",
+                        "item_content": [
+                            {
+                                "type": "text",
+                                "content": "[11] S. Vakili, K. Liu, and Q. Zhao, “Deterministic sequencing of exploration and exploitation for multi-armed bandit problems,” 2013."
+                            }
+                        ]
+                    },
+                    {
+                        "item_type": "text",
+                        "item_content": [
+                            {
+                                "type": "text",
+                                "content": "[12] X. Yu, H. Shao, M. R. Lyu, and I. King, “Pure exploration of multiarmed bandits with heavy-tailed payoffs.,” in UAI, pp. 937–946, 2018."
+                            }
+                        ]
+                    },
+                    {
+                        "item_type": "text",
+                        "item_content": [
+                            {
+                                "type": "text",
+                                "content": "[13] H. Shao, X. Yu, I. King, and M. R. Lyu, “Almost optimal algorithms for linear stochastic bandits with heavy-tailed payoffs,” in Advances in Neural Information Processing Systems (S. Bengio, H. Wallach, H. Larochelle, K. Grauman, N. Cesa-Bianchi, and R. Garnett, eds.), vol. 31, Curran Associates, Inc., 2018."
+                            }
+                        ]
+                    },
+                    {
+                        "item_type": "text",
+                        "item_content": [
+                            {
+                                "type": "text",
+                                "content": "[14] K. Lee and S. Lim, “Minimax optimal bandits for heavy tail rewards,” IEEE Transactions on Neural Networks and Learning Systems, vol. 35, no. 4, pp. 5280–5294, 2024."
+                            }
+                        ]
+                    },
+                    {
+                        "item_type": "text",
+                        "item_content": [
+                            {
+                                "type": "text",
+                                "content": "[15] H. Wang and A. Ramdas, “Catoni-style confidence sequences for heavytailed mean estimation,” Stochastic Processes and their Applications, vol. 163, p. 168–202, Sept. 2023."
+                            }
+                        ]
+                    },
+                    {
+                        "item_type": "text",
+                        "item_content": [
+                            {
+                                "type": "text",
+                                "content": "[16] A. Dubey et al., “Cooperative multi-agent bandits with heavy tails,” in International conference on machine learning, pp. 2730–2739, PMLR, 2020."
+                            }
+                        ]
+                    },
+                    {
+                        "item_type": "text",
+                        "item_content": [
+                            {
+                                "type": "text",
+                                "content": "[17] X. Wang and M. Xu, “Multi-agent multi-armed bandit with fully heavytailed dynamics,” 2025."
+                            }
+                        ]
+                    }
+                ]
+            },
+            "bbox": [
+                513,
+                242,
+                921,
+                275
+            ]
+        }
+    ]
+]

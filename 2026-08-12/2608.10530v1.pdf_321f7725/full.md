@@ -1,0 +1,870 @@
+# On Understanding, Identifying, and Mitigating Vulnerabilities in Agentic Large Language Models
+
+MD JAFRIN HOSSAIN, Florida International University, USA
+
+MOHAMMAD ARIF HOSSAIN, Middle Tennessee State University, USA
+
+NIRWAN ANSARI, New Jersey Institute of Technology, USA
+
+Large Language Models (LLMs) have undergone a shift from stateless conversational interfaces to autonomous agents capable of multi-step planning, tool invocation, code execution, and maintaining persistent memory. When these agents operate with real-world privileges—calling APIs, modifying files, and querying databases—a compromised reasoning step can trigger unauthorized data access, irreversible state changes, or cascading failures, yet the security research community has not kept pace. To quantify the state of the field, we conducted a systematic literature review under PRISMA 2020 guidelines across six databases, screening 743 records and retaining 85 papers (2023–2025) on agentic LLM security. Attack research outpaces defense work by 3.9:1. Perception-layer vulnerabilities (prompt injection, jailbreaking, adversarial perturbations) dominate, accounting for 66% of papers, while action-layer vulnerabilities (tool misuse, code injection, sandbox escape) appear in only 4.7%, misaligned with real-world risk. Code execution security accounts for 3.5%, and tool-augmented agents 12%. We contribute a four-layer taxonomy mapping 13 vulnerability types across perception, brain, action, and interaction layers, and identify seven open problems centered on containment. Agentic LLM insecurity stems from architectural coupling, where weak isolation allows vulnerabilities to propagate across layers.
+
+CCS Concepts: • Security and privacy → Human and societal aspects of security and privacy; • Computing methodologies → Artificial intelligence.
+
+Additional Key Words and Phrases: Agentic AI, Large Language Models, LLM Agents, Vulnerability, Security, Prompt Injection, Multi-Agent Systems, Tool-Augmented LLM
+
+## 1 Introduction
+
+## 1.1 The Advancement of Agentic LLM Systems
+
+Large language models (LLMs) are in the midst of a paradigm shift. They are moving from passive, interactive systems to autonomous, goal-directed systems with external actuation capabilities, capable of functioning even in complex settings [34]. Initially, large language models (LLMs) were used for one-shot or limited context conversations at best. The models could only generate textual outputs without taking any actions outside their system, could not retain information from previous interactions, and had no tasks left to perform in the future [31].
+
+In contrast to earlier systems, the latest agentic LLMs tend to support memory planning and tool-use plans for achieving self-guided objectives that lie far in the future [60]. These architecturally significant advancements have made LLMs a centerpiece of iterative decision-making processes [141]. Today, agentic models of LLMs can be commanded to break down high-level objectives into intermediate sub-goals, support multistep reasoning, use external "tools" or APIs, and monitor their own internal states based on observations of external outcomes [31]. AutoGPT, React-based agents, or tool-based LLM models are examples of systems that better represent the development of language models from passive text-generating machines to generalized computational system controllers [[44, 106]].
+
+As a result, the scope and operation of large language model-based systems have grown significantly to support increasingly complex and operationally relevant applications [142], where empirical studies indicate that agent actions can exacerbate model failures and lead to detrimental outcomes [6], including the generation of incorrect information and irreversible real-world actions such as faulty API calls or unintended code execution [72], thereby introducing additional operational and security risks.
+
+## 1.2 Security Threats Unique to Agentic Systems
+
+The security context of agentic LLMs is not comparable to what we are concerned about with traditional LLMs. The major concerns with LLMs, as discussed in most literature, include prompt injection, jailbreaking, data leakage, and misuse, especially during chat-based interactions [126]. Although these are valid security concerns, they do not fully capture the security landscape when agentic LLMs are considered.
+
+The security context with agentic LLMs is more alarming because they can interact with other tools, function independently, create their own environment, access memory, and function with other agents [2]. When agents are used, these agents can access privileged APIs and change external facts. The agents, especially the retrieval agents, are bound by their external knowledge bases [13]. When there is a multi-agent system, there is a new channel of attack, especially concerning message injection and impersonation attacks [133]. The memory store can allow agents to create channels of attack, especially concerning poisoning and the gradual corruption of the LLM’s reasoning and learning processes [157]. Among these, cascading failures represent a particularly concerning threat class. The agents function independently and recursively. This means that if there is an attack, it can cascade through all agents without anyone’s knowledge, let alone anyone’s control [67].
+
+Any part of the agentic LLM setup that can be breached by an attacker and the harmful consequences that follow will afect the entire agentic LLM setup. This suggests that prompt injection has the potential to change an agent’s current internal goals, which in turn can influence the planning process, tools, and techniques used [17]. The efects of this then continue over time, becoming harder to identify and address, with the efects not being noticeable until many intermediary actions have been carried out. Even though security issues with agentic LLMs are significant, existing security defenses are based on the era of traditional LLMs. There is, therefore, a growing gap in the capabilities of agentic LLMs and existing security defenses [43].
+
+## 1.3 Scope and Definitions
+
+In this work, we define agentic LLMs as systems where the primary reasoning element is a large language model (LLM), coupled with an autonomous agent capable of: (1) perceiving and processing inputs from surrounding environments, such as user instructions or external data; (2) performing multi-step planning executing sequences of actions; (3) invoking external tools, APIs, and code execution; and (4) updating its state or memory based on the outcome of previously executed actions.
+
+It is also important to clarify what is not included in the definition ofagentic LLMs. These include purely conversational LLMs, traditional AI agent systems which are not based on LLMs, and studies on LLMs that do not address security or safety aspects related to agentic behaviour. This literature considered in this study spans January 2023 through December 2025. This period is crucial since it marks the emergence of agentic LLMs in the literature, focusing on this Manuscript submitted to ACM
+
+timeframe enables us to identify vulnerabilities that arise specifically from the agentic properties of LLM-based systems, rather than vulnerabilities associated with LLMs in general.
+
+## 1.4 Research Questions
+
+This research is organized around four research questions that provide a foundation for evaluating the security of agentic LLMs.
+
+• RQ1: What types of vulnerabilities arise in agentic LLMs, and at which architectural layers do these vulnerabilities occur?
+
+• RQ2: What techniques have been proposed to detect and identify these vulnerabilities, and how efective are they?
+
+• RQ3: What mitigation and defense mechanisms have been developed to address vulnerabilities in agentic LLM systems?
+
+• RQ4: What critical research gaps remain, and what research areas require urgent investigation?
+
+Taken together, these questions provide a framework for the literature review and guide the development of a vulnerability taxonomy and research agenda addressing the security challenges of agentic LLMs.
+
+## 1.5 Contributions
+
+This research is significant for several reasons. To the best of our knowledge, this is the first PRISMA-based systematic review specifically focused on identifying vulnerabilities associated with agentic LLMs. We undertook an extensive review of the literature, in line with the PRISMA guidelines for the year 2020, for 85 peer-reviewed articles (from an initial set of 743) published between 2023 and 2025 in six prominent research databases.
+
+Taxonomy of Vulnerability: Four-layer structure based on agent architecture. We have mapped the vulnerabilities to the diferent layers of the architecture of the agent, namely perception, brain, action, and interaction.
+
+Quantitative Synthesis: Identification of imbalance and gaps in the literature. Our quantitative synthesis indicates an imbalance between the number of papers focused on attacks (3.9:1) and those focused on defenses, while also identifying significant gaps, such as the lack of coverage for code execution vulnerabilities and security for embodied agents.
+
+Research Roadmap: A comprehensive framework for the research, identifying seven open problems for improving the security of agentic LLM systems.
+
+## 1.6 Organization of the Paper
+
+This paper progresses from establishing context and scope (Section 2) and methodology (Section 3), through background (Section 4), vulnerability analysis (Section 5), and detection/mitigation (Sections 6–7), to identifying research gaps (Section 8) and concluding with key findings and future directions (Section 9).
+
+## 2 Related Work and Positioning
+
+## 2.1 Evolution of LLM Security Research
+
+In the last few years, the pace of research related to the safety and security of large language models has accelerated significantly, reflecting the changing nature and applications of large language models [153]. Traditionally, the research was focused only on the risks associated with large language models, but recently, the academic interest has moved towards the agential behavior of large language models, which includes autonomous task accomplishment, tool use, and long-horizon execution [156].
+
+![](images/f74a32dad58d4bea0222ede555b1eba334e594d70273e2170521a43a83b2b0ca.jpg)  
+Fig. 1. Organization of the Paper
+
+The first set ofsecurity research for large language models (LLMs) was initiated with the development and proliferation of large-scale, pre-trained language models [18]. Over a very short period, numerous surveys and empirical studies have identified the security issues faced by conversational and task-oriented large language models, such as prompt injection, jailbreaking, data leakage, memorization, and model abuse [1]. However, all such works have considered large language models to be passive entities, responding to user queries, without any state, tool, or time-dependent program flow. Nevertheless, the majority of the works have focused only on the surface-level security issues faced by large language models, without considering the security aspects of large language models used in the core decision-making process.
+
+Since the beginning of 2023, the security research for large language model agents has gained momentum, considering the fact that large language model agents have moved beyond the proof-of-concept stage and are being used for practical applications, such as AutoGPT, ReAct, tool-aided large language model agents, and multi-agent systems, which have introduced new security issues, such as uncoordinated failure, tool misuse, environment modification, and multi-step planning challenges [30].
+
+## 2.2 Existing Surveys and Their Limitations
+
+Existing surveys address related issues in LLM or AI security, but none provides a dedicated architectural vulnerability taxonomy for agentic LLM systems grounded in a systematic review of the literature.
+
+During the pre-LLMs period, security surveys focused on software agents, multi-agent systems, and robotic agents [132]. Although these studies address security issues such as trust, coordination problems, and adversarial situations, their results apply only to symbolic agents. As a result, they do not address potential security concerns related to LLM systems, such as prompt injection, emergent reasoning failure, or tool misuse due to language.
+
+Some recent surveys have focused on agentic AI and autonomous LLMs. However, most existing reviews do not report search strategies, inclusion and exclusion criteria, or assess the completeness of the provided information. The majority of existing surveys are narrative and emphasize security mechanisms in association with system challenges or governance. Narrative reviews in this space tend to address security mechanisms at a surface level; while some Manuscript submitted to ACM
+
+address multi-agent systems and tool-based security, none adequately covers security vulnerabilities related to agent architecture.
+
+Although existing surveys cover LLM safety, adversarial machine learning, and AI agent security, they mostly focus on model-level attacks and do not provide an architectural view on agential LLM vulnerabilities. This survey is unique in that it (1) is underpinned by a systematic review methodology based on PRISMA, (2) ofers a four-layer architectural taxonomy for LLM vulnerabilities, and (3) provides a quantitative gap analysis on security research in the architectural layers.
+
+## 2.3 Gap Analysis and Comparison
+
+This study presents a systematic literature review on security vulnerabilities of agentic large language model systems by following a PRISMA protocol, which synthesizes and organizes existing literature on diferent components.
+
+We provide an abridged overview of representative historical survey studies on several key dimensions, as shown in Table 1. The survey covers all aspects of agent architectures, ranging from single-agent and multi-agent systems to tool-augmented and RAG-based systems, as well as security requirements, including vulnerabilities, detections, and mitigations. The following section presents three major gaps found in previous studies. The gaps include: (1) agent architectures, (2) focus on weaknesses, not detection and mitigation, and (3) lack of formalism found in survey studies.
+
+Table 1. Coverage Comparison with Previous Surveys. Legend: ✓ = In-depth coverage / Yes, = Partially covered, ✗ = Not covered.
+<table><tr><td>Reference</td><td>Year</td><td>PRISMA</td><td>Arch. Taxonomy</td><td>Single Agent</td><td>Multi-Agent</td><td>Tool-using</td><td>Vuln. Categories</td><td>Detection</td><td>Mitigation</td></tr><tr><td>[72]</td><td>2025</td><td>x</td><td>x</td><td>0</td><td>x</td><td>x</td><td>√</td><td>x</td><td>√</td></tr><tr><td>[112]</td><td>2023</td><td>x</td><td>x</td><td></td><td>√</td><td>x</td><td>√</td><td>x</td><td>√</td></tr><tr><td>[11]</td><td>2025</td><td>x</td><td>x</td><td></td><td>√</td><td>√</td><td>x</td><td>√</td><td>x</td></tr><tr><td>[125]</td><td>2024</td><td>x</td><td>x</td><td></td><td>x</td><td>x</td><td>√</td><td>x</td><td>√</td></tr><tr><td>[105]</td><td>2025</td><td>x</td><td>0</td><td></td><td>√</td><td>√</td><td>√</td><td>x</td><td>x</td></tr><tr><td>[28]</td><td>2024</td><td>x</td><td>0</td><td></td><td>x</td><td>x</td><td>√</td><td>x</td><td>√</td></tr><tr><td>[49]</td><td>2024</td><td>x</td><td>x</td><td></td><td>x</td><td>x</td><td>√</td><td>√</td><td>√</td></tr><tr><td>[44]</td><td>2024</td><td>x</td><td>x</td><td></td><td>x</td><td>x</td><td>√</td><td>x</td><td>x</td></tr><tr><td>[166]</td><td>2025</td><td>x</td><td>x</td><td></td><td>√</td><td>x</td><td>√</td><td>x</td><td>√</td></tr><tr><td>[125]</td><td>2025</td><td>x</td><td>x</td><td></td><td>x</td><td>x</td><td>√</td><td>x</td><td>√</td></tr><tr><td>[81]</td><td>2025</td><td>x</td><td>0</td><td></td><td>x</td><td>x</td><td>√</td><td>√</td><td>√</td></tr><tr><td>[143]</td><td>2025</td><td>0</td><td>x</td><td></td><td>x</td><td>x</td><td>√</td><td>√</td><td>√</td></tr><tr><td>[115]</td><td>2024</td><td>x</td><td>x</td><td></td><td>x</td><td>x</td><td>√</td><td>x</td><td>1</td></tr><tr><td>[81]</td><td>2025</td><td>x</td><td>0</td><td></td><td>x</td><td>x</td><td>√</td><td>√</td><td>√</td></tr><tr><td>[19]</td><td>2025</td><td>x</td><td>x</td><td></td><td>√</td><td>x</td><td>√</td><td>0</td><td>√</td></tr><tr><td>[147]</td><td>2024</td><td>x</td><td>0</td><td></td><td>√</td><td>x</td><td>√</td><td>x</td><td>√</td></tr><tr><td>[7]</td><td>2024</td><td>x</td><td>x</td><td></td><td>x</td><td>√</td><td>x</td><td>x</td><td>x</td></tr><tr><td>This Survey (Ours)</td><td>2025</td><td>√</td><td>√</td><td>√</td><td>√</td><td>√</td><td>√</td><td>√</td><td>√</td></tr></table>
+
+PRISMA-based Research Methodology: This is the first PRISMA 2020-compliant systematic review in agentic LLM security, with Cohen’s � values of 0.88 and 0.93, unlike prior surveys that omit search strings and inter-rater statistics.
+
+Quantitative Analysis and Gap Identification: Our quantitative approach surfaces a 14-fold disparity between perception-layer (65.9%) and action-layer (4.7%) coverage, and the critical underrepresentation of code-execution agents (3.5%), which narrative surveys cannot detect.
+
+Architecture-to-Vulnerability-to-Defense Approach: By linking architectural components to their vulnerabilities and defenses, this framework provides a component-based basis for designing agent security.
+
+Manuscript submitted to ACM
+
+![](images/a460541c78534304349cd8dd165f672788b638459e2ba3a41ce262a281a35c62.jpg)  
+Fig. 2. Condensed PRISMA flow diagram of the study selection process.
+
+Although 85 papers may appear modest relative to broader LLM safety surveys, this reflects the emergent nature of agentic LLM security as a distinct subfield.
+
+## 2.4 Search Strategy, Search Strings and Databases
+
+We searched six major databases, which cover the areas of computer security, artificial intelligence/machine learning, and systems research: IEEE Xplore, ACM Digital Library, arXiv, Scopus, Web of Science, and Google Scholar. These databases collectively cover over one million publications in computer science and include the primary venues for agentic LLM security research. We used multiple strategies: Boolean search queries based on carefully selected keywords, snowball sampling based on the initial set of seed papers, and examining existing conference proceedings from top venues such as NeurIPS, ICML, ICLR, USENIX Security, ACM CCS, and IEEE S&P.
+
+We constructed a search strategy using three complementary query groups combined as: (Group 1) AND (Group 2) NOT (Group 3). Group 1 captures agent-related terms (e.g., agentic LLMs, autonomous agents, tool-augmented systems), Group 2 targets security concepts (e.g., attacks, vulnerabilities, prompt injection, mitigation), and Group 3 excludes out-of-scope domains (e.g., traditional, reinforcement learning, or game agents). Queries were adapted to the syntax of databases including IEEE Xplore, ACM Digital Library, Scopus, Web of Science, arXiv, and Google Scholar.
+
+## 2.5 Data Extraction and Coding Scheme
+
+We created a structured data extraction tool to collect relevant data from each of the 85 papers. We extracted identifiers (title, authors, year, venue), agent type classification, primary type of vulnerability and architectural layer, threat model, nature of contribution (attack, defense, framework, or benchmark), experimental setup, and key findings including limitations identified by the authors.
+
+To assess the reliability of the coding process, a random stratified sample of 15 papers (17% of the corpus) was independently coded by a second reviewer. Inter-rater agreement for vulnerability classification was 94%, and agreemen for paper categorization (attack, defense, framework) was 98%. Cohen’s � was computed to account for chance agreement, yielding � = 0.88 for vulnerability classification and � = 0.93 for paper categorization, indicating near-perfect agreement. Discrepancies were resolved through discussion and consensus, and the taxonomy definitions were refined accordingly.
+
+## 2.6 Quality Assessment
+
+Quality was assessed across four dimensions (0–5 scale): Threat Model Clarity (mean 4.1, � = 0.8), Experimental Rigou (mean 3.8, � = 0.9), Reproducibility (mean 3.5, � = 1.1), and Real-World Applicability (mean 2.9, � = 1.2); 29.9% rated excellent, 40.2% good, 21.8% fair, and 8% preliminary (Figure 3).
+
+Manuscript submitted to ACM
+
+![](images/dc3689c410c8680b6198b91fba654938ec112b3beafddf94bfd6d75d3c9a0fce.jpg)  
+Fig. 3. Overall quality assessment distribution of the 85 included papers.
+
+## 2.7 Threats to Validity
+
+We identify several potential threats to the validity of this study:
+
+Selection Bias: Although the search string used in this research inquiry is comprehensive, some publications, especially those not written in the English language or those which use unconventional terms, might not be found in the results obtained from the search string used in the research inquiry. Furthermore, it is also possible that some publications received in 2025 might not be included in the databases used for the research inquiry, and this might be addressed by the use of a snowball sampling technique.
+
+Publication Selection Bias: The literature suggests a higher probability of publication for research that reports positive findings compared to null findings or unsuccessful approaches. This could result in an overestimation of the efectiveness reported in works on mitigation and detection.
+
+Reliability of Coding: In view of resource availability, it was mainly the primary reviewer who coded the majority of papers included in the corpus. To assess reliability, 17% of the corpus, i.e., 15 papers, was chosen through stratified sampling. These papers were then independently coded by a second reviewer. There was substantial agreement between two coders, as reflected by high values of kappa statistics, 0.88 and 0.93, for vulnerability classification and paper classification into attack, defense, and framework, respectively.
+
+Fast-Moving Area: The field is in a state of rapid development. Publications released from Q4 2024 onwards may not have been adequately indexed. Any publications released after December 2025 are outside the scope of this review. Perhaps a living review would be more appropriate in the future.
+
+## 3 BACKGROUND
+
+## 3.1 Introduction to Agentic AI Systems
+
+Agentic Large Language Model (LLM) systems represent a remarkable leap forward in the evolution of artificial intelligence, marking the shift from passive query-and-response to autonomous or semi-autonomous intelligent agents with goals and objectives [4]. The development of agentic artificial intelligence, including LLMs within a larger architecture, overcomes these challenges. The current era of agentic LLMs is based on a series of critical technological advancements. These systems rely on four enabling capabilities: in-context learning for short-term memory and adaptive reasoning; structured tool and function calling for interaction with external systems; retrieval-augmented generation (RAG) for dynamic knowledge access; and persistent memory for retaining state across episodes [88, 48, 118, 139]
+
+Manuscript submitted to ACM
+
+One of the first agent-based system frameworks developed was ReAct. It was possible to obtain task performance, interpretability, and stability [149]. While the decomposition of tasks into sequences of thought-action observation cycles was key to making agentic LLMs practical, ReAct provided a framework that served as an engineering blueprint for constructing such systems and led to rapid uptake in both research prototypes and production systems [149]. Since then, they have been used in various applications, such as intelligent coding agents, automated workflows, research bots, customer support orchestration, and decision support itself [130].
+
+## 3.2 Architectures of LLM-Based Agents
+
+The literature survey discussed here covers a wide range of architectures of agent system designs, reflecting various compromises with respect to important design goals such as autonomy, scalability, coordination, and safety. The models discussed can be broadly grouped into seven categories.
+
+Single-agent systems Single-agent systems consist of one LLM instance that handles all reasoning, decision making, and execution towards a goal [82]. These systems are conceptually straightforward, and their dynamic characteristics have been extensively explored in personal assistants, task automation agents, and research platforms, including LangeChain-based agents [7]. On the other hand, single-agent systems are simpler to design and reason about but can face challenges in completing complex tasks that involve parallel reasoning, specialization, or adversarial assessment [66].
+
+Multi-agent systems Agent systems consist of several LLM instances communicating among themselves. Such agents may cooperate toward joint goals, discuss possible alternative solutions to a problem, or organize themselves into hierarchies in which higher-level agents decompose tasks into subtasks and distribute them to specialized subagents. Multi-agent systems have been investigated for collaborative problem-solving, agent debate for improving reasoning accuracy, and simulation of social or economic environments [52]. However, they also introduce novel coordination and attack-surface issues related to inter-agent communication.
+
+Tool-Augmented Agents By contrast, tool-augmented agents extend LLMs with the possibility of calling external tools and APIs [158]. Such tools may include, for example, programming language interpreters, database query engines, mathematical solvers, or enterprise software application interfaces.
+
+Retrieval-augmented generation (RAG) agents RAG agents incorporate retrieval mechanisms inside the agent loop. These agents can retrieve the latest and/or domain-specific information by querying vector databases, document collections, or knowledge graphs [144].
+
+Code execution agents Code execution agents can be used to create and execute code, in secure (e.g., sandboxed) or untrusted operating environments or in a trusted executing environment [87]. These agents are well-suited for data analysis, software development and system management. However, they are among the highest-risk categories, as bugs in code generation or execution can result in arbitrary code execution, data leakage, or system compromise [92]
+
+Web-crawling agents Web-crawling agents can be capable of traversing the web and following links, understanding retrieved pages’ content, and engaging in navigation decision-making. These agents are well-suited for scraping, monitoring, and intelligence-gathering, but are subject to malicious content injection and fraudulent interface attacks [160]. Embodied agents Embodied agents function within a real or virtual world, and perform the integration of perceptual sources (e.g., visual information or sensor data) with action and planning [136]. Though rare in our corpus, embodied agents represent high-stakes deployment settings where physical safety and robustness are paramount [107]
+
+## 3.3 The Core Of Agentic Systems
+
+While agent architectures can difer, many agentic AI systems share four primary layers [3]. These layers provide a security-related abstraction that can be used to model system behavior, organize the assessment of system vulnerabilities, and identify containment boundaries in which policy enforcement should take place [111].
+
+## The Perception Layer
+
+The perception layer is responsible for receiving and interpreting inputs from users, external systems, and environmental sources. It is in charge of consuming and interpreting inputs from a variety of sources: user commands, retrieved documents, tool responses, sensor readings and inter-agent messages [152]. This layer converts raw, typically illstructured data to reasoning-friendly representations [109]. The perception layer is most vulnerable to attacks such as prompt injection, jailbreak attempts, and adversarial input manipulation, as it processes inputs from external sources [28]. Implementation components include: user input interfaces, retrieval pipelines (RAG),input preprocessing modules, external data sources
+
+## The Brain Layer
+
+The brain layer performs reasoning, planning, and decision-making based on perceived inputs and memory state. This layer is the cognitive centre of the agent. It consists of the LLM, as well as connected planning and reasoning, goal maintenance, and memory systems [33]. This level describes what the agent wants to do, and why. At this level, vulnerabilities may include manipulation of reasoning, behaviour insertion of backdoor behaviours into model weights, and goal-hijacking attacks that redirect agent objectives to an unintended target. Implementation components include LLM reasoning modules, planning and task decomposition mechanisms, chain-of-thought reasoning frameworks, and goal and state management components.
+
+## The Action Layer
+
+The action layer executes decisions generated by the reasoning component by invoking tools, APIs, or external systems. This layer executes the decision made by the brain layer [78]. These actions might involve invoking tools, running code, interacting with APIs, or controlling other physical systems. This layer is particularly fragile since every action has clear side efects. Some attacks, such as tool misuse, function or code injection, and hijacking, can have devastating efects, including unwanted system alterations and information leakage [93]. Implementation components include tool invocation frameworks, API execution modules, code execution environments, and automation scripts.
+
+## The Interaction Layer
+
+The interaction layer manages communication between agents, external systems, and shared environments. This layer is responsible for agent-environment communication, including other agents(s), memory store(s) and external service(s) [55]. This layer controls the behaviour of information entering and exiting the system. There are vulnerabilities here, such as message injection, memory poisoning, and manipulation of shared environmental state, which can have cascading efects across agent behaviours [54].Through such an organisation of agentic systems, it is possible to systematically analyse and categorise security threats and design the most suitable countermeasures. Implementation components include multi-agent communication protocols, message passing systems, environment interfaces, and shared memory channels.
+
+Table 2. Mapping of Existing Agent Framework Components to the Proposed Four-Layer Taxonomy
+<table><tr><td>Existing Framework Component</td><td>This Survey Layer Mapping</td></tr><tr><td>BDI: Beliefs</td><td>Perception / Memory Layer</td></tr><tr><td>BDI: Desires / Intentions</td><td>Brain Layer</td></tr><tr><td>ReAct: Observation</td><td>Perception Layer</td></tr><tr><td>ReAct: Reasoning / Thought</td><td>Brain Layer</td></tr><tr><td>ReAct: Action</td><td>Action Layer</td></tr><tr><td>AutoGPT: Tool Invocation</td><td>Action Layer</td></tr><tr><td>Multi-Agent Communication</td><td>Interaction Layer</td></tr></table>
+
+## 3.4 Threat Model for Agentic AI systems
+
+In order to assess the security of agentic systems, we follow a threat model, which distinguishes between the type and extent of knowledge and access available to an attacker [20]. This is a widely used taxonomy in security research, ofering a theoretical framework for evaluating the severity of security flaws.
+
+## White-box Attack Model:
+
+In this approach, it is assumed that the attacker can access not only the model’s weights, architectures, and training information, but also all of the model’s operational parameters [128]. This is the most extreme approach and is used in open-source, insider threat, and model leakage risk scenarios. In this white-box approach, a new type of attack is introduced: targeted attacks, such as backdoors in the model’s weights, and precise attacks, such as manipulating reasoning [74].
+
+## Black-box Attack Model:
+
+In the black-box threat model, it is assumed that the attacker can only access the model’s inputs and outputs, typically via an API or UI. This is the most realistic scenario for commercial applications. Even in such an unfavourable scenario, it is possible to carry out proactive attacks, such as early injections and jailbreaking, that will indirectly compromise the agent’s behaviour.
+
+Grey-box Attack Model: The threat model for this framework is grey-box and thus falls between these two ends of the spectrum. Adversaries have partial information (e.g., architectural designs, training regimes or access to logs and documentation), but not all model parameters. These may correspond to grey-box settings such as collaborative developmentsettings, supply chain environments, or compromised insiders with only limited authority [84].
+
+For all the vulnerability classes explored in this study, we estimate the base attacker skill level required for successful exploitation. Interestingly, several high-impact attacks on agentic systems (in particular, prompt injection and tool abuse) are solvable in a black-box setting. More advanced attacks, such as persistent backdoors or targeted reasoning corruption, can often only be mounted by attackers with grey-box or white-box access [78].
+
+## 4 Vulnerability Taxonomy
+
+This section introduces a taxonomy of vulnerabilities in agentic LLM systems, grouped according to their occurrence in diferent architectural layers
+
+Manuscript submitted to ACM
+
+## 4.1 Taxonomy Design and Organization Principles
+
+The 13 vulnerability types were identified through an inductive open-coding process applied to the 85 papers in the corpus during the data extraction stage. Each paper was coded according to the primary attack mechanism described, and the resulting codes were iteratively consolidated and refined until a stable set of categories emerged. While the four-layer architecture provided the organizational framework, the vulnerability types within each layer were not predefined. Through three rounds of refinement, an initial set of 23 candidate categories was consolidated into the final 13 by merging closely related attack mechanisms. While vulnerabilities are classified according to their primary architectural layer, several attacks may propagate across layers during execution. Such cross-layer efects are indicated explicitly in the taxonomy tables.
+
+Our vulnerability taxonomy categorizes 13 vulnerability types across four architectural layers. Rather than organizing by attack name (which is used inconsistently across the literature), we categorize vulnerabilities by the system component in which they arise. This component-based approach provides actionable insights; i.e., practitioners responsible for designing each component can focus on the vulnerabilities most relevant to that component of the system. The taxonomy is defined by two dimensions: (1) architectural layer, which describes the location of the vulnerability, and (2) vulnerability type, which describes the attack mechanism. The two-dimensional taxonomy enables an understanding of beyond merely the scope of analysis in terms of the number of vulnerabilities analyzed, but also the level of analysis in terms of the amount of efort put into each layer. The four layers are mutually exclusive with regard to primary function: every architectural component is assigned to exactly one layer depending on the primary function that dominates in the perception-execution pipeline, even though some implementation details may occasionally span multiple layers.
+
+## 4.2 Perception-Layer Vulnerabilities
+
+Perception-layer vulnerabilities occur during input processing, prior to the agent’s Reasoning system kicking in. This category is the most extensively researched in our corpus, appearing in 56 of 85 papers (66%). Direct
+
+Prompt Injection: When an attacker gains direct control over part of the prompt [80]. We demonstrate the basic attack of instruction overwriting: the attacker-supplied content changes what the agent is supposed to maximize in reward, and the instruction not to follow previously applied constraints. In contrast to the manipulation of the process of reasoning, which activates the cognitive chain at the brain layer, prompt injection afects the perception layer by modifying the inputs given to the agent before the process of reasoning starts.
+
+Indirect Prompt Injection: Malicious instructions are placed in input sources and then processed later by the agent [114]. Examples are web pages loaded by the agent being poisoned, emails read by the agent being malicious, or database records retrieved being corrupted [27]. This class is found in the same research papers as direct injection, [108].
+
+Jailbreaking Attacks: Try to bypass the agent’s safety barrier with a well-crafted prompt. Jailbreaks do not directly inject instructions; rather, they exploit the model’s tendency to reproduce patterns from the context provided by the prompt [101].
+
+Adversarial Input Perturbations: Adversarial samples, perturbation attacks and input transformations that have been constructed to be misclassified [70]. They difer from prompt injections in that their structure is less blunt and does not require text-based prompts.
+
+The layer indicated in the following table represents the primary location where the vulnerability arises, although certain attacks may propagate to other layers during system operation.
+
+Table 3. Vulnerability Taxonomy by Agent Architecture. Reference numbers in brackets indicate studies that have examined each vulnerability type within the corresponding agent architecture. An em dash (—) denotes no identified studies for that combination.
+<table><tr><td>Vulnerability Type</td><td>Single Agent</td><td>Multi-Agent</td><td>Tool-Aug.</td><td>RAG-based</td><td>Web Agent</td><td>Code-Exec</td><td>Embodied</td></tr><tr><td>PERCEPTION LAYER</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr><tr><td>Direct Prompt Injection</td><td>[52]</td><td>[100, 40, 22]</td><td>[155,25]</td><td>[73]</td><td>[72, 137]</td><td>[34]</td><td>一</td></tr><tr><td>Indirect Prompt Injection</td><td></td><td>[24, 28]</td><td>[155, 46]</td><td>[33, 73, 65]</td><td>[72, 137]</td><td>[28]</td><td>一</td></tr><tr><td>Jailbreaking Attacks</td><td>[20,54]</td><td>[40, 49, 55, 105, 165]</td><td></td><td>[51, 44, 151, 19]</td><td></td><td>一</td><td>一</td></tr><tr><td>Adversarial Perturbations</td><td>[112]</td><td>[39, 49, 63, 90, 95]</td><td>[63]</td><td>[78,31]</td><td>[63,71]</td><td>一</td><td>[39,77]</td></tr><tr><td>BRAIN LAYER</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr><tr><td>Backdoor Attacks</td><td>一</td><td>[53, 118]</td><td>一</td><td>[7,33]</td><td>一</td><td>一</td><td>[77]</td></tr><tr><td>Reasoning Manipulation</td><td>一</td><td>[49,87]</td><td>一</td><td>[39]</td><td>一</td><td>一</td><td>[39]</td></tr><tr><td>Goal/Plan Hijacking</td><td>一</td><td>[60, 106]</td><td>[122]</td><td>一</td><td>[71]</td><td>一</td><td>一</td></tr><tr><td>Memory Poisoning</td><td>一</td><td>一</td><td>一</td><td>[65]</td><td>一</td><td>一</td><td>一</td></tr><tr><td>ACTION LAYER</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr><tr><td>Tool Manipulation</td><td></td><td></td><td>[7, 155, 25, 46]</td><td></td><td></td><td></td><td></td></tr><tr><td>Function Hijacking</td><td>一</td><td>一 一</td><td>[60, 46]</td><td>一 一</td><td>一 1</td><td>一</td><td>一</td></tr><tr><td>Code Injection</td><td>一 一</td><td>一</td><td>一</td><td>一</td><td>一</td><td>[28, 34, 120]</td><td>一</td></tr><tr><td>Sandbox Escape</td><td>一</td><td>一</td><td>一</td><td>一</td><td>一</td><td>[97, 120]</td><td>一 一</td></tr><tr><td>INTERACTION LAYER</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr><tr><td>Inter-Agent Msg. Injection</td><td>一</td><td>[100, 24, 28, 49]</td><td>一</td><td>一</td><td>一</td><td>一</td><td>一</td></tr><tr><td>Agent Impersonation</td><td>一</td><td>[90,166]</td><td>一</td><td>一</td><td>一</td><td></td><td>一</td></tr><tr><td>Knowledge Base Corruption</td><td>一</td><td></td><td>一</td><td>[33, 73, 65]</td><td>一</td><td>一 一</td><td>一</td></tr></table>
+
+## 4.3 Brain-Layer Vulnerabilities
+
+Attacking the brain layer focuses on the agent’s reasoning, planning, and decision-making. To date, our survey shows that these vulnerabilities are present in 35/85 papers (41%), indicating that this layer has received significantly less research attention than perception-layer attacks.
+
+Backdoor Attacks: Backdoors are latent triggers introduced at training time that fire only when a specific input is observed [135]. In an agentic setting, a backdoor code can force the agent to follow rogue guidelines, place unauthorised calls to applications and forge logs daily [9].
+
+Manipulation of Reasoning: This uses the reasoning power of the agent to reach incorrect conclusions [58]. That includes introducing subtle errors into the reasoning chain that are individually plausible but collectively lead to incorrect conclusions [23]. This difers from prompt injection because the adversarial influence targets the reasoning process itself rather than the agent’s input.
+
+Goal Hijacking and Action Hijacking: The agent’s goals are changed or the actions, which it intended to perform, are steered towards other than desired directions [50]. Goal hijacking is especially harmful for agent systems, as it may lead the agent to devote its eforts to the attacker’s objectives rather than its initial goals [104].
+
+Manuscript submitted to ACM
+
+![](images/b5d893e4135347443276383a6cb459bc45368441f1d00fffe56b22d51273c08f.jpg)  
+Fig. 4. Heatmap of vulnerability distribution across architectural layers and agent types (visual representation of Table 2).
+
+## 4.4 Action-Layer Vulnerabilities and an Execution Risk Model
+
+The execution layer represents a high-risk attack surface in agentic systems, as it interfaces with external tools, APIs, and environments, enabling immediate and potentially irreversible efects. When considering the diferent layers, perception and reasonings tend to capture the majority of the attention, but the highest-consequence failures arise at the execution layer [138]. This is the part of the agentic LLM system that impacts the outside world. Calling tools, calling diferent APIs, reading and writing files, network communication, and even driving physical actions are all examples of the execution layer [79]. Mistakes in the execution layer do not just misrepresent facts; they change the state of the world in a very observable and sometimes irreversible fashion [29].
+
+However, despite the high stakes of the execution layer, the majority of studies rarely explore the compromise of the execution layer in depth. This discrepancy can be attributed to the mismatch between the emphasis placed on diferent components of the LLM system and the practical realities of its deployment [57]. To further clarify the issue, the insecurities related to the execution layer are discussed from three diferent perspectives: privilege, external state modification, and the possibility of irreversible actions.
+
+4.4.1 Tool Manipulation. Tool manipulation occurs when an attacker forces an agent to invoke unintended tools or misuse legitimate ones, potentially triggering unauthorized API calls, data exfiltration, or resource abuse [7, 155]. The relative underrepresentation of this attack class in the literature is discussed in Section 5.7.
+
+4.4.2 Code Injection. Code injection vulnerabilities occur when agents generate and execute code derived from untrusted input sources. In several agent systems, code produced by the agent is executed directly by an interpreter. Empirical studies show that adversarial prompts or retrieved data can inject malicious instructions into the generated code, enabling arbitrary command execution or unauthorized access to files and networks [6]. This vulnerability class represents one of the most impactful attack types in agentic systems.
+
+4.4.3 Sandbox Escape. Sandbox escape vulnerabilities occur when attackers bypass isolation mechanisms intended to restrict the execution of code generated by agents. Although containerization and sandboxing are commonly used to limit code execution privileges, empirical studies show that attackers can exploit misconfigurations or interpreter capabilities to allow malicious code to access host resources outside the restricted environment [25].
+
+## 4.5 Interaction-Layer Vulnerabilities
+
+Interaction-layer vulnerabilities target communication channels between agents and external systems, other agents, and memory stores [64].
+
+## Agent-to-Environment Attacks
+
+This includes webpage poisoning, where web content served to web-browsing agents contains malicious instructions, environment manipulation, where the observation space contains injected content, and sensor manipulation for embodied agents [167]. Our analysis identifies these in 4 papers.
+
+## Agent-to-Agent Attacks
+
+This is specific to multi-agent systems in which agents communicate with each other. Message injection occurs when inter-agent communications are tampered with [131]. In contrast to traditional distributed-system message tampering, which focuses on protocol-level integrity, inter-agent message injection in LLM-based systems manipulates the semantic content of messages, allowing malicious instructions to appear as legitimate tasks because agent communication typically lacks cryptographic message authentication.
+
+Agent impersonation occurs when one agent spoofs another’s identity. Unlike traditional distributed systems where identity is established through cryptographic authentication, agentic systems often rely on conversational context and role descriptions, which can be spoofed through prompt manipulation or message injection.
+
+## Agent-to-Memory Attacks
+
+Include memory poisoning, where the agent’s persistent memory is corrupted with false information, and RAG poisoning, where the knowledge base content is contaminated [157]. Our analysis found this dimension represented in three papers addressing RAG-based agents.
+
+## 4.6 Vulnerability Taxonomy Summary
+
+This section presents an exhaustive synthesis of the identified vulnerabilities. Table 4 reports the frequency of vulnerability occurrences rather than unique studies, as individual papers may contribute to multiple categories (e.g., indirect prompt injection and tool manipulation).
+
+## 4.7 Multi-Dimensional Quantitative Analysis
+
+This analysis of 85 papers in the vulnerability taxonomy indicates that the following patterns can be identified:
+
+Architectural Layer Distribution Perception layer security risks are the most frequently represented security risks in literature, with 56 out of 85 papers (66%) focusing on input layer security risks, whereas 35 papers (41%) discuss brain layer security risks, 4 papers (4.7%) discuss action layer security risks, and 24 papers (28%) discuss interaction layer security risks.
+
+This level of concentration appears to be an artifact of methodological accessibility rather than actual risk distribution. Attacks at the perception layer are typically black-box attacks requiring only API access and do not require the development of fully agentic systems. Moreover, early security research on large language models exhibited a path dependency, primarily focusing on prompt manipulation. There was also a bias toward perception-layer attacks due to Manuscript submitted to ACM
+
+Table 4. Component-Level Occurrence of Vulnerability Types Across Architectural Layers. Vulnerabilities are classified by the primary layer where the atack originates.
+<table><tr><td>Component</td><td>Attack Vector</td><td>Example Attack</td><td>Sev.</td><td>Cnt.</td><td>Key References</td></tr><tr><td colspan="6">PERCEPTION LAYER</td></tr><tr><td>Input Processing</td><td>Direct Prompt Inj.</td><td>Malicious user instructions</td><td>High</td><td>12</td><td>[100, 155, 46, 52,72, 22, 73]</td></tr><tr><td>Input Processing</td><td>Indirect Prompt Inj.</td><td>Hidden retrieved instructions</td><td>High</td><td>15</td><td>[155, 33, 72, 73, 65, 137]</td></tr><tr><td>Input Handling</td><td>Jailbreaking</td><td>Safety bypass prompts</td><td>High</td><td>26</td><td>[20, 54, 51, 44, 151, 19, 37]</td></tr><tr><td>Multimodal Input</td><td>Adversarial Pert.</td><td>Modified images/audio inputs</td><td>Med.</td><td>42</td><td>[112, 39, 49, 78, 95, 102]</td></tr><tr><td colspan="6">BRAIN LAYER</td></tr><tr><td>Planning Module</td><td>Goal Hijacking</td><td>Manipulating objectives</td><td>High</td><td>24</td><td>[24, 60, 106]</td></tr><tr><td>Reasoning Engine</td><td>CoT Manipulation</td><td>Corrupting reasoning chains</td><td>Med.</td><td>21</td><td>[39, 49, 87]</td></tr><tr><td>Memory System</td><td>Memory Poisoning</td><td>Injecting false context</td><td>High</td><td>41</td><td>[33, 65]</td></tr><tr><td>Knowledge Base</td><td>RAG Poisoning</td><td>Corrupting retrieval DB</td><td>High</td><td>23</td><td>[73,65]</td></tr><tr><td colspan="6">ACTION LAYER</td></tr><tr><td>Tool Interface</td><td>Tool Manipulation</td><td>Unintended tool calls</td><td>High</td><td>54</td><td>[7, 155, 25, 46]</td></tr><tr><td>API Gateway</td><td>Function Hijacking</td><td>Redirecting API calls</td><td>High</td><td>7</td><td>[60, 46]</td></tr><tr><td>Code Executor Sandbox</td><td>Code Injection</td><td>Malicious code execution</td><td>Crit.</td><td>13</td><td>[28, 34, 120]</td></tr><tr><td></td><td>Sandbox Escape</td><td>Breaking isolation boundaries</td><td>Crit.</td><td>8</td><td>[97, 120]</td></tr><tr><td colspan="6">INTERACTION LAYER</td></tr><tr><td>Agent-Agent</td><td>Message Injection</td><td>Tampering inter-agent comms</td><td>High</td><td>12</td><td>[100, 24, 28, 49]</td></tr><tr><td>Agent Registry</td><td>Impersonation</td><td>Masquerading as trusted agent</td><td>Med.</td><td>5</td><td>[90, 166]</td></tr></table>
+
+Note: The numbers represent the counts at the level of each component. A single paper can contribute to multiple counts because it may discuss more than one type of vulnerability or architectural component. Therefore, the numbers in this table exceed the size of the overall corpus (N = 85) and should not be interpreted as representing individual papers. This column is not the number of unique papers  
+The severity levels are defined qualitatively using a scheme similar to CVSS v3.1. Critical refers to system compromise or irreversible state changes, High refers to unauthorized data access, goal hijacking, or persistent memory corruption, and Medium refers to behavioral or output manipulation without system compromise. These levels are determined based on worst-case scenarios described in the literature.
+
+![](images/d45b5146b4e5160717991a35ac2f43382eee41a3abe181f3ce56a26f5e5b16dd.jpg)  
+Fig. 5. Component-level vulnerability counts and perceived severity distribution.
+
+benchmark availability, as datasets for prompt injection and jailbreaking were developed earlier than those for agentic systems. This does not imply that perception-layer attacks are more dangerous; as shown in Section 5.4, action-layer attacks can be more impactful despite receiving less research attention.
+
+![](images/fdbd602ec5a842dab30b1a67a5ce4664323ea0a7a21a3c7f246310f2f3582ca0.jpg)  
+Fig. 6. Distribution of vulnerability research across agentic architectural layers.
+
+Architecture-Specific Patterns Multi-agent systems being the most frequently represented, with 39 out of 85 papers (46%) focusing on multi-agent architectures, followed by RAG-based agents with 25 out of 85 papers (29%), tool-augmented agents with 10 out of 85 papers (12%), web agents with 4 out of 85 papers (4.7%). No papers primarily focus on single-agent architectures, though single-agent settings appear as baselines in several studies (Table 8).
+
+Vulnerability Type Coverage Prompt injection examples are the best represented security risk with 36 papers, followed by Adversarial with 30 papers, and jailbreaking with 16 papers. Other security risks are represented by fewer papers: memory poisoning (3), code injection (3), and sandbox escape (2). A large number of papers on these security risks indicate clustering in the literature.
+
+These attacks can be explored in a single-turn setting using standard language model APIs. This contrasts with code injection (3 papers) and sandbox escape (2 papers), which require full agent execution environments with realistic tool integrations. This may indicate that modern research trends are influenced by convenience and not necessarily by risk considerations.
+
+![](images/1d8076684cc16b6b38a7012c46514b664f5acd1025910b174c2cad460ce2a47b.jpg)  
+Fig. 7. Research frequency by primary vulnerability type.
+
+## 5 Detection Mechanisms in Agentic Systems
+
+## 5.1 Detection Approaches Overview
+
+Section 4 analyzed the vulnerability landscape, while this section focuses on detection and identifying vulnerabilities. The results show that there is a significant imbalance, with much more research on attack methods than on defense/mitigationfocused work. To be more specific, 47 research papers (55.3%) focus on vulnerability discovery and attacks, while only 12 research papers (14.1%) focus on defense and mitigation, a ratio of 3.9:1.
+
+In terms of agentic large language models, there are a number of factors that contribute to this trend. First, there is a natural incentive structure that favors novel discoveries of attacks rather than incremental improvements to defenses. Second, many attack approaches can be evaluated using only API-level access, while evaluating defenses requires agents that integrate tools and environments. Third, there is currently a lack of benchmarking and metrics for defenses, making it dificult to compare them against one another.
+
+The methods used for detection can be classified under five diferent stages: input-level detection, runtime detection, multi-agent detection, formal verification, and benchmark-based evaluation. Interestingly, papers addressing actionlayer vulnerabilities exhibited lower reproducibility scores (mean 3.1) compared to perception-layer studies (mean 3.9), suggesting that higher-risk architectural layers also sufer from weaker methodological maturity.
+
+![](images/b28e72433e1f632d47fd8220e0592a4cb43cd18483cc2d5ef73886a9afadc8d6.jpg)  
+Fig. 8. Ratio of atack-focused research to defense/detection-focused publications.
+
+## 5.2 Input-Level Detection Methods
+
+Input-level detection is performed before the agent’s reasoning module receives input from the user or external environment [59]. This is, therefore, the first opportunity to identify malicious input. Several approaches have been proposed for prompt-injection detection, including pattern-based and semantic-based detection, as well as classifiers trained on large language models [123]. For instance, known-answer-based detection uses auxiliary models trained on large language models to identify inconsistencies during response generation. This approach relies on the complexity of the attack [113].
+
+Apart from that, classifier-based detection models are also trained on a set of adversarial input prompts to classify between malicious and benign instructions [124]. The classifiers can vary from fine-tuned LLM-based detectors to lightweight embedding-based classifiers that check for deviations from expected input prompt structures [76] Embedding-based anomaly detection methods use similarity changes in vector space representations, detecting inputs that significantly difer from expected input distributions [146]. Jailbreak signature detection methods, on the other hand, attempt to detect input patterns associated with instruction overrides, such as role redefinition and policy negation [61]. The known answer detection method is an extension of the existing detection model, utilizing additional LLM-based instances that generate expected responses and compare them with actual responses, indicating inconsistencies that could imply manipulation [45].
+
+In terms of empirical evaluation of input level detection approaches, it is common to measure their performance in terms of reduction in attack success rate, precision/recall of malicious prompts, or robustness of detectors in handling paraphrased attacks [161]. There have been several works that have evaluated the performance of detectors using jailbreak datasets, adversarial prompts, or injection benchmarks [110, 62, 91, 75]. However, in most common experimental settings, it is often assumed that interactions occur in single turns, i.e., attacks can be contained in a single prompt [56]. This may not be true in multi-turn scenarios, where adversaries can spread their attacks across multiple turns of conversations. In addition, it has also been observed that evaluation of robustness in handling adaptive adversaries where adversaries can update their prompts based on feedback from detectors, is often not considered [91]
+
+## 5.3 Runtime Detection Methods
+
+The runtime detection method focuses on detecting agent behavior during runtime, which may indicate an attack [30].
+
+Behavior monitoring focuses on monitoring agent behaviour to detect and recognize anomalous patterns, including unexpected sequences of tool invocations, resource utilization, or output that does not conform to expected patterns [145].
+
+Output verification includes methods that verify agent output using good examples or auxiliary verification methods. In the In-Context Adversarial Game, for example, this method was shown to be highly efective when using the language model as a verifier, as described by [35].
+
+In empirical evaluations, mechanisms of runtime detection typically measure the performance of anomaly detection methods in terms of sequences of tool invocation, resource consumption, and consistency of outputs [148]. The literature has demonstrated better robustness, especially when compared with static prompt filtering, and is more applicable to agents with tool usage. However, there is associated computational cost, especially with heuristics, which can be vulnerable to attacks with multiple steps [89, 96, 163]. Additionally, there is a high likelihood of evaluations being conducted under controlled conditions, as opposed to an adaptive adversarial framework.
+
+Unlike the approaches of the input level, it is clear from the reviewed corpus that there are no approaches that directly tackle the issue of anomaly detection at the level of execution. The closest approaches are based on the monitoring of tool usage behavior, as presented in one of the reviewed papers. However, it is clear that there is a lack of constraint and boundary enforcement for the level of privilege. Anomalies in memory usage are also a less-explored area.
+
+The challenges of multi-agent detection include diferentiating coordination anomalies from task specialization, monitoring the spread of trust, and checking the integrity of inter-agent communications. Current solutions address these problems in a very limited way.
+
+## 5.4 Evaluation Frameworks and Benchmarking Practices
+
+No standardized evaluation framework for agentic LLM security currently exists [85, 157]. Most studies report attack success rate (ASR), precision/recall of anomaly classification, and in some cases latency overheads [32, 75, 21]. Adaptive adversarial testing, where attackers iteratively refine prompts against detection systems, remains rare [62, 91], limiting the comparability of methods across the field [36].
+
+Manuscript submitted to ACM
+
+Table 5. Overview of Agent Security Benchmark Datasets.
+<table><tr><td rowspan=1 colspan=1>Ref</td><td rowspan=1 colspan=1>Dataset</td><td rowspan=1 colspan=1>Year</td><td rowspan=1 colspan=1>Size</td><td rowspan=1 colspan=1>Vulnerability Types</td><td rowspan=1 colspan=1>Agent Scenarios</td><td rowspan=1 colspan=1>Attack Types</td><td rowspan=1 colspan=1>Availability</td></tr><tr><td rowspan=1 colspan=1>[157]</td><td rowspan=1 colspan=1>Agent Security Bench (ASB)</td><td rowspan=1 colspan=1>2024</td><td rowspan=1 colspan=1>Multiple scenarios</td><td rowspan=1 colspan=1>Prompt Injection, Backdoor</td><td rowspan=1 colspan=1>Tool-using, RAG</td><td rowspan=1 colspan=1>Direct, Indirect</td><td rowspan=1 colspan=1>Public</td></tr><tr><td rowspan=1 colspan=1>[155]</td><td rowspan=1 colspan=1>InjecAgent</td><td rowspan=1 colspan=1>2024</td><td rowspan=1 colspan=1>1,054 test cases</td><td rowspan=1 colspan=1>Indirect Prompt Injection</td><td rowspan=1 colspan=1>Tool-integrated</td><td rowspan=1 colspan=1>Indirect</td><td rowspan=1 colspan=1>Public</td></tr><tr><td rowspan=1 colspan=1>[25]</td><td rowspan=1 colspan=1>AgentDojo</td><td rowspan=1 colspan=1>2024</td><td rowspan=1 colspan=1>97 tasks, 629 injections</td><td rowspan=1 colspan=1>Prompt Injection</td><td rowspan=1 colspan=1>Tool-using</td><td rowspan=1 colspan=1>Direct, Indirect</td><td rowspan=1 colspan=1>Public</td></tr><tr><td rowspan=1 colspan=1>[84]</td><td rowspan=1 colspan=1>AgentHarm</td><td rowspan=1 colspan=1>2024</td><td rowspan=1 colspan=1>440 behaviors</td><td rowspan=1 colspan=1>Harmful behaviors</td><td rowspan=1 colspan=1>General agents</td><td rowspan=1 colspan=1>Behavioral</td><td rowspan=1 colspan=1>Public</td></tr><tr><td rowspan=1 colspan=1>[71]</td><td rowspan=1 colspan=1>AdvWeb</td><td rowspan=1 colspan=1>2024</td><td rowspan=1 colspan=1>Web scenarios</td><td rowspan=1 colspan=1>Adversarial attacks</td><td rowspan=1 colspan=1>Web agents</td><td rowspan=1 colspan=1>Adversarial</td><td rowspan=1 colspan=1>Public</td></tr><tr><td rowspan=1 colspan=1>[99]</td><td rowspan=1 colspan=1>GOAT</td><td rowspan=1 colspan=1>2024</td><td rowspan=1 colspan=1>Multiple attacks</td><td rowspan=1 colspan=1>Jailbreaking</td><td rowspan=1 colspan=1>General</td><td rowspan=1 colspan=1>Jailbreak</td><td rowspan=1 colspan=1>Public</td></tr><tr><td rowspan=1 colspan=1>[22]</td><td rowspan=1 colspan=1>MAD-Spear Dataset</td><td rowspan=1 colspan=1>2025</td><td rowspan=1 colspan=1>Custom</td><td rowspan=1 colspan=1>Prompt Injection</td><td rowspan=1 colspan=1>Multi-Agent Debate</td><td rowspan=1 colspan=1>Social Engineering</td><td rowspan=1 colspan=1>Custom</td></tr><tr><td rowspan=1 colspan=1>[147]</td><td rowspan=1 colspan=1>Mobile Agent Security Matrix</td><td rowspan=1 colspan=1>2024</td><td rowspan=1 colspan=1>4 attack paths</td><td rowspan=1 colspan=1>Multimodal attacks</td><td rowspan=1 colspan=1>Mobile agents</td><td rowspan=1 colspan=1>Multi-path</td><td rowspan=1 colspan=1>Public</td></tr></table>
+
+## 5.5 Detection Methods Summary
+
+If we consider the ways in which detection works, three main patterns are apparent. The majority of the mechanisms focus mainly on the perception layer, with a strong emphasis on input filtering and anomaly detection at the prompt level itself. In comparison, the runtime monitoring tools are still in their early stages of development and do not yet have empirical validation; only a minority of the literature provides formal guarantees and standardized evaluation methods, reflecting an immaturity level when compared with the attack literature.
+
+Table 6. Mapping between vulnerability types and detection approaches
+<table><tr><td rowspan=1 colspan=5>Vulnerability Type</td><td rowspan=1 colspan=6>Detection Approach</td><td rowspan=1 colspan=1>Coverage</td></tr><tr><td rowspan=8 colspan=5>Prompt InjectionAdversarial InputJailbreakingIndirect Prompt InjectionGoal HijackingMemory PoisoningRAG PoisoningTool ManipulationCode InjectionSandbox EscapeMessage Injection</td><td rowspan=6 colspan=6>Input filtering, prompt validationInput sanitization, robustness checksOutput filtering, policy checksContext validationBehavior monitoringRetrieval validation</td><td rowspan=2 colspan=1>Well-studiedWell-studiedWell-studied</td></tr><tr><td rowspan=1 colspan=4>cks</td></tr><tr><td rowspan=1 colspan=2></td><td rowspan=1 colspan=3></td><td rowspan=1 colspan=2></td><td rowspan=1 colspan=1>Moderate</td></tr><tr><td rowspan=1 colspan=1></td><td rowspan=1 colspan=1>LimitedLimited</td></tr><tr><td rowspan=2 colspan=2></td><td rowspan=1 colspan=1>Moderate</td></tr><tr><td rowspan=5 colspan=1>LimitedLimitedNoneLimitedLimitedLimited</td></tr><tr><td rowspan=2 colspan=6>Execution monitoringNone identifiedCommunication validation</td><td rowspan=1 colspan=4></td></tr><tr><td rowspan=1 colspan=1>scape</td></tr><tr><td rowspan=2 colspan=5>Agent ImpersonationEnvironment Manipulation</td><td rowspan=1 colspan=1></td><td rowspan=1 colspan=1></td><td rowspan=1 colspan=5>Context-based identity checks</td></tr><tr><td rowspan=1 colspan=6>Input validation</td></tr></table>
+
+Coverage indicates the extent of dedicated detection mechanisms identified in the literature: "Wellstudied" (multiple established approaches), "Moderate" (some targeted methods), "Limited" (few or indirect approaches), and "None" (no dedicated detection mechanism identified).
+
+## 5.6 Structural Limitations of Current Detection Paradigms
+
+Despite the progress in detection research, there are several structural gaps in the literature when viewed collectively [86]. Firstly, most of these detection methods are situated in the perception layer and are limited in their ability to identify anomalies in prompt injection attacks. Such approaches are generally efective in detecting known types of attacks but are not sustainable in nature [150].
+
+Secondly, most of these systems rely on additional large language models for evaluating the output of primary agents (LLM-as-judge). Such approaches are promising in nature but are circular in their design and fail to account for robustness against adversarial attacks on the detector [127].
+
+Table 7. Overview of Agent Defense Detection Mechanisms
+<table><tr><td rowspan=1 colspan=1>Ref</td><td rowspan=1 colspan=1>Year</td><td rowspan=1 colspan=1>Method</td><td rowspan=1 colspan=1>Vulnerability</td><td rowspan=1 colspan=1>Agent Stage</td><td rowspan=1 colspan=1>Threat Model</td><td rowspan=1 colspan=1>Automation</td><td rowspan=1 colspan=1>Dataset</td><td rowspan=1 colspan=1>Metrics</td><td rowspan=1 colspan=1>Performance</td></tr><tr><td rowspan=1 colspan=1>[46]</td><td rowspan=1 colspan=1>2025</td><td rowspan=1 colspan=1>Known-Answer Detection (KAD)</td><td rowspan=1 colspan=1>Prompt Injection</td><td rowspan=1 colspan=1>Perception</td><td rowspan=1 colspan=1>Black-box</td><td rowspan=1 colspan=1>LLM-based</td><td rowspan=1 colspan=1>Custom</td><td rowspan=1 colspan=1>Accuracy, FPR</td><td rowspan=1 colspan=1>Variable</td></tr><tr><td rowspan=1 colspan=1>[5]</td><td rowspan=1 colspan=1>2024</td><td rowspan=1 colspan=1>LLM Agent Sentinel</td><td rowspan=1 colspan=1>Adversarial</td><td rowspan=1 colspan=1>Perception</td><td rowspan=1 colspan=1>Black-box</td><td rowspan=1 colspan=1>LLM-based</td><td rowspan=1 colspan=1>Custom</td><td rowspan=1 colspan=1>F1, Accuracy</td><td rowspan=1 colspan=1>95%+</td></tr><tr><td rowspan=1 colspan=1>[105]</td><td rowspan=1 colspan=1>2025</td><td rowspan=1 colspan=1>Reverse Thinking + Role Examination</td><td rowspan=1 colspan=1>Jailbreaking</td><td rowspan=1 colspan=1>Perception</td><td rowspan=1 colspan=1>Black-box</td><td rowspan=1 colspan=1>Hybrid</td><td rowspan=1 colspan=1>Custom</td><td rowspan=1 colspan=1>Detection Rate</td><td rowspan=1 colspan=1>Effective</td></tr><tr><td rowspan=1 colspan=1>[165]</td><td rowspan=1 colspan=1>2024</td><td rowspan=1 colspan=1>In-Context Adversarial Game (ICAG)</td><td rowspan=1 colspan=1>Jailbreaking</td><td rowspan=1 colspan=1>Brain</td><td rowspan=1 colspan=1>Gray-box</td><td rowspan=1 colspan=1>LLM-based</td><td rowspan=1 colspan=1>Custom</td><td rowspan=1 colspan=1>ASR, Defense Rate</td><td rowspan=1 colspan=1>High</td></tr><tr><td rowspan=1 colspan=1>[14]</td><td rowspan=1 colspan=1>2024</td><td rowspan=1 colspan=1>Dynamic Guidance Defense (G4D)</td><td rowspan=1 colspan=1>Jailbreaking</td><td rowspan=1 colspan=1>Perception</td><td rowspan=1 colspan=1>Black-box</td><td rowspan=1 colspan=1>Hybrid</td><td rowspan=1 colspan=1>Benchmark</td><td rowspan=1 colspan=1>ASR Reduction</td><td rowspan=1 colspan=1>Significant</td></tr><tr><td rowspan=1 colspan=1>[154]</td><td rowspan=1 colspan=1>2024</td><td rowspan=1 colspan=1>AutoDefense Multi-Agent System</td><td rowspan=1 colspan=1>Jailbreaking</td><td rowspan=1 colspan=1>Runtime</td><td rowspan=1 colspan=1>Black-box</td><td rowspan=1 colspan=1>Multi-Agent</td><td rowspan=1 colspan=1>JailbreakBench</td><td rowspan=1 colspan=1>ASR, FPR</td><td rowspan=1 colspan=1>Reduced ASR</td></tr><tr><td rowspan=1 colspan=1>[102]</td><td rowspan=1 colspan=1>2023</td><td rowspan=1 colspan=1>Adversarial Prompt Shield</td><td rowspan=1 colspan=1>Adversarial</td><td rowspan=1 colspan=1>Perception</td><td rowspan=1 colspan=1>Black-box</td><td rowspan=1 colspan=1>ML-based</td><td rowspan=1 colspan=1>Custom</td><td rowspan=1 colspan=1>F1, Precision</td><td rowspan=1 colspan=1>High</td></tr><tr><td rowspan=1 colspan=1>[140]</td><td rowspan=1 colspan=1>2025</td><td rowspan=1 colspan=1>Soft Label + Key-Extraction CoT</td><td rowspan=1 colspan=1>Prompt Injection</td><td rowspan=1 colspan=1>Perception</td><td rowspan=1 colspan=1>Black-box</td><td rowspan=1 colspan=1>LLM-based</td><td rowspan=1 colspan=1>Custom</td><td rowspan=1 colspan=1>Detection Rate</td><td rowspan=1 colspan=1>Effective</td></tr><tr><td rowspan=1 colspan=1>[46]</td><td rowspan=1 colspan=1>2025</td><td rowspan=1 colspan=1>Comparative Vulnerability Assessment</td><td rowspan=1 colspan=1>Prompt Injection</td><td rowspan=1 colspan=1>System</td><td rowspan=1 colspan=1>White-box</td><td rowspan=1 colspan=1>Manual</td><td rowspan=1 colspan=1>Custom</td><td rowspan=1 colspan=1>Vuln Count</td><td rowspan=1 colspan=1>MCP vs FC</td></tr><tr><td rowspan=1 colspan=1>[28]</td><td rowspan=1 colspan=1>2025</td><td rowspan=1 colspan=1>Adaptive Encryption + Differential Privacy</td><td rowspan=1 colspan=1>Adversarial</td><td rowspan=1 colspan=1>System</td><td rowspan=1 colspan=1>Gray-box</td><td rowspan=1 colspan=1>Hybrid</td><td rowspan=1 colspan=1>Framework</td><td rowspan=1 colspan=1>Security Metrics</td><td rowspan=1 colspan=1>Framework</td></tr></table>
+
+Thirdly, most of these systems are tested in limited conditions and are not comprehensive in their design. Most of these systems are tested in single-session conditions and not in more complex conditions [12]. There is little evidence of robust testing of these systems in long-term conditions or in conditions where tasks are multi-step in nature.
+
+Lastly, most of these systems lack formal guarantees and are limited in their design. Such systems are generally tested empirically and lack formal verification [134]. Such systems are likely in their design and have not moved towards formalizing unified principles of detection.
+
+Overall, these gaps indicate that the field of detection in large language models has not yet reached methodological maturity and that further research is required in this area [121, 1, 116]. Pushing beyond these countermeasures will likely require standardized benchmarks and adaptive threat modeling.
+
+## 6 Mitigation Strategies and Defenses
+
+To synthesize the architectural distribution of attacks and defenses in agentic LLM systems, we present a unified layered security stack. This model highlights research coverage imbalance and defense maturity across system layers.
+
+## 6.1 Defense Taxonomy Overview
+
+There are six broad categories of defense mechanisms, diferentiated by their implementation approach and scope. Detection focuses on identifying vulnerabilities, whereas mitigation aims to reduce their impact [42, 101]. Our review identified 17 defense-focused studies (12 detection and 5 mitigation-only), with emphasis on filtering (60%), runtime control (70%), and multi-agent strategies (35%); note that these percentages are not mutually exclusive, as individual studies may employ multiple defensive mechanisms. Categories were assigned based on each paper’s primary defensive mechanism and consolidated into stable groups: input filtering, architectural modification, runtime control, training-time mitigation, governance, and multi-agent defense.
+
+## 6.2 Input/Output Filtering and Shields
+
+Input/Output filtering primarily addresses perception-layer vulnerabilities (Section 5.2), particularly direct and indirect prompt injection. Input filtering is the process of removing or modifying bad inputs before they enter the process stage [103]. Prompt sanitization is also mentioned in the literature [94]. There are studies that introduced input prompts that filter out attack patterns that come in the form of bad input. Guard models have been proposed for inpu filtering, screening out malicious inputs before they reach the reasoning module. For example, Auto Defense uses a multi-agent filtering system to filter inputs through specialized screening agents that identify prompt injection and unsafe instructions before passing them to the main agent as outputs.
+
+Manuscript submitted to ACM
+
+![](images/fa4957214918cdb129fa5c3e9dd5520fac00db6f920844bdb809d30798317241.jpg)  
+Fig. 9. Unified Security Stack for Agentic LLM Systems
+
+Output filtering is also addressed; the outputs are filtered before they are released to other systems [10, 132]. This is especially important for code-execution agents; filtered outputs prevent malicious code execution.
+
+Generally, empirical evaluations of the eficacy of the filtering mechanisms for input and output filtering demonstrate a reduction in the attack success rate (ASR) for curated datasets for jailbreak and prompt injection attacks [129]. However, the eficacy ofthe guard model filtering approach, while significant, demonstrates a reduction in eficacy against adaptive threat actors, particularly those employing alternative definitions for malicious intent, such as distributing instructions across multiple turns in the conversation [69]. Output filtering for code execution agents significantly mitigates the risk of direct execution but does not account for semantic harm embedded in code, particularly if the code is syntactically valid [68]. However, overly aggressive filtering can result in false positives, reducing the utility of the task.
+
+## 6.3 Architectural Defenses
+
+Architectural defense mechanisms primarily address brain-layer vulnerabilities (Section 5.3), particularly through the addition of control points between reasoning (B) and execution (E). The architectural techniques focus on modifying the agent system to prevent potential attacks [15]
+
+Layered Agent Architectures Layered architectures are proposed for agents; they separate reasoning and execution via intermediate verification steps [30].
+
+AutoDefense proposes multi-agent systems where one agent monitors another, detecting and filtering suspicious behaviour [133].
+
+Privilege Separation Limiting agent capabilities through permission systems, capability-based security, and rolebased access control [159].
+
+Architectures that support multi-agent monitoring and cross-agent verification tend to exhibit improved robustness against simple jailbreak scenarios; however, they impose additional communication overhead and risk correlated failure when identical models are used across agents [8]. Privilege separation limits worst-case damage potential but does not prevent malicious strategy development within defined limits. As architectural complexity increases, unintended attack surfaces may also grow, particularly in multi-agent scenarios where inter-agent communication becomes an attack vector [117].
+
+## 6.4 Runtime Controls
+
+Runtime control mechanisms primarily address action-layer vulnerabilities (Section 5.4), particularly through execution constraint.
+
+Runtime controls monitor and constrain agent execution [38].
+
+Sandboxing and Isolation Executing agent code in isolated environments with limited system access.
+
+Sandboxing is particularly important for code-execution agents but applies to all tool-using agents.
+
+Rate Limiting and Quotas: Constraining resource consumption and tool invocation frequency to limit the impact of compromised agents.
+
+Policy Engines Enforcing declarative policies about which tools agents can invoke and under what conditions and circumstances.
+
+The control mechanisms can be evaluated with respect to their efectiveness in containing scenarios such as simulated privilege escalation, unauthorized API calls, and resource exhaustion attacks [47]. The mechanisms of sandboxes/isolation show high levels of containment, especially with respect to code execution agents, as they restrict the impact of malicious outputs even if upstream reasoning is compromised. Rate limiting reduces the impact of compromised agents but cannot prevent a high-impact action [164]. The policy engines show high levels of declarative enforcement but are heavily dependent on the precise definition of interactions between tools.
+
+Empirical studies confirm that sandboxing is efective at the execution level, though per-action policy validation introduces latency overhead and misconfiguration risk.
+
+## 6.5 Training-Time Mitigation
+
+Training-time mitigation primarily addresses brain-layer vulnerabilities (Section 5.3), particularly through contro of statistical behavior of reasoning operator (B). Training-time strategies address the issue during model training. Adversarial training makes the model more robust by training it on adversarial examples [16]. This allows the mode to learn how to be robust against existing attack patterns. Reinforcement Learning from Human Feedback (RLHF) promotes safe behavior by incorporating human feedback into the reinforcement learning optimization loop. This discourages unsafe behavior in the model—techniques for backdoor remediation focus on detecting backdoors via fine-tuning or cleansing
+
+Adversarial fine-tuning helps improve robustness against known attacks, and reinforcement learning from human feedback helps prevent harmful outputs, but these methods do not work for new patterns of attacks. Backdoor remediation helps prevent risks of unknown triggers but involves some level of performance degradation.
+
+Manuscript submitted to ACM
+
+Table 8. Vulnerability–Detection–Mitigation Mapping across Agentic Systems
+<table><tr><td>Vulnerability Type</td><td>Detection Approach(es)</td><td>Mitigation Approach(es)</td><td>Coverage Gap</td></tr><tr><td>Prompt Injection (Percep- tion)</td><td>Guard models, input anomaly detection, LLM-as-judge</td><td>Input/output filtering, prompt sanitization</td><td>Weak against multi-turn and obfus- cated attacks</td></tr><tr><td>Data Poisoning (Perception)</td><td>Data validation, provenance tracking</td><td>Dataset filtering, training-time mitigation</td><td>Limited real-time detection capabil- ities</td></tr><tr><td>Reasoning Manipulation (Brain)</td><td>Chain-of-thought inconsis- tency detection</td><td>Architectural defenses, training-time alignment</td><td>Difficult to detect semantic manipu- lation reliably</td></tr><tr><td>Tool Misuse (Action)</td><td>Execution monitoring, policy violation detection</td><td>Runtime controls, sandboxing, policy engines</td><td>Cannot fully prevent high-impact actions</td></tr><tr><td>Multi-Agent Message Injec- tion (Interaction)</td><td>Communication auditing, anomaly detection</td><td>Multi-agent verification, gover- nance mechanisms</td><td>Vulnerable to coordinated adversar- ial agents</td></tr></table>
+
+## 6.6 Governance and Oversight
+
+Governance mechanisms primarily address interaction-layer vulnerabilities (Section 5.5), particularly through control of interactions between agents and external systems.
+
+In addition to technical measures, process-level defenses can be implemented by involving humans in the operations of agents [79]. Such measures, which involve human-in-the-loop, require authorization from humans before executing certain operations, thereby providing a highly reliable security mechanism at the expense of reduced scalability [119]. Audit logging can improve accountability by recording all operations performed by agents, enabling investigations of security breaches
+
+The reliability of human-in-the-loop mechanisms in preventing catastrophic behaviors is very high, especially in high-risk domains [26]. However, empirical studies on the deployment of these mechanisms indicate that there are issues with scalability as well as increased latency in multi-step agent-based workflows. The reliance on human oversight is also conditional on the ability of the human operator to identify the subtle changes in the reasoning process, which is not always possible [83].
+
+## 6.7 Multi-Agent Specific Defenses
+
+Multi-agent-specific defenses primarily address interaction-layer vulnerabilities (Section 5.5), particularly those arising from inter-agent communication and coordination. There are several defensive concerns that apply to multi-agent systems. In relation to communication security, cryptographic signing is used to prevent tampering and spoofing [30]. In relation to consensus, agreement among several agents is required before specific actions are taken. In relation to agent authentication, verification of agent identities is required to prevent impersonation attacks. Table 8 synthesizes the relationship between vulnerability types (Section 5), detection mechanisms (Section 6), and mitigation strategies (Section 7), highlighting remaining coverage gaps.
+
+## 7 Research Challenges and Future Directions
+
+Based on the quantitative results presented in Sections 5-7 of this chapter, as well as the cross-layer insecurity framework described above, this section attempts to synthesize the identified research gaps in order to outline the containmentoriented research avenues for secure agentic architectures.
+
+Manuscript submitted to ACM
+
+Table 9. Trade-ofs across mitigation strategies in agentic systems
+<table><tr><td>Strategy</td><td>Effectiveness</td><td>Scalability</td><td>Overhead</td><td>Complexity</td></tr><tr><td>Input/Output Filtering</td><td>Moderate (weak vs adaptive at-</td><td>High</td><td>Low</td><td>Low</td></tr><tr><td>Architectural Defenses</td><td>tacks) High (structural guarantees)</td><td>Moderate</td><td>Moderate</td><td>High</td></tr><tr><td>Runtime Controls</td><td>High (strong con- Moderate tainment)</td><td></td><td>High (latency, Moderate monitoring)</td><td></td></tr><tr><td>Training-Time Mitiga- tion</td><td>Moderate (known High attacks)</td><td></td><td>Low (runtime)</td><td>Moderate</td></tr><tr><td>Governance (Human-in- the-loop)</td><td>Very High (high Low assurance)</td><td></td><td>High (human cost)</td><td>Moderate</td></tr><tr><td>Multi-Agent Defense</td><td>Moderate-High</td><td>Moderate</td><td>Moderate-High</td><td>High</td></tr></table>
+
+Table 10. Overview of Agent Defense Strategies and Implementation
+<table><tr><td rowspan=1 colspan=1>Ref</td><td rowspan=1 colspan=1>Category</td><td rowspan=1 colspan=1>Technique</td><td rowspan=1 colspan=1>Agent Type</td><td rowspan=1 colspan=1>Level</td><td rowspan=1 colspan=1>Evaluation</td><td rowspan=1 colspan=1>Effectiveness</td><td rowspan=1 colspan=1>Limitations</td></tr><tr><td rowspan=1 colspan=1>[154]</td><td rowspan=1 colspan=1>Multi-Agent Defense</td><td rowspan=1 colspan=1>LLM-based response filter agents</td><td rowspan=1 colspan=1>Multi-Agent</td><td rowspan=1 colspan=1>System</td><td rowspan=1 colspan=1>JailbreakBench</td><td rowspan=1 colspan=1>High</td><td rowspan=1 colspan=1>Latency overhead</td></tr><tr><td rowspan=1 colspan=1>[165]</td><td rowspan=1 colspan=1>Runtime Defense</td><td rowspan=1 colspan=1>In-Context Adversarial Game</td><td rowspan=1 colspan=1>Single Agent</td><td rowspan=1 colspan=1>Model</td><td rowspan=1 colspan=1>Custom</td><td rowspan=1 colspan=1>High</td><td rowspan=1 colspan=1>Training required</td></tr><tr><td rowspan=1 colspan=1>[14]</td><td rowspan=1 colspan=1>Input Filtering</td><td rowspan=1 colspan=1>Dynamic guidance injection</td><td rowspan=1 colspan=1>Single Agent</td><td rowspan=1 colspan=1>API</td><td rowspan=1 colspan=1>Multiple</td><td rowspan=1 colspan=1>Significant</td><td rowspan=1 colspan=1>May affect utility</td></tr><tr><td rowspan=1 colspan=1>[140]</td><td rowspan=1 colspan=1>Input Filtering</td><td rowspan=1 colspan=1>Soft label + CoT defense</td><td rowspan=1 colspan=1>RAG-based</td><td rowspan=1 colspan=1>System</td><td rowspan=1 colspan=1>Custom</td><td rowspan=1 colspan=1>Effective</td><td rowspan=1 colspan=1>Domain-specific</td></tr><tr><td rowspan=1 colspan=1>[28]</td><td rowspan=1 colspan=1>Architectural</td><td rowspan=1 colspan=1>Adaptive encryption + differential privacy</td><td rowspan=1 colspan=1>Multi-Agent</td><td rowspan=1 colspan=1>System</td><td rowspan=1 colspan=1>Framework</td><td rowspan=1 colspan=1>Framework</td><td rowspan=1 colspan=1>Complexity</td></tr><tr><td rowspan=1 colspan=1>[105]</td><td rowspan=1 colspan=1>Runtime Defense</td><td rowspan=1 colspan=1>Agent monitoring + admin intervention</td><td rowspan=1 colspan=1>Multi-Agent</td><td rowspan=1 colspan=1>System</td><td rowspan=1 colspan=1>Custom</td><td rowspan=1 colspan=1>Effective</td><td rowspan=1 colspan=1>Human overhead</td></tr><tr><td rowspan=1 colspan=1>[37]</td><td rowspan=1 colspan=1>Training-time</td><td rowspan=1 colspan=1>Backdoor trigger removal fine-tuning</td><td rowspan=1 colspan=1>Single Agent</td><td rowspan=1 colspan=1>Model</td><td rowspan=1 colspan=1>Benchmark</td><td rowspan=1 colspan=1>Moderate</td><td rowspan=1 colspan=1>May affect performance</td></tr><tr><td rowspan=1 colspan=1>[41]</td><td rowspan=1 colspan=1>Architectural</td><td rowspan=1 colspan=1>OWASP-aligned agent defense framework</td><td rowspan=1 colspan=1>Tool-using</td><td rowspan=1 colspan=1>System</td><td rowspan=1 colspan=1>OWASP</td><td rowspan=1 colspan=1>Framework</td><td rowspan=1 colspan=1>Implementation effort</td></tr><tr><td rowspan=1 colspan=1>[28]</td><td rowspan=1 colspan=1>Runtime Defense</td><td rowspan=1 colspan=1>Runtime security controls for LPCI</td><td rowspan=1 colspan=1>Single Agent</td><td rowspan=1 colspan=1>System</td><td rowspan=1 colspan=1>Custom</td><td rowspan=1 colspan=1>Proposed</td><td rowspan=1 colspan=1>Not validated</td></tr><tr><td rowspan=1 colspan=1>[102]</td><td rowspan=1 colspan=1>Input Filtering</td><td rowspan=1 colspan=1>Adversarial prompt detection shield</td><td rowspan=1 colspan=1>Single Agent</td><td rowspan=1 colspan=1>API</td><td rowspan=1 colspan=1>Custom</td><td rowspan=1 colspan=1>High</td><td rowspan=1 colspan=1>False positives</td></tr></table>
+
+Note: While Table 5 presents the categorical taxonomy of vulnerabilities, Table 6 quantifies their distribution across the 85 analyzed studies.
+
+## 7.1 Open Problems and Critical Gaps
+
+In accordance with the quantitative analysis provided in Sections 5, 6, and 7, seven critical open problems have been identified. These problems have been listed as follows:
+
+## Problem 1: Security of Code-Execution Agents (3 papers)
+
+From the literature, it is evident that there is a significant gap in research on the security of code execution agents. This represents the most critical underexplored area identified in this review. Code injection is a critical security issue that can potentially allow for arbitrary code execution within the context of the code execution agent. The main technical challenge is to design sandbox mechanisms that are suficiently restrictive to prevent agents from escaping while being suficiently permissive to allow agents to function as intended. One example is a data analysis agent that generates Python code for handling uploaded data. If the generated code is vulnerable to a path traversal attack or runs shell commands, an adversary with control over the data can steal server files or make unauthorized network connections.
+
+## Problem 2: Security of Embodied Agents (0 papers)
+
+Despite the growing deployment of robotic systems, the security of embodied agents remains unaddressed in the surveyed literature. Embodied agents have several security issues, including sensor manipulation and actuator control, with direct implications within the physical domain. The main technical challenge is that agents have a tight coupling Manuscript submitted to ACM
+
+Table 11. Quantitative Overview of Agentic LLM Security Literature (2023–2025, � = 85)
+<table><tr><td rowspan=1 colspan=1>Metric</td><td rowspan=1 colspan=1>Value</td><td rowspan=1 colspan=1>Notes</td></tr><tr><td rowspan=1 colspan=1>Total Papers Analyzed</td><td rowspan=1 colspan=1>85</td><td rowspan=1 colspan=1>2023-2025 publication window</td></tr><tr><td rowspan=1 colspan=1>Attack-focused Papers</td><td rowspan=1 colspan=1>47 (55.3%)</td><td rowspan=1 colspan=1>Primary focus on vulnerability discovery</td></tr><tr><td rowspan=1 colspan=1>Defense-focused Papers</td><td rowspan=1 colspan=1>12 (14.1%)</td><td rowspan=1 colspan=1>3.9:1 attack-to-defense ratio</td></tr><tr><td rowspan=1 colspan=1>Survey/Framework Papers</td><td rowspan=1 colspan=1>26 (30.6%)</td><td rowspan=1 colspan=1>Includes survey/taxonomy/framework studies</td></tr><tr><td rowspan=1 colspan=1>Papers from 2025</td><td rowspan=1 colspan=1>62 (72.9%)</td><td rowspan=1 colspan=1>Rapid field expansion year</td></tr><tr><td rowspan=1 colspan=1>Papers from 2024</td><td rowspan=1 colspan=1>21 (24.7%)</td><td rowspan=1 colspan=1>Field consolidation year</td></tr><tr><td rowspan=1 colspan=1>Papers from 2023</td><td rowspan=1 colspan=1>2 (2.4%)</td><td rowspan=1 colspan=1>Early foundational work</td></tr><tr><td rowspan=1 colspan=1>Multi-Agent Focus</td><td rowspan=1 colspan=1>39 (45.9%)</td><td rowspan=1 colspan=1>Most represented architecture</td></tr><tr><td rowspan=1 colspan=1>Tool-Augmented Focus</td><td rowspan=1 colspan=1>10 (11.8%)</td><td rowspan=1 colspan=1>Underexplored despite real-world adoption</td></tr><tr><td rowspan=1 colspan=1>Code-Execution Focus</td><td rowspan=1 colspan=1>3 (3.5%)</td><td rowspan=1 colspan=1>Critical architectural research gap</td></tr><tr><td rowspan=1 colspan=1>Perception-Layer Research</td><td rowspan=1 colspan=1>56 (65.9%)</td><td rowspan=1 colspan=1>Dominant research layer</td></tr><tr><td rowspan=1 colspan=1>Action-Layer Research</td><td rowspan=1 colspan=1>4 (4.7%)</td><td rowspan=1 colspan=1>14x gap vs perception layer</td></tr><tr><td rowspan=1 colspan=1>Prompt Injection Papers</td><td rowspan=1 colspan=1>36 (42.4%)</td><td rowspan=1 colspan=1>Most studied vulnerability type</td></tr><tr><td rowspan=1 colspan=1>Adversarial Attack Papers</td><td rowspan=1 colspan=1>30 (35.3%)</td><td rowspan=1 colspan=1>Second most studied</td></tr><tr><td rowspan=1 colspan=1>Jailbreaking Papers</td><td rowspan=1 colspan=1>16 (18.8%)</td><td rowspan=1 colspan=1>Third most studied</td></tr></table>
+
+between perception and action, which complicates the enforcement of reliable safety constraints due to sensor noise and environmental uncertainties. One example is a robotic warehouse agent where adversary labels placed on objects afect perception and lead to incorrect routing decisions.
+
+## Problem 3: Security of Single-Agent Systems (0 papers primarily focused)
+
+Single-agent systems were defined strictly as architectures without tool use, retrieval augmentation, multi-agent interaction, or persistent memory. Under this strict definition, no studies explicitly focused on security analysis of such minimal agent architectures, though single-agent settings appear as baselines in several studies (Table 11). The main technical challenge is that agents have a complex internal reasoning process that complicates isolating and analyzing failure modes without resorting to oversimplification of model behavior. This cluster represents limitations in detection capabilities and evaluation methodologies, especially in adapting to adversarial situations and developing standardized benchmarks.
+
+## Problem 4: Maturity of Detection Methods (10 detection methods vs 52 attacks)
+
+There is a 5:1 ratio of attacks to detection methods, thus reflecting a significant imbalance. It is evident that the maturity level of detection methods is relatively low, with limited evaluation of efectiveness and a lack of standardized protocols. The main technical challenge is that adaptive attackers will continually try to evade detection systems and optimize attacks, which makes classifiers and rule-based detection systems only temporarily efective.
+
+## Problem 5: Coverage of Tool-Augmented Agents (12%)
+
+Only 12% of research literature deals with tool-augmented agents, despite (a) the fast pace at which tool-calling large language models are being deployed in production environments, (b) the special risks tool access imposes, and (c) the large attack surface in enterprise environments. The main technical challenge is to design security mechanisms for tool invocation pipelines that have heterogeneous trust boundaries and side efects.
+
+## Problem 6: Real-World Deployment
+
+Most research is conducted in a lab environment, which does not accurately reflect real-world conditions where attackers operate with limited information, communicate asynchronously, and deal with uncontrolled external data.
+
+Problem 7: Standardized Evaluation (absent)
+
+Despite eight benchmark datasets being available, there are no standardized evaluation protocols. The main technical challenge is that there is a lack of a unified evaluation protocol that makes it dificult to compare results and security baselines across diferent studies.
+
+## 7.2 Future Research Agenda
+
+We outline the following research agenda:
+
+Short term (1-2 years): The focus is on securing code execution and tool-assisted agent augmentation. The emphasis is on filling critical research gaps in high-risk deployment scenarios [98]. The research community should develop an evaluation framework and conduct empirical studies in real-world deployment scenarios, moving beyond laboratory-based research.
+
+Medium term (3-5 years): The scope of the research should be broadened to include agent embodiment, agent vulnerabilities, formalized detection methodologies, and tool supply chain security [27].
+
+Long-term (5+ years): The research community’s goal is to achieve formal verification of security properties, trustworthy agent architectures, and human oversight.
+
+## 7.3 Standardization Needs
+
+Advancing agentic LLM security requires standardization across several dimensions: a unified vulnerability taxonomy aligned with the four-layer framework proposed in this survey, standardized evaluation metrics (attack success rate, detection accuracy, false positive/negative rates), a unified benchmark protocol for comparing detection and defense efectiveness [162], and guidelines for responsible disclosure of newly identified agent security flaws [101].
+
+## 8 Conclusion
+
+This systematic literature review examines 85 research articles published between 2023 and 2025, which discuss security issues related to agentic large language model (LLM) systems. The review follows the PRISMA guidelines, applying a rigorous methodology to systematically search databases, apply inclusion/exclusion criteria, and assess the quality of all included research articles. We propose a four-layer vulnerability taxonomy that maps thirteen vulnerability types to the perception, reasoning (brain), action, and interaction layers of agentic architectures, providing a classification grounded in architectural function rather than inconsistent attack nomenclature. Our quantitative analysis of eighty-five papers reveals a 3.9:1 attack-to-defense ratio and a fourteen-fold disparity between perception-layer and action-layer research coverage, providing the first systematic assessment of structural imbalance in the field. Agentic LLM systems represent a significant leap in capability while introducing new security challenges distinct from those of traditional LLMs and AI agents. The findings of this systematic review reveal that, although research on vulnerabilities is growing, work on defense mechanisms remains limited, representing a critical gap. As autonomous agentic LLM applications continue to evolve, the security issues identified in this review are likely to become increasingly important for both researchers and practitioners.
+
+## References
+
+[1] Sara Abdali, Richard Anarfi, CJ Barberan, and Jia He. 2024. Securing large language models: threats, vulnerabilities and responsible practices arXiv (Cornell University), (Mar. 2024). doi:10.48550/arxiv.2403.12503.
+
+[2] Alsharif Abuadbba, Chris Hicks, Kristen Moore, Vasilios Mavroudis, Burak Hasırcıoglu, Diksha Goel, and Paul Jennings. 2025. From promise to peril: rethinking cybersecurity red and blue teaming in the age of llms. arXiv (Cornell University), (June 2025). doi:10.48550/arxiv.2506.13434.
+
+[3] IBRAHIM ADABARA, Bashir Olaniyi Sadiq, Aliyu Nuhu Shuaibu, Yale Ibrahim Danjuma, and Maninti Venkateswarlu. 2025. Trustworthy agentic ai systems: a cross-layer review of architectures, threat models, and governance strategies for real-world deployment. (Sept. 2025). doi:10.12688/f1000research.169927.1.
+
+[4] Mohamad Abou Ali and Fadi Dornaika. 2025. Agentic ai: a comprehensive survey of architectures, applications, and future directions. arXiv (Cornell University), (Oct. 2025). doi:10.48550/arxiv.2510.25445
+
+[5] Daniel Ayzenshteyn, Roy Weiss, and Yisroel Mirsky. 2024. The best defense is a good ofense: countering LLM-Powered cyberattacks. arXiv preprint arXiv:2410.15396. doi:10.48550/arxiv.2410.15396
+
+[6] Ajay Bandi, Bhavani Kongari, Roshini Naguru, Sahitya Pasnoor, and Sri Vidya Vilipala. 2025. The rise of agentic AI: a review of definitions, frameworks, architectures, applications, evaluation metrics, and challenges. (2025). doi:10.3390/fi17090404.
+
+[7] Sharmi Barua. 2024. Exploring autonomous agents through the lens of large language models: a review. (2024). doi:10.48550/arxiv.2404.04442
+
+[8] Aryan Bhatt, Cody Rushing, Adam M. Kaufman, Tyler Tracy, Vasil Georgiev, Dávid Matolcsi, Akbir Khan, and Buck Shlegeris. 2025. Ctrl-z: controlling ai agents via resampling. arXiv (Cornell University), (Apr. 2025). doi:10.48550/arxiv.2504.10374.
+
+[9] Léo Boisvert, Abhay Puri, Chandra Kiran Reddy Evuru, Nicolas Chapados, Quentin Cappart, Alexandre Lacoste, Krishnamurthy Dvijotham, and Alexandre Drouin. 2025. Malice in agentland: down the rabbit hole of backdoors in the ai supply chain. arXiv (Cornell University), (Oct. 2025). doi:10.48550/arxiv.2510.05159.
+
+[10] Valentyn Boreiko, Alexander Panfilov, Vaclav Voracek, Matthias Hein, and Jonas Geiping. 2024. A realistic threat model for large language model jailbreaks. arXiv (Cornell University), (Oct. 2024). doi:10.48550/arxiv.2410.16222.
+
+[11] Sarfraz Nawaz Brohi, Qurat-ul-ain Mastoi, N. Z. Jhanjhi, and Thulasyammal Ramiah Pillai. 2025. A research landscape of agentic AI and large language models: applications, challenges and future directions. Algorithms, 18, 8, 499. doi:10.3390/a18080499
+
+[12] Robin Buchta, George Gkoktsis, Felix Heine, and Carsten Kleiner. 2024. Advanced persistent threat attack detection systems: a review of approaches, challenges, and trends. (Sept. 2024). doi:10.1145/3696014.
+
+[13] Arthur Caetano, Krishna K. Verma, Atieh Taheri, Radha Kumaran, Zichen Chen, Jiaao Chen, Tobias Höllerer, and Misha Sra. 2025. Agentic workflows for conversational human-ai interaction design. arXiv (Cornell University), (Jan. 2025). doi:10.48550/arxiv.2501.18002.
+
+[14] He Cao, Weidi Luo, Yu Wang, and Zijing Liu. 2024. Guide for defense (G4D): dynamic guidance for robust and balanced defense in large language models. arXiv preprint arXiv:2410.17922. doi:10.48550/arxiv.2410.17922
+
+[15] Tri Cao et al. 2025. Vpi-bench: visual prompt injection attacks for computer-use agents. arXiv (Cornell University), (June 2025). doi:10.48550/arxiv .2506.02456.
+
+[16] Nandish Chattopadhyay, Abdul Basit, Bassem Ouni, and Muhammad Shafique. 2025. A survey of adversarial defenses in vision-based systems: categorization, methods and challenges. arXiv (Cornell University), (Mar. 2025). doi:10.48550/arxiv.2503.00384
+
+[17] Sizhe Chen, Arman Zharmagambetov, Saeed Mahloujifar, Kamalika Chaudhuri, and Chuan Guo. 2024. Aligning llms to be robust against prompt injection. arXiv (Cornell University), (Oct. 2024). doi:10.48550/arxiv.2410.05451.
+
+[18] Anshuman Chhabra, Shrestha Datta, Shahriar Kabir Nahin, and Prasant Mohapatra. 2025. Agentic ai security: threats, defenses, evaluation, and open challenges. arXiv (Cornell University), (Oct. 2025). doi:10.48550/arxiv.2510.23883
+
+[19] Wan Chong Choi, Cyril F. Chang, Sze May Ng, and Iek Chong Choi. 2025. A review of “do anything now” jailbreak attacks in large language models. Preprints.org. doi:10.20944/preprints202509.0081.v1.
+
+[20] Mihai Christodorescu, Earlence Fernandes, Ashish Hooda, Somesh Jha, Johann Rehberger, and Khawaja Shams. 2025. Systems security foundations for agentic computing. arXiv preprint arXiv:2512.01295. doi:10.48550/arxiv.2512.01295
+
+[21] Jing Cui, Yihua Xu, Zipeng Huang, Shuchang Zhou, Jianbin Jiao, and J H Zhang. 2024. Recent advances in attack and defense approaches of large language models. arXiv (Cornell University), (Sept. 2024). doi:10.48550/arxiv.2409.03274.
+
+[22] Yu Cui and Hongyang Du. 2025. MAD-Spear: a conformity-driven prompt injection attack on multi-agent debate systems. arXiv preprint arXiv:2507.13038. doi:10.48550/arxiv.2507.13038.
+
+[23] Rishane Dassanayake, Mario Demetroudi, Jonathan Walpole, L. Lentati, Jason R. Brown, and Edward Young. 2025. Manipulation attacks by misaligned ai: risk analysis and safety case framework. arXiv (Cornell University), (July 2025). doi:10.48550/arxiv.2507.12872
+
+[24] Shrestha Datta, Shahriar Kabir Nahin, Anshuman Chhabra, and Prasant Mohapatra. 2025. Agentic AI security: threats, defenses, evaluation, and open challenges. arXiv preprint arXiv:2510.23883. doi:10.48550/ARXIV.2510.23883.
+
+[25] Edoardo Debenedetti, Jie Lei Bianchi, Sierra Braunegg, Tushar Kuber, Alex Kurakin, Nicolas Papernot, and Florian Tramèr. 2024. AgentDojo: a dynamic environment to evaluate prompt injection attacks and defenses for LLM agents. In Proceedings ofNeurIPS. doi:10.48550/arxiv.2406.13352.
+
+[26] Shuiguang Deng et al. 2025. Agentic services computing. arXiv (Cornell University), (Sept. 2025). doi:10.48550/arxiv.2509.24380
+
+[27] Zehang Deng, Yongjian Guo, Changzhou Han, Wanlun Ma, Junwu Xiong, Sheng Wen, and Yang Xiang. 2024. Ai agents under threat: a survey of key security challenges and future pathways. arXiv (Cornell University), (June 2024). doi:10.48550/arxiv.2406.02630.
+
+[28] Zehang Deng, Yongjian Guo, Changzhou Han, Wanlun Ma, Junwu Xiong, Sheng Wen, and Yang Xiang. 2025. AI agents under threat: a survey of key security challenges and future pathways. ACM Computing Surveys, 57, 7, 1–36. doi:10.1145/3716628
+
+[29] Deven R. Desai and Mark Riedl. 2025. Responsible ai agents. arXiv (Cornell University), (Feb. 2025). doi:10.48550/arxiv.2502.18359.
+
+[30] Christian Schroeder de Witt. 2025. Open challenges in multi-agent security: towards secure systems of interacting ai agents. arXiv (Cornell University), (May 2025). doi:10.48550/arxiv.2505.02077.
+
+[31] Luigi Gianpio Di Maggio. 2025. Toward autonomous LLM-Based AI agents for predictive maintenance. Applied Sciences, 15, 21, 11515. doi:10.3390 /app152111515.
+
+[32] Yi Dong et al. 2024. Safeguarding large language models: a survey. arXiv (Cornell University), (June 2024). doi:10.48550/arxiv.2406.02622
+
+[33] Yingkai Dong, Zheng Li, Xiangtao Meng, Ning Yu, and Shanqing Guo. 2024. Jailbreaking text-to-image models with LLM-Based agents. arXiv preprint arXiv:2408.00523. doi:10.48550/arxiv.2408.00523.
+
+[34] Fadi Dornaika. 2025. Agentic AI: a comprehensive survey of architectures, applications, and future directions. Artificial Intelligence Review, 59, 1. doi:10.1007/s10462-025-11422-4.
+
+[35] Iddo Drori et al. 2025. Diverse inference and verification for advanced reasoning. arXiv (Cornell University), (Feb. 2025). doi:10.48550/arxiv.2502.0 9955.
+
+[36] Liam Dugan, Alyssa Hwang, Filip Trhlík, Josh Magnus Ludan, Andrew Zhu, Hainiu Xu, Daphne Ippolito, and Chris Callison-Burch. 2024. Raid: a shared benchmark for robust evaluation of machine-generated text detectors. arXiv (Cornell University), (May 2024). doi:10.48550/arxiv.2405.07940.
+
+[37] Demarcus Edwards and Danda B. Rawat. 2024. Agent deprogramming: finetuning away backdoor triggers for secure machine learning models/LLMs. In Proceedings ofthe IEEE International Conference on Communications and Networking (ICCCN). doi:10.1109/icccn61486.2024.10637573
+
+[38] Herman Errico, Jiquan Ngiam, and Shanita Sojan. 2025. Securing the model context protocol (mcp): risks, controls, and governance. arXiv (Cornell University), (Nov. 2025). doi:10.48550/arxiv.2511.20920.
+
+[39] Jonathan Evertz, Merlin Chlosta, Lea Schönherr, and Thorsten Eisenhofer. 2024. Whispers in the machine: confidentiality in agentic systems. arXiv preprint arXiv:2402.06922. doi:10.48550/ARXIV.2402.06922
+
+[40] Zhiyuan Fang, Haotian Wang, et al. 2025. Breaking barriers: multi-agent prompt fusion for targeted jailbreaks. arXiv preprint arXiv:2503.00865. doi:10.48550/arxiv.2503.00865
+
+[41] Mohammad Fasha et al. 2024. Mitigating the OWASP top 10 for large language models applications using intelligent agents. In Proceedings ofthe IEEE International Conference on Communications and Computing Research (ICCR). doi:10.1109/iccr61006.2024.10532874.
+
+[42] Mohamad Fazelnia, Ahmet Okutan, and Mehdi Mirakhorli. 2022. Supporting ai/ml security workers through an adversarial techniques, tools, and common knowledge (ai/ml att&ck) framework. arXiv (Cornell University), (Nov. 2022). doi:10.48550/arxiv.2211.05075
+
+[43] He Feng, Tianqing Zhu, Dayong Ye, Bo Liu, Wanlei Zhou, and Philip S. Yu. 2024. The emerged security and privacy of llm agent: a survey with case studies. arXiv (Cornell University), (July 2024). doi:10.48550/arxiv.2407.19354.
+
+[44] He Feng, Tianqing Zhu, Dayong Ye, Bo Liu, Wanlei Zhou, and Philip S. Yu. 2025. The emerged security and privacy of LLM agent: a survey with case studies. ACM Computing Surveys, 58, 6, 1–36. doi:10.1145/3773080.
+
+[45] Shangbin Feng, Herun Wan, Ningnan Wang, Zhaoxuan Tan, Minnan Luo, and Yulia Tsvetkov. 2024. What does the bot say? opportunities and risks of large language models in social media bot detection. arXiv (Cornell University), (Feb. 2024). doi:10.48550/arxiv.2402.00371.
+
+[46] Mohamed Amine Ferrag, Djallel Hamouda, and Mérouane Debbah. 2025. From prompt injections to protocol exploits: threats in LLM-Powered AI agents workflows. arXiv preprint arXiv:2506.23260. doi:10.48550/arxiv.2506.23260.
+
+[47] David Ferraiolo, Vijayalakshmi Atluri, and Serban I. Gavrila. 2010. The policy machine: a novel architecture and framework for access control policy specification and enforcement. Journal of Systems Architecture, 57, (May 2010), 412–424, 4, (May 2010). doi:10.1016/j.sysarc.2010.04.005.
+
+[48] Tao Gan and Qiong Sun. 2025. RAG-MCP: mitigating prompt bloat in LLM tool selection via retrieval-augmented generation. arXiv preprint arXiv:2505.03275. doi:10.48550/arxiv.2505.03275
+
+[49] Yuyou Gan, Yong Yang, Zhe Ma, et al. 2024. Navigating the risks: a survey of security, privacy, and ethics threats in LLM-Based agents. arXiv preprint arXiv:2411.09523. doi:10.48550/arxiv.2411.09523.
+
+[50] Yuyou Gan et al. 2024. Navigating the risks: a survey of security, privacy, and ethics threats in llm-based agents. arXiv (Cornell University), (Nov. 2024). doi:10.48550/arxiv.2411.09523
+
+[51] Soham Ghosh and Gaurav Mittal. 2025. Agentic AI systems in electrical power systems engineering. arXiv preprint arXiv:2511.14478.
+
+[52] Shanshan Han, Qifan Zhang, Yuhang Yao, et al. 2024. LLM multi-agent systems: challenges and open problems. arXiv preprint arXiv:2402.03578. doi:10.48550/arxiv.2402.03578.
+
+[53] Jianliang He, Siyu Chen, Fengzhuo Zhang, and Zhuoran Yang. 2024. From words to actions: unveiling the theoretical underpinnings ofLLM-Driven autonomous systems. arXiv preprint arXiv:2405.19883. doi:10.48550/arxiv.2405.19883
+
+[54] Pengfei He, Yue Xing, Jonathan Li, et al. 2025. Comprehensive vulnerability analysis is necessary for trustworthy LLM-MAS. arXiv preprint arXiv:2506.01245. doi:10.48550/arxiv.2506.01245
+
+[55] Yifeng He, Ethan Wang, Yuyang Rong, Zifei Cheng, and Hao Chen. 2024. Security of AI agents. arXiv preprint arXiv:2406.08689. doi:10.48550/arxi v.2406.08689.
+
+[56] Hanbin Hong, Shuyi Feng, Nima Naderloui, Shenao Yan, Jingyu Zhang, Biying Liu, Ali Arastehfard, Heqing Huang, and Hong Yuan. 2025. Sok: taxonomy and evaluation of prompt security in large language models. arXiv (Cornell University), (Oct. 2025). doi:10.48550/arxiv.2510.15476.
+
+[57] Qiang Hu, Xiaofei Xie, Sen Chen, and Lei Ma. 2024. Large language model supply chain: open problems from the security perspective. arXiv (Cornell University), (Nov. 2024). doi:10.48550/arxiv.2411.01604
+
+[58] Y. Huang et al. 2025. On the trustworthiness of generative foundation models: guideline, assessment, and perspective. arXiv (Cornell University), (Feb. 2025). doi:10.48550/arxiv.2502.14296.
+
+[59] Zixuan Huang, Jiawei Chen, Zhipeng Zhang, and Chia-Mu Yu. 2024. Prompting the unseen: detecting hidden backdoors in black-box models. arXiv (Cornell University), (Nov. 2024). doi:10.48550/arxiv.2411.09540.
+
+[60] Strahinja Janjusevic, Anna Baron Garcia, and Sohrob Kazerounian. 2025. Hiding in the AI trafic: abusing MCP for LLM-Powered agentic red teaming. arXiv preprint arXiv:2511.15998. doi:10.48550/arxiv.2511.15998
+
+[61] Jiabao Ji, Bairu Hou, Alexander Robey, George J. Pappas, Hamed Hassani, Shuicheng Yan, Eric Wong, and Shiyu Chang. 2024. Defending large language models against jailbreak attacks via semantic smoothing. arXiv (Cornell University), (Feb. 2024). doi:10.48550/arxiv.2402.16192.
+
+[62] Yuqi Jia, Zhujun Shao, Yupei Liu, Jinyuan Jia, Dawn Song, and Neil Zhenqiang Gong. 2025. A critical evaluation of defenses against prompt injection attacks. arXiv (Cornell University), (May 2025). doi:10.48550/arxiv.2505.18333
+
+[63] Yu-Gang Jiang, Xingjun Ma, et al. 2025. Safety at scale: a comprehensive survey of large model safety. SuperIntelligence: Robotics, Safety and Alignment, 2, 2. doi:10.70777/si.v2i2.14609.
+
+[64] Daniel Jones et al. 2025. A systematization of security vulnerabilities in computer use agents. arXiv (Cornell University), (July 2025). doi:10.48550 /arxiv.2507.05445.
+
+[65] Tianjie Ju et al. 2024. Flooding spread of manipulated knowledge in LLM-Based multi-agent communities. arXiv preprint arXiv:2407.07791. doi:10.48550/arxiv.2407.07791.
+
+[66] Yubin Kim, Ken Gu, Chanwoo Park, et al. 2025. Towards a science of scaling agent systems. arXiv preprint arXiv:2512.08296. doi:10.48550/arxiv.25 12.08296.
+
+[67] Mikołaj Kniejski, Matthieu David, Jason Hoelscher-Obermaier, Christian Schroeder de Witt, and Esben Kran. 2025. Multi-agent security tax: trading of security and collaboration capabilities in multi-agent systems. arXiv (Cornell University), (Feb. 2025). doi:10.48550/arxiv.2502.19145
+
+[68] Andrei Kucharavy, Z. M. Schillaci, Loïc Maréchal, Maxime Würsch, Ljiljana Dolamic, Remi Sabonnadiere, Dimitri Percia David, Alain Mermoud, and Vincent Lenders. 2023. Fundamentals of generative large language models and perspectives in cyber-defense. arXiv (Cornell University), (Mar. 2023). doi:10.48550/arxiv.2303.12132.
+
+[69] P. Kulkarni and Assaf Namer. 2025. Temporal context awareness: a defense framework against multi-turn manipulation attacks on large language models. arXiv (Cornell University), (Mar. 2025). doi:10.48550/arxiv.2503.15560.
+
+[70] Sunwoo Lee, Ji-Hoon Hwang, Yonghyeon Jo, and Seungyul Han. 2025. Wolfpack adversarial attack for robust multi-agent reinforcement learning. arXiv (Cornell University), (Feb. 2025). doi:10.48550/arxiv.2502.02844
+
+[71] Gaotang Li, Ting-Wei Li, and Xuying Ning. 2025. Mind the agent: a comprehensive survey on large language model-based agent safety.
+
+[72] Miles Q. Li and Benjamin C. M. Fung. 2025. Security concerns for large language models: a survey. arXiv preprint arXiv:2505.18889. doi:10.48550/a rxiv.2505.18889.
+
+[73] X. Li et al. 2024. Targeting the core: a simple and efective method to attack RAG-based agents via direct LLM manipulation. arXiv preprint arXiv:2412.04415. doi:10.48550/arxiv.2412.04415.
+
+[74] Yuxi Li, Zijing Zhang, Kailong Wang, Ling Shi, and Haoyu Wang. 2024. Model-editing-based jailbreak against safety-aligned large language models. arXiv (Cornell University), (Dec. 2024). doi:10.48550/arxiv.2412.08201.
+
+[75] Zhongxing Liao, Kang Chen, Yuanjie Lin, K. Li, Y.Z. Liu, Hefeng Chen, Xingwang Huang, and Yuanhui Yu. 2025. Attack and defense techniques in large language models: a survey and new perspectives. arXiv (Cornell University), (May 2025). doi:10.48550/arxiv.2505.00976.
+
+[76] Huan Lin, Yingjie Lao, Tong Geng, Yu Tan, and Weijie Zhao. 2025. Uniguardian: a unified defense for detecting prompt injection, backdoor attacks and adversarial attacks in large language models. arXiv (Cornell University), (Feb. 2025). doi:10.48550/arxiv.2502.13141.
+
+[77] Aishan Liu et al. 2024. Compromising embodied agents with contextual backdoor attacks. arXiv preprint arXiv:2408.02882. doi:10.48550/arxiv.240 8.02882.
+
+[78] Bang Liu, Xinfeng Li, Jiayi Zhang, et al. 2025. Advances and challenges in foundation agents. arXiv preprint arXiv:2504.01990. doi:10.48550/arxiv.2 504.01990.
+
+[79] Bang Liu et al. 2025. Advances and challenges in foundation agents: from brain-inspired intelligence to evolutionary, collaborative, and safe systems. arXiv (Cornell University), (Mar. 2025). doi:10.48550/arxiv.2504.01990.
+
+[80] Xiaogeng Liu, Zhiyuan Yu, Yizhe Zhang, Ning Zhang, and Chaowei Xiao. 2024. Automatic and universal prompt injection attacks against large language models. arXiv (Cornell University), (Mar. 2024). doi:10.48550/arxiv.2403.04957.
+
+[81] Xingjun Ma, Yifeng Gao, Yixu Wang, et al. 2025. Safety at scale: a comprehensive survey of large model and agent safety. Foundations and Trends in Privacy and Security, 8, 254–469. doi:10.1561/3300000051
+
+[82] Tula Masterman, Sandi Besen, Mason Sawtell, and Alex Chao. 2024. The landscape of emerging AI agent architectures for reasoning, planning and tool calling: a survey. arXiv preprint arXiv:2404.11584. doi:10.48550/arxiv.2404.11584.
+
+[83] Tula Masterman, Sandi Besen, Mason Sawtell, and Alex Chao. 2024. The landscape of emerging ai agent architectures for reasoning, planning and tool calling: a survey. arXiv (Cornell University), (Apr. 2024). doi:10.48550/arxiv.2404.11584
+
+[84] Federico Mazzone, Ahmad Al Badawi, et al. 2024. Investigating privacy attacks in the gray-box setting. arXiv preprint arXiv:2409.17283. doi:10.485 50/arxiv.2409.17283.
+
+[85] Timothy R. McIntosh, Teo Sušnjak, Tong Liu, Paul Watters, and Malka N. Halgamuge. 2024. Inadequacies of large language model benchmarks in the era of generative artificial intelligence. arXiv (Cornell University), (Feb. 2024). doi:10.48550/arxiv.2402.09880.
+
+[86] David J. Miller, Zhen Xiang, and George Kesidis. 2022. Adversarial learning in statistical classification: a comprehensive review of defenses against attacks. (Feb. 2022). doi:10.48550/arxiv.1904.06292.
+
+[87] Lingbo Mo, Zeyi Liao, Boyuan Zheng, Yu Su, Chaowei Xiao, and Huan Sun. 2024. A trembling house of cards? mapping adversarial attacks against language agents. arXiv preprint arXiv:2402.10196. doi:10.48550/arxiv.2402.10196.
+
+Manuscript submitted to ACM
+
+[88] Gaëlle Molinari and Fabio Ciravegna. 2025. Towards pervasive distributed agentic generative AI: a state of the art. arXiv preprint arXiv:2506.13324. doi:10.48550/arxiv.2506.13324.
+
+[89] Honglin Mu et al. 2024. Stealthy jailbreak attacks on large language models via benign data mirroring. arXiv (Cornell University), (Oct. 2024) doi:10.48550/arxiv.2410.21083.
+
+[90] Vineeth Sai Narajala and Om Narayan. 2025. Securing agentic AI: a comprehensive threat model and mitigation framework for generative AI agents. arXiv preprint arXiv:2504.19956. doi:10.48550/ARXIV.2504.19956.
+
+[91] Milad Nasr et al. 2025. The attacker moves second: stronger adaptive attacks bypass defenses against llm jailbreaks and prompt injections. arXiv (Cornell University), (Oct. 2025). doi:10.48550/arxiv.2510.09023.
+
+[92] Satyam Kumar Navneet and Joydeep Chandra. 2025. Rethinking autonomy: preventing failures in AI-Driven software engineering. arXiv preprint arXiv:2508.11824. doi:10.48550/arxiv.2508.11824
+
+[93] Haitham Ameen Noman and Osama M. F. Abu-Sharkh. 2023. Code injection attacks in wireless-based internet of things (IoT): a comprehensive review and practical implementations. (2023). doi:10.3390/s23136067.
+
+[94] Simon Ostermann, Kevin Baum, Christoph Endres, Julia Masloh, and Patrick Schramowski. 2024. Soft begging: modular and eficient shielding of llms against prompt injection and jailbreaking based on prompt tuning. arXiv (Cornell University), (July 2024). doi:10.48550/arxiv.2407.03391.
+
+[95] Melissa Z. Pan, Negar Arabzadeh, Riccardo Cogo, et al. 2025. Measuring agents in production. arXiv preprint arXiv:2512.04123. doi:10.48550/arxiv .2512.04123.
+
+[96] Devansh Pandya, Hitika Teckani, and Shreyas Sanjay Raybole. 2024. Limiting prompt bypass in llm-integrated applications. International Journal for Research in Applied Science and Engineering Technology, 12, (Dec. 2024), 2168–2183, 12, (Dec. 2024). doi:10.22214/ijraset.2024.66176
+
+[97] Atharv Singh Patlan, Peiyao Sheng, S. Ashwin Hebbar, Prateek Mittal, and Pramod Viswanath. 2025. Real AI agents with fake memories: fatal context manipulation attacks on Web3 agents. arXiv preprint arXiv:2503.16248. doi:10.48550/ARXIV.2503.16248.
+
+[98] Nikhil Patnaik, Joseph Hallett, and Awais Rashid. 2024. Saltzer & schroeder for 2030: security engineering principles in a world of ai. arXiv (Cornell University), (July 2024). doi:10.48550/arxiv.2407.05710.
+
+[99] Maya Pavlova, Erik Brinkman, Krithika Iyer, and Vítor Albiero. 2024. Automated red teaming with GOAT: the generative ofensive agent tester. arXiv preprint arXiv:2410.01606. doi:10.48550/arxiv.2410.01606.
+
+[100] Rafael Pedro, Castro Daniel, and Rosso Paolo. 2024. Prompt infection: LLM-to-LLM prompt injection within multi-agent systems. arXiv preprint arXiv:2407.12926. doi:10.48550/arxiv.2407.12926
+
+[101] Benji Peng et al. 2024. Jailbreaking and mitigation of vulnerabilities in large language models. arXiv (Cornell University), (Oct. 2024). doi:10.48550 /arxiv.2410.15236.
+
+[102] Fàbio Perez and Ian Ribeiro. 2022. Ignore previous prompt: attack techniques for language models. arXiv preprint arXiv:2211.09527. doi:10.48550/a rxiv.2211.09527
+
+[103] Lorena Qendro, Sangwon Ha, de Jong Rene, and Partha Maji. 2022. Stochastic-shield: a probabilistic approach towards training-free adversarial defense in quantized cnns. arXiv (Cornell University), (Feb. 2022). doi:10.48550/arxiv.2105.06512.
+
+[104] Abhinav Rao, Sachin Vashistha, Atharva Naik, Somak Aditya, and Monojit Choudhury. 2023. Tricking llms into disobedience: formalizing, analyzing, and detecting jailbreaks. arXiv (Cornell University), (May 2023). doi:10.48550/arxiv.2305.14965.
+
+[105] Shaina Raza, Ranjan Sapkota, Manoj Karkee, and Christos Emmanouilidis. 2025. TRiSM for agentic AI: a review of trust, risk, and security management. arXiv preprint arXiv:2506.04133. doi:10.48550/arxiv.2506.04133.
+
+[106] Zhenzhen Ren, Zhenxing Qian, Yan Gao, Yu Shi, Shuxin Zheng, and J. He. 2025. GTM: simulating the world of tools for AI agents. arXiv preprint arXiv:2512.04535. doi:10.48550/arxiv.2512.04535
+
+[107] Corban G. Rivera et al. 2024. Conceptagent: llm-driven precondition grounding and tree search for robust task planning and execution. arXiv (Cornell University), (Oct. 2024). doi:10.48550/arxiv.2410.06108.
+
+[108] Sippo Rossi, Alisia Marianne Michel, Raghava Rao Mukkamala, and Jason Bennett Thatcher. 2024. An early categorization of prompt injection attacks on large language models. arXiv (Cornell University), (Jan. 2024). doi:10.48550/arxiv.2402.00898.
+
+[109] Pascal J. Sager, Benjamin Meyer, Peng Yan, et al. 2025. A comprehensive survey of agents for computer use: foundations, challenges, and futur directions. doi:10.48550/ARXIV.2501.16150.
+
+[110] Zhen Shang and William Wei. 2025. Evolving security in llms: a study of jailbreak attacks and defenses. arXiv (Cornell University), (Apr. 2025). doi:10.48550/arxiv.2504.02080.
+
+[111] David Shapiro, Wangfan Li, Manuel Delaflor, and Carlos Toxtli. 2023. Conceptual framework for autonomous cognitive entities. arXiv (Cornell University), (Oct. 2023). doi:10.48550/arxiv.2310.06775
+
+[112] Erfan Shayegani, Md Abdullah Al Mamun, Yu Fu, Pedram Zaree, Yue Dong, and Nael Abu-Ghazaleh. 2023. Survey of vulnerabilities in large language models revealed by adversarial attacks. arXiv preprint arXiv:2310.10844. doi:10.48550/arxiv.2310.10844.
+
+[113] Erfan Shayegani, Md Abdullah Al Mamun, Yu Fu, Pedram Zaree, Yue Dong, and Nael Abu-Ghazaleh. 2023. Survey of vulnerabilities in large language models revealed by adversarial attacks. arXiv (Cornell University), (Oct. 2023). doi:10.48550/arxiv.2310.10844.
+
+[114] Chongyang Shi et al. 2025. Lessons from defending gemini against indirect prompt injections, (Jan. 2025). doi:10.48550/ARXIV.2505.14534
+
+[115] Dan Shi, Tianhao Shen, Yufei Huang, et al. 2024. Large language model safety: a holistic survey. arXiv preprint arXiv:2412.17686. doi:10.48550/arxi v.2412.17686.
+
+[116] Dan Shi et al. 2024. Large language model safety: a holistic survey. arXiv (Cornell University), (Dec. 2024). doi:10.48550/arxiv.2412.17686. Manuscript submitted to ACM
+
+[117] Sudhir Shrestha, Chipiliro Banda, Amit Kumar Mishra, Fatiha Djebbar, and Deepak Puthal. 2025. Investigation of cybersecurity bottlenecks of ai agents in industrial automation. Computers, 14, (Oct. 2025), 456–456, 11, (Oct. 2025). doi:10.3390/computers14110456.
+
+[118] Aditi Singh, Abul Ehtesham, Saket Kumar, and Tala Talaei Khoei. 2025. Agentic retrieval-augmented generation: a survey on agentic RAG. arXiv preprint arXiv:2501.09136. doi:10.48550/arxiv.2501.09136.
+
+[119] Tobin South, Samuele Marro, Thomas Hardjono, Robert Mahari, Cedric Deslandes Whitney, Dazza Greenwood, Alan Chan, and Alex Pentland. 2025. Authenticated delegation and authorized ai agents. arXiv (Cornell University), (Jan. 2025). doi:10.48550/arxiv.2501.09674.
+
+[120] Harold Triedman, Rishi Jha, and Vitaly Shmatikov. 2025. Multi-agent systems execute arbitrary malicious code. arXiv preprint arXiv:2503.12188. doi:10.48550/arxiv.2503.12188.
+
+[121] Simon Valentin, Jinmiao Fu, Gianluca Detommaso, Shaoyuan Xu, Giovanni Zappella, and Bryan Wang. 2024. Cost-efective hallucination detection for llms. arXiv (Cornell University), (July 2024). doi:10.48550/arxiv.2407.21424.
+
+[122] Lei Wang et al. 2024. A survey on large language model based autonomous agents. Frontiers of Computer Science, 18, (Mar. 2024), 6, (Mar. 2024). doi:10.1007/s11704-024-40231-1.
+
+[123] Mengxiao Wang, Yuxuan Zhang, and Guofei Gu. 2025. Promptsleuth: detecting prompt injection via semantic intent invariance. arXiv (Cornell University), (Aug. 2025). doi:10.48550/arxiv.2508.20890.
+
+[124] Shang Wang, Tianqing Zhu, Bo Liu, Ming Ding, Xu Guo, Dayong Ye, and Wanlei Zhou. 2024. Unique security and privacy threats of large language model: a comprehensive survey. arXiv (Cornell University), (June 2024). doi:10.48550/arxiv.2406.07973.
+
+[125] Shang Wang, Tianqing Zhu, Bo Liu, Ming Ding, Dayong Ye, Wanlei Zhou, and Philip S. Yu. 2025. Unique security and privacy threats of large language models: a comprehensive survey. ACM Computing Surveys, 58, 4, 1–36. doi:10.1145/3764113.
+
+[126] Shenao Wang, Yanjie Zhao, Xinyi Hou, and Haoyu Wang. 2024. Large language model supply chain: a research agenda. arXiv (Cornell University) (Apr. 2024). doi:10.48550/arxiv.2404.12736
+
+[127] Tianchun Wang, Yuanzhou Chen, Zichuan Liu, Zhanwen Chen, Haifeng Chen, Xiang Zhang, and Wei Cheng. 2024. Humanizing the machine: proxy attacks to mislead llm detectors. arXiv (Cornell University), (Oct. 2024). doi:10.48550/arxiv.2410.19230
+
+[128] Tianyang Wang et al. 2024. Deep learning model security: threats and defenses. arXiv (Cornell University), (Dec. 2024). doi:10.48550/arxiv.2412.08 969.
+
+[129] Y.-M. Wang, Sizhe Chen, Raghad Alkhudair, Basel Alomair, and David Wagner. 2025. Defending against prompt injection with datafilter. arXiv (Cornell University), (Oct. 2025). doi:10.48550/arxiv.2510.19207
+
+[130] Yingxu Wang, Siwei Liu, Jinyuan Fang, and Zaiqiao Meng. 2025. EvoAgentX: an automated framework for evolving agentic workflows. arXiv preprint arXiv:2507.03616. doi:10.48550/arxiv.2507.03616.
+
+[131] Yuntao Wang, Yanghe Pan, Shaolong Guo, and Zhou Su. 2025. Security of internet of agents: attacks and countermeasures. arXiv (Cornell University), (May 2025). doi:10.48550/arxiv.2505.08807.
+
+[132] Yuntao Wang, Yanghe Pan, Zhou Su, Yi Deng, Quan Zhao, Linkang Du, Tom H. Luan, Jiawen Kang, and Dusit Niyato. 2025. Large model based agents: state-of-the-art, cooperation paradigms, security and privacy, and future trends. IEEE Communications Surveys & Tutorials, (Jan. 2025), 1–1. doi:10.1109/comst.2025.3576176.
+
+[133] Yuntao Wang, Yanghe Pan, Quan Zhao, Yi Deng, Zhou Su, Linkang Du, and Tom H. Luan. 2024. Large model agents: state-of-the-art, cooperation paradigms, security and privacy, and future trends. arXiv (Cornell University), (Sept. 2024). doi:10.48550/arxiv.2409.14457
+
+[134] Zhijie Wang, Zhehua Zhou, Jiayang Song, Yuheng Huang, Zhan Shu, and Lei Ma. 2024. Towards testing and evaluating vision-language-action models for robotic manipulation: an empirical study. arXiv (Cornell University), (Sept. 2024). doi:10.48550/arxiv.2409.12894
+
+[135] Emily Wenger, Josephine Passananti, Arjun Nitin Bhagoji, Yuanshun Yao, Hai-Tao Zheng, and Ben Y. Zhao. 2021. Backdoor attacks against deep learning systems in the physical world. In (June 2021). doi:10.1109/cvpr46437.2021.00614.
+
+[136] Chen Wu, Jing Yu Koh, Ruslan Salakhutdinov, Daniel Fried, and Aditi Raghunathan. 2024. Dissecting adversarial robustness of multimodal LM agents. arXiv preprint arXiv:2406.12814. doi:10.48550/arxiv.2406.12814.
+
+[137] Fangzhou Wu, Shutong Wu, Yulong Cao, and Chaowei Xiao. 2024. WIPI: a new web threat for LLM-Driven web agents. arXiv preprint arXiv:2402.16965. doi:10.48550/arxiv.2402.16965.
+
+[138] Xing Wu, Minghao Li, Mohan Li, and Meng Han. 2025. Towards robust and secure embodied ai: a survey on vulnerabilities and attacks. arXiv (Cornell University), (Feb. 2025). doi:10.48550/arxiv.2502.13175
+
+[139] Yaxiong Wu, Sheng Liang, Chen Zhang, et al. 2025. From human memory to AI memory: a survey on memory mechanisms in the era of LLMs. arXiv preprint arXiv:2504.15965. doi:10.48550/arxiv.2504.15965.
+
+[140] Zhengxian Wu, Juan Wen, Wanli Peng, and Haowei Chang. 2025. SLIP: soft label mechanism and key-extraction-guided CoT-based defense against instruction backdoor in APIs. arXiv preprint arXiv:2508.06153. doi:10.48550/arxiv.2508.06153.
+
+[141] Ping Xia, Kai Zeng, Jiaqi Liu, Can Qin, and Fang Wu. 2025. Agent0: unleashing self-evolving agents from zero data via tool-integrated reasoning arXiv preprint arXiv:2511.16043. doi:10.48550/arxiv.2511.16043.
+
+[142] Frank F. Xu, Yufan Song, Boxuan Li, et al. 2024. TheAgentCompany: benchmarking LLM agents on consequential real world tasks. arXiv preprint arXiv:2412.14161. doi:10.48550/arxiv.2412.14161.
+
+[143] Haiyang Xu, Shenao Wang, Ningke Li, et al. 2025. Large language models for cyber security: a systematic literature review. ACM Transactions on Software Engineering and Methodology. doi:10.1145/3769676.
+
+[144] Haowen Xu, Jinghui Yuan, Anye Zhou, et al. 2024. GenAI-powered multi-agent paradigm for smart urban mobility. arXiv preprint arXiv:2409.00494. doi:10.48550/arxiv.2409.00494.
+
+[145] He Xu, Di Wu, Yan Zhai, and Kun Sun. 2025. Sentinelagent: graph-based anomaly detection in multi-agent systems. arXiv (Cornell University), (May 2025). doi:10.48550/arxiv.2505.24201
+
+[146] Ruiyao Xu and Kaize Ding. 2024. Large language models for anomaly and out-of-distribution detection: a survey. arXiv (Cornell University), (Sept. 2024). doi:10.48550/arxiv.2409.01980
+
+[147] Yulong Yang, Xinshan Yang, S. Li, Chenhao Lin, Zhengyu Zhao, Chao Shen, and Tianwei Zhang. 2024. Security matrix for multimodal agents on mobile devices: a systematic and proof of concept study. arXiv preprint arXiv:2407.09295. doi:10.48550/arxiv.2407.09295.
+
+[148] Zhuoyi Yang and I. Harris. 2025. Logllama: transformer-based log anomaly detection with llama. arXiv (Cornell University), (Mar. 2025) doi:10.48550/arxiv.2503.14849.
+
+[149] Shunyu Yao, Jefrey Zhao, Dian Yu, Nan Du, Izhak Shafran, Karthik Narasimhan, and Yuan Cao. 2022. ReAct: synergizing reasoning and acting in language models. arXiv preprint arXiv:2210.03629. doi:10.48550/arxiv.2210.03629.
+
+[150] Andrew Yeo and Daiwoo Choi. 2025. Multimodal prompt injection attacks: risks and defenses for modern llms. arXiv (Cornell University), (Sept. 2025). doi:10.48550/arxiv.2509.05883
+
+[151] Miao Yu et al. 2024. LLM-Virus: evolutionary jailbreak attack on large language models. arXiv preprint arXiv:2501.00055. doi:10.48550/arxiv.2501.0 0055.
+
+[152] Mohammad Zahid and Taran Singh Bharati. 2025. Enhancing cybersecurity in IoT systems: a hybrid deep learning approach for real-time attack detection. Discover Internet ofThings, 5, 1. doi:10.1007/s43926-025-00156-y.
+
+[153] 2024. Large language models in cybersecurity. IGI Global, 277–300. doi:10.4018/979-8-3373-1102-9.ch009.
+
+[154] Yifan Zeng, Yiran Wu, Xiao Zhang, Huazheng Wang, and Qingyun Wu. 2024. AutoDefense: multi-agent LLM defense against jailbreak attacks arXiv preprint arXiv:2403.04783. doi:10.48550/arxiv.2403.04783.
+
+[155] Qiusi Zhan, Zhixiang Liang, Zifan Ying, and Daniel Kang. 2024. InjecAgent: benchmarking indirect prompt injections in tool-integrated LLM agents. In Findings ofthe Association for Computational Linguistics: ACL 2024. doi:10.48550/arxiv.2403.02691.
+
+[156] Boyang Zhang, Yicong Tan, Yun Shen, Ahmed Salem, Michael Backes, Savvas Zannettou, and Yang Zhang. 2024. Breaking agents: compromising autonomous LLM agents through malfunction amplification. arXiv preprint arXiv:2407.20859. doi:10.48550/arxiv.2407.20859.
+
+[157] Hanrong Zhang, Jingyuan Huang, Kai Mei, Yifei Yao, Zhenting Wang, Chenlu Zhan, Hongwei Wang, and Yongfeng Zhang. 2024. Agent security bench (asb): formalizing and benchmarking attacks and defenses in llm-based agents. arXiv (Cornell University), (Oct. 2024). doi:10.48550/arxiv.24 10.02644.
+
+[158] Jie Zhang, H. Bu, Hui Wen, Yu Chen, Lun Li, and Hongsong Zhu. 2024. When LLMs meet cybersecurity: a systematic literature review. arXiv preprint arXiv:2405.03644. doi:10.48550/arxiv.2405.03644.
+
+[159] Kaiyuan Zhang, Zian Su, Pin-Yu Chen, Elisa Bertino, Xiangyu Zhang, and Ninghui Li. 2025. Llm agents should employ security principles. arXiv (Cornell University), (May 2025). doi:10.48550/arxiv.2505.24019.
+
+[160] Wenlin Zhang, Xiaopeng Li, Yingyi Zhang, et al. 2025. Deep research: a survey of autonomous research agents. arXiv preprint arXiv:2508.12752. doi:10.48550/arxiv.2508.12752.
+
+[161] Xiaoyu Zhang, Cen Zhang, Tianlin Li, Yihao Huang, Xiaojun Jia, Xiaofei Xie, Yang Liu, and Chao Shen. 2023. Jailguard: a universal detection framework for llm prompt-based attacks. arXiv (Cornell University), (Dec. 2023). doi:10.48550/arxiv.2312.10766.
+
+[162] Junhao Zheng, Jiahao Sun, Chenhao Lin, Zhengyu Zhao, Chen Ma, Chong Zhang, Cong Wang, Haijun Wang, and C. P. Shen. 2025. Revisiting adversarial patch defenses on object detectors: unified evaluation, large-scale dataset, and new insights. arXiv (Cornell University), (Aug. 2025) doi:10.48550/arxiv.2508.00649.
+
+[163] Peter Yong Zhong, Siyuan Chen, Ruiqi Wang, McKenna McCall, Ben L. Titzer, Heather Miller, and Phillip B. Gibbons. 2025. Rtbas: defending llm agents against prompt injection and privacy leakage. arXiv (Cornell University), (Feb. 2025). doi:10.48550/arxiv.2502.08966.
+
+[164] Xuhui Zhou et al. 2024. Haicosystem: an ecosystem for sandboxing safety risks in human-ai interactions. arXiv (Cornell University), (Sept. 2024). doi:10.48550/arxiv.2409.16427.
+
+[165] Yujun Zhou et al. 2024. Defending jailbreak prompts via in-context adversarial game. arXiv preprint arXiv:2402.13148. doi:10.48550/arxiv.2402.13148.
+
+[166] Yifan Zhu, Chao Zhang, Xin Shi, X.J. Zhang, Yi Yang, and Yawei Luo. 2025. MASTER: multi-agent security through exploration of roles and topological structures. arXiv preprint arXiv:2505.18572. doi:10.48550/arxiv.2505.18572.
+
+[167] Shaked Zychlinski. 2025. A whole new world: creating a parallel-poisoned web only ai-agents can see. arXiv (Cornell University), (Aug. 2025) doi:10.48550/arxiv.2509.00124.
