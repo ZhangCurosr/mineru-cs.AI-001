@@ -1,0 +1,3159 @@
+[
+    {
+        "type": "text",
+        "text": "GCPO: Diagnosing and Constraining Subspace Geometry in Rollout RL for LLMs",
+        "text_level": 1,
+        "bbox": [
+            84,
+            118,
+            913,
+            142
+        ],
+        "page_idx": 0
+    },
+    {
+        "type": "text",
+        "text": "Kai Yang<sup>1,2,3†</sup>, Jingwei Xu<sup>3†</sup>, Wanyu Wang<sup>4</sup>, Kai-Yuan Guo<sup>5</sup>, Zhenbo Yu<sup>3,6B</sup>, Yi Wang<sup>2B∗</sup>, Yu Qiao<sup>1,2B</sup>",
+        "bbox": [
+            112,
+            154,
+            890,
+            189
+        ],
+        "page_idx": 0
+    },
+    {
+        "type": "text",
+        "text": "<sup>1</sup>School of Computer Science, Shanghai Jiao Tong University",
+        "bbox": [
+            295,
+            194,
+            702,
+            210
+        ],
+        "page_idx": 0
+    },
+    {
+        "type": "text",
+        "text": "<sup>2</sup>Shanghai Artificial Intelligence Laboratory",
+        "bbox": [
+            351,
+            209,
+            647,
+            224
+        ],
+        "page_idx": 0
+    },
+    {
+        "type": "text",
+        "text": "<sup>3</sup>NovaCore",
+        "bbox": [
+            459,
+            223,
+            539,
+            237
+        ],
+        "page_idx": 0
+    },
+    {
+        "type": "text",
+        "text": "<sup>4</sup>SJTU Paris Elite Institute of Technology, Shanghai Jiao Tong University",
+        "bbox": [
+            256,
+            236,
+            741,
+            251
+        ],
+        "page_idx": 0
+    },
+    {
+        "type": "text",
+        "text": "<sup>5</sup>School of Artificial Intelligence and Automation, Huazhong University of Science and Technology",
+        "bbox": [
+            171,
+            251,
+            826,
+            266
+        ],
+        "page_idx": 0
+    },
+    {
+        "type": "text",
+        "text": "<sup>6</sup>School of Artificial Intelligence, Shanghai Jiao Tong University",
+        "bbox": [
+            284,
+            265,
+            712,
+            279
+        ],
+        "page_idx": 0
+    },
+    {
+        "type": "text",
+        "text": "{icarus1411, wwyspeit}@sjtu.edu.cn, {jingwei.xu, zhenbo.yu}@deepnovacore.com, gky@hust.edu.cn, wygamle@gmail.com, qiaoyu@pjlab.org.cn",
+        "bbox": [
+            84,
+            279,
+            913,
+            308
+        ],
+        "page_idx": 0
+    },
+    {
+        "type": "text",
+        "text": "Abstract",
+        "text_level": 2,
+        "bbox": [
+            250,
+            345,
+            315,
+            359
+        ],
+        "page_idx": 0
+    },
+    {
+        "type": "text",
+        "text": "On-policy rollout methods such as GRPO are central to posttraining of large language models. Yet, they frequently sufer from training instabilities, cross-task capability degradation, and response-length inflation. Although prior work has characterized the subspace geometry of aggregate updates, the stepwise variation of this geometry and its relationship to model performance remain unclear. We introduce Principal-Subspace Overlap, a dimension-corrected measure of individual rollout updates relative to the dominant singular subspaces of pretrained weights. Despite low average overlap, transient spikes often precede performance degradation. To address this, we propose GCPO (Geometrically Constrained Policy Optimization), which applies hard bilateral orthogonal projections to constrain updates to the complementary subspaces, preventing such excursions by construction. Across mathematical reasoning, code generation, and tool-use tasks on Qwen3-8B and GLM4-9B, GCPO consistently outperforms GRPO and recent variants, including DAPO and GSPO, improving over the base models and the strongest baseline by up to 27.69 and 2.37 points, respectively. Furthermore, GCPO preserves general capabilities, eliminates response-length inflation, and stabilizes policy entropy. Our findings provide a new diagnostic lens and a principled design perspective for stable reinforcement learning post-training.",
+        "bbox": [
+            99,
+            367,
+            464,
+            674
+        ],
+        "page_idx": 0
+    },
+    {
+        "type": "text",
+        "text": "Code & Datasets — https://github.com/Icarus1411/GCPO",
+        "bbox": [
+            84,
+            685,
+            475,
+            702
+        ],
+        "page_idx": 0
+    },
+    {
+        "type": "text",
+        "text": "1 Introduction",
+        "text_level": 2,
+        "bbox": [
+            210,
+            722,
+            352,
+            737
+        ],
+        "page_idx": 0
+    },
+    {
+        "type": "text",
+        "text": "Rollout-based reinforcement learning (RL) has become a widely used post-training mechanism for improving large language models (LLMs) on mathematical reasoning, coding, and tool use (Schulman et al. 2017; Wang et al. 2022; Gao, Schulman, and Hilton 2023). Its optimization data, however, are generated by the evolving policy itself: each update changes both the policy and the rollout distribution used to construct the next update. This feedback loop can yield unstable training, degradation on capabilities outside the optimized task, and response-length inflation (Harmon et al. 2025; Ouyang et al. 2022).",
+        "bbox": [
+            81,
+            741,
+            480,
+            840
+        ],
+        "page_idx": 0
+    },
+    {
+        "type": "text",
+        "text": "",
+        "bbox": [
+            516,
+            345,
+            913,
+            402
+        ],
+        "page_idx": 0
+    },
+    {
+        "type": "text",
+        "text": "Most existing remedies stabilize RL through objectiveor policy-level controls. KL regularization constrains divergence from a reference policy, clipping limits large likelihood-ratio changes, and reward design modifies the optimization signal (Zheng et al. 2025; Yu et al. 2026b; Zhao et al. 2025). While efective, these methods may treat diferent updates as similar if they have similar policy-level statistics, even when their directions in parameter space difer. Because updates of similar magnitude may interact diferently with the structured parameter space of the pretrained model, we ask whether their stepwise directions provide a complementary diagnostic of training dynamics.",
+        "bbox": [
+            516,
+            401,
+            915,
+            569
+        ],
+        "page_idx": 0
+    },
+    {
+        "type": "text",
+        "text": "We focus on the dominant singular subspaces of each pretrained linear weight matrix. The top right and left singular vectors identify the dominant input and output directions, respectively. Together, they define the optimal rank-k approximation of the pretrained transformation (Golub, Hofman, and Stewart 1987). Updates overlapping these subspaces can therefore alter structurally prominent components of the pretrained transformation. Rather than interpreting these directions as a literal decomposition of semantic knowledge, we treat them as a functionally distinguished yet tractable structural reference. Prior analyses further show that RL updates are predominantly of-principal when averaged over training (Shen et al. 2026; Yu et al. 2026a; Schneider et al. 2024). This aggregate regularity leaves open an important question: do individual updates exhibit transient principal-subspace overlap, and how is such overlap related to training performance?",
+        "bbox": [
+            516,
+            569,
+            915,
+            791
+        ],
+        "page_idx": 0
+    },
+    {
+        "type": "text",
+        "text": "Our stepwise analysis reveals transient entry of individual updates into the pretrained principal subspaces. We decompose each realized update into four blocks according to its left- and right-side overlap with these subspaces, and subtract the overlap expected under an isotropic null. Although most update energy lies in the doubly orthogonal block, aggregate statistics obscure intermittent spikes in excess principalsubspace overlap. Across the runs we examine, sustained or repeated spikes coincide with, and often precede, declines in validation accuracy. We therefore treat overlap as a geometric correlate of unstable phases, motivating updates that preserve the selected pretrained mappings by remaining in their bilateral orthogonal complement.",
+        "bbox": [
+            516,
+            791,
+            915,
+            890
+        ],
+        "page_idx": 0
+    },
+    {
+        "type": "aside_text",
+        "text": "arXiv:2608.11674v1 [cs.LG] 12 Aug 2026",
+        "bbox": [
+            29,
+            352,
+            65,
+            800
+        ],
+        "page_idx": 0
+    },
+    {
+        "type": "page_footnote",
+        "text": "<sup>†</sup>These authors contributed equally.",
+        "bbox": [
+            101,
+            849,
+            316,
+            864
+        ],
+        "page_idx": 0
+    },
+    {
+        "type": "page_footnote",
+        "text": "<sup>B</sup>Corresponding author.",
+        "bbox": [
+            101,
+            863,
+            248,
+            876
+        ],
+        "page_idx": 0
+    },
+    {
+        "type": "page_footnote",
+        "text": "Contributions made while afiliated with Shanghai AI Lab.",
+        "bbox": [
+            102,
+            875,
+            460,
+            888
+        ],
+        "page_idx": 0
+    },
+    {
+        "type": "text",
+        "text": "",
+        "bbox": [
+            81,
+            69,
+            480,
+            152
+        ],
+        "page_idx": 1
+    },
+    {
+        "type": "text",
+        "text": "We instantiate this hypothesis in GCPO (Geometrically Constrained Policy Optimization), which augments rolloutbased policy optimization with a hard geometric constraint on the efective policy update. At each rollout iteration, GCPO optimizes the underlying policy objective while requiring every adapted layer update to lie in the bilateral orthogonal complement of the selected pretrained principal subspaces. GCPO thus changes the admissible directions of policy improvement, rather than introducing another policylevel penalty. The constraint is complementary to KL regularization: KL controls policy change in output space, whereas GCPO controls the feasible directions of parameter change. It also has a precise layer-level guarantee: for inputs in a selected principal input subspace, the adapted layer’s response is unchanged. The remaining complement is large, retaining a high-dimensional feasible complement for task adaptation.",
+        "bbox": [
+            81,
+            151,
+            480,
+            375
+        ],
+        "page_idx": 1
+    },
+    {
+        "type": "text",
+        "text": "Comprehensive evaluations on Qwen3-8B and GLM4-9B cover mathematical reasoning, code generation, and tool use. Across all tasks, GCPO achieves the best accuracy, outperforming the strongest baseline by 1.02–2.37 points (±std over 3 seeds) and the corresponding instruction-tuned model by 7.09–27.69 points. When trained on mathematics and evaluated on other tasks, it attains the strongest worst-case retention. It also shows smoother accuracy and policy-entropy trajectories and suppresses response-length inflation.",
+        "bbox": [
+            83,
+            373,
+            480,
+            498
+        ],
+        "page_idx": 1
+    },
+    {
+        "type": "text",
+        "text": "In summary, our main contributions are threefold:",
+        "bbox": [
+            99,
+            498,
+            431,
+            512
+        ],
+        "page_idx": 1
+    },
+    {
+        "type": "text",
+        "text": "• We introduce a dimension-corrected, stepwise measure of principal-subspace overlap and show that elevated overlap is a warning signal associated with declining validation performance in rollout RL.",
+        "bbox": [
+            89,
+            516,
+            480,
+            574
+        ],
+        "page_idx": 1
+    },
+    {
+        "type": "text",
+        "text": "• We formulate rollout RL as a constrained policy optimization problem and propose GCPO to enforce bilateral orthogonality on every efective policy update, which preserves the principal pretrained mappings while retaining a large complementary update space.",
+        "bbox": [
+            91,
+            574,
+            480,
+            646
+        ],
+        "page_idx": 1
+    },
+    {
+        "type": "text",
+        "text": "• Across two model families and three task domains, GCPO outperforms all evaluated baselines, better preserves cross-task capabilities, and exhibits more stable accuracy, policy-entropy, and response-length dynamics.",
+        "bbox": [
+            89,
+            647,
+            480,
+            705
+        ],
+        "page_idx": 1
+    },
+    {
+        "type": "text",
+        "text": "2 Related Work",
+        "text_level": 2,
+        "bbox": [
+            205,
+            717,
+            357,
+            732
+        ],
+        "page_idx": 1
+    },
+    {
+        "type": "text",
+        "text": "Rollout-based RL for LLM Alignment. Rollout-based reinforcement learning has emerged as the dominant paradigm for enhancing LLM reasoning capabilities. Building upon PPO (Schulman et al. 2017), recent advances like GRPO (Shao et al. 2024), GSPO (Zheng et al. 2025), GMPO (Zhao et al. 2025), and DAPO (Yu et al. 2026b) have significantly improved advantage estimation and scaling efficiency. Despite these innovations, the dynamic nature of self-generated rollouts frequently drives policies toward optimization instabilities, response-length inflation, and general capability degradation (Yang et al. 2025). Crucially, existing methods primarily intervene through objectives or observable policy behavior, leaving the geometry of realized parameter updates less explored. This highlights the need to diagnose the roots of these instabilities from a novel scope rather than symptomatic output-space patching.",
+        "bbox": [
+            81,
+            736,
+            482,
+            891
+        ],
+        "page_idx": 1
+    },
+    {
+        "type": "text",
+        "text": "",
+        "bbox": [
+            514,
+            69,
+            915,
+            141
+        ],
+        "page_idx": 1
+    },
+    {
+        "type": "text",
+        "text": "Regularization and Stability in RL. RL post-training is commonly stabilized through objective- or policy-level controls. KL penalties discourage deviation from a reference policy, clipping constrains large likelihood-ratio changes, and reward shaping adjusts the scalar optimization signal to reduce undesirable behaviors such as reward hacking or length inflation (Singhal et al. 2023; Li et al. 2026). These techniques are efective, but they remain soft controls: they discourage unstable updates rather than ruling them out. Their efectiveness often depends on carefully tuned penalty coeficients and can be weakened by the high-variance feedback of rollout-based RL (Achiam et al. 2017; Grontas et al. 2025). These limitations motivate looking beyond objective-level controls and designing a complementary approach that constrains the feasible update space directly.",
+        "bbox": [
+            514,
+            146,
+            915,
+            357
+        ],
+        "page_idx": 1
+    },
+    {
+        "type": "text",
+        "text": "Geometric Analysis ofPolicy Optimization. Recent studies suggest that the geometry of parameter updates plays a critical role in RL-based post-training. Rather than treating policy updates as unstructured perturbations, these studies show that RL-induced updates exhibit systematic geometric patterns relative to the pretrained weights. In particular, recent analyses find that successful RL updates are, on average, more concentrated outside the dominant singular subspaces of the pretrained operators (Shen et al. 2026; Cai et al. 2026). This of-principal tendency suggests that efective policy adaptation may preferentially exploit directions that interfere less with the dominant structures learned during pre-training, which provides a foundation for understanding the importance of parameter-space geometry in rollout-based RL. However, existing analyses mainly characterize aggregate update behavior, leaving open how stepwise deviations from this geometry emerge during training and whether they are related to optimization instability.",
+        "bbox": [
+            514,
+            362,
+            915,
+            614
+        ],
+        "page_idx": 1
+    },
+    {
+        "type": "text",
+        "text": "3 Principal-Subspace Overlap and Instability",
+        "text_level": 2,
+        "bbox": [
+            516,
+            626,
+            913,
+            643
+        ],
+        "page_idx": 1
+    },
+    {
+        "type": "text",
+        "text": "Prior work finds that RL updates, when aggregated over training, predominantly lie outside the dominant singular subspaces of pretrained weights (Shen et al. 2026; Cai et al. 2026). Nevertheless, aggregate statistics may obscure intermittent spikes, termed excess principal-subspace overlap, which often precede validation degradation. Controlled interventions further show that amplifying this overlap causes dose-dependent accuracy drops, motivating complementarysubspace constraints.",
+        "bbox": [
+            514,
+            646,
+            915,
+            773
+        ],
+        "page_idx": 1
+    },
+    {
+        "type": "text",
+        "text": "3.1 Preliminaries",
+        "text_level": 2,
+        "bbox": [
+            516,
+            784,
+            666,
+            799
+        ],
+        "page_idx": 1
+    },
+    {
+        "type": "text",
+        "text": "For a pretrained weight matrix $W _ { r e f } ~ \\in ~ \\mathbb { R } ^ { d _ { o u t } \\times d _ { i n } }$ , let $W _ { r e f } ~ = ~ \\Phi \\Sigma \\Psi ^ { \\top }$ be its SVD. We call the spans of the top-k left and right singular vectors, $\\Phi _ { k }$ and $\\Psi _ { k } .$ , its principal subspaces. They capture high-energy input–output directions of the pretrained linear operator; they are a structural proxy, not a literal partition of semantic knowledge. Let",
+        "bbox": [
+            516,
+            803,
+            915,
+            890
+        ],
+        "page_idx": 1
+    },
+    {
+        "type": "chart",
+        "img_path": "images/bedc65f7a8b1dff22a0840dfa251dd8943b5f8d159e88de4d2da6525f7f87aae.jpg",
+        "content": "",
+        "chart_caption": [
+            "(a) Subspace-block enrichment"
+        ],
+        "chart_footnote": [],
+        "bbox": [
+            84,
+            65,
+            488,
+            141
+        ],
+        "page_idx": 2
+    },
+    {
+        "type": "chart",
+        "img_path": "images/691c7d448debb7a91ccf56d6d6153fc9e3225bf90db52f606ee3aa87b30809d7.jpg",
+        "content": "",
+        "chart_caption": [
+            "(b) Layer-wise transient overlap"
+        ],
+        "chart_footnote": [],
+        "bbox": [
+            83,
+            151,
+            486,
+            268
+        ],
+        "page_idx": 2
+    },
+    {
+        "type": "chart",
+        "img_path": "images/b20d9df944a7cded41022e1013106801992828ebbea69a21c995d27d4f094607.jpg",
+        "content": "",
+        "chart_caption": [],
+        "chart_footnote": [],
+        "bbox": [
+            88,
+            279,
+            482,
+            397
+        ],
+        "page_idx": 2
+    },
+    {
+        "type": "chart",
+        "img_path": "images/ae6580f23fb231eaf24034afd76843f859d0112c5cbb648f6b344ef19a7cdbd5.jpg",
+        "content": "",
+        "chart_caption": [
+            "(d) Subspace-block enrichment"
+        ],
+        "chart_footnote": [],
+        "bbox": [
+            509,
+            65,
+            913,
+            142
+        ],
+        "page_idx": 2
+    },
+    {
+        "type": "chart",
+        "img_path": "images/27b240aff6cab7579e36da6f3e3b5c68047c7b6c0a2617721ae5dc7318665045.jpg",
+        "content": "",
+        "chart_caption": [
+            "(c) Global overlap and observed validation checkpoints"
+        ],
+        "chart_footnote": [],
+        "bbox": [
+            508,
+            150,
+            911,
+            272
+        ],
+        "page_idx": 2
+    },
+    {
+        "type": "chart",
+        "img_path": "images/df277c0f795fca52da5ebadf98d1950697b2e6e4e649dbf436e01eaeed155b46.jpg",
+        "content": "",
+        "chart_caption": [
+            "(f) Global overlap and observed validation checkpoints",
+            "Figure 1: Stepwise update overlap and validation performance. The red curve is the 5-step moving average of excess principalsubspace overlap; the blue curve is validation accuracy. In both runs, episodes of elevated overlap accompany subsequent gradua degradation. This observation is correlational."
+        ],
+        "chart_footnote": [],
+        "bbox": [
+            508,
+            279,
+            906,
+            397
+        ],
+        "page_idx": 2
+    },
+    {
+        "type": "text",
+        "text": "Π<sub>Φ</sub> $\\mathbf { \\Phi } = \\Phi _ { k } \\Phi _ { k } ^ { \\top } , \\Pi _ { \\Psi } = \\Psi _ { k } \\Psi _ { k } ^ { \\top }$ be the associated projectors, and $\\Pi _ { \\Phi } ^ { \\perp } = I - \\Pi _ { \\Phi } , \\Pi _ { \\Psi } ^ { \\perp } = I - \\Pi _ { \\Psi }$ denote the projectors onto their orthogonal complements.",
+        "bbox": [
+            81,
+            491,
+            480,
+            535
+        ],
+        "page_idx": 2
+    },
+    {
+        "type": "text",
+        "text": "We analyze the realized update $\\delta ^ { ( t ) } W = W _ { t } - W _ { t - 1 } ,$ rather than the raw gradient, so the measurement includes the optimizer, learning rate, and momentum. Its energy can be decomposed into four mutually orthogonal blocks:",
+        "bbox": [
+            81,
+            536,
+            480,
+            594
+        ],
+        "page_idx": 2
+    },
+    {
+        "type": "equation",
+        "img_path": "images/507cbe0c5053aadd535b1b7305df93753d232fdb233fedf3373f2783b3d60bdd.jpg",
+        "text": "$$\n\\begin{array} { r l } & { \\delta ^ { ( t ) } W = \\underbrace { \\Pi _ { \\Phi } \\delta ^ { ( t ) } W \\Pi _ { \\Psi } } _ { \\delta ^ { ( t ) } W ^ { P P } } + \\underbrace { \\Pi _ { \\Phi } \\delta ^ { ( t ) } W \\Pi _ { \\Psi } ^ { \\perp } } _ { \\delta ^ { ( t ) } W ^ { P O } } } \\\\ & { + \\underbrace { \\Pi _ { \\Phi } ^ { \\perp } \\delta ^ { ( t ) } W \\Pi _ { \\Psi } } _ { \\delta ^ { ( t ) } W ^ { O P } } + \\underbrace { \\Pi _ { \\Phi } ^ { \\perp } \\delta ^ { ( t ) } W \\Pi _ { \\Psi } ^ { \\perp } } _ { \\delta ^ { ( t ) } W ^ { O O } } . } \\end{array}\\tag{1}\n$$",
+        "text_format": "latex",
+        "bbox": [
+            150,
+            597,
+            411,
+            672
+        ],
+        "page_idx": 2
+    },
+    {
+        "type": "text",
+        "text": "Let $E _ { i j } = \\| \\delta ^ { ( t ) } W ^ { i j } \\| _ { F } ^ { 2 }$ and $E _ { \\mathrm { t o t a l } } = \\| \\delta ^ { ( t ) } W \\| _ { F } ^ { 2 }$ . The OO block is orthogonal to the principal subspace on both sides; the other three blocks have overlap on at least one side. We summarize this overlap by",
+        "bbox": [
+            81,
+            678,
+            480,
+            736
+        ],
+        "page_idx": 2
+    },
+    {
+        "type": "equation",
+        "img_path": "images/364e781ff6f6334ff943f87c5153fc9b7526a073fa3bdd810331904c9a30143a.jpg",
+        "text": "$$\nO _ { t } = \\frac { E _ { P P } + E _ { P O } + E _ { O P } } { E _ { \\mathrm { t o t a l } } } = 1 - \\frac { E _ { O O } } { E _ { \\mathrm { t o t a l } } } .\\tag{2}\n$$",
+        "text_format": "latex",
+        "bbox": [
+            137,
+            743,
+            424,
+            776
+        ],
+        "page_idx": 2
+    },
+    {
+        "type": "text",
+        "text": "3.2 Observed Excess Principal-subspace Overlap This raw ratio depends partly on dimensionality: an isotropic update has nonzero overlap simply because the principal subspaces have dimension k. For a $d _ { \\mathrm { o u t } } \\times d _ { \\mathrm { i n } }$ matrix, its expected overlap is",
+        "bbox": [
+            81,
+            784,
+            480,
+            858
+        ],
+        "page_idx": 2
+    },
+    {
+        "type": "equation",
+        "img_path": "images/61fc120eafb5b64daf61317f0805a40356ed79d06c30500da2aca74a6fa31229.jpg",
+        "text": "$$\nO _ { \\mathrm { n u l l } } = 1 - { \\frac { ( d _ { \\mathrm { o u t } } - k ) ( d _ { \\mathrm { i n } } - k ) } { d _ { \\mathrm { o u t } } d _ { \\mathrm { i n } } } } .\\tag{3}\n$$",
+        "text_format": "latex",
+        "bbox": [
+            165,
+            861,
+            397,
+            893
+        ],
+        "page_idx": 2
+    },
+    {
+        "type": "text",
+        "text": "We therefore report the dimension-corrected quantity",
+        "bbox": [
+            516,
+            492,
+            869,
+            507
+        ],
+        "page_idx": 2
+    },
+    {
+        "type": "equation",
+        "img_path": "images/7cc2be9f954d6bbf9f702d85867345962e6db8ad93fdabf66b5df0b4f61821ae.jpg",
+        "text": "$$\nO _ { t } ^ { \\mathrm { e x c e s s } } = O _ { t } - O _ { \\mathrm { n u l l } } .\\tag{4}\n$$",
+        "text_format": "latex",
+        "bbox": [
+            638,
+            512,
+            790,
+            529
+        ],
+        "page_idx": 2
+    },
+    {
+        "type": "text",
+        "text": "Positive $O _ { t } ^ { \\mathrm { e x c e s s } }$ means that an update is more aligned with the principal subspaces than an isotropic update of the same size. We refer to this quantity as excess principal-subspace overlap. It is an observable alignment statistic, not a claim that every principal direction is harmful.",
+        "bbox": [
+            514,
+            534,
+            915,
+            604
+        ],
+        "page_idx": 2
+    },
+    {
+        "type": "text",
+        "text": "Figure 1 shows two consistent findings. First, most update energy remains in OO (93.8% for Qwen3-8B and 97.7% for GLM4-9B on average), agreeing with the aggregate ofprincipal trend. Second, this average masks intermittent positive spikes in $O _ { t } ^ { \\mathrm { e x c e s s } }$ . In the displayed runs, sustained or repeated spikes coincide with, and precede, declining validation accuracy; the efect appears as gradual deterioration in one setting and a sharp drop in another. Layer-wise measurements further show that these spikes are concentrated rather than uniform, often in intermediate and upper layers. More results are provided in Appendix E.",
+        "bbox": [
+            514,
+            604,
+            915,
+            758
+        ],
+        "page_idx": 2
+    },
+    {
+        "type": "text",
+        "text": "Controlled intervention. To move beyond correlation, we intervene on a GRPO update of Qwen3-8B on ToolAlpaca. We rescale its principal-overlapping component by η while preserving the Frobenius norm of every layer-wise update. Details are provided in Appendix D. As shown in Figure 2, increasing overlap produces a clear dose-dependent accuracy drop. Relative to the original update $( \\eta = 1 , 5 6 . 8 9 \\% )$ , removing the overlapping component improves accuracy, whereas principal-subspace injection substantially reduces accuracy.",
+        "bbox": [
+            514,
+            763,
+            915,
+            890
+        ],
+        "page_idx": 2
+    },
+    {
+        "type": "chart",
+        "img_path": "images/9ac904cacae234e6457bfd76bad06cbae44a32323260c00b5f499ef992fc5239.jpg",
+        "content": "",
+        "chart_caption": [
+            "(a) Controlled principal overlap"
+        ],
+        "chart_footnote": [],
+        "bbox": [
+            84,
+            66,
+            277,
+            162
+        ],
+        "page_idx": 3
+    },
+    {
+        "type": "chart",
+        "img_path": "images/e628f5b8028e96823e52adf011a4e31fdfc7969a553d709574eab25e2c185bc5.jpg",
+        "content": "",
+        "chart_caption": [
+            "(b) Subspace-specific intervention",
+            "Figure 2: Controlled intervention on the step-150 GRPO update of Qwen3-8B on ToolAlpaca. (a) Increasing the principal-overlapping component under layer-wise norm matching produces a dose-dependent accuracy drop. (b) Orthogonalization improves accuracy, whereas matched principal-subspace injection is substantially more harmful than a random-subspace intervention."
+        ],
+        "chart_footnote": [],
+        "bbox": [
+            284,
+            65,
+            477,
+            160
+        ],
+        "page_idx": 3
+    },
+    {
+        "type": "text",
+        "text": "A matched random-subspace intervention causes substantially less degradation. These results provide local intervention evidence that increasing principal-subspace overlap can directly harm model performance, beyond the efects of update magnitude or arbitrary directional perturbation. Additional interventions across models, tasks, and checkpoints show the same dose-dependent trend (Appendix E).",
+        "bbox": [
+            81,
+            311,
+            480,
+            409
+        ],
+        "page_idx": 3
+    },
+    {
+        "type": "text",
+        "text": "Together, the observational and intervention results motivate preserving the dominant input and output directions while optimizing in their bilateral orthogonal complement. We implement this restriction next.",
+        "bbox": [
+            81,
+            409,
+            480,
+            465
+        ],
+        "page_idx": 3
+    },
+    {
+        "type": "text",
+        "text": "4 Methodology",
+        "text_level": 2,
+        "bbox": [
+            209,
+            479,
+            352,
+            497
+        ],
+        "page_idx": 3
+    },
+    {
+        "type": "text",
+        "text": "Our diagnostic suggests a simple intervention: rather than modifying the rollout objective, restrict each policy update to the bilateral orthogonal complement of the dominant singular subspaces of the pretrained weights. GCPO realizes this intervention within GRPO through a projected low-rank parameterization.",
+        "bbox": [
+            81,
+            501,
+            480,
+            587
+        ],
+        "page_idx": 3
+    },
+    {
+        "type": "text",
+        "text": "4.1 Problem Formulation",
+        "text_level": 2,
+        "bbox": [
+            83,
+            598,
+            295,
+            614
+        ],
+        "page_idx": 3
+    },
+    {
+        "type": "text",
+        "text": "Let $\\theta _ { 0 }$ be the pretrained policy and M the set of adapted linear layers. For each $\\ell \\in { \\mathcal { M } } .$ , we compute once the rank-k singular subspaces $\\Phi _ { k } ^ { \\left( \\ell \\right) }$ and $\\Psi _ { k } ^ { ( \\ell ) }$ of $W _ { \\mathrm { r e f } } ^ { ( \\ell ) }$ . We seek a policy update that maximizes the usual rollout objective while having zero principal-subspace overlap at every adapted layer.",
+        "bbox": [
+            81,
+            619,
+            480,
+            694
+        ],
+        "page_idx": 3
+    },
+    {
+        "type": "equation",
+        "img_path": "images/3333d7a5d7b05793c04953925370e501bde719725950f853a5cb0f8d80d578a4.jpg",
+        "text": "$$\n\\operatorname* { m a x } _ { \\Delta \\theta } \\mathcal { I } _ { \\mathrm { r o l l o u t } } ( \\pi _ { \\theta _ { 0 } + \\Delta \\theta } ) - \\beta \\mathbb { D } _ { \\mathrm { K L } } ( \\pi _ { \\theta _ { 0 } + \\Delta \\theta } | | \\pi _ { \\mathrm { r e f } } ) ,\\tag{5}\n$$",
+        "text_format": "latex",
+        "bbox": [
+            120,
+            717,
+            439,
+            738
+        ],
+        "page_idx": 3
+    },
+    {
+        "type": "equation",
+        "img_path": "images/b3ed09359bd33839c61ac0dbc115f738cc1c8b5e3e104819d28105106c6a650f.jpg",
+        "text": "$$\n\\mathrm { s . t . } \\quad \\Phi _ { k } ^ { ( \\ell ) \\top } \\delta ^ { ( t ) } W ^ { ( \\ell ) } = 0 ,\\tag{6}\n$$",
+        "text_format": "latex",
+        "bbox": [
+            132,
+            741,
+            305,
+            761
+        ],
+        "page_idx": 3
+    },
+    {
+        "type": "equation",
+        "img_path": "images/7345e5a484ab7f249e28bf34e9c71be46436501bb0040d0647a26b9b0285c26d.jpg",
+        "text": "$$\n\\delta ^ { ( t ) } W ^ { ( \\ell ) } \\Psi _ { k } ^ { ( \\ell ) } = 0 , \\quad \\forall \\ell \\in \\mathcal { M } ,\\tag{7}\n$$",
+        "text_format": "latex",
+        "bbox": [
+            168,
+            762,
+            374,
+            784
+        ],
+        "page_idx": 3
+    },
+    {
+        "type": "text",
+        "text": "The two constraints are equivalent to retaining only the OO block of each update. They complement, rather than replace, KL regularization: KL controls policy change in output space, whereas the constraints control where the parameter update can lie. A penalty could encourage these constraints, but would require trading them against the rollout objective. We instead enforce them exactly by parameterization.",
+        "bbox": [
+            81,
+            791,
+            480,
+            890
+        ],
+        "page_idx": 3
+    },
+    {
+        "type": "text",
+        "text": "4.2 GCPO: Geometrically Constrained Policy Optimization",
+        "text_level": 2,
+        "bbox": [
+            516,
+            68,
+            880,
+            98
+        ],
+        "page_idx": 3
+    },
+    {
+        "type": "text",
+        "text": "For each adapted layer, with fixed orthogonal-complement projectors Π<sup>⊥</sup>, Π<sup>⊥</sup>, we can parameterize its update as",
+        "bbox": [
+            516,
+            106,
+            913,
+            135
+        ],
+        "page_idx": 3
+    },
+    {
+        "type": "equation",
+        "img_path": "images/0d514d471aa71657286fa54d1443cd5f16289983986baeab6350dff009ea32be.jpg",
+        "text": "$$\n\\delta ^ { ( t ) } W ^ { ( \\ell ) } = \\alpha \\Pi _ { \\Phi } ^ { \\perp } L ^ { ( \\ell ) } R ^ { ( \\ell ) } \\Pi _ { \\Psi } ^ { \\perp } ,\\tag{8}\n$$",
+        "text_format": "latex",
+        "bbox": [
+            612,
+            143,
+            816,
+            162
+        ],
+        "page_idx": 3
+    },
+    {
+        "type": "text",
+        "text": "where $L ^ { ( \\ell ) }$ and $R ^ { ( \\ell ) }$ are trainable low-rank factors and α is the standard scaling constant. The right projector removes components acting on dominant input directions; the left projector removes components written into dominant output directions.",
+        "bbox": [
+            516,
+            172,
+            915,
+            244
+        ],
+        "page_idx": 3
+    },
+    {
+        "type": "text",
+        "text": "This parameterization satisfies both constraints for every value of the trainable factors in Eq. (6) and Eq. (7). Thus, even if rollout gradients contain principal-subspace components, those components cannot change the efective layer update. This is the central property of GCPO: it converts the observed preference for of-principal updates into an exact feasible set, while leaving optimization within that set unchanged.",
+        "bbox": [
+            514,
+            244,
+            915,
+            344
+        ],
+        "page_idx": 3
+    },
+    {
+        "type": "text",
+        "text": "4.3 Theoretical Properties and Comparison",
+        "text_level": 2,
+        "bbox": [
+            516,
+            357,
+            866,
+            375
+        ],
+        "page_idx": 3
+    },
+    {
+        "type": "text",
+        "text": "Exact subspace preservation. GCPO satisfies the bilateral constraints at every adapted layer and every optimization step. Consequently, the pretrained layer mapping is unchanged for inputs in the selected principal input subspace, with an analogous guarantee for the principal output subspace. Formal proofs are provided in Appendix B.",
+        "bbox": [
+            514,
+            380,
+            915,
+            467
+        ],
+        "page_idx": 3
+    },
+    {
+        "type": "text",
+        "text": "Capacity and cost. The feasible update space has dimension $( d _ { \\mathrm { o u t } } - k ) ( d _ { \\mathrm { i n } } - k )$ , and every feasible rank-r update can be represented by the projected low-rank parameterization. Thus, for k small relative to the layer width, GCPO retains a large space for task adaptation. Formal proofs are provided in Appendix B.",
+        "bbox": [
+            514,
+            474,
+            915,
+            560
+        ],
+        "page_idx": 3
+    },
+    {
+        "type": "text",
+        "text": "Distinction from Low-Rank Adaptation. Although GCPO uses low-rank factorization for eficient implementation, it solves a diferent constrained optimization problem from conventional low-rank adaptation. LoRA primarily restricts update rank for parameter eficiency, while some geometric variants shape update directions to prevent catastrophic forgetting typically under fixed-data supervised finetuning (Schotthöfer et al. 2024; Wang et al. 2025; Dragoi et al. 2026; Wang et al. 2023). In contrast, GCPO is motivated by transient principal-subspace overlap under on-policy rollout feedback in RL, where each policy update changes the subsequent training distribution. It therefore constrains update direction through bilateral orthogonality to stabilize stepwise RL dynamics and preserve pretrained mappings, while low rank serves mainly as an eficient parameterization of this feasible space.",
+        "bbox": [
+            514,
+            569,
+            915,
+            794
+        ],
+        "page_idx": 3
+    },
+    {
+        "type": "text",
+        "text": "5 Experiments",
+        "text_level": 2,
+        "bbox": [
+            643,
+            809,
+            787,
+            825
+        ],
+        "page_idx": 3
+    },
+    {
+        "type": "text",
+        "text": "In this section, we evaluate GCPO in terms of general-task performance, cross-task capability retention, training stability and eficiency, and design efectiveness through ablation and structural analyses.",
+        "bbox": [
+            516,
+            832,
+            915,
+            890
+        ],
+        "page_idx": 3
+    },
+    {
+        "type": "text",
+        "text": "Models and Tasks. We adopt two widely used instructiontuned LLMs as our backbone models: Qwen3-8B (Yang et al. 2025) and GLM4-9B (GLM et al. 2024), and evaluate them across three representative domains using established benchmarks and consistent protocols across methods:",
+        "bbox": [
+            81,
+            68,
+            480,
+            140
+        ],
+        "page_idx": 4
+    },
+    {
+        "type": "text",
+        "text": "• Mathematical Reasoning: Evaluated on the MATH500 (Lightman et al. 2024). The reward is computed via exact matching of the final boxed answer using rule-based parsing.",
+        "bbox": [
+            89,
+            143,
+            480,
+            200
+        ],
+        "page_idx": 4
+    },
+    {
+        "type": "text",
+        "text": "• Code Generation: Evaluated on HumanEval+ (Liu et al. 2023) for Python function synthesis. The reward is granted based on the execution pass rate across unit tests.",
+        "bbox": [
+            89,
+            202,
+            480,
+            246
+        ],
+        "page_idx": 4
+    },
+    {
+        "type": "text",
+        "text": "• Tool Use: Evaluated on ToolAlpaca (Tang et al. 2023), which requires generating the appropriate API call given a tool specification and a user request. The reward is based on exact function-name matching, argument-key consistency, and normalized argument-value matching.",
+        "bbox": [
+            89,
+            247,
+            480,
+            319
+        ],
+        "page_idx": 4
+    },
+    {
+        "type": "text",
+        "text": "Baselines. We extensively compare GCPO against a comprehensive suite of optimization strategies. These include GRPO (Shao et al. 2024), objective-level variants including GSPO (Zheng et al. 2025), DAPO (Yu et al. 2026b), and GMPO (Zhao et al. 2025), which modify objectives or clip probability ratios. To compare with parameter-space constraints, we include GRPO-LoRA (Hu et al. 2022), which uses unconstrained low-rank adaptation without the hard bilateral orthogonality enforced by GCPO. To isolate the efect of the directional constraint from low-rank parameterization, GRPO-LoRA and GCPO use the same adaptation rank and scaling configuration.",
+        "bbox": [
+            81,
+            324,
+            482,
+            493
+        ],
+        "page_idx": 4
+    },
+    {
+        "type": "text",
+        "text": "Implementation Details. For all GRPO-based methods, we sample K = 16 rollouts per prompt during training. We adopt the same hyperparameters to ensure equity. For GCPO, we precompute the top-k = 8 singular subspaces and constrain updates to their bilateral orthogonal complements. For evaluation, we report bootstrap-estimated majority@16 accuracy from 16 test-time responses per example. More details on seeds, data splits, evaluation, and hyperparameters are provided in Appendix D.",
+        "bbox": [
+            81,
+            497,
+            482,
+            625
+        ],
+        "page_idx": 4
+    },
+    {
+        "type": "text",
+        "text": "5.1 Main Results",
+        "text_level": 2,
+        "bbox": [
+            83,
+            633,
+            232,
+            650
+        ],
+        "page_idx": 4
+    },
+    {
+        "type": "text",
+        "text": "Table 1 reports the mean and standard deviation over three independent training seeds across three task domains and two backbone models. GCPO achieves the best accuracy in all six model–task settings. Relative to the corresponding instruction-tuned base models, it improves accuracy by 7.09– 27.69 percentage points, and surpasses the strongest competing method on each benchmark by 1.02–2.37 points. Moreover, GCPO exhibits the lowest standard deviation in all six settings, indicating reduced sensitivity to training stochasticity. The margins are particularly pronounced on GLM4-9B, where GCPO outperforms the strongest baselines by 2.15– 2.37 points, demonstrating consistent efectiveness across backbones with diferent optimization behaviors.",
+        "bbox": [
+            81,
+            652,
+            482,
+            833
+        ],
+        "page_idx": 4
+    },
+    {
+        "type": "text",
+        "text": "Beyond individual benchmarks, GCPO also achieves the strongest average performance. On Qwen3-8B, it obtains an average accuracy of 78.63, exceeding the strongest baseline average of 77.48 by 1.15 points. On GLM4-9B, it improves the strongest baseline average from 73.73 to 76.12. Averaged across all six model–task settings, GCPO reaches 77.38, compared with 75.61 for the strongest baseline, which suggests efectiveness and generalizability.",
+        "bbox": [
+            81,
+            833,
+            480,
+            890
+        ],
+        "page_idx": 4
+    },
+    {
+        "type": "text",
+        "text": "",
+        "bbox": [
+            514,
+            69,
+            913,
+            126
+        ],
+        "page_idx": 4
+    },
+    {
+        "type": "text",
+        "text": "Crucially, we emphasize that these gains are not merely artifacts of low-rank parameter reduction: as shown in Table 1, GRPO-LoRA with the same rank achieves consistently lower accuracy than GCPO across all evaluations. This confirms that the explicit directional orthogonal projection is the primary driver of our method’s superiority.",
+        "bbox": [
+            514,
+            125,
+            915,
+            210
+        ],
+        "page_idx": 4
+    },
+    {
+        "type": "table",
+        "img_path": "images/4b33e6299efbc6570c06e434c8db9ba47bb43d8b9e9355648e1fd722a0f03d1d.jpg",
+        "table_caption": [
+            "Table 1: Main results across tasks. We report bootstrapestimated majority@16 accuracy as mean ± standard deviation over three training seeds, in percentage points."
+        ],
+        "table_footnote": [],
+        "table_body": "<table><tr><td>Method</td><td colspan=\"3\">MATH500 HumanEval+ ToolAlpaca</td></tr><tr><td></td><td>Qwen3-8B</td><td></td><td></td></tr><tr><td>Base (Instruct)</td><td>67.46</td><td>73.58</td><td>56.53</td></tr><tr><td>GRPO</td><td> $7 2 . 0 0 \\pm 1 . 3 6$ </td><td>84.24 ±0.88</td><td> $5 9 . 5 6 \\pm 1 . 5 2 $ </td></tr><tr><td>GSPO</td><td> $7 7 . 8 0 \\pm 0 . 7 4$ </td><td> $8 7 . 8 1 \\pm 0 . 5 1 $ </td><td> $6 6 . 1 8 \\pm 0 . 8 2$ </td></tr><tr><td>DAPO</td><td> $\\underline { { 7 8 . 3 3 } } \\pm 0 . 6 1$ </td><td>88.13 ±0.48</td><td>65.99 ±0.76</td></tr><tr><td>GMPO</td><td> $7 7 . 6 4 \\pm 0 . 6 9$ </td><td>88.14 ±0.45</td><td>66.16 ±0.71</td></tr><tr><td>GRPO-LoRA</td><td> $7 7 . 8 7 \\pm 0 . 5 8 $ </td><td>87.36 ±0.62</td><td>66.05 ±0.67</td></tr><tr><td>GCPO</td><td> ${ \\bf 7 9 . 4 7 \\pm 0 . 3 1 }$ </td><td>89.16 ±0.27</td><td>67.26 ±0.39</td></tr><tr><td colspan=\"4\">GLM4-9B</td></tr><tr><td>Base (Instruct)</td><td>66.51</td><td>76.55</td><td>42.47</td></tr><tr><td>GRPO</td><td> $5 9 . 4 3 \\pm 1 . 8 4$ </td><td> $7 2 . 4 3 \\pm 1 . 4 2$ </td><td> $6 5 . 7 0 \\pm 1 . 6 5$ </td></tr><tr><td>GSPO</td><td> $7 1 . 2 9 \\pm 0 . 9 7$ </td><td> $7 9 . 5 5 \\pm 0 . 8 3$ </td><td> $6 6 . 2 2 \\pm 1 . 0 8$ </td></tr><tr><td>DAPO</td><td> ${ 7 2 . 4 1 \\pm 0 . 8 2 }$ </td><td> $8 1 . 4 3 \\pm 0 . 7 1$ </td><td> $6 7 . 3 5 \\pm 0 . 9 3 $ </td></tr><tr><td>GMPO</td><td> $7 1 . 3 3 \\pm 0 . 9 1$ </td><td> $8 0 . 6 3 \\pm 0 . 7 6$ </td><td> $\\underline { { 6 7 . 7 9 } } \\pm 0 . 8 8$ </td></tr><tr><td>GRPO-LoRA</td><td> $7 2 . 3 4 \\pm 0 . 6 6$ </td><td> $8 1 . 4 8 \\pm 0 . 5 9$ </td><td> $6 6 . 1 9 \\pm 0 . 7 5$ </td></tr><tr><td>GCPO</td><td> $7 4 . 5 6 \\pm 0 . 3 4$ </td><td> ${ \\bf 8 3 . 6 4 \\pm 0 . 2 9 }$ </td><td> ${ \\bf 7 0 . 1 6 \\pm 0 . 4 1 }$ </td></tr></table>",
+        "bbox": [
+            537,
+            224,
+            892,
+            494
+        ],
+        "page_idx": 4
+    },
+    {
+        "type": "text",
+        "text": "5.2 Cross-Task Capability Preservation",
+        "text_level": 2,
+        "bbox": [
+            516,
+            582,
+            834,
+            598
+        ],
+        "page_idx": 4
+    },
+    {
+        "type": "text",
+        "text": "Single-domain RL post-training may improve the target task while degrading other capabilities. To examine whether our geometric constraint better preserves such general capabilities, we post-train models on MATH500 and evaluate their cross-task capabilities on code generation (HumanEval+) and tool-use (ToolAlpaca) benchmarks.",
+        "bbox": [
+            514,
+            603,
+            915,
+            689
+        ],
+        "page_idx": 4
+    },
+    {
+        "type": "text",
+        "text": "Existing RL variants poorly retain tool-use capability. As shown in Table 2, GRPO and its variants generally exhibit substantial degradation on ToolAlpaca after MATH500 posttraining. This drop is most severe for GRPO, with a large decline of −14.97 on GLM4-9B. These results suggest that conventional RL strategies are insuficient to preserve general capabilities beyond the reward-optimized domain.",
+        "bbox": [
+            514,
+            696,
+            915,
+            796
+        ],
+        "page_idx": 4
+    },
+    {
+        "type": "text",
+        "text": "Mathematical reasoning can transfer to code generation. In contrast, RL training on math tasks has a milder efect on coding capabilities. Several variants even improve code generation performance, indicating positive transfer from mathematical reasoning to coding, likely because both tasks rely on step-by-step reasoning and symbolic problem solving.",
+        "bbox": [
+            514,
+            805,
+            915,
+            891
+        ],
+        "page_idx": 4
+    },
+    {
+        "type": "table",
+        "img_path": "images/bce666a3f324688ad210a8cb3409a876c71605200c1d7c370acf3b326ea68166.jpg",
+        "table_caption": [
+            "Table 2: Cross-task capability retention after training on MATH500 and evaluated on HumanEval+ and ToolAlpaca benchmarks. Values in parentheses denote absolute accuracy changes relative to the base model. Worst ∆ denotes the smaller change across the two evaluation tasks."
+        ],
+        "table_footnote": [],
+        "table_body": "<table><tr><td>Method</td><td>HumanEval+</td><td>ToolAlpaca</td><td>Worst ∆ ↑</td></tr><tr><td></td><td colspan=\"3\">Qwen3-8B</td></tr><tr><td>Base (Instruct)</td><td>73.58</td><td>56.53</td><td>0.00</td></tr><tr><td>GRPO</td><td>64.71 (-8.87)</td><td>50.72 (−5.81)</td><td>-8.87</td></tr><tr><td>GSPO</td><td>76.82 (+3.24)</td><td>53.41 (−3.12)</td><td>-3.12</td></tr><tr><td>DAPO</td><td>75.54 (+1.96)</td><td>53.09 (−3.44)</td><td>-3.44</td></tr><tr><td>GMPO</td><td>74.31 (+0.73)</td><td>52.90 (−3.63)</td><td>-3.63</td></tr><tr><td>GRPO-LoRA</td><td>74.63 (+1.05)</td><td>56.69 (+0.16)</td><td>+0.16</td></tr><tr><td>GCPO</td><td> $7 7 . 5 7 \\ ( + 3 . 9 9 )$ </td><td> ${ \\pmb 5 } 7 . { \\pmb 5 } { \\bf 6 } \\left( + 1 . 0 3 \\right)$ </td><td>+1.03</td></tr><tr><td colspan=\"4\">GLM4-9B</td></tr><tr><td>Base (Instruct)</td><td>76.55</td><td>42.47</td><td>0.00</td></tr><tr><td>GRPO</td><td>76.91 (+0.36)</td><td> $2 7 . 5 0 \\ : ( - 1 4 . 9 7 )$ </td><td>-14.97</td></tr><tr><td>GSPO</td><td>81.58 (+5.03)</td><td> $4 1 . 2 9 \\ : ( - 1 . 1 8 )$ </td><td>-1.18</td></tr><tr><td>DAPO</td><td>81.39 (+4.84)</td><td> $3 7 . 6 8 \\ ( - 4 . 7 9 )$ </td><td>-4.79</td></tr><tr><td>GMPO</td><td>79.76 (+3.21)</td><td> $4 1 . 3 3 \\ : ( - 1 . 1 4 )$ </td><td>-1.14</td></tr><tr><td>GRPO-LoRA</td><td> $8 1 . 0 0 \\ ( + 4 . 4 5 )$ </td><td> $\\underline { { 4 3 . 1 4 } } ~ ( + 0 . 6 7 )$ </td><td>+0.67</td></tr><tr><td>GCPO</td><td> $8 2 . 4 3 \\ ( + 5 . 8 8 )$ </td><td> $4 3 . 3 8 \\ : ( + 0 . 9 1 )$ </td><td>+0.91</td></tr></table>",
+        "bbox": [
+            84,
+            65,
+            490,
+            335
+        ],
+        "page_idx": 5
+    },
+    {
+        "type": "text",
+        "text": "GCPO best preserves general capabilities. GCPO obtains the best Worst ∆ scores on both Qwen3-8B and GLM4- 9B, with gains of +1.03 and +0.91, while also improving HumanEval+ by +3.99 and +5.88, respectively. These results indicate that constraining updates away from dominant pretrained subspaces better balances task-specific RL adaptation with the preservation of general capabilities.",
+        "bbox": [
+            81,
+            445,
+            480,
+            546
+        ],
+        "page_idx": 5
+    },
+    {
+        "type": "text",
+        "text": "5.3 Optimization Dynamics of GCPO",
+        "text_level": 2,
+        "bbox": [
+            83,
+            558,
+            387,
+            574
+        ],
+        "page_idx": 5
+    },
+    {
+        "type": "text",
+        "text": "We investigate the underlying optimization dynamics of GCPO, explicitly focusing on its ability to stabilize the training trajectory, suppress shortcut learning behaviors, and maintain hardware eficiency.",
+        "bbox": [
+            81,
+            578,
+            480,
+            636
+        ],
+        "page_idx": 5
+    },
+    {
+        "type": "text",
+        "text": "Robust Training Stability. Figure 3 illustrates the accuracy trajectories evaluated every 5 steps during training on the ToolAlpaca for Qwen3-8B. GRPO exhibits severe performance oscillations and high-variance fluctuations, whereas GCPO yields a smooth, continuously increasing accuracy curve. This is consistent with our finding that our bilateral orthogonal constraint efectively acts as a structural barrier, preventing variance-heavy gradients from intruding into the principal subspace and ensuring stable, directional policy improvement.",
+        "bbox": [
+            81,
+            642,
+            480,
+            784
+        ],
+        "page_idx": 5
+    },
+    {
+        "type": "text",
+        "text": "Stable Policy Entropy Dynamics. We further examine the policy entropy during RL post-training to characterize the exploration–exploitation behavior of diferent methods. A desirable optimization trajectory should gradually reduce entropy, while avoiding both entropy oscillations and premature entropy collapse(Hao et al. 2026; Cui et al. 2025). As shown in Figure 4, GRPO exhibits large entropy oscillations, while most baselines exhibit rapid entropy decay, suggesting premature overconfident exploitation and reduced policy diversity. GCPO instead maintains a smooth, gradual decay, suggesting more controlled policy specialization without rapid loss of diversity.",
+        "bbox": [
+            81,
+            791,
+            482,
+            890
+        ],
+        "page_idx": 5
+    },
+    {
+        "type": "chart",
+        "img_path": "images/c9e99d4ccfbe752b46bfcbaa208672913a5c96f4087a1632284be23ceab79fb2.jpg",
+        "content": "",
+        "chart_caption": [],
+        "chart_footnote": [],
+        "bbox": [
+            517,
+            64,
+            913,
+            218
+        ],
+        "page_idx": 5
+    },
+    {
+        "type": "chart",
+        "img_path": "images/d02ef07fcd225f194f0fcbd6e82f9f99add02c5cc8942c580e2a2f4f0a2cfaa3.jpg",
+        "content": "",
+        "chart_caption": [
+            "Figure 3: Training stability and accuracy trajectory on ToolAlpaca with Qwen3-8B, evaluated every 5 training steps.",
+            "Figure 4: Policy entropy dynamics on MATH500 with GLM4-9B. GCPO maintains a smooth and gradual entropy decay, avoiding both the severe oscillations of GRPO and the premature entropy collapse in other baselines."
+        ],
+        "chart_footnote": [],
+        "bbox": [
+            519,
+            267,
+            913,
+            420
+        ],
+        "page_idx": 5
+    },
+    {
+        "type": "text",
+        "text": "",
+        "bbox": [
+            514,
+            513,
+            915,
+            585
+        ],
+        "page_idx": 5
+    },
+    {
+        "type": "text",
+        "text": "Resistance to Response-Length Inflation. A notorious failure mode in rollout-based RL is response-length inflation, where the policy learns a shortcut to hack rewards by generating excessively long, redundant tokens rather than improving genuine reasoning. As shown in Figure 5, GRPO suffers from aggressive and uncontrolled output length expansion on MATH500. Conversely, GCPO substantially reduces response length, maintaining concise and stable generation lengths. We hypothesize that shielding dominant pretrained directions—including those encoding length priors—from high-variance gradients reduces the policy’s tendency to exploit verbosity as a reward-hacking shortcut.",
+        "bbox": [
+            514,
+            590,
+            915,
+            758
+        ],
+        "page_idx": 5
+    },
+    {
+        "type": "text",
+        "text": "Superior Memory Eficiency. Figure 6 compares peak GPU memory under matched GRPO training configurations. Full-parameter GRPO requires substantially more memory because optimizer states and gradients are maintained for all adapted dense weights. Both GRPO-LoRA and GCPO reduce this cost through low-rank adaptation. Importantly, GCPO achieves comparable peak memory to LoRA, showing that the bilateral geometric constraint does not sacrifice the memory eficiency of parameter-eficient training. The principal singular vectors are frozen and require no optimizer states, while the learned update can be merged into the pretrained weights for inference.",
+        "bbox": [
+            514,
+            762,
+            915,
+            891
+        ],
+        "page_idx": 5
+    },
+    {
+        "type": "chart",
+        "img_path": "images/7c67f5dbad5cbdbda3a9b1cd183a82195c1761a1cb074c6dec46b7022c8a4271.jpg",
+        "content": "",
+        "chart_caption": [
+            "Figure 5: Response length on MATH500 with Qwen3-8B. GCPO most efectively mitigates response-length inflation."
+        ],
+        "chart_footnote": [],
+        "bbox": [
+            84,
+            65,
+            477,
+            223
+        ],
+        "page_idx": 6
+    },
+    {
+        "type": "chart",
+        "img_path": "images/28296b09b10dc6004c35e72859fddb9412739a3c291a4a7dcd840feb0ea880ee.jpg",
+        "content": "",
+        "chart_caption": [
+            "Figure 6: Peak per-GPU training memory on MATH500 with GLM4-9B, where G-LoRA abbreviates GRPO-LoRA."
+        ],
+        "chart_footnote": [],
+        "bbox": [
+            84,
+            277,
+            477,
+            390
+        ],
+        "page_idx": 6
+    },
+    {
+        "type": "text",
+        "text": "",
+        "bbox": [
+            81,
+            455,
+            480,
+            500
+        ],
+        "page_idx": 6
+    },
+    {
+        "type": "text",
+        "text": "5.4 Ablation Studies",
+        "text_level": 2,
+        "bbox": [
+            83,
+            508,
+            256,
+            523
+        ],
+        "page_idx": 6
+    },
+    {
+        "type": "text",
+        "text": "Orthogonal Constraints Prevent Capability Collapse. Table 3 reveals that the target subspace strongly afects optimization performance. Forcing updates into the Principal subspace triggers a severe performance collapse, indicating that altering dominant singular directions disrupts taskrelevant capabilities. Conversely, the Orthogonal complement achieves peak accuracy, substantially outperforming Random projections. By structurally routing updates away from the core manifold, it safely resolves the conflict between aggressive task adaptation and knowledge retention.",
+        "bbox": [
+            81,
+            526,
+            480,
+            667
+        ],
+        "page_idx": 6
+    },
+    {
+        "type": "text",
+        "text": "Bilateral Projections Seal Collapse Pathways. Unilateral constraints on solely the left (output) or right (input) singular spaces yield only marginal gains over the unconstrained baseline. Geometrically, securingjust one side leaves the opposite subspace vulnerable to dominant task gradients, permitting partial overlap. The bilateral projection is mathematically necessary to seal both pathways simultaneously, ensuring zero principal-subspace overlap and optimal accuracy.",
+        "bbox": [
+            81,
+            672,
+            480,
+            786
+        ],
+        "page_idx": 6
+    },
+    {
+        "type": "text",
+        "text": "Hard Constraints Survive Iterative Rollout Dynamics. Both KL divergence and explicit soft orthogonality penalties $( \\lVert \\Phi _ { k } ^ { \\top } \\delta W \\rVert _ { F } ^ { \\breve { 2 } } + \\lVert \\delta W \\Psi _ { k } \\rVert _ { F } ^ { 2 }$ ) underperform our approach. Under the iterative feedback loops of RL, dominant task gradients inevitably overwhelm soft loss terms, allowing overlap to persist. By enforcing orthogonality by construction, our Hard constraint robustly shields the pretrained manifold.",
+        "bbox": [
+            81,
+            790,
+            480,
+            890
+        ],
+        "page_idx": 6
+    },
+    {
+        "type": "table",
+        "img_path": "images/aac3966ff1f67f93777c36d1c5dcb7088ad8efe88cf918536396f49891d96b66.jpg",
+        "table_caption": [
+            "Table 3: Geometric design ablations on MATH500 benchmark with GLM4-9B, considering diferent projection directions, subspace selections, and constraint mechanisms."
+        ],
+        "table_footnote": [],
+        "table_body": "<table><tr><td>Ablation</td><td>Variant</td><td>MATH500 Acc. ↑</td></tr><tr><td rowspan=\"5\">Projection</td><td>w/o. Constraint</td><td>72.34</td></tr><tr><td>Left-only</td><td>73.49</td></tr><tr><td>Right-only</td><td>73.56</td></tr><tr><td>Bilateral (Ours)</td><td>74.56</td></tr><tr><td>Random</td><td></td></tr><tr><td rowspan=\"3\">Subspace</td><td>Principal</td><td>66.47 62.59</td></tr><tr><td>Orthogonal (Ours)</td><td>74.56</td></tr><tr><td></td><td></td></tr><tr><td rowspan=\"2\">Constraints</td><td>Soft Loss Regularization</td><td>71.11</td></tr><tr><td>KL Regularization Hard (Ours)</td><td>67.83 74.56</td></tr></table>",
+        "bbox": [
+            524,
+            65,
+            906,
+            233
+        ],
+        "page_idx": 6
+    },
+    {
+        "type": "chart",
+        "img_path": "images/88a1c3d9f2f465bcf5cf426e6d8b4d571d49ccc174f4fcb35461cf5354321e46.jpg",
+        "content": "",
+        "chart_caption": [],
+        "chart_footnote": [],
+        "bbox": [
+            522,
+            305,
+            722,
+            422
+        ],
+        "page_idx": 6
+    },
+    {
+        "type": "chart",
+        "img_path": "images/a6b0d41d5fa18d3c2bfbef0965dd0b9ffd83dfb60b6f33e36929f82b12a076fc.jpg",
+        "content": "",
+        "chart_caption": [
+            "Figure 7: Efect of k on MATH500 and ToolAlpaca with Qwen3-8B, reported as mean ± standard deviation."
+        ],
+        "chart_footnote": [],
+        "bbox": [
+            720,
+            304,
+            908,
+            424
+        ],
+        "page_idx": 6
+    },
+    {
+        "type": "text",
+        "text": "The Protected Dimension Balances Protection and Adaptation. Performance varies substantially with k and peaks at k = 8 on both tasks (Figure 7). Smaller k provides insuficient protection, whereas larger k overly restricts the feasible update space, highlighting the importance of k in balancing subspace protection and adaptation capacity.",
+        "bbox": [
+            514,
+            493,
+            915,
+            579
+        ],
+        "page_idx": 6
+    },
+    {
+        "type": "text",
+        "text": "5.5 Limitations",
+        "text_level": 2,
+        "bbox": [
+            517,
+            588,
+            653,
+            603
+        ],
+        "page_idx": 6
+    },
+    {
+        "type": "text",
+        "text": "Our study focuses on the parameter-space dynamics of onpolicy RL, and it remains unclear whether the observed geometric patterns also extend to other post-training paradigms, such as DPO (Xu et al. 2024), KTO (Ethayarajh et al. 2024), and OPD (Kumar et al. 2025). Although principal-subspace overlap is consistently associated with performance degradation, its causal relationship with model instability, rollout behaviors such as length inflation and reward hacking is not yet fully understood. Moreover, future work should examine broader alignment objectives, model scales, and training settings, while adaptive, layer-wise selection of k, to assess the generality of this principal-subspace overlap and develop more stable and capability-preserving post-training.",
+        "bbox": [
+            514,
+            606,
+            915,
+            790
+        ],
+        "page_idx": 6
+    },
+    {
+        "type": "text",
+        "text": "6 Conclusion",
+        "text_level": 2,
+        "bbox": [
+            650,
+            800,
+            781,
+            815
+        ],
+        "page_idx": 6
+    },
+    {
+        "type": "text",
+        "text": "We study rollout-based RL instability through the geometry of step-wise parameter updates. We identify transient principal-subspace overlap as a warning signal associated with performance degradation, with controlled interventions providing local evidence of its harmful efect. Based on this diagnosis, we propose GCPO, which restricts efective updates to the bilateral orthogonal complements of pretrained principal subspaces. Across two backbones and three task domains, GCPO achieves the highest mean performance overall, while improving capability retention, response-length control, and policy-entropy stability. These results highlight parameter-space geometry as a useful diagnostic and design perspective for stable LLM reinforcement learning.",
+        "bbox": [
+            514,
+            818,
+            915,
+            890
+        ],
+        "page_idx": 6
+    },
+    {
+        "type": "text",
+        "text": "",
+        "bbox": [
+            81,
+            69,
+            480,
+            181
+        ],
+        "page_idx": 7
+    },
+    {
+        "type": "text",
+        "text": "Acknowledgement",
+        "text_level": 2,
+        "bbox": [
+            202,
+            195,
+            361,
+            212
+        ],
+        "page_idx": 7
+    },
+    {
+        "type": "text",
+        "text": "We gratefully acknowledge NovaCore for the valuable guidance and resources that supported this research. Additionally, We thank the open-source community for releasing code and datasets that made this research possible.",
+        "bbox": [
+            81,
+            217,
+            480,
+            275
+        ],
+        "page_idx": 7
+    },
+    {
+        "type": "text",
+        "text": "References",
+        "text_level": 2,
+        "bbox": [
+            233,
+            289,
+            330,
+            304
+        ],
+        "page_idx": 7
+    },
+    {
+        "type": "list",
+        "sub_type": "ref_text",
+        "list_items": [
+            "Achiam, J.; Held, D.; Tamar, A.; and Abbeel, P. 2017. Constrained policy optimization. In International conference on machine learning, 22–31. Pmlr.",
+            "Cai, Y.; Cao, D.; Lin, L.; Luo, C.; Xu, X.; Yang, K.; Liu, W.; Yang, S.; Zhao, T.; Sun, G.; Liu, G.; and Fang, J. 2026. Learning to Foresee: Unveiling the Unlocking Eficiency of On-Policy Distillation. arXiv:2605.11739.",
+            "Cui, G.; Zhang, Y.; Chen, J.; Yuan, L.; Wang, Z.; Zuo, Y.; Li, H.; Fan, Y.; Chen, H.; Chen, W.; et al. 2025. The entropy mechanism of reinforcement learning for reasoning language models. arXiv preprint arXiv:2505.22617.",
+            "Dragoi, M.; Pintilie, I.; Dragomir, A.; Barbalau, A.; and Brad, F. 2026. TailLoR: Protecting Principal Components in Parameter-Eficient Continual Learning. arXiv:2606.06494.",
+            "Ethayarajh, K.; Xu, W.; Muennighof, N.; Jurafsky, D.; and Kiela, D. 2024. Kto: Model alignment as prospect theoretic optimization. arXiv preprint arXiv:2402.01306.",
+            "Gao, L.; Schulman, J.; and Hilton, J. 2023. Scaling laws for reward model overoptimization. In International Conference on Machine Learning, 10835–10866. PMLR.",
+            "GLM, T.; Zeng, A.; Xu, B.; Wang, B.; Zhang, C.; Yin, D.; Rojas, D.; Feng, G.; Zhao, H.; Lai, H.; Yu, H.; Wang, H.; Sun, J.; Zhang, J.; Cheng, J.; Gui, J.; Tang, J.; Zhang, J.; Li, J.; Zhao, L.; Wu, L.; Zhong, L.; Liu, M.; Huang, M.; Zhang, P.; Zheng, Q.; Lu, R.; Duan, S.; Zhang, S.; Cao, S.; Yang, S.; Tam, W. L.; Zhao, W.; Liu, X.; Xia, X.; Zhang, X.; Gu, X.; Lv, X.; Liu, X.; Liu, X.; Yang, X.; Song, X.; Zhang, X.; An, Y.; Xu, Y.; Niu, Y.; Yang, Y.; Li, Y.; Bai, Y.; Dong, Y.; Qi, Z.; Wang, Z.; Yang, Z.; Du, Z.; Hou, Z.; and Wang, Z. 2024. ChatGLM: A Family of Large Language Models from GLM-130B to GLM-4 All Tools. arXiv:2406.12793.",
+            "Golub, G. H.; Hofman, A.; and Stewart, G. W. 1987. A generalization of the Eckart-Young-Mirsky matrix approximation theorem. Linear Algebra and its applications, 88: 317–327.",
+            "Grontas, P. D.; Terpin, A.; Balta, E. C.; D’Andrea, R.; and Lygeros, J. 2025. Pinet: Optimizing hard-constrained neural networks with orthogonal projection layers. arXiv preprint arXiv:2508.10480.",
+            "Hao, Z.; Wang, H.; Liu, H.; Luo, J.; Yu, J.; Dong, H.; Lin, Q.; Wang, C.; and Chen, J. 2026. Rethinking Entropy Interventions in RLVR: An Entropy Change Perspective. In Liakata, M.; Moreira, V. P.; Zhang, J.; and Jurgens, D., eds., Proceedings of the 64th Annual Meeting of the Association for Computational Linguistics (Volume 1: Long Papers), 31105– 31133. San Diego, California, United States: Association for Computational Linguistics. ISBN 979-8-89176-390-6.",
+            "Harmon, J.; Hochlehnert, A.; Bethge, M.; and Prabhu, A. 2025. Mapping Post-Training Forgetting in Language Models at Scale. arXiv preprint arXiv:2510.17776.",
+            "Hu, E. J.; Shen, Y.; Wallis, P.; Allen-Zhu, Z.; Li, Y.; Wang, S.; Wang, L.; Chen, W.; et al. 2022. Lora: Low-rank adaptation of large language models. Iclr, 1(2): 3.",
+            "Hübotter, J.; Lübeck, F.; Behric, L.; Baumann, A.; Bagatella, M.; Marta, D.; Hakimi, I.; Shenfeld, I.; Buening, T. K.; Guestrin, C.; and Krause, A. 2026. Reinforcement Learning via Self-Distillation. arXiv:2601.20802.",
+            "Kumar, K.; Ashraf, T.; Thawakar, O.; Anwer, R. M.; Cholakkal, H.; Shah, M.; Yang, M.-H.; Torr, P. H.; Khan, F. S.; and Khan, S. 2025. Llm post-training: A deep dive into reasoning large language models. arXiv preprint arXiv:2502.21321.",
+            "Li, Z.; Lou, J.; Dong, F.; Fan, Z.; Ren, M.; Lin, H.; Han, X.; Zhang, D.; Sun, L.; Lu, Y.; et al. 2026. Tackling Length Inflation Without Trade-ofs: Group Relative Reward Rescaling for Reinforcement Learning. arXiv preprint arXiv:2603.10535.",
+            "Lightman, H.; Kosaraju, V.; Burda, Y.; Edwards, H.; Baker, B.; Lee, T.; Leike, J.; Schulman, J.; Sutskever, I.; and Cobbe, K. 2024. Let’s verify step by step. In International Conference on Learning Representations, volume 2024, 39578– 39601.",
+            "Liu, J.; Xia, C. S.; Wang, Y.; and Zhang, L. 2023. Is Your Code Generated by ChatGPT Really Correct? Rigorous Evaluation of Large Language Models for Code Generation. In Thirty-seventh Conference on Neural Information Processing Systems.",
+            "Ouyang, L.; Wu, J.; Jiang, X.; Almeida, D.; Wainwright, C.; Mishkin, P.; Zhang, C.; Agarwal, S.; Slama, K.; Ray, A.; et al. 2022. Training language models to follow instructions with human feedback. Advances in neural information processing systems, 35: 27730–27744.",
+            "Schneider, J.; Schumacher, P.; Guist, S.; Chen, L.; Häufle, D.; Schölkopf, B.; and Büchler, D. 2024. Identifying Policy Gradient Subspaces. arXiv:2401.06604.",
+            "Schotthöfer, S.; Zangrando, E.; Ceruti, G.; Tudisco, F.; and Kusch, J. 2024. GeoLoRA: Geometric integration for parameter eficient fine-tuning. arXiv:2410.18720.",
+            "Schulman, J.; Wolski, F.; Dhariwal, P.; Radford, A.; and Klimov, O. 2017. Proximal Policy Optimization Algorithms. arXiv:1707.06347.",
+            "Shao, Z.; Wang, P.; Zhu, Q.; Xu, R.; Song, J.; Bi, X.; Zhang, H.; Zhang, M.; Li, Y. K.; Wu, Y.; and Guo, D. 2024. DeepSeekMath: Pushing the Limits of Mathematical Reasoning in Open Language Models. arXiv:2402.03300."
+        ],
+        "bbox": [
+            83,
+            309,
+            478,
+            352
+        ],
+        "page_idx": 7
+    },
+    {
+        "type": "list",
+        "sub_type": "ref_text",
+        "list_items": [
+            "Shen, Z.; Li, Y.; Yin, Q.; Leong, C. T.; Wang, Z.; Chen, Y.; Han, R.; Lee, S.; and Fung, Y. R. 2026. On the Geometry of On-Policy Distillation. arXiv:2606.07082.",
+            "Singhal, P.; Goyal, T.; Xu, J.; and Durrett, G. 2023. A long way to go: Investigating length correlations in rlhf. arXiv preprint arXiv:2310.03716.",
+            "Tang, Q.; Deng, Z.; Lin, H.; Han, X.; Liang, Q.; Cao, B.; and Sun, L. 2023. Toolalpaca: Generalized tool learning for language models with 3000 simulated cases. arXiv preprint arXiv:2306.05301.",
+            "Wang, H.; Li, Y.; Wang, S.; Chen, G.; and Chen, Y. 2025. MiLoRA: Harnessing Minor Singular Components for Parameter-Eficient LLM Finetuning. In Chiruzzo, L.; Ritter, A.; and Wang, L., eds., Proceedings ofthe 2025 Conference ofthe Nations ofthe Americas Chapter ofthe Associationfor Computational Linguistics: Human Language Technologies (Volume 1: Long Papers), 4823–4836. Albuquerque, New Mexico: Association for Computational Linguistics. ISBN 979-8-89176-189-6.",
+            "Wang, X.; Chen, T.; Ge, Q.; Xia, H.; Bao, R.; Zheng, R.; Zhang, Q.; Gui, T.; and Huang, X.-J. 2023. Orthogonal subspace learning for language model continual learning. In Findings of the Association for Computational Linguistics: EMNLP 2023, 10658–10671.",
+            "Wang, X.; Wang, S.; Liang, X.; Zhao, D.; Huang, J.; Xu, X.; Dai, B.; and Miao, Q. 2022. Deep reinforcement learning: A survey. IEEE Transactions on Neural Networks and Learning Systems, 35(4): 5064–5078.",
+            "Xu, S.; Fu, W.; Gao, J.; Ye, W.; Liu, W.; Mei, Z.; Wang, G.; Yu, C.; and Wu, Y. 2024. Is DPO Superior to PPO for LLM Alignment? A Comprehensive Study. arXiv:2404.10719.",
+            "Yang, A.; Li, A.; Yang, B.; Zhang, B.; Hui, B.; Zheng, B.; Yu, B.; Gao, C.; Huang, C.; Lv, C.; et al. 2025. Qwen3 technical report. arXiv preprint arXiv:2505.09388.",
+            "Yu, G.; Liu, W.; Hu, Y.; Ma, H.-X.; Jiang, J.-P.; and Ye, H.-J. 2026a. Dense Supervision, Sparse Updates: On the Sparsity and Geometry of On-Policy Distillation. arXiv:2606.13657.",
+            "Yu, Q.; Zhang, Z.; Zhu, R.; Yuan, Y.; Zuo, X.; Yue, Y.; Dai, W.; Fan, T.; Liu, G.; Liu, L.; et al. 2026b. Dapo: An open-source llm reinforcement learning system at scale. Advances in Neural Information Processing Systems, 38: 113222–113244.",
+            "Zhao, Y.; Liu, Y.; Liu, J.; Chen, J.; Wu, X.; Hao, Y.; Lv, T.; Huang, S.; Cui, L.; Ye, Q.; et al. 2025. Geometric-mean policy optimization. arXiv preprint arXiv:2507.20673.",
+            "Zheng, C.; Liu, S.; Li, M.; Chen, X.-H.; Yu, B.; Gao, C.; Dang, K.; Liu, Y.; Men, R.; Yang, A.; et al. 2025. Group sequence policy optimization. arXiv preprint arXiv:2507.18071."
+        ],
+        "bbox": [
+            83,
+            68,
+            480,
+            111
+        ],
+        "page_idx": 8
+    },
+    {
+        "type": "text",
+        "text": "A Notations",
+        "text_level": 2,
+        "bbox": [
+            220,
+            66,
+            341,
+            83
+        ],
+        "page_idx": 9
+    },
+    {
+        "type": "text",
+        "text": "Table 4 summarizes the main notation used in our geometric analysis and method. The superscript ℓ denotes a linear layer, and t denotes an optimization step. We omit the layer index when it is clear from context.",
+        "bbox": [
+            81,
+            87,
+            480,
+            143
+        ],
+        "page_idx": 9
+    },
+    {
+        "type": "text",
+        "text": "B Proofs",
+        "text_level": 2,
+        "bbox": [
+            235,
+            156,
+            328,
+            172
+        ],
+        "page_idx": 9
+    },
+    {
+        "type": "text",
+        "text": "We provide proofs for the geometric properties used in the diagnostic measure and GCPO formulation. For clarity, we omit the layer index ℓ unless necessary.",
+        "bbox": [
+            81,
+            178,
+            480,
+            220
+        ],
+        "page_idx": 9
+    },
+    {
+        "type": "text",
+        "text": "Orthogonality of the Update Decomposition",
+        "text_level": 2,
+        "bbox": [
+            83,
+            232,
+            421,
+            247
+        ],
+        "page_idx": 9
+    },
+    {
+        "type": "text",
+        "text": "Lemma B.1. The four blocks $\\delta ^ { ( t ) } W ^ { P P } , \\delta ^ { ( t ) } W ^ { P O }$ $\\delta ^ { ( t ) } W ^ { O P } , a n d \\delta ^ { ( t ) } W ^ { \\check { O } O }$ are mutually orthogonal under the Frobenius inner product. Consequently,",
+        "bbox": [
+            81,
+            251,
+            478,
+            295
+        ],
+        "page_idx": 9
+    },
+    {
+        "type": "equation",
+        "img_path": "images/86b17b7440b1ed28b8d7212fe567bfeea33a5e3110fb5f863c649e86c15c5f8e.jpg",
+        "text": "$$\n\\| \\delta ^ { ( t ) } W \\| _ { F } ^ { 2 } = E _ { P P } + E _ { P O } + E _ { O P } + E _ { O O } .\\tag{9}\n$$",
+        "text_format": "latex",
+        "bbox": [
+            135,
+            304,
+            428,
+            321
+        ],
+        "page_idx": 9
+    },
+    {
+        "type": "text",
+        "text": "Proof. The principal and complementary projectors satisfy",
+        "bbox": [
+            81,
+            329,
+            475,
+            345
+        ],
+        "page_idx": 9
+    },
+    {
+        "type": "equation",
+        "img_path": "images/0a5121398dd36b22f53007625f1cf702adbfe9f8b2af9f737826fbe502fcf948.jpg",
+        "text": "$$\n\\Pi _ { \\Phi } \\Pi _ { \\Phi } ^ { \\perp } = 0 , \\qquad \\Pi _ { \\Psi } \\Pi _ { \\Psi } ^ { \\perp } = 0 .\\tag{10}\n$$",
+        "text_format": "latex",
+        "bbox": [
+            179,
+            352,
+            382,
+            371
+        ],
+        "page_idx": 9
+    },
+    {
+        "type": "text",
+        "text": "Consider, for example, the P P and P O blocks. Their Frobenius inner product is",
+        "bbox": [
+            81,
+            377,
+            478,
+            406
+        ],
+        "page_idx": 9
+    },
+    {
+        "type": "equation",
+        "img_path": "images/4a48707b7096453afeebcfcf01873dd4b641d52573b3a36d9bae40b904d5b4e9.jpg",
+        "text": "$$\n\\begin{array} { r l } & { \\left. \\Pi _ { \\Phi } \\delta ^ { ( t ) } W \\Pi _ { \\Psi } , \\Pi _ { \\Phi } \\delta ^ { ( t ) } W \\Pi _ { \\Psi } ^ { \\perp } \\right. _ { F } } \\\\ & { = \\operatorname { t r } \\left( \\Pi _ { \\Psi } \\delta ^ { ( t ) } W ^ { \\top } \\Pi _ { \\Phi } \\delta ^ { ( t ) } W \\Pi _ { \\Psi } ^ { \\perp } \\right) = 0 , } \\end{array}\\tag{11}\n$$",
+        "text_format": "latex",
+        "bbox": [
+            155,
+            415,
+            411,
+            467
+        ],
+        "page_idx": 9
+    },
+    {
+        "type": "text",
+        "text": "where the last equality follows from cyclic invariance of the trace and $\\Pi _ { \\Psi } ^ { \\perp } \\Pi _ { \\Psi } ~ = ~ 0$ . The remaining pairs follow analogously from orthogonality of the left or right projectors. The squared norm of their sum is therefore the sum of their squared norms.",
+        "bbox": [
+            81,
+            474,
+            480,
+            545
+        ],
+        "page_idx": 9
+    },
+    {
+        "type": "text",
+        "text": "It follows immediately that the fraction of energy overlapping at least one principal subspace is",
+        "bbox": [
+            81,
+            556,
+            478,
+            585
+        ],
+        "page_idx": 9
+    },
+    {
+        "type": "equation",
+        "img_path": "images/8681c3088f22f0291c5d6bd767fcd2764320a1c5456cf828dc3640f7a763fad6.jpg",
+        "text": "$$\nO _ { t } = \\frac { E _ { P P } + E _ { P O } + E _ { O P } } { E _ { \\mathrm { t o t a l } } } = 1 - \\frac { E _ { O O } } { E _ { \\mathrm { t o t a l } } } .\\tag{12}\n$$",
+        "text_format": "latex",
+        "bbox": [
+            137,
+            592,
+            424,
+            625
+        ],
+        "page_idx": 9
+    },
+    {
+        "type": "text",
+        "text": "Expected Overlap of an Isotropic Update",
+        "text_level": 2,
+        "bbox": [
+            83,
+            633,
+            400,
+            648
+        ],
+        "page_idx": 9
+    },
+    {
+        "type": "text",
+        "text": "Proposition B.2. Let $\\delta W \\in \\mathbb { R } ^ { d _ { \\mathrm { o u t } } \\times d _ { \\mathrm { i n } } }$ have a uniformly random direction under the Frobenius norm. Then its expected principal-subspace overlap is",
+        "bbox": [
+            81,
+            652,
+            480,
+            695
+        ],
+        "page_idx": 9
+    },
+    {
+        "type": "equation",
+        "img_path": "images/3fd759c1ea42623555f0882873cfc3052f9bdc8100786317304a797d943c4a31.jpg",
+        "text": "$$\n\\mathbb { E } [ O ] = 1 - \\frac { ( d _ { \\mathrm { o u t } } - k ) ( d _ { \\mathrm { i n } } - k ) } { d _ { \\mathrm { o u t } } d _ { \\mathrm { i n } } } .\\tag{13}\n$$",
+        "text_format": "latex",
+        "bbox": [
+            166,
+            702,
+            393,
+            736
+        ],
+        "page_idx": 9
+    },
+    {
+        "type": "text",
+        "text": "Proof. Let",
+        "bbox": [
+            83,
+            742,
+            161,
+            756
+        ],
+        "page_idx": 9
+    },
+    {
+        "type": "equation",
+        "img_path": "images/1135e1b309aba7a6ec11a8ce272793ec2b8ae6eb5b2aa5f020b3b0b4e7145b6a.jpg",
+        "text": "$$\nz = \\mathrm { v e c } ( \\delta W ) \\in \\mathbb { R } ^ { D } , \\qquad D = d _ { \\mathrm { o u t } } d _ { \\mathrm { i n } } .\\tag{14}\n$$",
+        "text_format": "latex",
+        "bbox": [
+            147,
+            763,
+            415,
+            781
+        ],
+        "page_idx": 9
+    },
+    {
+        "type": "text",
+        "text": "Using the vectorization identity, the doubly orthogonal component can be written as",
+        "bbox": [
+            83,
+            789,
+            478,
+            818
+        ],
+        "page_idx": 9
+    },
+    {
+        "type": "equation",
+        "img_path": "images/06aa9ff54e2f6c0b5a2806df866d84719533c147e588ddd07c228561cc248e06.jpg",
+        "text": "$$\n\\mathrm { v e c } \\left( \\Pi _ { \\Phi } ^ { \\perp } \\delta W \\Pi _ { \\Psi } ^ { \\perp } \\right) = Q z , \\qquad Q = \\Pi _ { \\Psi } ^ { \\perp } \\otimes \\Pi _ { \\Phi } ^ { \\perp } .\\tag{15}\n$$",
+        "text_format": "latex",
+        "bbox": [
+            112,
+            825,
+            419,
+            843
+        ],
+        "page_idx": 9
+    },
+    {
+        "type": "text",
+        "text": "The matrix $Q$ is an orthogonal projector with rank",
+        "bbox": [
+            83,
+            851,
+            416,
+            866
+        ],
+        "page_idx": 9
+    },
+    {
+        "type": "equation",
+        "img_path": "images/ab0c588e61bdf2ebf8ab6f1993c48495682779caf8a83e4530e3351a3ae7c496.jpg",
+        "text": "$$\n\\operatorname { r a n k } ( Q ) = ( d _ { \\mathrm { o u t } } - k ) ( d _ { \\mathrm { i n } } - k ) .\\tag{16}\n$$",
+        "text_format": "latex",
+        "bbox": [
+            169,
+            873,
+            392,
+            890
+        ],
+        "page_idx": 9
+    },
+    {
+        "type": "text",
+        "text": "For a uniformly random direction,",
+        "bbox": [
+            516,
+            69,
+            745,
+            83
+        ],
+        "page_idx": 9
+    },
+    {
+        "type": "equation",
+        "img_path": "images/209ad1ebc4654d969d1cf1c7bca1e4adc5c41e0e03b4f83d07042857049736df.jpg",
+        "text": "$$\n\\mathbb { E } \\left[ \\frac { z z ^ { \\top } } { \\| z \\| _ { 2 } ^ { 2 } } \\right] = \\frac { I _ { D } } { D } .\\tag{17}\n$$",
+        "text_format": "latex",
+        "bbox": [
+            653,
+            90,
+            774,
+            126
+        ],
+        "page_idx": 9
+    },
+    {
+        "type": "text",
+        "text": "Therefore,",
+        "bbox": [
+            516,
+            131,
+            591,
+            145
+        ],
+        "page_idx": 9
+    },
+    {
+        "type": "equation",
+        "img_path": "images/35c7f270a37aec6ddec6e543755c54c8b6ff7b3a13acdb1809497e68167bfcbe.jpg",
+        "text": "$$\n\\mathbb { E } \\left[ \\frac { \\| Q z \\| _ { 2 } ^ { 2 } } { \\| z \\| _ { 2 } ^ { 2 } } \\right] = \\operatorname { t r } \\left( Q \\mathbb { E } \\left[ \\frac { z z ^ { \\top } } { \\| z \\| _ { 2 } ^ { 2 } } \\right] \\right)\\tag{18}\n$$",
+        "text_format": "latex",
+        "bbox": [
+            591,
+            151,
+            818,
+            188
+        ],
+        "page_idx": 9
+    },
+    {
+        "type": "equation",
+        "img_path": "images/9ce3fa22b3d09d4b1c7a634af89e0cba61394d757eb68ef524ee4c70ffd5b2e4.jpg",
+        "text": "$$\n= { \\frac { \\operatorname { r a n k } ( Q ) } { D } }\\tag{19}\n$$",
+        "text_format": "latex",
+        "bbox": [
+            676,
+            188,
+            759,
+            218
+        ],
+        "page_idx": 9
+    },
+    {
+        "type": "equation",
+        "img_path": "images/43132f71ebf05162f4946f1061989edc2641368c06ac2605b8e6a0eb2a096dc8.jpg",
+        "text": "$$\n= \\frac { ( d _ { \\mathrm { o u t } } - k ) ( d _ { \\mathrm { i n } } - k ) } { d _ { \\mathrm { o u t } } d _ { \\mathrm { i n } } } .\\tag{20}\n$$",
+        "text_format": "latex",
+        "bbox": [
+            676,
+            218,
+            836,
+            252
+        ],
+        "page_idx": 9
+    },
+    {
+        "type": "text",
+        "text": "Since $O = 1 - \\| Q z \\| _ { 2 } ^ { 2 } / \\| z \\| _ { 2 } ^ { 2 }$ , the stated result follows.",
+        "bbox": [
+            516,
+            257,
+            875,
+            275
+        ],
+        "page_idx": 9
+    },
+    {
+        "type": "text",
+        "text": "This result gives the dimensionality-dependent null value $O _ { \\mathrm { n u l l } }$ used in the excess-overlap statistic.",
+        "bbox": [
+            516,
+            281,
+            913,
+            311
+        ],
+        "page_idx": 9
+    },
+    {
+        "type": "text",
+        "text": "Exact Feasibility and Subspace Preservation",
+        "text_level": 2,
+        "bbox": [
+            516,
+            321,
+            861,
+            337
+        ],
+        "page_idx": 9
+    },
+    {
+        "type": "text",
+        "text": "Proposition B.3. Suppose the cumulative adaptation of layer ℓ is parameterized as",
+        "bbox": [
+            516,
+            339,
+            913,
+            368
+        ],
+        "page_idx": 9
+    },
+    {
+        "type": "equation",
+        "img_path": "images/40414118759bd440c897e80b075745fa79f4b27224138024013032446040db6c.jpg",
+        "text": "$$\n\\Delta W _ { t } ^ { ( \\ell ) } = s \\Pi _ { \\Phi } ^ { ( \\ell ) \\perp } L _ { t } ^ { ( \\ell ) } R _ { t } ^ { ( \\ell ) } \\Pi _ { \\Psi } ^ { ( \\ell ) \\perp } .\\tag{21}\n$$",
+        "text_format": "latex",
+        "bbox": [
+            604,
+            375,
+            826,
+            395
+        ],
+        "page_idx": 9
+    },
+    {
+        "type": "text",
+        "text": "Then both the cumulative adaptation and every realized update satisfy the bilateral constraints:",
+        "bbox": [
+            516,
+            401,
+            913,
+            431
+        ],
+        "page_idx": 9
+    },
+    {
+        "type": "equation",
+        "img_path": "images/49ce54b025aaf453d6ac3383ad04b5d42de0eb9d99bef034ab63ba5bc0aa2732.jpg",
+        "text": "$$\n\\Phi _ { k } ^ { ( \\ell ) \\top } \\Delta W _ { t } ^ { ( \\ell ) } = 0 , \\qquad \\Delta W _ { t } ^ { ( \\ell ) } \\Psi _ { k } ^ { ( \\ell ) } = 0 ,\\tag{22}\n$$",
+        "text_format": "latex",
+        "bbox": [
+            578,
+            438,
+            851,
+            458
+        ],
+        "page_idx": 9
+    },
+    {
+        "type": "text",
+        "text": "and",
+        "bbox": [
+            516,
+            465,
+            549,
+            478
+        ],
+        "page_idx": 9
+    },
+    {
+        "type": "equation",
+        "img_path": "images/859daa3b65b9f6e6f367674c7553a9856483722f8d62d45117050cb13e275134.jpg",
+        "text": "$$\n\\begin{array} { r } { \\Phi _ { k } ^ { ( \\ell ) \\top } \\delta ^ { ( t ) } W ^ { ( \\ell ) } = 0 , \\qquad \\delta ^ { ( t ) } W ^ { ( \\ell ) } \\Psi _ { k } ^ { ( \\ell ) } = 0 . } \\end{array}\n$$",
+        "text_format": "latex",
+        "bbox": [
+            553,
+            483,
+            848,
+            502
+        ],
+        "page_idx": 9
+    },
+    {
+        "type": "text",
+        "text": "Proof. By construction,",
+        "bbox": [
+            516,
+            510,
+            679,
+            525
+        ],
+        "page_idx": 9
+    },
+    {
+        "type": "text",
+        "text": "(23)",
+        "bbox": [
+            882,
+            487,
+            911,
+            501
+        ],
+        "page_idx": 9
+    },
+    {
+        "type": "equation",
+        "img_path": "images/828c8c4e51b114ea4858d9360c72c45b8d18a4aedd5c258d82b57e6e49568f9a.jpg",
+        "text": "$$\n\\Phi _ { k } ^ { ( \\ell ) \\top } \\Pi _ { \\Phi } ^ { ( \\ell ) \\bot } = 0 , \\qquad \\Pi _ { \\Psi } ^ { ( \\ell ) \\bot } \\Psi _ { k } ^ { ( \\ell ) } = 0 .\\tag{24}\n$$",
+        "text_format": "latex",
+        "bbox": [
+            588,
+            530,
+            841,
+            551
+        ],
+        "page_idx": 9
+    },
+    {
+        "type": "text",
+        "text": "Hence,",
+        "bbox": [
+            517,
+            558,
+            568,
+            571
+        ],
+        "page_idx": 9
+    },
+    {
+        "type": "equation",
+        "img_path": "images/b07bf705ac6c53cc3feb0c7e46c519a30d368cee249f423bb62b7461f9144b21.jpg",
+        "text": "$$\n\\Phi _ { k } ^ { ( \\ell ) \\top } \\Delta W _ { t } ^ { ( \\ell ) } = s \\Phi _ { k } ^ { ( \\ell ) \\top } \\Pi _ { \\Phi } ^ { ( \\ell ) \\bot } L _ { t } ^ { ( \\ell ) } R _ { t } ^ { ( \\ell ) } \\Pi _ { \\Psi } ^ { ( \\ell ) \\bot } = 0 ,\\tag{25}\n$$",
+        "text_format": "latex",
+        "bbox": [
+            537,
+            578,
+            864,
+            599
+        ],
+        "page_idx": 9
+    },
+    {
+        "type": "equation",
+        "img_path": "images/f0726f5550c5f3f0b1c101d87d640f1b6f5c8fba83255a86a4dc0d66bfbaf2e5.jpg",
+        "text": "$$\n\\Delta W _ { t } ^ { ( \\ell ) } \\Psi _ { k } ^ { ( \\ell ) } = s \\Pi _ { \\Phi } ^ { ( \\ell ) \\perp } L _ { t } ^ { ( \\ell ) } R _ { t } ^ { ( \\ell ) } \\Pi _ { \\Psi } ^ { ( \\ell ) \\perp } \\Psi _ { k } ^ { ( \\ell ) } = 0 .\\tag{26}\n$$",
+        "text_format": "latex",
+        "bbox": [
+            545,
+            601,
+            856,
+            622
+        ],
+        "page_idx": 9
+    },
+    {
+        "type": "text",
+        "text": "The realized update is",
+        "bbox": [
+            532,
+            627,
+            684,
+            642
+        ],
+        "page_idx": 9
+    },
+    {
+        "type": "equation",
+        "img_path": "images/fc5c82b45d3edaabc0d738092b1e9448f06cd92a8b1e4a4f2955056e16f50758.jpg",
+        "text": "$$\n\\delta ^ { ( t ) } W ^ { ( \\ell ) } = \\Delta W _ { t } ^ { ( \\ell ) } - \\Delta W _ { t - 1 } ^ { ( \\ell ) } .\\tag{27}\n$$",
+        "text_format": "latex",
+        "bbox": [
+            611,
+            650,
+            818,
+            669
+        ],
+        "page_idx": 9
+    },
+    {
+        "type": "text",
+        "text": "Because the constraints are linear and both cumulative adaptations satisfy them, their diference satisfies them as well.",
+        "bbox": [
+            516,
+            676,
+            911,
+            705
+        ],
+        "page_idx": 9
+    },
+    {
+        "type": "text",
+        "text": "Corollary B.4. For every $x ~ \\in ~ \\operatorname { s p a n } ( \\Psi _ { k } ^ { ( \\ell ) } )$ and $y \\in$ $\\operatorname { s p a n } ( \\Phi _ { k } ^ { ( \\ell ) } )$",
+        "bbox": [
+            516,
+            714,
+            913,
+            750
+        ],
+        "page_idx": 9
+    },
+    {
+        "type": "equation",
+        "img_path": "images/4b60265aee298d1c298c4dbfe08c99677392fa7b6c5f92c84a29e71cf3372df1.jpg",
+        "text": "$$\n\\boldsymbol { W } _ { t } ^ { ( \\ell ) } \\boldsymbol { x } = \\boldsymbol { W } _ { \\mathrm { r e f } } ^ { ( \\ell ) } \\boldsymbol { x } , \\qquad \\boldsymbol { y } ^ { \\top } \\boldsymbol { W } _ { t } ^ { ( \\ell ) } = \\boldsymbol { y } ^ { \\top } \\boldsymbol { W } _ { \\mathrm { r e f } } ^ { ( \\ell ) } .\\tag{28}\n$$",
+        "text_format": "latex",
+        "bbox": [
+            557,
+            756,
+            844,
+            779
+        ],
+        "page_idx": 9
+    },
+    {
+        "type": "text",
+        "text": "Proof. Write $x = \\Psi _ { k } ^ { ( \\ell ) } .$ a and $y = \\Phi _ { k } ^ { ( \\ell ) } b$ . The bilateral constraints imply $\\Delta W _ { t } ^ { ( \\ell ) } x = 0$ and $y ^ { \\top } \\Delta W _ { t } ^ { ( \\ell ) } = 0$ . Substituting $W _ { t } ^ { ( \\ell ) } = \\bar { W } _ { \\mathrm { r e f } } ^ { ( \\bar { \\ell } ) } + \\bar { \\Delta W } _ { t } ^ { ( \\ell ) }$ proves the result.",
+        "bbox": [
+            516,
+            785,
+            913,
+            840
+        ],
+        "page_idx": 9
+    },
+    {
+        "type": "text",
+        "text": "The corollary is a layer-level algebraic guarantee for the selected subspaces; it does not imply unconditional preservation of all model-level capabilities.",
+        "bbox": [
+            516,
+            847,
+            913,
+            888
+        ],
+        "page_idx": 9
+    },
+    {
+        "type": "table",
+        "img_path": "images/7a61786563724b4832bc28f81d27191ffba7cd1b3884b73d4c093ba92a0e963e.jpg",
+        "table_caption": [
+            "Table 4: Summary of the main notation."
+        ],
+        "table_footnote": [],
+        "table_body": "<table><tr><td>Notation</td><td>Definition</td></tr><tr><td> $\\theta _ { 0 } , \\theta _ { t }$ </td><td>Initial policy parameters and policy parameters after optimization step t.</td></tr><tr><td> $\\pi _ { \\theta _ { t } } , \\pi _ { \\mathrm { r e f } }$ </td><td>Current policy and fixed reference policy.</td></tr><tr><td> $\\mathcal { M }$ </td><td>Set of linear layers adapted during RL post-training.</td></tr><tr><td> $W _ { \\mathrm { r e f } } ^ { ( \\ell ) } , W _ { t } ^ { ( \\ell ) }$ </td><td>Pretrained and adapted weight matrices of layer l.</td></tr><tr><td> $\\dot { W _ { \\mathrm { r e f } } ^ { ( \\ell ) } } = \\dot { \\Phi } ^ { ( \\ell ) } \\Sigma ^ { ( \\ell ) } \\Psi ^ { ( \\ell ) \\top }$ </td><td>Singular value decomposition of the pretrained weight.</td></tr><tr><td> $\\Phi _ { k } ^ { ( \\ell ) } , \\Psi _ { k } ^ { ( \\ell ) }$ </td><td>Top-k left and right singular vectors, defining the principal output and input subspaces, respectively.</td></tr><tr><td> $\\Pi _ { \\Phi } ^ { \\ ' ( \\ell ) } , \\Pi _ { \\Psi } ^ { \\ ' ( \\ell ) }$ </td><td> $\\Pi _ { \\Phi } ^ { ( \\overline { { \\ell } } ) } = \\mathbf { \\widehat { \\Phi } } \\Phi _ { k } ^ { ( \\ell ) } \\mathbf { \\widehat { \\Phi } } \\hat { \\Phi _ { k } ^ { ( \\ell ) } } { } ^ { \\top }$  and  $\\Pi _ { \\Psi } ^ { ( \\ell ) } \\overset { \\cdot } { = } \\Psi _ { k } ^ { ( \\ell ) } \\bar { \\Psi _ { k } ^ { ( \\ell ) } } { } ^ { \\top }$  Projectors onto the principal subspaces:</td></tr><tr><td> $\\Pi _ { \\Phi } ^ { ( \\ell ) \\perp } , \\dot { \\Pi } _ { \\Psi } ^ { ( \\ell ) \\perp }$ </td><td>Projectors onto the corresponding orthogonal complements.</td></tr><tr><td> $\\Delta \\dot { W } _ { t } ^ { ( \\ell ) } = W _ { t } ^ { ( \\ell ) } - W _ { \\mathrm { r e f } } ^ { ( \\ell ) }$ </td><td>Cumulative adaptation relative to the pretrained weight.</td></tr><tr><td> $\\delta ^ { ( t ) } W ^ { ( \\ell ) } = W _ { t } ^ { ( \\ell ) } - \\dd W _ { t - 1 } ^ { ( \\ell ) }$ </td><td>Realized update at optimization step t.</td></tr><tr><td> $\\delta ^ { ( t ) } W _ { i j } ^ { ( \\ell ) }$ </td><td>Update block obtained by projecting its left and right sides onto  $i , j \\in \\{ P , O \\}$  , where P and O</td></tr><tr><td> $E _ { i , i } ^ { ( t , \\ell ) }$ </td><td>denote the principal and orthogonal-complement subspaces.  $\\| \\bar { \\delta } ^ { ( t ) } W _ { i j } ^ { ( \\ell ) } \\| _ { F } ^ { 2 } .$  Squared Frobenius energy of block ij:</td></tr><tr><td> $\\overline { { O _ { t } } } ^ { \\prime }$ </td><td>Fraction of update energy overlapping at least one principal subspace.</td></tr><tr><td> $O _ { \\mathrm { n u l l } }$ </td><td>Expected overlap of an isotropic update under the same matrix dimensions and protected rank.</td></tr><tr><td> $O _ { t } ^ { \\mathrm { e x c e s s } } = O _ { t } - O _ { \\mathrm { n u l l } }$ </td><td>Dimension-corrected principal-subspace overlap.</td></tr><tr><td> $L ^ { ( \\ell ) } , R ^ { ( \\ell ) }$ </td><td>Trainable low-rank factors used by  ${ \\mathrm { G C P O } } .$ </td></tr><tr><td> $r , k , s$ </td><td>Adaptation rank, protected principal rank, and adaptation scaling coefficient, respectively.</td></tr><tr><td> $\\| \\cdot \\| _ { F }$ </td><td>Frobenius norm.</td></tr></table>",
+        "bbox": [
+            96,
+            92,
+            898,
+            386
+        ],
+        "page_idx": 10
+    },
+    {
+        "type": "text",
+        "text": "Dimension and Expressivity of the Feasible Space",
+        "text_level": 2,
+        "bbox": [
+            83,
+            411,
+            465,
+            426
+        ],
+        "page_idx": 10
+    },
+    {
+        "type": "text",
+        "text": "Proposition B.5. Define the bilateral feasible space",
+        "bbox": [
+            81,
+            431,
+            431,
+            446
+        ],
+        "page_idx": 10
+    },
+    {
+        "type": "equation",
+        "img_path": "images/9c976bae747466c111c919432d3450d79f1952e134a1f4243e9722ccf7cafd91.jpg",
+        "text": "$$\n\\begin{array} { r } { { \\mathcal { S } } = \\left\\{ A : \\Phi _ { k } ^ { \\top } A = 0 , A \\Psi _ { k } = 0 \\right\\} . } \\end{array}\\tag{29}\n$$",
+        "text_format": "latex",
+        "bbox": [
+            163,
+            455,
+            395,
+            473
+        ],
+        "page_idx": 10
+    },
+    {
+        "type": "text",
+        "text": "Then",
+        "bbox": [
+            83,
+            482,
+            122,
+            496
+        ],
+        "page_idx": 10
+    },
+    {
+        "type": "equation",
+        "img_path": "images/a6e55606c1f31598140a047f7d6990c0321fd5a6face5d4ad8221bcd170499d6.jpg",
+        "text": "$$\n\\mathcal { S } = \\left\\{ \\Pi _ { \\Phi } ^ { \\perp } Z \\Pi _ { \\Psi } ^ { \\perp } : Z \\in \\mathbb { R } ^ { d _ { \\mathrm { o u t } } \\times d _ { \\mathrm { i n } } } \\right\\} ,\\tag{30}\n$$",
+        "text_format": "latex",
+        "bbox": [
+            163,
+            496,
+            397,
+            515
+        ],
+        "page_idx": 10
+    },
+    {
+        "type": "text",
+        "text": "and",
+        "bbox": [
+            83,
+            520,
+            117,
+            532
+        ],
+        "page_idx": 10
+    },
+    {
+        "type": "equation",
+        "img_path": "images/4b39bf154bfc3671394196649333c6f84dc11ad23596b0101eabf7fad1814a08.jpg",
+        "text": "$$\n\\dim ( S ) = ( d _ { \\mathrm { o u t } } - k ) ( d _ { \\mathrm { i n } } - k ) .\\tag{31}\n$$",
+        "text_format": "latex",
+        "bbox": [
+            173,
+            535,
+            387,
+            550
+        ],
+        "page_idx": 10
+    },
+    {
+        "type": "text",
+        "text": "Moreover, every matrix in $s$ with rank at most r can be represented by the GCPO low-rank parameterization.",
+        "bbox": [
+            81,
+            556,
+            478,
+            585
+        ],
+        "page_idx": 10
+    },
+    {
+        "type": "text",
+        "text": "Proof. ${ \\mathrm { ~ I f ~ } } A \\in S$ , then its columns lie in span $( \\Phi _ { k } ) ^ { \\perp }$ , implying $\\Pi _ { \\Phi } ^ { \\perp } A = A$ . Similarly, $A \\Psi _ { k } = 0$ implies $\\dot { A } \\Pi _ { \\Psi } ^ { \\perp } = A$ Thus,",
+        "bbox": [
+            81,
+            598,
+            478,
+            640
+        ],
+        "page_idx": 10
+    },
+    {
+        "type": "equation",
+        "img_path": "images/75b935851a98109e89f08a95526c3fa02898c040ec9734c0096ca39e346fe0d0.jpg",
+        "text": "$$\n\\begin{array} { r } { A = \\Pi _ { \\Phi } ^ { \\perp } A \\Pi _ { \\Psi } ^ { \\perp } . } \\end{array}\\tag{32}\n$$",
+        "text_format": "latex",
+        "bbox": [
+            230,
+            641,
+            331,
+            659
+        ],
+        "page_idx": 10
+    },
+    {
+        "type": "text",
+        "text": "Let $\\Phi _ { \\perp }$ and $\\Psi _ { \\perp }$ be orthonormal bases for the corresponding complementary subspaces. Every feasible matrix has a unique representation",
+        "bbox": [
+            81,
+            665,
+            480,
+            708
+        ],
+        "page_idx": 10
+    },
+    {
+        "type": "equation",
+        "img_path": "images/2dcd52b3cbfda60dd8a0500bc08c97edb425dc0fa68880cd877a20b2a782f742.jpg",
+        "text": "$$\nA = \\Phi _ { \\perp } B \\Psi _ { \\perp } ^ { \\top } , \\qquad B \\in \\mathbb { R } ^ { ( d _ { \\mathrm { o u t } } - k ) \\times ( d _ { \\mathrm { i n } } - k ) } .\\tag{33}\n$$",
+        "text_format": "latex",
+        "bbox": [
+            119,
+            715,
+            415,
+            734
+        ],
+        "page_idx": 10
+    },
+    {
+        "type": "text",
+        "text": "Therefore, the dimension of $s$ is $( d _ { \\mathrm { o u t } } - k ) ( d _ { \\mathrm { i n } } - k )$",
+        "bbox": [
+            83,
+            742,
+            437,
+            757
+        ],
+        "page_idx": 10
+    },
+    {
+        "type": "text",
+        "text": "If rank $( A ) \\leq r$ , then rank $( B ) \\leq r ,$ , so B admits a factorization $B = U V$ with at most r latent dimensions. Taking",
+        "bbox": [
+            83,
+            758,
+            478,
+            786
+        ],
+        "page_idx": 10
+    },
+    {
+        "type": "equation",
+        "img_path": "images/0aa2c0f140b53ac0ef0622f06483cedccfbbf9e0e15ab5085063d56e0ff724b9.jpg",
+        "text": "$$\nL = \\Phi _ { \\perp } U , \\qquad R = V \\Psi _ { \\perp } ^ { \\top }\\tag{34}\n$$",
+        "text_format": "latex",
+        "bbox": [
+            189,
+            796,
+            370,
+            813
+        ],
+        "page_idx": 10
+    },
+    {
+        "type": "text",
+        "text": "gives",
+        "bbox": [
+            83,
+            821,
+            124,
+            837
+        ],
+        "page_idx": 10
+    },
+    {
+        "type": "equation",
+        "img_path": "images/fbb07efd29f28871bf9cf0a73f671764cf6f4c87a1faea86d41b383af4a07e76.jpg",
+        "text": "$$\n\\begin{array} { r } { A = \\Pi _ { \\Phi } ^ { \\perp } L R \\Pi _ { \\Psi } ^ { \\perp } , } \\end{array}\\tag{35}\n$$",
+        "text_format": "latex",
+        "bbox": [
+            225,
+            837,
+            338,
+            856
+        ],
+        "page_idx": 10
+    },
+    {
+        "type": "text",
+        "text": "which is exactly the GCPO parameterization up to its scaling coeficient.",
+        "bbox": [
+            81,
+            861,
+            480,
+            888
+        ],
+        "page_idx": 10
+    },
+    {
+        "type": "text",
+        "text": "C Method Details",
+        "text_level": 2,
+        "bbox": [
+            632,
+            410,
+            799,
+            426
+        ],
+        "page_idx": 10
+    },
+    {
+        "type": "text",
+        "text": "Global Overlap Aggregation and Robustness",
+        "text_level": 2,
+        "bbox": [
+            516,
+            430,
+            862,
+            445
+        ],
+        "page_idx": 10
+    },
+    {
+        "type": "text",
+        "text": "Global aggregation. For each adapted matrix $\\ell \\in { \\mathcal { M } } ,$ we first compute the layer-wise dimension-corrected overlap",
+        "bbox": [
+            516,
+            448,
+            913,
+            477
+        ],
+        "page_idx": 10
+    },
+    {
+        "type": "equation",
+        "img_path": "images/dbd8e0704894428827b607646f28757ea13d762bad333864b86953c485531f92.jpg",
+        "text": "$$\nO _ { t , \\ell } ^ { \\mathrm { e x c e s s } } = \\left( 1 - \\frac { E _ { O O } ^ { ( t , \\ell ) } } { E _ { \\mathrm { t o t a l } } ^ { ( t , \\ell ) } } \\right) - \\left[ 1 - \\frac { ( d _ { \\mathrm { o u t } } ^ { ( \\ell ) } - k _ { \\ell } ) ( d _ { \\mathrm { i n } } ^ { ( \\ell ) } - k _ { \\ell } ) } { d _ { \\mathrm { o u t } } ^ { ( \\ell ) } d _ { \\mathrm { i n } } ^ { ( \\ell ) } } \\right] .\\tag{36}\n$$",
+        "text_format": "latex",
+        "bbox": [
+            516,
+            482,
+            911,
+            525
+        ],
+        "page_idx": 10
+    },
+    {
+        "type": "text",
+        "text": "The global statistic shown in Figure 1 is the unweighted macro-average",
+        "bbox": [
+            514,
+            535,
+            913,
+            565
+        ],
+        "page_idx": 10
+    },
+    {
+        "type": "equation",
+        "img_path": "images/04454b4ea0f01b8eaf234d54425442f27e7276e56c18b8e65978f96c4c5d33da.jpg",
+        "text": "$$\nO _ { t , \\mathrm { g l o b a l } } ^ { \\mathrm { e x c e s s } } = \\frac { 1 } { \\left| \\mathcal { M } \\right| } \\sum _ { \\ell \\in \\mathcal { M } } O _ { t , \\ell } ^ { \\mathrm { e x c e s s } } .\\tag{37}\n$$",
+        "text_format": "latex",
+        "bbox": [
+            612,
+            570,
+            816,
+            607
+        ],
+        "page_idx": 10
+    },
+    {
+        "type": "text",
+        "text": "Normalization and null correction are therefore performed within each matrix before aggregation. Consequently, each adapted matrix contributes equally, preventing matrices with larger dimensions or update norms from mechanically dominating the global statistic. The displayed curve applies a five-step moving average only after this layer-wise aggregation.",
+        "bbox": [
+            514,
+            613,
+            915,
+            710
+        ],
+        "page_idx": 10
+    },
+    {
+        "type": "text",
+        "text": "Algorithm Details",
+        "text_level": 2,
+        "bbox": [
+            516,
+            722,
+            660,
+            737
+        ],
+        "page_idx": 10
+    },
+    {
+        "type": "text",
+        "text": "Algorithm 1 summarizes the implementation of GCPO. The principal subspaces are computed once before training, while the projected low-rank factors are used for both policy optimization and rollout generation.",
+        "bbox": [
+            514,
+            739,
+            915,
+            796
+        ],
+        "page_idx": 10
+    },
+    {
+        "type": "text",
+        "text": "D Experimental Details",
+        "text_level": 2,
+        "bbox": [
+            607,
+            808,
+            823,
+            824
+        ],
+        "page_idx": 10
+    },
+    {
+        "type": "text",
+        "text": "Datasets and Splits",
+        "text_level": 2,
+        "bbox": [
+            516,
+            829,
+            669,
+            843
+        ],
+        "page_idx": 10
+    },
+    {
+        "type": "text",
+        "text": "Table 5 summarizes the datasets used for RL training and held-out evaluation. MATH500 and HumanEval+ are established benchmarks for mathematical reasoning and code generation, respectively. Following the common practice of constructing fixed train–test splits for controlled RL evaluation (Hübotter et al. 2026), we build task-specific splits from their oficial evaluation sets and keep them identical across all methods. Consequently, the corresponding results measure performance on our held-out subsets and should not be interpreted as oficial full-benchmark scores.",
+        "bbox": [
+            514,
+            845,
+            915,
+            890
+        ],
+        "page_idx": 10
+    },
+    {
+        "type": "code",
+        "sub_type": "code",
+        "code_caption": [],
+        "code_footnote": [],
+        "code_body": "```latex\nAlgorithm 1: Geometrically Constrained Policy Optimiza\ntion\nInput: Frozen policy $\\theta _ { 0 }$ and adapted layers M\nParameter: Protected rank k, adaptation rank r, scaling α,\nand training steps $T$\nOutput: Trained factors\n$\\{ L ^ { ( \\ell ) } , R ^ { ( \\ell ) } \\} _ { \\ell \\in \\mathcal { M } }$\n1: Set $s  \\alpha / r .$\n2: for each layer $\\ell \\in \\mathcal { M }$ do\n3: Compute the top-k singular vectors $\\Phi _ { k } ^ { \\left( \\ell \\right) }$ and $\\Psi _ { k } ^ { ( \\ell ) }$ of\n$W _ { \\mathrm { r e f } } ^ { ( \\ell ) }$\n$4 { : }$ Initialize $L ^ { ( \\ell ) }$ to zero and $R ^ { ( \\ell ) }$ with the standard LoRA\ninitialization.\n5: end for\n6: for $t = 1 , \\dots , T$ do\n7: for each layer $\\ell \\in \\mathcal { M }$ do\n8: $\\bar { L } ^ { ( \\ell ) } \\gets \\dot { L } ^ { ( \\ell ) } - \\Phi _ { k } ^ { ( \\ell ) } \\big ( \\Phi _ { k } ^ { ( \\ell ) \\top } L ^ { ( \\ell ) } \\big )$\n9: $\\bar { R } ^ { ( \\ell ) } \\gets R ^ { ( \\ell ) } - \\big ( \\bar { R } ^ { ( \\ell ) } \\bar { \\Psi } _ { k } ^ { ( \\ell ) } \\big ) \\Psi _ { k } ^ { ( \\ell ) \\top }$\n10: Set $W _ { t } ^ { ( \\ell ) } \\gets W _ { \\mathrm { r e f } } ^ { ( \\ell ) } + s \\bar { L } ^ { ( \\ell ) } \\bar { R } ^ { ( \\ell ) } .$\n11: end for\n12: Synchronize the projected factors to the rollout en\ngine.\n13: Generate rollouts and compute the policy\noptimization loss.\n14: Update the raw factors $\\{ L ^ { ( \\ell ) } , R ^ { ( \\ell ) } \\} _ { \\ell \\in \\mathcal { M } } .$\n15: end for\n16: return $\\{ L ^ { ( \\ell ) } , R ^ { ( \\ell ) } \\} _ { \\ell \\in \\mathcal { M } } .$\n```",
+        "bbox": [
+            81,
+            65,
+            480,
+            476
+        ],
+        "page_idx": 11
+    },
+    {
+        "type": "table",
+        "img_path": "images/fbba24250b36c0921f35b209f0c3d16581b95330689dc664c2d7b402fa312e7c.jpg",
+        "table_caption": [
+            "Table 5: Dataset splits used for RL training and held-out evaluation."
+        ],
+        "table_footnote": [],
+        "table_body": "<table><tr><td>Task</td><td>Total</td><td>Train</td><td>Test</td><td>Protocol</td></tr><tr><td>MATH500</td><td>500</td><td>450</td><td>50</td><td>9:1, seed 42.</td></tr><tr><td>HumanEval+</td><td>164</td><td>147</td><td>17</td><td>9:1, seed 42.</td></tr><tr><td>ToolAlpaca</td><td>4,114</td><td>4,046</td><td>68</td><td>407:10 families</td></tr></table>",
+        "bbox": [
+            84,
+            534,
+            477,
+            603
+        ],
+        "page_idx": 11
+    },
+    {
+        "type": "text",
+        "text": "",
+        "bbox": [
+            81,
+            635,
+            480,
+            732
+        ],
+        "page_idx": 11
+    },
+    {
+        "type": "text",
+        "text": "For MATH500 (Lightman et al. 2024) and HumanEval+ (Liu et al. 2023), no problem identifier appears in both the training and evaluation splits. Each HumanEval+ problem retains its complete EvalPlus functional-test suite; tests associated with the same programming problem are never divided between the two splits.",
+        "bbox": [
+            81,
+            733,
+            480,
+            818
+        ],
+        "page_idx": 11
+    },
+    {
+        "type": "text",
+        "text": "For ToolAlpaca, constructed from ToolAlpaca (Tang et al. 2023), the held-out set contains examples from 10 API families that do not appear during training: Axolotl, Auth0, A Bíblia Digital, Apache Superset, Améthyste, Abstract Public Holidays, AbuseIPDB, 1Forge, Lob.com, and AniAPI. This protocol evaluates generalization to previously unseen tool families rather than to new examples from APIs observed during training.",
+        "bbox": [
+            81,
+            818,
+            480,
+            890
+        ],
+        "page_idx": 11
+    },
+    {
+        "type": "table",
+        "img_path": "images/fe7001845fbab53c886b0436b49f9dad423896de8865c901f4e069c79888c8c7.jpg",
+        "table_caption": [
+            "Table 6: Shared training, rollout, and evaluation settings."
+        ],
+        "table_footnote": [],
+        "table_body": "<table><tr><td>Configuration</td><td>Setting</td></tr><tr><td>Train batch size</td><td>32 prompts per optimization step 1</td></tr><tr><td>Per-GPU micro-batch size Optimizer</td><td>AdamW; gradient clipping at 1.0</td></tr><tr><td>Data order</td><td>Shuffled during training</td></tr><tr><td>Training precision</td><td>bfloat16with Fully Sharded</td></tr><tr><td></td><td>Data Parallel (FSDP)</td></tr><tr><td>Rollout engine</td><td>vLLM with tensor parallelism of 2 2,048 tokens</td></tr><tr><td>Maximum prompt length Maximum response length</td><td>8,192 tokens</td></tr><tr><td>Training decoding</td><td>Temperature 1.0, top  $- p = 1 . 0 ,$  and</td></tr><tr><td>Evaluation decoding</td><td>top-k = −1 Temperature 0.6 and top  $- p = 0 . 9 5$ </td></tr><tr><td>Evaluation samples</td><td>16 sampled responses per held-out</td></tr><tr><td>Evaluation metric</td><td>example Majority@ 16 with 1,000</td></tr><tr><td></td><td>bootstrap resamples</td></tr><tr><td>Evaluation interval Checkpoint interval</td><td>Every 5 optimization steps Every 50 steps by default; every</td></tr><tr><td></td><td>100 steps for DAPO</td></tr><tr><td>Checkpoint retention</td><td>At most one checkpoint retained per run</td></tr><tr><td>Chat template</td><td>Model-specific template; thinking mode is disabled for Qwen3</td></tr><tr><td>Independent runs</td><td>3 random seeds per main configuration</td></tr><tr><td>Result reporting</td><td>Mean ± standard deviation over the 3 independent runs</td></tr></table>",
+        "bbox": [
+            521,
+            92,
+            908,
+            460
+        ],
+        "page_idx": 11
+    },
+    {
+        "type": "text",
+        "text": "",
+        "bbox": [
+            514,
+            488,
+            913,
+            531
+        ],
+        "page_idx": 11
+    },
+    {
+        "type": "text",
+        "text": "The MATH500 and HumanEval+ splits are generated once with seed 42 and kept fixed across all methods, backbone models, and training runs. This data-splitting seed is independent of the three random seeds used for repeated training. Therefore, the reported variation across runs reflects training and sampling stochasticity, rather than changes in the train–test partition.",
+        "bbox": [
+            514,
+            531,
+            915,
+            630
+        ],
+        "page_idx": 11
+    },
+    {
+        "type": "text",
+        "text": "Training and Evaluation Settings",
+        "text_level": 2,
+        "bbox": [
+            516,
+            643,
+            776,
+            660
+        ],
+        "page_idx": 11
+    },
+    {
+        "type": "text",
+        "text": "Table 6 summarizes the settings shared across tasks and methods unless overridden by a method-specific configuration. All main model–task–method configurations are independently trained with three random seeds. For each configuration, we report the mean and standard deviation of the three resulting task-level scores.",
+        "bbox": [
+            514,
+            665,
+            915,
+            750
+        ],
+        "page_idx": 11
+    },
+    {
+        "type": "text",
+        "text": "For each training seed, we generate 16 responses per heldout example and report majority@16 to reduce sensitivity to individual stochastic generations and evaluate the model’s consistency across multiple samples. We estimate majority@16 using 1,000 bootstrap trials, each of which resamples 16 responses with replacement and scores the majority-voted answer. Correctness is averaged over bootstrap trials and examples to obtain one score per training run, and final results are reported as the mean and standard deviation over three independent runs.",
+        "bbox": [
+            514,
+            750,
+            915,
+            890
+        ],
+        "page_idx": 11
+    },
+    {
+        "type": "table",
+        "img_path": "images/a455b1c710b51ebee23418443f767d623850aac666355b2d5b41492bce336ef5.jpg",
+        "table_caption": [
+            "Table 7: Efective training horizons. All runs are configured for at most 300 steps, with a batch size of 32, drop\\_last=True, and at most 30 epochs."
+        ],
+        "table_footnote": [],
+        "table_body": "<table><tr><td>Task</td><td>Train size</td><td>Steps / epoch</td><td>30-epoch cap</td><td>Effective steps</td></tr><tr><td>MATH500</td><td>450</td><td>14</td><td>420</td><td>300</td></tr><tr><td>HumanEval+</td><td>147</td><td>4</td><td>120</td><td>120</td></tr><tr><td>ToolAlpaca</td><td>4,046</td><td>126</td><td>3,780</td><td>300</td></tr></table>",
+        "bbox": [
+            89,
+            121,
+            472,
+            203
+        ],
+        "page_idx": 12
+    },
+    {
+        "type": "table",
+        "img_path": "images/4b755ba6be460d87fca27ba1a7195fdef2cb905df77a2dc93b79e3eb2e0654e1.jpg",
+        "table_caption": [
+            "Table 8: Method-specific rollout and optimization hyperparameters."
+        ],
+        "table_footnote": [],
+        "table_body": "<table><tr><td>Method</td><td>Roll- outs</td><td>Learning rate</td><td>Principal settings</td></tr><tr><td>GRPO</td><td>16</td><td> $1 \\times 1 0 ^ { - 5 }$ </td><td>Mini-batch size 32; clip- ping ratio 0.2.</td></tr><tr><td>GSPO</td><td>16</td><td> $1 \\times 1 0 ^ { - 6 }$ </td><td>Lower and upper clipping thresholds of  $3 \\times 1 0 ^ { - 4 }$ </td></tr><tr><td>GMPO</td><td>16</td><td> $1 \\times 1 0 ^ { - 6 }$ </td><td>and  $4 \\times 1 0 ^ { - 4 } .$  lower and upper clipping</td></tr><tr><td>DAPO</td><td>16</td><td> $1 \\times 1 0 ^ { - 6 }$ </td><td>thresholds of 0.4. Train batch size 32; gen- eration batch size 64.</td></tr></table>",
+        "bbox": [
+            89,
+            258,
+            472,
+            428
+        ],
+        "page_idx": 12
+    },
+    {
+        "type": "text",
+        "text": "Efective Training Horizons. The common training loop uses drop\\_last=True and a default limit of 30 epochs. As a result, the efective number of optimization steps depends on the size of the corresponding training split. Table 7 summarizes the resulting training horizons.",
+        "bbox": [
+            81,
+            454,
+            480,
+            525
+        ],
+        "page_idx": 12
+    },
+    {
+        "type": "text",
+        "text": "MATH500 and ToolAlpaca can reach the configured limit of 300 optimization steps. HumanEval+ contains 147 training problems, yielding four complete batches per epoch and therefore at most 120 steps under the default 30-epoch limit. For cross-task evaluation, we use the same taskspecific checkpointfor every method and seed: step 250 for MATH500, step 100 forHumanEval+, and step 150 for ToolAlpaca. We do not select a separate best-validation checkpoint for each seed.",
+        "bbox": [
+            81,
+            525,
+            482,
+            651
+        ],
+        "page_idx": 12
+    },
+    {
+        "type": "text",
+        "text": "Method-specific Hyperparameters",
+        "text_level": 2,
+        "bbox": [
+            83,
+            661,
+            352,
+            678
+        ],
+        "page_idx": 12
+    },
+    {
+        "type": "text",
+        "text": "We retain method-specific optimization settings rather than forcing all algorithms to share a common rollout count, learning rate, or clipping rule. Table 8 lists the principal hyperparameters. The same configuration is used across the three independent runs of each method.",
+        "bbox": [
+            81,
+            679,
+            480,
+            750
+        ],
+        "page_idx": 12
+    },
+    {
+        "type": "text",
+        "text": "The parameter-eficient configurations are summarized in Table 9. LoRA and GCPO adapt all linear layers. For matched comparisons, the full-parameter, LoRA, and GCPO variants use identical data splits, batch sizes, rollout settings, and evaluation protocols; they difer only in the parameterization of the policy update.",
+        "bbox": [
+            81,
+            750,
+            480,
+            833
+        ],
+        "page_idx": 12
+    },
+    {
+        "type": "text",
+        "text": "The main GCPO configuration uses scaling parameter $\\alpha = 1 6$ , and protects the top k = 8 left and right singular directions of each adapted weight matrix. The ablation studies additionally consider $k \\in \\{ \\breve { 4 } , 8 , 1 6 , 3 2 , 6 4 \\}$ and adaptation",
+        "bbox": [
+            81,
+            833,
+            480,
+            890
+        ],
+        "page_idx": 12
+    },
+    {
+        "type": "table",
+        "img_path": "images/e68dd7591d1b7cdf087d7585417687f1eec91e102ad9fd5966fc6e8a91c34a93.jpg",
+        "table_caption": [
+            "Table 9: Parameter-eficient adaptation settings used in the main experiments."
+        ],
+        "table_footnote": [],
+        "table_body": "<table><tr><td>Variant</td><td>Modules</td><td>Rank r</td><td>α</td><td>Protected rank k</td></tr><tr><td>LoRA</td><td>All linear</td><td>32</td><td>16</td><td>一</td></tr><tr><td>GCPO</td><td>All linear</td><td>32</td><td>16</td><td>8</td></tr></table>",
+        "bbox": [
+            522,
+            106,
+            905,
+            161
+        ],
+        "page_idx": 12
+    },
+    {
+        "type": "table",
+        "img_path": "images/9265caf81d412b9266ef5a12499dfa94894a2517d607978dc21838365fb835dc.jpg",
+        "table_caption": [
+            "Table 10: Task-specific response extraction and scoring."
+        ],
+        "table_footnote": [],
+        "table_body": "<table><tr><td>Task</td><td>Extraction</td><td>Correctness</td></tr><tr><td>MATH500</td><td>last 100 characters alence checking</td><td>Final \\boxed { } Normalized string match- expression in the ing with Math-Verify equiv-</td></tr><tr><td></td><td>code block</td><td>HumanEval+ Longest Markdown Pass all EvalPlus functional tests within 5 seconds</td></tr><tr><td></td><td>ToolAlpaca Action names and Unordered input JSON</td><td>action-name match and merged argument- JSON match; no tool execu-</td></tr></table>",
+        "bbox": [
+            522,
+            203,
+            906,
+            345
+        ],
+        "page_idx": 12
+    },
+    {
+        "type": "text",
+        "text": "ranks $r \\in \\{ 1 6 , 3 2 , 6 4 \\}$",
+        "bbox": [
+            516,
+            372,
+            673,
+            390
+        ],
+        "page_idx": 12
+    },
+    {
+        "type": "text",
+        "text": "Reward and Evaluation Protocols",
+        "text_level": 2,
+        "bbox": [
+            516,
+            401,
+            779,
+            417
+        ],
+        "page_idx": 12
+    },
+    {
+        "type": "text",
+        "text": "All three tasks use binary response-level rewards. Table 10 summarizes the task-specific prediction extraction and correctness criteria. A response receives a binary reward of 1 if it satisfies the task-specific criterion and 0 otherwise.",
+        "bbox": [
+            514,
+            421,
+            915,
+            478
+        ],
+        "page_idx": 12
+    },
+    {
+        "type": "text",
+        "text": "For MATH500, the model is prompted to provide its final answer inside \\boxed{}. For HumanEval+, each problem retains its full functional-test suite, and a generated program is considered correct only when it passes every test. The 5- second execution limit is used by the evaluator, regardless of the shorter time limit stated in the textual prompt.",
+        "bbox": [
+            514,
+            478,
+            915,
+            561
+        ],
+        "page_idx": 12
+    },
+    {
+        "type": "text",
+        "text": "The ToolAlpaca evaluator measures static structural correctness rather than actual API execution. It does not evaluate the order of multiple actions, and arguments from multiple predicted actions are merged before comparison. Accordingly, we describe this metric as action-name and argument matching rather than execution correctness.",
+        "bbox": [
+            514,
+            561,
+            915,
+            645
+        ],
+        "page_idx": 12
+    },
+    {
+        "type": "text",
+        "text": "For every training seed, each held-out example is evaluated using 16 sampled responses under the decoding configuration in Table 6. The resulting responses are aggregated into a single task-level score for that seed. Final results are reported as the mean and standard deviation across the three independently trained seeds.",
+        "bbox": [
+            514,
+            645,
+            915,
+            731
+        ],
+        "page_idx": 12
+    },
+    {
+        "type": "text",
+        "text": "Computational Resources",
+        "text_level": 2,
+        "bbox": [
+            516,
+            742,
+            720,
+            758
+        ],
+        "page_idx": 12
+    },
+    {
+        "type": "text",
+        "text": "All experiments were conducted on a single compute node equipped with four NVIDIA A100 GPUs. Table 11 summarizes the hardware configuration and distributed training setup. The 48-hour allocation denotes the maximum wallclock budget assigned to each job, rather than the actual runtime of every training run.",
+        "bbox": [
+            514,
+            762,
+            915,
+            847
+        ],
+        "page_idx": 12
+    },
+    {
+        "type": "text",
+        "text": "For the matched GRPO comparison, full-parameter GRPO, GRPO-LoRA, and GCPO use identical data splits, batch sizes, rollout configurations, and evaluation protocols.",
+        "bbox": [
+            514,
+            847,
+            915,
+            890
+        ],
+        "page_idx": 12
+    },
+    {
+        "type": "table",
+        "img_path": "images/26341b26af48624d1b96663c69abd66d684ee792e4486158ace9a8a46c623d9a.jpg",
+        "table_caption": [
+            "Table 11: Computational resources and distributed training configuration used in our experiments."
+        ],
+        "table_footnote": [],
+        "table_body": "<table><tr><td>Item</td><td>Configuration</td></tr><tr><td>Compute node</td><td>Single node</td></tr><tr><td>GPU</td><td>4× NVIDIA A100 80 GB</td></tr><tr><td>CPU</td><td>32 CPU cores</td></tr><tr><td>Job time limit</td><td>48 hours per submitted job</td></tr><tr><td>Training precision</td><td>bfloat16</td></tr><tr><td>Distributed training</td><td>Fully Sharded Data Parallel (FSDP)</td></tr><tr><td>Rollout engine</td><td>vLLM</td></tr><tr><td>Rollout parallelism Micro-batch size</td><td>Tensor parallelism with TP = 2 1 sample per GPU</td></tr></table>",
+        "bbox": [
+            91,
+            106,
+            470,
+            272
+        ],
+        "page_idx": 13
+    },
+    {
+        "type": "text",
+        "text": "They difer only in the parameterization and geometric constraint of the policy update.",
+        "bbox": [
+            83,
+            300,
+            478,
+            329
+        ],
+        "page_idx": 13
+    },
+    {
+        "type": "text",
+        "text": "The efective number of optimization steps additionally depends on the dataset size because the common trainer uses drop\\_last=True and terminates after 30 epochs. Table 7 reports the resulting training horizon for each task.",
+        "bbox": [
+            83,
+            328,
+            480,
+            383
+        ],
+        "page_idx": 13
+    },
+    {
+        "type": "text",
+        "text": "For MATH500 and ToolAlpaca, the epoch limit permits the trainer to reach the configured maximum of 300 steps. For HumanEval+, the 147-example training split produces only four complete batches per epoch, resulting in at most 120 optimization steps. Since checkpoints are saved every 50 steps, we use the step-100 checkpoint for cross-task evaluation. DAPO uses a separate epoch budget of 3,000 and is therefore not subject to the default 120-step limit on HumanEval+.",
+        "bbox": [
+            83,
+            383,
+            480,
+            496
+        ],
+        "page_idx": 13
+    },
+    {
+        "type": "text",
+        "text": "E Additional Experiments",
+        "text_level": 2,
+        "bbox": [
+            161,
+            507,
+            401,
+            523
+        ],
+        "page_idx": 13
+    },
+    {
+        "type": "text",
+        "text": "Additional Overlap Trajectories",
+        "text_level": 2,
+        "bbox": [
+            83,
+            526,
+            333,
+            542
+        ],
+        "page_idx": 13
+    },
+    {
+        "type": "text",
+        "text": "Figure 8 complements the representative cases in Figure 1 with additional trajectories on HumanEval+ and ToolAlpaca. We use the same excess-overlap measure, 5-step moving average, and validation protocol as in Section 3.2. Elevated overlap again tends to accompany or precede validation degradation, although its timing and magnitude vary across tasks. To avoid redundant per-seed plots, we show one fixed-seed trajectory for each remaining task.",
+        "bbox": [
+            83,
+            545,
+            480,
+            659
+        ],
+        "page_idx": 13
+    },
+    {
+        "type": "text",
+        "text": "Additional Controlled Interventions",
+        "text_level": 2,
+        "bbox": [
+            83,
+            667,
+            362,
+            684
+        ],
+        "page_idx": 13
+    },
+    {
+        "type": "text",
+        "text": "We repeat the layer-wise norm-matched intervention on three additional model–task–checkpoint configurations. As shown in Figure 9 and 10, increasing the principal-overlapping component consistently produces a dose-dependent accuracy drop across settings. These results support the robustness of the local intervention efect beyond the main configuration.",
+        "bbox": [
+            83,
+            686,
+            480,
+            771
+        ],
+        "page_idx": 13
+    },
+    {
+        "type": "chart",
+        "img_path": "images/bd24d40313db09279e68a9343985ed4a3c65ef6efece16a77df849a3e67097e6.jpg",
+        "content": "",
+        "chart_caption": [
+            "(a) Subspace-block enrichment"
+        ],
+        "chart_footnote": [],
+        "bbox": [
+            84,
+            65,
+            486,
+            147
+        ],
+        "page_idx": 14
+    },
+    {
+        "type": "chart",
+        "img_path": "images/9514c0a9a309f0851a537d843c02ac530f3c04332079674a99dfb63dd03fdf70.jpg",
+        "content": "",
+        "chart_caption": [],
+        "chart_footnote": [],
+        "bbox": [
+            84,
+            150,
+            485,
+            270
+        ],
+        "page_idx": 14
+    },
+    {
+        "type": "chart",
+        "img_path": "images/1912fd243df2c5db5e96b1b021ab345ab40c883f5b43b18798a8129efee9f69e.jpg",
+        "content": "",
+        "chart_caption": [
+            "(a) Subspace-block enrichment"
+        ],
+        "chart_footnote": [],
+        "bbox": [
+            509,
+            65,
+            913,
+            141
+        ],
+        "page_idx": 14
+    },
+    {
+        "type": "chart",
+        "img_path": "images/38e674d07e184db2fb006dec6638b5fc899d9cf035612aaefe51a69d968eb4e2.jpg",
+        "content": "",
+        "chart_caption": [],
+        "chart_footnote": [],
+        "bbox": [
+            509,
+            151,
+            911,
+            272
+        ],
+        "page_idx": 14
+    },
+    {
+        "type": "chart",
+        "img_path": "images/a3dcfe4065cdb4d629e03e2bab2654009c2f460d3677261ed63b3ae400955002.jpg",
+        "content": "",
+        "chart_caption": [
+            "(c) Global overlap and observed validation checkpoints"
+        ],
+        "chart_footnote": [],
+        "bbox": [
+            88,
+            279,
+            486,
+            397
+        ],
+        "page_idx": 14
+    },
+    {
+        "type": "chart",
+        "img_path": "images/319ef49efa11c42f9390eccb44dc4bde351eabdbc9eb661d86a0f91e2b4880ef.jpg",
+        "content": "",
+        "chart_caption": [
+            "(c) Global overlap and observed validation checkpoints",
+            "Figure 8: Stepwise update overlap and validation performance. The red curve is the 5-step moving average of excess principalsubspace overlap; the blue curve is validation accuracy. In both runs, episodes of elevated overlap accompany subsequent gradual degradation. This observation is correlational."
+        ],
+        "chart_footnote": [],
+        "bbox": [
+            514,
+            279,
+            911,
+            397
+        ],
+        "page_idx": 14
+    },
+    {
+        "type": "chart",
+        "img_path": "images/c66403fffc2346c7ea7b8651dcdf28571caffc9d0567ad939a7e1642dc38783e.jpg",
+        "content": "",
+        "chart_caption": [],
+        "chart_footnote": [],
+        "bbox": [
+            88,
+            580,
+            281,
+            685
+        ],
+        "page_idx": 14
+    },
+    {
+        "type": "chart",
+        "img_path": "images/478f1b758dfa740da52fa4a1f21613c961f3f7e771d552b444461031b6b39cee.jpg",
+        "content": "",
+        "chart_caption": [
+            "(b) Subspace-specific intervention"
+        ],
+        "chart_footnote": [],
+        "bbox": [
+            287,
+            580,
+            475,
+            672
+        ],
+        "page_idx": 14
+    },
+    {
+        "type": "chart",
+        "img_path": "images/76a1084f5eb54024b68097f90ffd310123de7bcf0bce9e1af5be81ecf35e2028.jpg",
+        "content": "",
+        "chart_caption": [],
+        "chart_footnote": [],
+        "bbox": [
+            521,
+            579,
+            715,
+            684
+        ],
+        "page_idx": 14
+    },
+    {
+        "type": "chart",
+        "img_path": "images/12fa961b1b6a959397f3f1dfdc8289428a53228274b91fd92c1719accba2af35.jpg",
+        "content": "",
+        "chart_caption": [
+            "(b) Subspace-specific intervention",
+            "Figure 9: Additional controlled intervention on the step-125 GRPO update of Qwen3-8B on MATH500. (a) Increasing the principal-overlapping component under layer-wise norm matching produces a dose-dependent accuracy drop. (b) Orthogonalization improves accuracy, whereas matched principal-subspace injection is substantially more harmful than a random-subspace intervention.",
+            "Figure 10: Additional controlled intervention on the step-70 GRPO update of GLM on Humaneval. (a) Increasing the principal-overlapping component under layer-wise norm matching produces a dose-dependent accuracy drop. (b) Orthogonalization improves accuracy, whereas matched principal-subspace injection is substantially more harmful than a random-subspace intervention."
+        ],
+        "chart_footnote": [],
+        "bbox": [
+            720,
+            580,
+            908,
+            672
+        ],
+        "page_idx": 14
+    }
+]
