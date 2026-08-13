@@ -1,0 +1,4128 @@
+[
+    {
+        "type": "text",
+        "text": "Causal inference for group-contaminated structured outcomes: observable quotients, lossless reduction and exact randomization inference",
+        "text_level": 1,
+        "bbox": [
+            132,
+            138,
+            861,
+            218
+        ],
+        "page_idx": 0
+    },
+    {
+        "type": "text",
+        "text": "Usef Faghihi<sup>†</sup> Amir Saki<sup>†</sup>",
+        "bbox": [
+            370,
+            238,
+            624,
+            257
+        ],
+        "page_idx": 0
+    },
+    {
+        "type": "text",
+        "text": "D´epartement de math´ematiques et d’informatique Universit´e du Qu´ebec \\`a Trois-Rivi\\`eres Trois-Rivi\\`eres, Qu´ebec, Canada",
+        "bbox": [
+            318,
+            266,
+            679,
+            316
+        ],
+        "page_idx": 0
+    },
+    {
+        "type": "text",
+        "text": "<sup>†</sup>These authors contributed equally to this work. Usef Faghihi: usef.faghihi@uqtr.ca Amir Saki: amir.saki@uqtr.ca",
+        "bbox": [
+            323,
+            323,
+            673,
+            375
+        ],
+        "page_idx": 0
+    },
+    {
+        "type": "text",
+        "text": "August 13, 2026",
+        "bbox": [
+            428,
+            387,
+            568,
+            405
+        ],
+        "page_idx": 0
+    },
+    {
+        "type": "text",
+        "text": "Abstract",
+        "text_level": 2,
+        "bbox": [
+            460,
+            440,
+            537,
+            454
+        ],
+        "page_idx": 0
+    },
+    {
+        "type": "text",
+        "text": "Structured potential outcomes such as microscopy images may be recorded after an unknown, unit-specific transformation. If that transformation can depend on treatment, covariates or the intrinsic outcome, raw-coordinate analyses may mix biological efects with acquisition geometry. We study the unrestricted observation model X = Γ · Y(A) and characterize its observable information: a target is uniformly recoverable exactly when it is constant on group orbits, while a Borel maximal invariant retains every measurable invariant target. We then distinguish observability from statistical losslessness. A quotient-faithful reconstruction theorem shows that quotient reduction is suficient for the full transformed experiment exactly when the conditional law of the raw observation given treatment, covariates and the quotient has a parameter-free version. Conditional Haar contamination on a compact group yields Blackwell equivalence as a special case; it is not imposed in the main model. We also separate independent site-specific product actions from shared diagonal actions and show why componentwise canonicalization can discard relative cross-site information. Under explicit metric and kernel regularity, an approximate-contamination theorem bounds quotient-law Wasserstein error and the induced perturbation of population maximum mean discrepancy. For finite-support multichannel lattice images, we construct a maximal invariant under integer translations and quarter turns, combine its characteristic Gaussian kernel with a complete paired-swap test, and retain the original simulations and RxRx1 HUVEC study. Under the sharp null, the quotient test rejected in 0.052 of simulation replicates; at unit efect strength its power was 0.992. The primary RxRx1 contrast had an enumerated paired-swap p-value of 0.0078.",
+        "bbox": [
+            156,
+            462,
+            839,
+            766
+        ],
+        "page_idx": 0
+    },
+    {
+        "type": "text",
+        "text": "Keywords: causal inference; group action; maximal invariant; Blackwell suficiency; microscopy image; quotient space; randomization test; structured outcome.",
+        "bbox": [
+            111,
+            777,
+            882,
+            811
+        ],
+        "page_idx": 0
+    },
+    {
+        "type": "text",
+        "text": "1 Introduction",
+        "text_level": 2,
+        "bbox": [
+            114,
+            835,
+            303,
+            853
+        ],
+        "page_idx": 0
+    },
+    {
+        "type": "text",
+        "text": "Many experimental outcomes are structured objects rather than scalars. An image, shape, network or function may be represented in a coordinate system that varies from unit to unit. In microscopy,",
+        "bbox": [
+            111,
+            868,
+            883,
+            902
+        ],
+        "page_idx": 0
+    },
+    {
+        "type": "aside_text",
+        "text": "arXiv:2608.11954v1 [stat.ME] 12 Aug 2026",
+        "bbox": [
+            29,
+            349,
+            65,
+            814
+        ],
+        "page_idx": 0
+    },
+    {
+        "type": "page_number",
+        "text": "1",
+        "bbox": [
+            493,
+            935,
+            504,
+            948
+        ],
+        "page_idx": 0
+    },
+    {
+        "type": "text",
+        "text": "for example, translation or orientation can arise from acquisition and preprocessing rather than from the biological intervention. We study the observation model",
+        "bbox": [
+            111,
+            92,
+            883,
+            126
+        ],
+        "page_idx": 1
+    },
+    {
+        "type": "equation",
+        "img_path": "images/c87ee1e5735df569bf0a03b61cd73275cfa01ac7d9ed82fb5a019c8788c81746.jpg",
+        "text": "$$\nX = \\Gamma \\cdot Y ( A ) ,\\tag{1.1}\n$$",
+        "text_format": "latex",
+        "bbox": [
+            439,
+            138,
+            555,
+            156
+        ],
+        "page_idx": 1
+    },
+    {
+        "type": "text",
+        "text": "where A is treatment, $Y ( a )$ is the intrinsic structured potential outcome and Γ is an unobserved group element. Crucially, no independence between Γ and treatment, covariates or potential outcomes is imposed. Averaging over a posited nuisance distribution is therefore neither required nor generally available.",
+        "bbox": [
+            111,
+            170,
+            885,
+            238
+        ],
+        "page_idx": 1
+    },
+    {
+        "type": "text",
+        "text": "The first question is an information boundary: which targets of Y(a) are determined by the transformed observation? Orbit invariance gives an exact answer. The second question is causal: under what design or exchangeability conditions does the observed quotient distribution identify its interventional counterpart? A third, logically stronger question is statistical: when does discarding the within-orbit coordinate lose no information about the full family of observed-data laws? Maximal invariance answers the first question, but not the third. Conflating those statements would overstate what quotienting achieves.",
+        "bbox": [
+            111,
+            239,
+            885,
+            358
+        ],
+        "page_idx": 1
+    },
+    {
+        "type": "text",
+        "text": "This paper develops a theorem-to-algorithm-to-application account of these three layers. The principal additions to the original outcome-level framework are:",
+        "bbox": [
+            111,
+            358,
+            883,
+            393
+        ],
+        "page_idx": 1
+    },
+    {
+        "type": "text",
+        "text": "1. a sharp suficiency boundary based on a common conditional law and a quotient-faithful reconstruction kernel;",
+        "bbox": [
+            132,
+            404,
+            883,
+            438
+        ],
+        "page_idx": 1
+    },
+    {
+        "type": "text",
+        "text": "2. a conditional-Haar Blackwell-equivalence corollary, stated only as a special case of the unrestricted contamination framework;",
+        "bbox": [
+            132,
+            450,
+            883,
+            483
+        ],
+        "page_idx": 1
+    },
+    {
+        "type": "text",
+        "text": "3. a product-versus-diagonal action result that identifies when sitewise canonicalization is appropriate and when it erases relative configuration;",
+        "bbox": [
+            132,
+            496,
+            883,
+            530
+        ],
+        "page_idx": 1
+    },
+    {
+        "type": "text",
+        "text": "4. an approximate-contamination stability result under explicit orbit-metric and reproducingkernel assumptions.",
+        "bbox": [
+            133,
+            541,
+            883,
+            575
+        ],
+        "page_idx": 1
+    },
+    {
+        "type": "text",
+        "text": "The individual ingredients—maximal invariants, measurable factorization, statistical suficiency, Blackwell comparison, Haar measure, characteristic kernels and Fisher randomization—are classical [2, 5, 6, 25]. The contribution claimed here is their outcome-level causal synthesis under unrestricted latent group contamination, together with an explicit noncompact lattice construction and a finitesample inferential workflow. We do not claim novelty for those classical ingredients separately.",
+        "bbox": [
+            111,
+            587,
+            883,
+            672
+        ],
+        "page_idx": 1
+    },
+    {
+        "type": "text",
+        "text": "Existing causal methods for metric- and random-object outcomes generally take the structured outcome as directly observed [1, 11, 20]; registration-based functional methods address a related preprocessing problem [15]. Topological transforms can be injective on specified shape classes when suficiently rich directional information is available [4, 24]. Our setting is complementary: the observation equation itself contains a latent, unit-specific action, and the target is the full observable orbit rather than a chosen low-dimensional summary.",
+        "bbox": [
+            111,
+            672,
+            885,
+            775
+        ],
+        "page_idx": 1
+    },
+    {
+        "type": "text",
+        "text": "The application uses two-site, six-channel RxRx1 wells. Under separate site-specific acquisition motions the nuisance group is a product of lattice rigid-motion groups. Translation normalization and finite rotational minimization yield a measurable maximal invariant without placing a probability law on the noncompact translation group. A Gaussian kernel on canonical representatives is characteristic for quotient laws, and complete enumeration of the reported paired assignment mechanism yields finite-sample inference for the quotient Fisher sharp null.",
+        "bbox": [
+            111,
+            775,
+            885,
+            877
+        ],
+        "page_idx": 1
+    },
+    {
+        "type": "text",
+        "text": "Section 2 develops observability and quotient-law identification. Section 3 gives the statisticallosslessness boundary and Haar special case. Section 4 distinguishes product and diagonal actions.",
+        "bbox": [
+            111,
+            877,
+            883,
+            911
+        ],
+        "page_idx": 1
+    },
+    {
+        "type": "page_number",
+        "text": "2",
+        "bbox": [
+            491,
+            935,
+            504,
+            948
+        ],
+        "page_idx": 1
+    },
+    {
+        "type": "text",
+        "text": "Section 5 proves stability under approximate contamination. Sections 6 and 7 give the image construction and exact test. Sections 8 and 9 report the preserved empirical results. Proof details that would interrupt the main argument appear in Appendix A.",
+        "bbox": [
+            111,
+            90,
+            883,
+            143
+        ],
+        "page_idx": 2
+    },
+    {
+        "type": "text",
+        "text": "2 Observable quotient targets and causal identification",
+        "text_level": 2,
+        "bbox": [
+            112,
+            166,
+            766,
+            185
+        ],
+        "page_idx": 2
+    },
+    {
+        "type": "text",
+        "text": "2.1 Measurable group contamination",
+        "text_level": 2,
+        "bbox": [
+            112,
+            199,
+            486,
+            217
+        ],
+        "page_idx": 2
+    },
+    {
+        "type": "text",
+        "text": "Let Y, C, S and G be standard Borel spaces. Assume that G is a measurable group and acts on Y through a jointly Borel map $( g , y ) \\mapsto g \\cdot y$ . The orbit of y is $[ y ] _ { G } = \\{ g \\cdot y : g \\in G \\}$ . A Borel map $\\tau : \\mathcal { V } \\to \\mathcal { S }$ is invariant if $\\tau ( g \\cdot y ) = \\tau ( y )$ for all $( g , y )$",
+        "bbox": [
+            111,
+            226,
+            883,
+            277
+        ],
+        "page_idx": 2
+    },
+    {
+        "type": "text",
+        "text": "Let C denote the observed pretreatment covariates, taking values in the standard Borel space C, and let A denote the realized treatment assignment, taking values in a finite set A. For each $a \\in { \\mathcal { A } }$ , let $Y ( a )$ be the intrinsic potential outcome under treatment a in the potential-outcomes framework [19]. We observe $O = ( C , A , X )$ ), where X satisfies (1.1). The conditional distribution of Γ given C, A and the potential outcomes is unrestricted.",
+        "bbox": [
+            111,
+            277,
+            883,
+            363
+        ],
+        "page_idx": 2
+    },
+    {
+        "type": "text",
+        "text": "Theorem 2.1 (Sharp observability). For a Borel target $\\tau : \\mathcal { V } \\to \\mathcal { S }$ , the following are equivalent:",
+        "bbox": [
+            112,
+            375,
+            870,
+            391
+        ],
+        "page_idx": 2
+    },
+    {
+        "type": "text",
+        "text": "1. there is a Borel decoder $D : \\mathcal { y }  \\mathcal { S }$ such that $D ( g \\cdot y ) = \\tau ( y )$ for every $g \\in G$ and $y \\in \\mathcal { V } _ { : }$",
+        "bbox": [
+            135,
+            402,
+            854,
+            420
+        ],
+        "page_idx": 2
+    },
+    {
+        "type": "text",
+        "text": "2. τ is G-invariant.",
+        "bbox": [
+            133,
+            431,
+            295,
+            446
+        ],
+        "page_idx": 2
+    },
+    {
+        "type": "text",
+        "text": "Proof. $\\mathrm { I f } ~ \\tau$ is invariant, take $D = \\tau$ . Conversely, the identity element gives $D ( z ) = \\tau ( z )$ for every z. Hence $\\tau ( g \\cdot y ) = D ( g \\cdot y ) = \\tau ( y )$ □",
+        "bbox": [
+            112,
+            459,
+            883,
+            494
+        ],
+        "page_idx": 2
+    },
+    {
+        "type": "text",
+        "text": "Corollary 2.2 (Nonidentifiability outside the quotient). ${ \\cal I } f \\tau$ is not invariant, two data-generating processes satisfying (1.1) can induce the same observed law while giving diferent laws $o f \\tau \\{ Y ( a ) \\}$ for any fixed a.",
+        "bbox": [
+            111,
+            505,
+            882,
+            556
+        ],
+        "page_idx": 2
+    },
+    {
+        "type": "text",
+        "text": "Proof. Choose y and g with $\\tau ( g \\cdot y ) \\neq \\tau ( y )$ . In one process set $Y ( a ) = y$ and $\\Gamma = g ;$ in the other set $Y ( a ) = g \\cdot y$ and $\\Gamma = e$ . Both give $X = g \\cdot y$ , but their target values difer. □",
+        "bbox": [
+            112,
+            568,
+            883,
+            602
+        ],
+        "page_idx": 2
+    },
+    {
+        "type": "text",
+        "text": "2.2 Maximal invariant and factorization",
+        "text_level": 2,
+        "bbox": [
+            112,
+            621,
+            514,
+            637
+        ],
+        "page_idx": 2
+    },
+    {
+        "type": "text",
+        "text": "Definition 2.3. A Borel map $M : \\mathcal { V }  \\mathcal { S }$ is a maximal invariant when",
+        "bbox": [
+            111,
+            647,
+            674,
+            664
+        ],
+        "page_idx": 2
+    },
+    {
+        "type": "equation",
+        "img_path": "images/3a14120c99ac6ff792f053e95688a9ec2d56f8aa1e072c87e2a324ad10c92976.jpg",
+        "text": "$$\nM ( y ) = M ( z ) \\quad \\Longleftrightarrow \\quad z = g \\cdot y { \\mathrm { ~ f o r ~ s o m e ~ } } g \\in G .\n$$",
+        "text_format": "latex",
+        "bbox": [
+            305,
+            679,
+            687,
+            695
+        ],
+        "page_idx": 2
+    },
+    {
+        "type": "text",
+        "text": "Theorem 2.4 (Borel factorization). Let $\\mathcal { \\ V } , \\mathcal { S } , \\mathcal { T }$ be standard Borel spaces and $M : \\mathcal { V }  \\mathcal { S }$ a Borel maximal invariant. Every Borel invariant $h : \\mathcal { V }  \\mathcal { T }$ admits a Borel factorization $h = \\bar { h } \\circ M$ . The restriction of h<sup>¯</sup> to $M ( \\mathfrak { V } )$ is unique.",
+        "bbox": [
+            112,
+            709,
+            885,
+            761
+        ],
+        "page_idx": 2
+    },
+    {
+        "type": "text",
+        "text": "The proof, given in Appendix A, uses saturation of $h ^ { - 1 } ( B )$ , Lusin separation of two disjoint analytic images and the measurable factorization lemma; these are standard tools of descriptive set theory [10]. Thus M retains every measurable invariant target; it does not follow that $M ( X )$ is suficient for a statistical parameter.",
+        "bbox": [
+            111,
+            772,
+            883,
+            840
+        ],
+        "page_idx": 2
+    },
+    {
+        "type": "page_number",
+        "text": "3",
+        "bbox": [
+            493,
+            935,
+            504,
+            948
+        ],
+        "page_idx": 2
+    },
+    {
+        "type": "text",
+        "text": "2.3 Identification of the interventional quotient law",
+        "text_level": 2,
+        "bbox": [
+            112,
+            90,
+            625,
+            108
+        ],
+        "page_idx": 3
+    },
+    {
+        "type": "text",
+        "text": "For each $a \\in { \\mathcal { A } }$ , define the quotient potential outcome",
+        "bbox": [
+            111,
+            117,
+            542,
+            133
+        ],
+        "page_idx": 3
+    },
+    {
+        "type": "equation",
+        "img_path": "images/59f601832f2d6396a7661b6c10872622a966c43823ae39529dcedea2cd0308fa.jpg",
+        "text": "$$\nQ ( a ) = M \\{ Y ( a ) \\} ,\n$$",
+        "text_format": "latex",
+        "bbox": [
+            423,
+            146,
+            571,
+            164
+        ],
+        "page_idx": 3
+    },
+    {
+        "type": "text",
+        "text": "and define the observed quotient outcome by $Q = M ( X )$ . Invariance then gives",
+        "bbox": [
+            111,
+            176,
+            740,
+            193
+        ],
+        "page_idx": 3
+    },
+    {
+        "type": "equation",
+        "img_path": "images/9773cf08fb363a3cb6d12ea7f219dd63330a8d8003a64fdea8634e342f484290.jpg",
+        "text": "$$\nQ = M ( X ) = M \\{ \\Gamma \\cdot Y ( A ) \\} = M \\{ Y ( A ) \\} = Q ( A )\\tag{2.1}\n$$",
+        "text_format": "latex",
+        "bbox": [
+            302,
+            205,
+            692,
+            223
+        ],
+        "page_idx": 3
+    },
+    {
+        "type": "text",
+        "text": "without imposing any restriction on the conditional distribution of Γ.",
+        "bbox": [
+            111,
+            234,
+            660,
+            252
+        ],
+        "page_idx": 3
+    },
+    {
+        "type": "text",
+        "text": "Theorem 2.5 (Identification of the full quotient law). Suppose, for every $a \\in { \\mathcal { A } } ,$ , that quotient consistency (2.1) holds, $Q ( a ) \\perp \\perp A \\mid C$ , and $\\mathbb { P } ( A = a \\mid C ) > 0$ almost surely. Then, for every Borel $B \\subseteq S$",
+        "bbox": [
+            112,
+            262,
+            885,
+            313
+        ],
+        "page_idx": 3
+    },
+    {
+        "type": "equation",
+        "img_path": "images/8b14739b64f9116594aa1df62669f6c38fe1d5629ca757ecfb0c5285f16f32d9.jpg",
+        "text": "$$\n\\mathbb { P } \\{ Q ( a ) \\in B \\} = \\int \\mathbb { P } ( Q \\in B \\mid A = a , C = c ) d P _ { C } ( c ) .\\tag{2.2}\n$$",
+        "text_format": "latex",
+        "bbox": [
+            294,
+            310,
+            700,
+            344
+        ],
+        "page_idx": 3
+    },
+    {
+        "type": "text",
+        "text": "Consequently, the entire interventional law of the maximal invariant is identified.",
+        "bbox": [
+            112,
+            349,
+            753,
+            366
+        ],
+        "page_idx": 3
+    },
+    {
+        "type": "text",
+        "text": "Proof. Standard Borel spaces admit regular conditional probabilities [9]. Apply iterated expectation, conditional exchangeability, positivity and consistency in that order. Equality for every Borel B determines the probability measure on S. □",
+        "bbox": [
+            111,
+            376,
+            883,
+            428
+        ],
+        "page_idx": 3
+    },
+    {
+        "type": "text",
+        "text": "By Theorem 2.4, the interventional law of any Borel invariant target is the pushforward of (2.2) through h<sup>¯</sup>. This is the ordinary adjustment formula [17, 18] applied to a quotient-valued outcome, and it remains distinct from the suficiency question considered next.",
+        "bbox": [
+            111,
+            439,
+            883,
+            491
+        ],
+        "page_idx": 3
+    },
+    {
+        "type": "text",
+        "text": "3 When quotient reduction is statistically lossless",
+        "text_level": 2,
+        "bbox": [
+            112,
+            513,
+            707,
+            534
+        ],
+        "page_idx": 3
+    },
+    {
+        "type": "text",
+        "text": "Let Θ index a family of observed-data laws. We use the standard comparison-of-experiments framework [12, 23]. Put",
+        "bbox": [
+            111,
+            547,
+            883,
+            580
+        ],
+        "page_idx": 3
+    },
+    {
+        "type": "equation",
+        "img_path": "images/8f064fc8fb1b524a0486649761618b1fd2202ffdebf5087623a414a03d110685.jpg",
+        "text": "$$\n{ \\cal O } _ { \\mathrm { f u l l } } = ( C , A , X ) , \\qquad { \\cal O } _ { \\mathrm { q u o t } } = T ( { \\cal O } _ { \\mathrm { f u l l } } ) = ( C , A , M ( X ) ) ,\n$$",
+        "text_format": "latex",
+        "bbox": [
+            276,
+            593,
+            717,
+            611
+        ],
+        "page_idx": 3
+    },
+    {
+        "type": "text",
+        "text": "and write $\\mathcal { E } _ { \\mathrm { f u l l } } = \\{ P _ { \\theta } ^ { \\mathrm { f u l l } } : \\theta \\in \\Theta \\}$ and $\\mathcal { E } _ { \\mathrm { q u o t } } = \\{ P _ { \\theta } ^ { \\mathrm { q u o t } } : \\theta \\in \\Theta \\}$ . Since T is deterministic, the full experiment Blackwell-dominates the quotient experiment. The reverse comparison requires an additional condition.",
+        "bbox": [
+            111,
+            621,
+            883,
+            674
+        ],
+        "page_idx": 3
+    },
+    {
+        "type": "text",
+        "text": "Definition 3.1 (Quotient-faithful kernel). A Markov kernel K from the quotient sample space to the full sample space is quotient-faithful for ${ \\mathcal E _ { \\mathrm { q u o t } } }$ if",
+        "bbox": [
+            111,
+            684,
+            883,
+            719
+        ],
+        "page_idx": 3
+    },
+    {
+        "type": "equation",
+        "img_path": "images/14f2f401f47858e069a3708360414308956e686ccfc43be050bed3e29d7880c2.jpg",
+        "text": "$$\nK { \\big ( } s , T ^ { - 1 } ( \\{ s \\} ) { \\big ) } = 1 \\qquad P _ { \\theta } ^ { \\mathrm { q u o t } } { \\mathrm { - a l m o s t ~ s u r e l y ~ f o r ~ e v e r y ~ } } \\theta \\in \\Theta .\n$$",
+        "text_format": "latex",
+        "bbox": [
+            258,
+            729,
+            735,
+            750
+        ],
+        "page_idx": 3
+    },
+    {
+        "type": "text",
+        "text": "Thus, up to quotient-null sets under each member of the experiment, the kernel reconstructs a raw representative without changing the supplied covariates, treatment, or quotient value.",
+        "bbox": [
+            111,
+            761,
+            883,
+            795
+        ],
+        "page_idx": 3
+    },
+    {
+        "type": "text",
+        "text": "Theorem 3.2 (Boundary of lossless quotient reduction). Assume the full and quotient sample spaces are standard Borel. The following are equivalent:",
+        "bbox": [
+            111,
+            804,
+            885,
+            839
+        ],
+        "page_idx": 3
+    },
+    {
+        "type": "text",
+        "text": "1. there is a Markov kernel K, independent of θ, such that, for every $\\theta \\in \\Theta$ , K is a regular conditional distribution of $O _ { \\mathrm { f u l l } }$ given $O _ { \\mathrm { { q u o t } } }$ under $P _ { \\theta } ^ { \\mathrm { f u l l } } ;$ equivalently,",
+        "bbox": [
+            133,
+            849,
+            885,
+            883
+        ],
+        "page_idx": 3
+    },
+    {
+        "type": "equation",
+        "img_path": "images/1afad0873ea7b6980fd4b4fa17cc96b36fe524a09dd6f30e9f6a87e56bcc1187.jpg",
+        "text": "$$\nK ( s , \\cdot ) = \\mathrm { L a w } _ { \\theta } ( { \\cal O } _ { \\mathrm { f u l l } } \\ | \\ { \\cal O } _ { \\mathrm { q u o t } } = s ) \\quad P _ { \\theta } ^ { \\mathrm { q u o t } } { - a l m o s t \\ s u r e l y } .\n$$",
+        "text_format": "latex",
+        "bbox": [
+            303,
+            893,
+            735,
+            914
+        ],
+        "page_idx": 3
+    },
+    {
+        "type": "page_number",
+        "text": "4",
+        "bbox": [
+            493,
+            935,
+            504,
+            948
+        ],
+        "page_idx": 3
+    },
+    {
+        "type": "text",
+        "text": "2. there is a parameter-free quotient-faithful kernel K such that",
+        "bbox": [
+            133,
+            92,
+            638,
+            108
+        ],
+        "page_idx": 4
+    },
+    {
+        "type": "equation",
+        "img_path": "images/d66d8f51686a36422ab2736a0bb34051d34f813ce728f1e65a67fcd62acfa96c.jpg",
+        "text": "$$\nP _ { \\theta } ^ { \\mathrm { q u o t } } K = P _ { \\theta } ^ { \\mathrm { f u l l } } \\qquad f o r \\ e v e r y \\ \\theta \\in \\Theta .\\tag{3.1}\n$$",
+        "text_format": "latex",
+        "bbox": [
+            377,
+            116,
+            663,
+            136
+        ],
+        "page_idx": 4
+    },
+    {
+        "type": "text",
+        "text": "When these conditions hold, $O _ { \\mathrm { q u o t } }$ is suficient for ${ \\mathcal E } _ { \\mathrm { f u l l } }$ and $\\mathcal { E } _ { \\mathrm { f u l l } } \\equiv _ { B } \\mathcal { E } _ { \\mathrm { q u o t } }$ . Hence every bounded decision problem has the same attainable risk set under the two experiments. If the family is dominated, the conditions are also equivalent to Fisher–Neyman factorization through $O _ { \\mathrm { { q u o t } } }$",
+        "bbox": [
+            112,
+            150,
+            885,
+            202
+        ],
+        "page_idx": 4
+    },
+    {
+        "type": "text",
+        "text": "Proof. Write $Q _ { \\theta } : = P _ { \\theta } ^ { \\mathrm { q u o t } }$ . Suppose first that (1) holds. By the disintegration identity for the common regular conditional distribution, for every measurable set B in the full sample space,",
+        "bbox": [
+            111,
+            208,
+            883,
+            244
+        ],
+        "page_idx": 4
+    },
+    {
+        "type": "equation",
+        "img_path": "images/ab041a48971c70ea14d92559a7d2758de520ad597e4193bf1b2ca072289ab6ba.jpg",
+        "text": "$$\nP _ { \\theta } ^ { \\mathrm { f u l l } } ( B ) = \\int K ( s , B ) Q _ { \\theta } ( d s ) = ( Q _ { \\theta } K ) ( B ) .\n$$",
+        "text_format": "latex",
+        "bbox": [
+            328,
+            251,
+            668,
+            284
+        ],
+        "page_idx": 4
+    },
+    {
+        "type": "text",
+        "text": "Hence $Q _ { \\theta } K = P _ { \\theta } ^ { \\mathrm { f u l l } }$ for every θ. Moreover, since $O _ { \\mathrm { q u o t } } = T ( O _ { \\mathrm { f u l l } } )$ deterministically, a regular conditional law of $O _ { \\mathrm { f u l l } }$ given $O _ { \\mathrm { q u o t } } = s$ is supported on $T ^ { - 1 } ( \\{ s \\} )$ , Q<sub>θ</sub>-almost surely. Thus K is quotient-faithful, proving (2).",
+        "bbox": [
+            111,
+            292,
+            883,
+            344
+        ],
+        "page_idx": 4
+    },
+    {
+        "type": "text",
+        "text": "Conversely, suppose that (2) holds. Let B be measurable in the full sample space and let D be measurable in the quotient sample space. Quotient faithfulness implies that, Q<sub>θ</sub>-almost surely,",
+        "bbox": [
+            111,
+            344,
+            883,
+            380
+        ],
+        "page_idx": 4
+    },
+    {
+        "type": "equation",
+        "img_path": "images/32535ab6f14f5d7f386e12457fdde2d3461cd922bb3b95f366a121110e234a48.jpg",
+        "text": "$$\nK \\big ( s , B \\cap T ^ { - 1 } ( D ) \\big ) = \\mathbf { 1 } _ { D } ( s ) K ( s , B ) .\n$$",
+        "text_format": "latex",
+        "bbox": [
+            356,
+            387,
+            640,
+            407
+        ],
+        "page_idx": 4
+    },
+    {
+        "type": "text",
+        "text": "Indeed, conditional on input $s ,$ the kernel is supported on $T ^ { - 1 } ( \\{ s \\} )$ ; this fibre is contained in $T ^ { - 1 } ( D )$ when $s \\in D$ and is disjoint from $T ^ { - 1 } ( D )$ when $s \\notin D$ . Using $Q _ { \\theta } K = P _ { \\theta } ^ { \\mathrm { f u l l } }$ with the measurable set $B \\cap T ^ { - 1 } ( D )$ therefore gives",
+        "bbox": [
+            111,
+            416,
+            883,
+            468
+        ],
+        "page_idx": 4
+    },
+    {
+        "type": "equation",
+        "img_path": "images/72889e7261d15f4e2ed0e6a3ea421c5c6c4d2d56566086d46bef3ccf5ad8edbc.jpg",
+        "text": "$$\n\\begin{array} { l } { { P _ { \\theta } ^ { \\mathrm { f u l l } } \\bigl ( B \\cap T ^ { - 1 } ( D ) \\bigr ) = \\displaystyle \\int K \\bigl ( s , B \\cap T ^ { - 1 } ( D ) \\bigr ) \\ Q _ { \\theta } ( d s ) } } \\\\ { { \\qquad = \\displaystyle \\int _ { D } K ( s , B ) Q _ { \\theta } ( d s ) . } } \\end{array}\n$$",
+        "text_format": "latex",
+        "bbox": [
+            297,
+            477,
+            697,
+            545
+        ],
+        "page_idx": 4
+    },
+    {
+        "type": "text",
+        "text": "Since $T ( \\cal { O } _ { \\mathrm { f u l l } } ) = \\cal { O } _ { \\mathrm { q u o t } }$ , this is precisely",
+        "bbox": [
+            111,
+            553,
+            423,
+            570
+        ],
+        "page_idx": 4
+    },
+    {
+        "type": "equation",
+        "img_path": "images/147338b1a00c6aa02b453490ebbc4711d9a2d829df8e5d1e2e779559adca9703.jpg",
+        "text": "$$\nP _ { \\theta } ^ { \\mathrm { f u l l } } ( O _ { \\mathrm { f u l l } } \\in B , \\ O _ { \\mathrm { q u o t } } \\in D ) = \\int _ { D } K ( s , B ) P _ { \\theta } ^ { \\mathrm { q u o t } } ( d s ) ,\n$$",
+        "text_format": "latex",
+        "bbox": [
+            294,
+            579,
+            702,
+            613
+        ],
+        "page_idx": 4
+    },
+    {
+        "type": "text",
+        "text": "the defining identity for K to be a regular conditional distribution of $O _ { \\mathrm { f u l l } }$ given $O _ { \\mathrm { q u o t } }$ . The kernel is common to all θ, so (1) follows.",
+        "bbox": [
+            111,
+            619,
+            883,
+            654
+        ],
+        "page_idx": 4
+    },
+    {
+        "type": "text",
+        "text": "The deterministic map T gives $\\mathcal { E } _ { \\mathrm { f u l l } } \\ \\succeq _ { B } \\ \\mathcal { E } _ { \\mathrm { q u o t } }$ , while K gives $\\mathcal { E } _ { \\mathrm { q u o t } } \\succeq _ { B } \\mathcal { E } _ { \\mathrm { f u l l } }$ . Hence the experiments are Blackwell equivalent. The decision-theoretic assertion follows from Blackwell equivalence, and the dominated factorization equivalence is the standard Fisher–Neyman suficiency theorem. □",
+        "bbox": [
+            111,
+            655,
+            883,
+            723
+        ],
+        "page_idx": 4
+    },
+    {
+        "type": "text",
+        "text": "The quotient-faithfulness clause is essential for the stated equivalence. An arbitrary reverse kernel may reproduce each full marginal law while scrambling quotient values; such a kernel need not be a conditional distribution given the supplied quotient.",
+        "bbox": [
+            111,
+            733,
+            883,
+            785
+        ],
+        "page_idx": 4
+    },
+    {
+        "type": "text",
+        "text": "Example 3.3 (Maximal invariance is not suficiency). Let $G = \\{ - 1 , 1 \\}$ act on $\\{ - 1 , 1 \\}$ by multiplication. The maximal invariant is constant. Let $Y = 1$ and let $\\mathbb { P } _ { \\theta } ( \\Gamma = 1 ) = \\theta$ , so $X = \\Gamma$ and $\\mathbb { P } _ { \\theta } ( X = 1 ) = \\theta$ . The raw observation identifies θ, whereas the quotient law is identical for every θ. Thus the conditional law of X given the quotient depends on θ and the quotient is not suficient. Under unrestricted contamination, within-orbit coordinates may carry information about the nuisance mechanism even though they carry no uniformly observable information about the intrinsic representative.",
+        "bbox": [
+            111,
+            792,
+            885,
+            912
+        ],
+        "page_idx": 4
+    },
+    {
+        "type": "page_number",
+        "text": "5",
+        "bbox": [
+            491,
+            935,
+            504,
+            948
+        ],
+        "page_idx": 4
+    },
+    {
+        "type": "text",
+        "text": "3.1 Conditional-Haar contamination as a special case",
+        "text_level": 2,
+        "bbox": [
+            112,
+            90,
+            643,
+            108
+        ],
+        "page_idx": 5
+    },
+    {
+        "type": "text",
+        "text": "Let G be compact and second countable, and let $\\mu _ { G }$ denote its normalized Haar probability measure. Assume that G acts jointly Borel measurably on Y and that $M : \\mathcal { V }  \\mathcal { S }$ is a Borel maximal invariant. Put",
+        "bbox": [
+            111,
+            117,
+            883,
+            167
+        ],
+        "page_idx": 5
+    },
+    {
+        "type": "equation",
+        "img_path": "images/7b63919911e907ecfbd57cea2f3a9251215105cc06c24bbf3c31cd60987a9cc0.jpg",
+        "text": "$$\nS _ { 0 } = M ( \\mathcal { V } ) ,\n$$",
+        "text_format": "latex",
+        "bbox": [
+            446,
+            169,
+            549,
+            185
+        ],
+        "page_idx": 5
+    },
+    {
+        "type": "text",
+        "text": "and assume that $ { \\boldsymbol { S } } _ { 0 }$ is a Borel subset of S. Let $s : { \\mathcal { S } } _ { 0 } \\to \\mathcal { V }$ be a Borel section satisfying",
+        "bbox": [
+            111,
+            194,
+            799,
+            210
+        ],
+        "page_idx": 5
+    },
+    {
+        "type": "equation",
+        "img_path": "images/9b0a0f7d26c0f91f30adffe6b95dfa0311f0818005cf49391e25f2a73e5178d2.jpg",
+        "text": "$$\nM \\{ s ( m ) \\} = m \\qquad \\mathrm { f o r ~ e v e r y ~ } m \\in S _ { 0 } .\n$$",
+        "text_format": "latex",
+        "bbox": [
+            351,
+            224,
+            643,
+            242
+        ],
+        "page_idx": 5
+    },
+    {
+        "type": "text",
+        "text": "For $m \\in S _ { 0 }$ and Borel $B \\subseteq \\mathcal { V }$ , define the orbit kernel",
+        "bbox": [
+            112,
+            256,
+            531,
+            272
+        ],
+        "page_idx": 5
+    },
+    {
+        "type": "equation",
+        "img_path": "images/d392dfa298df72301c97146c5b03d2df0232a6313d2dd08d3f9cccd258b022fc.jpg",
+        "text": "$$\nK _ { m } ( B ) = \\int _ { G } { \\bf 1 } _ { B } \\{ g \\cdot s ( m ) \\} d \\mu _ { G } ( g ) .\\tag{3.2}\n$$",
+        "text_format": "latex",
+        "bbox": [
+            359,
+            284,
+            633,
+            319
+        ],
+        "page_idx": 5
+    },
+    {
+        "type": "text",
+        "text": "The kernel may be extended arbitrarily and measurably from $ { \\boldsymbol { S } } _ { 0 }$ to $s ;$ its values outside $ { \\boldsymbol { S } } _ { 0 }$ are irrelevant because $M ( X ) \\in { \\cal S } _ { 0 }$ almost surely. Right invariance of Haar measure implies that $K _ { m }$ does not depend on the particular representative selected from the orbit indexed by m.",
+        "bbox": [
+            111,
+            329,
+            883,
+            381
+        ],
+        "page_idx": 5
+    },
+    {
+        "type": "text",
+        "text": "Corollary 3.4 (Conditional-Haar Blackwell equivalence). Suppose that, for every $\\theta \\in \\Theta$ ，",
+        "bbox": [
+            111,
+            392,
+            813,
+            409
+        ],
+        "page_idx": 5
+    },
+    {
+        "type": "equation",
+        "img_path": "images/8504ebe8c029ee59f2fff53cc6dbea50ef3f9e5ae81aa03eded19b473aa0d2d5.jpg",
+        "text": "$$\n\\operatorname { L a w } _ { \\theta } \\{ \\Gamma \\mid C , A , Y ( A ) \\} = \\mu _ { G }\\tag{3.3}\n$$",
+        "text_format": "latex",
+        "bbox": [
+            387,
+            422,
+            609,
+            440
+        ],
+        "page_idx": 5
+    },
+    {
+        "type": "text",
+        "text": "almost surely. Then, for $P _ { \\theta } ^ { \\mathrm { q u o t } }$ -almost every $( C , A , m )$",
+        "bbox": [
+            112,
+            453,
+            544,
+            472
+        ],
+        "page_idx": 5
+    },
+    {
+        "type": "equation",
+        "img_path": "images/a4965e76fa49068acaaadb4197083b57850e820dce673355bc1c328c7c863f53.jpg",
+        "text": "$$\n\\operatorname { L a w } _ { \\theta } \\{ X \\mid C , A , M ( X ) = m \\} = K _ { m }\n$$",
+        "text_format": "latex",
+        "bbox": [
+            357,
+            484,
+            638,
+            502
+        ],
+        "page_idx": 5
+    },
+    {
+        "type": "text",
+        "text": "has a version that is independent of θ. Consequently,",
+        "bbox": [
+            111,
+            516,
+            534,
+            534
+        ],
+        "page_idx": 5
+    },
+    {
+        "type": "equation",
+        "img_path": "images/a06def806e3d9fdc4055579649551b08be9a642da062b06b106b15dbbf12b99b.jpg",
+        "text": "$$\n\\mathcal { E } _ { \\mathrm { f u l l } } \\equiv _ { B } \\mathcal { E } _ { \\mathrm { q u o t } } .\n$$",
+        "text_format": "latex",
+        "bbox": [
+            439,
+            547,
+            555,
+            565
+        ],
+        "page_idx": 5
+    },
+    {
+        "type": "text",
+        "text": "Proof. Fix a Borel set $B \\subseteq \\mathcal { V }$ . The joint measurability of the action and the measurability of the section ensure that $m \\mapsto K _ { m } ( B )$ is Borel. Condition first on $( C , A , Y ( A ) )$ ). Under (3.3),",
+        "bbox": [
+            111,
+            578,
+            883,
+            612
+        ],
+        "page_idx": 5
+    },
+    {
+        "type": "equation",
+        "img_path": "images/9177ff45441d699367f895d53b2b0dbce987e7b70b5b1679a1dc5053a320aeb0.jpg",
+        "text": "$$\n\\mathbb { P } _ { \\theta } \\{ X \\in B \\mid C , A , Y ( A ) \\} = \\int _ { G } \\mathbf { 1 } _ { B } ( g \\cdot Y ( A ) ) \\ d \\mu _ { G } ( g ) .\n$$",
+        "text_format": "latex",
+        "bbox": [
+            284,
+            622,
+            694,
+            659
+        ],
+        "page_idx": 5
+    },
+    {
+        "type": "text",
+        "text": "Let $y \\in \\mathcal { V }$ and put $m = M ( y )$ . Since $s ( m )$ and y lie in the same orbit, maximality of M yields an $h \\in G$ such that",
+        "bbox": [
+            111,
+            670,
+            883,
+            703
+        ],
+        "page_idx": 5
+    },
+    {
+        "type": "equation",
+        "img_path": "images/880de67de09b61cf89e95066af49430f1df105e6dbca6d513a14e4196d580352.jpg",
+        "text": "$$\ny = h \\cdot s ( m ) .\n$$",
+        "text_format": "latex",
+        "bbox": [
+            444,
+            705,
+            550,
+            722
+        ],
+        "page_idx": 5
+    },
+    {
+        "type": "text",
+        "text": "Consequently,",
+        "bbox": [
+            112,
+            729,
+            227,
+            747
+        ],
+        "page_idx": 5
+    },
+    {
+        "type": "equation",
+        "img_path": "images/8a0e633a073f317bf2febab59d183be2c570228cd9a695b631c8da2855038d74.jpg",
+        "text": "$$\n\\int _ { G } { \\bf 1 } _ { B } ( g \\cdot y ) d \\mu _ { G } ( g ) = \\int _ { G } { \\bf 1 } _ { B } ( ( g h ) \\cdot s ( m ) ) d \\mu _ { G } ( g ) .\n$$",
+        "text_format": "latex",
+        "bbox": [
+            302,
+            742,
+            692,
+            779
+        ],
+        "page_idx": 5
+    },
+    {
+        "type": "text",
+        "text": "By right invariance of normalized Haar probability, $g h$ has law $\\mu _ { G }$ whenever g has law $\\mu _ { G }$ . Hence",
+        "bbox": [
+            111,
+            784,
+            882,
+            801
+        ],
+        "page_idx": 5
+    },
+    {
+        "type": "equation",
+        "img_path": "images/d58f08b84f0bf9414ae714a907c1b4dec1242fba8d28d95e211332c680502e98.jpg",
+        "text": "$$\n\\int _ { G } { \\bf 1 } _ { B } ( g \\cdot y ) d \\mu _ { G } ( g ) = \\int _ { G } { \\bf 1 } _ { B } ( g \\cdot s ( m ) ) d \\mu _ { G } ( g ) = K _ { m } ( B ) .\n$$",
+        "text_format": "latex",
+        "bbox": [
+            274,
+            811,
+            722,
+            848
+        ],
+        "page_idx": 5
+    },
+    {
+        "type": "text",
+        "text": "It follows that",
+        "bbox": [
+            111,
+            857,
+            230,
+            873
+        ],
+        "page_idx": 5
+    },
+    {
+        "type": "equation",
+        "img_path": "images/fcfa84d40d61de140b2bee309d1adb76bd347ad901abf09d8971a6b4fe12d3dd.jpg",
+        "text": "$$\n\\mathbb { P } _ { \\theta } \\{ X \\in B \\mid C , A , Y ( A ) \\} = K _ { M \\{ Y ( A ) \\} } ( B ) \\qquad { \\mathrm { a l m o s t ~ s u r e l y } } .\n$$",
+        "text_format": "latex",
+        "bbox": [
+            263,
+            875,
+            732,
+            893
+        ],
+        "page_idx": 5
+    },
+    {
+        "type": "page_number",
+        "text": "6",
+        "bbox": [
+            491,
+            935,
+            504,
+            948
+        ],
+        "page_idx": 5
+    },
+    {
+        "type": "text",
+        "text": "Taking conditional expectations given $\\sigma \\{ C , A , M ( Y ( A ) ) \\}$ therefore gives",
+        "bbox": [
+            112,
+            90,
+            684,
+            108
+        ],
+        "page_idx": 6
+    },
+    {
+        "type": "equation",
+        "img_path": "images/d0904f727ca5464d0fe2ff43a0947416d963a56dcd4e19b853c635d692249dbe.jpg",
+        "text": "$$\n\\begin{array} { r l } & { \\mathbb { P } _ { \\theta } \\{ X \\in B \\mid C , A , M ( Y ( A ) ) \\} = \\mathbb { E } _ { \\theta } \\big [ K _ { M \\{ Y ( A ) \\} } ( B ) \\mid C , A , M ( Y ( A ) ) \\big ] } \\\\ & { \\qquad = K _ { M \\{ Y ( A ) \\} } ( B ) \\qquad \\mathrm { a l m o s t ~ s u r e l y } . } \\end{array}\n$$",
+        "text_format": "latex",
+        "bbox": [
+            235,
+            119,
+            756,
+            162
+        ],
+        "page_idx": 6
+    },
+    {
+        "type": "text",
+        "text": "Since M is invariant and $X = \\Gamma \\cdot Y ( A )$",
+        "bbox": [
+            111,
+            172,
+            426,
+            189
+        ],
+        "page_idx": 6
+    },
+    {
+        "type": "equation",
+        "img_path": "images/64aca431470410e7f3c898e32bd476f26edd00704a3924166645e117e3727e7b.jpg",
+        "text": "$$\nM ( X ) = M \\{ \\Gamma \\cdot Y ( A ) \\} = M \\{ Y ( A ) \\} \\qquad { \\mathrm { a l m o s t ~ s u r e l y } } .\n$$",
+        "text_format": "latex",
+        "bbox": [
+            282,
+            203,
+            712,
+            220
+        ],
+        "page_idx": 6
+    },
+    {
+        "type": "text",
+        "text": "Thus",
+        "bbox": [
+            112,
+            233,
+            160,
+            248
+        ],
+        "page_idx": 6
+    },
+    {
+        "type": "equation",
+        "img_path": "images/ea53bf26984b8962c09297d8c9f5e1415c451a4e7e536a170e7fe4eb311b7061.jpg",
+        "text": "$$\n\\operatorname { L a w } _ { \\theta } \\{ X \\mid C , A , M ( X ) = m \\} = K _ { m }\n$$",
+        "text_format": "latex",
+        "bbox": [
+            357,
+            251,
+            637,
+            267
+        ],
+        "page_idx": 6
+    },
+    {
+        "type": "text",
+        "text": "for $P _ { \\theta } ^ { \\mathrm { q u o t } }$ -almost every $( C , A , m )$ , and this version is independent of $\\theta .$",
+        "bbox": [
+            112,
+            273,
+            663,
+            292
+        ],
+        "page_idx": 6
+    },
+    {
+        "type": "text",
+        "text": "For completeness, define a kernel from the quotient sample space to the full sample space by",
+        "bbox": [
+            138,
+            292,
+            869,
+            309
+        ],
+        "page_idx": 6
+    },
+    {
+        "type": "equation",
+        "img_path": "images/657d27fc9e160b02ed85773fc1e9e1ba646ea56318dba0b5d5393f65d6a0e55e.jpg",
+        "text": "$$\n\\widetilde K \\big ( ( c , a , m ) , B \\big ) : = \\int _ { \\mathcal { V } } \\mathbf { 1 } _ { B } ( c , a , x ) K _ { m } ( d x ) ,\n$$",
+        "text_format": "latex",
+        "bbox": [
+            334,
+            319,
+            661,
+            356
+        ],
+        "page_idx": 6
+    },
+    {
+        "type": "text",
+        "text": "for every measurable B in the full sample space. This kernel is parameter-free. Moreover, $K _ { m }$ is supported on $M ^ { - 1 } ( \\{ m \\} )$ , since",
+        "bbox": [
+            111,
+            366,
+            883,
+            400
+        ],
+        "page_idx": 6
+    },
+    {
+        "type": "equation",
+        "img_path": "images/7f6df1a0861982f25c7e52d26602170d572dd6985727817d8fd8f923b94097e7.jpg",
+        "text": "$$\nM \\{ g \\cdot s ( m ) \\} = M \\{ s ( m ) \\} = m \\qquad { \\mathrm { f o r ~ e v e r y ~ } } g \\in G .\n$$",
+        "text_format": "latex",
+        "bbox": [
+            297,
+            411,
+            697,
+            430
+        ],
+        "page_idx": 6
+    },
+    {
+        "type": "text",
+        "text": "Hence $\\widetilde { K }$ is quotient-faithful. It is a common regular conditional distribution of $O _ { \\mathrm { f u l l } }$ given $O _ { \\mathrm { { q u o t } } }$ so Theorem 3.2 yields",
+        "bbox": [
+            111,
+            440,
+            882,
+            476
+        ],
+        "page_idx": 6
+    },
+    {
+        "type": "equation",
+        "img_path": "images/40f034e62c0ac19f000888f3cda6bec603d45eaf717b6b6156491cc9751699ad.jpg",
+        "text": "$$\n\\mathcal { E } _ { \\mathrm { f u l l } } \\equiv _ { B } \\mathcal { E } _ { \\mathrm { q u o t } } .\n$$",
+        "text_format": "latex",
+        "bbox": [
+            439,
+            477,
+            555,
+            494
+        ],
+        "page_idx": 6
+    },
+    {
+        "type": "text",
+        "text": "The logical hierarchy is therefore:",
+        "bbox": [
+            140,
+            530,
+            408,
+            546
+        ],
+        "page_idx": 6
+    },
+    {
+        "type": "text",
+        "text": "unrestricted Γ : $M \\{ Y ( a ) \\}$ is the maximal uniformly observable target;   \nparameter-free within-orbit law: M(X) is statistically suficient;   \nconditional Haar Γ : a concrete compact-group condition implying suficiency.",
+        "bbox": [
+            137,
+            558,
+            854,
+            611
+        ],
+        "page_idx": 6
+    },
+    {
+        "type": "text",
+        "text": "The main results and empirical construction use the first line. The Haar assumption is not needed for observability, quotient identification or exact randomization inference.",
+        "bbox": [
+            111,
+            622,
+            882,
+            656
+        ],
+        "page_idx": 6
+    },
+    {
+        "type": "text",
+        "text": "4 Independent product actions and shared diagonal actions",
+        "text_level": 2,
+        "bbox": [
+            112,
+            680,
+            820,
+            700
+        ],
+        "page_idx": 6
+    },
+    {
+        "type": "text",
+        "text": "Structured units often contain labeled components, such as two microscopy sites. The appropriate group depends on whether acquisition transformations are component-specific or shared.",
+        "bbox": [
+            111,
+            713,
+            883,
+            747
+        ],
+        "page_idx": 6
+    },
+    {
+        "type": "text",
+        "text": "Proposition 4.1 (Product versus diagonal actions). Let $M : \\mathcal { V }  \\mathcal { S }$ be a maximal invariant for a G-action and let $J \\ge 2$ . Define",
+        "bbox": [
+            111,
+            757,
+            885,
+            791
+        ],
+        "page_idx": 6
+    },
+    {
+        "type": "equation",
+        "img_path": "images/77d979013bf0a9429bac99d1c48c95278266c2b6e230c30dc304e51694e599ce.jpg",
+        "text": "$$\nM ^ { \\times J } ( y _ { 1 } , \\dots , y _ { J } ) = \\big ( M ( y _ { 1 } ) , \\dots , M ( y _ { J } ) \\big ) .\n$$",
+        "text_format": "latex",
+        "bbox": [
+            338,
+            804,
+            656,
+            823
+        ],
+        "page_idx": 6
+    },
+    {
+        "type": "text",
+        "text": "1. Under the product action of $G ^ { J }$",
+        "bbox": [
+            135,
+            835,
+            411,
+            852
+        ],
+        "page_idx": 6
+    },
+    {
+        "type": "equation",
+        "img_path": "images/86c071498ef8f9fa5298bc5f254a661e85a922395ad19dfaeaacf808c70e91d4.jpg",
+        "text": "$$\n( g _ { 1 } , \\ldots , g _ { J } ) \\cdot ( y _ { 1 } , \\ldots , y _ { J } ) = ( g _ { 1 } \\cdot y _ { 1 } , \\ldots , g _ { J } \\cdot y _ { J } ) ,\n$$",
+        "text_format": "latex",
+        "bbox": [
+            334,
+            866,
+            705,
+            883
+        ],
+        "page_idx": 6
+    },
+    {
+        "type": "text",
+        "text": "$M ^ { \\times J }$ is a maximal invariant.",
+        "bbox": [
+            158,
+            895,
+            392,
+            911
+        ],
+        "page_idx": 6
+    },
+    {
+        "type": "page_number",
+        "text": "7",
+        "bbox": [
+            493,
+            935,
+            504,
+            948
+        ],
+        "page_idx": 6
+    },
+    {
+        "type": "text",
+        "text": "2. Under the diagonal action of $G ,$",
+        "bbox": [
+            133,
+            90,
+            411,
+            108
+        ],
+        "page_idx": 7
+    },
+    {
+        "type": "equation",
+        "img_path": "images/beeead78f636484a8937c42cb9c0c8febc2a57fd84d9eb1f628557b2577fcbef.jpg",
+        "text": "$$\ng \\cdot ( y _ { 1 } , \\ldots , y _ { J } ) = ( g \\cdot y _ { 1 } , \\ldots , g \\cdot y _ { J } ) ,\n$$",
+        "text_format": "latex",
+        "bbox": [
+            379,
+            121,
+            660,
+            138
+        ],
+        "page_idx": 7
+    },
+    {
+        "type": "text",
+        "text": "$M ^ { \\times J }$ is invariant. Moreover, on any diagonally G-invariant model subset $\\mathcal { D } \\subseteq \\mathcal { V } ^ { J }$ , it is maximal for the restricted diagonal action if and only if, whenever $y , z \\in { \\mathcal { D } }$ and $z _ { j } = g _ { j } \\cdot y _ { j }$ for component-specific g<sub>j</sub>, there is a single $g \\in G$ satisfying $z _ { j } = g \\cdot y _ { j }$ for every j.",
+        "bbox": [
+            155,
+            148,
+            883,
+            203
+        ],
+        "page_idx": 7
+    },
+    {
+        "type": "text",
+        "text": "Thus componentwise canonicalization can discard relative cross-component information under a shared transformation.",
+        "bbox": [
+            112,
+            210,
+            885,
+            244
+        ],
+        "page_idx": 7
+    },
+    {
+        "type": "text",
+        "text": "Proof. For (1), suppose first that",
+        "bbox": [
+            112,
+            253,
+            379,
+            271
+        ],
+        "page_idx": 7
+    },
+    {
+        "type": "equation",
+        "img_path": "images/f050c0210d5f5946b0ab74c621af9b3927cd19db32b74925a3deb91e1c398098.jpg",
+        "text": "$$\nM ^ { \\times J } ( y _ { 1 } , \\dots , y _ { J } ) = M ^ { \\times J } ( z _ { 1 } , \\dots , z _ { J } ) .\n$$",
+        "text_format": "latex",
+        "bbox": [
+            352,
+            281,
+            643,
+            301
+        ],
+        "page_idx": 7
+    },
+    {
+        "type": "text",
+        "text": "Then $M ( y _ { j } ) = M ( z _ { j } )$ for every j. By maximality of M, for each j there exists $g _ { j } \\in G$ such that $z _ { j } = g _ { j } \\cdot y _ { j }$ . Therefore",
+        "bbox": [
+            112,
+            311,
+            883,
+            348
+        ],
+        "page_idx": 7
+    },
+    {
+        "type": "equation",
+        "img_path": "images/bdb8c605590843c0101771dfbefef745a21524ce76386da8417d7df74b786e87.jpg",
+        "text": "$$\n( z _ { 1 } , \\ldots , z _ { J } ) = ( g _ { 1 } , \\ldots , g _ { J } ) \\cdot ( y _ { 1 } , \\ldots , y _ { J } ) ,\n$$",
+        "text_format": "latex",
+        "bbox": [
+            341,
+            347,
+            653,
+            364
+        ],
+        "page_idx": 7
+    },
+    {
+        "type": "text",
+        "text": "so the two points belong to the same $G ^ { J } { \\mathrm { - o r b i t } }$ . The converse follows immediately from the invariance of M in each component. Hence $M ^ { \\times J }$ is maximal for the product action.",
+        "bbox": [
+            111,
+            371,
+            883,
+            405
+        ],
+        "page_idx": 7
+    },
+    {
+        "type": "text",
+        "text": "For (2), invariance under the diagonal action follows because",
+        "bbox": [
+            138,
+            406,
+            622,
+            422
+        ],
+        "page_idx": 7
+    },
+    {
+        "type": "equation",
+        "img_path": "images/f99786c433806c7c1b195eb825e31952c73f6f285735f7fb5791e925d75b97b7.jpg",
+        "text": "$$\nM ( g \\cdot y _ { j } ) = M ( y _ { j } ) \\qquad { \\mathrm { f o r ~ e v e r y ~ } } j .\n$$",
+        "text_format": "latex",
+        "bbox": [
+            362,
+            434,
+            633,
+            452
+        ],
+        "page_idx": 7
+    },
+    {
+        "type": "text",
+        "text": "Now let $y , z \\in { \\mathcal { D } }$ . Equality $M ^ { \\times J } ( y ) = M ^ { \\times J } ( z )$ is equivalent, by maximality of M, to the existence of possibly diferent elements $g _ { 1 } , \\dotsc , g _ { J } \\in G$ satisfying",
+        "bbox": [
+            111,
+            463,
+            883,
+            498
+        ],
+        "page_idx": 7
+    },
+    {
+        "type": "equation",
+        "img_path": "images/08217fd9c92cd67534454e71857f50bf868b2b3f088c714d0497461e3eacb7f0.jpg",
+        "text": "$$\nz _ { j } = g _ { j } \\cdot y _ { j } , \\qquad j = 1 , \\dotsc , J .\n$$",
+        "text_format": "latex",
+        "bbox": [
+            382,
+            510,
+            614,
+            529
+        ],
+        "page_idx": 7
+    },
+    {
+        "type": "text",
+        "text": "The points $y$ and z belong to the same diagonal orbit precisely when these component-specific transformations can be replaced by a single $g \\in G$ satisfying $z _ { j } = g \\cdot y _ { j }$ for every $j .$ . This is exactly the stated condition. □",
+        "bbox": [
+            111,
+            539,
+            883,
+            590
+        ],
+        "page_idx": 7
+    },
+    {
+        "type": "text",
+        "text": "Example 4.2 (Relative displacement). Let $G = ( \\mathbb { R } , + )$ act on R by translation. A one-component maximal invariant is constant because the action is transitive. For a pair $( y _ { 1 } , y _ { 2 } )$ under the diagonal action, the diference $y _ { 2 } - y _ { 1 }$ is invariant and separates diagonal orbits. Componentwise quotienting is constant and therefore destroys this relative displacement. The image analogue is relative position or orientation between sites subjected to one common acquisition motion. In contrast, when the two sites undergo genuinely separate motions, relative pose is not uniformly observable and the product quotient is appropriate.",
+        "bbox": [
+            111,
+            601,
+            885,
+            722
+        ],
+        "page_idx": 7
+    },
+    {
+        "type": "text",
+        "text": "For the RxRx1 stress test below, the imposed transformation generator assigns separate sitespecific motions, so the product action is the declared model. Proposition 4.1(1) prevents that application-specific choice from being misread as a general prescription.",
+        "bbox": [
+            111,
+            731,
+            883,
+            784
+        ],
+        "page_idx": 7
+    },
+    {
+        "type": "text",
+        "text": "5 Stability under approximate contamination",
+        "text_level": 2,
+        "bbox": [
+            112,
+            805,
+            656,
+            825
+        ],
+        "page_idx": 7
+    },
+    {
+        "type": "text",
+        "text": "Exact invariance is action-specific. To obtain a correct perturbation result, additional metric regularity is needed. Let $( \\mathcal { V } , d )$ be a metric space on which G acts by isometries and define the orbit pseudometric",
+        "bbox": [
+            111,
+            838,
+            883,
+            888
+        ],
+        "page_idx": 7
+    },
+    {
+        "type": "equation",
+        "img_path": "images/a4a531f5b161faf133fd057d786d4d47680e16718337816b6126c424159b3965.jpg",
+        "text": "$$\nd _ { G } ( y , z ) = \\operatorname* { i n f } _ { g \\in G } d ( y , g \\cdot z ) .\\tag{5.1}\n$$",
+        "text_format": "latex",
+        "bbox": [
+            398,
+            890,
+            596,
+            915
+        ],
+        "page_idx": 7
+    },
+    {
+        "type": "page_number",
+        "text": "8",
+        "bbox": [
+            491,
+            935,
+            504,
+            948
+        ],
+        "page_idx": 7
+    },
+    {
+        "type": "text",
+        "text": "Let $( S , d _ { \\cal S } )$ contain a quotient representation M satisfying",
+        "bbox": [
+            111,
+            90,
+            575,
+            108
+        ],
+        "page_idx": 8
+    },
+    {
+        "type": "equation",
+        "img_path": "images/47a24198237e8c4299358d089e0660c0ca1fa3e3d76dcf633a0d445d328bdb29.jpg",
+        "text": "$$\nd _ { S } \\{ M ( y ) , M ( z ) \\} \\leq L _ { M } d _ { G } ( y , z ) .\\tag{5.2}\n$$",
+        "text_format": "latex",
+        "bbox": [
+            369,
+            119,
+            624,
+            137
+        ],
+        "page_idx": 8
+    },
+    {
+        "type": "text",
+        "text": "Let $\\mathcal { P } _ { 1 } ( S )$ denote the Borel probability measures on S having a finite first moment with respect to $d _ { S }$ . For a measurable positive-semidefinite kernel k with reproducing kernel Hilbert space $\\mathcal { H } _ { k }$ and Borel feature map $\\Phi : { \\mathcal { S } }  { \\mathcal { H } } _ { k }$ , define",
+        "bbox": [
+            111,
+            148,
+            883,
+            199
+        ],
+        "page_idx": 8
+    },
+    {
+        "type": "equation",
+        "img_path": "images/071a21838dfdc7f28101ca43e1a83e95acce050141edbdb245ed80a4d48b996c.jpg",
+        "text": "$$\n\\mu _ { k } ( P ) = \\int _ { \\cal S } \\Phi ( s ) P ( d s )\n$$",
+        "text_format": "latex",
+        "bbox": [
+            405,
+            208,
+            591,
+            243
+        ],
+        "page_idx": 8
+    },
+    {
+        "type": "text",
+        "text": "whenever this Bochner integral exists, and put",
+        "bbox": [
+            111,
+            251,
+            483,
+            268
+        ],
+        "page_idx": 8
+    },
+    {
+        "type": "equation",
+        "img_path": "images/6296a195254f3a0dd0c90fed4f73dd9810436272113a0f89d6f5e5e4f0f1a464.jpg",
+        "text": "$$\n\\mathrm { M M D } _ { k } ( P , Q ) = \\| \\mu _ { k } ( P ) - \\mu _ { k } ( Q ) \\| _ { \\mathcal { H } _ { k } } .\n$$",
+        "text_format": "latex",
+        "bbox": [
+            351,
+            280,
+            643,
+            297
+        ],
+        "page_idx": 8
+    },
+    {
+        "type": "text",
+        "text": "Theorem 5.1 (Quotient-law and MMD stability). For arms $a \\in \\{ 0 , 1 \\}$ , let $( X _ { a } , Y _ { a } )$ be a coupling of the approximately contaminated and intrinsic outcomes, and assume",
+        "bbox": [
+            112,
+            308,
+            885,
+            343
+        ],
+        "page_idx": 8
+    },
+    {
+        "type": "equation",
+        "img_path": "images/fc37ad15586a0a0ee8e804439aa6721847eba92235028686379e888b02ee7807.jpg",
+        "text": "$$\n\\mathbb { E } d _ { G } ( X _ { a } , Y _ { a } ) \\leq \\varepsilon _ { a } .\n$$",
+        "text_format": "latex",
+        "bbox": [
+            423,
+            354,
+            573,
+            372
+        ],
+        "page_idx": 8
+    },
+    {
+        "type": "text",
+        "text": "Write",
+        "bbox": [
+            114,
+            382,
+            166,
+            398
+        ],
+        "page_idx": 8
+    },
+    {
+        "type": "equation",
+        "img_path": "images/ac89633c446040949c3f11db11ab9ef0088e6dcb0e20af5e054fdff908d759d6.jpg",
+        "text": "$$\n{ \\widetilde { P } } _ { a } = \\operatorname { L a w } \\{ M ( X _ { a } ) \\} , \\qquad P _ { a } = \\operatorname { L a w } \\{ M ( Y _ { a } ) \\} ,\n$$",
+        "text_format": "latex",
+        "bbox": [
+            323,
+            397,
+            673,
+            417
+        ],
+        "page_idx": 8
+    },
+    {
+        "type": "text",
+        "text": "and assume that $\\widetilde { P } _ { a } , P _ { a } \\in { \\mathcal { P } } _ { 1 } ( S )$ . Then",
+        "bbox": [
+            112,
+            422,
+            423,
+            441
+        ],
+        "page_idx": 8
+    },
+    {
+        "type": "equation",
+        "img_path": "images/04c309d4dc1a6ea65c2dd842d237d99a8f01a58193f9cff38cff47b1d94e10b6.jpg",
+        "text": "$$\nW _ { 1 , d _ { S } } ( \\widetilde { P } _ { a } , P _ { a } ) \\leq L _ { M } \\varepsilon _ { a } .\\tag{5.3}\n$$",
+        "text_format": "latex",
+        "bbox": [
+            405,
+            450,
+            591,
+            470
+        ],
+        "page_idx": 8
+    },
+    {
+        "type": "text",
+        "text": "If the mean embeddings of ${ \\widetilde { P } } _ { a }$ and $P _ { a }$ exist and the feature map satisfies",
+        "bbox": [
+            112,
+            482,
+            681,
+            500
+        ],
+        "page_idx": 8
+    },
+    {
+        "type": "equation",
+        "img_path": "images/8d7a29906049fbc8dfd0e1563dcddf9f58df5d58798df7347ca815bde6981c7a.jpg",
+        "text": "$$\n\\| \\Phi ( s ) - \\Phi ( t ) \\| _ { \\mathcal { H } _ { k } } \\leq L _ { k } d _ { S } ( s , t ) ,\\tag{5.4}\n$$",
+        "text_format": "latex",
+        "bbox": [
+            377,
+            511,
+            617,
+            530
+        ],
+        "page_idx": 8
+    },
+    {
+        "type": "text",
+        "text": "then",
+        "bbox": [
+            112,
+            540,
+            155,
+            555
+        ],
+        "page_idx": 8
+    },
+    {
+        "type": "equation",
+        "img_path": "images/cfbbd4c4b401e1a7d4f4a49de47c67d37c75b5a2e9e9778e1038d86ad7d900a6.jpg",
+        "text": "$$\n\\begin{array} { r } { \\left| \\mathrm { M M D } _ { k } ( \\widetilde { P } _ { 1 } , \\widetilde { P } _ { 0 } ) - \\mathrm { M M D } _ { k } ( P _ { 1 } , P _ { 0 } ) \\right| \\le L _ { k } L _ { M } ( \\varepsilon _ { 1 } + \\varepsilon _ { 0 } ) . } \\end{array}\\tag{5.5}\n$$",
+        "text_format": "latex",
+        "bbox": [
+            290,
+            553,
+            704,
+            578
+        ],
+        "page_idx": 8
+    },
+    {
+        "type": "text",
+        "text": "If the perturbation bounds hold almost surely, the same conclusions follow with those uniform bounds.",
+        "bbox": [
+            112,
+            584,
+            883,
+            617
+        ],
+        "page_idx": 8
+    },
+    {
+        "type": "text",
+        "text": "Proof. The supplied coupling and (5.2) give",
+        "bbox": [
+            112,
+            627,
+            462,
+            645
+        ],
+        "page_idx": 8
+    },
+    {
+        "type": "equation",
+        "img_path": "images/86d98e9f4b36305822c8cc5008498a22a1864848291a65fe1f79ca66c4dd8ea2.jpg",
+        "text": "$$\nW _ { 1 , d _ { S } } ( \\widetilde { P } _ { a } , P _ { a } ) \\leq \\mathbb { E } d _ { S } \\{ M ( X _ { a } ) , M ( Y _ { a } ) \\} \\leq L _ { M } \\varepsilon _ { a } .\n$$",
+        "text_format": "latex",
+        "bbox": [
+            310,
+            654,
+            684,
+            674
+        ],
+        "page_idx": 8
+    },
+    {
+        "type": "text",
+        "text": "Let $\\mu ( R ) = \\mathbb { E } _ { S \\sim R } \\Phi ( S )$ . By the same coupling and (5.4),",
+        "bbox": [
+            111,
+            684,
+            558,
+            702
+        ],
+        "page_idx": 8
+    },
+    {
+        "type": "equation",
+        "img_path": "images/c6db1cc771dd0abfc08116e547cffb9b153ee55551462fcbe4477f6b72923dc2.jpg",
+        "text": "$$\n\\| \\mu ( \\widetilde { P } _ { a } ) - \\mu ( P _ { a } ) \\| _ { \\mathcal { H } _ { k } } \\leq L _ { k } L _ { M } \\varepsilon _ { a } .\n$$",
+        "text_format": "latex",
+        "bbox": [
+            374,
+            710,
+            622,
+            732
+        ],
+        "page_idx": 8
+    },
+    {
+        "type": "text",
+        "text": "Since $\\mathrm { M M D } _ { k } ( R , S ) = \\| \\mu ( R ) - \\mu ( S ) \\| _ { \\mathcal { H } _ { k } }$ , the reverse triangle inequality followed by the last two bounds proves (5.5). □",
+        "bbox": [
+            111,
+            742,
+            883,
+            775
+        ],
+        "page_idx": 8
+    },
+    {
+        "type": "text",
+        "text": "For a Gaussian kernel $k ( s , t ) = \\exp \\{ - \\| s - t \\| ^ { 2 } / ( 2 \\sigma ^ { 2 } ) \\}$ on a Hilbert quotient embedding,",
+        "bbox": [
+            138,
+            786,
+            830,
+            804
+        ],
+        "page_idx": 8
+    },
+    {
+        "type": "equation",
+        "img_path": "images/a8354f3ff4cef908fc55ddec42874ad5bc885b952d7281b044baa02562f3dc0b.jpg",
+        "text": "$$\n\\| \\Phi ( s ) - \\Phi ( t ) \\| ^ { 2 } = 2 \\{ 1 - k ( s , t ) \\} \\le \\| s - t \\| ^ { 2 } / \\sigma ^ { 2 } ,\n$$",
+        "text_format": "latex",
+        "bbox": [
+            313,
+            814,
+            683,
+            833
+        ],
+        "page_idx": 8
+    },
+    {
+        "type": "text",
+        "text": "so $L _ { k } = 1 / \\sigma$ . The theorem is intentionally conditional: the lexicographic lattice canonicalizer in Section 6 need not be globally Lipschitz near support changes or canonicalization ties. The approximate-action experiment in Table 5 therefore remains an empirical sensitivity analysis; it is not retroactively certified by Theorem 5.1 unless (5.2) is verified on the relevant image class.",
+        "bbox": [
+            111,
+            844,
+            885,
+            912
+        ],
+        "page_idx": 8
+    },
+    {
+        "type": "page_number",
+        "text": "9",
+        "bbox": [
+            491,
+            935,
+            504,
+            948
+        ],
+        "page_idx": 8
+    },
+    {
+        "type": "text",
+        "text": "6 A maximal invariant for lattice microscopy images",
+        "text_level": 2,
+        "bbox": [
+            111,
+            88,
+            740,
+            108
+        ],
+        "page_idx": 9
+    },
+    {
+        "type": "text",
+        "text": "6.1 Lattice rigid motions",
+        "text_level": 2,
+        "bbox": [
+            112,
+            121,
+            370,
+            138
+        ],
+        "page_idx": 9
+    },
+    {
+        "type": "text",
+        "text": "Fix $L < \\infty$ . Let $\\mathcal { X } _ { q , L }$ contain q-channel, 8-bit functions on $ { \\mathbb { Z } } ^ { 2 }$ with finite support whose nonempty bounding box has at most L rows and columns, together with the zero image. Let $C _ { 4 } = \\{ 0 , 1 , 2 , 3 \\}$ with addition understood modulo four, and let $R _ { r }$ denote the counterclockwise rotation of $ { \\mathbb { Z } } ^ { 2 }$ through $r \\pi / 2$ . The action of $C _ { 4 }$ on $\\mathbb { Z } ^ { 2 }$ is $u \\mapsto R _ { r } u$ . Thus the semidirect product",
+        "bbox": [
+            111,
+            148,
+            883,
+            217
+        ],
+        "page_idx": 9
+    },
+    {
+        "type": "equation",
+        "img_path": "images/3c4e6bf4bc7be5f1b89e5cdd7fdc8bd5bf212bf5b0a4178c23cfa26510c7d182.jpg",
+        "text": "$$\nG _ { \\mathrm { r i g } } = \\mathbb { Z } ^ { 2 } \\rtimes C _ { 4 }\n$$",
+        "text_format": "latex",
+        "bbox": [
+            434,
+            228,
+            560,
+            247
+        ],
+        "page_idx": 9
+    },
+    {
+        "type": "text",
+        "text": "has multiplication and inverse",
+        "bbox": [
+            111,
+            260,
+            354,
+            275
+        ],
+        "page_idx": 9
+    },
+    {
+        "type": "equation",
+        "img_path": "images/b3625d8d01ffd7bfdc484c0b5fbf21cfb27046732adc43bf441b6778f458e6d6.jpg",
+        "text": "$$\n( t , r ) ( u , s ) = \\bigl ( t + R _ { r } u , r + s \\bigr ) , \\qquad ( t , r ) ^ { - 1 } = \\bigl ( - R _ { r } ^ { - 1 } t , - r \\bigr ) .\n$$",
+        "text_format": "latex",
+        "bbox": [
+            269,
+            287,
+            725,
+            308
+        ],
+        "page_idx": 9
+    },
+    {
+        "type": "text",
+        "text": "Its action on an image x is",
+        "bbox": [
+            111,
+            319,
+            330,
+            335
+        ],
+        "page_idx": 9
+    },
+    {
+        "type": "equation",
+        "img_path": "images/d17d923761098e0d327a94dc03fe7c7571e12398eace017059cfc4bc7cc5ab60.jpg",
+        "text": "$$\n\\{ ( t , r ) \\cdot x \\} ( v ) = x \\{ R _ { r } ^ { - 1 } ( v - t ) \\} , \\qquad v \\in \\mathbb { Z } ^ { 2 } .\\tag{6.1}\n$$",
+        "text_format": "latex",
+        "bbox": [
+            328,
+            347,
+            668,
+            366
+        ],
+        "page_idx": 9
+    },
+    {
+        "type": "text",
+        "text": "Here $t , u , v \\in \\mathbb { Z } ^ { 2 }$ are lattice coordinates or translations, whereas $r , s \\in C _ { 4 }$ index quarter turns.",
+        "bbox": [
+            111,
+            378,
+            848,
+            395
+        ],
+        "page_idx": 9
+    },
+    {
+        "type": "text",
+        "text": "For nonzero $x ,$ let $b ( x )$ be the lower corner of its support bounding box and set $N ( x ) =$ $( - b ( x ) , 0 ) \\cdot x .$ . For each $r \\in C _ { 4 }$ , form $x _ { r } = N \\{ ( 0 , r ) \\cdot x \\}$ . The key $\\kappa ( x _ { r } )$ is the finite vector containing the bounding-box height and width, followed by all channel bytes in a fixed site–channel–row– column order. These finite vectors are compared using the lexicographic order. Define",
+        "bbox": [
+            111,
+            396,
+            883,
+            464
+        ],
+        "page_idx": 9
+    },
+    {
+        "type": "equation",
+        "img_path": "images/eb3d153de9f0c0ea5ce22c8d610447fff8f30465b6325353b0ef22ff7287c16a.jpg",
+        "text": "$$\n\\begin{array} { r } { c ( x ) = x _ { r ^ { \\star } } , \\qquad r ^ { \\star } = \\operatorname* { m i n } { \\mathrm { a r g m i n } _ { r \\in C _ { 4 } } \\kappa ( x _ { r } ) } , } \\end{array}\\tag{6.2}\n$$",
+        "text_format": "latex",
+        "bbox": [
+            326,
+            477,
+            668,
+            494
+        ],
+        "page_idx": 9
+    },
+    {
+        "type": "text",
+        "text": "and set $c ( 0 ) = 0$",
+        "bbox": [
+            111,
+            507,
+            248,
+            522
+        ],
+        "page_idx": 9
+    },
+    {
+        "type": "text",
+        "text": "Theorem 6.1 (Lattice rigid-motion canonicalization). The map c is Borel and is a maximal invariant for $\\mathbb { Z } ^ { 2 } \\rtimes C _ { 4 }$",
+        "bbox": [
+            111,
+            534,
+            883,
+            568
+        ],
+        "page_idx": 9
+    },
+    {
+        "type": "text",
+        "text": "Proof. Because $\\mathcal { X } _ { q , L }$ is a countable union of finite-dimensional finite-valued image spaces, the support map, bounding-box map, translation normalization, finite serialization and lexicographic comparison operations are Borel. Since the minimization in (6.2) is over the finite set $C _ { 4 }$ , the selected index $r ^ { \\star }$ and hence c are Borel.",
+        "bbox": [
+            111,
+            578,
+            883,
+            646
+        ],
+        "page_idx": 9
+    },
+    {
+        "type": "text",
+        "text": "We next prove invariance. Translation normalization removes every integer translation:",
+        "bbox": [
+            138,
+            647,
+            826,
+            662
+        ],
+        "page_idx": 9
+    },
+    {
+        "type": "equation",
+        "img_path": "images/e53f48b7239f5ef6af58e468889a5c05bc9e2921e20ba91a220493429a4829f6.jpg",
+        "text": "$$\nN \\{ ( t , 0 ) \\cdot z \\} = N ( z ) \\qquad { \\mathrm { f o r ~ e v e r y ~ } } t \\in \\mathbb { Z } ^ { 2 } .\n$$",
+        "text_format": "latex",
+        "bbox": [
+            334,
+            675,
+            660,
+            694
+        ],
+        "page_idx": 9
+    },
+    {
+        "type": "text",
+        "text": "Let $y = ( t , s ) \\cdot x$ . For any $r \\in C _ { 4 }$ , the semidirect-product law gives",
+        "bbox": [
+            111,
+            705,
+            637,
+            723
+        ],
+        "page_idx": 9
+    },
+    {
+        "type": "equation",
+        "img_path": "images/eb7ae1980930cdf3c1732d01988f151f0c07fd0711300003840023e8962aa5c6.jpg",
+        "text": "$$\n( 0 , r ) ( t , s ) = ( R _ { r } t , r + s ) .\n$$",
+        "text_format": "latex",
+        "bbox": [
+            398,
+            736,
+            596,
+            753
+        ],
+        "page_idx": 9
+    },
+    {
+        "type": "text",
+        "text": "Therefore",
+        "bbox": [
+            112,
+            766,
+            196,
+            781
+        ],
+        "page_idx": 9
+    },
+    {
+        "type": "equation",
+        "img_path": "images/0b0c3177f0ae2f97cbe5d030b56075d3bfa231c92068f5a23c0165df4d3b364f.jpg",
+        "text": "$$\n\\begin{array} { r l } { N \\{ ( 0 , r ) \\cdot y \\} } & { = N \\{ ( 0 , r ) ( t , s ) \\cdot x \\} } \\\\ & { = N \\{ ( R _ { r } t , r + s ) \\cdot x \\} } \\\\ & { = N \\{ ( 0 , r + s ) \\cdot x \\} . } \\end{array}\n$$",
+        "text_format": "latex",
+        "bbox": [
+            362,
+            777,
+            632,
+            838
+        ],
+        "page_idx": 9
+    },
+    {
+        "type": "text",
+        "text": "Thus the four normalized rotational candidates of y are exactly the four normalized rotationa candidates of $x ,$ with their indices permuted by $r \\mapsto r + s$ . Their lexicographically smallest elements are consequently equal, and hence",
+        "bbox": [
+            111,
+            844,
+            883,
+            895
+        ],
+        "page_idx": 9
+    },
+    {
+        "type": "equation",
+        "img_path": "images/4670cec4a02666685f5baef4538d33fa848359028c82be995b439a0aa4fbea6b.jpg",
+        "text": "$$\nc ( y ) = c ( x ) .\n$$",
+        "text_format": "latex",
+        "bbox": [
+            449,
+            895,
+            545,
+            912
+        ],
+        "page_idx": 9
+    },
+    {
+        "type": "page_number",
+        "text": "10",
+        "bbox": [
+            488,
+            934,
+            511,
+            948
+        ],
+        "page_idx": 9
+    },
+    {
+        "type": "text",
+        "text": "It remains to prove maximality. Suppose that $c ( x ) = c ( y ) = z$ . By the construction of $^ { c , }$ there exist translations $u , v \\in \\mathbb { Z } ^ { 2 }$ and rotations $r , s \\in C _ { 4 }$ such that",
+        "bbox": [
+            111,
+            92,
+            883,
+            126
+        ],
+        "page_idx": 10
+    },
+    {
+        "type": "equation",
+        "img_path": "images/244ab116050992fc2c050f0cf8cb5e3c6969babfb00109423df2925a8d9afd38.jpg",
+        "text": "$$\nz = ( u , r ) \\cdot x \\qquad { \\mathrm { a n d } } \\qquad z = ( v , s ) \\cdot y .\n$$",
+        "text_format": "latex",
+        "bbox": [
+            346,
+            137,
+            650,
+            155
+        ],
+        "page_idx": 10
+    },
+    {
+        "type": "text",
+        "text": "Applying $( v , s ) ^ { - 1 }$ to the second equality and substituting the first gives",
+        "bbox": [
+            112,
+            166,
+            678,
+            184
+        ],
+        "page_idx": 10
+    },
+    {
+        "type": "equation",
+        "img_path": "images/1f8213a3c7cfa00440f3776f01856461fa889e5542ae280502b955a390b60555.jpg",
+        "text": "$$\ny = ( v , s ) ^ { - 1 } \\cdot z = ( v , s ) ^ { - 1 } ( u , r ) \\cdot x .\n$$",
+        "text_format": "latex",
+        "bbox": [
+            361,
+            195,
+            633,
+            214
+        ],
+        "page_idx": 10
+    },
+    {
+        "type": "text",
+        "text": "Because $( v , s ) ^ { - 1 } ( u , r ) \\in G _ { \\mathrm { r i g } }$ , the images x and y belong to the same $G _ { \\mathrm { r i g ^ { - } } } \\mathrm { o r b i t }$ . Together with invariance, this shows",
+        "bbox": [
+            111,
+            226,
+            885,
+            260
+        ],
+        "page_idx": 10
+    },
+    {
+        "type": "equation",
+        "img_path": "images/ef721bf197898b3a5904574e511d71fcfcfb842c951ec1eb2e6f6b9ec2e146fe.jpg",
+        "text": "$$\nc ( x ) = c ( y ) \\quad \\Longleftrightarrow \\quad y = g \\cdot x { \\mathrm { ~ f o r ~ s o m e ~ } } g \\in G _ { \\mathrm { r i g } } ,\n$$",
+        "text_format": "latex",
+        "bbox": [
+            305,
+            272,
+            689,
+            290
+        ],
+        "page_idx": 10
+    },
+    {
+        "type": "text",
+        "text": "so $c$ is a maximal invariant.",
+        "bbox": [
+            111,
+            303,
+            333,
+            318
+        ],
+        "page_idx": 10
+    },
+    {
+        "type": "text",
+        "text": "An RxRx1 well consists of two labeled sites. Let",
+        "bbox": [
+            138,
+            330,
+            526,
+            347
+        ],
+        "page_idx": 10
+    },
+    {
+        "type": "equation",
+        "img_path": "images/8d3467ae88b10d3b86b06900d904b7adbbdb4d581d5c099a935be018014cbe2c.jpg",
+        "text": "$$\n\\mathcal { W } = \\mathcal { X } _ { q , L } ^ { 2 }\n$$",
+        "text_format": "latex",
+        "bbox": [
+            455,
+            357,
+            539,
+            378
+        ],
+        "page_idx": 10
+    },
+    {
+        "type": "text",
+        "text": "be the raw well space, with a typical well written as $w = ( x _ { 1 } , x _ { 2 } )$ . Under the empirically imposed separate site-specific motions, the well-level nuisance group is",
+        "bbox": [
+            109,
+            388,
+            883,
+            424
+        ],
+        "page_idx": 10
+    },
+    {
+        "type": "equation",
+        "img_path": "images/b163bf01adde00dcb3300f4ef10fa389b844d66df2e38602a15ff3d725c36afa.jpg",
+        "text": "$$\nG _ { \\mathrm { w e l l } } = G _ { \\mathrm { r i g } } \\times G _ { \\mathrm { r i g } } .\n$$",
+        "text_format": "latex",
+        "bbox": [
+            416,
+            435,
+            576,
+            454
+        ],
+        "page_idx": 10
+    },
+    {
+        "type": "text",
+        "text": "Define the well-level canonicalization map",
+        "bbox": [
+            111,
+            465,
+            447,
+            482
+        ],
+        "page_idx": 10
+    },
+    {
+        "type": "equation",
+        "img_path": "images/65d45efbd69b3b09f704f24753c71de40fa1f367fd08f2a62f2860ff8d67a908.jpg",
+        "text": "$$\nM _ { \\mathrm { w e l l } } ( x _ { 1 } , x _ { 2 } ) = \\big ( c ( x _ { 1 } ) , c ( x _ { 2 } ) \\big ) ,\\tag{6.3}\n$$",
+        "text_format": "latex",
+        "bbox": [
+            377,
+            493,
+            617,
+            512
+        ],
+        "page_idx": 10
+    },
+    {
+        "type": "text",
+        "text": "and put",
+        "bbox": [
+            111,
+            523,
+            181,
+            540
+        ],
+        "page_idx": 10
+    },
+    {
+        "type": "equation",
+        "img_path": "images/1082cbd122519dad2bf39be5abfbb273ef44dc9dd86d5d32ae6dea25c1429e35.jpg",
+        "text": "$$\n\\mathcal { W } _ { \\mathrm { c a n } } = M _ { \\mathrm { w e l l } } ( \\mathcal { W } ) .\n$$",
+        "text_format": "latex",
+        "bbox": [
+            423,
+            540,
+            571,
+            558
+        ],
+        "page_idx": 10
+    },
+    {
+        "type": "text",
+        "text": "Theorem 6.1 and Proposition 4.1(1) imply that $M _ { \\mathrm { w e l l } }$ is a maximal invariant for the product action.   \nNo probability measure is introduced on the noncompact translation group.",
+        "bbox": [
+            111,
+            565,
+            882,
+            599
+        ],
+        "page_idx": 10
+    },
+    {
+        "type": "text",
+        "text": "6.2 Characteristic quotient kernel and Euler signature",
+        "text_level": 2,
+        "bbox": [
+            111,
+            617,
+            655,
+            636
+        ],
+        "page_idx": 10
+    },
+    {
+        "type": "equation",
+        "img_path": "images/fa16a8c311acd55ad0eade091e6271ca0492a3db2cfd7883af5d9900d32bb61d.jpg",
+        "text": "$$\n\\psi : \\mathcal { W } _ { \\mathrm { c a n } } \\longrightarrow \\mathbb { R } ^ { 2 q L ^ { 2 } }\n$$",
+        "text_format": "latex",
+        "bbox": [
+            419,
+            659,
+            575,
+            678
+        ],
+        "page_idx": 10
+    },
+    {
+        "type": "text",
+        "text": "place the two canonical crops on fixed $L \\times L$ zero canvases and concatenate their entries in a fixed site–channel–row–column order. This map is a Borel injection. For $\\sigma > 0$ , define",
+        "bbox": [
+            109,
+            686,
+            883,
+            720
+        ],
+        "page_idx": 10
+    },
+    {
+        "type": "equation",
+        "img_path": "images/98889ad1b04b0e917e1abfc2a55eafe427b584debff5c2a8d37ee707436ca5a2.jpg",
+        "text": "$$\nk _ { \\sigma } ( w , w ^ { \\prime } ) = \\exp \\left[ - \\frac { \\| \\psi \\{ M _ { \\mathrm { w e l l } } ( w ) \\} - \\psi \\{ M _ { \\mathrm { w e l l } } ( w ^ { \\prime } ) \\} \\| _ { 2 } ^ { 2 } } { 2 \\sigma ^ { 2 } } \\right] .\\tag{6.4}\n$$",
+        "text_format": "latex",
+        "bbox": [
+            282,
+            729,
+            710,
+            767
+        ],
+        "page_idx": 10
+    },
+    {
+        "type": "text",
+        "text": "Proposition 6.2. The kernel (6.4) is positive semidefinite and invariant in each argument under the action $o f G _ { \\mathrm { w e l l } }$ . Its kernel mean embedding distinguishes all Borel probability laws on $\\mathcal { W } _ { \\mathrm { c a n } }$",
+        "bbox": [
+            111,
+            777,
+            885,
+            813
+        ],
+        "page_idx": 10
+    },
+    {
+        "type": "text",
+        "text": "Proof. Let",
+        "bbox": [
+            114,
+            821,
+            202,
+            838
+        ],
+        "page_idx": 10
+    },
+    {
+        "type": "equation",
+        "img_path": "images/92cd78540ce824410b875f0be7b08c64e45da5daf7231295fed7093004971194.jpg",
+        "text": "$$\nk _ { \\mathrm { G } } ( u , v ) = \\exp \\left\\{ - \\frac { \\| u - v \\| _ { 2 } ^ { 2 } } { 2 \\sigma ^ { 2 } } \\right\\} , \\qquad u , v \\in \\mathbb { R } ^ { 2 q L ^ { 2 } } .\n$$",
+        "text_format": "latex",
+        "bbox": [
+            307,
+            835,
+            687,
+            872
+        ],
+        "page_idx": 10
+    },
+    {
+        "type": "text",
+        "text": "The kernel $k _ { \\mathrm { G } }$ is positive semidefinite and characteristic on Euclidean space [21]. Equation (6.4) is its pullback through the Borel map $\\psi \\circ M _ { \\mathrm { w e l l } }$ , and is therefore positive semidefinite.",
+        "bbox": [
+            111,
+            878,
+            883,
+            912
+        ],
+        "page_idx": 10
+    },
+    {
+        "type": "page_number",
+        "text": "11",
+        "bbox": [
+            488,
+            934,
+            509,
+            948
+        ],
+        "page_idx": 10
+    },
+    {
+        "type": "text",
+        "text": "For every $g \\in G _ { \\mathrm { w e l l } }$",
+        "bbox": [
+            140,
+            92,
+            300,
+            108
+        ],
+        "page_idx": 11
+    },
+    {
+        "type": "equation",
+        "img_path": "images/3e35cbe71126eadab5e09a4ba9e5aa2b9b044f23727966eaff026a78ae9d894c.jpg",
+        "text": "$$\nM _ { \\mathrm { w e l l } } ( g \\cdot w ) = M _ { \\mathrm { w e l l } } ( w ) .\n$$",
+        "text_format": "latex",
+        "bbox": [
+            400,
+            108,
+            594,
+            126
+        ],
+        "page_idx": 11
+    },
+    {
+        "type": "text",
+        "text": "Consequently,",
+        "bbox": [
+            112,
+            133,
+            228,
+            151
+        ],
+        "page_idx": 11
+    },
+    {
+        "type": "equation",
+        "img_path": "images/9343e335173d25cad5477729052985172d63b5bb119077c0ad057de08e4ef6d4.jpg",
+        "text": "$$\nk _ { \\sigma } ( g \\cdot w , w ^ { \\prime } ) = k _ { \\sigma } ( w , w ^ { \\prime } ) \\quad \\mathrm { a n d } \\quad k _ { \\sigma } ( w , g \\cdot w ^ { \\prime } ) = k _ { \\sigma } ( w , w ^ { \\prime } ) ,\n$$",
+        "text_format": "latex",
+        "bbox": [
+            269,
+            150,
+            723,
+            167
+        ],
+        "page_idx": 11
+    },
+    {
+        "type": "text",
+        "text": "which proves invariance in each argument.",
+        "bbox": [
+            112,
+            176,
+            449,
+            193
+        ],
+        "page_idx": 11
+    },
+    {
+        "type": "text",
+        "text": "Finally, let P and Q be Borel probability measures on $\\mathcal { W } _ { \\mathrm { c a n } }$ . Equality of their kernel mean embeddings implies, by the characteristic property of the Gaussian kernel,",
+        "bbox": [
+            111,
+            193,
+            883,
+            228
+        ],
+        "page_idx": 11
+    },
+    {
+        "type": "equation",
+        "img_path": "images/547ff0ab8b5d6a55720f38277a171d1c14f98168e529b6d59100846b31a26e75.jpg",
+        "text": "$$\n\\psi _ { \\# } P = \\psi _ { \\# } Q .\n$$",
+        "text_format": "latex",
+        "bbox": [
+            441,
+            241,
+            553,
+            258
+        ],
+        "page_idx": 11
+    },
+    {
+        "type": "text",
+        "text": "Because $\\psi$ is a Borel injection between standard Borel spaces, the Lusin–Souslin theorem implies that $\\psi ( \\mathcal { W } _ { \\mathrm { c a n } } )$ is Borel and that $\\psi ^ { - 1 }$ is Borel on this image. Applying $\\psi ^ { - 1 }$ to the two equal pushforward laws therefore yields $P = Q$ □",
+        "bbox": [
+            111,
+            272,
+            883,
+            324
+        ],
+        "page_idx": 11
+    },
+    {
+        "type": "text",
+        "text": "The secondary endpoint is a finite directional Euler vector. After canonicalization, Otsu thresholding [14] of the nuclear channel and removal of components smaller than four pixels produce a planar cubical complex. Euler characteristic is evaluated along 25 shape-adaptive thresholds in eight lattice directions at both sites. Because the calculation is applied after $M _ { \\mathrm { w e l l } }$ , the vector is exactly invariant under $G _ { \\mathrm { w e l l } }$ , but it is neither claimed nor used as a maximal invariant.",
+        "bbox": [
+            111,
+            334,
+            885,
+            421
+        ],
+        "page_idx": 11
+    },
+    {
+        "type": "text",
+        "text": "7 Exact design-based testing",
+        "text_level": 2,
+        "bbox": [
+            112,
+            444,
+            467,
+            464
+        ],
+        "page_idx": 11
+    },
+    {
+        "type": "text",
+        "text": "Suppose the confirmation experiment contains B paired blocks. In block $b ,$ two eligible wells receive conditions 0 and $^ { 1 , }$ once each. Order the two wells deterministically before observing their assigned conditions, and let",
+        "bbox": [
+            111,
+            477,
+            883,
+            527
+        ],
+        "page_idx": 11
+    },
+    {
+        "type": "equation",
+        "img_path": "images/0c2bc36a21cb2e489230996414bb65a86369c367b0a4e27022156b228d79b3cb.jpg",
+        "text": "$$\nq _ { b , 0 } , q _ { b , 1 } \\in \\mathcal { W } _ { \\mathrm { c a n } }\n$$",
+        "text_format": "latex",
+        "bbox": [
+            434,
+            529,
+            562,
+            546
+        ],
+        "page_idx": 11
+    },
+    {
+        "type": "text",
+        "text": "denote the quotient outcomes of the first and second wells, respectively.",
+        "bbox": [
+            111,
+            554,
+            678,
+            570
+        ],
+        "page_idx": 11
+    },
+    {
+        "type": "text",
+        "text": "Let $Z _ { b } \\in \\{ 0 , 1 \\}$ be the label of the condition assigned to the first well. Thus, if $Z _ { b } = 1$ , the first well receives condition 1 and the second receives condition 0; if $Z _ { b } = 0$ , these assignments are reversed. Conditional on the unordered eligible wells, their complete potential outcomes and the pretreatment design information, assume that",
+        "bbox": [
+            111,
+            570,
+            885,
+            640
+        ],
+        "page_idx": 11
+    },
+    {
+        "type": "equation",
+        "img_path": "images/b3a28d855b27b76ef5db608ba980aa585c4b83c2555a0d9ecf1dcbb754944e01.jpg",
+        "text": "$$\nZ = ( Z _ { 1 } , \\dots , Z _ { B } )\n$$",
+        "text_format": "latex",
+        "bbox": [
+            426,
+            654,
+            568,
+            670
+        ],
+        "page_idx": 11
+    },
+    {
+        "type": "text",
+        "text": "is uniform on",
+        "bbox": [
+            111,
+            684,
+            223,
+            700
+        ],
+        "page_idx": 11
+    },
+    {
+        "type": "equation",
+        "img_path": "images/e2eaa98764f56a59217c331c7dad84f0df0ed60b93883e3ea4068b1fd906703f.jpg",
+        "text": "$$\n\\Omega = \\{ 0 , 1 \\} ^ { B } .\n$$",
+        "text_format": "latex",
+        "bbox": [
+            446,
+            699,
+            549,
+            719
+        ],
+        "page_idx": 11
+    },
+    {
+        "type": "text",
+        "text": "For an assignment $z \\in \\Omega$ , the quotient samples assigned to conditions 1 and 0 are, respectively,",
+        "bbox": [
+            138,
+            727,
+            882,
+            744
+        ],
+        "page_idx": 11
+    },
+    {
+        "type": "equation",
+        "img_path": "images/03bb4a98e73f4ca6546b5330580721332410b2e470330fd61be9b2046c972a72.jpg",
+        "text": "$$\n\\mathcal { Q } _ { 1 } ( z ) = \\{ q _ { b , 1 - z _ { b } } : b = 1 , \\ldots , B \\} , \\qquad \\mathcal { Q } _ { 0 } ( z ) = \\{ q _ { b , z _ { b } } : b = 1 , \\ldots , B \\} .\n$$",
+        "text_format": "latex",
+        "bbox": [
+            233,
+            757,
+            761,
+            776
+        ],
+        "page_idx": 11
+    },
+    {
+        "type": "text",
+        "text": "Let $P _ { 1 }$ and $P _ { 0 }$ denote the corresponding population quotient-outcome laws under conditions 1 and 0. Their population kernel discrepancy is",
+        "bbox": [
+            111,
+            787,
+            883,
+            823
+        ],
+        "page_idx": 11
+    },
+    {
+        "type": "equation",
+        "img_path": "images/88c464e5e6a043136dc95df849b010c33736b71707fe85888231e4ad1b827f1f.jpg",
+        "text": "$$\n\\mathrm { M M D } _ { k } ^ { 2 } ( P _ { 1 } , P _ { 0 } ) = \\mathbb { E } k ( U , U ^ { \\prime } ) + \\mathbb { E } k ( V , V ^ { \\prime } ) - 2 \\mathbb { E } k ( U , V ) ,\\tag{7.1}\n$$",
+        "text_format": "latex",
+        "bbox": [
+            285,
+            834,
+            709,
+            854
+        ],
+        "page_idx": 11
+    },
+    {
+        "type": "page_number",
+        "text": "12",
+        "bbox": [
+            488,
+            934,
+            509,
+            948
+        ],
+        "page_idx": 11
+    },
+    {
+        "type": "text",
+        "text": "where $U , U ^ { \\prime }$ are independent with law $P _ { 1 } , V , V ^ { \\prime }$ are independent with law $P _ { 0 }$ , and the four variables are mutually independent. The empirical statistic is the conventional two-sample U-statistic",
+        "bbox": [
+            111,
+            90,
+            883,
+            126
+        ],
+        "page_idx": 12
+    },
+    {
+        "type": "equation",
+        "img_path": "images/5faa8a70bad0d7ed4a0d039c42d0e7b216903d65aba63152854c62e7aad1915d.jpg",
+        "text": "$$\n\\begin{array} { l } { { \\displaystyle \\widehat { \\mathrm { M M D } } _ { u } ^ { 2 } ( z ) = \\displaystyle \\frac { 1 } { B ( B - 1 ) } \\sum _ { b \\neq b ^ { \\prime } } k ( q _ { b , 1 - z _ { b } } , q _ { b ^ { \\prime } , 1 - z _ { b ^ { \\prime } } } ) + \\displaystyle \\frac { 1 } { B ( B - 1 ) } \\sum _ { b \\neq b ^ { \\prime } } k ( q _ { b , z _ { b } } , q _ { b ^ { \\prime } , z _ { b ^ { \\prime } } } ) } } \\\\ { { \\displaystyle ~ - \\displaystyle \\frac { 2 } { B ^ { 2 } } \\sum _ { b , b ^ { \\prime } } k ( q _ { b , z _ { b } } , q _ { b ^ { \\prime } , 1 - z _ { b ^ { \\prime } } } ) . } } \\end{array}\\tag{7.2}\n$$",
+        "text_format": "latex",
+        "bbox": [
+            200,
+            133,
+            794,
+            218
+        ],
+        "page_idx": 12
+    },
+    {
+        "type": "text",
+        "text": "Matched-block dependence can remove the usual unbiasedness interpretation; here (7.2) is a prespecified discrepancy statistic. The kernel two-sample construction follows the standard MMD formulation [7], but the exactness below does not require unbiased estimation of a superpopulation parameter. Let $\\mathcal { Q } _ { \\mathrm { p o o l } } = \\{ q _ { b , j } : b = 1 , \\ldots , B , \\ j \\in \\{ 0 , 1 \\} \\}$ . The Gaussian bandwidth is fixed before examining the condition labels by setting",
+        "bbox": [
+            111,
+            231,
+            883,
+            316
+        ],
+        "page_idx": 12
+    },
+    {
+        "type": "equation",
+        "img_path": "images/d8cbd10e0beb10ed64b8af05fa8cec75f0adc82391bf4532534150c200705f66.jpg",
+        "text": "$$\n\\sigma ^ { 2 } = \\frac { 1 } { 2 } \\operatorname * { m e d i a n } \\left\\{ \\| \\psi ( q ) - \\psi ( q ^ { \\prime } ) \\| _ { 2 } ^ { 2 } : q , q ^ { \\prime } \\in Q _ { \\mathrm { p o o l } } , \\ q \\neq q ^ { \\prime } , \\ \\| \\psi ( q ) - \\psi ( q ^ { \\prime } ) \\| _ { 2 } > 0 \\right\\} .\n$$",
+        "text_format": "latex",
+        "bbox": [
+            189,
+            325,
+            803,
+            358
+        ],
+        "page_idx": 12
+    },
+    {
+        "type": "text",
+        "text": "Because $\\mathcal { Q } _ { \\mathrm { p o o l } }$ does not change under paired label swaps, the bandwidth is constant over the randomization distribution.",
+        "bbox": [
+            111,
+            367,
+            883,
+            400
+        ],
+        "page_idx": 12
+    },
+    {
+        "type": "text",
+        "text": "Let $S : \\Omega  \\mathbb { R }$ be a deterministic test statistic; for the primary analysis, $S ( z ) = \\widehat { \\mathrm { M M D } } _ { u } ^ { 2 } ( z )$ Define the exact upper-tail randomization p-value by",
+        "bbox": [
+            111,
+            398,
+            880,
+            435
+        ],
+        "page_idx": 12
+    },
+    {
+        "type": "equation",
+        "img_path": "images/8421f0c7e451eefb7504550670423bdb38fefc2fa4e50fe9a802428c7da8e477.jpg",
+        "text": "$$\np ( Z ) = 2 ^ { - B } \\sum _ { z \\in \\Omega } \\mathbf { 1 } \\{ S ( z ) \\geq S ( Z ) \\} .\\tag{7.3}\n$$",
+        "text_format": "latex",
+        "bbox": [
+            364,
+            445,
+            629,
+            482
+        ],
+        "page_idx": 12
+    },
+    {
+        "type": "text",
+        "text": "Theorem 7.1 (Finite-sample randomization validity). Assume well-defined reagent versions, no cross-well interference, swap-invariant block retention and conditional uniformity of Z on Ω. Under the Fisher sharp null that every confirmation well’s invariant potential outcome is unchanged by the two conditions, the test rejecting when $p ( Z ) \\le \\alpha$ has conditional rejection probability at most α for every $\\alpha \\in [ 0 , 1 ]$",
+        "bbox": [
+            111,
+            492,
+            885,
+            579
+        ],
+        "page_idx": 12
+    },
+    {
+        "type": "text",
+        "text": "Proof. Under the sharp null, all quotient outcomes and label-invariant tuning parameters are fixed over Ω. Let $N = 2 ^ { B }$ and $r ( z ) = \\# \\{ u \\in \\Omega : S ( u ) \\geq S ( z ) \\}$ . Then $p ( z ) = r ( z ) / N$ . For each integer m, at most m assignments have $r ( z ) \\leq m ;$ ties can only increase the upper-tail rank. Taking $m = \\lfloor \\alpha N \\rfloor$ and using uniformity proves the result. □",
+        "bbox": [
+            111,
+            589,
+            883,
+            657
+        ],
+        "page_idx": 12
+    },
+    {
+        "type": "text",
+        "text": "The theorem is exact conditional on the reported assignment mechanism and is an instance of finite-sample randomization inference [6, 13]. The metadata audit can establish that paired siRNAs occur within the same plate randomization set; it cannot itself prove that the original allocation algorithm was uniform. The primary contrast uses one quotient-pixel test. Nine additional contrasts form a separate secondary family adjusted by Holm’s method [8].",
+        "bbox": [
+            111,
+            667,
+            885,
+            755
+        ],
+        "page_idx": 12
+    },
+    {
+        "type": "text",
+        "text": "8 Simulation study",
+        "text_level": 2,
+        "bbox": [
+            112,
+            776,
+            354,
+            796
+        ],
+        "page_idx": 12
+    },
+    {
+        "type": "text",
+        "text": "Each of 250 replicates at each efect strength contains eight randomized blocks, two units per block, two sites per unit, six channels and $2 8 \\times 2 8$ intrinsic lattice arrays. Treatment adds a concentric annulus with strength $\\eta \\in \\{ 0 , 0 . 3 5 , 0 . 7 0 , 1 . 0 0 \\}$ . At $\\eta = 0$ , the two treatment potential outcomes of each simulated unit are bytewise identical; diferent units may nevertheless have diferent intrinsic morphologies. After assignment, each site receives an integer shift and quarter turn from a deterministic generator depending on treatment, realized morphology, unit identity and a frozen replicate seed. The analyzer receives neither the group elements nor their generator inputs. All $2 ^ { 8 } = 2 5 6$ paired assignments are enumerated.",
+        "bbox": [
+            111,
+            810,
+            885,
+            914
+        ],
+        "page_idx": 12
+    },
+    {
+        "type": "page_number",
+        "text": "13",
+        "bbox": [
+            488,
+            934,
+            509,
+            948
+        ],
+        "page_idx": 12
+    },
+    {
+        "type": "table",
+        "img_path": "images/aef3f68f51e4a331248ac85c0f5f19a674a7568f452257a5b8b5a85103429a3e.jpg",
+        "table_caption": [
+            "Table 1: Paired-swap rejection fractions under treatment- and outcome-dependent acquisition transformations. The interval at $\\eta = 0$ is the exact 95% Clopper–Pearson interval [3] over 250 independent replicates."
+        ],
+        "table_footnote": [],
+        "table_body": "<table><tr><td>Method</td><td>η = 0</td><td>0.35</td><td>0.70</td><td>1.00</td><td>Assignments</td></tr><tr><td>Exact quotient</td><td>0.052 (0.028, 0.087)</td><td>0.140</td><td>0.848</td><td>0.992</td><td>256</td></tr><tr><td>Raw pixels</td><td>1.000 (0.985, 1.000)</td><td>1.000</td><td>1.000</td><td>1.000</td><td>256</td></tr><tr><td>Moment registration</td><td>0.056 (0.031, 0.092)</td><td>0.540</td><td>0.996</td><td>1.000</td><td>256</td></tr><tr><td>Finite Euler signature</td><td>0.040 (0.019, 0.072)</td><td>0.184</td><td>1.000</td><td>1.000</td><td>256</td></tr></table>",
+        "bbox": [
+            197,
+            132,
+            797,
+            223
+        ],
+        "page_idx": 13
+    },
+    {
+        "type": "text",
+        "text": "",
+        "bbox": [
+            111,
+            251,
+            883,
+            284
+        ],
+        "page_idx": 13
+    },
+    {
+        "type": "text",
+        "text": "For the exact quotient and post-canonical Euler endpoints, positive-η columns estimate power against a known intrinsic efect. Raw-pixel and moment-registration values are diagnostic rejection fractions because those endpoints are not invariant under the informative acquisition mechanism.",
+        "bbox": [
+            111,
+            285,
+            883,
+            337
+        ],
+        "page_idx": 13
+    },
+    {
+        "type": "chart",
+        "img_path": "images/4c504d92ab0e4c38ea3ec059bdf447c7489cacab8454d5769e6d396d6f89ee50.jpg",
+        "content": "",
+        "chart_caption": [
+            "Figure 1: Simulation rejection fractions. Finite-sample causal validity under informative acquisition pertains to the quotient and post-canonical Euler endpoints; the other methods are diagnostics. The exact quotient begins near the nominal 0.05 level and rises to 0.992, raw pixels remain at 1.0, and moment registration and the Euler endpoint begin near 0.05 and approach 1.0 as efect strength increases."
+        ],
+        "chart_footnote": [],
+        "bbox": [
+            186,
+            351,
+            808,
+            546
+        ],
+        "page_idx": 13
+    },
+    {
+        "type": "text",
+        "text": "9 RxRx1 confirmation experiment",
+        "text_level": 2,
+        "bbox": [
+            112,
+            661,
+            531,
+            681
+        ],
+        "page_idx": 13
+    },
+    {
+        "type": "text",
+        "text": "9.1 Units, selection and imposed acquisition",
+        "text_level": 2,
+        "bbox": [
+            112,
+            694,
+            557,
+            713
+        ],
+        "page_idx": 13
+    },
+    {
+        "type": "text",
+        "text": "The public RxRx1 release [16, 22] contains 125,510 six-channel 512×512 images, with two nonoverlapping sites per well, 51 experimental batches, four cell types and 1,138 siRNAs, including 1,108 noncontrol perturbations. HUVEC contributes 24 batches. The well is the experimental unit; sites and pixels are components of one structured outcome, not independent replicates. The conditions are applied siRNA reagents, so the estimand is reagent-specific rather than automatically gene-specific.",
+        "bbox": [
+            111,
+            722,
+            885,
+            824
+        ],
+        "page_idx": 13
+    },
+    {
+        "type": "text",
+        "text": "HUVEC-01 through HUVEC-12 are used for discovery, HUVEC-13 through HUVEC-16 are reserved, and HUVEC-17 through HUVEC-24 supply eight confirmation blocks. Selection uses public 128-dimensional embeddings from discovery rows only. A split-half score combines withinhalf signal-to-noise with agreement of contrast direction. Eligibility requires one two-site well per condition in every discovery batch and identical plate signatures. Greedy matching yields ten disjoint pairs; the highest score defines the primary pair and nine pairs form the secondary family. The row split does not prove that the public embedding generator was trained independently of every confirmation image, so complete algorithmic independence remains an assumption.",
+        "bbox": [
+            111,
+            824,
+            887,
+            911
+        ],
+        "page_idx": 13
+    },
+    {
+        "type": "page_number",
+        "text": "14",
+        "bbox": [
+            488,
+            934,
+            509,
+            948
+        ],
+        "page_idx": 13
+    },
+    {
+        "type": "text",
+        "text": "",
+        "bbox": [
+            111,
+            92,
+            883,
+            142
+        ],
+        "page_idx": 14
+    },
+    {
+        "type": "text",
+        "text": "The frozen confirmation subset has 160 wells, 320 sites and 1,920 single-channel PNG files. Each site is downsampled to $6 4 \\times 6 4$ , retained as 8-bit data and zero-padded. For each published nuisance seed, a BLAKE2b digest of the seed, well identifier and site determines a quarter turn and a signed translation. The transformation also depends on treatment and a coordinate-free morphology score. All channels at one site share a motion, while the two sites receive separate motions. Parameters are logged for audit but excluded from every representation and test routine; the software aborts if nonzero support is cropped.",
+        "bbox": [
+            111,
+            142,
+            885,
+            263
+        ],
+        "page_idx": 14
+    },
+    {
+        "type": "text",
+        "text": "9.2 Confirmatory results",
+        "text_level": 2,
+        "bbox": [
+            112,
+            281,
+            370,
+            299
+        ],
+        "page_idx": 14
+    },
+    {
+        "type": "text",
+        "text": "The primary contrast is siRNA 384 (s38230) versus siRNA 747 (s37149). The completeness and same-plate gates passed for all frozen pairs and blocks. The discovery-only manifest has SHA-256 digest b6f350ca96fb9e7a6271845dd6e432ed9dca556144a1a332d8f5af168642b968.",
+        "bbox": [
+            111,
+            308,
+            883,
+            361
+        ],
+        "page_idx": 14
+    },
+    {
+        "type": "table",
+        "img_path": "images/067d135b0c3aa9f1449a2f364ae800f7c5d4144e7618a5277ad2063dff6ec35a.jpg",
+        "table_caption": [
+            "Table 2: Primary RxRx1 pair under imposed lattice rigid motions. The quotient-pixel endpoint is the sole primary test; Euler is secondary; moment registration and raw pixels are acquisition-sensitive diagnostics."
+        ],
+        "table_footnote": [],
+        "table_body": "<table><tr><td>Representation</td><td> $\\widehat { \\mathrm { M M D } } _ { u } ^ { 2 }$ </td><td>Paired-swap p</td></tr><tr><td>Canonical quotient pixels</td><td>0.0036</td><td>0.0078</td></tr><tr><td>Finite directional Euler signature</td><td>0.7535</td><td>0.0078</td></tr><tr><td>Moment registration</td><td>-0.0065</td><td>0.2109</td></tr><tr><td>Raw transformed pixels</td><td>0.1664</td><td>0.0078</td></tr></table>",
+        "bbox": [
+            263,
+            415,
+            733,
+            520
+        ],
+        "page_idx": 14
+    },
+    {
+        "type": "text",
+        "text": "No secondary contrast remained significant after Holm adjustment. Exact invariance held across all acquisition seeds: maximum clean-versus-contaminated feature discrepancies were zero for the canonical pixels and Euler signature, as were the largest changes in quotient $\\widehat { \\mathrm { M M D } } _ { u } ^ { 2 }$ and exact $p -$ value. The algebraic and software audit found zero canonical-code failures among 6,400 generated transformations; 29 software checks passed.",
+        "bbox": [
+            111,
+            539,
+            885,
+            628
+        ],
+        "page_idx": 14
+    },
+    {
+        "type": "table",
+        "img_path": "images/43eb0cbdb068321733b60cbc18e65018dfc84ad31548b9a1a9af9a03da8c4b90.jpg",
+        "table_caption": [
+            "Table 3: Canonical-quotient tests for the nine prespecified secondary contrasts. These contrasts are not biological replications of the primary contrast."
+        ],
+        "table_footnote": [],
+        "table_body": "<table><tr><td>Pair</td><td>Conditions</td><td> $\\widehat { \\mathrm { M M D } } _ { u } ^ { 2 }$ </td><td>Swap p</td><td>Holm p</td></tr><tr><td>1</td><td>s21474 vs s21486</td><td>0.0040</td><td>0.0859</td><td>0.1719</td></tr><tr><td>2</td><td>s29342 vs s28343</td><td>0.0045</td><td>0.0156</td><td>0.0703</td></tr><tr><td>3</td><td>s18592 vs s18763</td><td>0.1266</td><td>0.0078</td><td>0.0703</td></tr><tr><td>4</td><td>s20782 vs s21523</td><td>0.0031</td><td>0.0078</td><td>0.0703</td></tr><tr><td>5</td><td>s20401 vs s19178</td><td>0.0228</td><td>0.0156</td><td>0.0703</td></tr><tr><td>6</td><td>s29371 vs s28116</td><td>0.0063</td><td>0.0078</td><td>0.0703</td></tr><tr><td>7</td><td>s17831 vs s20468</td><td>0.0486</td><td>0.0078</td><td>0.0703</td></tr><tr><td>8</td><td>s37483 vs s224918</td><td>-0.0107</td><td>0.1562</td><td>0.1719</td></tr><tr><td>9</td><td>s37712 vs s224940</td><td>0.0761</td><td>0.0078</td><td>0.0703</td></tr></table>",
+        "bbox": [
+            325,
+            683,
+            673,
+            821
+        ],
+        "page_idx": 14
+    },
+    {
+        "type": "page_number",
+        "text": "15",
+        "bbox": [
+            488,
+            934,
+            509,
+            948
+        ],
+        "page_idx": 14
+    },
+    {
+        "type": "table",
+        "img_path": "images/04707160ddb1cace9c4ef58745bc898da4fa7f3c89bfadd7883cbb447071aea9.jpg",
+        "table_caption": [
+            "Table 4: Acquisition-only sharp-null stress test over frozen pairs and nuisance seeds. Intervals are descriptive Clopper–Pearson summaries; pair–seed tests share biological blocks."
+        ],
+        "table_footnote": [],
+        "table_body": "<table><tr><td>Method</td><td>Tests</td><td>Rejections</td><td>Fraction (95% interval)</td></tr><tr><td>Exact quotient</td><td>200</td><td>0</td><td>0.000 (0.000, 0.018)</td></tr><tr><td>Finite Euler signature</td><td>200</td><td>0</td><td>0.000 (0.000, 0.018)</td></tr><tr><td>Moment registration</td><td>200</td><td>0</td><td>0.000 (0.000, 0.018)</td></tr><tr><td>Raw pixels</td><td>200</td><td>200</td><td>1.000 (0.982, 1.000)</td></tr></table>",
+        "bbox": [
+            250,
+            132,
+            746,
+            223
+        ],
+        "page_idx": 15
+    },
+    {
+        "type": "table",
+        "img_path": "images/621009755089315768a5858b8fba3b0a12cdbcc28bcd8084bcde65103ac55cbd.jpg",
+        "table_caption": [
+            "Table 5: Approximate-action stress test for the primary pair. Feature error is relative to the exactly transformed baseline. These are empirical sensitivity results; Theorem 5.1 applies only when its Lipschitz assumptions are verified."
+        ],
+        "table_footnote": [],
+        "table_body": "<table><tr><td>Perturbation</td><td>Method</td><td>Relative feature error</td><td> $| \\Delta \\widehat { \\mathrm { M M D } } _ { u } ^ { 2 } |$ </td><td>|∆p|</td></tr><tr><td>Rotation 5°</td><td>Exact quotient</td><td>0.8432</td><td>0.0012</td><td>0.0000</td></tr><tr><td></td><td>Euler signature</td><td>0.0779</td><td>0.0860</td><td>0.0000</td></tr><tr><td></td><td>Moment registration</td><td>0.7295</td><td>0.0014</td><td>0.0234</td></tr><tr><td></td><td>Raw pixels</td><td>0.6540</td><td>0.0013</td><td>0.0000</td></tr><tr><td>Rotation 10°</td><td>Exact quotient</td><td>0.8967</td><td>0.0022</td><td>0.0000</td></tr><tr><td></td><td>Euler signature</td><td>0.0827</td><td>0.0530</td><td>0.0000</td></tr><tr><td></td><td>Moment registration</td><td>0.8124</td><td>0.0021</td><td>0.1250</td></tr><tr><td></td><td>Raw pixels</td><td>0.8038</td><td>0.0012</td><td>0.0000</td></tr><tr><td>Rotation 20°</td><td>Exact quotient</td><td>0.9715</td><td>0.0005</td><td>0.0000</td></tr><tr><td></td><td>Euler signature</td><td>0.1076</td><td>0.0898</td><td>0.0000</td></tr><tr><td></td><td>Moment registration</td><td>0.8662</td><td>0.0009</td><td>0.0469</td></tr><tr><td></td><td>Raw pixels</td><td>0.8802</td><td>0.0014</td><td>0.0000</td></tr><tr><td>Two-pixel support crop</td><td>Exact quotient</td><td>0.8253</td><td>0.0026</td><td>0.0000</td></tr><tr><td></td><td>Euler signature</td><td>0.1478</td><td>0.0164</td><td>0.0000</td></tr><tr><td></td><td>Moment registration</td><td>0.6857</td><td>0.0203</td><td>0.2031</td></tr><tr><td></td><td>Raw pixels</td><td>0.3523</td><td>0.0001</td><td>0.0000</td></tr><tr><td>Gaussian noise</td><td>Exact quotient</td><td>0.5949</td><td>0.0007</td><td>0.0000</td></tr><tr><td></td><td>Euler signature</td><td>0.0618</td><td>0.0244</td><td>0.0000</td></tr><tr><td></td><td>Moment registration</td><td>0.3870</td><td>0.0067</td><td>0.1328</td></tr><tr><td></td><td>Raw pixels</td><td>0.1775</td><td>0.0006</td><td>0.0000</td></tr></table>",
+        "bbox": [
+            207,
+            296,
+            789,
+            566
+        ],
+        "page_idx": 15
+    },
+    {
+        "type": "text",
+        "text": "10 Discussion",
+        "text_level": 2,
+        "bbox": [
+            114,
+            590,
+            292,
+            609
+        ],
+        "page_idx": 15
+    },
+    {
+        "type": "text",
+        "text": "Under unrestricted contamination, invariance is an observability requirement rather than a modeling preference. A noninvariant target can change while the observed law remains fixed; a maximal invariant captures the entire recoverable orbit. Causal identification then requires a separate design or exchangeability argument. The losslessness theorem adds a third distinction: even a maximal invariant may discard information about how probability is distributed within an orbit. Only a parameter-free conditional law, or a condition such as conditional Haar randomization that implies one, makes quotienting suficient for the full statistical experiment.",
+        "bbox": [
+            111,
+            623,
+            885,
+            743
+        ],
+        "page_idx": 15
+    },
+    {
+        "type": "text",
+        "text": "The distinction between product and diagonal actions has practical consequences. Sitewise canonicalization is correct for the imposed RxRx1 mechanism because each site receives a separate motion. If a microscope applies one common transformation to all sites, a diagonal quotient should retain relative placement and orientation. Treating that problem as a product action would erase scientifically meaningful relational structure.",
+        "bbox": [
+            111,
+            743,
+            885,
+            829
+        ],
+        "page_idx": 15
+    },
+    {
+        "type": "text",
+        "text": "The approximate-contamination theorem links orbit error to quotient-law and MMD error, but it also clarifies the limits of the current stress test. Lexicographic canonicalization can be discontinuous. Large feature changes accompanied by stable p-values in Table 5 demonstrate testlevel robustness for the frozen perturbations, not global representation stability. Establishing a",
+        "bbox": [
+            111,
+            829,
+            885,
+            898
+        ],
+        "page_idx": 15
+    },
+    {
+        "type": "page_number",
+        "text": "16",
+        "bbox": [
+            488,
+            934,
+            509,
+            948
+        ],
+        "page_idx": 15
+    },
+    {
+        "type": "text",
+        "text": "Lipschitz quotient embedding on a scientifically relevant image class is a separate research problem.",
+        "bbox": [
+            111,
+            92,
+            882,
+            108
+        ],
+        "page_idx": 16
+    },
+    {
+        "type": "text",
+        "text": "The RxRx1 analysis is a controlled unknown-acquisition experiment on real biological images. Its content and batch structure are real; the transformation law is imposed and exactly audited. The causal conclusion is conditional on the reported within-plate assignment mechanism, welldefined reagent versions, no cross-well interference and swap-invariant retention. The primary result concerns a reagent-condition contrast, not automatically a gene-level mechanism. With eight pairs, exact enumeration is a strength, but the randomization distribution has coarse resolution.",
+        "bbox": [
+            111,
+            108,
+            885,
+            212
+        ],
+        "page_idx": 16
+    },
+    {
+        "type": "text",
+        "text": "11 Conclusion",
+        "text_level": 2,
+        "bbox": [
+            112,
+            234,
+            299,
+            253
+        ],
+        "page_idx": 16
+    },
+    {
+        "type": "text",
+        "text": "Unknown transformations need not be estimated to conduct causal inference on the information that survives them. Under a measurable group action, orbit invariance is necessary and suficient for uniform observability, and a maximal invariant contains every measurable observable target. Quotient reduction is statistically lossless only under the additional, exact boundary of a parameterfree conditional law given the quotient; conditional Haar contamination is one useful special case. Correct specification of product or diagonal actions determines whether relative component information is preserved. The lattice construction, characteristic quotient kernel and complete paired randomization test turn these distinctions into an auditable workflow for structured outcomes under informative acquisition.",
+        "bbox": [
+            111,
+            267,
+            885,
+            422
+        ],
+        "page_idx": 16
+    },
+    {
+        "type": "text",
+        "text": "Data availability",
+        "text_level": 2,
+        "bbox": [
+            112,
+            445,
+            308,
+            465
+        ],
+        "page_idx": 16
+    },
+    {
+        "type": "text",
+        "text": "The analysis uses the public RxRx1 dataset subject to its stated licence. The accompanying software is described by the reproducibility statement below. Repository or archival identifiers will be added when the public code archive is released.",
+        "bbox": [
+            111,
+            479,
+            885,
+            531
+        ],
+        "page_idx": 16
+    },
+    {
+        "type": "text",
+        "text": "Reproducibility statement",
+        "text_level": 2,
+        "bbox": [
+            112,
+            554,
+            421,
+            574
+        ],
+        "page_idx": 16
+    },
+    {
+        "type": "text",
+        "text": "The analysis software downloads the frozen RxRx1 subset, verifies file and manifest hashes, constructs all representations, enumerates the complete assignment distribution, performs multiplicity adjustment and sensitivity analyses, executes unit tests and writes the numerical outputs consumed by the manuscript. The source fingerprint reported for the analysed version is sourcee9f042c387cf.",
+        "bbox": [
+            111,
+            587,
+            885,
+            674
+        ],
+        "page_idx": 16
+    },
+    {
+        "type": "text",
+        "text": "Author contributions",
+        "text_level": 2,
+        "bbox": [
+            112,
+            696,
+            364,
+            715
+        ],
+        "page_idx": 16
+    },
+    {
+        "type": "text",
+        "text": "Usef Faghihi and Amir Saki contributed equally to the conception, methodology, theoretical development, analysis, interpretation of results and preparation of the manuscript. Both authors reviewed and approved the final manuscript.",
+        "bbox": [
+            111,
+            729,
+            885,
+            782
+        ],
+        "page_idx": 16
+    },
+    {
+        "type": "text",
+        "text": "Funding",
+        "text_level": 2,
+        "bbox": [
+            112,
+            805,
+            214,
+            825
+        ],
+        "page_idx": 16
+    },
+    {
+        "type": "text",
+        "text": "This research received no specific grant from any funding agency in the public, commercial or not-for-profit sectors.",
+        "bbox": [
+            111,
+            838,
+            883,
+            872
+        ],
+        "page_idx": 16
+    },
+    {
+        "type": "page_number",
+        "text": "17",
+        "bbox": [
+            488,
+            934,
+            509,
+            948
+        ],
+        "page_idx": 16
+    },
+    {
+        "type": "text",
+        "text": "Acknowledgements and use of AI-assisted tools",
+        "text_level": 2,
+        "bbox": [
+            112,
+            88,
+            665,
+            108
+        ],
+        "page_idx": 17
+    },
+    {
+        "type": "text",
+        "text": "During manuscript preparation, the authors used OpenAI Codex for language editing, theoremstructure review and LaTeX reformatting. The authors are responsible for verifying all mathematical statements, empirical results, citations and final wording.",
+        "bbox": [
+            111,
+            122,
+            883,
+            174
+        ],
+        "page_idx": 17
+    },
+    {
+        "type": "text",
+        "text": "A Proof and measurability details",
+        "text_level": 2,
+        "bbox": [
+            112,
+            196,
+            527,
+            217
+        ],
+        "page_idx": 17
+    },
+    {
+        "type": "text",
+        "text": "A.1 Proof of Theorem 2.4",
+        "text_level": 2,
+        "bbox": [
+            112,
+            229,
+            383,
+            247
+        ],
+        "page_idx": 17
+    },
+    {
+        "type": "text",
+        "text": "Proof. Fix an arbitrary Borel set $B \\subseteq \\tau$ , and write",
+        "bbox": [
+            112,
+            257,
+            521,
+            273
+        ],
+        "page_idx": 17
+    },
+    {
+        "type": "equation",
+        "img_path": "images/d2b4898418d9ef97bb2d25fc892e1761fb40ace5c102a73b683e562f866d21de.jpg",
+        "text": "$$\nE : = h ^ { - 1 } ( B ) .\n$$",
+        "text_format": "latex",
+        "bbox": [
+            442,
+            286,
+            552,
+            305
+        ],
+        "page_idx": 17
+    },
+    {
+        "type": "text",
+        "text": "Since h is Borel, both E and $\\mathcal { V } \\backslash E$ are Borel subsets of Y. We first verify explicitly that E is saturated with respect to the fibres of M, that is,",
+        "bbox": [
+            111,
+            318,
+            883,
+            353
+        ],
+        "page_idx": 17
+    },
+    {
+        "type": "equation",
+        "img_path": "images/e8599a490f2fab4920a801ae2d53bf4b899f5b242f1849ebc6571777f686f07f.jpg",
+        "text": "$$\nM ^ { - 1 } \\{ M ( E ) \\} = E .\n$$",
+        "text_format": "latex",
+        "bbox": [
+            421,
+            364,
+            575,
+            385
+        ],
+        "page_idx": 17
+    },
+    {
+        "type": "text",
+        "text": "The inclusion $E \\subseteq M ^ { - 1 } \\{ M ( E ) \\}$ is immediate. Conversely, suppose that $y \\in M ^ { - 1 } \\{ M ( E ) \\}$ . Then there exists $z \\in E$ such that $\\boldsymbol { M } ( y ) = \\boldsymbol { M } ( z )$ . By maximality of M, there is some $g \\in G$ for which $y = g \\cdot z$ . Invariance of h therefore gives",
+        "bbox": [
+            111,
+            397,
+            883,
+            449
+        ],
+        "page_idx": 17
+    },
+    {
+        "type": "equation",
+        "img_path": "images/4804edf281b32c9504091c425189efbc872a5bca7f25f6381bdf81985486f6ab.jpg",
+        "text": "$$\nh ( y ) = h ( g \\cdot z ) = h ( z ) \\in B ,\n$$",
+        "text_format": "latex",
+        "bbox": [
+            387,
+            462,
+            607,
+            479
+        ],
+        "page_idx": 17
+    },
+    {
+        "type": "text",
+        "text": "and hence $y \\in E$ . This proves the asserted saturation. Notice that this statement concerns the particular set $E = h ^ { - 1 } ( B )$ : it says that every fibre of M is either entirely contained in E or entirely contained in its complement; it does not assert that the fibres of M are singletons.",
+        "bbox": [
+            111,
+            493,
+            883,
+            545
+        ],
+        "page_idx": 17
+    },
+    {
+        "type": "text",
+        "text": "We next claim that",
+        "bbox": [
+            140,
+            545,
+            299,
+            560
+        ],
+        "page_idx": 17
+    },
+    {
+        "type": "equation",
+        "img_path": "images/0db8f8ed47691b1c52b7b61a6024aa44d2d733039ac6e0831ccdabd0174e01e3.jpg",
+        "text": "$$\nM ( E ) \\cap M ( \\mathcal { V } \\setminus E ) = \\emptyset .\n$$",
+        "text_format": "latex",
+        "bbox": [
+            400,
+            561,
+            594,
+            579
+        ],
+        "page_idx": 17
+    },
+    {
+        "type": "text",
+        "text": "Indeed, if s belonged to this intersection, there would exist $y \\in E$ and $z \\in \\mathcal { V } \\setminus E$ such that",
+        "bbox": [
+            111,
+            587,
+            823,
+            604
+        ],
+        "page_idx": 17
+    },
+    {
+        "type": "equation",
+        "img_path": "images/4bbd8eb5b8c620c558f8e6f0b17019ff7c031277e189ecf299ebad32edc055ab.jpg",
+        "text": "$$\n\\begin{array} { r } { M ( y ) = s = M ( z ) . } \\end{array}\n$$",
+        "text_format": "latex",
+        "bbox": [
+            421,
+            618,
+            573,
+            636
+        ],
+        "page_idx": 17
+    },
+    {
+        "type": "text",
+        "text": "Maximality of M would then place y and z in the same G-orbit, so invariance of h would imply $h ( y ) = h ( z )$ . This is impossible because $h ( y ) \\in B$ , whereas $h ( z ) \\notin B$",
+        "bbox": [
+            111,
+            650,
+            882,
+            683
+        ],
+        "page_idx": 17
+    },
+    {
+        "type": "text",
+        "text": "Because Y and S are standard Borel spaces, and M is Borel, the images $M ( E )$ and $M ( \\mathcal { V } \\backslash E )$ are analytic subsets of S. They need not themselves be Borel, which is why a separation argument is required. By Lusin’s separation theorem, there exists a Borel set $D _ { B } \\subseteq S$ satisfying",
+        "bbox": [
+            111,
+            683,
+            883,
+            736
+        ],
+        "page_idx": 17
+    },
+    {
+        "type": "equation",
+        "img_path": "images/b66f401d61564586b5c4a6542b720b19a85cc6878329294f26134c1b0f4672fc.jpg",
+        "text": "$$\nM ( E ) \\subseteq D _ { B } \\qquad { \\mathrm { a n d } } \\qquad M ( \\mathcal { V } \\backslash E ) \\subseteq S \\setminus D _ { B } .\n$$",
+        "text_format": "latex",
+        "bbox": [
+            313,
+            748,
+            681,
+            766
+        ],
+        "page_idx": 17
+    },
+    {
+        "type": "text",
+        "text": "We now show that",
+        "bbox": [
+            112,
+            780,
+            264,
+            795
+        ],
+        "page_idx": 17
+    },
+    {
+        "type": "equation",
+        "img_path": "images/d4cd254cedc22de017b564e9e44fe29bf014ad07b8192af553162db952939538.jpg",
+        "text": "$$\nE = M ^ { - 1 } ( D _ { B } ) .\n$$",
+        "text_format": "latex",
+        "bbox": [
+            436,
+            795,
+            560,
+            814
+        ],
+        "page_idx": 17
+    },
+    {
+        "type": "text",
+        "text": "If $y \\in E$ , then $M ( y ) \\in M ( E ) \\subseteq D _ { B }$ , and hence $y \\in M ^ { - 1 } ( D _ { B } )$ . If $y \\notin E$ , then $M ( y ) \\in M ( \\mathcal { V } \\backslash E ) \\subseteq$ $\\mathcal { S } \\backslash D _ { B }$ , and hence $y \\notin M ^ { - 1 } ( D _ { B } )$ . The two inclusions therefore follow, and",
+        "bbox": [
+            111,
+            821,
+            883,
+            856
+        ],
+        "page_idx": 17
+    },
+    {
+        "type": "equation",
+        "img_path": "images/4cb5392504944f3c65f799f685e7aeec2172bba9d07bf748a2c25ee7b7c764f2.jpg",
+        "text": "$$\nh ^ { - 1 } ( B ) = E = M ^ { - 1 } ( D _ { B } ) \\in \\sigma ( M ) .\n$$",
+        "text_format": "latex",
+        "bbox": [
+            359,
+            868,
+            635,
+            887
+        ],
+        "page_idx": 17
+    },
+    {
+        "type": "page_number",
+        "text": "18",
+        "bbox": [
+            488,
+            934,
+            509,
+            948
+        ],
+        "page_idx": 17
+    },
+    {
+        "type": "text",
+        "text": "Since $B \\subseteq \\tau$ was an arbitrary Borel set, h is $\\sigma ( M )$ -measurable. The measurable factorization lemma, applicable because $\\tau$ is a standard Borel space, therefore yields a Borel map",
+        "bbox": [
+            111,
+            90,
+            883,
+            126
+        ],
+        "page_idx": 18
+    },
+    {
+        "type": "equation",
+        "img_path": "images/af2b8c064a0f6224025221b2d5583f6a6c2e8b8de34a9279455d9f3b65553735.jpg",
+        "text": "$$\n\\bar { h } : S \\longrightarrow \\mathcal { T }\n$$",
+        "text_format": "latex",
+        "bbox": [
+            449,
+            138,
+            547,
+            155
+        ],
+        "page_idx": 18
+    },
+    {
+        "type": "text",
+        "text": "such that",
+        "bbox": [
+            111,
+            170,
+            192,
+            185
+        ],
+        "page_idx": 18
+    },
+    {
+        "type": "equation",
+        "img_path": "images/2623bb1b7c6be76105573801bca858e6788e73e6fccd54e13fe448ce5e5b4603.jpg",
+        "text": "$$\nh = { \\bar { h } } \\circ M .\n$$",
+        "text_format": "latex",
+        "bbox": [
+            452,
+            185,
+            544,
+            203
+        ],
+        "page_idx": 18
+    },
+    {
+        "type": "text",
+        "text": "It remains to establish the stated uniqueness. Suppose that $\\bar { h } _ { 1 } , \\bar { h } _ { 2 } : S  \\mathcal { T }$ are two Borel maps satisfying",
+        "bbox": [
+            111,
+            212,
+            883,
+            246
+        ],
+        "page_idx": 18
+    },
+    {
+        "type": "equation",
+        "img_path": "images/ae6ecfe317f98a55cab172e17febc46a4af71217345363746fe41b4afecdd900.jpg",
+        "text": "$$\nh = \\bar { h } _ { 1 } \\circ M = \\bar { h } _ { 2 } \\circ M .\n$$",
+        "text_format": "latex",
+        "bbox": [
+            408,
+            247,
+            586,
+            262
+        ],
+        "page_idx": 18
+    },
+    {
+        "type": "text",
+        "text": "For any $s \\in M ( \\mathcal { V } )$ , choose $y \\in \\mathcal { V }$ with $M ( y ) = s$ . Then",
+        "bbox": [
+            112,
+            272,
+            549,
+            289
+        ],
+        "page_idx": 18
+    },
+    {
+        "type": "equation",
+        "img_path": "images/ca4b6faed7f809ac3d12d02954ad64f0185d17419594f0c4aa478120dc2d093f.jpg",
+        "text": "$$\n\\bar { h } _ { 1 } ( s ) = \\bar { h } _ { 1 } \\{ M ( y ) \\} = h ( y ) = \\bar { h } _ { 2 } \\{ M ( y ) \\} = \\bar { h } _ { 2 } ( s ) .\n$$",
+        "text_format": "latex",
+        "bbox": [
+            308,
+            301,
+            686,
+            320
+        ],
+        "page_idx": 18
+    },
+    {
+        "type": "text",
+        "text": "Thus $\\bar { h } _ { 1 } = \\bar { h } _ { 2 }$ on $M ( \\mathcal { V } )$ . No uniqueness is claimed outside $M ( \\mathfrak { V } )$ , since values of a factor map there do not afect its composition with M. □",
+        "bbox": [
+            111,
+            334,
+            883,
+            367
+        ],
+        "page_idx": 18
+    },
+    {
+        "type": "text",
+        "text": "A.2 Existence constructions for maximal invariants",
+        "text_level": 2,
+        "bbox": [
+            112,
+            387,
+            625,
+            404
+        ],
+        "page_idx": 18
+    },
+    {
+        "type": "text",
+        "text": "If a compact metrizable group acts continuously on a Polish space, the orbit-valued map $y \\mapsto G \\cdot y$ is a Borel maximal invariant taking values in the hyperspace of nonempty compact subsets with its Vietoris Borel structure. For a finite group $H = \\{ h _ { 1 } , \\ldots , h _ { m } \\}$ acting by Borel maps, any Borel injection $\\nu : \\mathcal { V } \\to [ 0 , 1 ]$ gives the canonical representative",
+        "bbox": [
+            111,
+            414,
+            883,
+            483
+        ],
+        "page_idx": 18
+    },
+    {
+        "type": "equation",
+        "img_path": "images/be08c3f41f04728f7f9dc7ff65e3a4f73f08ceb0f420f99d1589638fe71f655e.jpg",
+        "text": "$$\nc _ { H } ( y ) = h _ { j ^ { \\star } } \\cdot y , \\qquad j ^ { \\star } = \\operatorname* { m i n } \\operatorname { a r g m i n } _ { j } \\nu ( h _ { j } \\cdot y ) ,\n$$",
+        "text_format": "latex",
+        "bbox": [
+            312,
+            496,
+            683,
+            515
+        ],
+        "page_idx": 18
+    },
+    {
+        "type": "text",
+        "text": "which is Borel and maximal. The lattice construction combines an explicit cross-section for noncompact translations with this finite residual minimization.",
+        "bbox": [
+            111,
+            527,
+            883,
+            561
+        ],
+        "page_idx": 18
+    },
+    {
+        "type": "text",
+        "text": "A.3 Measurability of the Haar orbit kernel",
+        "text_level": 2,
+        "bbox": [
+            112,
+            580,
+            545,
+            598
+        ],
+        "page_idx": 18
+    },
+    {
+        "type": "text",
+        "text": "For compact second-countable G, a jointly Borel action and measurable section make $m \\mapsto K _ { m } ( B )$ in (3.2) measurable for every Borel B by integration of the jointly measurable indicator $( g , m ) \\mapsto$ $\\mathbf { 1 } \\{ g \\cdot s ( m ) \\in B \\}$ . Stabilizers may change the map from G onto an orbit but do not change the pushforward orbit measure.",
+        "bbox": [
+            111,
+            607,
+            883,
+            676
+        ],
+        "page_idx": 18
+    },
+    {
+        "type": "text",
+        "text": "References",
+        "text_level": 2,
+        "bbox": [
+            112,
+            699,
+            243,
+            718
+        ],
+        "page_idx": 18
+    },
+    {
+        "type": "list",
+        "sub_type": "ref_text",
+        "list_items": [
+            "[1] Bhattacharjee, S., Li, B., Wu, X. and Xue, L. (2025) Doubly robust estimation of causal efects for random object outcomes with continuous treatments. arXiv:2506.22754.",
+            "[2] Blackwell, D. (1953) Equivalent comparisons of experiments. Ann. Math. Statist., 24, 265–272.",
+            "[3] Clopper, C. J. and Pearson, E. S. (1934) The use of confidence or fiducial limits illustrated in the case of the binomial. Biometrika, 26, 404–413.",
+            "[4] Curry, J., Mukherjee, S. and Turner, K. (2022) How many directions determine a shape and other suficiency results for two topological transforms. Trans. Amer. Math. Soc. Ser. B, 9, 1006–1043."
+        ],
+        "bbox": [
+            122,
+            732,
+            882,
+            766
+        ],
+        "page_idx": 18
+    },
+    {
+        "type": "page_number",
+        "text": "19",
+        "bbox": [
+            488,
+            934,
+            509,
+            948
+        ],
+        "page_idx": 18
+    },
+    {
+        "type": "list",
+        "sub_type": "ref_text",
+        "list_items": [
+            "[5] Eaton, M. L. (1989) Group Invariance Applications in Statistics. Institute of Mathematical Statistics, Hayward, CA.",
+            "[6] Fisher, R. A. (1935) The Design of Experiments. Oliver and Boyd, Edinburgh.",
+            "[7] Gretton, A., Borgwardt, K. M., Rasch, M. J., Sch¨olkopf, B. and Smola, A. (2012) A kernel two-sample test. J. Mach. Learn. Res., 13, 723–773.",
+            "[8] Holm, S. (1979) A simple sequentially rejective multiple test procedure. Scand. J. Stat., 6, 65–70.",
+            "[9] Kallenberg, O. (2021) Foundations of Modern Probability, 3rd edn. Springer, Cham.",
+            "[10] Kechris, A. S. (1995) Classical Descriptive Set Theory. Springer, New York.",
+            "[11] Kurisu, D., Zhou, Y., Otsu, T. and M¨uller, H.-G. (2024) Geodesic causal inference. arXiv:2406.19604.",
+            "[12] Le Cam, L. (1986) Asymptotic Methods in Statistical Decision Theory. Springer, New York.",
+            "[13] Lehmann, E. L. and Romano, J. P. (2005) Testing Statistical Hypotheses, 3rd edn. Springer, New York.",
+            "[14] Otsu, N. (1979) A threshold selection method from gray-level histograms. IEEE Trans. Syst. Man Cybern., 9, 62–66.",
+            "[15] Raykov, Y. P., Luo, H., Strait, J. D. and KhudaBukhsh, W. R. (2025) Kernel-based estimators for functional causal efects. arXiv:2503.05024.",
+            "[16] [dataset] Recursion (2023) RxRx1: an image set for cellular morphological variation across many biological perturbations. https://www.rxrx.ai/rxrx1.",
+            "[17] Robins, J. M. (1986) A new approach to causal inference in mortality studies with a sustained exposure period. Math. Modelling, 7, 1393–1512.",
+            "[18] Rosenbaum, P. R. and Rubin, D. B. (1983) The central role of the propensity score in observational studies for causal efects. Biometrika, 70, 41–55.",
+            "[19] Rubin, D. B. (1974) Estimating causal efects of treatments in randomized and nonrandomized studies. J. Educ. Psychol., 66, 688–701.",
+            "[20] Shin, H.-Y., Kim, K., Lee, K. and Oh, H.-S. (2024) Absolute average and median treatment efects as causal estimands on metric spaces. arXiv:2407.03726.",
+            "[21] Sriperumbudur, B. K., Gretton, A., Fukumizu, K., Sch¨olkopf, B. and Lanckriet, G. R. G. (2010) Hilbert space embeddings and metrics on probability measures. J. Mach. Learn. Res., 11, 1517–1561.",
+            "[22] Sypetkowski, M. et al. (2023) RxRx1: a dataset for evaluating experimental batch correction methods. arXiv:2301.05768.",
+            "[23] Torgersen, E. (1991) Comparison ofStatistical Experiments. Cambridge University Press, Cambridge."
+        ],
+        "bbox": [
+            122,
+            90,
+            883,
+            126
+        ],
+        "page_idx": 19
+    },
+    {
+        "type": "page_number",
+        "text": "20",
+        "bbox": [
+            486,
+            934,
+            509,
+            948
+        ],
+        "page_idx": 19
+    },
+    {
+        "type": "list",
+        "sub_type": "ref_text",
+        "list_items": [
+            "[24] Turner, K., Mukherjee, S. and Boyer, D. M. (2014) Persistent homology transform for modeling shapes and surfaces. Information and Inference, 3, 310–344.",
+            "[25] Wijsman, R. A. (1990) Invariant Measures on Groups and Their Use in Statistics. Institute of Mathematical Statistics, Hayward, CA."
+        ],
+        "bbox": [
+            116,
+            90,
+            882,
+            125
+        ],
+        "page_idx": 20
+    },
+    {
+        "type": "text",
+        "text": "Figure caption list",
+        "text_level": 2,
+        "bbox": [
+            112,
+            209,
+            331,
+            231
+        ],
+        "page_idx": 20
+    },
+    {
+        "type": "text",
+        "text": "Figure 1. Simulation rejection fractions across intrinsic efect strengths; causal validity under informative acquisition pertains to invariant endpoints.",
+        "bbox": [
+            111,
+            243,
+            883,
+            277
+        ],
+        "page_idx": 20
+    },
+    {
+        "type": "text",
+        "text": "Table caption list",
+        "text_level": 2,
+        "bbox": [
+            114,
+            301,
+            318,
+            320
+        ],
+        "page_idx": 20
+    },
+    {
+        "type": "text",
+        "text": "Table 1. Simulation rejection fractions.",
+        "bbox": [
+            112,
+            334,
+            423,
+            351
+        ],
+        "page_idx": 20
+    },
+    {
+        "type": "text",
+        "text": "Table 2. Primary RxRx1 contrast.",
+        "bbox": [
+            112,
+            352,
+            388,
+            367
+        ],
+        "page_idx": 20
+    },
+    {
+        "type": "text",
+        "text": "Table 3. Prespecified secondary contrasts.",
+        "bbox": [
+            112,
+            369,
+            446,
+            385
+        ],
+        "page_idx": 20
+    },
+    {
+        "type": "text",
+        "text": "Table 4. Acquisition-only sharp-null stress test.",
+        "bbox": [
+            112,
+            386,
+            488,
+            401
+        ],
+        "page_idx": 20
+    },
+    {
+        "type": "text",
+        "text": "Table 5. Approximate-action stress test.",
+        "bbox": [
+            112,
+            404,
+            433,
+            419
+        ],
+        "page_idx": 20
+    },
+    {
+        "type": "page_number",
+        "text": "21",
+        "bbox": [
+            488,
+            934,
+            508,
+            948
+        ],
+        "page_idx": 20
+    }
+]
