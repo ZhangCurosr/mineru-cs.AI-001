@@ -1,0 +1,271 @@
+# Learning-Based Behavior Planning for Automated Driving: Real-World Integration and Deployment
+
+Jean-Pierre Busch<sup>∗</sup>, Guido Linden<sup>∗</sup>, Jan Bergmann<sup>†</sup> and Lutz Eckstein<sup>‡</sup>
+
+Abstract: Recent research in machine and deep learning has shown the potential of learningbased motion planning approaches to improve the driving behavior of automated vehicles, especially in complex environments. However, their complex nature and lack of transparency can hinder explainability and trustworthiness and complicate safety assurance. Motivated by these challenges, we propose a hybrid planning architecture that combines the advantages of machine learning with the verifiability and the determinism of classical approaches. Specifically, we developed a deep neural network to interpret complex trafic scenes and propose driving behavior, while an optimization-based supervision layer validates this proposal and enforces explicit drivability and safety constraints. We evaluate the learned planner’s driving behavior in open-loop studies on real-world urban data, discuss system integration aspects for stable closed-loop operation, and report results from real-world deployment on our research vehicle karl..
+
+Keywords: automated driving, hybrid planning architecture, behavior planning, deep learning
+
+## 1 Introduction
+
+Although companies such as Waymo [1] and Zoox [2] are already operating automated vehicles in U.S. cities, motion planning remains one of the central research topics for urban automated driving. According to Donges [3], the vehicle guidance task can be divided into the subtasks of navigation, guidance, and stabilization. Nowadays, the most significant challenges are faced at the guidance level: incorporating the vehicle’s environment – in particular, other trafic participants – into behavior and trajectory planning makes the task highly variable and considerably enlarges the relevant solution space.
+
+Traditionally, behavior and trajectory planning algorithms are realized using search-, sampling-, or optimization-based methods, which ofer deterministic behavior and allow the system to enforce clear and transparent constraints. However, in highly interactive urban trafic, purely rule-based behavior design quickly becomes dificult to scale: the long tail of corner cases, complex interactions, and the need for continuously evolving driving behavior require substantial engineering efort.
+
+This is a key reason why data-driven planning approaches for automated vehicles are becoming increasingly important [4]. In particular, machine learning (ML) models can capture implicit interaction patterns between the vehicle and its environment that are dificult to encode in rule- or optimization-based approaches. Additionally, these models can be continuously improved via machine learning operations (MLOps) pipelines. The way in which ML models are integrated into vehicle guidance ranges from modular system architectures that integrate ML components for specific functions (e.g., tactical decision making) to end-to-end approaches that operate directly on raw sensor data and jointly address perception, situation understanding and planning [5, 6].
+
+Regardless of whether ML is integrated as modular components or as an end-to-end model, all approaches face the same core challenge: they must satisfy system-level requirements such as trustworthiness, explainability, accountability, drivability, trafic-rule compliance, and safety. This has also sparked standardization eforts (e.g., ISO/TS 5083:2025) that emphasize architectural measures and safety layers around ML components [7].
+
+Building on this motivation, this paper proposes a hybrid planning architecture that combines deep learning-based behavior planning with an optimization-based trajectory supervision, aiming to exploit the generalization capabilities of learned behavior generation while retaining deterministic, constraint-based safeguarding of the resulting trajectories. Beyond proposing the architectural concept, this work details its concrete implementation, demonstrates its integration and operation on the research vehicle karl. [8], and releases substantial parts of the resulting planning framework as open source software within the OpenADS<sup>1</sup> ecosystem.
+
+## 2 Related Work
+
+This section reviews related work on motion planning for automated vehicles, starting with classical (search-, sampling-, and optimization-based) approaches, moving on to learningbased planners, and concluding with hybrid architectures that combine ML-driven approaches with deterministic supervision.
+
+Rule-based motion planners have been used since the early days of automated driving, including the DARPA Grand- and Urban Challenges. For example, the winning system of the DARPA Grand Challenge 2005 used a search procedure over dynamically feasible trajectory candidates and selected solutions via cost aggregation [9]. Besides searchbased planning on discretized state lattices, sampling-based motion planning methods (e.g., rapidly-exploring random trees (RRTs) [10] and RRT\* [11]) generate candidate trajectories by sampling the state/control space and selecting the best candidate under a cost function and constraints. For tactical decision making under uncertainty, some automated driving systems (ADSs) formulate behavior planning as a partially observable Markov decision process (POMDP) and solve it via Monte Carlo Tree Search (MCTS), followed by trajectory optimization to ensure feasibility [12]. The main advantages of these approaches are explicit constraint handling and a traceable decision process, supporting verification and safety argumentation.
+
+On the other hand, learning-based planners aim to overcome the limited scalability of manually encoded rule sets in complex urban environments. Over the past years, a wide range of model architectures and data representations has been explored. Early and widely used approaches represent the scene as a top-down raster image and apply convolutional backbones. ChaufeurNet, for instance, learns trajectories from rasterized scene representations and uses synthetic perturbations and additional loss terms to mitigate compounding errors in closed-loop operation [13]. More recent approaches use vectorized scene encodings and transformer backbones. For example, PlanT encodes a scene as a set of planar object tokens and predicts future waypoints with a transformer encoder and recurrent decoder [14]. Vectorized representations that encode agents and map geometry as polylines and lane graphs have become a de facto standard for scene encoding [15, 16]. Building on them, imitation-learning planners combine attention-based scene fusion [17] with transformer backbones and report strong results on large-scale planning benchmarks [18, 19], with some approaches modeling multi-agent interaction explicitly during decoding [20]. Besides such modular approaches, end-to-end driving policies aim to map raw sensor inputs to driving behavior and may expose intermediate reasoning traces. EMMA is a representative multimodal end-to-end approach that outputs driving-taskspecific predictions from camera inputs [6]. NVIDIA’s Alpamayo is a recent large-scale foundation model that also uses camera images as input, but predicts trajectories rather than direct vehicle control commands alongside textual reasoning traces [5, 21].
+
+To combine the strengths of rule- and learning-based planners, recent works increasingly explore hybrid planning architectures in which learning-based behavior is validated, refined, or replaced using deterministic checks or optimization [22–25]. SafetyNet [24], for example, combines a learned planner with an explicit safety layer that evaluates feasibility, legality, and collision risk and, upon violations, switches to a non-learning-based fallback trajectory generator. In practice, the learning-based planner is based on a structured scene representation (e.g., graph-/point-based encoders with transformer-style decoding), while the fallback is realized through a trajectory generation method based on [26]. Gariboldi et al. propose a hybrid design in which a lightweight multilayer perceptron (MLP) predicts a trajectory proposal that is then consistently refined by a downstream modelpredictive trajectory optimization to enforce feasibility and collision avoidance [25].
+
+This line of work also connects to recent guidance on the safe integration of ML in ADSs. For example, ISO/TS 5083:2025 provides a state-of-the-art reference for integrating ML components into ADSs via well-defined safety layers and architectural measures [7]. This work follows a similar hybrid principle by employing a learning-based behavior planner and an optimization-based supervision layer within a modular ADS.
+
+## 3 Planning Architecture
+
+The main objective of this work is to develop a planning architecture that combines the performance potential of learning-based behavior planning with the verifiability and deterministic constraint enforcement of classical planning methods. In particular, we address the system-level challenges of learning-based approaches highlighted in Section 1 and translate them into architectural measures that enable stable closed-loop behavior in a real-world vehicle. The architecture is designed in a modular manner with clearly separated responsibilities, allowing the learning-based behavior planner to be exchanged and updated without modifying the safety-critical supervision and fallback modules. This separation also facilitates an MLOps workflow in which operational data can be collected, incorporated into subsequent training and validation cycles, and used for the continuous refinement of the behavior planner. In this section, the overall hybrid architecture and its interfaces are described, while Section 4 then details the learning-based module.
+
+Fig. 1 shows a simplified view of our proposed automated driving stack with a focus on the planning architecture. Upstream modules such as localization, perception, map processing, and vehicle-to-everything (V2X) communication provide the sensing inputs that are aggregated in an environment model. Based on this scene representation, the learning-based behavior planning module proposes a reference trajectory that is subsequently refined by the trajectory supervision module under explicit drivability and safety constraints. In the context of this paper, a reference trajectory refers to a tactical decision that is not necessarily directly executable by the vehicle, but is intended to achieve the desired behavior, such as stopping behind another vehicle or performing a lane change. Parallel to the learning-based planning branch, a non-learning-based module reliably plans a drivable trajectory, acting as safety fallback. A switch selects the reasonable trajectory that is then tracked by the trajectory controller and executed by the vehicle actuation.
+
+In the following, the central rule-based modules of the architecture are described in more detail. All presented modules are implemented as C++ ROS 2 nodes and individually containerized using Docker for reproducible deployment [27]. Substantial parts of the proposed hybrid planning architecture are released as open source software within OpenADS, where they serve as an initial planning baseline.
+
+![](images/03f86448517efd4ee274a55b328c86556938c50aa298f70a5ef451ed50119716.jpg)  
+Figure 1: Simplified automated driving stack focusing on the hybrid planning architecture combining learning-based and rule-based planning modules.
+
+## Trajectory Supervision
+
+The trajectory supervision module safeguards the learning-based reference trajectory before it is passed to downstream modules. Its role in the architecture is to transform the reference provided by the behavior planning module into a drivable trajectory while enforcing explicit safety, trafic-rule compliance, drivability, and vehicle-dynamic constraints.
+
+For this purpose, we developed a trajectory optimization framework<sup>2</sup> that formulates and solves an optimal control problem (OCP). To ensure general drivability, a kinematic single-track model is used. The state vector x, control input vector u, and system dynamics f(x, u) are defined as follows:
+
+$$
+\mathbf { x } = \left[ \begin{array} { c } { x } \\ { y } \\ { s } \\ { v } \\ { a } \\ { \psi } \\ { \delta } \end{array} \right] , \quad \mathbf { u } = \left[ \begin{array} { c c } { j } \\ { \alpha } \\ { \alpha } \end{array} \right] , \quad \dot { \mathbf { x } } = f ( \mathbf { x } , \mathbf { u } ) = \left[ \begin{array} { c } { v \cos ( \psi ) } \\ { v \sin ( \psi ) } \\ { v } \\ { a } \\ { j } \\ { \overline { { L } } ^ { \mathrm { t a n } ( \delta ) } } \\ { \alpha } \end{array} \right] .\tag{1}
+$$
+
+Here, $( x , y )$ denotes the position, s the distance along the trajectory, $v , a ,$ and $j$ the longitudinal velocity, acceleration, and jerk, respectively, $\psi$ the heading angle, δ the steering angle, α the steering rate, and L the wheelbase. For the discretized OCP, the cost function J is defined as:
+
+$$
+\begin{array} { r l } & { \displaystyle { J = \sum _ { k = 0 } ^ { N - 1 } \ell _ { k } ( { \bf x } _ { k } , { \bf u } _ { k } ) + \ell _ { N } ( { \bf x } _ { N } ) } } \\ & { \displaystyle { \ell _ { k } = q _ { k } \left( w _ { \mathrm { l a t } } \cdot e _ { \mathrm { l a t } , k } ^ { 2 } + w _ { v } \cdot e _ { v , k } ^ { 2 } + w _ { a ^ { + } } \cdot e _ { a ^ { + } , k } ^ { 2 } + w _ { a ^ { - } } \cdot e _ { a ^ { - } , k } ^ { 2 } + w _ { a _ { l a t } } \cdot e _ { a _ { l a t } , k } ^ { 2 } \right) } } \\ & { \mathrm { ~ \ ~ \ ~ \ } + w _ { j ^ { + } } \cdot e _ { j ^ { + } , k } ^ { 2 } + w _ { j ^ { - } } \cdot e _ { j ^ { - } , k } ^ { 2 } + w _ { j _ { l a t } } \cdot e _ { j _ { l a t } , k } ^ { 2 } + w _ { \alpha } \cdot e _ { \alpha , k } ^ { 2 } } \\ & { \displaystyle { \ell _ { N } = w _ { \psi , N } \cdot e _ { \psi , N } ^ { 2 } } } \end{array}\tag{2}
+$$
+
+The stage cost $\ell _ { k }$ is evaluated at each discretization step k along the prediction horizon. The residuals $e _ { \mathrm { l a t } }$ and $e _ { v }$ penalize lateral path and velocity deviation with respect to the spatially matched reference trajectory. The terms $e _ { a ^ { + } }$ + and $e _ { a }$ − distinguish between positive and negative longitudinal acceleration, while $e _ { a _ { \mathrm { l a t } } }$ penalizes lateral acceleration. Similarly, $e _ { j ^ { + } }$ and $e _ { j ^ { - } }$ distinguish between positive and negative longitudinal jerk, $e _ { j _ { \mathrm { l a t } } }$ penalizes lateral jerk, and $e _ { \alpha }$ penalizes steering-rate actuation. The coeficients $w _ { i }$ define the relative importance of the cost terms. The factor $q _ { k }$ denotes a dynamic weighting factor along the prediction horizon and is applied to the reference-tracking and acceleration-related terms. The terminal cost $\ell _ { N }$ penalizes the final heading-angle deviation from the reference path.
+
+Besides the system dynamics and cost function, the OCP incorporates constraints on states, controls, obstacle avoidance, drivable space, and vehicle-dynamic feasibility. State and control constraints impose bounds on velocity, longitudinal acceleration, steering angle, jerk, and steering rate. Drivability constraints ensure the vehicle remains within the drivable space, while obstacle constraints guarantee collision-free trajectories with respect to dynamically predicted objects. Additional nonlinear vehicle-dynamics constraints, such as limits on absolute acceleration, are included to ensure physically feasible motion.
+
+The optimization framework is built on acados [28], which is used to formulate the nonlinear OCP and generate solver libraries for online execution within a ROS 2 node. Through this formulation, the trajectory supervision module transforms the reference trajectory into a drivable and collision-free trajectory with respect to the modeled constraints and predicted environment.
+
+## Safety Fallback
+
+In addition to the learning-based planning path, the proposed architecture includes a deterministic safety fallback. Its role is to provide a reliable, rule-based planning branch that continuously produces a drivable trajectory. If a regular fallback trajectory cannot be generated due to invalid inputs, unavailable information, or unknown trafic situations, the module initializes a safe-stop trajectory. The fallback is therefore a complementary safety layer for degraded operation and is not intended to replace the learned behavior planning during nominal operation.
+
+For the fallback path, we developed a simple centerline-based planner<sup>3</sup>. Initially, the planner constructs a reference trajectory along a given map-based centerline, including encoded speed limits as reference velocity. Based on specified trafic situations, such as approaching trafic lights or conflicts with surrounding objects, the longitudinal behavior is adapted. This is achieved by reducing the velocity profile down to a complete standstill, while the lateral reference remains tied to the centerline. The presented planner is intentionally designed as a deterministic, interpretable, and computationally eficient fallback, providing a robust and drivable trajectory in, e.g., degraded situations.
+
+The module that determines which trajectory is to be tracked by the downstream trajectory controller is represented by the switch shown in Fig. 1. In principle, it is designed to compare, evaluate, and select between multiple trajectories based on a set of arbitrary rules, for example, based on planner competence or geofences. In the presented setup, the supervised output of the learning-based planner is forwarded to the trajectory controller by default. If the reference trajectory is of insuficient quality and the supervision module is therefore unable to ensure drivability and safety, the switch forwards the output of the deterministic fallback path. In these cases, it is also possible to collect the necessary data for generating new training sets so that the behavior planning can handle these scenarios in the future as well. This is a central point for the continuous improvement of the system.
+
+## Trajectory Controller
+
+The trajectory controller is the final module of the presented architecture and converts the selected drivable trajectory into actuator commands for vehicle execution. It compensates tracking errors, model inaccuracies, and external disturbances while preserving the trajectory selected by the upstream planning modules as closely as possible.
+
+To achieve this, we developed a cascaded proportional-integral-derivative (PID)-based Ackermann trajectory controller<sup>4</sup>. It is structured into a longitudinal and a lateral control path, both combining feed-forward terms from drivable trajectories provided by trajectory supervision or safety fallback with feedback PID control. The required longitudinal and lateral target quantities are obtained by linear interpolation using dedicated look-ahead times. Furthermore, PID gains are scheduled over the operating velocity range, allowing the controller behavior to be adapted to varying vehicle dynamics.
+
+The longitudinal path tracks the target velocity by means of a velocity PID controller. In addition, the target acceleration is used as a feed-forward contribution. The resulting acceleration command is constrained by constant longitudinal acceleration and jerk limits.
+
+The lateral path follows a cascaded feedback structure. First, a displacement PID controller converts the lateral trajectory deviation into a desired heading correction. A subsequent heading PID controller combines this correction with the trajectory’s target heading and generates a desired yaw rate, which is mapped to a feedback curvature command using an inverse single-track model. Feedback and feed-forward curvature terms are combined and subsequently constrained by curvature, curvature rate, and curvature acceleration limits and finally converted into Ackermann steering angle commands.
+
+To improve overall robustness, the planning architecture follows a bi-level stabilization concept inspired by Werling et al. [29]. During regular operation, trajectory supervision uses the interpolated state from the previously generated trajectory as the initial state for the next optimization. Whenever predefined thresholds in longitudinal or lateral tracking are exceeded, replanning from the actual vehicle state is initiated. In this way, small deviations are handled by the feedback controller, whereas larger deviations initiate a new trajectory from the actual vehicle state.
+
+## 4 Learning-based Behavior Planning
+
+After presenting the overall architecture and its rule-based modules, this section focuses on the developed behavior planning module. By learning from behavioral data, it can capture interaction patterns and driving styles in dense, complex urban environments, where manually defined rules and heuristics often struggle to cover the multitude of scenarios.
+
+The presented behavior planner is implemented as a deep neural network (DNN) in PyTorch [30] and predicts a reference trajectory based on a policy learned through supervised learning from selected data. The neural network does not operate on raw sensor data, but on the processed output of the upstream environment model, including high-definition (HD) map, navigation, tracked object list, and ego state information. In the following, the ego vehicle and the surrounding dynamic objects, such as other vehicles or pedestrians, are referred to as agents. The network architecture builds on a vectorized scene representation derived from the previously described data [15, 16] and adopts design principles from recent imitation-based transformer planners [18, 19], including attention-based scene fusion mechanisms [17], adapted from motion forecasting to behavior planning and to the interfaces of the hybrid architecture. Fig. 2 illustrates an abstract representation of the implemented network architecture while the following paragraphs detail the input and output representation, the training objective, and the used datasets. The model evaluation then follows in Section 5.
+
+![](images/e6a77670e43216e1965fcb5ba59806c828f31abc68920573548f739ff6750cb7.jpg)  
+Figure 2: Abstract architecture of the DNN: Agent history and map / route information are encoded separately, fused through an attention-based fusion block, and decoded into a kinematically constrained reference trajectory. Additional outputs are object predictions, interpretable attention weights and map-grounding outputs (not illustrated).
+
+## Input & Output Representation
+
+The input scene representation is described in an ego-centric bird’s-eye view (BEV), where all elements are expressed relative to the current ego pose and the x-axis is aligned with the driving direction. Each agent is represented not by a single state but by a short state history, including position, heading, velocity, and bounding box size over the last five temporal steps at a spacing of $\Delta t = 0 . 5 \mathrm { s }$ , i.e. the past 2 s including the current step. The object classification is kept as a separate categorical attribute.
+
+In addition to the agent information, the map and route information are also defined in the ego-centric frame. The vectorized map comprises lane centerlines with their width and type, lane boundaries with their type and whether they may be crossed, and regulatory elements such as trafic lights, yield lines and right-of-way rules together with their current state. In addition, the map information contains the relations between centerlines, boundaries, and regulatory elements. The route is given as an ordered reference of the lanes the vehicle is meant to follow. The number of agents and map elements varies between scenes, which is handled by masking. Due to this object-level scene representation, the domain gap between data sources stays comparatively small, which makes it possible to train on various real-world or even simulation datasets.
+
+Given this representation, the planner primarily outputs a reference trajectory over an 8 s horizon at the same 0.5 s spacing, represented as a sequence of positions and velocities. Rather than regressing independent waypoints, the decoder builds the trajectory stepwise. At each step it predicts a velocity and a heading change and integrates them using a simple kinematic model [31]. Per-step increments are bounded to physically reasonable ranges.
+
+Additionally, two auxiliary tasks are learned jointly with the trajectory: a shorthorizon prediction of the surrounding objects, produced by a separate decoder, and a set of map-grounding quantities read from the ego decoder’s per-step state, namely the lateral ofset to the route and the distance to the drivable corridor. Both encourage the model to encode the interaction and the map structure. The attention weights of the fusion and the decoder remain accessible as an interpretability output. Fig. 3 visualizes the scene representation and the predicted trajectory for an exemplary validation sample.
+
+![](images/f0de98d7fc6a8fc1dad90289555caaea6f1be1066a40975f6f5c0f5dd147e350.jpg)
+
+![](images/94ac0dffe255510546663a1941108713569365dc5cf4dc4bb0e984edf73f8de0.jpg)  
+t [s]  
+Figure 3: Example of the scene representation in the ego-centric frame, shown together with the predicted reference trajectory and the corresponding velocity graph on the right. Route, $\mathrm { \ O \ M a p }$ 2 $\mathrm { { \odot E g o } }$ (history & future), Objects (history), Predicted Reference Trajectory. The solid green line represents the reference line of a green trafic light.
+
+## Training Objective
+
+As already mentioned, the planner is trained by imitation: for each recorded scene, the network is trained to predict the corresponding expert trajectory, typically originating from human driving behavior. Let $\mathbf { p } _ { t } , \ v _ { t }$ , and $\psi _ { t }$ be the position, velocity, and heading that the decoder produces for step $t = 1 , \dots , T$ , and let $\hat { \mathbf p } _ { t } , \hat { v } _ { t } , \hat { \psi } _ { t }$ be the corresponding targets, obtained from the expert trajectory. The loss combines four imitation terms with an auxiliary multi-task term,
+
+$$
+\mathcal { L } = w _ { \mathrm { p } } \mathcal { L } _ { \mathrm { p o s } } + w _ { \mathrm { v } } \mathcal { L } _ { \mathrm { v e l } } + w _ { \psi } \mathcal { L } _ { \psi } + w _ { \Delta \psi } \mathcal { L } _ { \Delta \psi } + \mathcal { L } _ { \mathrm { a u x } } ,\tag{3}
+$$
+
+with the trajectory terms
+
+$$
+\mathcal { L } _ { \mathrm { p o s } } = \frac { 1 } { T } \sum _ { t = 1 } ^ { T } \lVert \mathbf { p } _ { t } - \hat { \mathbf { p } } _ { t } \rVert _ { 1 } , ~ \mathcal { L } _ { \mathrm { v e l } } = \frac { 1 } { T } \sum _ { t = 1 } ^ { T } \lvert v _ { t } - \hat { v } _ { t } \rvert ,\tag{4}
+$$
+
+$$
+\mathcal { L } _ { \psi } = \frac { 1 } { | S | } \sum _ { t \in S } \lvert \mathrm { w r a p } ( \psi _ { t } - \hat { \psi } _ { t } ) \rvert , \qquad \mathcal { L } _ { \Delta \psi } = \frac { 1 } { | S | } \sum _ { t \in S } \lvert \mathrm { w r a p } ( \Delta \psi _ { t } - \Delta \hat { \psi } _ { t } ) \rvert ,\tag{5}
+$$
+
+where $\Delta \psi _ { t } = \mathrm { w r a p } ( \psi _ { t } - \psi _ { t - 1 } )$ is the per-step heading change, wrap(·) maps an angle to $( - \pi , \pi ]$ , and the heading terms are evaluated only on the moving steps $S = \{ t : \hat { v } _ { t } > v _ { \operatorname* { m i n } } \}$ with $v _ { \mathrm { m i n } } = 0 . 5 \mathrm { m / s }$ , where the heading is well defined.
+
+The velocity and heading-change terms are weighted more strongly than position and absolute heading, since a faithful velocity profile and turn-in behavior are key to reproducing the reference trajectory, while the heading-change term acts directly on the decoder’s control increments. The auxiliary loss, ${ \mathcal { L } } _ { \mathrm { a u x } } = w _ { \mathrm { a } } { \mathcal { L } } _ { \mathrm { a g e n t } } + w _ { \mathrm { r } } { \mathcal { L } } _ { \mathrm { r o u t e } } + w _ { \mathrm { c } } { \mathcal { L } } _ { \mathrm { c o r r } ; }$ consists of three lightly weighted masked regression terms supervising the auxiliary prediction heads. Their purpose is to shape the learned representation while keeping the primary focus on the imitation objective.
+
+## Datasets and Trained Models
+
+Building on the previously described objective, three models on diferent datasets are trained. The DrivIng dataset [32] serves as the primary data source for training. It comprises three recordings of the same route, approximately 18 km long, captured at three diferent times (day, dusk, and night) with a total duration of approximately 105 min. The route passes through Ingolstadt in Germany, resulting in data that is characterized by urban trafic including diverse object interactions. Prior to training, object tracks were enriched with velocity estimates, and the route centerline and the relevant trafic lights were extracted from an HD map. Trafic light states were manually annotated. Finally, samples inconsistent with the intended urban driving context or lacking relevant future information were filtered out to reduce noise.
+
+Although the dataset is comparatively small, it enables careful curation of the training data, including detailed analysis and filtering unwanted behavior. Such a level of quality control is dificult to achieve with benchmark-scale datasets. At the same time, the limited dataset size naturally constrains the diversity of observed driving situations and therefore does not allow training a behavior planner that generalizes perfectly to arbitrary scenarios. To still compensate the reduced amount of data and further improve closedloop performance, the data is augmented by adding noise to selected state variables of the ego vehicle and other dynamic objects, as well as applying dropout to objects that are not directly interacting with the ego vehicle.
+
+All three models are trained on the day and night recordings of the DrivIng dataset, while the dusk recording was held out for validation. This isolates generalization across varying trafic conditions while the route geometry stays fixed. This results in 34 438 training samples and 16 518 validation samples, corresponding to approximately 57 min of driving data for training and 27 min for validation.
+
+To study transferability to a diferent domain, two additional datasets were recorded on ika’s test track using our research vehicle karl. [8]. The first dataset, referred to as test track, captures driving without dynamic objects and represents the road geometry of the test track, while the second dataset (test track interaction) includes dedicated interaction scenarios with an additional vehicle. Separate recordings were used for training and validation, yielding 3083/1136 training/validation samples for the test track dataset and 6668/2334 samples for the test track interaction dataset.
+
+The first model is trained exclusively on DrivIng, while the second and third models additionally incorporate the test track and test track interaction datasets, respectively. This setup allows evaluating the overall quality of the learned behavior, its transferability to a new domain, and the efect of incrementally adding domain-specific data for roadgeometry adaptation and interaction behavior.
+
+## 5 Evaluation and Results
+
+This section evaluates the proposed learning-based planning approach, from isolated model performance to full vehicle integration. First, the trained models are evaluated in isolation to assess their performance independently of the automated driving stack and to select the model used for vehicle integration. Second, the integrated model is demonstrated and qualitatively evaluated within the overall hybrid architecture.
+
+## 5.1 Model Evaluation
+
+As described in Section 4, the planner is trained by imitation to predict an 8 s reference trajectory in 0.5 s steps, together with the auxiliary outputs. Generalization is assessed in an open-loop manner by comparing the predicted reference trajectories with the recorded ego trajectories in the validation data. Tab. 1 reports the trajectory accuracy as the average displacement error (ADE) of position, velocity, and heading. On the DrivIng validation split, the errors remain small: over the 8 s horizon the position ADE is 1.83 m, the velocity ADE 0.56 m/s, and the heading ADE 2.6°. Since the decoder determines the position by integrating the predicted velocity and heading, small but persistent errors in these quantities accumulate over the horizon, so that a velocity ofset of only 2 km/h already amounts to more than 4 m after 8 s. This is expected, as human drivers do not maintain a perfectly constant velocity.
+
+Beyond trajectory accuracy, the learned behavior is analyzed, focusing specifically on trafic lights and their interaction with other agents: Across the entire DrivIng validation set, the model never proposes to cross a red light, and 2.3 % of the predicted 8 s trajectories would have led to a collision, assuming that the ego vehicle followed the predicted trajectory and all other agents followed their recorded future trajectories (see Tab. 1).
+
+Table 1: Open-loop trajectory accuracy given as ADE and trajectory collision ratio. All values are evaluated on distinct temporal horizons (each cell: 4 s /8 s horizon). Rows are grouped by validation domain; within each group, the three trained models are listed based on their training data. The collision ratio is omitted for validation on test track due to absence of objects in this data.
+<table><tr><td>Training data</td><td>Pos. ADE [m]</td><td>Vel. ADE [m/s]</td><td>Head. ADE [°]</td></tr><tr><td>Validation: DrivIng</td><td></td><td></td><td>Coll. [%]</td></tr><tr><td>DrivIng only</td><td>0.74/1.83</td><td>0.37/0.56</td><td>1.9 /2.6</td></tr><tr><td>+test track</td><td>0.73/1.81</td><td>0.37/0.55</td><td>0.3/2.3 1.9/2.6 0.3/1.7</td></tr><tr><td>+test track interact.</td><td>0.71/1.78</td><td>0.35/0.53</td><td>2.1/2.9 0.3/1.2</td></tr><tr><td>Validation: test track</td><td></td><td></td><td></td></tr><tr><td>DrivIng only</td><td>2.26/6.96</td><td>1.14/1.77</td><td>5.0/11.0</td></tr><tr><td>+test track</td><td>0.66/1.31</td><td>0.32/0.41</td><td>1.7/2.0</td></tr><tr><td>+test track interact.</td><td>0.72/1.62</td><td>0.35/0.49</td><td>2.0/2.6</td></tr><tr><td colspan="4">Validation: test track interaction</td></tr><tr><td>DrivIng only</td><td>2.54/7.83</td><td>1.33 / 2.15</td><td>5.3/10.0 6.1 /26.7</td></tr><tr><td>+test track</td><td>1.02/2.40</td><td>0.53/0.74</td><td>2.2/ 2.8 0.0/5.9</td></tr><tr><td>+test track interact.</td><td>0.78/1.70</td><td>0.39 /0.51</td><td>2.3/2.9 0.0/0.0</td></tr></table>
+
+Given the continuous replanning in receding-horizon operation, the full trajectory horizon is never executed. Restricting the evaluation to the first 4 s therefore provides a more meaningful assessment in practice, with a lower corresponding collision rate of 0.3 %.
+
+Fig. 4 visualizes the learned behavior on two validation frames, each paired with a minimally modified counterfactual version. In the first pair, the originally green trafic light is switched to red. In the second pair, a stopped lead vehicle is inserted ahead of the ego vehicle. All other scene elements remain unchanged. The inserted lead vehicle is placed 50 m ahead of the ego vehicle to ensure that collision avoidance is physically feasible. In both cases the planner adapts its prediction accordingly, stopping at the now-red trafic light and slowing down behind the inserted lead vehicle.
+
+Transfer to a diferent domain is assessed on the test track recordings, whose road geometry is unseen by a model trained exclusively on DrivIng. Zero-shot, performance is clearly degraded because the training data does not suficiently cover the new road geometry, which shows in the much larger heading and velocity errors (see Tab. 1; the heading ADE rises from about 2.6° to roughly 11°), and the model collides frequently in the interaction scenarios (see Tab. 1; 26.7 % at 8 s). When additionally trained on test track data, however, the model is able to follow the test track geometry, while the interaction behavior learned from DrivIng transfers efectively to the new domain. The resulting model remains collision-free over the 4 s horizon, with only a few number of residual collisions occurring over 8 s. A small number of test track interaction samples removes these residual collisions as well. The auxiliary tasks contribute to this transfer. Trained without them, the same +test track model still collides in 20.6 % of the 8 s interaction trajectories, which the auxiliary objectives reduce to the 5.9 % reported in Tab. 1.
+
+Conversely, incorporating the limited set of test track interaction examples does not degrade performance on DrivIng; instead, it yields a slight improvement, reducing the collision rate on the validation set from 2.3 % to 1.2 %. This result suggests that even small amounts of diverse training data can improve interaction behavior without measurable catastrophic forgetting, highlighting the potential for continuous, data-driven model improvement. For the vehicle integration described in Section 5.2, the third model is used, which is trained on all available data and exhibits the most consistent generalization performance across the domains.
+
+![](images/67586a2621c721799e271fdd2f758d84a0eb1318150cdda3fb7e88b04b6aa6ff.jpg)  
+Figure 4: Counterfactual validation examples. Top: changing the trafic light state from green to red causes the predicted trajectory to stop before the stop line. Bottom: inserting a stopped lead vehicle causes the planner to slow down behind the object. Route, Map, Ego (history), Objects (history), Predicted Reference Trajectory. Trafic light reference lines are colored according to their corresponding state.
+
+## 5.2 Integration into a Real-World Demonstrator
+
+We deployed the proposed hybrid planning architecture on our research vehicle karl. (cf. Fig. 5). In contrast to purely simulation-based studies, deployment on a real-world demonstrator exposes the integrated system to realistic sensor artifacts, actuation constraints, and timing efects. It therefore enables a qualitative assessment of whether the individual modules can operate jointly under real-world conditions. At the current stage of development, vehicle operation is restricted to a proving ground. Accordingly, all realworld experiments reported in this paper were conducted on ika’s test track. Detailed descriptions of the research vehicle platform and the underlying software architecture are provided in [8].
+
+![](images/4b3c47bbaa8c8af0632481346b6aae939a55f53f5660acccd7fc10fbcb6ebac3.jpg)  
+Figure 5: ika’s research vehicle karl. used for the integration experiments. [8]
+
+To evaluate the integration of the proposed planning architecture, a route was defined on the test track that covers the main behaviors considered in this work. Since the test track is not equipped with trafic lights, trafic light-related behavior is not included in the evaluation. Instead, the defined scenario focuses on lane following, lane changing, turning, and interaction with another road user. Following an initial straight segment that includes a lane change, karl. performs two left turns. During the second turn, a challenger vehicle approaches from the right and is therefore given priority by karl.. Subsequently, karl. follows the challenger vehicle along the remaining route.
+
+The proposed planning architecture has been successfully integrated into karl.. During the conducted test runs, the behavior planning module generated trajectory predictions at a frequency of 10 Hz and provided references that followed the predefined route and did not cause collisions. Since the scenario requires reactions to another road user, the integration comprises not only the proposed planning modules but also the required sensor drivers and perception components. Existing software developed at the institute was used for this purpose.
+
+Fig. 6 illustrates exemplary trajectories generated during the initial interaction with the challenger vehicle at three consecutive time steps. Each snapshot shows the learningbased reference trajectory, the supervised trajectory, and the trajectory generated by the safety fallback. The diferences in trajectory length primarily result from the diferent planning horizons of the corresponding modules: the trajectory supervision and safety fallback generate trajectories with a horizon of 5 s, whereas the behavior planning module predicts over a horizon of 8 s.
+
+![](images/7f7769273b2eb4ba8eb6370f501fa3fc2eb207fb048f5ea4c5c4d30d0dc57aa9.jpg)
+
+![](images/772274a675377ce570b9eed2dc55bce095cf50d836aa1d5f69089e45fe5db270.jpg)
+
+![](images/4ff870e3e3cc1049d0be41a7f9b888f49337fa9d026384bd998d0a97814f169d.jpg)  
+Figure 6: Consecutive BEV snapshots of the integration experiment during the left-turn and right-of-way interaction. The orange area shows the learning-based reference, the blue line visualizes the trajectory obtained after trajectory supervision, and the red line shows the safety fallback trajectory computed in parallel.
+
+Qualitatively, the snapshots indicate that the supervised trajectory largely preserves the maneuver represented by the learning-based reference while converting it into a feasible trajectory for vehicle execution. In comparison, the safety fallback exhibits more conservative behavior, remaining closer to the lane center and decelerating more strongly when approaching the interaction area. While this behavior may provide an additional safety margin, it also results in more centerline-bound trajectories, particularly in curved road segments. The learning-based reference, by contrast, follows a smoother and less centerline-bound path through the curve, which is largely retained by the trajectory supervision. Overall, the test track demonstration serves as a proof of concept for the realworld integration of the proposed hybrid planning architecture. It provides qualitative evidence that the individual modules can operate jointly on the research vehicle under real-world sensing, actuation, and timing conditions. Within the considered scenario, the learning-based planner provides maneuver-level reference trajectories, the supervision layer transforms these references into feasible trajectories for vehicle execution, and the conservative fallback remains available as an additional safety mechanism.
+
+In addition to the results reported in this paper, the integrated system was demonstrated in real-vehicle operation at the autotech.agil final event [33], where the proposed planning architecture was operated in front of invited guests at the Aldenhoven Testing Center (ATC). This public demonstration provides additional qualitative evidence that the full stack – from perception through learning-based behavior planning and trajectory supervision to actuation – can operate stably in a real-world demonstrator setting.
+
+## 6 Conclusion
+
+This paper presented a hybrid planning architecture for automated driving that combines learning-based behavior planning with optimization-based supervision to provide drivable and safeguarded vehicle guidance. Beyond the architectural concept, the paper provides detailed information on the implemented software modules and their integration into an operational automated driving stack. To support reproducibility and reuse, selected components of the proposed planning framework are released as open source software within the OpenADS ecosystem.
+
+In addition, the developed ML model and its training pipeline are described, and an open-loop evaluation on real-world urban driving data as well as findings from its integration into the research vehicle karl. are reported. While the open-loop evaluation provides quantitative results on prediction accuracy, interaction behavior, and domain transfer, the test track experiments serve as a qualitative proof of concept for the integration of the proposed modules under real-world sensing, actuation, and timing conditions.
+
+Overall, the results highlight the potential of hybrid architectures to couple data-driven performance with deterministic supervision and safeguarding, while additionally enabling continuous, data-driven improvement of the driving behavior. Future work will focus on a broader quantitative evaluation of the integrated system in more diverse and complex trafic scenarios. This includes evaluating the planning architecture in public road trafic once the required approval is granted.
+
+## 7 Acknowledgements
+
+We acknowledge the financial support by the German Federal Ministry of Research, Technology and Space (BMFTR) for autotech.agil (FKZ 1IS22088A) and by the European Union’s Horizon Europe Research and Innovation Programme for AIthena (Grant Agreement No. 101076754) and AIGGREGATE (Grant Agreement No. 101202457).
+
+## References
+
+[1] The Waymo Team. Bringing Waymo to more people, sooner. Waymo blog. Aug. 29, 2025. url: https : / / waymo . com / blog / 2025 / 08 / bringing - waymo - to - more - people-sooner (visited on 01/30/2026).
+
+[2] Zoox. Zoox robotaxi launches in Las Vegas. Zoox journal web page. Sept. 10, 2025. url: https://zoox.com/journal/las-vegas/ (visited on 01/30/2026).
+
+[3] Edmund Donges. “Aspekte der aktiven Sicherheit bei der Führung von Personenkraftwagen”. In: Automobil-Industrie 27.2 (1982).
+
+[4] Li Chen et al. “End-to-end Autonomous Driving: Challenges and frontiers”. In: IEEE Transactions on Pattern Analysis and Machine Intelligence 46.12 (2024), pp. 10164– 10183. doi: 10.1109/TPAMI.2024.3435937.
+
+[5] Yan Wang et al. “Alpamayo-R1: Bridging Reasoning and Action Prediction for Generalizable Autonomous Driving in the Long Tail”. In: arXiv:2511.00088 (2025).
+
+[6] Jyh-Jing Hwang et al. “EMMA: End-to-End Multimodal Model for Autonomous Driving”. In: arXiv:2410.23262 (2024). doi: 10.48550/arXiv.2410.23262.
+
+[7] Road vehicles – Safety for automated driving systems – Design, verification and validation. Standard. Geneva, CH: International Organization for Standardization, 2025.
+
+[8] Jean-Pierre Busch et al. “karl. – A Research Vehicle for Automated and Connected Driving”. In: 2026 IEEE Intelligent Vehicles Symposium (IV). IEEE. 2026.
+
+[9] Sebastian Thrun et al. “Stanley: The robot that won the DARPA Grand Challenge”. In: Journal of field Robotics 23.9 (2006), pp. 661–692.
+
+[10] Steven M. LaValle. “Rapidly-Exploring Random Trees: A New Tool for Path Planning”. In: Research Report 9811 (1998).
+
+[11] Sertac Karaman and Emilio Frazzoli. “Sampling-based Algorithms for Optimal Motion Planning”. In: The international journal of robotics research 30.7 (2011), pp. 846– 894.
+
+[12] Guido Kueppers et al. “Future Mobility Applications in the KoMoDnext and AC-CorD Digital Test Fields”. In: 31st Aachen Colloquium Sustainable Mobility. 2022.
+
+[13] Mayank Bansal, Alex Krizhevsky, and Abhijit Ogale. “ChaufeurNet: Learning to Drive by Imitating the Best and Synthesizing the worst”. In: arXiv:1812.03079 (2018).
+
+[14] Katrin Renz et al. “PlanT: Explainable Planning Transformers via Object-Level Representations”. In: Conference on Robotic Learning (CoRL). Vol. 205. Proceedings of Machine Learning Research. PMLR, 2022, pp. 459–470.
+
+[15] Jiyang Gao et al. “VectorNet: Encoding HD Maps and Agent Dynamics from Vectorized Representation”. In: Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR). 2020, pp. 11525–11533.
+
+[16] Ming Liang et al. “Learning Lane Graph Representations for Motion Forecasting”. In: European Conference on Computer Vision (ECCV). Springer. 2020, pp. 541–556.
+
+[17] Nigamaa Nayakanti et al. “Wayformer: Motion Forecasting via Simple & Eficient Attention Networks”. In: 2023 IEEE International Conference on Robotics and Automation (ICRA). IEEE. 2023, pp. 2980–2987.
+
+[18] Jie Cheng et al. “Rethinking Imitation-based Planners for Autonomous Driving”. In: 2024 IEEE International Conference on Robotics and Automation (ICRA). IEEE. 2024, pp. 14123–14130. doi: 10.1109/ICRA57147.2024.10611364.
+
+[19] Jie Cheng, Yingbing Chen, and Qifeng Chen. “PLUTO: Pushing the Limit of Imitation Learning-based Planning for Autonomous Driving”. In: arXiv:2404.14327 (2024). doi: 10.48550/arXiv.2404.14327.
+
+[20] Zhiyu Huang, Haochen Liu, and Chen Lv. “GameFormer: Game-theoretic Modeling and Learning of Transformer-based Interactive Prediction and Planning for Autonomous Driving”. In: Proceedings of the IEEE/CVF International Conference on Computer Vision (ICCV). Oct. 2023, pp. 3903–3913. doi: 10.1109/ICCV51070. 2023.00361.
+
+[21] Marco Pavone. Building Autonomous Vehicles That Reason with NVIDIA Alpamayo. NVIDIA Technical Blog. Jan. 5, 2026. url: https://developer.nvidia. com / blog / building - autonomous - vehicles - that - reason - with - nvidia - alpamayo/ (visited on 01/30/2026).
+
+[22] Bruno Brito, Achin Agarwal, and Javier Alonso-Mora. “Learning interaction-aware guidance for trajectory optimization in dense trafic scenarios”. In: IEEE Transactions on Intelligent Transportation Systems 23.10 (2022), pp. 18808–18821.
+
+[23] Shengduo Chen et al. “Runtime safety assurance for learning-enabled control of autonomous driving vehicles”. In: 2022 International Conference on Robotics and Automation (ICRA). IEEE. 2022, pp. 8978–8984.
+
+[24] Matt Vitelli et al. “SafetyNet: Safe planning for real-world self-driving vehicles using machine-learned policies”. In: 2022 International Conference on Robotics and Automation (ICRA). IEEE. 2022, pp. 897–904.
+
+[25] Cristian Gariboldi, Matteo Corno, and Beng Jin. “Hybrid Imitation-Learning Motion Planner for Urban Driving”. In: 2024 IEEE 27th International Conference on Intelligent Transportation Systems (ITSC). IEEE. 2024, pp. 2578–2583.
+
+[26] Moritz Werling et al. “Optimal trajectories for time-critical street scenarios using discretized terminal manifolds”. In: The International Journal of Robotics Research 31.3 (2012), pp. 346–359.
+
+[27] Jean-Pierre Busch, Lennart Reiher, and Lutz Eckstein. “Enabling the Deployment of Any-Scale Robotic Applications in Microservice-Based Service-Oriented Architectures through Automated Containerization”. In: 2024 IEEE International Conference on Robotics and Automation (ICRA). 2024. doi: 10.1109/ICRA57147. 2024.10611586. url: https://ieeexplore.ieee.org/document/10611586.
+
+[28] Robin Verschueren et al. “acados—a modular open-source framework for fast embedded optimal control”. In: Mathematical Programming Computation 14.1 (2022), pp. 147–183.
+
+[29] Moritz Werling. Ein neues Konzept für die Trajektoriengenerierung und -stabilisierung in zeitkritischen Verkehrsszenarien. Vol. 34. KIT Scientific Publishing, 2014.
+
+[30] Adam Paszke et al. “PyTorch: An Imperative Style, High-Performance Deep Learning Library”. In: Advances in Neural Information Processing Systems. 2019.
+
+[31] Henggang Cui et al. “Deep Kinematic Models for Kinematically Feasible Vehicle Trajectory Predictions”. In: 2020 IEEE International Conference on Robotics and Automation (ICRA). IEEE. 2020, pp. 10563–10569.
+
+[32] Dominik Rößle et al. “DrivIng: A Large-Scale Multimodal Driving Dataset with Full Digital Twin Integration”. In: arXiv:2601.15260 (2026).
+
+[33] Abschlussveranstaltung | autotech.agil. Website. url: https://www.autotechagil. de/abschlussveranstaltung/ (visited on 01/30/2026).
