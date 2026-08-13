@@ -1,0 +1,2858 @@
+[
+    [
+        {
+            "type": "title",
+            "content": {
+                "title_content": [
+                    {
+                        "type": "text",
+                        "content": "Hugin: Enhancing Vision-Language Planning for Autonomous Logistics Sorting 米"
+                    }
+                ],
+                "level": 1
+            },
+            "bbox": [
+                86,
+                118,
+                910,
+                142
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "Xikai Sun<sup>1</sup>, Cangtian Zhou<sup>2</sup>, Kebin Liu<sup>1</sup>, Ke Ma<sup>3</sup>, Xu Wang<sup>1</sup>, Zaishu Chen<sup>4</sup>, Haotian Wang<sup>4</sup>, Li Liu<sup>1</sup>, Yunhao Liu<sup>1</sup>"
+                    }
+                ]
+            },
+            "bbox": [
+                243,
+                156,
+                759,
+                193
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "<sup>1</sup>Tsinghua University, Beijing, China <sup>2</sup>Harbin Institute of Technology, Harbin, China <sup>3</sup>Northwestern Polytechnical University, Xi’an, China <sup>4</sup>JD Logistics, Beijing, China"
+                    }
+                ]
+            },
+            "bbox": [
+                222,
+                198,
+                777,
+                228
+            ]
+        },
+        {
+            "type": "title",
+            "content": {
+                "title_content": [
+                    {
+                        "type": "text",
+                        "content": "Abstract"
+                    }
+                ],
+                "level": 2
+            },
+            "bbox": [
+                250,
+                273,
+                315,
+                287
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "Autonomous lo<sub>g</sub>istics sortin<sub>g</sub> s<sub>y</sub>stems (ALSS) are an im<sub>p</sub>ort<sub>an</sub>t i<sub>n</sub>d<sub>us</sub>t<sub>r</sub>i<sub>a</sub>l <sub>app</sub>li<sub>ca</sub>ti<sub>on o</sub>f <sub>em</sub>b<sub>o</sub>di<sub>e</sub>d AI<sub>, w</sub>hi<sub>c</sub>h <sub>requ</sub>i<sub>res</sub> joint planning over spatially disjoint camera views. We formulate this settin<sub>g</sub> as Joint Multi-Scene Understandin<sub>g</sub> (JMSU). With <sub>open-wor</sub>ld <sub>v</sub>i<sub>sua</sub>l <sub>un</sub>d<sub>ers</sub>t<sub>an</sub>di<sub>ng an</sub>d t<sub>as</sub>k<sub>-p</sub>l<sub>ann</sub>i<sub>ng ca-</sub> <sub>p</sub>abilities, vision-lan<sub>g</sub>ua<sub>g</sub>e models (VLMs) are <sub>p</sub>romisin<sub>g</sub> candid<sub>a</sub>t<sub>es</sub> f<sub>o</sub>r JMSU<sub>.</sub> H<sub>oweve</sub>r<sub>,</sub> dir<sub>ec</sub>tl<sub>y app</sub>l<sub>y</sub>in<sub>g ex</sub>i<sub>s</sub>tin<sub>g</sub> VLM<sub>s</sub> t<sub>o</sub> JMSU i<sub>s non-</sub>t<sub>r</sub>i<sub>v</sub>i<sub>a</sub>l d<sub>ue</sub> t<sub>o scarce cross-scene superv</sub>i<sub>-</sub> <sub>s</sub>i<sub>on</sub> <sub>an</sub>d <sub>a</sub>tt<sub>en</sub>ti<sub>on</sub> di<sub>spers</sub>i<sub>on</sub> <sub>cause</sub>d b<sub>y</sub> l<sub>ong</sub> <sub>v</sub>i<sub>sua</sub>l <sub>con</sub>t<sub>ex</sub>t in JMSU<sub>.</sub> T<sub>o a</sub>ddr<sub>ess</sub> th<sub>ese c</sub>h<sub>a</sub>ll<sub>e</sub>n<sub>ges, we p</sub>r<sub>opose</sub> H<sub>ugin</sub><sup>1</sup><sub>,</sub> <sub>a</sub> t<sub>ra</sub>i<sub>n</sub>i<sub>ng</sub> f<sub>ramewor</sub>k <sub>w</sub>ith t<sub>wo</sub> <sub>comp</sub>l<sub>emen</sub>t<sub>ary</sub> <sub>componen</sub>t<sub>s.</sub> E<sub>n</sub>d<sub>ogenous</sub> D<sub>a</sub>t<sub>a</sub> A<sub>ugmen</sub>t<sub>a</sub>ti<sub>on recom</sub>bi<sub>nes ver</sub>ifi<sub>e</sub>d <sub>a</sub>t<sub>om</sub>i<sub>c</sub> f<sub>ac</sub>t<sub>s un</sub>d<sub>er opera</sub>ti<sub>ng cons</sub>t<sub>ra</sub>i<sub>n</sub>t<sub>s, w</sub>hil<sub>e</sub> Gl<sub>o</sub>b<sub>a</sub>l C<sub>on</sub>t<sub>ex</sub>t R<sub>an</sub>k<sub>-</sub> i<sub>ng a</sub>li<sub>gns</sub> th<sub>e</sub> i<sub>ns</sub>t<sub>ruc</sub>ti<sub>on represen</sub>t<sub>a</sub>ti<sub>on more s</sub>t<sub>rong</sub>l<sub>y w</sub>ith th<sub>e</sub> <sub>comp</sub>l<sub>e</sub>t<sub>e</sub> <sub>v</sub>i<sub>sua</sub>l <sub>con</sub>t<sub>ex</sub>t th<sub>an</sub> <sub>w</sub>ith <sub>a</sub> <sub>par</sub>ti<sub>a</sub>l <sub>v</sub>i<sub>sua</sub>l <sub>con</sub>t<sub>ex</sub>t<sub>.</sub> T<sub>o</sub> <sub>suppor</sub>t <sub>ongo</sub>i<sub>ng researc</sub>h<sub>, we cons</sub>t<sub>ruc</sub>t <sub>a</sub> hi<sub>g</sub>h<sub>-qua</sub>lit<sub>y</sub> i<sub>n</sub>d<sub>us-</sub> t<sub>r</sub>i<sub>a</sub>l <sub>sor</sub>ti<sub>ng</sub> d<sub>a</sub>t<sub>ase</sub>t <sub>an</sub>d b<sub>enc</sub>h<sub>mar</sub>k <sub>name</sub>d S<sub>or</sub>ti<sub>ng</sub>B<sub>enc</sub>h f<sub>rom</sub> f<sub>our</sub> l<sub>ayou</sub>t<sub>s o</sub>f <sub>au</sub>t<sub>onomous</sub> l<sub>og</sub>i<sub>s</sub>ti<sub>cs sor</sub>ti<sub>ng sys</sub>t<sub>ems.</sub> A<sub>cross</sub> fi<sub>ve open</sub> VLM<sub>s,</sub> H<sub>ugin cons</sub>i<sub>s</sub>t<sub>en</sub>tl<sub>y ou</sub>t<sub>per</sub>f<sub>orms ma</sub>t<sub>c</sub>h<sub>e</sub>d b<sub>ase</sub>li<sub>nes;</sub> f<sub>or examp</sub>l<sub>e,</sub> th<sub>e accuracy on</sub> S<sub>or</sub>ti<sub>ng</sub>B<sub>enc</sub>h <sub>o</sub>f Qwen3-VL-8B increases from 63.6% to 78.8%. Additional <sub>exper</sub>i<sub>men</sub>t<sub>s ver</sub>if<sub>y</sub> th<sub>e e</sub>f<sub>ec</sub>ti<sub>veness o</sub>f <sub>eac</sub>h <sub>componen</sub>t <sub>an</sub>d JMSU’<sub>s sp</sub>ill<sub>over</sub> b<sub>ene</sub>fit<sub>s</sub> i<sub>n em</sub>b<sub>o</sub>di<sub>e</sub>d t<sub>as</sub>k<sub>s.</sub> D<sub>ep</sub>l<sub>oymen</sub>t t<sub>es</sub>t<sub>s</sub> i<sub>nvo</sub>l<sub>v</sub>i<sub>ng more</sub> th<sub>an</sub> 15<sub>,</sub>000 <sub>pac</sub>k<sub>ages suppor</sub>t th<sub>e prac</sub>ti<sub>-</sub> <sub>ca</sub>l <sub>v</sub>i<sub>a</sub>bilit<sub>y o</sub>f VLM<sub>-</sub>b<sub>ase</sub>d <sub>p</sub>l<sub>ann</sub>i<sub>ng</sub> f<sub>or au</sub>t<sub>onomous</sub> l<sub>og</sub>i<sub>s</sub>ti<sub>cs</sub> sort<sup>i</sup>n<sub>g</sub>."
+                    }
+                ]
+            },
+            "bbox": [
+                99,
+                292,
+                464,
+                623
+            ]
+        },
+        {
+            "type": "title",
+            "content": {
+                "title_content": [
+                    {
+                        "type": "text",
+                        "content": "1 Introduction"
+                    }
+                ],
+                "level": 2
+            },
+            "bbox": [
+                210,
+                638,
+                352,
+                654
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "With th<sub>e a</sub>d<sub>vancemen</sub>t <sub>o</sub>f AI<sub>, mo</sub>d<sub>ern</sub> l<sub>og</sub>i<sub>s</sub>ti<sub>cs wor</sub>k<sub>s</sub>t<sub>a-</sub> ti<sub>ons</sub> i<sub>ncreas</sub>i<sub>ng</sub>l<sub>y</sub> i<sub>n</sub>t<sub>egra</sub>t<sub>e</sub> <sub>ro</sub>b<sub>o</sub>ti<sub>c</sub> <sub>arms,</sub> d<sub>es</sub>ti<sub>na</sub>ti<sub>on</sub> <sub>cages,</sub> di<sub>s</sub>t<sub>r</sub>ib<sub>u</sub>t<sub>e</sub>d <sub>cameras, an</sub>d l<sub>ow-</sub>l<sub>eve</sub>l <sub>con</sub>t<sub>ro</sub>ll<sub>ers</sub> i<sub>n</sub>t<sub>o an au-</sub> tonomous lo<sub>g</sub>istics sortin<sub>g</sub> s<sub>y</sub>stem (ALSS), as illustrated in Fi<sub>gure</sub> 1<sub>.</sub> ALSS <sub>con</sub>ti<sub>nuous</sub>l<sub>y</sub> <sub>perce</sub>i<sub>ves</sub> it<sub>s</sub> <sub>p</sub>h<sub>ys</sub>i<sub>ca</sub>l <sub>env</sub>i<sub>ron-</sub> <sub>men</sub>t<sub>, p</sub>l<sub>ans sor</sub>ti<sub>ng opera</sub>ti<sub>ons, an</sub>d <sub>execu</sub>t<sub>es correspon</sub>di<sub>ng</sub> <sub>ac</sub>ti<sub>ons.</sub> I<sub>n a</sub>dditi<sub>on</sub> t<sub>o</sub> it<sub>s</sub> di<sub>rec</sub>t i<sub>n</sub>d<sub>us</sub>t<sub>r</sub>i<sub>a</sub>l <sub>va</sub>l<sub>ue,</sub> it <sub>represen</sub>t<sub>s</sub> <sub>a prac</sub>ti<sub>ca</sub>l <sub>way</sub> t<sub>o</sub> b<sub>r</sub>i<sub>ng em</sub>b<sub>o</sub>di<sub>e</sub>d AI i<sub>n</sub>t<sub>o rea</sub>l i<sub>n</sub>d<sub>us</sub>t<sub>r</sub>i<sub>a</sub>l o<sub>p</sub>erat<sup>i</sup>ons."
+                    }
+                ]
+            },
+            "bbox": [
+                81,
+                656,
+                480,
+                781
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "T<sub>o per</sub>f<sub>orm re</sub>li<sub>a</sub>bl<sub>e sor</sub>ti<sub>ng p</sub>l<sub>ann</sub>i<sub>ng,</sub> ALSS <sub>requ</sub>i<sub>res v</sub>i<sub>-</sub> <sub>sua</sub>l <sub>ev</sub>id<sub>ence</sub> f<sub>rom mu</sub>lti<sub>p</sub>l<sub>e spa</sub>ti<sub>a</sub>ll<sub>y</sub> di<sub>s</sub>t<sub>r</sub>ib<sub>u</sub>t<sub>e</sub>d <sub>reg</sub>i<sub>ons.</sub> A <sub>g</sub>l<sub>o</sub>b<sub>a</sub>l <sub>camera prov</sub>id<sub>es</sub> b<sub>roa</sub>d <sub>coverage</sub> b<sub>u</sub>t l<sub>oses</sub> th<sub>e</sub> fi<sub>ne-</sub> <sub>gra</sub>i<sub>ne</sub>d d<sub>e</sub>t<sub>a</sub>il<sub>s</sub> <sub>requ</sub>i<sub>re</sub>d f<sub>or</sub> <sub>pac</sub>k<sub>age</sub> l<sub>oca</sub>li<sub>za</sub>ti<sub>on,</sub> <sub>w</sub>h<sub>ereas</sub> <sub>a</sub> l<sub>oca</sub>l <sub>egocen</sub>t<sub>r</sub>i<sub>c camera preserves</sub> d<sub>e</sub>t<sub>a</sub>il b<sub>u</sub>t <sub>canno</sub>t <sub>o</sub>b<sub>serve</sub> <sub>a</sub>ll d<sub>ec</sub>i<sub>s</sub>i<sub>on-re</sub>l<sub>evan</sub>t <sub>reg</sub>i<sub>ons.</sub> ALSS th<sub>ere</sub>f<sub>ore uses mu</sub>lti<sub>p</sub>l<sub>e</sub> <sub>cameras</sub> t<sub>o cap</sub>t<sub>ure comp</sub>l<sub>emen</sub>t<sub>ary o</sub>b<sub>serva</sub>ti<sub>ons o</sub>f di<sub>s</sub>ti<sub>nc</sub>t <sub>p</sub>h<sub>ys</sub>i<sub>ca</sub>l <sub>scenes.</sub> W<sub>e</sub> <sub>a</sub>b<sub>s</sub>t<sub>rac</sub>t thi<sub>s</sub> <sub>requ</sub>i<sub>remen</sub>t <sub>as</sub> J<sub>o</sub>i<sub>n</sub>t M<sub>u</sub>lti<sub>-</sub> Scene Understandin<sub>g</sub> (JMSU), which exhibits two definin<sub>g</sub> <sub>c</sub>h<sub>arac</sub>t<sub>er</sub>i<sub>s</sub>ti<sub>cs:</sub>"
+                    }
+                ]
+            },
+            "bbox": [
+                83,
+                781,
+                480,
+                810
+            ]
+        },
+        {
+            "type": "image",
+            "content": {
+                "image_source": {
+                    "path": "images/37789f5cf5e4713fd99cac8f0d3f2477a759478985bd371c7e8076b112fecb98.jpg"
+                },
+                "image_caption": [
+                    {
+                        "type": "text",
+                        "content": "Fi<sub>gu</sub>r<sub>e</sub> 1<sub>:</sub> Ill<sub>us</sub>tr<sub>a</sub>ti<sub>o</sub>n <sub>o</sub>f ALSS<sub>.</sub> B<sub>ase</sub>d <sub>o</sub>n th<sub>e</sub> VLM<sub>,</sub> ALSS <sub>ena</sub>bl<sub>es au</sub>t<sub>oma</sub>t<sub>e</sub>d <sub>grasp</sub>i<sub>ng o</sub>f <sub>non-s</sub>t<sub>an</sub>d<sub>ar</sub>d <sub>pac</sub>k<sub>ages</sub> f<sub>rom</sub> <sub>compar</sub>t<sub>men</sub>t<sub>s,</sub> h<sub>an</sub>dli<sub>ng, an</sub>d <sub>s</sub>t<sub>ac</sub>ki<sub>ng</sub> th<sub>em</sub> i<sub>n</sub>t<sub>o cages, ac-</sub> <sub>cor</sub>di<sub>ng</sub> t<sub>o</sub> di<sub>verse</sub> b<sub>us</sub>i<sub>ness requ</sub>i<sub>remen</sub>t<sub>s.</sub>"
+                    }
+                ],
+                "image_footnote": []
+            },
+            "bbox": [
+                519,
+                271,
+                911,
+                450
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": []
+            },
+            "bbox": [
+                516,
+                551,
+                915,
+                662
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "• Spatial distribution: The observations cover physically disjoint regions with little field-of-view overlap."
+                    }
+                ]
+            },
+            "bbox": [
+                517,
+                667,
+                913,
+                698
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "• Decision-level interdependency: Diferent scenes pro-<sub>v</sub>id<sub>e comp</sub>l<sub>emen</sub>t<sub>ary ev</sub>id<sub>ence</sub> f<sub>or</sub> th<sub>e</sub> fi<sub>na</sub>l d<sub>ec</sub>i<sub>s</sub>i<sub>on, an</sub>d <sub>remov</sub>i<sub>ng a</sub> k<sub>ey</sub> i<sub>mage may</sub> i<sub>nva</sub>lid<sub>a</sub>t<sub>e</sub> th<sub>e p</sub>l<sub>an.</sub>"
+                    }
+                ]
+            },
+            "bbox": [
+                517,
+                700,
+                913,
+                743
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "Thi<sub>s com</sub>bi<sub>na</sub>ti<sub>on o</sub>f <sub>spa</sub>ti<sub>a</sub>l di<sub>s</sub>t<sub>r</sub>ib<sub>u</sub>ti<sub>on an</sub>d d<sub>ec</sub>i<sub>s</sub>i<sub>on-</sub>l<sub>eve</sub>l int<sub>e</sub>rd<sub>epe</sub>nd<sub>e</sub>n<sub>cy</sub> m<sub>a</sub>k<sub>es</sub> JMSU <sub>a p</sub>l<sub>a</sub>nnin<sub>g p</sub>r<sub>o</sub>bl<sub>e</sub>m f<sub>o</sub>r ALSS <sub>ra</sub>th<sub>er</sub> th<sub>an</sub> <sub>an</sub> i<sub>n</sub>d<sub>epen</sub>d<sub>en</sub>t <sub>per-</sub>i<sub>mage</sub> <sub>percep</sub>ti<sub>on</sub> <sub>pro</sub>bl<sub>em.</sub>"
+                    }
+                ]
+            },
+            "bbox": [
+                516,
+                747,
+                913,
+                790
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "Vision-Lan<sub>g</sub>ua<sub>g</sub>e Models (VLMs) are <sub>p</sub>romisin<sub>g</sub> candid<sub>a</sub>t<sub>es</sub> f<sub>or</sub> JMSU b<sub>ecause</sub> th<sub>ey</sub> <sub>com</sub>bi<sub>ne</sub> b<sub>roa</sub>d <sub>v</sub>i<sub>sua</sub>l<sub>-seman</sub>ti<sub>c</sub> k<sub>now</sub>l<sub>e</sub>d<sub>ge,</sub> i<sub>ns</sub>t<sub>ruc</sub>ti<sub>on-con</sub>diti<sub>one</sub>d <sub>reason</sub>i<sub>ng,</sub> <sub>an</sub>d <sub>s</sub>t<sub>ruc-</sub> tured lan<sub>g</sub>ua<sub>g</sub>e <sub>g</sub>eneration (Ahn et al. 2022; Ji et al. 2025; Kim et al. 2024). A VLM can <sub>p</sub>rovide a unified interface for <sub>pac</sub>k<sub>age</sub> <sub>groun</sub>di<sub>ng,</sub> <sub>cross-scene</sub> <sub>s</sub>t<sub>a</sub>t<sub>e</sub> <sub>compar</sub>i<sub>son,</sub> <sub>an</sub>d <sub>ac</sub>ti<sub>on</sub> <sub>genera</sub>ti<sub>on,</sub> <sub>w</sub>hil<sub>e</sub> <sub>spec</sub>i<sub>a</sub>li<sub>ze</sub>d <sub>con</sub>t<sub>ro</sub>ll<sub>ers</sub> <sub>re</sub>t<sub>a</sub>i<sub>n</sub> <sub>respons</sub>ibilit<sub>y</sub> f<sub>or p</sub>h<sub>ys</sub>i<sub>ca</sub>l <sub>execu</sub>ti<sub>on.</sub> H<sub>owever, ena</sub>bli<sub>ng</sub> VLM<sub>s</sub> t<sub>o</sub> h<sub>an</sub>dl<sub>e</sub> JMSU presents two major challenges due to the gap between <sub>genera</sub>l <sub>pre-</sub>t<sub>ra</sub>i<sub>n</sub>i<sub>ng an</sub>d JMSU’<sub>s em</sub>b<sub>o</sub>di<sub>e</sub>d <sub>requ</sub>i<sub>remen</sub>t<sub>s:</sub>"
+                    }
+                ]
+            },
+            "bbox": [
+                516,
+                791,
+                915,
+                890
+            ]
+        },
+        {
+            "type": "page_aside_text",
+            "content": {
+                "page_aside_text_content": [
+                    {
+                        "type": "text",
+                        "content": "arXiv:2608.11692v1 [cs.AI] 12 Aug 2026"
+                    }
+                ]
+            },
+            "bbox": [
+                29,
+                359,
+                63,
+                800
+            ]
+        },
+        {
+            "type": "page_footnote",
+            "content": {
+                "page_footnote_content": [
+                    {
+                        "type": "text",
+                        "content": "<sup>1</sup>I<sub>n</sub> N<sub>orse</sub> <sub>my</sub>th<sub>o</sub>l<sub>ogy,</sub> H<sub>ug</sub>i<sub>n</sub> i<sub>s</sub> <sub>one</sub> <sub>o</sub>f Odi<sub>n</sub>’<sub>s</sub> <sub>ravens,</sub> <sub>serv</sub>i<sub>ng</sub> <sub>as</sub> hi<sub>s</sub> <sub>eyes</sub> t<sub>o</sub> fl<sub>y</sub> <sub>across</sub> th<sub>e</sub> <sub>wor</sub>ld <sub>an</sub>d <sub>ga</sub>th<sub>er</sub> i<sub>n</sub>f<sub>orma</sub>ti<sub>on.</sub> Si<sub>m</sub>il<sub>ar</sub>l<sub>y,</sub> <sub>our</sub> <sub>sc</sub>h<sub>eme</sub> <sub>p</sub>l<sub>ays</sub> <sub>a</sub> <sub>s</sub>i<sub>m</sub>il<sub>ar</sub> <sub>ro</sub>l<sub>e,</sub> h<sub>e</sub>l<sub>p</sub>i<sub>ng</sub> th<sub>e</sub> VLM b<sub>e</sub>tt<sub>er</sub> <sub>perce</sub>i<sub>ve</sub> <sub>an</sub>d <sub>un</sub>d<sub>ers</sub>t<sub>an</sub>d di<sub>s</sub>t<sub>r</sub>ib<sub>u</sub>t<sub>e</sub>d <sub>scenes.</sub>"
+                    }
+                ]
+            },
+            "bbox": [
+                83,
+                818,
+                480,
+                869
+            ]
+        },
+        {
+            "type": "page_footnote",
+            "content": {
+                "page_footnote_content": [
+                    {
+                        "type": "text",
+                        "content": "P<sub>repr</sub>i<sub>n</sub>t<sub>.</sub> Thi<sub>s manuscr</sub>i<sub>p</sub>t i<sub>s curren</sub>tl<sub>y un</sub>d<sub>er rev</sub>i<sub>ew.</sub>"
+                    }
+                ]
+            },
+            "bbox": [
+                104,
+                868,
+                418,
+                883
+            ]
+        }
+    ],
+    [
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": []
+            },
+            "bbox": [
+                81,
+                69,
+                480,
+                112
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "• First, there is a substantial domain discre<sub>p</sub>anc<sub>y</sub> and a <sub>sca</sub>r<sub>c</sub>it<sub>y o</sub>f hi<sub>g</sub>h<sub>-qua</sub>lit<sub>y</sub> JMSU d<sub>a</sub>t<sub>a.</sub> VLM<sub>s a</sub>r<sub>e p</sub>rim<sub>a</sub>ril<sub>y</sub> <sub>p</sub>re-trained on web-scale ima<sub>g</sub>e-text data (Fu et al. 2025b; Lu et al. 2025; Bai et al. 2025b), which difer substantiall<sub>y</sub> f<sub>rom</sub> th<sub>e o</sub>b<sub>serva</sub>ti<sub>ons an</sub>d t<sub>as</sub>k<sub>s o</sub>f ALSS<sub>.</sub> Alth<sub>oug</sub>h <sub>wor</sub>k<sub>-</sub> <sub>s</sub>t<sub>a</sub>ti<sub>ons con</sub>ti<sub>nuous</sub>l<sub>y pro</sub>d<sub>uce a</sub>b<sub>un</sub>d<sub>an</sub>t <sub>raw</sub> d<sub>a</sub>t<sub>a, mos</sub>t d<sub>a</sub>t<sub>a are no</sub>i<sub>sy, re</sub>d<sub>un</sub>d<sub>an</sub>t<sub>, or</sub> l<sub>ac</sub>k <sub>va</sub>lid <sub>ac</sub>ti<sub>on anno</sub>t<sub>a-</sub> ti<sub>ons, ma</sub>ki<sub>ng</sub> hi<sub>g</sub>h<sub>-qua</sub>lit<sub>y</sub> JMSU <sub>superv</sub>i<sub>s</sub>i<sub>on scarce an</sub>d <sub>expens</sub>i<sub>ve.</sub> M<sub>oreover, conven</sub>ti<sub>ona</sub>l <sub>augmen</sub>t<sub>a</sub>ti<sub>on</sub> th<sub>a</sub>t i<sub>n-</sub> d<sub>epen</sub>d<sub>en</sub>tl<sub>y mo</sub>difi<sub>es</sub> i<sub>n</sub>di<sub>v</sub>id<sub>ua</sub>l i<sub>mages or</sub> t<sub>ex</sub>t <sub>may</sub> b<sub>rea</sub>k th<sub>e cons</sub>i<sub>s</sub>t<sub>ency among</sub> di<sub>s</sub>t<sub>r</sub>ib<sub>u</sub>t<sub>e</sub>d <sub>o</sub>b<sub>serva</sub>ti<sub>ons, p</sub>h<sub>ys</sub>i<sub>ca</sub>l <sub>s</sub>t<sub>a</sub>t<sub>es, an</sub>d <sub>ac</sub>ti<sub>on</sub> l<sub>a</sub>b<sub>e</sub>l<sub>s.</sub>"
+                    }
+                ]
+            },
+            "bbox": [
+                83,
+                116,
+                482,
+                282
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "• Second, JMSU re<sub>q</sub>uires holistic reasonin<sub>g</sub> over lon<sub>g</sub> vi-<sub>sua</sub>l <sub>con</sub>t<sub>ex</sub>t<sub>s.</sub> A<sub>ccor</sub>di<sub>ng</sub> t<sub>o</sub> th<sub>e p</sub>h<sub>ys</sub>i<sub>ca</sub>l di<sub>s</sub>t<sub>r</sub>ib<sub>u</sub>ti<sub>on o</sub>f th<sub>e equ</sub>i<sub>pmen</sub>t<sub>,</sub> th<sub>e</sub> VLM <sub>mus</sub>t <sub>process mu</sub>lti<sub>p</sub>l<sub>e</sub> hi<sub>g</sub>h<sub>-</sub> <sub>reso</sub>l<sub>u</sub>ti<sub>on o</sub>b<sub>serva</sub>ti<sub>ons cover</sub>i<sub>ng a</sub>ll <sub>can</sub>did<sub>a</sub>t<sub>e compar</sub>t<sub>-</sub> <sub>men</sub>t<sub>s,</sub> <sub>pac</sub>k<sub>ages,</sub> <sub>an</sub>d d<sub>es</sub>ti<sub>na</sub>ti<sub>on</sub> <sub>cages.</sub> A<sub>s</sub> th<sub>e</sub> <sub>num</sub>b<sub>er</sub> <sub>o</sub>f <sub>v</sub>i<sub>sua</sub>l t<sub>o</sub>k<sub>ens</sub> i<sub>ncreases,</sub> <sub>a</sub>tt<sub>en</sub>ti<sub>on</sub> i<sub>s</sub> di<sub>s</sub>t<sub>r</sub>ib<sub>u</sub>t<sub>e</sub>d <sub>over</sub> <sub>a</sub> l<sub>arger con</sub>t<sub>ex</sub>t<sub>, ma</sub>ki<sub>ng</sub> it <sub>more</sub> difi<sub>cu</sub>lt t<sub>o</sub> id<sub>en</sub>tif<sub>y cr</sub>iti<sub>ca</sub>l <sub>ev</sub>id<sub>ence an</sub>d i<sub>n</sub>t<sub>egra</sub>t<sub>e</sub> th<sub>e comp</sub>l<sub>e</sub>t<sub>e sys</sub>t<sub>em s</sub>t<sub>a</sub>t<sub>e.</sub>"
+                    }
+                ]
+            },
+            "bbox": [
+                83,
+                285,
+                480,
+                398
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "T<sub>o a</sub>dd<sub>ress</sub> th<sub>ese c</sub>h<sub>a</sub>ll<sub>enges, we propose</sub> H<sub>ugin, a compre-</sub> h<sub>ens</sub>i<sub>ve op</sub>ti<sub>m</sub>i<sub>za</sub>ti<sub>on sc</sub>h<sub>eme</sub> f<sub>or</sub> VLM<sub>-</sub>b<sub>ase</sub>d JMSU <sub>reason-</sub> in<sub>g</sub> in ALSS<sub>.</sub> H<sub>ugin co</sub>nt<sub>a</sub>in<sub>s</sub> t<sub>wo co</sub>m<sub>p</sub>l<sub>e</sub>m<sub>e</sub>nt<sub>a</sub>r<sub>y co</sub>m<sub>po-</sub> <sub>nen</sub>t<sub>s.</sub> At th<sub>e</sub> d<sub>a</sub>t<sub>a</sub> l<sub>eve</sub>l<sub>,</sub> <sub>we</sub> i<sub>n</sub>t<sub>ro</sub>d<sub>uce</sub> E<sub>n</sub>d<sub>ogenous</sub> D<sub>a</sub>t<sub>a</sub> A<sub>ug-</sub> mentation (EDA) to decom<sub>p</sub>ose each annotated sam<sub>p</sub>le into <sub>ver</sub>ifi<sub>a</sub>bl<sub>e a</sub>t<sub>om</sub>i<sub>c</sub> f<sub>ac</sub>t<sub>s an</sub>d <sub>recom</sub>bi<sub>ne</sub> th<sub>em un</sub>d<sub>er</sub> d<sub>oma</sub>i<sub>n-</sub> <sub>spec</sub>ifi<sub>c opera</sub>ti<sub>ona</sub>l <sub>cons</sub>t<sub>ra</sub>i<sub>n</sub>t<sub>s.</sub> It <sub>genera</sub>t<sub>es</sub> di<sub>verse</sub> t<sub>ra</sub>i<sub>n</sub>i<sub>ng</sub> t<sub>as</sub>k<sub>s w</sub>hil<sub>e preserv</sub>i<sub>ng cons</sub>i<sub>s</sub>t<sub>ency among v</sub>i<sub>sua</sub>l <sub>o</sub>b<sub>serva-</sub> ti<sub>ons, p</sub>h<sub>ys</sub>i<sub>ca</sub>l <sub>s</sub>t<sub>a</sub>t<sub>es, an</sub>d <sub>ac</sub>ti<sub>on</sub> l<sub>a</sub>b<sub>e</sub>l<sub>s.</sub> At th<sub>e mo</sub>d<sub>e</sub>l l<sub>eve</sub>l<sub>,</sub> we desi<sub>g</sub>n Global Context Rankin<sub>g</sub> (GCR) as an auxiliar<sub>y</sub> training objective that encourages the instruction representati<sub>on</sub> t<sub>o</sub> <sub>a</sub>li<sub>gn</sub> <sub>more</sub> <sub>s</sub>t<sub>rong</sub>l<sub>y</sub> <sub>w</sub>ith th<sub>e</sub> <sub>comp</sub>l<sub>e</sub>t<sub>e</sub> <sub>v</sub>i<sub>sua</sub>l <sub>con</sub>t<sub>ex</sub>t th<sub>an w</sub>ith <sub>any par</sub>ti<sub>a</sub>l <sub>v</sub>i<sub>sua</sub>l <sub>con</sub>t<sub>ex</sub>t<sub>.</sub> GCR th<sub>ere</sub>f<sub>ore gu</sub>id<sub>es</sub> th<sub>e</sub> VLM t<sub>o</sub> i<sub>n</sub>t<sub>egra</sub>t<sub>e a</sub>ll d<sub>ec</sub>i<sub>s</sub>i<sub>on-re</sub>l<sub>evan</sub>t <sub>scenes</sub> b<sub>e</sub>f<sub>ore pro-</sub> d<sub>uc</sub>i<sub>ng an ac</sub>ti<sub>on p</sub>l<sub>an, w</sub>ith<sub>ou</sub>t <sub>c</sub>h<sub>ang</sub>i<sub>ng</sub> th<sub>e</sub> i<sub>n</sub>f<sub>erence arc</sub>hi<sub>-</sub> t<sub>ec</sub>t<sub>ure or</sub> i<sub>n</sub>t<sub>ro</sub>d<sub>uc</sub>i<sub>ng a</sub>dditi<sub>ona</sub>l i<sub>n</sub>f<sub>erence-</sub>ti<sub>me mo</sub>d<sub>u</sub>l<sub>es.</sub>"
+                    }
+                ]
+            },
+            "bbox": [
+                81,
+                401,
+                482,
+                625
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "F<sub>u</sub>rth<sub>e</sub>rm<sub>o</sub>r<sub>e, ove</sub>r thr<sub>ee</sub> m<sub>o</sub>nth<sub>s, we co</sub>ll<sub>ec</sub>t 2<sub>,</sub>000 JMSU t<sub>ra</sub>i<sub>n</sub>i<sub>ng samp</sub>l<sub>es an</sub>d <sub>cons</sub>t<sub>ruc</sub>t S<sub>or</sub>ti<sub>ng</sub>B<sub>enc</sub>h <sub>w</sub>ith 1<sub>,</sub>000 <sub>eva</sub>l<sub>ua</sub>ti<sub>on samp</sub>l<sub>es un</sub>d<sub>er</sub> f<sub>our wor</sub>k<sub>s</sub>t<sub>a</sub>ti<sub>on</sub> l<sub>ayou</sub>t<sub>s.</sub> Th<sub>e</sub> benchmark requires models to jointly determine the source <sub>compar</sub>t<sub>men</sub>t<sub>,</sub> l<sub>oca</sub>li<sub>ze</sub> th<sub>e</sub> t<sub>arge</sub>t <sub>pac</sub>k<sub>age, se</sub>l<sub>ec</sub>t th<sub>e</sub> d<sub>es</sub>ti<sub>na-</sub> ti<sub>on cage, an</sub>d <sub>genera</sub>t<sub>e</sub> th<sub>e comp</sub>l<sub>e</sub>t<sub>e man</sub>i<sub>pu</sub>l<sub>a</sub>ti<sub>on p</sub>l<sub>an.</sub> It<sub>s</sub> t<sub>es</sub>t <sub>se</sub>t i<sub>nc</sub>l<sub>u</sub>d<sub>es unseen</sub> l<sub>ayou</sub>t<sub>s an</sub>d li<sub>g</sub>hti<sub>ng con</sub>diti<sub>ons</sub> t<sub>o</sub> <sub>eva</sub>l<sub>ua</sub>t<sub>e</sub> b<sub>o</sub>th <sub>samp</sub>l<sub>e-</sub>l<sub>eve</sub>l <sub>an</sub>d <sub>scene-</sub>l<sub>eve</sub>l <sub>genera</sub>li<sub>za</sub>ti<sub>on.</sub>"
+                    }
+                ]
+            },
+            "bbox": [
+                81,
+                625,
+                480,
+                737
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "O<sub>ur</sub> <sub>ma</sub>i<sub>n</sub> <sub>con</sub>t<sub>r</sub>ib<sub>u</sub>ti<sub>ons</sub> <sub>are</sub> <sub>as</sub> f<sub>o</sub>ll<sub>ows:</sub>"
+                    }
+                ]
+            },
+            "bbox": [
+                99,
+                737,
+                356,
+                751
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "• We formulate JMSU as an ALSS-oriented task and identif<sub>y</sub> d<sub>a</sub>t<sub>a scarc</sub>it<sub>y an</sub>d <sub>a</sub>tt<sub>en</sub>ti<sub>on</sub> di<sub>s</sub>t<sub>rac</sub>ti<sub>on as</sub> b<sub>o</sub>ttl<sub>enec</sub>k<sub>s.</sub> Th<sub>en we cons</sub>t<sub>ruc</sub>t <sub>a rea</sub>l<sub>-wor</sub>ld JMSU d<sub>a</sub>t<sub>ase</sub>t <sub>an</sub>d b<sub>enc</sub>h<sub>-</sub> <sub>mar</sub>k<sub>.</sub>"
+                    }
+                ]
+            },
+            "bbox": [
+                83,
+                756,
+                480,
+                813
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "• We <sub>p</sub>ro<sub>p</sub>ose Hugin, which combines constraint-<sub>p</sub>reservin<sub>g</sub> E<sub>n</sub>d<sub>ogenous</sub> D<sub>a</sub>t<sub>a</sub> A<sub>ugmen</sub>t<sub>a</sub>ti<sub>on w</sub>ith Gl<sub>o</sub>b<sub>a</sub>l C<sub>on</sub>t<sub>ex</sub>t R<sub>an</sub>ki<sub>ng</sub> t<sub>o</sub> i<sub>mprove</sub> d<sub>a</sub>t<sub>a e</sub>fi<sub>c</sub>i<sub>ency an</sub>d <sub>comp</sub>l<sub>e</sub>t<sub>e-con</sub>t<sub>ex</sub>t <sub>reason</sub>i<sub>ng</sub> <sub>w</sub>ith<sub>ou</sub>t <sub>a</sub>ddi<sub>ng</sub> i<sub>n</sub>f<sub>erence-</sub>ti<sub>me</sub> <sub>componen</sub>t<sub>s.</sub>"
+                    }
+                ]
+            },
+            "bbox": [
+                83,
+                815,
+                480,
+                872
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "• Ex<sub>p</sub>eriments across five o<sub>p</sub>en VLMs show consistent improvements over matched SFT baselines (+15.2% on Sortin<sub>g</sub>Bench for Qwen3-VL-8B), stron<sub>g</sub>er embodied multiima<sub>g</sub>e reasonin<sub>g</sub>, and limited chan<sub>g</sub>e in <sub>g</sub>eneral VQA."
+                    }
+                ]
+            },
+            "bbox": [
+                83,
+                875,
+                480,
+                890
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": []
+            },
+            "bbox": [
+                531,
+                69,
+                915,
+                113
+            ]
+        },
+        {
+            "type": "title",
+            "content": {
+                "title_content": [
+                    {
+                        "type": "text",
+                        "content": "2 Related Work"
+                    }
+                ],
+                "level": 2
+            },
+            "bbox": [
+                640,
+                125,
+                790,
+                140
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "Vision-language planning for autonomous systems. VLMb<sub>ase</sub>d <sub>em</sub>b<sub>o</sub>di<sub>e</sub>d <sub>sys</sub>t<sub>ems common</sub>l<sub>y use a</sub> f<sub>oun</sub>d<sub>a</sub>ti<sub>on mo</sub>d<sub>e</sub>l <sub>e</sub>ith<sub>er as a</sub> hi<sub>g</sub>h<sub>-</sub>l<sub>eve</sub>l <sub>p</sub>l<sub>anner</sub> th<sub>a</sub>t di<sub>spa</sub>t<sub>c</sub>h<sub>es</sub> l<sub>ow-</sub>l<sub>eve</sub>l <sub>s</sub>kill<sub>s</sub> <sub>or</sub> <sub>as</sub> th<sub>e</sub> i<sub>n</sub>iti<sub>a</sub>li<sub>za</sub>ti<sub>on</sub> <sub>o</sub>f <sub>an</sub> <sub>en</sub>d<sub>-</sub>t<sub>o-en</sub>d <sub>v</sub>i<sub>s</sub>i<sub>on-</sub>l<sub>anguage-</sub> action <sub>p</sub>olic<sub>y</sub> (Ahn et al. 2022; Lian<sub>g</sub> et al. 2023; Ji et al. 2025; Kim et al. 2024; Son<sub>g</sub> et al. 2025). These s<sub>y</sub>stems have expanded the range of objects and instructions that robots <sub>can</sub> h<sub>an</sub>dl<sub>e,</sub> b<sub>u</sub>t <sub>mos</sub>t <sub>eva</sub>l<sub>ua</sub>ti<sub>ons assume</sub> th<sub>a</sub>t th<sub>e</sub> d<sub>ec</sub>i<sub>s</sub>i<sub>on-</sub> <sub>re</sub>l<sub>evan</sub>t <sub>s</sub>t<sub>a</sub>t<sub>e</sub> i<sub>s ava</sub>il<sub>a</sub>bl<sub>e</sub> f<sub>rom a s</sub>i<sub>ng</sub>l<sub>e egocen</sub>t<sub>r</sub>i<sub>c v</sub>i<sub>ew or</sub> f<sub>rom over</sub>l<sub>app</sub>i<sub>ng v</sub>i<sub>ews o</sub>f th<sub>e same man</sub>i<sub>pu</sub>l<sub>a</sub>ti<sub>on reg</sub>i<sub>on.</sub> I<sub>n</sub>d<sub>us</sub>t<sub>r</sub>i<sub>a</sub>l <sub>au</sub>t<sub>onomous</sub> <sub>sys</sub>t<sub>ems</sub> i<sub>mpose</sub> <sub>a</sub> dif<sub>eren</sub>t <sub>sens</sub>i<sub>ng</sub> <sub>cons</sub>t<sub>ra</sub>i<sub>n</sub>t<sub>: cameras are ass</sub>i<sub>gne</sub>d t<sub>o p</sub>h<sub>ys</sub>i<sub>ca</sub>ll<sub>y separa</sub>t<sub>e</sub>d f<sub>unc-</sub> ti<sub>ona</sub>l <sub>reg</sub>i<sub>ons, an</sub>d <sub>a</sub> t<sub>as</sub>k<sub>-</sub>l<sub>eve</sub>l <sub>p</sub>l<sub>anner mus</sub>t <sub>com</sub>bi<sub>ne</sub> th<sub>e</sub>i<sub>r</sub> <sub>s</sub>t<sub>a</sub>t<sub>es</sub> b<sub>e</sub>f<sub>ore se</sub>l<sub>ec</sub>ti<sub>ng an ac</sub>ti<sub>on.</sub> R<sub>ecen</sub>t l<sub>og</sub>i<sub>s</sub>ti<sub>cs wor</sub>k <sub>con-</sub> firms the value of embodied models for <sub>p</sub>acka<sub>g</sub>e handlin<sub>g</sub> (Xu et al. 2025). Our stud<sub>y</sub> com<sub>p</sub>lements this line b<sub>y</sub> isolatin<sub>g</sub> and <sub>eva</sub>l<sub>ua</sub>ti<sub>ng</sub> th<sub>e</sub> di<sub>s</sub>t<sub>r</sub>ib<sub>u</sub>t<sub>e</sub>d<sub>-percep</sub>ti<sub>on pro</sub>bl<sub>em</sub> i<sub>ns</sub>id<sub>e</sub> ALSS<sub>.</sub>"
+                    }
+                ]
+            },
+            "bbox": [
+                514,
+                143,
+                915,
+                380
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "Data augmentation for visual-language reasoning. Do-<sub>ma</sub>i<sub>n a</sub>d<sub>ap</sub>t<sub>a</sub>ti<sub>on</sub> i<sub>s necessary w</sub>h<sub>en</sub> VLM <sub>pre-</sub>t<sub>ra</sub>i<sub>n</sub>i<sub>ng</sub> d<sub>oes</sub> not cover industrial objects and operating rules. Existing <sub>mu</sub>lti<sub>mo</sub>d<sub>a</sub>l <sub>augmen</sub>t<sub>a</sub>ti<sub>on o</sub>ft<sub>en genera</sub>t<sub>es new ra</sub>ti<sub>ona</sub>l<sub>es,</sub> rewrites instructions, or adds more su<sub>p</sub>ervision (Zhan<sub>g</sub> et al. 2023<sub>;</sub> H<sub>uang e</sub>t <sub>a</sub>l<sub>.</sub> 2025<sub>;</sub> Y<sub>e e</sub>t <sub>a</sub>l<sub>.</sub> 2025<sub>;</sub> L<sub>a</sub>i <sub>e</sub>t <sub>a</sub>l<sub>.</sub> 2024<sub>;</sub> Wan<sub>g</sub> et al. 2023). These strate<sub>g</sub>ies are valuable for individ-<sub>ua</sub>l i<sub>mages,</sub> b<sub>u</sub>t i<sub>n</sub>d<sub>epen</sub>d<sub>en</sub>tl<sub>y mo</sub>dif<sub>y</sub>i<sub>ng a v</sub>i<sub>ew or</sub> l<sub>a</sub>b<sub>e</sub>l <sub>can</sub> i<sub>nva</sub>lid<sub>a</sub>t<sub>e</sub> th<sub>e cross-scene cons</sub>t<sub>ra</sub>i<sub>n</sub>t<sub>s o</sub>f JMSU<sub>.</sub> EDA i<sub>ns</sub>t<sub>ea</sub>d <sub>recom</sub>bi<sub>nes</sub> <sub>ver</sub>ifi<sub>e</sub>d f<sub>ac</sub>t<sub>s</sub> <sub>un</sub>d<sub>er</sub> <sub>exp</sub>li<sub>c</sub>it <sub>p</sub>i<sub>c</sub>ki<sub>ng</sub> <sub>an</sub>d <sub>p</sub>l<sub>ace-</sub> <sub>men</sub>t <sub>ru</sub>l<sub>es,</sub> <sub>e</sub>f<sub>ec</sub>ti<sub>ve</sub>l<sub>y</sub> <sub>genera</sub>ti<sub>ng</sub> l<sub>og</sub>i<sub>ca</sub>ll<sub>y</sub> <sub>correc</sub>t <sub>samp</sub>l<sub>es.</sub>"
+                    }
+                ]
+            },
+            "bbox": [
+                516,
+                380,
+                915,
+                532
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "Multi-image understanding and reasoning. Recent VLM<sub>s</sub> i<sub>mprove</sub> <sub>mu</sub>lti<sub>-</sub>i<sub>mage</sub> <sub>process</sub>i<sub>ng</sub> th<sub>roug</sub>h hi<sub>g</sub>h<sub>er-</sub> <sub>reso</sub>l<sub>u</sub>ti<sub>on v</sub>i<sub>sua</sub>l <sub>enco</sub>di<sub>ng,</sub> i<sub>n</sub>t<sub>er</sub>l<sub>eave</sub>d <sub>pos</sub>iti<sub>on represen-</sub> tations, and tar<sub>g</sub>eted instruction tunin<sub>g</sub> (Bai et al. 2025a; A<sub>grawa</sub>l <sub>e</sub>t <sub>a</sub>l<sub>.</sub> 2024<sub>;</sub> W<sub>u e</sub>t <sub>a</sub>l<sub>.</sub> 2024<sub>;</sub> W<sub>ang e</sub>t <sub>a</sub>l<sub>.</sub> 2025<sub>;</sub> D<sub>e</sub>itk<sub>e</sub> et al. 2025; Yu et al. 2025). Other methods ex<sub>p</sub>licitl<sub>y</sub> im<sub>p</sub>rove ima<sub>g</sub>e-text association or reduce order-de<sub>p</sub>endent bias (Liu et al. 2024c; Zhou et al. 2024; Tian et al. 2025). However, these objectives do not explicitly require the model to form a query-relevant representation that jointly integrates all visual i<sub>npu</sub>t<sub>s.</sub> A <sub>mo</sub>d<sub>e</sub>l <sub>may</sub> th<sub>ere</sub>f<sub>ore re</sub>l<sub>y on</sub> d<sub>om</sub>i<sub>nan</sub>t <sub>ev</sub>id<sub>ence</sub> f<sub>rom an</sub> i<sub>n</sub>di<sub>v</sub>id<sub>ua</sub>l i<sub>mage w</sub>ith<sub>ou</sub>t <sub>cap</sub>t<sub>ur</sub>i<sub>ng</sub> th<sub>e cross-</sub>i<sub>mage</sub> <sub>con</sub>t<sub>ex</sub>t <sub>nee</sub>d<sub>e</sub>d f<sub>or a un</sub>ifi<sub>e</sub>d d<sub>ec</sub>i<sub>s</sub>i<sub>on.</sub> Thi<sub>s mo</sub>ti<sub>va</sub>t<sub>es</sub> GCR<sub>,</sub> <sub>w</sub>hi<sub>c</sub>h <sub>en</sub>f<sub>orces s</sub>t<sub>ronger seman</sub>ti<sub>c a</sub>li<sub>gnmen</sub>t b<sub>e</sub>t<sub>ween</sub> th<sub>e</sub> i<sub>n-</sub> <sub>s</sub>t<sub>ruc</sub>ti<sub>on query an</sub>d th<sub>e g</sub>l<sub>o</sub>b<sub>a</sub>l <sub>v</sub>i<sub>sua</sub>l <sub>con</sub>t<sub>ex</sub>t th<sub>an</sub> b<sub>e</sub>t<sub>ween</sub> th<sub>e query an</sub>d l<sub>oca</sub>l <sub>v</sub>i<sub>sua</sub>l f<sub>ea</sub>t<sub>ures.</sub>"
+                    }
+                ]
+            },
+            "bbox": [
+                514,
+                531,
+                915,
+                756
+            ]
+        },
+        {
+            "type": "title",
+            "content": {
+                "title_content": [
+                    {
+                        "type": "text",
+                        "content": "3 Problem Setting: JMSU for ALSS"
+                    }
+                ],
+                "level": 2
+            },
+            "bbox": [
+                555,
+                766,
+                875,
+                782
+            ]
+        },
+        {
+            "type": "title",
+            "content": {
+                "title_content": [
+                    {
+                        "type": "text",
+                        "content": "3.1 Autonomous Logistics Sorting Loop"
+                    }
+                ],
+                "level": 2
+            },
+            "bbox": [
+                516,
+                786,
+                839,
+                803
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "W<sub>e</sub> <sub>s</sub>t<sub>u</sub>d<sub>y</sub> <sub>a</sub>n <sub>ope</sub>r<sub>a</sub>ti<sub>o</sub>n<sub>a</sub>l ALSS <sub>spa</sub>nnin<sub>g</sub> <sub>app</sub>r<sub>ox</sub>im<sub>a</sub>t<sub>e</sub>l<sub>y</sub> 70m<sup>2</sup>. The system contains source compartments, destinati<sub>on</sub> <sub>cages,</sub> di<sub>s</sub>t<sub>r</sub>ib<sub>u</sub>t<sub>e</sub>d RGB<sub>-</sub>D <sub>cameras,</sub> <sub>a</sub> <sub>ro</sub>b<sub>o</sub>ti<sub>c</sub> <sub>arm,</sub> <sub>an</sub>d <sub>ca</sub>lib<sub>ra</sub>t<sub>e</sub>d l<sub>ow-</sub>l<sub>eve</sub>l <sub>con</sub>t<sub>ro</sub>ll<sub>ers, as s</sub>h<sub>own</sub> i<sub>n</sub> Fi<sub>gure</sub> 1<sub>.</sub> Th<sub>e</sub> VLM <sub>opera</sub>t<sub>es</sub> <sub>a</sub>t th<sub>e</sub> t<sub>as</sub>k<sub>-p</sub>l<sub>ann</sub>i<sub>ng</sub> l<sub>ayer.</sub> At <sub>eac</sub>h <sub>sor</sub>ti<sub>ng</sub> <sub>cyc</sub>l<sub>e, sync</sub>h<sub>ron</sub>i<sub>ze</sub>d <sub>o</sub>b<sub>serva</sub>ti<sub>ons are passe</sub>d t<sub>o</sub> th<sub>e</sub> VLM<sub>,</sub> <sub>w</sub>hi<sub>c</sub>h <sub>se</sub>l<sub>ec</sub>t<sub>s</sub> <sub>a</sub> <sub>source</sub> <sub>compar</sub>t<sub>men</sub>t<sub>,</sub> l<sub>oca</sub>li<sub>zes</sub> th<sub>e</sub> <sub>pac</sub>k<sub>age</sub> t<sub>o</sub> b<sub>e graspe</sub>d<sub>, c</sub>h<sub>ooses a</sub> d<sub>es</sub>ti<sub>na</sub>ti<sub>on cage, an</sub>d <sub>em</sub>it<sub>s a s</sub>t<sub>ruc-</sub> t<sub>ure</sub>d <sub>ac</sub>ti<sub>on sequence.</sub> Th<sub>e se</sub>l<sub>ec</sub>t<sub>e</sub>d <sub>ac</sub>ti<sub>ons</sub> i<sub>nvo</sub>k<sub>e ca</sub>lib<sub>ra</sub>t<sub>e</sub>d p<sup>erce</sup>p<sup>tion</sup>, <sup>motion-</sup>p<sup>lannin</sup>g, g<sup>ras</sup>p<sup>in</sup>g, <sup>and</sup> p<sup>lacement</sup> <sup>con-</sup> t<sub>ro</sub>ll<sub>ers.</sub> Thi<sub>s se ara</sub>ti<sub>on</sub> i<sub>ves</sub> th<sub>e</sub> l<sub>earne</sub>d l<sub>anner access</sub> t<sub>o</sub> <sub>open-wor</sub>ld <sub>seman</sub>ti<sub>cs w</sub>hil<sub>e re</sub>t<sub>a</sub>i<sub>n</sub>i<sub>ng</sub> d<sub>e</sub>t<sub>erm</sub>i<sub>n</sub>i<sub>s</sub>ti<sub>c sa</sub>f<sub>e</sub>t<sub>y</sub> <sub>c</sub>h<sub>ec</sub>k<sub>s an</sub>d <sub>s</sub>t<sub>a</sub>bl<sub>e execu</sub>ti<sub>on a</sub>t th<sub>e con</sub>t<sub>ro</sub>l l<sub>ayer.</sub> Thi<sub>s p</sub>l<sub>an</sub> i<sub>s a</sub>l<sub>so cons</sub>t<sub>ra</sub>i<sub>ne</sub>d b<sub>y s</sub>t<sub>r</sub>i<sub>c</sub>t b<sub>us</sub>i<sub>ness requ</sub>i<sub>remen</sub>t<sub>s.</sub> Fi<sub>rs</sub>t<sub>,</sub> th<sub>e sys</sub>t<sub>em se</sub>l<sub>ec</sub>t<sub>s</sub> th<sub>e compar</sub>t<sub>men</sub>t <sub>w</sub>ith th<sub>e mos</sub>t <sub>pac</sub>k<sub>ages</sub> <sub>an</sub>d <sub>app</sub>li<sub>es</sub> fi<sub>rs</sub>t<sub>-</sub>i<sub>n-</sub>fi<sub>rs</sub>t<sub>-ou</sub>t <sub>p</sub>i<sub>c</sub>ki<sub>ng</sub> b<sub>y</sub> <sub>c</sub>h<sub>oos</sub>i<sub>ng</sub> th<sub>e</sub> <sub>pac</sub>k<sub>age</sub> <sub>c</sub>l<sub>oses</sub>t t<sub>o</sub> th<sub>a</sub>t <sub>compar</sub>t<sub>men</sub>t’<sub>s ex</sub>it<sub>.</sub> S<sub>econ</sub>d<sub>,</sub> it b<sub>a</sub>l<sub>ances</sub> l<sub>oa</sub>d b<sub>y se</sub>l<sub>ec</sub>ti<sub>ng</sub> th<sub>e cage w</sub>ith th<sub>e</sub> l<sub>arges</sub>t <sub>rema</sub>i<sub>n</sub>i<sub>ng capac</sub>it<sub>y.</sub>"
+                    }
+                ]
+            },
+            "bbox": [
+                514,
+                805,
+                915,
+                890
+            ]
+        }
+    ],
+    [
+        {
+            "type": "image",
+            "content": {
+                "image_source": {
+                    "path": "images/712a2750846b9f555e82e3263307592ccb2ddf5a748ba91e1b55addb60fcfb56.jpg"
+                },
+                "image_caption": [
+                    {
+                        "type": "text",
+                        "content": "Fi<sub>gu</sub>r<sub>e</sub> 2<sub>:</sub> A JMSU <sub>sa</sub>m<sub>p</sub>l<sub>e.</sub> Th<sub>e</sub> VLM r<sub>ece</sub>i<sub>ves</sub> th<sub>e sy</sub>n<sub>c</sub>hr<sub>o-</sub> <sub>n</sub>i<sub>ze</sub>d <sub>v</sub>i<sub>ews an</sub>d <sub>pro</sub>d<sub>uces a s</sub>t<sub>ruc</sub>t<sub>ure</sub>d <sub>sor</sub>ti<sub>ng p</sub>l<sub>an.</sub>"
+                    }
+                ],
+                "image_footnote": []
+            },
+            "bbox": [
+                147,
+                66,
+                415,
+                220
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": []
+            },
+            "bbox": [
+                81,
+                292,
+                480,
+                460
+            ]
+        },
+        {
+            "type": "title",
+            "content": {
+                "title_content": [
+                    {
+                        "type": "text",
+                        "content": "3.2 JMSU as Complete-State Reasoning"
+                    }
+                ],
+                "level": 2
+            },
+            "bbox": [
+                83,
+                469,
+                405,
+                486
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "JMSU f<sub>orma</sub>li<sub>zes</sub> th<sub>e su</sub>b<sub>se</sub>t <sub>o</sub>f <sub>mu</sub>lti<sub>-</sub>i<sub>mage em</sub>b<sub>o</sub>di<sub>e</sub>d <sub>p</sub>l<sub>an-</sub> <sub>n</sub>i<sub>ng.</sub> M<sub>a</sub>th<sub>ema</sub>ti<sub>ca</sub>ll<sub>y,</sub> l<sub>e</sub>t "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "\\mathcal { T } ~ = ~ \\{ I _ { 1 } , . . . \\bar { , } I _ { N } \\}"
+                    },
+                    {
+                        "type": "text",
+                        "content": "<sup>d</sup>enote s<sub>y</sub>nchronized observations, T the task instruction and o<sub>p</sub>eratin<sub>g</sub> <sub>p</sub>olic<sub>y</sub>, and Y the correct task-level decision. A VLM M <sub>pre</sub>di<sub>c</sub>t<sub>s</sub> "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "\\hat { \\mathcal { Y } } = \\mathcal { M } ( \\mathbb { Z } , \\mathcal { T } )"
+                    },
+                    {
+                        "type": "text",
+                        "content": "<sub>.</sub> Withi<sub>n</sub> "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "\\mathcal { T } , \\mathcal { T } ^ { * }"
+                    },
+                    {
+                        "type": "text",
+                        "content": "i<sub>s a m</sub>i<sub>n</sub>i<sub>ma</sub>l <sub>su</sub>fi<sub>-</sub> <sub>c</sub>i<sub>en</sub>t <sub>se</sub>t <sub>o</sub>f d<sub>ec</sub>i<sub>s</sub>i<sub>on-re</sub>l<sub>evan</sub>t i<sub>mages;</sub> th<sub>e</sub> <sub>rema</sub>i<sub>n</sub>i<sub>ng</sub> i<sub>mages</sub> "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "{ \\mathcal { T } } _ { \\mathrm { n o i s e } } = { \\mathcal { T } } \\setminus { \\mathcal { T } } ^ { * }"
+                    },
+                    {
+                        "type": "text",
+                        "content": "<sub>are</sub> di<sub>s</sub>t<sub>rac</sub>t<sub>ors.</sub> JMSU <sub>sa</sub>ti<sub>s</sub>fi<sub>es:</sub>"
+                    }
+                ]
+            },
+            "bbox": [
+                81,
+                489,
+                480,
+                590
+            ]
+        },
+        {
+            "type": "equation_interline",
+            "content": {
+                "math_content": "\\begin{array} { r } { T ^ { * } \\subseteq T , \\quad | T ^ { * } | \\geq 2 , } \\end{array}\\tag{1}",
+                "math_type": "latex",
+                "image_source": {
+                    "path": "images/beed02f442ccecc26a7881368d6d1184e577fb0674ec599caff2fecde58d8208.jpg"
+                }
+            },
+            "bbox": [
+                94,
+                611,
+                235,
+                627
+            ]
+        },
+        {
+            "type": "equation_interline",
+            "content": {
+                "math_content": "\\mu ( \\mathcal { P } ( I _ { i } ) , \\mathcal { P } ( I _ { j } ) ) \\leq \\epsilon , 0 \\leq \\epsilon \\ll 1 , \\forall I _ { i } , I _ { j } \\in \\mathcal { I } , i \\neq j ,\\tag{2}",
+                "math_type": "latex",
+                "image_source": {
+                    "path": "images/60d55f661361d1f06aee222a7fdcdd1618aa578516a4c46eb319b00cf77abe83.jpg"
+                }
+            },
+            "bbox": [
+                94,
+                628,
+                447,
+                646
+            ]
+        },
+        {
+            "type": "equation_interline",
+            "content": {
+                "math_content": "H ( \\mathcal { y } | \\mathcal { T } ^ { * } , \\mathcal { T } ) \\le \\delta , \\quad \\delta \\to 0 ^ { + } ,\\tag{3}",
+                "math_type": "latex",
+                "image_source": {
+                    "path": "images/d5f7fb61c230ac56fbf7eb18e53ab92e3f9102d2a975ab6b63f6ae6f326b04b3.jpg"
+                }
+            },
+            "bbox": [
+                96,
+                648,
+                300,
+                665
+            ]
+        },
+        {
+            "type": "equation_interline",
+            "content": {
+                "math_content": "H ( \\mathcal { V } | \\mathcal { S } , \\mathcal { T } ) \\ge \\gamma , \\quad \\forall \\mathcal { S } \\subsetneq \\mathcal { T } ^ { * } , \\quad \\gamma > \\delta ,\\tag{4}",
+                "math_type": "latex",
+                "image_source": {
+                    "path": "images/63dcee50eec0673f724ca0e6b5120c3aca6e8389e623ebc36d1fc839346216c9.jpg"
+                }
+            },
+            "bbox": [
+                96,
+                666,
+                366,
+                683
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "<sub>w</sub>h<sub>ere</sub> "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "\\mathcal { P } ( I _ { i } )"
+                    },
+                    {
+                        "type": "text",
+                        "content": "<sub>maps an o</sub>b<sub>serva</sub>ti<sub>on</sub> t<sub>o</sub> it<sub>s p</sub>h<sub>ys</sub>i<sub>ca</sub>l fi<sub>e</sub>ld <sub>o</sub>f <sub>v</sub>i<sub>ew an</sub>d "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "\\mu ( \\cdot , \\cdot )"
+                    },
+                    {
+                        "type": "text",
+                        "content": "is intersection-over-union (IoU) measure. Equation (2) encodes s<sub>p</sub>atial disjointness. Equations (3)–(4) <sub>enco</sub>d<sub>e</sub> d<sub>ec</sub>i<sub>s</sub>i<sub>on-</sub>l<sub>eve</sub>l i<sub>n</sub>t<sub>er</sub>d<sub>epen</sub>d<sub>ency:</sub> th<sub>e</sub> <sub>core</sub> <sub>se</sub>t <sub>near</sub>l<sub>y</sub> d<sub>e</sub>t<sub>erm</sub>i<sub>nes</sub> th<sub>e</sub> d<sub>ec</sub>i<sub>s</sub>i<sub>on,</sub> <sub>w</sub>h<sub>ereas</sub> <sub>every</sub> <sub>proper</sub> <sub>su</sub>b<sub>se</sub>t <sub>re</sub>t<sub>a</sub>i<sub>ns</sub> substantial uncertaint<sub>y</sub> (Achille and Soatto 2018)."
+                    }
+                ]
+            },
+            "bbox": [
+                81,
+                689,
+                480,
+                775
+            ]
+        },
+        {
+            "type": "title",
+            "content": {
+                "title_content": [
+                    {
+                        "type": "text",
+                        "content": "3.3 Sorting Plan Interface"
+                    }
+                ],
+                "level": 2
+            },
+            "bbox": [
+                83,
+                785,
+                299,
+                801
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "F<sub>or</sub> ALSS<sub>,</sub> <sub>eac</sub>h i<sub>mage</sub> d<sub>ep</sub>i<sub>c</sub>t<sub>s</sub> <sub>a</sub> <sub>compar</sub>t<sub>men</sub>t<sub>,</sub> <sub>a</sub> d<sub>es</sub>ti<sub>na</sub>ti<sub>on</sub> <sub>cage, or an</sub> i<sub>n-</sub>d<sub>oma</sub>i<sub>n</sub> di<sub>s</sub>t<sub>rac</sub>t<sub>or.</sub> A <sub>comp</sub>l<sub>e</sub>t<sub>e</sub> JMSU <sub>samp</sub>l<sub>e</sub> i<sub>s s</sub>h<sub>own</sub> i<sub>n</sub> Fi<sub>gure</sub> 2<sub>.</sub> Th<sub>e</sub> t<sub>as</sub>k <sub>ou</sub>t<sub>pu</sub>t i<sub>s an or</sub>d<sub>ere</sub>d <sub>sequence</sub> over A = {Move, Grasp, Place, Reset}. Move(a, b) transfers the arm from region a to region b; "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "\\mathrm { G r a s p } ( a , \\dot { B } )"
+                    },
+                    {
+                        "type": "text",
+                        "content": "selects the package localized by bounding box B in region a;"
+                    }
+                ]
+            },
+            "bbox": [
+                81,
+                804,
+                480,
+                890
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "Place(a) deposits the package into cage a; and Reset(∅) ret<sub>urns</sub> th<sub>e sys</sub>t<sub>em</sub> t<sub>o</sub> it<sub>s</sub> i<sub>n</sub>iti<sub>a</sub>l <sub>s</sub>t<sub>a</sub>t<sub>e.</sub> A <sub>pre</sub>di<sub>c</sub>ti<sub>on</sub> i<sub>s success</sub>f<sub>u</sub>l <sub>on</sub>l<sub>y</sub> if th<sub>e en</sub>ti<sub>re ac</sub>ti<sub>on sequence</sub> i<sub>s correc</sub>t <sub>an</sub>d th<sub>e pac</sub>k<sub>age</sub> b<sub>oun</sub>di<sub>ng</sub> b<sub>ox reac</sub>h<sub>es</sub> th<sub>e requ</sub>i<sub>re</sub>d <sub>over</sub>l<sub>ap</sub> th<sub>res</sub>h<sub>o</sub>ld<sub>.</sub>"
+                    }
+                ]
+            },
+            "bbox": [
+                516,
+                68,
+                913,
+                126
+            ]
+        },
+        {
+            "type": "title",
+            "content": {
+                "title_content": [
+                    {
+                        "type": "text",
+                        "content": "4 Method"
+                    }
+                ],
+                "level": 2
+            },
+            "bbox": [
+                665,
+                136,
+                766,
+                151
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "W<sub>e</sub> intr<sub>o</sub>d<sub>uce</sub> H<sub>ugin</sub> t<sub>o a</sub>d<sub>ap</sub>t VLM<sub>s</sub> t<sub>o</sub> JMSU<sub>.</sub> Fi<sub>gu</sub>r<sub>e</sub> 3 <sub>summar</sub>i<sub>zes</sub> it<sub>s</sub> t<sub>wo</sub> <sub>comp</sub>l<sub>emen</sub>t<sub>ary</sub> t<sub>ra</sub>i<sub>n</sub>i<sub>ng</sub> <sub>componen</sub>t<sub>s.</sub> EDA <sub>conver</sub>t<sub>s</sub> li<sub>m</sub>it<sub>e</sub>d ALSS <sub>anno</sub>t<sub>a</sub>ti<sub>ons</sub> i<sub>n</sub>t<sub>o cons</sub>t<sub>ra</sub>i<sub>n</sub>t<sub>-</sub> <sub>cons</sub>i<sub>s</sub>t<sub>en</sub>t <sub>superv</sub>i<sub>s</sub>i<sub>on, a</sub>dd<sub>ress</sub>i<sub>ng</sub> d<sub>a</sub>t<sub>a scarc</sub>it<sub>y.</sub> GCR <sub>en-</sub> f<sub>orces a s</sub>t<sub>ronger seman</sub>ti<sub>c a</sub>li<sub>gnmen</sub>t b<sub>e</sub>t<sub>ween</sub> th<sub>e</sub> i<sub>ns</sub>t<sub>ruc</sub>ti<sub>on</sub> <sub>query</sub> <sub>an</sub>d th<sub>e</sub> <sub>g</sub>l<sub>o</sub>b<sub>a</sub>l <sub>v</sub>i<sub>sua</sub>l <sub>con</sub>t<sub>ex</sub>t th<sub>an</sub> b<sub>e</sub>t<sub>ween</sub> <sub>query</sub> <sub>an</sub>d l<sub>oca</sub>l f<sub>ea</sub>t<sub>ures, preven</sub>ti<sub>ng</sub> th<sub>e</sub> VLM f<sub>rom re</sub>l<sub>y</sub>i<sub>ng on</sub> l<sub>oca</sub>l <sub>v</sub>i<sub>sua</sub>l <sub>pre</sub>fi<sub>xes.</sub>"
+                    }
+                ]
+            },
+            "bbox": [
+                514,
+                154,
+                915,
+                267
+            ]
+        },
+        {
+            "type": "title",
+            "content": {
+                "title_content": [
+                    {
+                        "type": "text",
+                        "content": "4.1 Endogenous Data Augmentation"
+                    }
+                ],
+                "level": 2
+            },
+            "bbox": [
+                516,
+                275,
+                812,
+                291
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "A<sub>s no</sub>t<sub>e</sub>d i<sub>n</sub> S<sub>ec</sub>ti<sub>on</sub> 1<sub>,</sub> fi<sub>ne-</sub>t<sub>un</sub>i<sub>ng</sub> VLM<sub>s</sub> i<sub>s severe</sub>l<sub>y</sub> b<sub>o</sub>t<sub>-</sub> tl<sub>enec</sub>k<sub>e</sub>d b<sub>y</sub> th<sub>e scarc</sub>it<sub>y an</sub>d <sub>pro</sub>hibiti<sub>ve co</sub>ll<sub>ec</sub>ti<sub>on cos</sub>t<sub>s</sub> <sub>o</sub>f JMSU d<sub>a</sub>t<sub>a.</sub> Whil<sub>e</sub> d<sub>a</sub>t<sub>a augmen</sub>t<sub>a</sub>ti<sub>on o</sub>f<sub>ers a na</sub>t<sub>ura</sub>l <sub>so</sub>l<sub>u</sub>ti<sub>on, s</sub>t<sub>an</sub>d<sub>ar</sub>d t<sub>ec</sub>h<sub>n</sub>i<sub>ques</sub> t<sub>yp</sub>i<sub>ca</sub>ll<sub>y</sub> di<sub>srup</sub>t th<sub>e</sub> l<sub>og</sub>i<sub>ca</sub>l d<sub>epen</sub>d<sub>enc</sub>i<sub>es across scenes.</sub> F<sub>or</sub> i<sub>ns</sub>t<sub>ance,</sub> C<sub>o</sub>T<sub>-</sub>b<sub>ase</sub>d <sub>me</sub>th<sub>-</sub> ods (Zhan<sub>g</sub> et al. 2023; Huan<sub>g</sub> et al. 2025; Ye et al. 2025) rel<sub>y</sub> <sub>on</sub> t<sub>eac</sub>h<sub>er mo</sub>d<sub>e</sub>l<sub>s</sub> f<sub>or syn</sub>th<sub>es</sub>i<sub>s, w</sub>hi<sub>c</sub>h <sub>r</sub>i<sub>s</sub>k<sub>s</sub> i<sub>n</sub>t<sub>ro</sub>d<sub>uc</sub>i<sub>ng</sub> h<sub>a</sub>l<sub>-</sub> lucinations without domain <sub>p</sub>riors. Text-centric methods (Liu et al. 2023; Lai et al. 2024) fail to scale the visual information densit<sub>y</sub> (Zhao et al. 2023). Instead of rel<sub>y</sub>in<sub>g</sub> on external <sub>genera</sub>ti<sub>on,</sub> H<sub>ugin</sub> i<sub>n</sub>t<sub>ro</sub>d<sub>uces</sub> <sub>a</sub> d<sub>a</sub>t<sub>a</sub> <sub>augmen</sub>t<sub>a</sub>ti<sub>on</sub> <sub>me</sub>th<sub>o</sub>d named EDA, as shown in Stage 1 of Figure 3. EDA exploits the inherent semantic richness of existin<sub>g</sub> data (Den<sub>g</sub> et al. 2023). B<sub>y</sub> treatin<sub>g</sub> com<sub>p</sub>lex tasks as recombinable atomic facts rather than indivisible units (Hudson and Mannin<sub>g</sub> 2019), it <sub>p</sub>ol<sub>y</sub>nomiall<sub>y</sub> ex<sub>p</sub>ands the efective trainin<sub>g</sub> dist<sub>r</sub>ib<sub>u</sub>ti<sub>on</sub> <sub>w</sub>hil<sub>e</sub> <sub>ma</sub>i<sub>n</sub>t<sub>a</sub>i<sub>n</sub>i<sub>ng</sub> l<sub>og</sub>i<sub>ca</sub>l <sub>cons</sub>i<sub>s</sub>t<sub>ency.</sub> S<sub>pec</sub>ifi<sub>ca</sub>ll<sub>y,</sub> EDA <sub>cons</sub>i<sub>s</sub>t<sub>s o</sub>f th<sub>e</sub> f<sub>o</sub>ll<sub>ow</sub>i<sub>ng</sub> th<sub>ree s</sub>t<sub>ages.</sub>"
+                    }
+                ]
+            },
+            "bbox": [
+                514,
+                292,
+                915,
+                542
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "Decoupling: semantic decomposition into atomic facts. Gi<sub>ven</sub> th<sub>e or</sub>i<sub>g</sub>i<sub>na</sub>l d<sub>a</sub>t<sub>ase</sub>t "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "\\mathcal { D } _ { o r i g i n }"
+                    },
+                    {
+                        "type": "text",
+                        "content": "<sub>,</sub> th<sub>e</sub> LLM<sub>-</sub>b<sub>ase</sub>d d<sub>ecoup</sub>l<sub>er</sub> <sub>parses eac</sub>h <sub>samp</sub>l<sub>e</sub> i<sub>n</sub>t<sub>o</sub> th<sub>e s</sub>h<sub>are</sub>d f<sub>ac</sub>t <sub>sc</sub>h<sub>ema an</sub>d <sub>p</sub>l<sub>aces</sub> th<sub>e ex</sub>t<sub>rac</sub>t<sub>e</sub>d f<sub>ac</sub>t<sub>s</sub> i<sub>n</sub> "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "\\mathcal { D } _ { a t o m i c } ."
+                    },
+                    {
+                        "type": "text",
+                        "content": "<sub>.</sub> In ALSS<sub>,</sub> th<sub>e</sub> f<sub>ac</sub>t t<sub>ypes</sub> in<sub>-</sub> <sub>c</sub>l<sub>u</sub>d<sub>e pac</sub>k<sub>age coun</sub>t<sub>s,</sub> th<sub>e pac</sub>k<sub>age c</sub>l<sub>oses</sub>t t<sub>o a compar</sub>t<sub>men</sub>t <sub>ex</sub>it<sub>, cage occupancy, an</sub>d <sub>spa</sub>ti<sub>a</sub>l <sub>groun</sub>di<sub>ng.</sub> Th<sub>e assoc</sub>i<sub>a</sub>t<sub>e</sub>d <sub>a</sub>t<sub>om</sub>i<sub>c ques</sub>ti<sub>ons expose</sub> i<sub>n</sub>t<sub>erme</sub>di<sub>a</sub>t<sub>e superv</sub>i<sub>s</sub>i<sub>on</sub> th<sub>a</sub>t i<sub>s</sub> hid<sub>-</sub> d<sub>en</sub> i<sub>ns</sub>id<sub>e</sub> th<sub>e</sub> fi<sub>na</sub>l <sub>ac</sub>ti<sub>on sequence.</sub>"
+                    }
+                ]
+            },
+            "bbox": [
+                514,
+                542,
+                915,
+                654
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "Combination: constraint-based task synthesis. The <sub>scr</sub>i<sub>p</sub>t<sub>-</sub>b<sub>ase</sub>d <sub>syn</sub>th<sub>es</sub>i<sub>zer samp</sub>l<sub>es compa</sub>tibl<sub>e</sub> f<sub>ac</sub>t<sub>s</sub> f<sub>rom</sub> th<sub>e</sub> <sub>poo</sub>l<sub>s an</sub>d <sub>recompu</sub>t<sub>es a comp</sub>l<sub>e</sub>t<sub>e p</sub>l<sub>an un</sub>d<sub>er</sub> th<sub>e opera</sub>ti<sub>ng</sub> <sub>cons</sub>t<sub>ra</sub>i<sub>n</sub>t<sub>s, pro</sub>d<sub>uc</sub>i<sub>ng</sub> "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "\\mathcal { D } _ { { s y n } }"
+                    },
+                    {
+                        "type": "text",
+                        "content": "(Deitke et al. 2022). If a sample contains M fact types and each pool contains at most N candidates, the candidate space is bounded by "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "N ^ { M }"
+                    },
+                    {
+                        "type": "text",
+                        "content": "<sub>;</sub> EDA <sub>ma</sub>t<sub>er</sub>i<sub>a</sub>li<sub>zes</sub> <sub>on</sub>l<sub>y</sub> <sub>a</sub> b<sub>a</sub>l<sub>ance</sub>d <sub>su</sub>b<sub>se</sub>t f<sub>or</sub> t<sub>ra</sub>i<sub>n</sub>i<sub>ng.</sub> B<sub>ecause</sub> th<sub>e</sub> <sub>answer</sub> i<sub>s compu</sub>t<sub>e</sub>d f<sub>rom s</sub>t<sub>ruc</sub>t<sub>ure</sub>d f<sub>ac</sub>t<sub>s ra</sub>th<sub>er</sub> th<sub>an cop</sub>i<sub>e</sub>d f<sub>rom a</sub> t<sub>eac</sub>h<sub>er</sub> VLM<sub>,</sub> th<sub>e</sub> l<sub>a</sub>b<sub>e</sub>l <sub>rema</sub>i<sub>ns au</sub>dit<sub>a</sub>bl<sub>e.</sub> W<sub>e a</sub>d<sub>-</sub> diti<sub>ona</sub>ll<sub>y</sub> i<sub>nspec</sub>t <sub>ran</sub>d<sub>om</sub>l<sub>y</sub> <sub>samp</sub>l<sub>e</sub>d <sub>syn</sub>th<sub>e</sub>ti<sub>c</sub> <sub>recor</sub>d<sub>s</sub> <sub>an</sub>d <sub>ver</sub>if<sub>y</sub> th<sub>e</sub>i<sub>r</sub> <sub>s</sub>t<sub>ruc</sub>t<sub>ure</sub> <sub>an</sub>d l<sub>a</sub>b<sub>e</sub>l<sub>s</sub> b<sub>e</sub>f<sub>ore</sub> t<sub>ra</sub>i<sub>n</sub>i<sub>ng.</sub>"
+                    }
+                ]
+            },
+            "bbox": [
+                514,
+                652,
+                915,
+                806
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "Augmentation: perception and general-VQA supervision. EDA also derives "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "\\mathcal { D } _ { a u x }"
+                    },
+                    {
+                        "type": "text",
+                        "content": "for object detection, region id<sub>en</sub>tifi<sub>ca</sub>ti<sub>on,</sub> <sub>an</sub>d <sub>cage-s</sub>t<sub>a</sub>t<sub>e</sub> <sub>recogn</sub>iti<sub>on</sub> <sub>us</sub>i<sub>ng</sub> <sub>spec</sub>i<sub>a</sub>li<sub>ze</sub>d vision tools (Wan<sub>g</sub> et al. 2023, 2024b; Hussain 2023; Kirillov et al. 2023). These tasks <sub>g</sub>round the <sub>p</sub>lanner’s com<sub>p</sub>arative decisions in packa<sub>g</sub>e and ca<sub>g</sub>e perception. General VQA sam<sub>p</sub><sup>l</sup>es "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "\\mathcal { D } _ { g e n e r a l }"
+                    },
+                    {
+                        "type": "text",
+                        "content": "<sub>are m</sub>i<sub>xe</sub>d i<sub>n</sub>t<sub>o</sub> t<sub>ra</sub>i<sub>n</sub>i<sub>ng</sub> t<sub>o re</sub>d<sub>uce ca</sub>t<sub>as-</sub> tro<sub>p</sub>hic for<sub>g</sub>ettin<sub>g</sub> (Liu et al. 2024a). The final trainin<sub>g</sub> set is "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "\\mathcal { D } = \\mathcal { D } _ { o r i g i n } \\cup \\mathcal { D } _ { a t o m i c } \\cup \\mathcal { D } _ { s y n } \\cup \\mathcal { D } _ { a u x } \\cup \\mathcal { D } _ { g e n e r a l : }"
+                    },
+                    {
+                        "type": "text",
+                        "content": "<sub>, w</sub>hi<sub>c</sub>h h<sub>e</sub>l<sub>ps</sub> VLM<sub>s</sub> t<sub>o</sub> l<sub>earn ro</sub>b<sub>us</sub>t <sub>an</sub>d <sub>groun</sub>d<sub>e</sub>d <sub>represen</sub>t<sub>a</sub>ti<sub>ons</sub> f<sub>rom</sub> li<sub>m</sub>it<sub>e</sub>d <sub>samp</sub>l<sub>es.</sub>"
+                    }
+                ]
+            },
+            "bbox": [
+                514,
+                805,
+                915,
+                890
+            ]
+        }
+    ],
+    [
+        {
+            "type": "image",
+            "content": {
+                "image_source": {
+                    "path": "images/f2364155eb9a2a8bffe717dfa070551d4dcc5d452114513be559a2f0e3f24aa4.jpg"
+                },
+                "image_caption": [
+                    {
+                        "type": "text",
+                        "content": "Fi<sub>gure</sub> 3<sub>:</sub> A <sub>un</sub>ifi<sub>e</sub>d f<sub>ramewor</sub>k t<sub>o en</sub>h<sub>ance</sub> VLM<sub>s on</sub> JMSU<sub>.</sub> H<sub>ug</sub>i<sub>n</sub> i<sub>nc</sub>l<sub>u</sub>d<sub>es</sub> t<sub>wo s</sub>t<sub>ages:</sub> EDA t<sub>o m</sub>iti<sub>ga</sub>t<sub>e</sub> th<sub>e scarc</sub>it<sub>y o</sub>f JMSUFL d<sub>a</sub>t<sub>a,</sub> <sub>an</sub>d GCR t<sub>o</sub> <sub>ac</sub>hi<sub>eve</sub> <sub>seman</sub>ti<sub>c</sub> <sub>a</sub>li<sub>gnmen</sub>t b<sub>e</sub>t<sub>ween</sub> <sub>g</sub>l<sub>o</sub>b<sub>a</sub>l <sub>v</sub>i<sub>sua</sub>l <sub>con</sub>t<sub>ex</sub>t <sub>an</sub>d i<sub>ns</sub>t<sub>ruc</sub>ti<sub>on</sub> <sub>query.</sub>"
+                    }
+                ],
+                "image_footnote": []
+            },
+            "bbox": [
+                112,
+                65,
+                887,
+                261
+            ]
+        },
+        {
+            "type": "image",
+            "content": {
+                "image_source": {
+                    "path": "images/73b1854b9f1e0674a66aa204f95af99b2558a7d71718a1243172a780c80866f7.jpg"
+                },
+                "image_caption": [
+                    {
+                        "type": "text",
+                        "content": "Fi<sub>gure</sub> 4<sub>:</sub> Th<sub>e</sub> d<sub>a</sub>t<sub>a</sub> fl<sub>ow</sub> <sub>process</sub> d<sub>ur</sub>i<sub>ng</sub> VLM t<sub>ra</sub>i<sub>n</sub>i<sub>ng.</sub>"
+                    }
+                ],
+                "image_footnote": []
+            },
+            "bbox": [
+                88,
+                330,
+                475,
+                512
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": []
+            },
+            "bbox": [
+                81,
+                565,
+                480,
+                636
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "Th<sub>e comp</sub>l<sub>e</sub>t<sub>e</sub> EDA i<sub>mp</sub>l<sub>emen</sub>t<sub>a</sub>ti<sub>on an</sub>d <sub>process</sub>i<sub>ng resu</sub>lt<sub>s</sub> <sub>are</sub> <sub>prov</sub>id<sub>e</sub>d i<sub>n</sub> th<sub>e</sub> <sub>supp</sub>l<sub>emen</sub>t<sub>ary</sub> <sub>ma</sub>t<sub>er</sub>i<sub>a</sub>l<sub>.</sub>"
+                    }
+                ]
+            },
+            "bbox": [
+                81,
+                635,
+                480,
+                665
+            ]
+        },
+        {
+            "type": "title",
+            "content": {
+                "title_content": [
+                    {
+                        "type": "text",
+                        "content": "4.2 Global Context Ranking"
+                    }
+                ],
+                "level": 2
+            },
+            "bbox": [
+                83,
+                675,
+                316,
+                690
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "A d<sub>eco</sub>d<sub>er-on</sub>l<sub>y</sub> VLM <sub>ser</sub>i<sub>a</sub>li<sub>zes s</sub>i<sub>mu</sub>lt<sub>aneous camera o</sub>b<sub>-</sub> <sub>serva</sub>ti<sub>ons, so s</sub>t<sub>an</sub>d<sub>ar</sub>d <sub>nex</sub>t<sub>-</sub>t<sub>o</sub>k<sub>en</sub> t<sub>ra</sub>i<sub>n</sub>i<sub>ng may pro</sub>d<sub>uce</sub> th<sub>e</sub> <sub>correc</sub>t l<sub>a</sub>b<sub>e</sub>l <sub>w</sub>ith<sub>ou</sub>t <sub>exp</sub>li<sub>c</sub>itl<sub>y pre</sub>f<sub>err</sub>i<sub>ng a represen</sub>t<sub>a</sub>ti<sub>on o</sub>f th<sub>e comp</sub>l<sub>e</sub>t<sub>e v</sub>i<sub>sua</sub>l <sub>s</sub>t<sub>a</sub>t<sub>e.</sub> GCR i<sub>n</sub>t<sub>ro</sub>d<sub>uces</sub> th<sub>a</sub>t <sub>pre</sub>f<sub>erence as a</sub> training-only ranking objective. Based on the information ag-<sub>g</sub>re<sub>g</sub>ation <sub>p</sub>ro<sub>p</sub>ert<sub>y</sub> of causal attention (Vaswani et al. 2017), GCR <sub>u</sub>tili<sub>zes</sub> <sub>spec</sub>ifi<sub>c</sub> hidd<sub>en</sub> <sub>s</sub>t<sub>a</sub>t<sub>es</sub> <sub>as</sub> <sub>anc</sub>h<sub>ors</sub> f<sub>or</sub> JMSU t<sub>as</sub>k <sub>un</sub>d<sub>ers</sub>t<sub>an</sub>di<sub>ng.</sub> T<sub>o</sub> f<sub>ur</sub>th<sub>er</sub> i<sub>mprove g</sub>l<sub>o</sub>b<sub>a</sub>l <sub>awareness,</sub> GCR <sub>en</sub>f<sub>orces</sub> <sub>a</sub> <sub>s</sub>t<sub>ronger</sub> <sub>seman</sub>ti<sub>c</sub> <sub>a</sub>li<sub>gnmen</sub>t th<sub>e</sub> i<sub>ns</sub>t<sub>ruc</sub>ti<sub>on</sub> <sub>query</sub> <sub>more s</sub>t<sub>rong</sub>l<sub>y w</sub>ith th<sub>e g</sub>l<sub>o</sub>b<sub>a</sub>l <sub>v</sub>i<sub>sua</sub>l <sub>con</sub>t<sub>ex</sub>t th<sub>an w</sub>ith l<sub>oca</sub>l visual features, similar to contrastive learnin<sub>g</sub> (Gao, Yao, and Chen 2021; Chen et al. 2024)."
+                    }
+                ]
+            },
+            "bbox": [
+                81,
+                694,
+                480,
+                861
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "Theoretical basis. GCR intrinsically exploits the unidi-<sub>rec</sub>ti<sub>ona</sub>l i<sub>n</sub>f<sub>orma</sub>ti<sub>on</sub> fl<sub>ow governe</sub>d b<sub>y</sub> th<sub>e causa</sub>l <sub>a</sub>tt<sub>en</sub>ti<sub>on</sub> <sub>mec</sub>h<sub>an</sub>i<sub>sm</sub> i<sub>n</sub> d<sub>eco</sub>d<sub>er-on</sub>l<sub>y</sub> VLM<sub>s an</sub>d th<sub>e</sub> i<sub>n</sub>h<sub>eren</sub>t i<sub>n</sub>f<sub>or-</sub> <sub>ma</sub>ti<sub>on aggrega</sub>ti<sub>on proper</sub>t<sub>y o</sub>f th<sub>e</sub> t<sub>rans</sub>f<sub>ormer.</sub> Gi<sub>ven</sub> th<sub>e</sub> <sub>mu</sub>lti<sub>mo</sub>d<sub>a</sub>l i<sub>npu</sub>t "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "[ I _ { 1 } , \\bar { I _ { 2 } } , \\ldots , \\bar { I _ { N } } , \\mathcal { T } ]"
+                    },
+                    {
+                        "type": "text",
+                        "content": "<sub>,</sub> l<sub>e</sub>t it b<sub>e</sub> t<sub>o</sub>k<sub>en</sub>i<sub>ze</sub>d <sub>an</sub>d fl<sub>a</sub>tt<sub>ene</sub>d i<sub>n</sub>t<sub>o a pre</sub>fill t<sub>o</sub>k<sub>en sequence</sub> "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "X = [ x _ { 1 } , x _ { 2 } , \\dots , x _ { T } ]"
+                    },
+                    {
+                        "type": "text",
+                        "content": "<sub>o</sub>f l<sub>eng</sub>th "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "T ,"
+                    },
+                    {
+                        "type": "text",
+                        "content": "<sub>w</sub>h<sub>ere</sub> "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "x _ { t }"
+                    },
+                    {
+                        "type": "text",
+                        "content": "denotes the t-th token. In the l-th t<sub>rans</sub>f<sub>ormer</sub> l<sub>ayer,</sub> th<sub>e mu</sub>lti<sub>-</sub>h<sub>ea</sub>d <sub>a</sub>tt<sub>en</sub>ti<sub>on up</sub>d<sub>a</sub>t<sub>es</sub> "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "\\boldsymbol { x } _ { t } ^ { \\ } \\boldsymbol { \\mathrm { s } }"
+                    },
+                    {
+                        "type": "text",
+                        "content": "hid<sub>-</sub> d<sub>en</sub> <sub>s</sub>t<sub>a</sub>t<sub>e</sub> "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "\\pmb { h } _ { t } ^ { ( l ) } ~ \\in ~ \\mathbb { R } ^ { d }"
+                    },
+                    {
+                        "type": "text",
+                        "content": "<sub>v</sub>i<sub>a</sub> <sub>a</sub> l<sub>ower-</sub>t<sub>r</sub>i<sub>angu</sub>l<sub>ar</sub> <sub>causa</sub>l <sub>mas</sub>k "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "M \\in \\mathbb { R } ^ { T \\times T }"
+                    },
+                    {
+                        "type": "text",
+                        "content": "<sub>,</sub> <sub>w</sub>h<sub>ere</sub> "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "M _ { t , \\tau } = 0 { \\mathrm { ~ i f ~ } } \\tau \\leq t"
+                    },
+                    {
+                        "type": "text",
+                        "content": "and −∞ other-<sub>w</sub>i<sub>se.</sub> Thi<sub>s</sub> <sub>p</sub>h<sub>ys</sub>i<sub>ca</sub>ll<sub>y</sub> bl<sub>oc</sub>k<sub>s</sub> <sub>any</sub> b<sub>ac</sub>k<sub>war</sub>d <sub>propaga</sub>ti<sub>on</sub> <sub>o</sub>f i<sub>n</sub>f<sub>orma</sub>ti<sub>on, ensur</sub>i<sub>ng</sub> th<sub>e con</sub>t<sub>ex</sub>t<sub>ua</sub>l <sub>recep</sub>ti<sub>ve</sub> fi<sub>e</sub>ld "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "\\mathcal { F } ( t )"
+                    },
+                    {
+                        "type": "text",
+                        "content": "<sub>o</sub>f "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "{ h } _ { t } ^ { ( l ) }"
+                    },
+                    {
+                        "type": "text",
+                        "content": "is rigorously bounded to its historical token prefix, i.e., "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "\\bar { \\mathcal { F } } ( t ) = \\mathbf { \\bar { \\{ } }  x _ { 1 } , . . . , x _ { t } \\mathbf  \\}"
+                    },
+                    {
+                        "type": "text",
+                        "content": "<sub>, as s</sub>h<sub>own</sub> i<sub>n</sub> Fi<sub>gure</sub> 4<sub>.</sub> F<sub>ur</sub>th<sub>ermore,</sub> thi<sub>s un</sub>idi<sub>rec</sub>ti<sub>ona</sub>l <sub>mas</sub>ki<sub>ng</sub> i<sub>n</sub>d<sub>uces</sub> i<sub>n</sub>f<sub>orma</sub>ti<sub>on aggrega-</sub> tion (Vaswani et al. 2017). The hidden state "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "{ \\bf \\nabla } _ { h _ { t } ^ { ( l ) } }"
+                    },
+                    {
+                        "type": "text",
+                        "content": "acts as a <sub>summary,</sub> <sub>ma</sub>th<sub>ema</sub>ti<sub>ca</sub>ll<sub>y</sub> <sub>aggrega</sub>ti<sub>ng</sub> th<sub>e</sub> <sub>en</sub>ti<sub>re</sub> <sub>mu</sub>lti<sub>mo</sub>d<sub>a</sub>l hi<sub>s</sub>t<sub>ory</sub> "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "x _ { 1 : t }"
+                    },
+                    {
+                        "type": "text",
+                        "content": "into a sin<sub>g</sub>le dense vector (Kon<sub>g</sub> et al. 2024; Valeriani et al. 2023; Cai et al. 2025). Therefore, we can treat th<sub>e</sub> hidd<sub>en</sub> <sub>s</sub>t<sub>a</sub>t<sub>es</sub> <sub>o</sub>f <sub>spec</sub>ifi<sub>c</sub> t<sub>o</sub>k<sub>ens</sub> <sub>as</sub> <sub>prec</sub>i<sub>se</sub> <sub>seman</sub>ti<sub>c</sub> <sub>an-</sub> <sub>c</sub>h<sub>ors w</sub>hi<sub>c</sub>h <sub>cap</sub>t<sub>ure</sub> th<sub>e</sub> VLM’<sub>s cogn</sub>iti<sub>ve s</sub>t<sub>a</sub>t<sub>es a</sub>t dif<sub>eren</sub>t sequence <sub>p</sub>ositions durin<sub>g</sub> the <sub>p</sub>refill sta<sub>g</sub>e (Gao, Yao, and Chen 2021; Hendel, Geva, and Globerson 2023)."
+                    }
+                ]
+            },
+            "bbox": [
+                81,
+                859,
+                480,
+                890
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": []
+            },
+            "bbox": [
+                514,
+                330,
+                915,
+                632
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "Anchor indexing. To operationalize the extraction of spe-<sub>c</sub>ifi<sub>c cogn</sub>iti<sub>ve s</sub>t<sub>a</sub>t<sub>es, we nee</sub>d t<sub>o</sub> l<sub>oca</sub>t<sub>e</sub> th<sub>ese va</sub>l<sub>ua</sub>bl<sub>e an-</sub> <sub>c</sub>h<sub>ors.</sub> L<sub>e</sub>t "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "{ \\mathcal E } _ { v i s }"
+                    },
+                    {
+                        "type": "text",
+                        "content": "d<sub>eno</sub>t<sub>e</sub> th<sub>e</sub> <sub>or</sub>d<sub>ere</sub>d <sub>se</sub>t <sub>o</sub>f <sub>pos</sub>iti<sub>ona</sub>l i<sub>n</sub>di<sub>ces</sub> corresponding to the boundary identifiers of images (e.g., <|vision_end|> for Qwen3-VL (Bai et al. 2025a):"
+                    }
+                ]
+            },
+            "bbox": [
+                514,
+                632,
+                913,
+                702
+            ]
+        },
+        {
+            "type": "equation_interline",
+            "content": {
+                "math_content": "\\begin{array} { r l } & { \\mathcal { E } _ { v i s } = \\{ t \\in \\{ 1 , \\ldots , T \\} \\mid x _ { t } = < \\mid \\mathrm { v i s } \\mathrm { i o n \\_ e n d } \\mid > \\} } \\\\ & { \\qquad = \\{ i _ { 1 } < \\cdot \\cdot \\cdot < i _ { N } \\} . } \\end{array}",
+                "math_type": "latex",
+                "image_source": {
+                    "path": "images/fc10417c1384943c29f405fa416a8c497314cba2d5b5f18b46c3aaea05422ce8.jpg"
+                }
+            },
+            "bbox": [
+                534,
+                708,
+                892,
+                742
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "Si<sub>m</sub>il<sub>ar</sub>l<sub>y,</sub> d<sub>ur</sub>i<sub>ng</sub> th<sub>e</sub> d<sub>eco</sub>di<sub>ng s</sub>t<sub>age,</sub> th<sub>e</sub> VLM <sub>expan</sub>d<sub>s</sub> X to sequence "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "{ \\bf { \\bar { z } } } ."
+                    },
+                    {
+                        "type": "text",
+                        "content": "Sin<sub>ce</sub> dif<sub>e</sub>r<sub>e</sub>nt VLM<sub>s e</sub>m<sub>p</sub>l<sub>oy va</sub>r<sub>y</sub>in<sub>g</sub> chat templates that append specific generation triggers (e.g., <|im_start|> (Bai et al. 2025a)), we denote these tok<sub>ens as</sub> "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "\\pmb { S } = [ s _ { 1 } , \\ldots , s _ { K } ]"
+                    },
+                    {
+                        "type": "text",
+                        "content": ". Therefore, Z is formulated as "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "Z = [ X , S , { \\dot { Y } } ]"
+                    },
+                    {
+                        "type": "text",
+                        "content": "(i<sub>g</sub>norin<sub>g</sub> <sub>p</sub>refix s<sub>y</sub>stem <sub>p</sub>rom<sub>p</sub>ts), where "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "Y = [ y _ { 1 } , \\dots , y _ { T ^ { \\prime } } ]"
+                    },
+                    {
+                        "type": "text",
+                        "content": "i<sub>s</sub> th<sub>e sequence o</sub>f <sub>genera</sub>t<sub>e</sub>d <sub>answer</sub> t<sub>o-</sub> k<sub>ens.</sub> L<sub>e</sub>t "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "C = [ c _ { 1 } , \\dots , c _ { T + K + T ^ { \\prime } } ]"
+                    },
+                    {
+                        "type": "text",
+                        "content": "] be the corresponding label sequence, where the tokens of X and S are masked b<sub>y</sub> an i<sub>gnore-</sub>i<sub>n</sub>d<sub>ex</sub> "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "( e . g . , - 1 0 0 )"
+                    },
+                    {
+                        "type": "text",
+                        "content": "<sub>.</sub> T<sub>o</sub> <sub>a</sub>d<sub>ap</sub>t t<sub>o</sub> th<sub>e</sub> dif<sub>erences</sub> <sub>among</sub> chat templates, we anchor the instruction intent q at the token i<sub>mme</sub>di<sub>a</sub>t<sub>e</sub>l<sub>y prece</sub>di<sub>ng</sub> t<sub>ra</sub>i<sub>na</sub>bl<sub>e answer</sub> t<sub>o</sub>k<sub>ens, an</sub>d <sub>ro</sub>b<sub>us</sub>tl<sub>y</sub> d<sub>e</sub>fi<sub>ne</sub> it<sub>s</sub> i<sub>n</sub>d<sub>ex</sub> "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "i _ { q }"
+                    },
+                    {
+                        "type": "text",
+                        "content": "<sub>as</sub> f<sub>o</sub>ll<sub>ows:</sub>"
+                    }
+                ]
+            },
+            "bbox": [
+                514,
+                750,
+                915,
+                891
+            ]
+        }
+    ],
+    [
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": []
+            },
+            "bbox": [
+                81,
+                69,
+                478,
+                112
+            ]
+        },
+        {
+            "type": "equation_interline",
+            "content": {
+                "math_content": "i _ { q } = \\operatorname* { m i n } \\{ t \\mid 1 \\leq t \\leq T + K + T ^ { \\prime } , c _ { t } \\in C \\setminus \\{ - 1 0 0 \\} \\} - 1 .",
+                "math_type": "latex",
+                "image_source": {
+                    "path": "images/ffd4a2df922844daa8d5650eb70590e78b517b003dcda6c9e9282141a66e6eac.jpg"
+                }
+            },
+            "bbox": [
+                83,
+                117,
+                477,
+                135
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "Hidden state extraction. Using these indices, we extract 3 <sub>cr</sub>iti<sub>ca</sub>l <sub>represen</sub>t<sub>a</sub>ti<sub>ons</sub> f<sub>rom</sub> th<sub>e</sub> fi<sub>na</sub>l hidd<sub>en s</sub>t<sub>a</sub>t<sub>e</sub> "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "{ \\pmb { H } } ^ { ( L ) }"
+                    }
+                ]
+            },
+            "bbox": [
+                83,
+                142,
+                478,
+                171
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "• Local visual context "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "e _ { n } \\in \\mathbb { R } ^ { d } ;"
+                    },
+                    {
+                        "type": "text",
+                        "content": "<sub>:</sub> E<sub>x</sub>t<sub>rac</sub>t<sub>e</sub>d b<sub>y un</sub>if<sub>orm</sub>l<sub>y</sub> <sub>samp</sub>li<sub>ng</sub> <sub>an</sub> i<sub>n</sub>t<sub>erme</sub>di<sub>a</sub>t<sub>e</sub> <sub>v</sub>i<sub>sua</sub>l b<sub>oun</sub>d<sub>ary,</sub> "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "e _ { n } = h _ { i _ { n } } ^ { ( L ) }"
+                    },
+                    {
+                        "type": "text",
+                        "content": "<sub>w</sub>h<sub>ere</sub> "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "n \\sim \\mathcal { U } \\{ 1 , N - 1 \\}"
+                    },
+                    {
+                        "type": "text",
+                        "content": "<sub>.</sub> G<sub>overne</sub>d b<sub>y</sub> th<sub>e causa</sub>l <sub>mas</sub>k<sub>,</sub> it<sub>s recep</sub>ti<sub>ve</sub> fi<sub>e</sub>ld i<sub>s s</sub>t<sub>ruc</sub>t<sub>ura</sub>ll<sub>y res</sub>t<sub>r</sub>i<sub>c</sub>t<sub>e</sub>d t<sub>o</sub> "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "\\mathcal { F } ( i _ { n } ) ="
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "\\{ x _ { 1 } , x _ { 2 } , \\ldots , x _ { i _ { n } } \\}"
+                    },
+                    {
+                        "type": "text",
+                        "content": "<sub>.</sub> Thi<sub>s</sub> hidd<sub>en s</sub>t<sub>a</sub>t<sub>e encapsu</sub>l<sub>a</sub>t<sub>es</sub> th<sub>e</sub> t<sub>o-</sub> kenized representations of the first n images, and is blind t<sub>o</sub> th<sub>e su</sub>b<sub>sequen</sub>t <sub>v</sub>i<sub>sua</sub>l t<sub>o</sub>k<sub>ens o</sub>f "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "I _ { n + 1 : N }"
+                    }
+                ]
+            },
+            "bbox": [
+                83,
+                174,
+                478,
+                279
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "• Global visual context "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "\\begin{array} { r } { \\boldsymbol { e } _ { N } \\in \\mathbb { R } ^ { d } ; } \\end{array}"
+                    },
+                    {
+                        "type": "text",
+                        "content": "<sub>:</sub> E<sub>x</sub>t<sub>rac</sub>t<sub>e</sub>d <sub>a</sub>t th<sub>e</sub> fi<sub>-</sub> <sub>na</sub>l <sub>v</sub>i<sub>sua</sub>l b<sub>oun</sub>d<sub>ary,</sub> "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "e _ { N } \\ = \\ h _ { i _ { N } } ^ { ( L ) }"
+                    },
+                    {
+                        "type": "text",
+                        "content": "<sub>.</sub> It<sub>s recep</sub>ti<sub>ve</sub> fi<sub>e</sub>ld "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "\\mathcal { F } ( i _ { N } ) = \\{ x _ { 1 } , x _ { 2 } , . . . , x _ { i _ { N } } \\}"
+                    },
+                    {
+                        "type": "text",
+                        "content": "<sub>encompasses</sub> th<sub>e</sub> t<sub>o</sub>k<sub>en</sub>i<sub>ze</sub>d visual history of all N images."
+                    }
+                ]
+            },
+            "bbox": [
+                83,
+                279,
+                480,
+                340
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "• Instruction intent "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "\\pmb q \\in \\mathbb { R } ^ { d }"
+                    },
+                    {
+                        "type": "text",
+                        "content": "<sub>:</sub> E<sub>x</sub>t<sub>rac</sub>t<sub>e</sub>d <sub>a</sub>t th<sub>e pre</sub>fill b<sub>oun</sub>d<sub>-</sub> <sup>ar</sup>y, "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "\\pmb q = { h } _ { i _ { q } } ^ { ( L ) }"
+                    },
+                    {
+                        "type": "text",
+                        "content": "<sub>.</sub> It<sub>s recep</sub>ti<sub>ve</sub> fi<sub>e</sub>ld "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "\\mathcal { F } ( i _ { q } )"
+                    },
+                    {
+                        "type": "text",
+                        "content": "<sup>a</sup>gg<sup>re</sup>g<sup>ates all</sup> <sub>v</sub>i<sub>sua</sub>l <sub>an</sub>d t<sub>ex</sub>t<sub>ua</sub>l <sub>con</sub>t<sub>ex</sub>t<sub>.</sub> S<sub>o</sub> it <sub>represen</sub>t<sub>s</sub> th<sub>e mo</sub>d<sub>e</sub>l’<sub>s</sub> final understandin<sub>g</sub> of the task (Chen et al. 2024)."
+                    }
+                ]
+            },
+            "bbox": [
+                83,
+                343,
+                480,
+                405
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "GCR optimization. To translate the structural hierarchy of visual contexts into a learnable objective, we introduce th<sub>e</sub> GCR<sub>.</sub> Gi<sub>ven</sub> th<sub>e</sub> t<sub>opo</sub>l<sub>og</sub>i<sub>ca</sub>l <sub>su</sub>b<sub>se</sub>t <sub>re</sub>l<sub>a</sub>ti<sub>on o</sub>f th<sub>e</sub>i<sub>r</sub> t<sub>o</sub>k<sub>en</sub> <sup>s</sup>p<sup>ans</sup>, "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "i . e . , \\mathcal { F } ( i _ { n } ) \\subsetneq \\mathcal { \\bar { F } } ( i _ { N } ) \\subsetneq \\mathcal { F } ( i _ { q } )"
+                    },
+                    {
+                        "type": "text",
+                        "content": "<sub>,</sub> if th<sub>e</sub> VLM <sub>e</sub>f<sub>ec</sub>ti<sub>ve</sub>l<sub>y</sub> i<sub>n</sub>t<sub>egra</sub>t<sub>es</sub> <sub>mu</sub>lti<sub>-scene</sub> i<sub>n</sub>f<sub>orma</sub>ti<sub>on,</sub> th<sub>e</sub> <sub>seman</sub>ti<sub>c</sub> <sub>a</sub>li<sub>gnmen</sub>t of q and "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "e _ { N }"
+                    },
+                    {
+                        "type": "text",
+                        "content": "should exceed that between q and "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "e _ { n }"
+                    },
+                    {
+                        "type": "text",
+                        "content": "<sub>.</sub> Th<sub>ere</sub>f<sub>ore,</sub> we project these hidden states onto a unit hypersphere, "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "i . e . ,"
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "\\tilde { \\pmb { v } } = \\tilde { \\pmb { v } } / | | \\pmb { v } | | _ { 2 }"
+                    },
+                    {
+                        "type": "text",
+                        "content": "f<sub>or</sub> "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "{ \\pmb v } \\in \\{ { \\pmb q } , { \\pmb e } _ { N } , { \\pmb e } _ { n } \\}"
+                    },
+                    {
+                        "type": "text",
+                        "content": "<sub>,</sub> <sub>a</sub>d<sub>op</sub>t <sub>cos</sub>i<sub>ne</sub> <sub>s</sub>i<sub>m</sub>il<sub>ar</sub>it<sub>y</sub> t<sub>o</sub> <sub>eva</sub>l<sub>ua</sub>t<sub>e</sub> th<sub>e a</sub>li<sub>gnmen</sub>t<sub>, an</sub>d <sub>op</sub>ti<sub>m</sub>i<sub>ze</sub> th<sub>e expec</sub>t<sub>e</sub>d <sub>marg</sub>i<sub>n-</sub> based Hin e loss (Gentile and Warmuth 1998):"
+                    }
+                ]
+            },
+            "bbox": [
+                81,
+                406,
+                480,
+                547
+            ]
+        },
+        {
+            "type": "equation_interline",
+            "content": {
+                "math_content": "\\mathcal { L } _ { G C R } = \\mathbb { E } _ { n \\sim \\mathcal { U } \\left\\{ 1 , N - 1 \\right\\} } \\left[ \\operatorname* { m a x } ( 0 , \\alpha + \\mathcal { S } \\mathcal { G } ( \\tilde { e } _ { n } ) ^ { \\top } \\tilde { \\pmb q } - \\tilde { e } _ { N } ^ { \\top } \\tilde { \\pmb q } ) \\right] ,",
+                "math_type": "latex",
+                "image_source": {
+                    "path": "images/c7ce9b0459415875caacb1b4a8c355959bef5873842f5ae21eba1e1c22ba8dbc.jpg"
+                }
+            },
+            "bbox": [
+                83,
+                553,
+                475,
+                571
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "where α is a margin and "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "\\quad S { \\mathcal { G } } ( \\cdot )"
+                    },
+                    {
+                        "type": "text",
+                        "content": "d<sub>eno</sub>t<sub>es</sub> th<sub>e</sub> St<sub>op-</sub>G<sub>ra</sub>di<sub>en</sub>t o<sub>p</sub>erator. Durin<sub>g</sub> back<sub>p</sub>ro<sub>p</sub>a<sub>g</sub>ation, SG(·) ex<sub>p</sub>licitl<sub>y</sub> detaches "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "{ \\tilde { e } } _ { n }"
+                    },
+                    {
+                        "type": "text",
+                        "content": "f<sub>rom</sub> th<sub>e compu</sub>t<sub>a</sub>ti<sub>ona</sub>l <sub>grap</sub>h t<sub>o serve as a</sub> fi<sub>xe</sub>d <sub>nega-</sub> ti<sub>ve.</sub> Thi<sub>s encourages</sub> th<sub>e mo</sub>d<sub>e</sub>l t<sub>o en</sub>h<sub>ance</sub> "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "e _ { N }"
+                    },
+                    {
+                        "type": "text",
+                        "content": "<sub>ra</sub>th<sub>er</sub> th<sub>an</sub> d<sub>egra</sub>di<sub>ng</sub> "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "e _ { n } ."
+                    },
+                    {
+                        "type": "text",
+                        "content": "<sub>.</sub> Thi<sub>s</sub> <sub>preven</sub>t<sub>s</sub> th<sub>e</sub> <sub>mo</sub>d<sub>e</sub>l f<sub>rom</sub> l<sub>earn</sub>i<sub>ng</sub> t<sub>r</sub>i<sub>v</sub>i<sub>a</sub>l <sub>so</sub>l<sub>u</sub>ti<sub>ons</sub> th<sub>a</sub>t <sub>wou</sub>ld d<sub>amage</sub> it<sub>s core v</sub>i<sub>sua</sub>l <sub>percep</sub>ti<sub>on capa-</sub> biliti<sub>es.</sub> W<sub>e</sub> <sub>se</sub>t <sub>a</sub> <sub>sma</sub>ll <sub>marg</sub>i<sub>n</sub> "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "\\alpha = 0 . 1"
+                    },
+                    {
+                        "type": "text",
+                        "content": "t<sub>o</sub> f<sub>avor</sub> <sub>comp</sub>l<sub>e</sub>t<sub>e-</sub> <sub>con</sub>t<sub>ex</sub>t <sub>a</sub>li<sub>gnmen</sub>t <sub>w</sub>ith<sub>ou</sub>t f<sub>orc</sub>i<sub>ng</sub> th<sub>e mo</sub>d<sub>e</sub>l t<sub>o</sub> di<sub>scar</sub>d l<sub>oca</sub>l evidence needed for grounding. The final training objective combines the standard Cross-Entro<sub>py</sub> (CE) loss with the d<sub>y</sub>- <sub>nam</sub>i<sub>ca</sub>ll<sub>y ga</sub>t<sub>e</sub>d GCR <sub>cons</sub>t<sub>ra</sub>i<sub>n</sub>t<sub>,</sub> f<sub>ormu</sub>l<sub>a</sub>t<sub>e</sub>d <sub>as:</sub>"
+                    }
+                ]
+            },
+            "bbox": [
+                81,
+                579,
+                480,
+                733
+            ]
+        },
+        {
+            "type": "equation_interline",
+            "content": {
+                "math_content": "\\mathcal { L } _ { t o t a l } = \\mathcal { L } _ { C E } + \\lambda \\cdot \\mathbb { I } ( N \\geq 2 ) \\cdot \\mathcal { L } _ { G C R } ,",
+                "math_type": "latex",
+                "image_source": {
+                    "path": "images/25412d2c8575259721c46529f969db11cd25dc26bec2e3a1bc1c64c52077333a.jpg"
+                }
+            },
+            "bbox": [
+                148,
+                739,
+                413,
+                756
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "<sub>w</sub>h<sub>ere</sub> "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "\\mathbb { I } ( N \\geq 2 )"
+                    },
+                    {
+                        "type": "text",
+                        "content": "<sub>ac</sub>ti<sub>va</sub>t<sub>es</sub> GCR <sub>on</sub>l<sub>y</sub> f<sub>or mu</sub>lti<sub>-</sub>i<sub>mage sam-</sub> ples, and λ controls its contribution relative to next-token <sub>pre</sub>di<sub>c</sub>ti<sub>on.</sub> GCR i<sub>s remove</sub>d <sub>a</sub>ft<sub>er</sub> t<sub>ra</sub>i<sub>n</sub>i<sub>ng;</sub> i<sub>n</sub>f<sub>erence cos</sub>t <sub>an</sub>d th<sub>e</sub> b<sub>ase</sub> VLM’<sub>s</sub> i<sub>npu</sub>t<sub>–ou</sub>t<sub>pu</sub>t i<sub>n</sub>t<sub>er</sub>f<sub>ace are unc</sub>h<sub>ange</sub>d<sub>.</sub>"
+                    }
+                ]
+            },
+            "bbox": [
+                81,
+                762,
+                480,
+                820
+            ]
+        },
+        {
+            "type": "title",
+            "content": {
+                "title_content": [
+                    {
+                        "type": "text",
+                        "content": "5 Experiments"
+                    }
+                ],
+                "level": 2
+            },
+            "bbox": [
+                643,
+                66,
+                787,
+                83
+            ]
+        },
+        {
+            "type": "title",
+            "content": {
+                "title_content": [
+                    {
+                        "type": "text",
+                        "content": "5.1 Data, Baselines, and Metrics"
+                    }
+                ],
+                "level": 2
+            },
+            "bbox": [
+                516,
+                87,
+                781,
+                103
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "Real-world data and SortingBench. We collected JMSU <sub>samp</sub>l<sub>es</sub> f<sub>rom</sub> 4 ALSS <sub>wor</sub>k<sub>s</sub>t<sub>a</sub>ti<sub>ons over</sub> 3 <sub>mon</sub>th<sub>s.</sub> Th<sub>e</sub> d<sub>oma</sub>i<sub>n-a</sub>d<sub>ap</sub>t<sub>a</sub>ti<sub>on</sub> <sub>se</sub>t "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "\\mathcal { D } _ { o r i g i n }"
+                    },
+                    {
+                        "type": "text",
+                        "content": "<sub>con</sub>t<sub>a</sub>i<sub>ns</sub> 2<sub>,</sub>000 <sub>samp</sub>l<sub>es</sub> f<sub>rom</sub> L<sub>ayou</sub>t<sub>s</sub> 1<sub>–</sub>2<sub>.</sub> E<sub>ac</sub>h <sub>samp</sub>l<sub>e</sub> i<sub>nc</sub>l<sub>u</sub>d<sub>es one or</sub> t<sub>wo</sub> i<sub>n-</sub>d<sub>oma</sub>i<sub>n</sub> di<sub>s-</sub> t<sub>rac</sub>t<sub>or v</sub>i<sub>ews, an</sub>d <sub>a</sub>ll i<sub>mages are ran</sub>d<sub>om</sub>l<sub>y permu</sub>t<sub>e</sub>d<sub>.</sub> S<sub>or</sub>t<sub>-</sub> i<sub>ng</sub>B<sub>enc</sub>h <sub>con</sub>t<sub>a</sub>i<sub>ns</sub> 1<sub>,</sub>000 h<sub>e</sub>ld<sub>-ou</sub>t <sub>samp</sub>l<sub>es</sub> f<sub>rom</sub> 4 l<sub>ayou</sub>t<sub>s.</sub>"
+                    }
+                ]
+            },
+            "bbox": [
+                514,
+                106,
+                915,
+                191
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "Training data and implementation. EDA parses the 2<sub>,</sub>000 JMSU <sub>sa</sub>m<sub>p</sub>l<sub>es</sub> int<sub>o</sub> "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "6 { , } 0 0 0"
+                    },
+                    {
+                        "type": "text",
+                        "content": "<sub>a</sub>t<sub>om</sub>i<sub>c</sub> f<sub>ac</sub>t<sub>s.</sub> H<sub>ugin</sub>’<sub>s</sub> t<sub>ra</sub>i<sub>n-</sub> i<sub>ng uses approx</sub>i<sub>ma</sub>t<sub>e</sub>l<sub>y</sub> 20<sub>,</sub>000 <sub>a</sub>dditi<sub>ona</sub>l <sub>samp</sub>l<sub>es:</sub> 13<sub>,</sub>954 <sub>a</sub>t<sub>o</sub>mi<sub>c o</sub>r <sub>aux</sub>ili<sub>a</sub>r<sub>y pe</sub>r<sub>cep</sub>ti<sub>o</sub>n t<sub>as</sub>k<sub>s,</sub> 2<sub>,</sub>000 <sub>sy</sub>nth<sub>e</sub>ti<sub>c</sub> JMSU tasks <sub>g</sub>enerated b<sub>y</sub> EDA, and 4,000 <sub>g</sub>eneral VQA samples from LLaVA-1.5 (Liu et al. 2024a). We fine-tune the <sub>p</sub>rojector and language model for 2 epochs on 4 NVIDIA L20 GPUs <sub>w</sub>ith l<sub>earn</sub>i<sub>ng ra</sub>t<sub>e</sub> "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "1 0 ^ { - 5 }"
+                    },
+                    {
+                        "type": "text",
+                        "content": "<sub>.</sub> GCR <sub>uses</sub> "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "\\alpha = 0 . 1"
+                    },
+                    {
+                        "type": "text",
+                        "content": "<sub>an</sub>d "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "\\lambda = 0 . 0 1"
+                    },
+                    {
+                        "type": "text",
+                        "content": "B<sub>ase,</sub> SFT<sub>, an</sub>d H<sub>ugin var</sub>i<sub>an</sub>t<sub>s s</sub>h<sub>are</sub> th<sub>e same arc</sub>hit<sub>ec</sub>t<sub>ure</sub> <sub>an</sub>d <sub>op</sub>ti<sub>m</sub>i<sub>za</sub>ti<sub>on sc</sub>h<sub>e</sub>d<sub>u</sub>l<sub>e, an</sub>d SFT <sub>uses</sub> "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "\\mathcal { D } _ { o r i g i n }"
+                    },
+                    {
+                        "type": "text",
+                        "content": "on<sup>l</sup><sub>y</sub>."
+                    }
+                ]
+            },
+            "bbox": [
+                514,
+                190,
+                915,
+                330
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "Baselines and metrics. We evaluate five open VLMs (Ovis2.5-2B, Gemma3-4B, MiniCPM-V4_5, and Qwen3- VL-4B/8B) and two GPT models (GPT-5.5, GPT-5-nanohi<sub>g</sub>h). We also com<sub>p</sub>are with RoboBrain2.5-8B-NV, a re-<sub>cen</sub>t <sub>em</sub>b<sub>o</sub>di<sub>e</sub>d VLM t<sub>ra</sub>i<sub>ne</sub>d f<sub>or spa</sub>ti<sub>a</sub>l <sub>an</sub>d t<sub>empora</sub>l <sub>reason-</sub> in<sub>g</sub> (Tan et al. 2026), and with E<sub>g</sub>o3D-VLM (Gholami et al. 2025), which <sub>g</sub>enerates co<sub>g</sub>nitive ma<sub>p</sub>s to su<sub>pp</sub>ort e<sub>g</sub>ocent<sub>r</sub>i<sub>c</sub> 3D <sub>reason</sub>i<sub>ng.</sub> F<sub>ur</sub>th<sub>ermore, we se</sub>l<sub>ec</sub>t 4 <sub>em</sub>b<sub>o</sub>di<sub>e</sub>d t<sub>as</sub>k<sub>s</sub> f<sub>rom es</sub>t<sub>a</sub>bli<sub>s</sub>h<sub>e</sub>d <sub>mu</sub>lti<sub>-</sub>i<sub>mage</sub> b<sub>enc</sub>h<sub>mar</sub>k<sub>s</sub> t<sub>o assess</sub> h<sub>ow ca-</sub> <sub>pa</sub>biliti<sub>es</sub> <sub>on</sub> JMSU <sub>a</sub>f<sub>ec</sub>t VLM<sub>s</sub>’ t<sub>rans</sub>f<sub>era</sub>bilit<sub>y</sub> t<sub>o</sub> b<sub>roa</sub>d<sub>er</sub> embodied tasks, includin<sub>g</sub> Object-Localization (OL), Visual-Similarit<sub>y</sub> (VS), BLINK Countin<sub>g</sub> (Co.) from BLINK (Fu et al. 2024), and Scene-Understandin<sub>g</sub> (SU) from MUIR-Bench (Wan<sub>g</sub> et al. 2024a). To monitor the im<sub>p</sub>act on <sub>g</sub>eneral capabilities, we also evaluate VLMs on <sub>g</sub>eneral VQA benchmarks, includin<sub>g</sub> MMBench_TEST_EN_V11 (MMB/EN), MMBench_TEST_CN_V11 (MMB/CN) (Liu et al. 2024b) and MME (Fu et al. 2025a). All <sub>p</sub>ublic benchmarks use VLMEvalKit (Duan et al. 2024). The IoU threshold ofbounding boxes for detecting packages is 85%."
+                    }
+                ]
+            },
+            "bbox": [
+                514,
+                329,
+                915,
+                607
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "M<sub>ore</sub> d<sub>e</sub>t<sub>a</sub>il<sub>s</sub> <sub>are</sub> <sub>prov</sub>id<sub>e</sub>d i<sub>n</sub> th<sub>e</sub> <sub>supp</sub>l<sub>emen</sub>t<sub>ary</sub> <sub>ma</sub>t<sub>er</sub>i<sub>a</sub>l<sub>.</sub>"
+                    }
+                ]
+            },
+            "bbox": [
+                531,
+                606,
+                910,
+                622
+            ]
+        },
+        {
+            "type": "title",
+            "content": {
+                "title_content": [
+                    {
+                        "type": "text",
+                        "content": "5.2 Main Results"
+                    }
+                ],
+                "level": 2
+            },
+            "bbox": [
+                517,
+                632,
+                665,
+                648
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "Necessary-image intervention. We first examine the JMSU f<sub>ea</sub>t<sub>ures o</sub>f S<sub>or</sub>ti<sub>ng</sub>B<sub>enc</sub>h<sub>.</sub> If th<sub>e remove</sub>d i<sub>mage</sub> i<sub>s sam-</sub> <sub>p</sub>l<sub>e</sub>d <sub>un</sub>if<sub>orm</sub>l<sub>y</sub> f<sub>rom</sub> f<sub>our or</sub> fi<sub>ve</sub> k<sub>ey v</sub>i<sub>ews an</sub>d th<sub>e</sub> d<sub>ec</sub>i<sub>-</sub> <sub>s</sub>i<sub>on</sub> d<sub>epen</sub>d<sub>s on</sub> t<sub>wo o</sub>f th<sub>em,</sub> th<sub>e expec</sub>t<sub>e</sub>d <sub>re</sub>t<sub>a</sub>i<sub>ne</sub>d <sub>suc-</sub> <sub>cess</sub> i<sub>s</sub> "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "[ 1 / 2 , 3 / 5 ]"
+                    },
+                    {
+                        "type": "text",
+                        "content": "<sub>o</sub>f th<sub>e</sub> <sub>or</sub>i<sub>g</sub>i<sub>na</sub>l <sub>ra</sub>t<sub>e.</sub> E<sub>xper</sub>i<sub>men</sub>t<sub>a</sub>ll<sub>y,</sub> SFT falls from 63.6% to 35.6% (ex<sub>p</sub>ected interval [31.8, 38.2]%), and Hugin falls from 78.8% to 41.6% (expected interval [39.4, 47.3]%). The intervention behaves as predicted by the <sub>m</sub>i<sub>n</sub>i<sub>ma</sub>l<sub>-su</sub>fi<sub>c</sub>i<sub>en</sub>t<sub>-se</sub>t d<sub>e</sub>fi<sub>n</sub>iti<sub>on o</sub>f E<sub>qua</sub>ti<sub>on</sub> 4<sub>.</sub>"
+                    }
+                ]
+            },
+            "bbox": [
+                516,
+                652,
+                915,
+                779
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "Domain knowledge alone does not solve complete-state reasoning. Table 1 shows that general VLMs score near zero on Sortin<sub>g</sub>Bench despite stron<sub>g g</sub>eneral-VQA results. SFT <sub>es</sub>t<sub>a</sub>bli<sub>s</sub>h<sub>es</sub> <sub>a</sub> d<sub>oma</sub>i<sub>n-aware</sub> <sub>p</sub>l<sub>anner,</sub> b<sub>u</sub>t H<sub>ugin</sub> i<sub>m-</sub> <sub>proves</sub> <sub>a</sub>ll fi<sub>ve</sub> <sub>open</sub> VLM<sub>s</sub> <sub>over</sub> th<sub>e</sub>i<sub>r</sub> <sub>ma</sub>t<sub>c</sub>h<sub>e</sub>d SFT b<sub>ase-</sub> lines by +9.2%, +29.8%, +22.5%, +5.1%, and +15.2%, r<sub>espec</sub>ti<sub>ve</sub>l<sub>y.</sub> E<sub>go</sub>3D<sub>-</sub>VLM d<sub>oes</sub> n<sub>o</sub>t <sub>co</sub>n<sub>s</sub>i<sub>s</sub>t<sub>e</sub>ntl<sub>y</sub> im<sub>p</sub>r<sub>ove</sub> th<sub>e</sub> matched SFT models (e.g., 38.8% versus 63.6% on SFT"
+                    }
+                ]
+            },
+            "bbox": [
+                514,
+                777,
+                915,
+                890
+            ]
+        }
+    ],
+    [
+        {
+            "type": "table",
+            "content": {
+                "image_source": {
+                    "path": "images/f07b0dd28821e22e7b285559db28f9f134b0831420f7bcd83d9a6f5b66c36bda.jpg"
+                },
+                "table_caption": [],
+                "table_footnote": [],
+                "html": "<table><tr><td rowspan=\"2\">Model</td><td colspan=\"3\">General</td><td colspan=\"4\">Embodied-related multi-image</td><td colspan=\"5\">SortingBench</td></tr><tr><td>MMB/EN</td><td>MMB/CN</td><td>MME</td><td>OL</td><td>VS</td><td>Co.</td><td>SU</td><td>L1</td><td>L2</td><td>L3</td><td>L4</td><td>Overall</td></tr><tr><td colspan=\"10\">Closed-source VLMs</td><td></td></tr><tr><td>GPT-5.5</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td>0.0</td><td>2.8</td><td>0.0</td><td>0.0</td><td>0.7</td></tr><tr><td>GPT-5-nano-high</td><td>78.9</td><td>79.6</td><td>1426</td><td>41.0</td><td>80.7</td><td>60.0</td><td>78.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td></tr><tr><td colspan=\"10\">Open-source VLMs</td><td></td><td></td><td></td></tr><tr><td></td><td>80.5</td><td>76.8</td><td>1585</td><td>58.2</td><td>81.5</td><td>68.3</td><td>75.3</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td></tr><tr><td>+SFT/+Ego3D</td><td>80.4</td><td>76.8</td><td>1603</td><td>57.4</td><td>71.9</td><td>70.8</td><td>82.8</td><td>57.3</td><td>63.9</td><td>66.3</td><td>51.4</td><td>59.7/48.7</td></tr><tr><td>+HuGIN</td><td>81.5</td><td>77.1</td><td>1568</td><td>59.0</td><td>74.8</td><td>61.7</td><td>74.2</td><td>68.6</td><td>68.9</td><td>73.3</td><td>64.8</td><td>68.9</td></tr><tr><td>Gemma3-4B</td><td>66.6</td><td>66.7</td><td>1384</td><td>54.9</td><td>64.4</td><td>35.8</td><td></td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td></tr><tr><td>+SFT/+Ego3D</td><td>63.0</td><td>59.8</td><td>1346</td><td>48.4</td><td>31.9</td><td>21.7</td><td></td><td>23.0</td><td>29.5</td><td>17.8</td><td>18.6</td><td>22.1/11.8</td></tr><tr><td>+HuGIN</td><td>68.5</td><td>67.1</td><td>1319</td><td>59.8</td><td>71.9</td><td>30.8</td><td></td><td>46.8</td><td>53.9</td><td>57.4</td><td>49.4</td><td>51.9</td></tr><tr><td>MiniCPM-V4_5</td><td>84.3</td><td>84.4</td><td>1720</td><td>57.4</td><td>92.6</td><td>70.8</td><td></td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td></tr><tr><td>+SFT/+Ego3D</td><td>85.3</td><td>84.4</td><td>1732</td><td>56.6</td><td>91.1</td><td>70.8</td><td></td><td>50.4</td><td>54.4</td><td>55.4</td><td>50.2</td><td>52.6/52.9</td></tr><tr><td>+HUGIN</td><td>83.8</td><td>82.9</td><td>1674</td><td>58.2</td><td>94.1</td><td>66.7</td><td></td><td>78.2</td><td>70.5</td><td>77.1</td><td>74.3</td><td>75.1</td></tr><tr><td>Qwen3-VL-4B</td><td>82.9</td><td>81.9</td><td>1705</td><td>68.0</td><td>79.3</td><td>66.7</td><td>67.7</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td></tr><tr><td>+SFT/+Ego3D +HUGIN</td><td>81.4</td><td>80.9</td><td>1676</td><td>61.5</td><td>82.2</td><td>65.8</td><td>66.1</td><td>65.3</td><td>78.8</td><td>77.1</td><td>70.8</td><td>73.0/68.4</td></tr><tr><td></td><td>79.4</td><td>78.9</td><td>1633</td><td>66.4</td><td>86.7</td><td>67.5</td><td>70.5</td><td>74.6</td><td>83.0</td><td>83.3</td><td>71.5</td><td>78.1</td></tr><tr><td>RoboBrain2.5-8B-NV|</td><td>77.2</td><td>80.8</td><td>1640</td><td>64.8</td><td>83</td><td>62.5</td><td>67.7</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td></tr><tr><td>+SFT</td><td>67.3</td><td>73.5</td><td>1674</td><td>56.6</td><td>83.7</td><td>67.5</td><td>65.6</td><td>72.2</td><td>81.3</td><td>79.1</td><td>71.9</td><td>76.1</td></tr><tr><td>Qwen3-VL-8B</td><td>83.8</td><td>83.6</td><td>1734</td><td>68.0</td><td>85.2</td><td>68.3</td><td>60.8</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td></tr><tr><td>+SFT/+Ego3D</td><td>82.8</td><td>81.3</td><td>1699</td><td>71.3</td><td>75.6</td><td>66.7</td><td>64.0</td><td>58.1</td><td>70.5</td><td>68.2</td><td>57.7</td><td>63.6/38.8</td></tr><tr><td>+HuGIN</td><td>81.4</td><td>81.5</td><td>1743</td><td>69.7</td><td>88.2</td><td>67.5</td><td>64.5</td><td>75.8</td><td>80.1</td><td>85.9</td><td>74.3</td><td>78.8</td></tr></table>",
+                "table_type": "complex_table",
+                "table_nest_level": 1
+            },
+            "bbox": [
+                83,
+                65,
+                913,
+                420
+            ]
+        },
+        {
+            "type": "table",
+            "content": {
+                "image_source": {
+                    "path": "images/5728bfd408c592145314c55ef77475b0a9c4e6d71ffaa2a512f85968ba9ce6d0.jpg"
+                },
+                "table_caption": [
+                    {
+                        "type": "text",
+                        "content": "T<sub>a</sub>bl<sub>e</sub> 1<sub>:</sub> B<sub>enc</sub>h<sub>mar</sub>k R<sub>esu</sub>lt<sub>s.</sub> B<sub>o</sub>ld i<sub>n</sub>di<sub>ca</sub>t<sub>es</sub> t<sub>op</sub> <sub>per</sub>f<sub>ormance;</sub> <sub>un</sub>d<sub>er</sub>li<sub>ne,</sub> <sub>secon</sub>d<sub>-</sub>b<sub>es</sub>t<sub>.</sub> “<sub>-</sub>” d<sub>eno</sub>t<sub>es</sub> <sub>unsuppor</sub>t<sub>e</sub>d b<sub>y</sub> VLME<sub>va</sub>lKit<sub>.</sub>"
+                    },
+                    {
+                        "type": "text",
+                        "content": "Table 2: Sortin<sub>g</sub>Bench stress tests on Qwen3-VL-8B. Shufle-1/2 use two independent permutations. The removal test drops one <sub>ran</sub>d<sub>om</sub>l<sub>y</sub> <sub>se</sub>l<sub>ec</sub>t<sub>e</sub>d k<sub>ey</sub> i<sub>mage;</sub> <sub>eac</sub>h l<sub>a</sub>b<sub>e</sub>l d<sub>epen</sub>d<sub>s</sub> <sub>on</sub> t<sub>wo</sub> <sub>o</sub>f f<sub>our</sub> <sub>or</sub> fi<sub>ve</sub> k<sub>ey</sub> i<sub>mages.</sub>"
+                    }
+                ],
+                "table_footnote": [],
+                "html": "<table><tr><td>Training</td><td>Original</td><td>Shuffle-1</td><td>Shuffle-2</td><td>+6 distractors</td><td>+12 distractors</td><td>One-image removal</td></tr><tr><td>SFT</td><td>63.6</td><td>63.3</td><td>63.8</td><td>45.8</td><td>18.8</td><td>35.6</td></tr><tr><td> $\\mathcal { D } _ { o r i g i n } + \\mathrm { G C R }$ </td><td>68.8</td><td>69.2</td><td>68.4</td><td>55.9</td><td>34.0</td><td></td></tr><tr><td>HUGIN</td><td>78.8</td><td>78.8</td><td>78.9</td><td>76.8</td><td>69.8</td><td>41.6</td></tr></table>",
+                "table_type": "simple_table",
+                "table_nest_level": 1
+            },
+            "bbox": [
+                119,
+                455,
+                880,
+                525
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "Qwen3-VL-8B). Despite bein<sub>g</sub> trained on 12.4M embodied <sub>samp</sub>l<sub>es,</sub> R<sub>o</sub>b<sub>o</sub>B<sub>ra</sub>i<sub>n</sub>2<sub>.</sub>5 <sub>a</sub>l<sub>so scores zero w</sub>ith<sub>ou</sub>t <sub>a</sub>d<sub>ap</sub>t<sub>a</sub>ti<sub>on</sub> and reaches 76.1% after the same 2,000-sample SFT, still below Hugin’s 78.8% with only 22k samples."
+                    }
+                ]
+            },
+            "bbox": [
+                81,
+                592,
+                480,
+                648
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "The improvement is consistent across seen and held-out layouts. For Qwen3-VL-8B, Hugin achieved gains of17.7%, 9.6%, 17.7%, and 16.6%, respectively, across the 4 layouts. L<sub>ayou</sub>t<sub>s</sub> 3<sub>–</sub>4 <sub>are a</sub>b<sub>sen</sub>t f<sub>rom</sub> th<sub>e</sub> t<sub>ra</sub>i<sub>n</sub>i<sub>ng se</sub>t<sub>, so</sub> th<sub>e</sub>i<sub>r</sub> i<sub>m-</sub> <sub>provemen</sub>t<sub>s prov</sub>id<sub>e</sub> di<sub>rec</sub>t <sub>ev</sub>id<sub>ence o</sub>f h<sub>e</sub>ld<sub>-ou</sub>t<sub>-</sub>l<sub>ayou</sub>t t<sub>rans-</sub> f<sub>er w</sub>ithi<sub>n</sub> th<sub>e same</sub> l<sub>og</sub>i<sub>s</sub>ti<sub>cs app</sub>li<sub>ca</sub>ti<sub>on.</sub>"
+                    }
+                ]
+            },
+            "bbox": [
+                81,
+                650,
+                480,
+                734
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "The gain transfers beyond sorting without a uniform loss of general ability. On Qwen3-VL-8B, Hugin improves BLINK/VS from 75.6% to 88.2% and MUIRBench/SU from 64.0% to 64.5%. These results show that spatial reasoning for JMSU <sub>can y</sub>i<sub>e</sub>ld <sub>a pos</sub>iti<sub>ve sp</sub>ill<sub>over e</sub>f<sub>ec</sub>t <sub>on</sub> b<sub>as</sub>i<sub>c em</sub>b<sub>o</sub>d<sub>-</sub> ied tasks. Meanwhile, on Qwen3-VL-8B, Hugin improves MME from 1699 to 1743, and MMBench/CN changes from 81.3% to 81.5%. These results demonstrate that general abiliti<sub>es an</sub>d <sub>em</sub>b<sub>o</sub>di<sub>e</sub>d <sub>capa</sub>biliti<sub>es</sub> i<sub>n</sub> VLM<sub>s can</sub> b<sub>e</sub> d<sub>ecoup</sub>l<sub>e</sub>d <sub>an</sub>d <sub>co-evo</sub>l<sub>ve.</sub> B<sub>y</sub> <sub>com</sub>bi<sub>n</sub>i<sub>ng</sub> <sub>en</sub>d<sub>ogenous</sub> d<sub>a</sub>t<sub>a</sub> <sub>augmen</sub>t<sub>a-</sub> ti<sub>on w</sub>ith <sub>proper s</sub>t<sub>ruc</sub>t<sub>ura</sub>l <sub>cons</sub>t<sub>ra</sub>i<sub>n</sub>t<sub>s,</sub> th<sub>e mo</sub>d<sub>e</sub>l <sub>can ac</sub>hi<sub>eve</sub> <sub>su</sub>b<sub>s</sub>t<sub>an</sub>ti<sub>a</sub>l i<sub>mprovemen</sub>t<sub>s</sub> i<sub>n spec</sub>ifi<sub>c em</sub>b<sub>o</sub>di<sub>e</sub>d t<sub>as</sub>k<sub>s w</sub>hil<sub>e</sub> <sub>preserv</sub>i<sub>ng</sub> it<sub>s genera</sub>l <sub>mu</sub>lti<sub>mo</sub>d<sub>a</sub>l <sub>per</sub>f<sub>ormance.</sub>"
+                    }
+                ]
+            },
+            "bbox": [
+                81,
+                736,
+                482,
+                890
+            ]
+        },
+        {
+            "type": "chart",
+            "content": {
+                "image_source": {
+                    "path": "images/e30666cac8422b49f15241d3f55c4688d25b71d4c675bc428f50039feb2185d9.jpg"
+                },
+                "content": "",
+                "chart_caption": [],
+                "chart_footnote": []
+            },
+            "bbox": [
+                517,
+                588,
+                710,
+                709
+            ]
+        },
+        {
+            "type": "chart",
+            "content": {
+                "image_source": {
+                    "path": "images/7c67f01e3c2774910295bb4e496d5d2174351c230927eb4fa46e65908e4a0ad7.jpg"
+                },
+                "content": "",
+                "chart_caption": [
+                    {
+                        "type": "text",
+                        "content": "(a) GCR on "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "\\mathrm { D _ { o r i g i n } o n l y }"
+                    },
+                    {
+                        "type": "text",
+                        "content": "(b) Synthetic JMSU scaling"
+                    },
+                    {
+                        "type": "text",
+                        "content": "Fi<sub>g</sub>ure 5: (a) GCR <sub>g</sub>ains on "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "\\mathcal { D } _ { o r i g i n }"
+                    },
+                    {
+                        "type": "text",
+                        "content": "onl<sub>y</sub>. (b) S<sub>y</sub>nthetic JMSU scalin<sub>g</sub> on Qwen3-VL-8B."
+                    }
+                ],
+                "chart_footnote": []
+            },
+            "bbox": [
+                714,
+                588,
+                910,
+                708
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": []
+            },
+            "bbox": [
+                514,
+                789,
+                913,
+                819
+            ]
+        },
+        {
+            "type": "title",
+            "content": {
+                "title_content": [
+                    {
+                        "type": "text",
+                        "content": "5.3 Diagnostic Tests and Ablations"
+                    }
+                ],
+                "level": 2
+            },
+            "bbox": [
+                516,
+                828,
+                799,
+                843
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "Order and distractor stress tests. To verify the efectiveness <sub>o</sub>f H<sub>ugin</sub> i<sub>n</sub> <sub>a</sub>ll<sub>ev</sub>i<sub>a</sub>ti<sub>ng</sub> th<sub>e</sub> <sub>pro</sub>bl<sub>em</sub> <sub>o</sub>f l<sub>ong</sub> <sub>v</sub>i<sub>sua</sub>l <sub>con</sub>t<sub>ex</sub>t<sub>,</sub> <sub>we con</sub>d<sub>uc</sub>t<sub>e</sub>d <sub>s</sub>t<sub>ress</sub> t<sub>es</sub>t<sub>s</sub> b<sub>y c</sub>h<sub>ang</sub>i<sub>ng</sub> th<sub>e</sub> i<sub>mages</sub>’ <sub>or</sub>d<sub>er an</sub>d adding distractors. Table 2 shows less than 0.3% variation <sub>across</sub> i<sub>n</sub>d<sub>epen</sub>d<sub>en</sub>t <sub>s</sub>h<sub>u</sub>fl<sub>es, con</sub>fi<sub>rm</sub>i<sub>ng</sub> th<sub>a</sub>t th<sub>e ran</sub>d<sub>om</sub>i<sub>ze</sub>d t<sub>ra</sub>i<sub>n</sub>i<sub>ng po</sub>li<sub>cy suppresses</sub> fi<sub>xe</sub>d<sub>-pos</sub>iti<sub>on s</sub>h<sub>or</sub>t<sub>cu</sub>t<sub>s.</sub> Addi<sub>ng</sub> 6–12 irrelevant but in-domain images exposes a diferent failure: SFT falls to 45.8% and 18.8%, whereas Hugin retains 76.8% and 69.8%. GCR alone also degrades less than SFT. These results support the intended mechanism, i.e., GCR h<sub>e</sub>l<sub>ps</sub> th<sub>e</sub> VLM <sub>preserve re</sub>l<sub>evan</sub>t <sub>ev</sub>id<sub>ence w</sub>h<sub>en v</sub>i<sub>sua</sub>l <sub>con</sub>t<sub>ex</sub>t i<sub>s</sub> dil<sub>u</sub>t<sub>e</sub>d<sub>.</sub>"
+                    }
+                ]
+            },
+            "bbox": [
+                516,
+                845,
+                915,
+                890
+            ]
+        }
+    ],
+    [
+        {
+            "type": "table",
+            "content": {
+                "image_source": {
+                    "path": "images/bfb6fbef544bd2e54837240eff7c5ccc4481a4536945564d457fb38739247458.jpg"
+                },
+                "table_caption": [],
+                "table_footnote": [],
+                "html": "<table><tr><td colspan=\"5\"></td><td colspan=\"2\">General</td><td colspan=\"3\">Embodied-related multi-image</td><td rowspan=\"2\">SortingBench</td></tr><tr><td> $\\mathcal { D } _ { \\mathbf { e m b } }$ </td><td> $\\mathcal { D } _ { \\mathbf { g e n } }$ </td><td>CE</td><td>GCR</td><td>MMB/EN</td><td>MME</td><td>OL</td><td>VS</td><td>Co.</td></tr><tr><td>X</td><td>X</td><td>√</td><td>√</td><td>83.0</td><td>1736</td><td>72.1</td><td>73.3</td><td>68.3</td><td>68.8</td></tr><tr><td>X</td><td>√</td><td>√</td><td>√</td><td>81.0</td><td>1701</td><td>63.1</td><td>83.7</td><td>70.0</td><td>73.3</td></tr><tr><td>√</td><td>X</td><td>√</td><td>√</td><td>77.3</td><td>1661</td><td>69.7</td><td>84.4</td><td>57.5</td><td>78.4</td></tr><tr><td>V</td><td>√</td><td>√</td><td>X</td><td>80.7</td><td>1631</td><td>68.9</td><td>84.3</td><td>68.3</td><td>77.2</td></tr><tr><td>√</td><td>√</td><td>√</td><td>√</td><td>81.4</td><td>1743</td><td>69.7</td><td>88.2</td><td>67.5</td><td>78.8</td></tr></table>",
+                "table_type": "complex_table",
+                "table_nest_level": 1
+            },
+            "bbox": [
+                84,
+                65,
+                911,
+                183
+            ]
+        },
+        {
+            "type": "image",
+            "content": {
+                "image_source": {
+                    "path": "images/8dd1812afd6a7d477c0c48c5686d4a8a1c9eae746d78a82492a5a171f5bf6d52.jpg"
+                },
+                "image_caption": [
+                    {
+                        "type": "text",
+                        "content": "Table 3: Ablation stud<sub>y</sub> results on Qwen3-VL-8B-Instruct. Bold indicates top performance; underline, second-best."
+                    },
+                    {
+                        "type": "text",
+                        "content": "Fi<sub>gu</sub>r<sub>e</sub> 6<sub>:</sub> ALSS <sub>execu</sub>ti<sub>o</sub>n<sub>:</sub> r<sub>ese</sub>t<sub>,</sub> m<sub>ove</sub> t<sub>o</sub> th<sub>e</sub> <sub>c</sub>h<sub>ose</sub>n <sub>co</sub>m<sub>pa</sub>rtm<sub>e</sub>nt<sub>,</sub> <sub>g</sub>r<sub>asp</sub> th<sub>e</sub> t<sub>a</sub>r<sub>ge</sub>t <sub>pac</sub>k<sub>age,</sub> m<sub>ove</sub> t<sub>o</sub> th<sub>e</sub> <sub>c</sub>h<sub>ose</sub>n <sub>cage,</sub> <sub>a</sub>nd <sub>p</sub>l<sub>ace.</sub>"
+                    }
+                ],
+                "image_footnote": []
+            },
+            "bbox": [
+                111,
+                224,
+                888,
+                323
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": []
+            },
+            "bbox": [
+                81,
+                376,
+                480,
+                501
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "Independent efects of GCR and EDA. We further verifi<sub>e</sub>d th<sub>e</sub> i<sub>mpac</sub>t <sub>o</sub>f <sub>eac</sub>h <sub>componen</sub>t<sub>.</sub> A<sub>s s</sub>h<sub>own</sub> i<sub>n</sub> Fi<sub>gure</sub> 5 (a), applying GCR improves all three models by 5.2%–6.1%, showin<sub>g</sub> its efectiveness. For EDA, Fi<sub>g</sub>ure 5 (b) varies onl<sub>y</sub> th<sub>e num</sub>b<sub>er o</sub>f <sub>syn</sub>th<sub>e</sub>ti<sub>c</sub> JMSU <sub>samp</sub>l<sub>es w</sub>hil<sub>e</sub> h<sub>o</sub>ldi<sub>ng</sub> SFT fixed. The first 2,000 samples provide an 11.6% gain with a training time of 102 minutes, while larger subsets continue t<sub>o</sub> i<sub>mprove accuracy w</sub>ith hi<sub>g</sub>h<sub>er cos</sub>t<sub>.</sub> Th<sub>ere</sub>f<sub>ore,</sub> th<sub>e ma</sub>i<sub>n</sub> <sub>mo</sub>d<sub>e</sub>l i<sub>n</sub> S<sub>ec</sub>ti<sub>on</sub> 5<sub>.</sub>2 <sub>uses</sub> 2<sub>,</sub>000 <sub>syn</sub>th<sub>e</sub>ti<sub>c</sub> JMSU <sub>samp</sub>l<sub>es</sub> t<sub>o</sub> b<sub>a</sub>l<sub>ance per</sub>f<sub>ormance,</sub> t<sub>ra</sub>i<sub>n</sub>i<sub>ng</sub> ti<sub>me, an</sub>d th<sub>e o</sub>th<sub>er</sub> d<sub>a</sub>t<sub>a</sub> t<sub>ypes.</sub>"
+                    }
+                ]
+            },
+            "bbox": [
+                81,
+                501,
+                480,
+                640
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "Ablation study. Table 3 presents the full component <sub>a</sub>bl<sub>a</sub>ti<sub>on.</sub> T<sub>o ana</sub>l<sub>yze</sub> th<sub>e</sub> i<sub>mpac</sub>t <sub>o</sub>f EDA<sub>, we ca</sub>t<sub>ego-</sub> <sub>r</sub>i<sub>ze</sub> th<sub>e genera</sub>t<sub>e</sub>d <sub>samp</sub>l<sub>es</sub> i<sub>n</sub>t<sub>o em</sub>b<sub>o</sub>di<sub>e</sub>d<sub>-re</sub>l<sub>a</sub>t<sub>e</sub>d <sub>samp</sub>l<sub>es</sub> "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "( \\mathcal { D } _ { e m b } = \\mathcal { D } _ { a t o m i c } \\cup \\mathcal { D } _ { s y n } \\cup \\mathcal { D } _ { a u x } )"
+                    },
+                    {
+                        "type": "text",
+                        "content": "and <sub>g</sub>eneral VQA sam-<sub>p</sub><sup>l</sup>es "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "( \\mathcal { D } _ { g e n e r a l } )"
+                    },
+                    {
+                        "type": "text",
+                        "content": "<sub>.</sub> R<sub>e</sub>m<sub>ov</sub>in<sub>g</sub> "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "\\mathcal { D } _ { e m b }"
+                    },
+                    {
+                        "type": "text",
+                        "content": "l<sub>ea</sub>d<sub>s</sub> t<sub>o a s</sub>i<sub>gn</sub>ifi<sub>can</sub>t <sub>per-</sub> formance dro<sub>p</sub> of 5.5% on Sortin<sub>g</sub>Bench (78.8% → 73.3%), <sub>an</sub>d th<sub>e</sub> f<sub>un</sub>d<sub>amen</sub>t<sub>a</sub>l <sub>percep</sub>t<sub>ua</sub>l <sub>capa</sub>biliti<sub>es a</sub>l<sub>so</sub> d<sub>ec</sub>li<sub>ne</sub> (e.g., 69.67% → 63.11% on BLINK/OL) due to the added "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "\\mathcal { D } _ { g e n e r a l } ."
+                    },
+                    {
+                        "type": "text",
+                        "content": "<sub>.</sub> Thi<sub>s con</sub>fi<sub>rms</sub> th<sub>a</sub>t t<sub>ra</sub>i<sub>n</sub>i<sub>ng on raw</sub> d<sub>a</sub>t<sub>a a</sub>l<sub>one</sub> i<sub>s</sub> i<sub>nsu</sub>fi<sub>c</sub>i<sub>en</sub>t f<sub>or un</sub>d<sub>ers</sub>t<sub>an</sub>di<sub>ng comp</sub>l<sub>ex</sub> t<sub>as</sub>k<sub>s, w</sub>h<sub>ereas</sub> EDA <sub>prov</sub>id<sub>es</sub> th<sub>e necessary</sub> t<sub>ra</sub>i<sub>n</sub>i<sub>ng</sub> d<sub>a</sub>t<sub>a</sub> d<sub>ens</sub>it<sub>y.</sub> C<sub>onverse</sub>l<sub>y, ex-</sub> <sub>c</sub>l<sub>u</sub>di<sub>ng</sub> "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "\\mathcal { D } _ { g e n e r a l }"
+                    },
+                    {
+                        "type": "text",
+                        "content": "<sub>ma</sub>i<sub>n</sub>t<sub>a</sub>i<sub>ns</sub> hi<sub>g</sub>h <sub>per</sub>f<sub>ormance</sub> <sub>on</sub> S<sub>or</sub>ti<sub>ng-</sub> Bench but causes a regression in general capabilities (e.g., 81.4% → 77.25% on MMBench/EN and 1743 → 1661 on MME). The <sub>g</sub>eneral data acts as a re<sub>g</sub>ularizer, <sub>p</sub>reservin<sub>g</sub> the VLM’<sub>s</sub> <sub>genera</sub>l <sub>capa</sub>biliti<sub>es</sub> d<sub>ur</sub>i<sub>ng</sub> d<sub>oma</sub>i<sub>n</sub> <sub>a</sub>d<sub>ap</sub>t<sub>a</sub>ti<sub>on.</sub> T<sub>o</sub> <sub>eva</sub>l<sub>ua</sub>t<sub>e</sub> th<sub>e</sub> <sub>ga</sub>i<sub>n</sub> f<sub>rom</sub> GCR<sub>,</sub> <sub>we</sub> <sub>compare</sub> it <sub>aga</sub>i<sub>ns</sub>t <sub>a</sub> <sub>s</sub>t<sub>an-</sub> d<sub>ar</sub>d <sub>cross-en</sub>t<sub>ropy</sub> l<sub>oss</sub> b<sub>ase</sub>li<sub>ne.</sub> U<sub>s</sub>i<sub>ng a</sub>ll t<sub>ra</sub>i<sub>n</sub>i<sub>ng</sub> d<sub>a</sub>t<sub>a,</sub> i<sub>n-</sub> troducing GCR yields a 1.6% improvement on SortingBench (77.2% → 78.8%). Additionally, using GCR on the original dataset achieved a 5.2% improvement (63.6% → 68.8%). M<sub>o</sub>r<sub>e</sub> im<sub>po</sub>rt<sub>a</sub>ntl<sub>y, o</sub>n BLINK/VS<sub>, w</sub>hi<sub>c</sub>h r<sub>e</sub>li<sub>es o</sub>n <sub>c</sub>r<sub>oss-</sub> image visual comparison, performance increases by 3.85% (84.3% → 88.15%). This shows that GCR optimizes the <sub>mo</sub>d<sub>e</sub>l’<sub>s zero-s</sub>h<sub>o</sub>t <sub>cross-scene reason</sub>i<sub>ng capa</sub>biliti<sub>es</sub> i<sub>n</sub> di<sub>s-</sub> t<sub>r</sub>ib<sub>u</sub>t<sub>e</sub>d <sub>percep</sub>ti<sub>on</sub> t<sub>as</sub>k<sub>s, ra</sub>th<sub>er</sub> th<sub>an s</sub>i<sub>mp</sub>l<sub>y over</sub>fitti<sub>ng</sub> th<sub>e</sub> JMSU d<sub>a</sub>t<sub>a</sub> di<sub>s</sub>t<sub>r</sub>ib<sub>u</sub>ti<sub>on.</sub>"
+                    }
+                ]
+            },
+            "bbox": [
+                81,
+                638,
+                482,
+                890
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": []
+            },
+            "bbox": [
+                514,
+                376,
+                915,
+                502
+            ]
+        },
+        {
+            "type": "title",
+            "content": {
+                "title_content": [
+                    {
+                        "type": "text",
+                        "content": "5.4 Execution Example"
+                    }
+                ],
+                "level": 2
+            },
+            "bbox": [
+                516,
+                513,
+                712,
+                530
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "Fi<sub>gure</sub> 6 <sub>s</sub>h<sub>ows</sub> h<sub>ow a pre</sub>di<sub>c</sub>t<sub>e</sub>d <sub>p</sub>l<sub>an</sub> i<sub>s execu</sub>t<sub>e</sub>d b<sub>y</sub> th<sub>e</sub> <sub>rea</sub>l ALSS <sub>w</sub>ith 2 <sub>compar</sub>t<sub>men</sub>t<sub>s an</sub>d 10 <sub>cages.</sub> I<sub>n rea</sub>l<sub>-</sub> world deplo<sub>y</sub>ment testin<sub>g</sub>, the Hugin-optimized Qwen3-VL-8B <sub>pe</sub>rf<sub>o</sub>rm<sub>e</sub>d <sub>so</sub>rtin<sub>g p</sub>l<sub>a</sub>nnin<sub>g</sub> f<sub>o</sub>r <sub>ove</sub>r 15<sub>,</sub>000 <sub>pac</sub>k<sub>ages a</sub>nd achieved a prediction accuracy of 73.1%. Although room for i<sub>mprovemen</sub>t <sub>rema</sub>i<sub>ns,</sub> thi<sub>s</sub> <sub>resu</sub>lt d<sub>emons</sub>t<sub>ra</sub>t<sub>es</sub> th<sub>e</sub> <sub>prac</sub>ti<sub>ca</sub>l <sub>v</sub>i<sub>a</sub>bilit<sub>y</sub> <sub>o</sub>f i<sub>ncorpora</sub>ti<sub>ng</sub> VLM<sub>-</sub>b<sub>ase</sub>d <sub>p</sub>l<sub>ann</sub>i<sub>ng</sub> i<sub>n</sub>t<sub>o</sub> ALSS<sub>.</sub>"
+                    }
+                ]
+            },
+            "bbox": [
+                514,
+                534,
+                915,
+                633
+            ]
+        },
+        {
+            "type": "title",
+            "content": {
+                "title_content": [
+                    {
+                        "type": "text",
+                        "content": "6 Conclusion"
+                    }
+                ],
+                "level": 2
+            },
+            "bbox": [
+                650,
+                645,
+                781,
+                661
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "Thi<sub>s paper s</sub>t<sub>u</sub>di<sub>es v</sub>i<sub>sua</sub>l <sub>p</sub>l<sub>ann</sub>i<sub>ng</sub> i<sub>n</sub> ALSS<sub>, w</sub>h<sub>ere an exe-</sub> cutable decision depends on jointly reasoning over spatially disjoint camera views. We formalize this setting as JMSU, i<sub>n</sub>t<sub>ro</sub>d<sub>uce</sub> S<sub>or</sub>ti<sub>ng</sub>B<sub>enc</sub>h <sub>an</sub>d H<sub>ugin, a</sub> t<sub>ra</sub>i<sub>n</sub>i<sub>ng</sub> f<sub>ramewor</sub>k th<sub>a</sub>t <sub>com</sub>bi<sub>nes cons</sub>t<sub>ra</sub>i<sub>n</sub>t<sub>-cons</sub>i<sub>s</sub>t<sub>en</sub>t EDA <sub>w</sub>ith GCR<sub>.</sub> EDA i<sub>mproves</sub> d<sub>a</sub>t<sub>a</sub> <sub>u</sub>tili<sub>za</sub>ti<sub>on</sub> <sub>e</sub>fi<sub>c</sub>i<sub>ency,</sub> <sub>an</sub>d GCR <sub>encourages</sub> VLM<sub>s</sub> t<sub>o</sub> i<sub>n</sub>t<sub>egra</sub>t<sub>e</sub> th<sub>e comp</sub>l<sub>e</sub>t<sub>e v</sub>i<sub>sua</sub>l <sub>s</sub>t<sub>a</sub>t<sub>e, a</sub>ll<sub>ev</sub>i<sub>a</sub>ti<sub>ng a</sub>t<sub>-</sub> t<sub>en</sub>ti<sub>ona</sub>l di<sub>s</sub>t<sub>rac</sub>ti<sub>on cause</sub>d b<sub>y</sub> l<sub>ong v</sub>i<sub>sua</sub>l <sub>con</sub>t<sub>ex</sub>t<sub>s.</sub> E<sub>xper-</sub> i<sub>men</sub>t<sub>s</sub> <sub>across</sub> fi<sub>ve</sub> VLM<sub>s</sub> <sub>cons</sub>i<sub>s</sub>t<sub>en</sub>tl<sub>y</sub> d<sub>emons</sub>t<sub>ra</sub>t<sub>e</sub> it<sub>s</sub> <sub>e</sub>f<sub>-</sub> fectiveness, with Qwen3-VL-8B improving from 63.6% to 78.8% on SortingBench. The experiments further show that th<sub>e</sub> i<sub>mprovemen</sub>t <sub>ar</sub>i<sub>ses</sub> f<sub>rom s</sub>t<sub>ronger use o</sub>f di<sub>s</sub>t<sub>r</sub>ib<sub>u</sub>t<sub>e</sub>d <sub>ev</sub>i<sub>-</sub> d<sub>ence ra</sub>th<sub>er</sub> th<sub>an pos</sub>iti<sub>ona</sub>l <sub>s</sub>h<sub>or</sub>t<sub>cu</sub>t<sub>s or</sub> d<sub>oma</sub>i<sub>n memor</sub>i<sub>za-</sub> ti<sub>on.</sub> F<sub>u</sub>t<sub>ure wor</sub>k <sub>w</sub>ill <sub>ex</sub>t<sub>en</sub>d JMSU t<sub>o o</sub>th<sub>er au</sub>t<sub>onomous</sub> d<sub>oma</sub>i<sub>ns</sub> <sub>an</sub>d i<sub>nves</sub>ti<sub>ga</sub>t<sub>e</sub> l<sub>ong-</sub>h<sub>or</sub>i<sub>zon</sub> <sub>c</sub>l<sub>ose</sub>d<sub>-</sub>l<sub>oop</sub> <sub>opera</sub>ti<sub>on</sub> <sub>an</sub>d <sub>a</sub>d<sub>ap</sub>t<sub>a</sub>ti<sub>on un</sub>d<sub>er c</sub>h<sub>ang</sub>i<sub>ng sys</sub>t<sub>em con</sub>fi<sub>gura</sub>ti<sub>ons.</sub>"
+                    }
+                ]
+            },
+            "bbox": [
+                514,
+                666,
+                915,
+                890
+            ]
+        }
+    ],
+    [
+        {
+            "type": "title",
+            "content": {
+                "title_content": [
+                    {
+                        "type": "text",
+                        "content": "References"
+                    }
+                ],
+                "level": 2
+            },
+            "bbox": [
+                232,
+                66,
+                331,
+                83
+            ]
+        },
+        {
+            "type": "list",
+            "content": {
+                "list_type": "reference_list",
+                "list_items": [
+                    {
+                        "item_type": "text",
+                        "item_content": [
+                            {
+                                "type": "text",
+                                "content": "A<sub>c</sub>hill<sub>e,</sub> A<sub>.;</sub> <sub>an</sub>d S<sub>oa</sub>tt<sub>o,</sub> S<sub>.</sub> 2018<sub>.</sub> E<sub>mergence</sub> <sub>o</sub>f i<sub>nvar</sub>i<sub>ance</sub> and disentanglement in deep representations. Journal of Machine Learning Research, 19(50): 1–34."
+                            }
+                        ]
+                    },
+                    {
+                        "item_type": "text",
+                        "item_content": [
+                            {
+                                "type": "text",
+                                "content": "A<sub>g</sub>r<sub>awa</sub>l<sub>,</sub> P<sub>.;</sub> Ant<sub>o</sub>ni<sub>a</sub>k<sub>,</sub> S<sub>.;</sub> H<sub>a</sub>nn<sub>a,</sub> E<sub>.</sub> B<sub>.;</sub> B<sub>ou</sub>t<sub>,</sub> B<sub>.;</sub> Ch<sub>ap-</sub> l<sub>o</sub>t<sub>,</sub> D<sub>.;</sub> Ch<sub>u</sub>dn<sub>ovs</sub>k<sub>y,</sub> J<sub>.;</sub> C<sub>os</sub>t<sub>a,</sub> D<sub>.;</sub> D<sub>e</sub> M<sub>o</sub>ni<sub>cau</sub>lt<sub>,</sub> B<sub>.;</sub> G<sub>a</sub>r<sub>g,</sub> S.; Gervet, T.; et al. 2024. Pixtral 12B. arXiv preprint arXiv:2410.07073."
+                            }
+                        ]
+                    },
+                    {
+                        "item_type": "text",
+                        "item_content": [
+                            {
+                                "type": "text",
+                                "content": "Ahn<sub>,</sub> M<sub>.;</sub> Br<sub>o</sub>h<sub>a</sub>n<sub>,</sub> A<sub>.;</sub> Br<sub>ow</sub>n<sub>,</sub> N<sub>.;</sub> Ch<sub>e</sub>b<sub>o</sub>t<sub>a</sub>r<sub>,</sub> Y<sub>.;</sub> C<sub>o</sub>rt<sub>es,</sub> O<sub>.;</sub> D<sub>av</sub>id<sub>,</sub> B<sub>.;</sub> Finn<sub>,</sub> C<sub>.;</sub> F<sub>u,</sub> C<sub>.;</sub> G<sub>opa</sub>l<sub>a</sub>kri<sub>s</sub>hn<sub>a</sub>n<sub>,</sub> K<sub>.;</sub> H<sub>aus</sub>m<sub>a</sub>n<sub>,</sub> K<sub>.;</sub> <sub>e</sub>t <sub>a</sub>l<sub>.</sub> 2022<sub>.</sub> D<sub>o</sub> <sub>as</sub> i <sub>can,</sub> <sub>no</sub>t <sub>as</sub> i <sub>say:</sub> G<sub>roun</sub>di<sub>ng</sub> l<sub>anguage</sub> in robotic afordances. arXiv preprint arXiv:2204.01691."
+                            }
+                        ]
+                    },
+                    {
+                        "item_type": "text",
+                        "item_content": [
+                            {
+                                "type": "text",
+                                "content": "B<sub>a</sub>i<sub>,</sub> S<sub>.;</sub> C<sub>a</sub>i<sub>,</sub> Y<sub>.;</sub> Ch<sub>e</sub>n<sub>,</sub> R<sub>.;</sub> Ch<sub>e</sub>n<sub>,</sub> K<sub>.;</sub> Ch<sub>e</sub>n<sub>,</sub> X<sub>.; e</sub>t <sub>a</sub>l<sub>.</sub> 2025a. Qwen3-vl technical report. arXiv preprint arXiv:2511.21631."
+                            }
+                        ]
+                    },
+                    {
+                        "item_type": "text",
+                        "item_content": [
+                            {
+                                "type": "text",
+                                "content": "B<sub>a</sub>i<sub>,</sub> S<sub>.;</sub> Ch<sub>e</sub>n<sub>,</sub> K<sub>.;</sub> Li<sub>u,</sub> X<sub>.;</sub> W<sub>a</sub>n<sub>g,</sub> J<sub>.;</sub> G<sub>e,</sub> W<sub>.;</sub> S<sub>o</sub>n<sub>g,</sub> S<sub>.;</sub> D<sub>a</sub>n<sub>g,</sub> K.; Wan<sub>g</sub>, P.; Wan<sub>g</sub>, S.; Tan<sub>g</sub>, J.; et al. 2025b. Qwen2. 5-vl technical report. arXiv preprint arXiv:2502.13923."
+                            }
+                        ]
+                    },
+                    {
+                        "item_type": "text",
+                        "item_content": [
+                            {
+                                "type": "text",
+                                "content": "Cai, Z.; Li, F.; Zhen<sub>g</sub>, Z.; and Qin, Y. 2025. Hiprobe-vad: Vid<sub>eo</sub> <sub>anoma</sub>l<sub>y</sub> d<sub>e</sub>t<sub>ec</sub>ti<sub>on</sub> <sub>v</sub>i<sub>a</sub> hidd<sub>en</sub> <sub>s</sub>t<sub>a</sub>t<sub>es</sub> <sub>pro</sub>bi<sub>ng</sub> i<sub>n</sub> t<sub>un</sub>i<sub>ng-</sub> free multimodal llms. In Proceedings of the 33rd ACM International Conference on Multimedia, 592–601."
+                            }
+                        ]
+                    },
+                    {
+                        "item_type": "text",
+                        "item_content": [
+                            {
+                                "type": "text",
+                                "content": "Ch<sub>e</sub>n<sub>,</sub> C<sub>.;</sub> Zh<sub>u,</sub> J<sub>.;</sub> L<sub>uo,</sub> X<sub>.;</sub> Sh<sub>e</sub>n<sub>,</sub> H<sub>.</sub> T<sub>.;</sub> S<sub>o</sub>n<sub>g,</sub> J<sub>.; a</sub>nd G<sub>ao,</sub> L<sub>.</sub> 2024<sub>.</sub> C<sub>o</sub>i<sub>n:</sub> A b<sub>enc</sub>h<sub>mar</sub>k <sub>o</sub>f <sub>con</sub>ti<sub>nua</sub>l i<sub>ns</sub>t<sub>ruc</sub>ti<sub>on</sub> t<sub>un</sub>i<sub>ng</sub> for multimodel large language models. Advances in Neural Information Processing Systems, 37: 57817–57840."
+                            }
+                        ]
+                    },
+                    {
+                        "item_type": "text",
+                        "item_content": [
+                            {
+                                "type": "text",
+                                "content": "D<sub>e</sub>itk<sub>e,</sub> M<sub>.;</sub> Cl<sub>a</sub>rk<sub>,</sub> C<sub>.;</sub> L<sub>ee,</sub> S<sub>.;</sub> Tri<sub>pa</sub>thi<sub>,</sub> R<sub>.;</sub> Y<sub>a</sub>n<sub>g,</sub> Y<sub>.;</sub> P<sub>a</sub>rk<sub>,</sub> J<sub>.</sub> S<sub>.;</sub> S<sub>a</sub>l<sub>e</sub>hi<sub>,</sub> M<sub>.;</sub> M<sub>uenn</sub>i<sub>g</sub>h<sub>o</sub>f<sub>,</sub> N<sub>.;</sub> L<sub>o,</sub> K<sub>.;</sub> S<sub>o</sub>ld<sub>a</sub>i<sub>n</sub>i<sub>,</sub> L<sub>.; e</sub>t <sub>a</sub>l<sub>.</sub> 2025<sub>.</sub> M<sub>o</sub>l<sub>mo an</sub>d <sub>p</sub>i<sub>xmo:</sub> O<sub>pen we</sub>i<sub>g</sub>ht<sub>s an</sub>d <sub>open</sub> d<sub>a</sub>t<sub>a</sub> f<sub>or</sub> state-of-the-art vision-language models. In Proceedings of the Computer Vision and Pattern Recognition Conference, 91<sub>–</sub>104<sub>.</sub>"
+                            }
+                        ]
+                    },
+                    {
+                        "item_type": "text",
+                        "item_content": [
+                            {
+                                "type": "text",
+                                "content": "D<sub>e</sub>itk<sub>e,</sub> M<sub>.;</sub> V<sub>an</sub>d<sub>er</sub>Bilt<sub>,</sub> E<sub>.;</sub> H<sub>erras</sub>ti<sub>,</sub> A<sub>.;</sub> W<sub>e</sub>ih<sub>s,</sub> L<sub>.;</sub> Eh<sub>san</sub>i<sub>,</sub> K<sub>.;</sub> S<sub>a</sub>l<sub>va</sub>d<sub>or,</sub> J<sub>.;</sub> H<sub>an,</sub> W<sub>.;</sub> K<sub>o</sub>l<sub>ve,</sub> E<sub>.;</sub> K<sub>em</sub>bh<sub>av</sub>i<sub>,</sub> A<sub>.; an</sub>d M<sub>o</sub>t<sub>-</sub> t<sub>ag</sub>hi<sub>,</sub> R<sub>.</sub> 2022<sub>.</sub> P<sub>roc</sub>THOR<sub>:</sub> L<sub>arge-</sub>S<sub>ca</sub>l<sub>e</sub> E<sub>m</sub>b<sub>o</sub>di<sub>e</sub>d AI U<sub>s-</sub> ing Procedural Generation. Advances in Neural Information Processing Systems, 35: 5982–5994."
+                            }
+                        ]
+                    },
+                    {
+                        "item_type": "text",
+                        "item_content": [
+                            {
+                                "type": "text",
+                                "content": "Den<sub>g</sub>, Y.; Zhan<sub>g</sub>, W.; Chen, Z.; and Gu, Q. 2023. Rephrase <sub>an</sub>d <sub>respon</sub>d<sub>:</sub> L<sub>e</sub>t l<sub>arge</sub> l<sub>anguage</sub> <sub>mo</sub>d<sub>e</sub>l<sub>s</sub> <sub>as</sub>k b<sub>e</sub>tt<sub>er</sub> <sub>ques</sub>ti<sub>ons</sub> for themselves. arXiv preprint arXiv:2311.04205."
+                            }
+                        ]
+                    },
+                    {
+                        "item_type": "text",
+                        "item_content": [
+                            {
+                                "type": "text",
+                                "content": "Duan, H.; Yan<sub>g</sub>, J.; Qiao, Y.; Fan<sub>g</sub>, X.; Chen, L.; Liu, Y<sub>.;</sub> D<sub>o</sub>n<sub>g,</sub> X<sub>.;</sub> Z<sub>a</sub>n<sub>g,</sub> Y<sub>.;</sub> Zh<sub>a</sub>n<sub>g,</sub> P<sub>.;</sub> W<sub>a</sub>n<sub>g,</sub> J<sub>.; e</sub>t <sub>a</sub>l<sub>.</sub> 2024<sub>.</sub> Vl<sub>meva</sub>lkit<sub>:</sub> A<sub>n open-source</sub> t<sub>oo</sub>lkit f<sub>or eva</sub>l<sub>ua</sub>ti<sub>ng</sub> l<sub>arge</sub> multi-modality models. In Proceedings of the 32nd ACM international conference on multimedia, 11198–11201."
+                            }
+                        ]
+                    },
+                    {
+                        "item_type": "text",
+                        "item_content": [
+                            {
+                                "type": "text",
+                                "content": "Fu, C.; Chen, P.; Shen, Y.; Qin, Y.; Zhan<sub>g</sub>, M.; Lin, X.; Yan<sub>g</sub>, J<sub>.;</sub> Zh<sub>e</sub>n<sub>g,</sub> X<sub>.;</sub> Li<sub>,</sub> K<sub>.;</sub> S<sub>u</sub>n<sub>,</sub> X<sub>.; e</sub>t <sub>a</sub>l<sub>.</sub> 2025<sub>a.</sub> Mm<sub>e:</sub> A <sub>co</sub>m<sub>p</sub>r<sub>e-</sub> h<sub>ens</sub>i<sub>ve eva</sub>l<sub>ua</sub>ti<sub>on</sub> b<sub>enc</sub>h<sub>mar</sub>k f<sub>or mu</sub>lti<sub>mo</sub>d<sub>a</sub>l l<sub>arge</sub> l<sub>anguage</sub> models. In The Thirty-ninth Annual Conference on Neural Information Processing Systems Datasets and Benchmarks Track."
+                            }
+                        ]
+                    },
+                    {
+                        "item_type": "text",
+                        "item_content": [
+                            {
+                                "type": "text",
+                                "content": "F<sub>u,</sub> C<sub>.;</sub> Li<sub>n,</sub> H<sub>.;</sub> W<sub>ang,</sub> X<sub>.;</sub> Zh<sub>ang,</sub> Y<sub>.-</sub>F<sub>.;</sub> Sh<sub>en,</sub> Y<sub>.;</sub> Li<sub>u,</sub> X<sub>.;</sub> C<sub>ao,</sub> H<sub>.;</sub> L<sub>ong,</sub> Z<sub>.;</sub> G<sub>ao,</sub> H<sub>.;</sub> Li<sub>,</sub> K<sub>.; e</sub>t <sub>a</sub>l<sub>.</sub> 2025b<sub>.</sub> Vit<sub>a-</sub>1<sub>.</sub>5<sub>:</sub> T<sub>owar</sub>d<sub>s</sub> <sub>gp</sub>t<sub>-</sub>4<sub>o</sub> l<sub>eve</sub>l <sub>rea</sub>l<sub>-</sub>ti<sub>me</sub> <sub>v</sub>i<sub>s</sub>i<sub>on</sub> <sub>an</sub>d <sub>speec</sub>h i<sub>n</sub>t<sub>erac</sub>ti<sub>on.</sub> arXiv preprint arXiv:2501.01957."
+                            }
+                        ]
+                    },
+                    {
+                        "item_type": "text",
+                        "item_content": [
+                            {
+                                "type": "text",
+                                "content": "F<sub>u,</sub> X<sub>.;</sub> H<sub>u,</sub> Y<sub>.;</sub> Li<sub>,</sub> B<sub>.;</sub> F<sub>eng,</sub> Y<sub>.;</sub> W<sub>ang,</sub> H<sub>.;</sub> Li<sub>n,</sub> X<sub>.;</sub> R<sub>o</sub>th<sub>,</sub> D<sub>.;</sub> S<sub>m</sub>ith<sub>,</sub> N<sub>.</sub> A<sub>.;</sub> M<sub>a,</sub> W<sub>.-</sub>C<sub>.; an</sub>d K<sub>r</sub>i<sub>s</sub>h<sub>na,</sub> R<sub>.</sub> 2024<sub>.</sub> Bli<sub>n</sub>k<sub>:</sub> M<sub>u</sub>lti<sub>-</sub> modal large language models can see but not perceive. In European Conference on Computer Vision, 148–166. Springer."
+                            }
+                        ]
+                    },
+                    {
+                        "item_type": "text",
+                        "item_content": [
+                            {
+                                "type": "text",
+                                "content": "G<sub>ao,</sub> T<sub>.;</sub> Y<sub>ao,</sub> X<sub>.; a</sub>nd Ch<sub>e</sub>n<sub>,</sub> D<sub>.</sub> 2021<sub>.</sub> Sim<sub>cse:</sub> Sim<sub>p</sub>l<sub>e co</sub>n<sub>-</sub> trastive learning of sentence embeddings. arXiv preprint arXiv:2104.08821."
+                            }
+                        ]
+                    },
+                    {
+                        "item_type": "text",
+                        "item_content": [
+                            {
+                                "type": "text",
+                                "content": "G<sub>en</sub>til<sub>e,</sub> C<sub>.; an</sub>d W<sub>armu</sub>th<sub>,</sub> M<sub>.</sub> K<sub>.</sub> 1998<sub>.</sub> Li<sub>near</sub> hi<sub>nge</sub> l<sub>oss an</sub>d average margin. Advances in neural information processing systems, 11."
+                            }
+                        ]
+                    },
+                    {
+                        "item_type": "text",
+                        "item_content": [
+                            {
+                                "type": "text",
+                                "content": "Gh<sub>o</sub>l<sub>am</sub>i<sub>,</sub> M<sub>.;</sub> R<sub>ezae</sub>i<sub>,</sub> A<sub>.;</sub> W<sub>e</sub>i<sub>m</sub>i<sub>n,</sub> Z<sub>.;</sub> M<sub>ao,</sub> S<sub>.;</sub> Zh<sub>ou,</sub> S<sub>.;</sub> Zh<sub>ang,</sub> Y<sub>.; an</sub>d Akb<sub>ar</sub>i<sub>,</sub> M<sub>.</sub> 2025<sub>.</sub> S<sub>pa</sub>ti<sub>a</sub>l R<sub>eason</sub>i<sub>ng</sub> <sub>w</sub>ith Vi<sub>s</sub>i<sub>on-</sub>L<sub>anguage</sub> M<sub>o</sub>d<sub>e</sub>l<sub>s</sub> i<sub>n</sub> E<sub>go-</sub>C<sub>en</sub>t<sub>r</sub>i<sub>c</sub> M<sub>u</sub>lti<sub>-</sub>Vi<sub>ew</sub> S<sub>cenes. ar</sub>Xi<sub>v:</sub>2509<sub>.</sub>06266<sub>.</sub>"
+                            }
+                        ]
+                    },
+                    {
+                        "item_type": "text",
+                        "item_content": [
+                            {
+                                "type": "text",
+                                "content": "H<sub>en</sub>d<sub>e</sub>l<sub>,</sub> R<sub>.;</sub> G<sub>eva,</sub> M<sub>.; an</sub>d Gl<sub>o</sub>b<sub>erson,</sub> A<sub>.</sub> 2023<sub>.</sub> I<sub>n-con</sub>t<sub>ex</sub>t learning creates task vectors. In Findings ofthe Association for Computational Linguistics: EMNLP 2023, 9318–9333."
+                            }
+                        ]
+                    },
+                    {
+                        "item_type": "text",
+                        "item_content": [
+                            {
+                                "type": "text",
+                                "content": "H<sub>uang,</sub> W<sub>.;</sub> Ji<sub>a,</sub> B<sub>.;</sub> Zh<sub>a</sub>i<sub>,</sub> Z<sub>.;</sub> C<sub>ao,</sub> S<sub>.;</sub> Y<sub>e,</sub> Z<sub>.;</sub> Zh<sub>ao,</sub> F<sub>.;</sub> X<sub>u,</sub> Z<sub>.;</sub> H<sub>u,</sub> Y<sub>.;</sub> <sub>an</sub>d Li<sub>n,</sub> S<sub>.</sub> 2025<sub>.</sub> Vi<sub>s</sub>i<sub>on-r</sub>1<sub>:</sub> I<sub>ncen</sub>ti<sub>v</sub>i<sub>z</sub>i<sub>ng</sub> <sub>reason-</sub> ing capability in multimodal large language models. arXiv preprint arXiv:2503.06749."
+                            }
+                        ]
+                    },
+                    {
+                        "item_type": "text",
+                        "item_content": [
+                            {
+                                "type": "text",
+                                "content": "H<sub>u</sub>d<sub>so</sub>n<sub>,</sub> D<sub>.</sub> A<sub>.; a</sub>nd M<sub>a</sub>nnin<sub>g,</sub> C<sub>.</sub> D<sub>.</sub> 2019<sub>.</sub> G<sub>qa:</sub> A n<sub>ew</sub> d<sub>a</sub>t<sub>ase</sub>t f<sub>or rea</sub>l<sub>-wor</sub>ld <sub>v</sub>i<sub>sua</sub>l <sub>reason</sub>i<sub>ng an</sub>d <sub>compos</sub>iti<sub>ona</sub>l <sub>ques</sub>ti<sub>on</sub> answering. In Proceedings of the IEEE/CVF conference on computer vision and pattern recognition, 6700–6709."
+                            }
+                        ]
+                    },
+                    {
+                        "item_type": "text",
+                        "item_content": [
+                            {
+                                "type": "text",
+                                "content": "H<sub>ussa</sub>in<sub>,</sub> M<sub>.</sub> 2023<sub>.</sub> YOLO<sub>-v</sub>1 t<sub>o</sub> YOLO<sub>-v</sub>8<sub>,</sub> th<sub>e</sub> ri<sub>se o</sub>f YOLO <sub>an</sub>d it<sub>s comp</sub>l<sub>emen</sub>t<sub>ary na</sub>t<sub>ure</sub> t<sub>owar</sub>d di<sub>g</sub>it<sub>a</sub>l <sub>manu</sub>f<sub>ac</sub>t<sub>ur</sub>i<sub>ng</sub> and industrial defect detection. Machines, 11(7): 677."
+                            }
+                        ]
+                    },
+                    {
+                        "item_type": "text",
+                        "item_content": [
+                            {
+                                "type": "text",
+                                "content": "Ji<sub>,</sub> Y<sub>.;</sub> T<sub>a</sub>n<sub>,</sub> H<sub>.;</sub> Shi<sub>,</sub> J<sub>.;</sub> H<sub>ao,</sub> X<sub>.;</sub> Zh<sub>a</sub>n<sub>g,</sub> Y<sub>.;</sub> Zh<sub>a</sub>n<sub>g,</sub> H<sub>.;</sub> W<sub>a</sub>n<sub>g,</sub> P<sub>.;</sub> Zh<sub>ao,</sub> M<sub>.;</sub> M<sub>u,</sub> Y<sub>.;</sub> A<sub>n,</sub> P<sub>.; e</sub>t <sub>a</sub>l<sub>.</sub> 2025<sub>.</sub> R<sub>o</sub>b<sub>o</sub>b<sub>ra</sub>i<sub>n:</sub> A <sub>un</sub>ifi<sub>e</sub>d b<sub>ra</sub>i<sub>n mo</sub>d<sub>e</sub>l f<sub>or ro</sub>b<sub>o</sub>ti<sub>c man</sub>i<sub>pu</sub>l<sub>a</sub>ti<sub>on</sub> f<sub>rom a</sub>b<sub>s</sub>t<sub>rac</sub>t to concrete. In Proceedings ofthe IEEE/CVF Conference on Computer Vision and Pattern Recognition, 1724–1734."
+                            }
+                        ]
+                    },
+                    {
+                        "item_type": "text",
+                        "item_content": [
+                            {
+                                "type": "text",
+                                "content": "Kim<sub>,</sub> M<sub>.</sub> J<sub>.;</sub> P<sub>e</sub>rt<sub>sc</sub>h<sub>,</sub> K<sub>.;</sub> K<sub>a</sub>r<sub>a</sub>m<sub>c</sub>h<sub>e</sub>ti<sub>,</sub> S<sub>.;</sub> Xi<sub>ao,</sub> T<sub>.;</sub> B<sub>a</sub>l<sub>a</sub>kr<sub>-</sub> i<sub>s</sub>h<sub>na,</sub> A<sub>.;</sub> N<sub>a</sub>i<sub>r,</sub> S<sub>.;</sub> R<sub>a</sub>f<sub>a</sub>il<sub>ov,</sub> R<sub>.;</sub> F<sub>os</sub>t<sub>er,</sub> E<sub>.;</sub> L<sub>am,</sub> G<sub>.;</sub> S<sub>an</sub>k<sub>e</sub>ti<sub>,</sub> P<sub>.;</sub> <sub>e</sub>t <sub>a</sub>l<sub>.</sub> 2024<sub>.</sub> O<sub>penv</sub>l<sub>a:</sub> A<sub>n</sub> <sub>open-source</sub> <sub>v</sub>i<sub>s</sub>i<sub>on-</sub>l<sub>anguage-</sub> action model. arXiv preprint arXiv:2406.09246."
+                            }
+                        ]
+                    },
+                    {
+                        "item_type": "text",
+                        "item_content": [
+                            {
+                                "type": "text",
+                                "content": "Ki<sub>r</sub>ill<sub>ov,</sub> A<sub>.;</sub> Mi<sub>n</sub>t<sub>un,</sub> E<sub>.;</sub> R<sub>av</sub>i<sub>,</sub> N<sub>.;</sub> M<sub>ao,</sub> H<sub>.;</sub> R<sub>o</sub>ll<sub>an</sub>d<sub>,</sub> C<sub>.;</sub> G<sub>us</sub>t<sub>a</sub>f<sub>so</sub>n<sub>,</sub> L<sub>.;</sub> Xi<sub>ao,</sub> T<sub>.;</sub> Whit<sub>e</sub>h<sub>ea</sub>d<sub>,</sub> S<sub>.;</sub> B<sub>e</sub>r<sub>g,</sub> A<sub>.</sub> C<sub>.;</sub> L<sub>o,</sub> W.-Y.; et al. 2023. Segment anything. In Proceedings of the IEEE/CVF international conference on computer vision, 4015<sub>–</sub>4026<sub>.</sub>"
+                            }
+                        ]
+                    },
+                    {
+                        "item_type": "text",
+                        "item_content": [
+                            {
+                                "type": "text",
+                                "content": "K<sub>ong,</sub> L<sub>.;</sub> W<sub>ang,</sub> H<sub>.;</sub> M<sub>u,</sub> W<sub>.;</sub> D<sub>u,</sub> Y<sub>.;</sub> Zh<sub>uang,</sub> Y<sub>.;</sub> Zh<sub>ou,</sub> Y<sub>.;</sub> S<sub>o</sub>n<sub>g,</sub> Y<sub>.;</sub> Zh<sub>a</sub>n<sub>g,</sub> R<sub>.;</sub> W<sub>a</sub>n<sub>g,</sub> K<sub>.;</sub> <sub>a</sub>nd Zh<sub>a</sub>n<sub>g,</sub> C<sub>.</sub> 2024<sub>.</sub> Ali<sub>g</sub>nin<sub>g</sub> l<sub>arge</sub> l<sub>anguage mo</sub>d<sub>e</sub>l<sub>s w</sub>ith <sub>represen</sub>t<sub>a</sub>ti<sub>on e</sub>diti<sub>ng:</sub> A <sub>con</sub>t<sub>ro</sub>l perspective. Advances in Neural Information Processing Systems, 37: 37356–37384."
+                            }
+                        ]
+                    },
+                    {
+                        "item_type": "text",
+                        "item_content": [
+                            {
+                                "type": "text",
+                                "content": "L<sub>a</sub>i<sub>,</sub> Z<sub>.;</sub> Zh<sub>ang,</sub> H<sub>.;</sub> Zh<sub>ang,</sub> B<sub>.;</sub> W<sub>u,</sub> W<sub>.;</sub> B<sub>a</sub>i<sub>,</sub> H<sub>.;</sub> Ti<sub>mo</sub>f<sub>eev,</sub> A<sub>.;</sub> D<sub>u,</sub> X<sub>.;</sub> G<sub>a</sub>n<sub>,</sub> Z<sub>.;</sub> Sh<sub>a</sub>n<sub>,</sub> J<sub>.;</sub> Ch<sub>ua</sub>h<sub>,</sub> C<sub>.-</sub>N<sub>.; e</sub>t <sub>a</sub>l<sub>.</sub> 2024<sub>.</sub> V<sub>ec</sub>li<sub>p:</sub> Improving clip training via visual-enriched captions. In European Conference on Computer Vision, 111–127. Springer."
+                            }
+                        ]
+                    },
+                    {
+                        "item_type": "text",
+                        "item_content": [
+                            {
+                                "type": "text",
+                                "content": "Li<sub>ang,</sub> J<sub>.;</sub> H<sub>uang,</sub> W<sub>.;</sub> Xi<sub>a,</sub> F<sub>.;</sub> X<sub>u,</sub> P<sub>.;</sub> H<sub>ausman,</sub> K<sub>.;</sub> I<sub>c</sub>ht<sub>er,</sub> B<sub>.;</sub> Fl<sub>o</sub>r<sub>e</sub>n<sub>ce,</sub> P<sub>.;</sub> <sub>a</sub>nd Z<sub>e</sub>n<sub>g,</sub> A<sub>.</sub> 2023<sub>.</sub> C<sub>o</sub>d<sub>e</sub> <sub>as</sub> <sub>po</sub>li<sub>c</sub>i<sub>es:</sub> L<sub>a</sub>n<sub>guage</sub> model programs for embodied control. In 2023 IEEE International conference on robotics and automation (ICRA), 9493<sub>–</sub>9500<sub>.</sub> IEEE<sub>.</sub>"
+                            }
+                        ]
+                    }
+                ]
+            },
+            "bbox": [
+                83,
+                87,
+                482,
+                131
+            ]
+        }
+    ],
+    [
+        {
+            "type": "list",
+            "content": {
+                "list_type": "reference_list",
+                "list_items": [
+                    {
+                        "item_type": "text",
+                        "item_content": [
+                            {
+                                "type": "text",
+                                "content": "Li<sub>u,</sub> H<sub>.;</sub> Li<sub>,</sub> C<sub>.;</sub> Li<sub>,</sub> Y<sub>.;</sub> <sub>a</sub>nd L<sub>ee,</sub> Y<sub>.</sub> J<sub>.</sub> 2024<sub>a.</sub> Im<sub>p</sub>r<sub>ove</sub>d baselines with visual instruction tuning. In Proceedings of the IEEE/CVF conference on computer vision and pattern recognition, 26296–26306."
+                            }
+                        ]
+                    },
+                    {
+                        "item_type": "text",
+                        "item_content": [
+                            {
+                                "type": "text",
+                                "content": "Liu, H.; Li, C.; Wu, Q.; and Lee, Y. J. 2023. Visual instruction tuning. Advances in neural information processing systems, 36<sub>:</sub> 34892<sub>–</sub>34916<sub>.</sub>"
+                            }
+                        ]
+                    },
+                    {
+                        "item_type": "text",
+                        "item_content": [
+                            {
+                                "type": "text",
+                                "content": "Li<sub>u,</sub> Y<sub>.;</sub> D<sub>uan,</sub> H<sub>.;</sub> Zh<sub>ang,</sub> Y<sub>.;</sub> Li<sub>,</sub> B<sub>.;</sub> Zh<sub>ang,</sub> S<sub>.;</sub> Zh<sub>ao,</sub> W<sub>.;</sub> Y<sub>ua</sub>n<sub>,</sub> Y<sub>.;</sub> W<sub>a</sub>n<sub>g,</sub> J<sub>.;</sub> H<sub>e,</sub> C<sub>.;</sub> Li<sub>u,</sub> Z<sub>.; e</sub>t <sub>a</sub>l<sub>.</sub> 2024b<sub>.</sub> Mmb<sub>e</sub>n<sub>c</sub>h<sub>:</sub> I<sub>s</sub> your multi-modal model an all-around player? In European conference on computer vision, 216–233. Springer."
+                            }
+                        ]
+                    },
+                    {
+                        "item_type": "text",
+                        "item_content": [
+                            {
+                                "type": "text",
+                                "content": "Li<sub>u,</sub> Z<sub>.;</sub> Z<sub>ang,</sub> Y<sub>.;</sub> D<sub>ong,</sub> X<sub>.;</sub> Zh<sub>ang,</sub> P<sub>.;</sub> C<sub>ao,</sub> Y<sub>.;</sub> D<sub>uan,</sub> H<sub>.;</sub> H<sub>e,</sub> C<sub>.;</sub> Xi<sub>ong,</sub> Y<sub>.;</sub> Li<sub>n,</sub> D<sub>.;</sub> <sub>an</sub>d W<sub>ang,</sub> J<sub>.</sub> 2024<sub>c.</sub> Mi<sub>a-</sub>d<sub>po:</sub> M<sub>u</sub>lti<sub>-</sub> i<sub>mage</sub> <sub>augmen</sub>t<sub>e</sub>d di<sub>rec</sub>t <sub>pre</sub>f<sub>erence</sub> <sub>op</sub>ti<sub>m</sub>i<sub>za</sub>ti<sub>on</sub> f<sub>or</sub> l<sub>arge</sub> vision-language models. arXiv preprint arXiv:2410.17637."
+                            }
+                        ]
+                    },
+                    {
+                        "item_type": "text",
+                        "item_content": [
+                            {
+                                "type": "text",
+                                "content": "L<sub>u,</sub> S<sub>.;</sub> Li<sub>,</sub> Y<sub>.;</sub> Xi<sub>a,</sub> Y<sub>.;</sub> H<sub>u,</sub> Y<sub>.;</sub> Zh<sub>ao,</sub> S<sub>.;</sub> M<sub>a,</sub> Y<sub>.;</sub> W<sub>e</sub>i<sub>,</sub> Z<sub>.;</sub> Li<sub>,</sub>Y<sub>.;</sub> D<sub>uan,</sub> L<sub>.;</sub> Zh<sub>ao,</sub> J<sub>.; e</sub>t <sub>a</sub>l<sub>.</sub> 2025<sub>.</sub> O<sub>v</sub>i<sub>s</sub>2<sub>.</sub> 5 t<sub>ec</sub>h<sub>n</sub>i<sub>ca</sub>l <sub>repor</sub>t<sub>.</sub>arXiv preprint arXiv:2508.11737."
+                            }
+                        ]
+                    },
+                    {
+                        "item_type": "text",
+                        "item_content": [
+                            {
+                                "type": "text",
+                                "content": "S<sub>o</sub>n<sub>g,</sub> W<sub>.;</sub> Ch<sub>e</sub>n<sub>,</sub> J<sub>.;</sub> Li<sub>,</sub> W<sub>.;</sub> H<sub>e,</sub> X<sub>.;</sub> Zh<sub>ao,</sub> H<sub>.;</sub> C<sub>u</sub>i<sub>,</sub> C<sub>.;</sub> S<sub>u,</sub> P<sub>.</sub> D<sub>.</sub> S<sub>.;</sub> T<sub>a</sub>n<sub>g,</sub> F<sub>.;</sub> Ch<sub>e</sub>n<sub>g,</sub> X<sub>.;</sub> W<sub>a</sub>n<sub>g,</sub> D<sub>.; e</sub>t <sub>a</sub>l<sub>.</sub> 2025<sub>.</sub> R<sub>a</sub>ti<sub>o</sub>n<sub>a</sub>l<sub>v</sub>l<sub>a:</sub> A <sub>ra</sub>ti<sub>ona</sub>l <sub>v</sub>i<sub>s</sub>i<sub>on-</sub>l<sub>anguage-ac</sub>ti<sub>on</sub> <sub>mo</sub>d<sub>e</sub>l <sub>w</sub>ith d<sub>ua</sub>l <sub>sys</sub>t<sub>em.</sub> arXiv preprint arXiv:2506.10826."
+                            }
+                        ]
+                    },
+                    {
+                        "item_type": "text",
+                        "item_content": [
+                            {
+                                "type": "text",
+                                "content": "T<sub>an,</sub> H<sub>.;</sub> Zh<sub>ou,</sub> E<sub>.;</sub> Li<sub>,</sub> Z<sub>.;</sub> X<sub>u,</sub> Y<sub>.;</sub> Ji<sub>,</sub> Y<sub>.;</sub> Ch<sub>en,</sub> X<sub>.;</sub> Chi<sub>,</sub> C<sub>.;</sub> W<sub>ang,</sub> P<sub>.;</sub> Ji<sub>a,</sub> H<sub>.;</sub> A<sub>o,</sub> Y<sub>.; e</sub>t <sub>a</sub>l<sub>.</sub> 2026<sub>.</sub> R<sub>o</sub>b<sub>o</sub>B<sub>ra</sub>i<sub>n</sub> 2<sub>.</sub>5<sub>:</sub> D<sub>ep</sub>th in Sight, Time in Mind. arXiv preprint arXiv:2601.14352."
+                            }
+                        ]
+                    },
+                    {
+                        "item_type": "text",
+                        "item_content": [
+                            {
+                                "type": "text",
+                                "content": "Ti<sub>a</sub>n<sub>,</sub> X<sub>.;</sub> Z<sub>ou,</sub> S<sub>.;</sub> Y<sub>a</sub>n<sub>g,</sub> Z<sub>.; a</sub>nd Zh<sub>a</sub>n<sub>g,</sub> J<sub>.</sub> 2025<sub>.</sub> Id<sub>e</sub>ntif<sub>y</sub>in<sub>g</sub> <sub>an</sub>d <sub>m</sub>iti<sub>ga</sub>ti<sub>ng</sub> <sub>pos</sub>iti<sub>on</sub> bi<sub>as</sub> <sub>o</sub>f <sub>mu</sub>lti<sub>-</sub>i<sub>mage</sub> <sub>v</sub>i<sub>s</sub>i<sub>on-</sub>l<sub>anguage</sub> models. In Proceedings ofthe Computer Vision and Pattern Recognition Conference, 10599–10609."
+                            }
+                        ]
+                    },
+                    {
+                        "item_type": "text",
+                        "item_content": [
+                            {
+                                "type": "text",
+                                "content": "V<sub>a</sub>l<sub>er</sub>i<sub>an</sub>i<sub>,</sub> L<sub>.;</sub> D<sub>o</sub>i<sub>mo,</sub> D<sub>.;</sub> C<sub>u</sub>t<sub>ure</sub>ll<sub>o,</sub> F<sub>.;</sub> L<sub>a</sub>i<sub>o,</sub> A<sub>.;</sub> A<sub>nsu</sub>i<sub>n</sub>i<sub>,</sub> A<sub>.; an</sub>d C<sub>azzan</sub>i<sub>ga,</sub> A<sub>.</sub> 2023<sub>.</sub> Th<sub>e geome</sub>t<sub>ry o</sub>f hidd<sub>en repre-</sub> sentations of large transformer models. Advances in Neural Information Processing Systems, 36: 51234–51252."
+                            }
+                        ]
+                    },
+                    {
+                        "item_type": "text",
+                        "item_content": [
+                            {
+                                "type": "text",
+                                "content": "V<sub>aswa</sub>ni<sub>,</sub> A<sub>.;</sub> Sh<sub>azee</sub>r<sub>,</sub> N<sub>.;</sub> P<sub>a</sub>rm<sub>a</sub>r<sub>,</sub> N<sub>.;</sub> U<sub>sz</sub>k<sub>o</sub>r<sub>e</sub>it<sub>,</sub> J<sub>.;</sub> J<sub>o</sub>n<sub>es,</sub> L<sub>.;</sub> G<sub>omez,</sub> A<sub>.</sub> N<sub>.;</sub> K<sub>a</sub>i<sub>ser,</sub> Ł<sub>.; an</sub>d P<sub>o</sub>l<sub>osu</sub>khi<sub>n,</sub> I<sub>.</sub> 2017<sub>.</sub> Att<sub>en</sub>ti<sub>on</sub> is all you need. Advances in neural information processing systems, 30."
+                            }
+                        ]
+                    },
+                    {
+                        "item_type": "text",
+                        "item_content": [
+                            {
+                                "type": "text",
+                                "content": "Wan<sub>g</sub>, F.; Fu, X.; Huan<sub>g</sub>, J. Y.; Li, Z.; Liu, Q.; Liu, X.; Ma, M<sub>.</sub> D<sub>.;</sub> X<sub>u,</sub> N<sub>.;</sub> Zh<sub>ou,</sub> W<sub>.;</sub> Zh<sub>a</sub>n<sub>g,</sub> K<sub>.; e</sub>t <sub>a</sub>l<sub>.</sub> 2024<sub>a.</sub> M<sub>u</sub>ir<sub>-</sub> b<sub>enc</sub>h<sub>:</sub> A <sub>compre</sub>h<sub>ens</sub>i<sub>ve</sub> b<sub>enc</sub>h<sub>mar</sub>k f<sub>or ro</sub>b<sub>us</sub>t <sub>mu</sub>lti<sub>-</sub>i<sub>mage</sub> understanding. arXiv preprint arXiv:2406.09411."
+                            }
+                        ]
+                    },
+                    {
+                        "item_type": "text",
+                        "item_content": [
+                            {
+                                "type": "text",
+                                "content": "W<sub>ang,</sub> W<sub>.;</sub> G<sub>ao,</sub> Z<sub>.;</sub> G<sub>u,</sub> L<sub>.;</sub> P<sub>u,</sub> H<sub>.;</sub> C<sub>u</sub>i<sub>,</sub> L<sub>.;</sub> W<sub>e</sub>i<sub>,</sub> X<sub>.;</sub> Li<sub>u,</sub> Z<sub>.;</sub> Ji<sub>ng,</sub> L<sub>.;</sub> Y<sub>e,</sub> S<sub>.;</sub> Sh<sub>ao,</sub> J<sub>.;</sub> <sub>e</sub>t <sub>a</sub>l<sub>.</sub> 2025<sub>.</sub> I<sub>n</sub>t<sub>ernv</sub>l3<sub>.</sub> 5<sub>:</sub> Ad<sub>vanc</sub>i<sub>ng</sub> <sub>open-source</sub> <sub>mu</sub>lti<sub>mo</sub>d<sub>a</sub>l <sub>mo</sub>d<sub>e</sub>l<sub>s</sub> i<sub>n</sub> <sub>versa</sub>tilit<sub>y,</sub> <sub>reason</sub>i<sub>ng,</sub> <sub>an</sub>d eficiency. arXiv preprint arXiv:2508.18265."
+                            }
+                        ]
+                    },
+                    {
+                        "item_type": "text",
+                        "item_content": [
+                            {
+                                "type": "text",
+                                "content": "W<sub>ang,</sub> W<sub>.;</sub> R<sub>en,</sub> Y<sub>.;</sub> L<sub>uo,</sub> H<sub>.;</sub> Li<sub>,</sub> T<sub>.;</sub> Y<sub>an,</sub> C<sub>.;</sub> Ch<sub>en,</sub> Z<sub>.;</sub> W<sub>ang,</sub> W.; Li, Q.; Lu, L.; Zhu, X.; et al. 2024b. The all-seein<sub>g</sub> project v2: Towards general relation comprehension of the open world. In European Conference on Computer Vision, 471<sub>–</sub>490<sub>.</sub> S<sub>pr</sub>i<sub>nger.</sub>"
+                            }
+                        ]
+                    },
+                    {
+                        "item_type": "text",
+                        "item_content": [
+                            {
+                                "type": "text",
+                                "content": "Wan<sub>g</sub>, W.; Shi, M.; Li, Q.; Wan<sub>g</sub>, W.; Huan<sub>g</sub>, Z.; Xin<sub>g</sub>, L.; Ch<sub>e</sub>n<sub>,</sub> Z<sub>.;</sub> Li<sub>,</sub> H<sub>.;</sub> Zh<sub>u,</sub> X<sub>.;</sub> C<sub>ao,</sub> Z<sub>.; e</sub>t <sub>a</sub>l<sub>.</sub> 2023<sub>.</sub> Th<sub>e a</sub>ll<sub>-see</sub>in<sub>g</sub> project: Towards panoptic visual recognition and understanding of the open world. arXiv preprint arXiv:2308.01907."
+                            }
+                        ]
+                    },
+                    {
+                        "item_type": "text",
+                        "item_content": [
+                            {
+                                "type": "text",
+                                "content": "W<sub>u,</sub> Z<sub>.;</sub> Ch<sub>en,</sub> X<sub>.;</sub> P<sub>an,</sub> Z<sub>.;</sub> Li<sub>u,</sub> X<sub>.;</sub> Li<sub>u,</sub> W<sub>.;</sub> D<sub>a</sub>i<sub>,</sub>D<sub>.;</sub> G<sub>ao,</sub> H<sub>.;</sub> M<sub>a,</sub> Y<sub>.;</sub> W<sub>u,</sub> C<sub>.;</sub> W<sub>a</sub>n<sub>g,</sub> B<sub>.;</sub> <sub>e</sub>t <sub>a</sub>l<sub>.</sub> 2024<sub>.</sub>"
+                            }
+                        ]
+                    },
+                    {
+                        "item_type": "text",
+                        "item_content": [
+                            {
+                                "type": "text",
+                                "content": "D<sub>eepsee</sub>k<sub>-v</sub>l2<sub>:</sub> Mi<sub>x</sub>t<sub>ure-o</sub>f<sub>-exper</sub>t<sub>s</sub> <sub>v</sub>i<sub>s</sub>i<sub>on-</sub>l<sub>anguage</sub> <sub>mo</sub>d<sub>e</sub>l<sub>s</sub> for advanced multimodal understanding. arXiv preprint arXiv:2412.10302."
+                            }
+                        ]
+                    },
+                    {
+                        "item_type": "text",
+                        "item_content": [
+                            {
+                                "type": "text",
+                                "content": "X<sub>u,</sub> Y<sub>.;</sub> B<sub>ao,</sub> R<sub>.;</sub> Zh<sub>a</sub>n<sub>g,</sub> L<sub>.;</sub> W<sub>a</sub>n<sub>g,</sub> J<sub>.; a</sub>nd W<sub>a</sub>n<sub>g,</sub> S<sub>.</sub> 2025<sub>.</sub> Em<sub>-</sub> b<sub>o</sub>di<sub>e</sub>d i<sub>n</sub>t<sub>e</sub>lli<sub>gence</sub> i<sub>n</sub> RO/RO l<sub>og</sub>i<sub>s</sub>ti<sub>c</sub> t<sub>erm</sub>i<sub>na</sub>l<sub>:</sub> A<sub>u</sub>t<sub>onomous</sub> intelligent transportation robot architecture. Science China Information Sciences, 68(5): 1–17."
+                            }
+                        ]
+                    },
+                    {
+                        "item_type": "text",
+                        "item_content": [
+                            {
+                                "type": "text",
+                                "content": "Y<sub>e,</sub> A<sub>.;</sub> Zh<sub>ang,</sub> Z<sub>.;</sub> W<sub>ang,</sub> B<sub>.;</sub> W<sub>ang,</sub> X<sub>.;</sub> Zh<sub>ang,</sub> D<sub>.; an</sub>d Zh<sub>u,</sub> Z<sub>.</sub> 2025<sub>.</sub> Vl<sub>a-r</sub>1<sub>:</sub> E<sub>n</sub>h<sub>anc</sub>i<sub>ng</sub> <sub>reason</sub>i<sub>ng</sub> i<sub>n</sub> <sub>v</sub>i<sub>s</sub>i<sub>on-</sub>l<sub>anguage-</sub> action models. arXiv preprint arXiv:2510.01623."
+                            }
+                        ]
+                    },
+                    {
+                        "item_type": "text",
+                        "item_content": [
+                            {
+                                "type": "text",
+                                "content": "Y<sub>u,</sub> T<sub>.;</sub> W<sub>ang,</sub> Z<sub>.;</sub> W<sub>ang,</sub> C<sub>.;</sub> H<sub>uang,</sub> F<sub>.;</sub> M<sub>a,</sub> W<sub>.;</sub> H<sub>e,</sub> Z<sub>.;</sub> C<sub>a</sub>i<sub>,</sub> T<sub>.;</sub> Ch<sub>en,</sub> W<sub>.;</sub> H<sub>uang,</sub> Y<sub>.;</sub> Zh<sub>ao,</sub> Y<sub>.;</sub> <sub>e</sub>t <sub>a</sub>l<sub>.</sub> 2025<sub>.</sub> Mi<sub>n</sub>i<sub>cpm-</sub> <sub>v</sub> 4<sub>.</sub>5<sub>:</sub> C<sub>oo</sub>ki<sub>ng e</sub>fi<sub>c</sub>i<sub>en</sub>t <sub>m</sub>ll<sub>ms v</sub>i<sub>a arc</sub>hit<sub>ec</sub>t<sub>ure,</sub> d<sub>a</sub>t<sub>a, an</sub>d training recipe. arXiv preprint arXiv:2509.18154."
+                            }
+                        ]
+                    },
+                    {
+                        "item_type": "text",
+                        "item_content": [
+                            {
+                                "type": "text",
+                                "content": "Zh<sub>a</sub>n<sub>g,</sub> Z<sub>.;</sub> Zh<sub>a</sub>n<sub>g,</sub> A<sub>.;</sub> Li<sub>,</sub> M<sub>.;</sub> Zh<sub>ao,</sub> H<sub>.;</sub> K<sub>a</sub>r<sub>yp</sub>i<sub>s,</sub> G<sub>.;</sub> <sub>a</sub>nd S<sub>mo</sub>l<sub>a,</sub> A<sub>.</sub> 2023<sub>.</sub> M<sub>u</sub>lti<sub>mo</sub>d<sub>a</sub>l <sub>c</sub>h<sub>a</sub>i<sub>n-o</sub>f<sub>-</sub>th<sub>oug</sub>ht <sub>reason</sub>i<sub>ng</sub> i<sub>n</sub> language models. arXiv preprint arXiv:2302.00923."
+                            }
+                        ]
+                    },
+                    {
+                        "item_type": "text",
+                        "item_content": [
+                            {
+                                "type": "text",
+                                "content": "Zh<sub>ao,</sub> B<sub>.;</sub> W<sub>u,</sub> B<sub>.;</sub> H<sub>e,</sub> M<sub>.;</sub> <sub>a</sub>nd H<sub>ua</sub>n<sub>g,</sub> T<sub>.</sub> 2023<sub>.</sub> S<sub>v</sub>it<sub>:</sub> Scaling up visual instruction tuning. arXiv preprint arXiv:2307.04087."
+                            }
+                        ]
+                    },
+                    {
+                        "item_type": "text",
+                        "item_content": [
+                            {
+                                "type": "text",
+                                "content": "Zh<sub>ou,</sub> C<sub>.;</sub> Zh<sub>a</sub>n<sub>g,</sub> M<sub>.;</sub> Ch<sub>e</sub>n<sub>,</sub> P<sub>.;</sub> F<sub>u,</sub> C<sub>.;</sub> Sh<sub>e</sub>n<sub>,</sub> Y<sub>.;</sub> Zh<sub>e</sub>n<sub>g,</sub> X<sub>.;</sub> S<sub>un,</sub> X<sub>.;</sub> <sub>an</sub>d Ji<sub>,</sub> R<sub>.</sub> 2024<sub>.</sub> V<sub>ega:</sub> L<sub>earn</sub>i<sub>ng</sub> i<sub>n</sub>t<sub>er</sub>l<sub>eave</sub>d i<sub>mage-</sub> text comprehension in vision-language large models. arXiv preprint arXiv:2406.10228."
+                            }
+                        ]
+                    }
+                ]
+            },
+            "bbox": [
+                83,
+                68,
+                480,
+                126
+            ]
+        }
+    ]
+]
