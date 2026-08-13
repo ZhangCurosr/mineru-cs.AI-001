@@ -1,0 +1,5242 @@
+[
+    [
+        {
+            "type": "title",
+            "content": {
+                "title_content": [
+                    {
+                        "type": "text",
+                        "content": "Hierarchical Federated Transfer Learning in Digital Twin-Based Vehicular Networks"
+                    }
+                ],
+                "level": 1
+            },
+            "bbox": [
+                176,
+                191,
+                816,
+                228
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "Qasim Zia<sup>a</sup>, Saide Zhu<sup>b</sup>, Haoxin Wang<sup>a</sup>, Zafar Iqbal<sup>a</sup>, Yingshu Li<sup>a</sup>"
+                    }
+                ]
+            },
+            "bbox": [
+                176,
+                236,
+                736,
+                256
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "Hierarchical Federated Transfer Learning in Digital Twin-Based Vehicular Networks"
+                    }
+                ]
+            },
+            "bbox": [
+                192,
+                261,
+                699,
+                291
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "Qasim Zia, Saide Zhu, Haoxin Wang, Zafar Iqbal, Yingshu Li"
+                    }
+                ]
+            },
+            "bbox": [
+                192,
+                290,
+                679,
+                309
+            ]
+        },
+        {
+            "type": "index",
+            "content": {
+                "list_type": "text_list",
+                "list_items": [
+                    {
+                        "item_type": "text",
+                        "item_content": [
+                            {
+                                "type": "text",
+                                "content": "Georgia State University, Atlanta, GA, 30303"
+                            }
+                        ]
+                    },
+                    {
+                        "item_type": "text",
+                        "item_content": [
+                            {
+                                "type": "text",
+                                "content": "Penn State Berks, Reading, PA, 19610"
+                            }
+                        ]
+                    }
+                ]
+            },
+            "bbox": [
+                192,
+                308,
+                557,
+                342
+            ]
+        },
+        {
+            "type": "image",
+            "content": {
+                "image_source": {
+                    "path": "images/92070dbe84b18f375833dba8dbd395f5b296d5f111c2cc6c451ed01d3c398bf6.jpg"
+                },
+                "image_caption": [],
+                "image_footnote": []
+            },
+            "bbox": [
+                576,
+                314,
+                732,
+                419
+            ]
+        },
+        {
+            "type": "page_aside_text",
+            "content": {
+                "page_aside_text_content": [
+                    {
+                        "type": "text",
+                        "content": "arXiv:2608.11532v1 [cs.LG] 12 Aug 2026"
+                    }
+                ]
+            },
+            "bbox": [
+                27,
+                352,
+                66,
+                800
+            ]
+        },
+        {
+            "type": "page_header",
+            "content": {
+                "page_header_content": [
+                    {
+                        "type": "text",
+                        "content": "Graphical Abstract"
+                    }
+                ]
+            },
+            "bbox": [
+                176,
+                154,
+                405,
+                179
+            ]
+        }
+    ],
+    [
+        {
+            "type": "title",
+            "content": {
+                "title_content": [
+                    {
+                        "type": "text",
+                        "content": "Highlights"
+                    }
+                ],
+                "level": 2
+            },
+            "bbox": [
+                176,
+                154,
+                302,
+                180
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "Hierarchical Federated Transfer Learning in Digital Twin-Based Vehicular Networks"
+                    }
+                ]
+            },
+            "bbox": [
+                174,
+                191,
+                818,
+                229
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "Qasim Zia<sup>a</sup>, Saide Zhu<sup>b</sup>, Haoxin Wang<sup>a</sup>, Zafar Iqbal<sup>a</sup>, Yingshu Li<sup>a</sup>"
+                    }
+                ]
+            },
+            "bbox": [
+                176,
+                236,
+                736,
+                256
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "• Research highlight 1"
+                    }
+                ]
+            },
+            "bbox": [
+                205,
+                275,
+                400,
+                294
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "• Research highlight 2"
+                    }
+                ]
+            },
+            "bbox": [
+                205,
+                306,
+                401,
+                324
+            ]
+        }
+    ],
+    [
+        {
+            "type": "title",
+            "content": {
+                "title_content": [
+                    {
+                        "type": "text",
+                        "content": "Hierarchical Federated Transfer Learning in Digital Twin-Based Vehicular Networks"
+                    }
+                ],
+                "level": 1
+            },
+            "bbox": [
+                199,
+                152,
+                795,
+                205
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "Qasim Zia<sup>a</sup>, Saide Zhu<sup>b</sup>, Haoxin Wang<sup>a</sup>, Zafar Iqbal<sup>a</sup>, Yingshu Li<sup>a</sup>"
+                    }
+                ]
+            },
+            "bbox": [
+                215,
+                227,
+                776,
+                246
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "Department of Computer Science, Georgia State University, 7th Floor, 25 Park Place Bldg, Atlanta, 30303, GA, USA"
+                    }
+                ]
+            },
+            "bbox": [
+                189,
+                252,
+                805,
+                284
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "College of Information Sciences and Technology, Penn State Berks, 288 N. Burrowes Rd, Reading, 19610, PA, USA"
+                    }
+                ]
+            },
+            "bbox": [
+                191,
+                296,
+                803,
+                329
+            ]
+        },
+        {
+            "type": "title",
+            "content": {
+                "title_content": [
+                    {
+                        "type": "text",
+                        "content": "Abstract"
+                    }
+                ],
+                "level": 2
+            },
+            "bbox": [
+                176,
+                405,
+                266,
+                421
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "In recent research on the Digital Twin-based Vehicular Ad hoc Network(DT-VANET), Federated Learning (FL) has shown its ability to provide data privacy. However, Federated learning struggles to adequately train a global model when confronted with data heterogeneity and data sparsity among vehicles, which ensure suboptimal accuracy in making precise predictions for diferent vehicle types. To address these challenges, this paper combines Federated Transfer Learning (FTL) to conduct vehicle clustering related to types of vehicles and proposes a novel Hierarchical Federated Transfer Learning (HFTL). We construct a framework for DT-VANET, along with two algorithms designed for cloud server model updates and intra-cluster federated transfer learning, to improve the accuracy of the global model. In addition, we developed a data quality score-based mechanism to prevent the global model from being afected by malicious vehicles. Lastly, detailed experiments on real-world datasets are conducted, considering diferent performance met rics that verify the efectiveness and eficiency of our algorithm."
+                    }
+                ]
+            },
+            "bbox": [
+                174,
+                428,
+                818,
+                704
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "Keywords: Vehicular ad-hoc network, Hierarchical federated transfer learning, Vehicular Digital Twin, autonomous vehicle, Digital Twin-based Vehicular Networks."
+                    }
+                ]
+            },
+            "bbox": [
+                174,
+                709,
+                797,
+                765
+            ]
+        },
+        {
+            "type": "title",
+            "content": {
+                "title_content": [
+                    {
+                        "type": "text",
+                        "content": "1. Introduction"
+                    }
+                ],
+                "level": 2
+            },
+            "bbox": [
+                176,
+                790,
+                331,
+                806
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "Vehicular networks enable numerous applications for Intelligent Transportation Systems (ITSs), including trafic control, infotainment, and accident reporting Noor-A-Rahim et al. (2020). These applications rely on various performance criteria, such as reliability, latency, and user-defined features like the quality of physical experience. Thus, the efective handling of vehicle heterogeneity, data privacy, and limited computational resources has become an urgent challenge to discuss, while current wireless technologies struggle to assist it thoroughly Zia et al. (2016). Despite advanced onboard sensors and processing capabilities of autonomous vehicles, they still face challenges such as limited sensing range, limited local processing capacity, and communication barriers He et al. (2022). To meet these diverse requirements, the development of vehicular networks must incorporate two key advancements: proactive, intelligent analytics and self-sustaining wireless systems."
+                    }
+                ]
+            },
+            "bbox": [
+                174,
+                815,
+                816,
+                853
+            ]
+        }
+    ],
+    [
+        {
+            "type": "table",
+            "content": {
+                "image_source": {
+                    "path": "images/8119c0fafbfc03fc09d87d94ee29545695c3ef4b5506eddf6d0eb3b6c58007a2.jpg"
+                },
+                "table_caption": [
+                    {
+                        "type": "text",
+                        "content": "Table 1: Nomenclature"
+                    }
+                ],
+                "table_footnote": [],
+                "html": "<table><tr><td rowspan=1 colspan=1>Symbol</td><td rowspan=1 colspan=2>Description</td></tr><tr><td rowspan=1 colspan=1> $C _ { n }$ </td><td rowspan=1 colspan=2>The Cluster&#x27;s Collection that are not trained</td></tr><tr><td rowspan=1 colspan=1>2</td><td rowspan=1 colspan=2> $\\overline { { i ^ { t h } } }$ Cluster</td></tr><tr><td rowspan=1 colspan=1>U</td><td rowspan=1 colspan=2>The vehicle v</td></tr><tr><td rowspan=1 colspan=1> $j$ </td><td rowspan=1 colspan=1>The ${ \\overline { { j ^ { t h } } } }$ model update and the total number is equal to  $\\overline { { | C _ { n } | } }$ </td><td rowspan=1 colspan=1></td></tr><tr><td rowspan=1 colspan=1> $n$ </td><td rowspan=1 colspan=2>Total number of clusters</td></tr><tr><td rowspan=1 colspan=1> $\\overline { { V _ { h } , V _ { r } , V _ { e } } }$ </td><td rowspan=1 colspan=2>In a cluster, the head vehicle, route vehicle, and edge vehicle DT</td></tr><tr><td rowspan=1 colspan=1> $P _ { O }$ </td><td rowspan=1 colspan=2>All the post vehicles that exist for any vehicle v in a given cluster</td></tr><tr><td rowspan=1 colspan=1> $_ { D t Q }$ </td><td rowspan=1 colspan=2>The data quantity that is used to train any given vehicle</td></tr><tr><td rowspan=1 colspan=1> $w ^ { - }$ </td><td rowspan=1 colspan=2>The model parameters that are used to send for training</td></tr><tr><td rowspan=1 colspan=1>w</td><td rowspan=1 colspan=2>The model parameters that are received after training</td></tr><tr><td rowspan=1 colspan=1> $S _ { r }$ </td><td rowspan=1 colspan=2>The score calculated for the credibility of the vehicle</td></tr><tr><td rowspan=1 colspan=1> $D a t a$ </td><td rowspan=1 colspan=2>The personal data of any vehicle</td></tr><tr><td rowspan=1 colspan=1>W</td><td rowspan=1 colspan=2>The Global model parameters</td></tr><tr><td rowspan=1 colspan=1> $\\overline { { V D T } }$ </td><td rowspan=1 colspan=2>Vehicle Digital Twin</td></tr><tr><td rowspan=1 colspan=1> $D T$ </td><td rowspan=1 colspan=2>Digital Twin</td></tr></table>",
+                "table_type": "complex_table",
+                "table_nest_level": 1
+            },
+            "bbox": [
+                178,
+                183,
+                851,
+                486
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": []
+            },
+            "bbox": [
+                173,
+                512,
+                818,
+                713
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "Proactive Intelligent Analytics is a data analytics technique that analyzes incoming data while anticipating potential challenges, trends, and opportunities in advance. It involves real-time or nearly real-time data analysis using the most advanced machine learning, artificial intelligence, and prediction models. Proactive online learning wireless systems will make it possible to optimize wireless resources to ensure the quality of service (QoS) of diverse ITS applications with varying requirements."
+                    }
+                ]
+            },
+            "bbox": [
+                173,
+                714,
+                818,
+                842
+            ]
+        },
+        {
+            "type": "page_number",
+            "content": {
+                "page_number_content": [
+                    {
+                        "type": "text",
+                        "content": "2"
+                    }
+                ]
+            },
+            "bbox": [
+                490,
+                873,
+                504,
+                887
+            ]
+        }
+    ],
+    [
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "Self-sustaining wireless systems can function without constant external power sources. These systems are helpful for Internet of Things(IoT) devices, remote locations, and scenarios where battery replacement or maintenance is challenging. Self-sustaining wireless networks will allow ITS to run with the least operator or user interaction."
+                    }
+                ]
+            },
+            "bbox": [
+                174,
+                160,
+                818,
+                251
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "The combination of digital twins and vehicular networks has become a promising paradigm in recent years, transforming our understanding of and approach to managing transportation systems. The development and growth of the digital twin provided insight into how to address the problems associated with autonomous vehicles. Virtual representation of physical systems serves as the foundation for digital twins. A digital twin is an accurate virtual representation of a physical thing on a cloud that shows its lifetime and status. The term “Digital Twin-based Vehicular Ad-Hoc Network” refers to the cloud-based digital twin of a physical vehicle that synchronizes real-time sensing data from actual vehicles through wireless communication. Although digital twins can enhance the understanding of vehicle systems through virtual representations, they still require eficient data processing and analysis technologies to enable decision-making. Distributed or centralized training can serve as a foundation for Machine Learning (ML) because vehicles are reluctant to share their private information, and centralized training causes privacy leaks by moving data from dispersed devices to a centralized location. At the same time, traditional centralized machine learning methods have proven insuficient when dealing with nonindependent and identically distributed (non-IID) data."
+                    }
+                ]
+            },
+            "bbox": [
+                174,
+                251,
+                818,
+                598
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "Artificial Intelligence (AI) and Machine Learning (ML) have revolutionized biomedical research, enabling breakthroughs in areas such as antibody design Ahmed et al. (2026b), medical imaging Ahmed et al. (2023), and protein-protein interaction prediction Ahmed et al. (2026a). This demonstrates the power of AI in understanding complex molecular interactions Ahmed et al. (2025). However, the data sharing remains a bottleneck for research due to privacy concerns. Federated Learning(FL) is the most recent technique in digital twin-based vehicular ad hoc networks that addresses centralized learning (CL) issuesKhan et al. (2023). FL is well known for its ability to promote collaboration and protect data privacy in various domains, including industrial and medical cyber-physical systems AbdulRahman et al. (2020)Li et al. (2020). FL, which employs dispersed vehicles to learn a global FL model without transporting data from devices to a centralized site for training, is presented as a solution to this centralized ML constraint Khan et al. (2021). Compared to centralized ML, FL maintains better privacy. However, traditional federated learning faces issues such as slow convergence and insuficient accuracy when dealing with the diversity of vehicle types and limited vehicle data. Therefore, we use the Hierarchical Federated Transfer Learning (HFTL) technique in digital twin-based vehicular networks (DT-VANET). HFTL groups vehicles into diferent clusters based on their type, and pre-trained models are used to perform personalized model fine-tuning that fits each vehicle type’s specific needs. It also improves both prediction accuracy and convergence speed in a meaningful way."
+                    }
+                ]
+            },
+            "bbox": [
+                174,
+                598,
+                820,
+                854
+            ]
+        },
+        {
+            "type": "page_number",
+            "content": {
+                "page_number_content": [
+                    {
+                        "type": "text",
+                        "content": "3"
+                    }
+                ]
+            },
+            "bbox": [
+                490,
+                873,
+                504,
+                887
+            ]
+        }
+    ],
+    [
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": []
+            },
+            "bbox": [
+                173,
+                160,
+                818,
+                327
+            ]
+        },
+        {
+            "type": "image",
+            "content": {
+                "image_source": {
+                    "path": "images/6917d43d53e4f03ea666b18b72b62e8e0ab0323b2d047d9bf074d71787aa9516.jpg"
+                },
+                "image_caption": [
+                    {
+                        "type": "text",
+                        "content": "Figure 1: High-level architecture of Hierarchical Federated Transfer Learning for digital twin-based vehicular network"
+                    }
+                ],
+                "image_footnote": []
+            },
+            "bbox": [
+                183,
+                338,
+                816,
+                751
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "We also resolved another issue related to optimizing the route associated with the specific vehicle type and managing the aggregation of communication overhead between various vehicle types that makes precise and accurate predictions for each vehicle type. Our HFTL for DT-VANET has also successfully resolved this issue. To ensure our architecture is trustworthy and reliable, each vehicle will assess its data quality, vehicle health, and safe driving performance score, and these scores will be stored in the blockchain of the cloud, which can be used to give rewards later. We use blockchain’s tamperproof feature to ensure that recorded data cannot be maliciously altered. In that way, they are stopping untrustworthy vehicle nodes from uploading low-quality or fake data. Additionally, the distributed consensus mechanism of blockchain allows data quality scores to be shared across multiple nodes, making the global model updates more fair and reliable. Furthermore, the reward mechanism for vehicles can be automatically carried out through smart contracts. So, our research paper addresses issues and challenges related to privacy, eficiency, accuracy, and scalability of machine learning models in digital twin vehicle networks, enhancing model performance through implementing an HFTL approach."
+                    }
+                ]
+            },
+            "bbox": [
+                174,
+                813,
+                818,
+                851
+            ]
+        },
+        {
+            "type": "page_number",
+            "content": {
+                "page_number_content": [
+                    {
+                        "type": "text",
+                        "content": "4"
+                    }
+                ]
+            },
+            "bbox": [
+                490,
+                873,
+                504,
+                887
+            ]
+        }
+    ],
+    [
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": []
+            },
+            "bbox": [
+                174,
+                160,
+                818,
+                452
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "To the best of our knowledge and understanding, our work is the first to review HFTL and Trustworthiness metrics in a single architecture of DT-VANET. Also, we illustrate a scenario to enable vehicle networks based on digital twins through the diagram. We also discussed the related work, algorithms of HFTL, and performance metrics in twin-based vehicular networks. Therefore, the following is a summary of our contributions:"
+                    }
+                ]
+            },
+            "bbox": [
+                174,
+                452,
+                818,
+                561
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "1. We build a general thorough architecture for vehicular networks based on digital twins. A scenario for a digital twin-based vehicular network is shown, which enables eficient data synchronization between physical and virtual nodes of vehicles, enhancing the model’s scalability and response speed. Additionally, we ofer diagrams for twin-based vehicle networks."
+                    }
+                ]
+            },
+            "bbox": [
+                199,
+                570,
+                818,
+                679
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "2. We outline the algorithms of federated transfer learning in digital twinbased vehicular networks. It allows for model customization based on diferent vehicle types, which improves prediction accuracy and training eficiency."
+                    }
+                ]
+            },
+            "bbox": [
+                199,
+                681,
+                818,
+                753
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "3. Lastly, we conducted experiments on real-time datasets to evaluate the performance metrics. By comparing the performance of HFTL, Federated Learning (FL), and Centralized Learning (CL) in terms of model accuracy, training time, communication overhead, and resource consumption, we validated the advantages of HFTL in diferent scenarios."
+                    }
+                ]
+            },
+            "bbox": [
+                197,
+                756,
+                820,
+                848
+            ]
+        },
+        {
+            "type": "page_number",
+            "content": {
+                "page_number_content": [
+                    {
+                        "type": "text",
+                        "content": "5"
+                    }
+                ]
+            },
+            "bbox": [
+                490,
+                873,
+                504,
+                887
+            ]
+        }
+    ],
+    [
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "The rest of the paper is structured as follows: The related works are reviewed in Section 2. We suggest a Weighted Cloud Server Cycling Model Update Algorithm and an Inner Cluster Federated Transfer Learning Algorithm in Section 3. Subsequently, in Section 4, comprehensive experiments are conducted and evaluated to determine the eficiency and efectiveness of our suggested architecture. Finally, Section 6 discusses our conclusions."
+                    }
+                ]
+            },
+            "bbox": [
+                173,
+                160,
+                820,
+                270
+            ]
+        },
+        {
+            "type": "title",
+            "content": {
+                "title_content": [
+                    {
+                        "type": "text",
+                        "content": "2. Related Works"
+                    }
+                ],
+                "level": 2
+            },
+            "bbox": [
+                176,
+                289,
+                354,
+                306
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "This section overviews recent research on Hierarchical Federated Learning, Federated Transfer Learning, and Clustering Techniques for VANET."
+                    }
+                ]
+            },
+            "bbox": [
+                174,
+                315,
+                816,
+                353
+            ]
+        },
+        {
+            "type": "title",
+            "content": {
+                "title_content": [
+                    {
+                        "type": "text",
+                        "content": "2.1. Hierarchical Federated Learning in VANET"
+                    }
+                ],
+                "level": 2
+            },
+            "bbox": [
+                176,
+                364,
+                589,
+                381
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "Numerous research has presented the use of Federated Learning to address data privacy. However, Google suggested the first work on Federated Learning (FL) in 2016 Konečn`y et al. (2016) for conventional FL. In 2022, Li et al. Li et al. (2022) proposed a FEEL framework using Federated Learning for non-IID data. To predict the high accuracy of network trafic with a high volume of data, Sepasgozar et al. Sepasgozar and Pierre (2022) proposed a new Network Trafic Prediction (Fed-NTP) based on federated learning. Hierarchical Learning in Machine Learning was first introduced by Zhang et al. Zhang and Zhang (2006). The human approach to problem-solving in hierarchies inspires their work. In 2021, Goncalves et al. Gonçalves et al. (2021) discuss the Hierarchical approach for Security Framework in VANET. In 2024, HaghighiFard et al. HaghighiFard and Coleri (2024) discuss the use of Hierarchical Federated Learning in VANET. It uses the cosine similarity of FL model parameters and average relative speed as a metric for making clusters. Although Li et al.Li et al. (2022), the FEEL framework successfully applied federated learning to non-IID data environments. It did not fully address the data communication challenges in highly dynamic VANET environments. In contrast, HaghighiFard et al.HaghighiFard and Coleri (2024) introduced hierarchical federated learning, which reduced communication overhead to some extent. However, their clustering method still relies on fixed vehicle attributes, making it less adaptable to the rapid changes in vehicle environments."
+                    }
+                ]
+            },
+            "bbox": [
+                173,
+                383,
+                820,
+                785
+            ]
+        },
+        {
+            "type": "title",
+            "content": {
+                "title_content": [
+                    {
+                        "type": "text",
+                        "content": "2.2. Federated Transfer Learning in VANET"
+                    }
+                ],
+                "level": 2
+            },
+            "bbox": [
+                176,
+                796,
+                560,
+                814
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "Federated Transfer Learning(FTL) facilitates knowledge transfer without afecting user privacy. The FTL was first discussed by Liu et al. in 2020 Liu et al. (2020), where they enabled the target-domain party to use the source domain’s rich level to create adaptable and eficient models. In 2022, Otoum et al. Otoum et al. (2022) proposed an intrusion detection system in VANET. On that account, they have compared Split Learning, Federated Learning, and Transfer Learning. However, Liu et al. Liu et al. (2020) paper discusses Federated Transfer Learning. Still, the paper does not consider DT-VANET for their findings. Otoum et al. Otoum et al. (2022) consider federated transfer learning only for intrusion detection scenarios, not for digital twinbased communication."
+                    }
+                ]
+            },
+            "bbox": [
+                174,
+                816,
+                818,
+                853
+            ]
+        },
+        {
+            "type": "page_number",
+            "content": {
+                "page_number_content": [
+                    {
+                        "type": "text",
+                        "content": "6"
+                    }
+                ]
+            },
+            "bbox": [
+                490,
+                875,
+                504,
+                887
+            ]
+        }
+    ],
+    [
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": []
+            },
+            "bbox": [
+                173,
+                160,
+                818,
+                324
+            ]
+        },
+        {
+            "type": "title",
+            "content": {
+                "title_content": [
+                    {
+                        "type": "text",
+                        "content": "2.3. Clustering Techniques for VANET"
+                    }
+                ],
+                "level": 2
+            },
+            "bbox": [
+                176,
+                338,
+                514,
+                357
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "The primary purpose of clustering is to find discrete groups of vehicles in the environment. It will reduce the communication with the roadside units. Zia (2015) discusses various data-centric protocols related to clustering. The PasCar routing protocol was presented by Wang et al. Wang and Lin (2013) in 2013 to make a reliable cluster structure based on a single hop. It chooses suitable participants from candidate nodes. However, the single-hop mechanism limits the system’s coverage and stability. Because of this, there has been a lot of research on multi-hop clustering techniques in the years that followed. In 2022, Rashid et al. Rashid et al. (2020) discussed eficient multi-hop clustering based on prediction. This paper discusses increasing the cluster coverage area increase, link stability, energy eficiency, and mobility characteristics increase. Temurnikar et al. Temurnikar et al. (2022) in 2022 discussed a new Particle Swarm Optimization (PSO) based multi-hop method because of which you can use the best route. We can also select the Cluster head, which is much more stable. It also identified false messages from malicious vehicles. Zia et al. (2024) in 2024, discussed the possibility of using priorities to achieve faster response time. Compared to the techniques already mentioned, this paper introduces Hierarchical Federated Transfer Learning (HFTL), which ofers more flexible clustering to address vehicle heterogeneity. Additionally, integrating digital twin technology enables real-time data synchronization, improving prediction accuracy and reducing communication overhead."
+                    }
+                ]
+            },
+            "bbox": [
+                173,
+                361,
+                820,
+                763
+            ]
+        },
+        {
+            "type": "page_number",
+            "content": {
+                "page_number_content": [
+                    {
+                        "type": "text",
+                        "content": "7"
+                    }
+                ]
+            },
+            "bbox": [
+                491,
+                873,
+                504,
+                887
+            ]
+        }
+    ],
+    [
+        {
+            "type": "title",
+            "content": {
+                "title_content": [
+                    {
+                        "type": "text",
+                        "content": "3. THE PROPOSED HIERARCHICAL FEDERATED TRANS-FER LEARNING IN DIGITAL TWIN-BASED VEHICULAR NETWORKS"
+                    }
+                ],
+                "level": 2
+            },
+            "bbox": [
+                174,
+                159,
+                818,
+                213
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "In this section, we proposed a high-level secure and robust federated transfer learning architecture for vehicular networks, as shown in Figure 1. There is a digital twin layer, and the physical layer forms the two main layers of the proposed architecture. The physical layer consists of objects like base stations (BS), which help end users and distribute autonomous vehicles. The Digital Twin Layer consists of four essential parts: data storage, twin management, virtual model mapping, and blockchain Dai and Zhang (2022). It uses digital twins to efectively map the virtual twin system objects and real-vehicle edge computing. The cloud server implements the digital twin layer, and the idea of digital twin objects is used Khan et al. (2022a). A virtual representation of the physical system is known as a digital twin object, and it is doable to simulate numerous vehicle network operations and applications using this virtual representation type of the physical vehicular network. Mathematical and experimental methodologies can be used to model such network applications/functionsKhan et al. (2022b). However, as we know, mathematical modeling is highly dependent on assumptions; it might not be able to denote the actual network accurately. Meanwhile, mistakes may prevent experimental modeling from being accurate during experimentation. In digital twin-based vehicular networks, a data-driven modeling approach based on Federated Transfer Learning may be considered to overcome these problems. It also provides enhanced network performance and eficiency, improved safety and reliability, and allows advanced applications to run. Hierarchical Federated Transfer Learning(HFTL) in digital twins is used for precise and accurate prediction according to the vehicle type. Blockchain is also used to secure the trustworthiness metrics of the individual vehicle. We will now discuss the features of this architecture one by one."
+                    }
+                ]
+            },
+            "bbox": [
+                173,
+                226,
+                820,
+                702
+            ]
+        },
+        {
+            "type": "title",
+            "content": {
+                "title_content": [
+                    {
+                        "type": "text",
+                        "content": "3.1. Hierarchical Federated Transfer Learning (HFTL)"
+                    }
+                ],
+                "level": 2
+            },
+            "bbox": [
+                176,
+                714,
+                640,
+                733
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "HFTL’s clustering considers vehicle size, purpose, driving patterns, and computational resources. It will help to build a customized model. This model aligns with the learning goals and data properties specific to each kind of vehicle. As shown in Figure 1, vehicles are grouped according to the type of vehicles. The types of vehicles are classified according to vehicle size, purpose, and computational resources in Table 2. Generally, the vehicle with the most advanced features is selected as the cluster head."
+                    }
+                ]
+            },
+            "bbox": [
+                173,
+                737,
+                820,
+                848
+            ]
+        },
+        {
+            "type": "page_number",
+            "content": {
+                "page_number_content": [
+                    {
+                        "type": "text",
+                        "content": "8"
+                    }
+                ]
+            },
+            "bbox": [
+                490,
+                873,
+                504,
+                887
+            ]
+        }
+    ],
+    [
+        {
+            "type": "table",
+            "content": {
+                "image_source": {
+                    "path": "images/444b2910f5f05637bc125e4ecf4911a5a34cf95fc0b47cc7a46a3af0ba541540.jpg"
+                },
+                "table_caption": [
+                    {
+                        "type": "text",
+                        "content": "Table 2: Categorization of Vehicles"
+                    }
+                ],
+                "table_footnote": [],
+                "html": "<table><tr><td rowspan=1 colspan=1>Category ID</td><td rowspan=1 colspan=1>Category</td><td rowspan=1 colspan=1>Types of Vehicles</td></tr><tr><td rowspan=1 colspan=1>1</td><td rowspan=1 colspan=1>Regular Vehicles</td><td rowspan=1 colspan=1>Cars</td></tr><tr><td rowspan=1 colspan=1>2</td><td rowspan=1 colspan=1>Emergency Vehicles</td><td rowspan=1 colspan=1>Ambulances, Fire Trucks,Police Cars</td></tr><tr><td rowspan=1 colspan=1>3</td><td rowspan=1 colspan=1>Public Transportation Vehicles</td><td rowspan=1 colspan=1>Buses</td></tr><tr><td rowspan=1 colspan=1>4</td><td rowspan=1 colspan=1>Delivery Vehicles</td><td rowspan=1 colspan=1>Goods and Packages Trans-portation Vehicles</td></tr><tr><td rowspan=1 colspan=1>5</td><td rowspan=1 colspan=1>Specialized Vehicles</td><td rowspan=1 colspan=1>Construction Vehicles, Util-ity Vehicles, Road Mainte-nance Vehicles</td></tr><tr><td rowspan=1 colspan=1>6</td><td rowspan=1 colspan=1>Two-Wheel Regular Vehicles</td><td rowspan=1 colspan=1>Motorcycles</td></tr></table>",
+                "table_type": "complex_table",
+                "table_nest_level": 1
+            },
+            "bbox": [
+                178,
+                183,
+                815,
+                377
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": []
+            },
+            "bbox": [
+                176,
+                404,
+                669,
+                421
+            ]
+        },
+        {
+            "type": "equation_interline",
+            "content": {
+                "math_content": "D T = \\sum _ { i = 1 } ^ { n } \\sum _ { j = 1 } ^ { n } T v _ { j } \\in C _ { i }\\tag{1}",
+                "math_type": "latex",
+                "image_source": {
+                    "path": "images/f6a64844c8b02c5d88f18b3aaa5f7addb9899f8eb4882557c56abf9e43f07936.jpg"
+                }
+            },
+            "bbox": [
+                397,
+                429,
+                598,
+                477
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "Where "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "C _ { i }"
+                    },
+                    {
+                        "type": "text",
+                        "content": "is a cluster that contains a type of vehicle j."
+                    }
+                ]
+            },
+            "bbox": [
+                204,
+                488,
+                665,
+                506
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "Equation 1 discusses that in the Digital Twin, there are many clusters from "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "C _ { i }"
+                    },
+                    {
+                        "type": "text",
+                        "content": "to "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "C _ { n }"
+                    },
+                    {
+                        "type": "text",
+                        "content": "where each cluster "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "C _ { i }"
+                    },
+                    {
+                        "type": "text",
+                        "content": "contains only one type of vehicle "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "T v _ { j }"
+                    }
+                ]
+            },
+            "bbox": [
+                174,
+                506,
+                816,
+                542
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "Secondly, HFTL improves the convergence and heterogeneity in Dispersed Federated Learning. In HFTL, a pre-trained model is shared depending on the type of vehicle and target application, such as trafic flow prediction, collision risk prediction, intelligent parking prediction, etc. This pre-trained model will be fine-tuned using the vehicle’s private local data. This enables the model to be customized for the environment and based on the vehicle’s driving patterns. For example, public vehicles that require higher precision will have their model fine-tuning focus more on safety and route optimization. However, private vehicles may prioritize reducing idle times and optimizing the driving experience. After training, share the model update to the cloud server for the global model update. Therefore, model updates are combined from every vehicle’s digital twin to the cloud to make it a more robust and heterogeneous global model. Several digital twins of vehicles use these model updates to make decisions and predictions. The model updates from every vehicle digital twin are given weight according to the trustworthiness metrics. These metrics are recorded and verified through blockchain. Vehicles with higher trustworthiness have greater weight in global model updates, ensuring the security and accuracy of the model updates. These weights will be considered for the Global model update using the Federated Averaging Method."
+                    }
+                ]
+            },
+            "bbox": [
+                173,
+                542,
+                820,
+                854
+            ]
+        },
+        {
+            "type": "page_number",
+            "content": {
+                "page_number_content": [
+                    {
+                        "type": "text",
+                        "content": "9"
+                    }
+                ]
+            },
+            "bbox": [
+                490,
+                873,
+                504,
+                887
+            ]
+        }
+    ],
+    [
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": []
+            },
+            "bbox": [
+                174,
+                160,
+                818,
+                196
+            ]
+        },
+        {
+            "type": "image",
+            "content": {
+                "image_source": {
+                    "path": "images/bee2080acd1729184c8bfb0de0270354b82bc88c71bc17ef2c5965514139b21f.jpg"
+                },
+                "image_caption": [
+                    {
+                        "type": "text",
+                        "content": "Figure 2: The Flowchart and Vehicle type data flow for the Inner Cluster of Hierarchical Federated Transfer Learning"
+                    }
+                ],
+                "image_footnote": []
+            },
+            "bbox": [
+                178,
+                226,
+                812,
+                530
+            ]
+        },
+        {
+            "type": "title",
+            "content": {
+                "title_content": [
+                    {
+                        "type": "text",
+                        "content": "3.2. Digital Twin Based Vehicular Networks"
+                    }
+                ],
+                "level": 2
+            },
+            "bbox": [
+                176,
+                613,
+                555,
+                631
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "As we discussed briefly above, the digital twin architecture in VANET allows us to have many benefits, including improved decision-making, increased safety, predictive maintenance, optimized network performance, enhanced scalability, enhanced simulation and testing, real-time monitoring and maintenance, and cost reduction."
+                    }
+                ]
+            },
+            "bbox": [
+                173,
+                635,
+                818,
+                726
+            ]
+        },
+        {
+            "type": "title",
+            "content": {
+                "title_content": [
+                    {
+                        "type": "text",
+                        "content": "3.3. Blockchain Integration in Architecture"
+                    }
+                ],
+                "level": 2
+            },
+            "bbox": [
+                176,
+                739,
+                544,
+                757
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "In this architecture, blockchain can be defined as a distributed ledger integrated into DT-VANET-based HFTL architecture to manage and store weights. The trustworthiness metrics calculate every weight, as discussed in the next section. Low-weight model updates are not considered to update the global model to maintain integrity. It will also help us detect anomalies. We ensure the secure DT-VANET-based HFTL architecture through the weights and tamper-proof blockchain."
+                    }
+                ]
+            },
+            "bbox": [
+                173,
+                761,
+                820,
+                853
+            ]
+        },
+        {
+            "type": "page_number",
+            "content": {
+                "page_number_content": [
+                    {
+                        "type": "text",
+                        "content": "10"
+                    }
+                ]
+            },
+            "bbox": [
+                486,
+                873,
+                509,
+                887
+            ]
+        }
+    ],
+    [
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": []
+            },
+            "bbox": [
+                174,
+                160,
+                816,
+                195
+            ]
+        },
+        {
+            "type": "title",
+            "content": {
+                "title_content": [
+                    {
+                        "type": "text",
+                        "content": "3.4. Trustworthiness Metrics"
+                    }
+                ],
+                "level": 2
+            },
+            "bbox": [
+                176,
+                210,
+                426,
+                228
+            ]
+        },
+        {
+            "type": "equation_interline",
+            "content": {
+                "math_content": "\\begin{array} { r l } & { D T S _ { z } = w _ { 1 } \\cdot D T C _ { z } + w _ { 2 } \\cdot S R C _ { z } + w _ { 3 } \\cdot E _ { z } } \\\\ & { \\qquad + w _ { 4 } \\cdot C S F _ { z } + w _ { 5 } \\cdot G R H L _ { z } + w _ { 6 } \\cdot S F R _ { z } } \\end{array}\\tag{2}",
+                "math_type": "latex",
+                "image_source": {
+                    "path": "images/8928495e31f77ccc11336248d652e849e5b794f80add58145c6b245cecc90ccb.jpg"
+                }
+            },
+            "bbox": [
+                285,
+                258,
+                707,
+                300
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "where:"
+                    }
+                ]
+            },
+            "bbox": [
+                176,
+                313,
+                236,
+                328
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "equation_inline",
+                        "content": "D T S _ { z } ="
+                    },
+                    {
+                        "type": "text",
+                        "content": "The Data Quality Score of vehicle z"
+                    }
+                ]
+            },
+            "bbox": [
+                204,
+                359,
+                609,
+                377
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "equation_inline",
+                        "content": "D T C _ { z } ="
+                    },
+                    {
+                        "type": "text",
+                        "content": "The Data Completeness of vehicle z"
+                    }
+                ]
+            },
+            "bbox": [
+                204,
+                409,
+                611,
+                425
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "equation_inline",
+                        "content": "S R C _ { z }"
+                    },
+                    {
+                        "type": "text",
+                        "content": "= The sensor collaboration of vehicle z"
+                    }
+                ]
+            },
+            "bbox": [
+                205,
+                457,
+                612,
+                474
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "equation_inline",
+                        "content": "E _ { z } ="
+                    },
+                    {
+                        "type": "text",
+                        "content": "The events (trafic incidents, road conditions, etc.) recorded by vehicle z"
+                    }
+                ]
+            },
+            "bbox": [
+                205,
+                506,
+                816,
+                540
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "equation_inline",
+                        "content": "C S F _ { z } = { \" }"
+                    },
+                    {
+                        "type": "text",
+                        "content": "The constant format (According to Standard Data Formats) for vehicle z"
+                    }
+                ]
+            },
+            "bbox": [
+                205,
+                571,
+                815,
+                607
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "equation_inline",
+                        "content": "G R H L _ { z } = \\mathrm { T }"
+                    },
+                    {
+                        "type": "text",
+                        "content": "he General Health of vehicle "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "\\mathrm { ~ z ~ } ( \\mathrm { e . g . }"
+                    },
+                    {
+                        "type": "text",
+                        "content": "., looking after maintenance issues)"
+                    }
+                ]
+            },
+            "bbox": [
+                205,
+                638,
+                816,
+                674
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "equation_inline",
+                        "content": "S F R _ { z } ="
+                    },
+                    {
+                        "type": "text",
+                        "content": "The reliable and safe driving patterns for vehicle "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "\\mathrm { ^ { z , } }"
+                    }
+                ]
+            },
+            "bbox": [
+                205,
+                707,
+                735,
+                723
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "equation_inline",
+                        "content": "w _ { 1 } , w _ { 2 } , w _ { 3 } . . . w _ { 6 }"
+                    },
+                    {
+                        "type": "text",
+                        "content": "are the weights that are assigned with each factor"
+                    }
+                ]
+            },
+            "bbox": [
+                205,
+                737,
+                764,
+                755
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "Every vehicle will calculate its data quality score depending on data completeness, sensor collaboration, events, constant format, the vehicle’s general health, and safe, reliable driving patterns."
+                    }
+                ]
+            },
+            "bbox": [
+                174,
+                767,
+                816,
+                820
+            ]
+        },
+        {
+            "type": "equation_interline",
+            "content": {
+                "math_content": "R P S _ { z } ( t m + 1 ) = R P S _ { z } ( t m ) + \\alpha \\cdot D Q S _ { z } - \\beta \\cdot M _ { z }\\tag{3}",
+                "math_type": "latex",
+                "image_source": {
+                    "path": "images/18ecd8083e8b636cf52325670cb6a52946abc1feabae1c255beb615e4bb2774b.jpg"
+                }
+            },
+            "bbox": [
+                287,
+                833,
+                705,
+                853
+            ]
+        },
+        {
+            "type": "page_number",
+            "content": {
+                "page_number_content": [
+                    {
+                        "type": "text",
+                        "content": "11"
+                    }
+                ]
+            },
+            "bbox": [
+                486,
+                873,
+                508,
+                887
+            ]
+        }
+    ],
+    [
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "where:"
+                    }
+                ]
+            },
+            "bbox": [
+                176,
+                161,
+                236,
+                176
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "equation_inline",
+                        "content": "R P S _ { z } ( \\mathrm { t m } ) = \\mathrm { \\Delta }"
+                    },
+                    {
+                        "type": "text",
+                        "content": "The Reputation Score of vehicle z"
+                    }
+                ]
+            },
+            "bbox": [
+                204,
+                208,
+                629,
+                227
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "equation_inline",
+                        "content": "\\alpha ="
+                    },
+                    {
+                        "type": "text",
+                        "content": "The Weight for data quality score"
+                    }
+                ]
+            },
+            "bbox": [
+                204,
+                258,
+                553,
+                275
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "equation_inline",
+                        "content": "\\beta ="
+                    },
+                    {
+                        "type": "text",
+                        "content": "The malicious behaviour Penalty factor"
+                    }
+                ]
+            },
+            "bbox": [
+                205,
+                306,
+                599,
+                324
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "equation_inline",
+                        "content": "M _ { z } = { ' }"
+                    },
+                    {
+                        "type": "text",
+                        "content": "The malicious activity indicator for vehicle "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "\\mathrm { ~ z ~ } ( 0 \\ \\mathrm { o r \\ 1 } )"
+                    }
+                ]
+            },
+            "bbox": [
+                204,
+                356,
+                727,
+                373
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "equation_inline",
+                        "content": "R P S _ { z } ( \\mathrm { t m } + 1 ) = \\mathrm { A t }"
+                    },
+                    {
+                        "type": "text",
+                        "content": "tm "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "+ ~ 1"
+                    },
+                    {
+                        "type": "text",
+                        "content": ", updated reputation score of vehicle z"
+                    }
+                ]
+            },
+            "bbox": [
+                204,
+                405,
+                792,
+                422
+            ]
+        },
+        {
+            "type": "equation_interline",
+            "content": {
+                "math_content": "W t _ { z } = \\frac { R P S _ { z } } { \\sum _ { m = 1 } ^ { n } { R P S _ { m } } }\\tag{4}",
+                "math_type": "latex",
+                "image_source": {
+                    "path": "images/ab271e954606153da1e75bd286765de78fd407796d4663d910a445fcd8ba6c0d.jpg"
+                }
+            },
+            "bbox": [
+                405,
+                433,
+                586,
+                474
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "where:"
+                    }
+                ]
+            },
+            "bbox": [
+                174,
+                478,
+                236,
+                494
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "equation_inline",
+                        "content": "W T _ { z }"
+                    },
+                    {
+                        "type": "text",
+                        "content": "= Weight of vehicle z’s model update."
+                    }
+                ]
+            },
+            "bbox": [
+                205,
+                526,
+                593,
+                545
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "equation_inline",
+                        "content": "n ="
+                    },
+                    {
+                        "type": "text",
+                        "content": "Total number of vehicles"
+                    }
+                ]
+            },
+            "bbox": [
+                205,
+                558,
+                475,
+                574
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "These scores are input to the reputation system maintained at the cloud end. This reputation system helps DT-VANET to assign weight to the model update as described in the previous section. It will also help to keep the malicious vehicle from interfering."
+                    }
+                ]
+            },
+            "bbox": [
+                173,
+                588,
+                816,
+                661
+            ]
+        },
+        {
+            "type": "equation_interline",
+            "content": {
+                "math_content": "\\Delta R P S _ { z } = R P S _ { z } ( t m + 1 ) - R S _ { z } ( t m )\\tag{5}",
+                "math_type": "latex",
+                "image_source": {
+                    "path": "images/6f4fb446b28fa13f40e542e77ba96de892af3abbf92712a55b6cffe64f5b9255.jpg"
+                }
+            },
+            "bbox": [
+                338,
+                676,
+                655,
+                695
+            ]
+        },
+        {
+            "type": "equation_interline",
+            "content": {
+                "math_content": "B C _ { z } = \\{ \\Delta R P S _ { z } ( t m _ { 1 } ) , \\Delta R P S _ { z } ( t m _ { 2 } ) , . . . , \\Delta R P S _ { z } ( t m _ { n } ) \\}",
+                "math_type": "latex",
+                "image_source": {
+                    "path": "images/d731ef373c4bb0bec1201dce4879b8768d34ab67a1e6264c1bc9d7e304ba58ca.jpg"
+                }
+            },
+            "bbox": [
+                264,
+                708,
+                728,
+                728
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "where:"
+                    }
+                ]
+            },
+            "bbox": [
+                174,
+                737,
+                236,
+                752
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "equation_inline",
+                        "content": "B C _ { z }"
+                    },
+                    {
+                        "type": "text",
+                        "content": "is the set of reputation changes over the time "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "t _ { 1 } , t _ { 2 } , . . . t _ { m }"
+                    },
+                    {
+                        "type": "text",
+                        "content": "for vehicle z"
+                    }
+                ]
+            },
+            "bbox": [
+                204,
+                785,
+                816,
+                820
+            ]
+        },
+        {
+            "type": "page_number",
+            "content": {
+                "page_number_content": [
+                    {
+                        "type": "text",
+                        "content": "12"
+                    }
+                ]
+            },
+            "bbox": [
+                486,
+                873,
+                509,
+                887
+            ]
+        }
+    ],
+    [
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "The reputation of a vehicle changes over time, and digital twins on the cloud are in charge of figuring out and recording these value changes on the blockchain."
+                    }
+                ]
+            },
+            "bbox": [
+                173,
+                160,
+                818,
+                214
+            ]
+        },
+        {
+            "type": "equation_interline",
+            "content": {
+                "math_content": "R W _ { z } = f ( R P S _ { z } ) \\quad \\mathrm { w h e r e } \\quad f ^ { \\prime } ( R P S _ { z } ) > 0\\tag{6}",
+                "math_type": "latex",
+                "image_source": {
+                    "path": "images/c3786b7fb80d2139343d915460aa49977b5523ed666aed836a923d46ccb325d4.jpg"
+                }
+            },
+            "bbox": [
+                320,
+                228,
+                673,
+                248
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "Where:"
+                    }
+                ]
+            },
+            "bbox": [
+                176,
+                262,
+                243,
+                280
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "equation_inline",
+                        "content": "R W _ { z }"
+                    },
+                    {
+                        "type": "text",
+                        "content": "for vehicle z be a function of reputation score "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "R P S _ { z }"
+                    }
+                ]
+            },
+            "bbox": [
+                204,
+                292,
+                714,
+                311
+            ]
+        },
+        {
+            "type": "equation_interline",
+            "content": {
+                "math_content": "R W _ { z } = \\gamma \\cdot R P S _ { z }",
+                "math_type": "latex",
+                "image_source": {
+                    "path": "images/aaf957e4b44d4fa64b788965dc181873db21ff966700b7e972864b8bad883c8b.jpg"
+                }
+            },
+            "bbox": [
+                423,
+                324,
+                570,
+                343
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "Where:"
+                    }
+                ]
+            },
+            "bbox": [
+                176,
+                351,
+                243,
+                367
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "• "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "\\gamma"
+                    },
+                    {
+                        "type": "text",
+                        "content": "is used for changing reputation score "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "R P S _ { z }"
+                    },
+                    {
+                        "type": "text",
+                        "content": "into a specific reward with a scaling factor."
+                    }
+                ]
+            },
+            "bbox": [
+                204,
+                381,
+                816,
+                417
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "Vehicles with good scores and positive contributions may be rewarded with tax or toll reductions or urgent access to services."
+                    }
+                ]
+            },
+            "bbox": [
+                174,
+                430,
+                816,
+                467
+            ]
+        },
+        {
+            "type": "equation_interline",
+            "content": {
+                "math_content": "R P S _ { z } < \\theta \\implies \\mathrm { V e h i c l e } \\ z \\ \\mathrm { i s \\ e x c l u d e d \\ f r o m \\ p a r t i c i p a t i o n } .\\tag{7}",
+                "math_type": "latex",
+                "image_source": {
+                    "path": "images/5655511e5a403369ecd7f63739cf593b29fe5917168a2d540f12091a9ecd173c.jpg"
+                }
+            },
+            "bbox": [
+                256,
+                482,
+                735,
+                501
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "Where:"
+                    }
+                ]
+            },
+            "bbox": [
+                176,
+                515,
+                243,
+                532
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "• Malicious Vehicle reputation score "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "R P S _ { z }"
+                    },
+                    {
+                        "type": "text",
+                        "content": "for vehicle z is considered dangerous and stopped from participation"
+                    }
+                ]
+            },
+            "bbox": [
+                204,
+                546,
+                816,
+                584
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "A blockchain ensures tamper-proof records of participation, high-quality data, and protocol enforcement."
+                    }
+                ]
+            },
+            "bbox": [
+                174,
+                595,
+                818,
+                632
+            ]
+        },
+        {
+            "type": "page_number",
+            "content": {
+                "page_number_content": [
+                    {
+                        "type": "text",
+                        "content": "13"
+                    }
+                ]
+            },
+            "bbox": [
+                486,
+                872,
+                509,
+                887
+            ]
+        }
+    ],
+    [
+        {
+            "type": "algorithm",
+            "content": {
+                "algorithm_caption": [],
+                "algorithm_content": [
+                    {
+                        "type": "text",
+                        "content": "Algorithm 1 Weighted Cloud Server Cycling Model Update 1: The central cloud server has existing model parameters "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "W _ { e x i s t }"
+                    },
+                    {
+                        "type": "text",
+                        "content": "and digital twin of the entire system for simulation; 2: Initialize "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "C _ { n }"
+                    },
+                    {
+                        "type": "text",
+                        "content": "; 3: for each update "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "j = 0 , 1 , 2 , \\cdots , j - 1"
+                    },
+                    {
+                        "type": "text",
+                        "content": "do 4: "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "W _ { e x i s t } ^ { - } = W _ { e x i s t } ;"
+                    },
+                    {
+                        "type": "text",
+                        "content": "5: Select cluster i from "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "C _ { n } ;"
+                    },
+                    {
+                        "type": "text",
+                        "content": "6: Send "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "W _ { e x i s t } ^ { - }"
+                    },
+                    {
+                        "type": "text",
+                        "content": "to Digital Twin of cluster i ; 7: c =Inner-Cluster "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "\\left( W _ { e x i s t } ^ { - } \\right)"
+                    },
+                    {
+                        "type": "text",
+                        "content": "; 8: Calculate "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "F _ { w e i g h t } ( W _ { e x i s t } ^ { + } )"
+                    },
+                    {
+                        "type": "text",
+                        "content": "; 9: Eliminate i from "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "C _ { n } ;"
+                    },
+                    {
+                        "type": "text",
+                        "content": "10: Update "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "W _ { e x i s t }"
+                    },
+                    {
+                        "type": "text",
+                        "content": "; 11: end for 12: Acquire the final model parameters "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "W _ { e x i s t }"
+                    },
+                    {
+                        "type": "text",
+                        "content": ";"
+                    }
+                ],
+                "algorithm_footnote": []
+            },
+            "bbox": [
+                176,
+                196,
+                816,
+                463
+            ]
+        },
+        {
+            "type": "title",
+            "content": {
+                "title_content": [
+                    {
+                        "type": "text",
+                        "content": "3.5.1. Initialization"
+                    }
+                ],
+                "level": 2
+            },
+            "bbox": [
+                176,
+                484,
+                349,
+                501
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "First, the central cloud server has existing model parameters for the Federated Transfer Learning Process and the digital twins for the entire VANET. It initializes the collection of clusters that have not yet participated in Federated Transfer Learning."
+                    }
+                ]
+            },
+            "bbox": [
+                174,
+                503,
+                816,
+                578
+            ]
+        },
+        {
+            "type": "title",
+            "content": {
+                "title_content": [
+                    {
+                        "type": "text",
+                        "content": "3.5.2. Selection of Training Clusters"
+                    }
+                ],
+                "level": 2
+            },
+            "bbox": [
+                176,
+                592,
+                490,
+                609
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "We have a collection of clusters "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "C _ { n }"
+                    },
+                    {
+                        "type": "text",
+                        "content": "that participates in FTL Learning. If we want to take updates from all the clusters in the environment, then "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "C _ { n }"
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "= \\mathrm { ~ n ~ }"
+                    },
+                    {
+                        "type": "text",
+                        "content": ". There are j model updates in total. Each cluster contains a group of specific types of vehicles. The central cloud server sends the latest model parameters to a base station that forwards it to the particular cluster in "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "C _ { n }"
+                    },
+                    {
+                        "type": "text",
+                        "content": "that needs the prediction to be done. The cluster may be chosen based on the requirement to make some predictions. Pre-trained model parameters at the start of the jth update are sent to the base station of a selected cluster’s digital twin in "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "C _ { n }"
+                    },
+                    {
+                        "type": "text",
+                        "content": ". This allows the vehicle in that cluster to carry out innercluster training to derive the model parameters "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "W _ { \\mathrm { e x i s t } } ^ { - }"
+                    },
+                    {
+                        "type": "text",
+                        "content": ". The details of the inner-cluster training will be covered in the following subsection. It is not observable to the central cloud server."
+                    }
+                ]
+            },
+            "bbox": [
+                174,
+                611,
+                818,
+                832
+            ]
+        },
+        {
+            "type": "page_header",
+            "content": {
+                "page_header_content": [
+                    {
+                        "type": "text",
+                        "content": "3.5. Cloud Server Hierarchical Federated Transfer Learning"
+                    }
+                ]
+            },
+            "bbox": [
+                176,
+                160,
+                681,
+                178
+            ]
+        },
+        {
+            "type": "page_number",
+            "content": {
+                "page_number_content": [
+                    {
+                        "type": "text",
+                        "content": "14"
+                    }
+                ]
+            },
+            "bbox": [
+                486,
+                873,
+                509,
+                887
+            ]
+        }
+    ],
+    [
+        {
+            "type": "title",
+            "content": {
+                "title_content": [
+                    {
+                        "type": "text",
+                        "content": "3.5.3. Updates to the Cloud Central Model"
+                    }
+                ],
+                "level": 2
+            },
+            "bbox": [
+                176,
+                160,
+                542,
+                178
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "We denote the model parameters that the central cloud server sends to and receives from the base station for cluster i in the jth update as "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "W _ { \\mathbf { e x } } ^ { - }"
+                    },
+                    {
+                        "type": "text",
+                        "content": "ist and "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "W _ { \\mathrm { e x i s t } } ^ { + }"
+                    },
+                    {
+                        "type": "text",
+                        "content": ". We calculate the weight of the received model parameters using the scores we received for each vehicle in the given cluster."
+                    }
+                ]
+            },
+            "bbox": [
+                174,
+                179,
+                818,
+                252
+            ]
+        },
+        {
+            "type": "equation_interline",
+            "content": {
+                "math_content": "F _ { \\mathrm { w e i g h t } } ( W _ { \\mathrm { e x i s t } } ^ { + } ) = \\frac { \\sum S r } { | v | }\\tag{8}",
+                "math_type": "latex",
+                "image_source": {
+                    "path": "images/8747d4a98c03a8fe379f7a255ca743e41e77dcd8dfbb9300794b81f2dbe3f3c5.jpg"
+                }
+            },
+            "bbox": [
+                398,
+                263,
+                594,
+                304
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "In the above equation 8, "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "\\sum S r"
+                    },
+                    {
+                        "type": "text",
+                        "content": "is the sum of all the scores that each vehicle DT calculated in the given cluster, and |v| is the number representing all the vehicles in each cluster. If there is only one vehicle in the cluster due to a lack of homogeneous vehicle type in the surroundings, we will consider a cluster of only one vehicle. This overall provides us with the average score of vehicles in a cluster. However, If the output weight is below a certain threshold, regarded as the data quality it is trained on is not good enough to update the global model ModelUpdate(.) at the central cloud server. Cluster i will be removed from the "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "C _ { n }"
+                    },
+                    {
+                        "type": "text",
+                        "content": "after deciding whether to update the global model parameters based on the average score of clusters. After j updates, a complete network model with parameters "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "W _ { e x i s t }"
+                    },
+                    {
+                        "type": "text",
+                        "content": "is determined. Algorithm 1 indicates that our suggested architecture framework needs j-cluster iterations of the inner-cluster algorithm for the central cloud server updates."
+                    }
+                ]
+            },
+            "bbox": [
+                173,
+                315,
+                818,
+                555
+            ]
+        },
+        {
+            "type": "page_number",
+            "content": {
+                "page_number_content": [
+                    {
+                        "type": "text",
+                        "content": "15"
+                    }
+                ]
+            },
+            "bbox": [
+                486,
+                872,
+                509,
+                888
+            ]
+        }
+    ],
+    [
+        {
+            "type": "title",
+            "content": {
+                "title_content": [
+                    {
+                        "type": "text",
+                        "content": "3.6. Inter Cluster Hierarchical Federated Transfer Learning"
+                    }
+                ],
+                "level": 2
+            },
+            "bbox": [
+                176,
+                159,
+                681,
+                178
+            ]
+        },
+        {
+            "type": "algorithm",
+            "content": {
+                "algorithm_caption": [],
+                "algorithm_content": [
+                    {
+                        "type": "text",
+                        "content": "Algorithm 2 Inner Cluster Hierarchical Federated Transfer Learning Input: The model parameters of the cluster’s digital twin that need to be fine-tuned "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "W _ { \\mathrm { e x i s t } } ^ { - }"
+                    },
+                    {
+                        "type": "text",
+                        "content": "Output: The updated fine-tuned trained model parameters "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "W _ { \\mathrm { e x i s t } } ^ { + }"
+                    },
+                    {
+                        "type": "text",
+                        "content": "1: Inner-Cluster(): 2: (I). For base station: 3: Receive "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "W _ { e x i s t } ^ { - }"
+                    },
+                    {
+                        "type": "text",
+                        "content": "from the central cloud server; 4: Send "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "W _ { e x i s t } ^ { - }"
+                    },
+                    {
+                        "type": "text",
+                        "content": "to "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "V _ { h }"
+                    },
+                    {
+                        "type": "text",
+                        "content": "; 5: Receive "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "W _ { e x i s t } ^ { + }"
+                    },
+                    {
+                        "type": "text",
+                        "content": "and Sr from "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "V _ { h } ;"
+                    },
+                    {
+                        "type": "text",
+                        "content": "6: Send "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "W _ { e x i s t } ^ { + }"
+                    },
+                    {
+                        "type": "text",
+                        "content": "and Sr to the central cloud server; 7: 8: (II). For head vehicle DT "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "V _ { h } { : }"
+                    },
+                    {
+                        "type": "text",
+                        "content": "9: Receive "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "w _ { h } ^ { - } = W _ { e x i s t } ^ { - }"
+                    },
+                    {
+                        "type": "text",
+                        "content": "from the base station; 10: Note its post arrange vehicles into set "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "P o _ { h }"
+                    },
+                    {
+                        "type": "text",
+                        "content": "11: for all vehicles "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "v \\in P o _ { h }"
+                    },
+                    {
+                        "type": "text",
+                        "content": "do 12: Send "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "w _ { h } ^ { - }"
+                    },
+                    {
+                        "type": "text",
+                        "content": "to vehicle DT ; 13: Receive "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "w _ { v } \\mathrm { ~ , ~ } D Q _ { v }"
+                    },
+                    {
+                        "type": "text",
+                        "content": "and Sr from each vehicle DT; 14: Update "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "w _ { h } ^ { - } ="
+                    },
+                    {
+                        "type": "text",
+                        "content": "combine "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "( w _ { h } ^ { - } \\ , w _ { v } \\ , D t Q _ { v } \\ , \\ \\mathrm { S r } )"
+                    },
+                    {
+                        "type": "text",
+                        "content": "15: end for 16: "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "w _ { h } ^ { - } = \\mathbf { F I N E \\_ T U N } ( w _ { h } \\ , \\ D t Q _ { v } )"
+                    },
+                    {
+                        "type": "text",
+                        "content": "17: Send "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "w _ { h } ^ { + }"
+                    },
+                    {
+                        "type": "text",
+                        "content": "and Sr to the base station; 18: 19: (III). For route vehicle DT "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "V _ { r } \\colon"
+                    },
+                    {
+                        "type": "text",
+                        "content": "20: Receive "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "w _ { r } ^ { - }"
+                    },
+                    {
+                        "type": "text",
+                        "content": "<sup>−</sup> from its previous vehicle DT ; 21: Note its post arrange vehicles into set "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "P o _ { r }"
+                    },
+                    {
+                        "type": "text",
+                        "content": "22: for all vehicles "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "v \\in P o _ { r }"
+                    },
+                    {
+                        "type": "text",
+                        "content": "do 23: Send "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "w _ { r } ^ { - }"
+                    },
+                    {
+                        "type": "text",
+                        "content": "to vehicle DT ; 24: Receive "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "w _ { v } \\mathrm { ~ , ~ } D Q _ { v }"
+                    },
+                    {
+                        "type": "text",
+                        "content": "and Sr from each vehicle DT; 25: Update "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "w _ { r } ^ { - } = \\mathrm { c o m b i n e } ( w _ { r } ^ { - } \\ , w _ { v } \\ , D t Q _ { v } \\ , \\mathrm { S r } )"
+                    },
+                    {
+                        "type": "text",
+                        "content": "; 26: end for 27: w<sup>−</sup> = Fine "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "\\mathbf { T U N } ( w _ { r } \\ , D t Q _ { v } )"
+                    },
+                    {
+                        "type": "text",
+                        "content": "; 28: Update "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "D t Q _ { r }"
+                    },
+                    {
+                        "type": "text",
+                        "content": "and Sr; 29: Send "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "w _ { r } , D t Q _ { r }"
+                    },
+                    {
+                        "type": "text",
+                        "content": "and Sr to its previous vehicle DT; 30: 31: (IV). For edge vehicle DT "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "V _ { e } { \\mathrm { : } }"
+                    },
+                    {
+                        "type": "text",
+                        "content": "32: Receive "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "w _ { e } ^ { - }"
+                    },
+                    {
+                        "type": "text",
+                        "content": "from its previous vehicle DT; 33: w<sup>−</sup> = Fine "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "\\mathbf { T U N } ( w _ { e } \\ , \\ D t Q _ { e } )"
+                    },
+                    {
+                        "type": "text",
+                        "content": "<sub>;</sub>16 34: "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "D t Q _ { e } = | D a t a _ { e v } | ;"
+                    },
+                    {
+                        "type": "text",
+                        "content": "35: Send "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "w _ { e } , D t Q _ { e }"
+                    },
+                    {
+                        "type": "text",
+                        "content": "and Sr to its previous vehicle DT;"
+                    }
+                ],
+                "algorithm_footnote": []
+            },
+            "bbox": [
+                173,
+                184,
+                826,
+                939
+            ]
+        }
+    ],
+    [
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "The Algorithm 2 sequence of collaboration and flowchart across vehicles in a cluster is depicted in Figure 2.In our proposed framework, vehicles are further divided into three groups in a cluster named edge vehicle DT "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "V _ { e } ,"
+                    },
+                    {
+                        "type": "text",
+                        "content": "route vehicle DT "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "V _ { r }"
+                    },
+                    {
+                        "type": "text",
+                        "content": ", and head vehicle DT "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "V _ { h }"
+                    },
+                    {
+                        "type": "text",
+                        "content": "if there is more than one vehicle in a cluster which draws inspiration from earlier work HaghighiFard and Coleri (2024) that separates vehicles in each cluster into cluster head and cluster members."
+                    }
+                ]
+            },
+            "bbox": [
+                174,
+                160,
+                818,
+                286
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "Assumption 1: The Inner Cluster training occurs on any cluster i digital twin that belongs to the Cn cluster’s collection. We assume that our cluster consists of head, route, and edge vehicles. However, if any cluster is not formed of the same vehicle collection, the relevant portion of the cluster will be discarded."
+                    }
+                ]
+            },
+            "bbox": [
+                174,
+                287,
+                818,
+                378
+            ]
+        },
+        {
+            "type": "title",
+            "content": {
+                "title_content": [
+                    {
+                        "type": "text",
+                        "content": "3.6.1. Base Station"
+                    }
+                ],
+                "level": 2
+            },
+            "bbox": [
+                176,
+                393,
+                348,
+                410
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "After the head vehicle, DT "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "v _ { h }"
+                    },
+                    {
+                        "type": "text",
+                        "content": ", completes its training, it shares the updated model parameters and data quality score with the base station. The Base Station then shares its model parameters and data quality score with the global model that resides on the cloud server. The relevant global model will be updated only after the cluster has a good aggregated data quality score."
+                    }
+                ]
+            },
+            "bbox": [
+                174,
+                412,
+                818,
+                522
+            ]
+        },
+        {
+            "type": "title",
+            "content": {
+                "title_content": [
+                    {
+                        "type": "text",
+                        "content": "3.6.2. Head Vehicle"
+                    }
+                ],
+                "level": 2
+            },
+            "bbox": [
+                176,
+                537,
+                349,
+                554
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "When there is more than one vehicle in the cluster, there is always a Head Vehicle "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "v _ { h }"
+                    },
+                    {
+                        "type": "text",
+                        "content": ". No vehicle exists before the head vehicle "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "v _ { h }"
+                    },
+                    {
+                        "type": "text",
+                        "content": "in the cluster. It is directly connected to the base station if there is more than one vehicle. For HFTL to execute, the base station sends global model parameters to "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "v _ { h }"
+                    },
+                    {
+                        "type": "text",
+                        "content": "vehicle DT, which forwards global parameters to the vehicle DT that exists next to this vehicle DT in the cluster. To represent the collection of all the vehicles that are next to "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "v _ { h }"
+                    },
+                    {
+                        "type": "text",
+                        "content": "vehicle, we use "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "P o _ { h }"
+                    },
+                    {
+                        "type": "text",
+                        "content": ". The updated fine-tuned global parameters "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "w _ { v } ."
+                    },
+                    {
+                        "type": "text",
+                        "content": ", for constructing model parameters Data Quantity "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "D Q _ { \\iota }"
+                    },
+                    {
+                        "type": "text",
+                        "content": "and Sr is the Data Quality scores are received by the "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "v _ { h }"
+                    },
+                    {
+                        "type": "text",
+                        "content": "vehicle DT for integration when the next vehicle DT is finished with their fine-tuning."
+                    }
+                ]
+            },
+            "bbox": [
+                174,
+                558,
+                818,
+                757
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "While integrating, we give weightage to the parameters according to the amount of data on which it is fine-tuned and their data quality scores. After this, the "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "v _ { h }"
+                    },
+                    {
+                        "type": "text",
+                        "content": "vehicle DT forwards the updated integrated model parameters and scores to the next vehicle’s DT, which remains in the cluster for finetuning. The above procedure continues until all the remaining vehicle DTs are completed with the fine-tuning. Ultimately, the model is fine-tuned using the local data of "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "v _ { h }"
+                    },
+                    {
+                        "type": "text",
+                        "content": "vehicle DT, and the Data quality score is calculated. The finalized fine-tuned model parameters and Data Quality Score are then sent to the base station."
+                    }
+                ]
+            },
+            "bbox": [
+                174,
+                758,
+                820,
+                849
+            ]
+        },
+        {
+            "type": "page_number",
+            "content": {
+                "page_number_content": [
+                    {
+                        "type": "text",
+                        "content": "17"
+                    }
+                ]
+            },
+            "bbox": [
+                486,
+                873,
+                509,
+                887
+            ]
+        }
+    ],
+    [
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": []
+            },
+            "bbox": [
+                174,
+                160,
+                818,
+                233
+            ]
+        },
+        {
+            "type": "title",
+            "content": {
+                "title_content": [
+                    {
+                        "type": "text",
+                        "content": "3.6.3. Route Vehicle"
+                    }
+                ],
+                "level": 2
+            },
+            "bbox": [
+                176,
+                247,
+                356,
+                263
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "A vehicle that functions as a routing vehicle DT is represented by the symbol "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "v _ { r } ,"
+                    },
+                    {
+                        "type": "text",
+                        "content": "which is a type of vehicle that has at least one predecessor vehicle and one successor vehicle. The "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "v _ { r }"
+                    },
+                    {
+                        "type": "text",
+                        "content": "vehicle DT gets the model parameters "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "w _ { r } ^ { - }"
+                    },
+                    {
+                        "type": "text",
+                        "content": "from "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "v _ { h }"
+                    },
+                    {
+                        "type": "text",
+                        "content": "the predecessor vehicle DT and sends them to all the successor vehicles DT one at a time. Like "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "v _ { h }"
+                    },
+                    {
+                        "type": "text",
+                        "content": "DT, "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "v _ { r }"
+                    },
+                    {
+                        "type": "text",
+                        "content": "DT integrates "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "w _ { r } ^ { - }"
+                    },
+                    {
+                        "type": "text",
+                        "content": "with model parameters received after fine-tuning from the successor vehicle and continues with the same process until the successor vehicles in the collection are done with the same. After that, "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "v _ { r }"
+                    },
+                    {
+                        "type": "text",
+                        "content": "DT, using its local data, fine-tunes the model parameters and calculates the Data Quality Score. After this, "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "v _ { r }"
+                    },
+                    {
+                        "type": "text",
+                        "content": "sent it to the predecessor vehicle."
+                    }
+                ]
+            },
+            "bbox": [
+                173,
+                267,
+                820,
+                450
+            ]
+        },
+        {
+            "type": "title",
+            "content": {
+                "title_content": [
+                    {
+                        "type": "text",
+                        "content": "3.6.4. Edge Vehicle"
+                    }
+                ],
+                "level": 2
+            },
+            "bbox": [
+                176,
+                464,
+                348,
+                482
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "The term "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "v _ { e }"
+                    },
+                    {
+                        "type": "text",
+                        "content": "describes a vehicle DT that is either the only vehicle in the cluster or has only predecessor vehicles but no successor vehicles. If it is the only vehicle, it will forward model parameters directly to the base station; otherwise, it will send them to the predecessor vehicles. When "
+                    },
+                    {
+                        "type": "equation_inline",
+                        "content": "v _ { e }"
+                    },
+                    {
+                        "type": "text",
+                        "content": "DT gets model parameters from its predecessor vehicle’s DTs, it performs fine-tuning and sends back the model parameters and data quality score(Sr) to the predecessor vehicle DT."
+                    }
+                ]
+            },
+            "bbox": [
+                174,
+                484,
+                818,
+                611
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "By making clusters of similar vehicle types, we also make a low communication overhead with fewer links to the base station. We also make sure that our trained model is customized to each type of vehicle separately."
+                    }
+                ]
+            },
+            "bbox": [
+                174,
+                613,
+                818,
+                667
+            ]
+        },
+        {
+            "type": "title",
+            "content": {
+                "title_content": [
+                    {
+                        "type": "text",
+                        "content": "3.6.5. Example Scenario"
+                    }
+                ],
+                "level": 2
+            },
+            "bbox": [
+                176,
+                681,
+                390,
+                699
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "We present an example of specific Intelligent Transportation System(ITS) applications where Hierarchical Federated Transfer Learning (HFTL) in Digital Twin Vehicular Networks could be particularly beneficial:"
+                    }
+                ]
+            },
+            "bbox": [
+                174,
+                702,
+                816,
+                756
+            ]
+        },
+        {
+            "type": "title",
+            "content": {
+                "title_content": [
+                    {
+                        "type": "text",
+                        "content": "1. Trafic Flow Management"
+                    }
+                ],
+                "level": 2
+            },
+            "bbox": [
+                200,
+                765,
+                446,
+                781
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "HFTL in DT-VANET can enhance trafic flow by aggregating data from sensors of multiple vehicles to accurately predict real-time trafic congestion patterns. The digital twin also adjusts the signal timings"
+                    }
+                ]
+            },
+            "bbox": [
+                220,
+                784,
+                818,
+                839
+            ]
+        },
+        {
+            "type": "page_number",
+            "content": {
+                "page_number_content": [
+                    {
+                        "type": "text",
+                        "content": "18"
+                    }
+                ]
+            },
+            "bbox": [
+                486,
+                873,
+                509,
+                887
+            ]
+        }
+    ],
+    [
+        {
+            "type": "image",
+            "content": {
+                "image_source": {
+                    "path": "images/48cdcac49b688067879ee093295a14a04d0c2cf0c6520693caff0af3b8f35b44.jpg"
+                },
+                "image_caption": [
+                    {
+                        "type": "text",
+                        "content": "Figure 3: Twelve random topologies Network X generated"
+                    }
+                ],
+                "image_footnote": []
+            },
+            "bbox": [
+                183,
+                159,
+                812,
+                383
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "in real-time according to trafic conditions, helping to maintain trafic flow."
+                    }
+                ]
+            },
+            "bbox": [
+                222,
+                439,
+                816,
+                473
+            ]
+        },
+        {
+            "type": "title",
+            "content": {
+                "title_content": [
+                    {
+                        "type": "text",
+                        "content": "2. Predictive Maintenance"
+                    }
+                ],
+                "level": 2
+            },
+            "bbox": [
+                199,
+                477,
+                428,
+                492
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "By analyzing the patterns of component failures, the system can predict the maintenance needs of the vehicle’s components(e.g., Brake issues, engine performance)."
+                    }
+                ]
+            },
+            "bbox": [
+                210,
+                494,
+                816,
+                547
+            ]
+        },
+        {
+            "type": "title",
+            "content": {
+                "title_content": [
+                    {
+                        "type": "text",
+                        "content": "3. Real-time Route Optimization"
+                    }
+                ],
+                "level": 2
+            },
+            "bbox": [
+                199,
+                550,
+                485,
+                565
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "The system can provide route recommendations based on the weather, trafic, and driver patterns. The digital twin can also optimize routes for emergency vehicles."
+                    }
+                ]
+            },
+            "bbox": [
+                200,
+                565,
+                818,
+                621
+            ]
+        },
+        {
+            "type": "title",
+            "content": {
+                "title_content": [
+                    {
+                        "type": "text",
+                        "content": "4. Safety Applications"
+                    }
+                ],
+                "level": 2
+            },
+            "bbox": [
+                200,
+                623,
+                395,
+                640
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "The system can also alert drivers of a potential collision by acquiring data from multiple vehicles. The architecture can also be beneficial for getting weather updates from vehicles and for providing predictions and alerts to upcoming vehicles about the weather."
+                    }
+                ]
+            },
+            "bbox": [
+                209,
+                641,
+                818,
+                713
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "5. Smart Parking, Charging and Environmental Solutions Digital Twins helps vehicles find parking and charging spots in crowded areas. It also helps identify the polluted regions of the city."
+                    }
+                ]
+            },
+            "bbox": [
+                199,
+                715,
+                818,
+                770
+            ]
+        },
+        {
+            "type": "title",
+            "content": {
+                "title_content": [
+                    {
+                        "type": "text",
+                        "content": "4. PERFORMANCE EVALUATION"
+                    }
+                ],
+                "level": 2
+            },
+            "bbox": [
+                176,
+                789,
+                542,
+                806
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "This section includes a thorough evaluation of our suggested framework using Hierarchical Federated Transfer Learning (HFTL) with Clustered Federated Learning (CFL), Federated Learning (FL), and Centralized Learning (CL) by diferent performance evaluations. We chose Centralized Learning (CL), Federated Learning (FL), and Clustered Federated Learning (CFL) as our baseline comparisons because CL represents the simplest centralized training method, while FL represents distributed learning. Conversely, CFL extends federated learning with clusters that resonate with our algorithm. The above techniques conflict with HFTL regarding data heterogeneity and resource utilization, efectively highlighting the advantages of HFTL in heterogeneous vehicle environments. The generation of the cluster topology in our experiment is based on the Network X network structure, using a random number of vehicles distributed according to diferent vehicle types. There are twelve clusters, each having more than a random ten number of vehicles. It helps us to analyze results in high-density trafic scenarios, as shown in Figure 3. It also helps to evaluate the system’s ability to handle high-trafic data, which is very helpful for performance metrics results. Although the number of vehicles in each cluster is random, the clustering is based on vehicle type. To ensure the realism of the experiment in each generated cluster, only one head vehicle connects with the base station, and the rest of the vehicles are either routing vehicles or edge vehicles, simulating the actual distribution of diferent vehicle types. In Figure 3, node A represents the head vehicle, and the rest of the node represents vehicles that are either route or edge vehicles. Below are the specific experimental settings."
+                    }
+                ]
+            },
+            "bbox": [
+                174,
+                816,
+                818,
+                853
+            ]
+        },
+        {
+            "type": "page_number",
+            "content": {
+                "page_number_content": [
+                    {
+                        "type": "text",
+                        "content": "19"
+                    }
+                ]
+            },
+            "bbox": [
+                486,
+                873,
+                509,
+                887
+            ]
+        }
+    ],
+    [
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": []
+            },
+            "bbox": [
+                173,
+                159,
+                820,
+                563
+            ]
+        },
+        {
+            "type": "title",
+            "content": {
+                "title_content": [
+                    {
+                        "type": "text",
+                        "content": "4.1. Experiment Settings"
+                    }
+                ],
+                "level": 2
+            },
+            "bbox": [
+                176,
+                575,
+                393,
+                594
+            ]
+        },
+        {
+            "type": "title",
+            "content": {
+                "title_content": [
+                    {
+                        "type": "text",
+                        "content": "4.1.1. Experimental Setup"
+                    }
+                ],
+                "level": 2
+            },
+            "bbox": [
+                176,
+                598,
+                405,
+                616
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "Network X<sup>1</sup>creates the random Inner Cluster topologies while Torch<sup>2</sup> implements our suggested federated transfer learning framework. The Google ColabGoogle Colab (2022) is used for implementation."
+                    }
+                ]
+            },
+            "bbox": [
+                174,
+                617,
+                818,
+                672
+            ]
+        },
+        {
+            "type": "title",
+            "content": {
+                "title_content": [
+                    {
+                        "type": "text",
+                        "content": "4.1.2. Setting for Cluster"
+                    }
+                ],
+                "level": 2
+            },
+            "bbox": [
+                176,
+                688,
+                398,
+                705
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "We form twelve random clusters, each with a variable number of vehicles but the same vehicle type as described in table 2. As mentioned in Figure 2, if each cluster has more than one vehicle, there would be a single cluster head; otherwise, in the case of the single vehicle, it would act as an edge vehicle. In our case for the evaluation of performance metrics, we keep the number of vehicles to more than a random ten number of vehicles because it will help us to evaluate the system’s ability to handle high trafic data as shown in Figure 3"
+                    }
+                ]
+            },
+            "bbox": [
+                173,
+                707,
+                820,
+                781
+            ]
+        },
+        {
+            "type": "page_footnote",
+            "content": {
+                "page_footnote_content": [
+                    {
+                        "type": "text",
+                        "content": "<sup>1</sup>A Network structure in Python (https://networkx.org/)"
+                    }
+                ]
+            },
+            "bbox": [
+                197,
+                806,
+                612,
+                823
+            ]
+        },
+        {
+            "type": "page_footnote",
+            "content": {
+                "page_footnote_content": [
+                    {
+                        "type": "text",
+                        "content": "<sup>2</sup>Deep Learning Library for Python(https://pytorch.org/)"
+                    }
+                ]
+            },
+            "bbox": [
+                197,
+                821,
+                616,
+                839
+            ]
+        },
+        {
+            "type": "page_number",
+            "content": {
+                "page_number_content": [
+                    {
+                        "type": "text",
+                        "content": "20"
+                    }
+                ]
+            },
+            "bbox": [
+                485,
+                872,
+                509,
+                887
+            ]
+        }
+    ],
+    [
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": []
+            },
+            "bbox": [
+                173,
+                160,
+                820,
+                233
+            ]
+        },
+        {
+            "type": "title",
+            "content": {
+                "title_content": [
+                    {
+                        "type": "text",
+                        "content": "4.1.3. Datasets"
+                    }
+                ],
+                "level": 2
+            },
+            "bbox": [
+                176,
+                247,
+                313,
+                263
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "For our performance metrics, we have conducted our experiments on the real-world dataset named vehicle mobility trace <sup>3</sup>. The data sets comprise real-time values, such as vehicle position, angle, vehicle ID, coordinates, speed, etc. As part of preprocessing, we first perform data cleaning, which handles outliers by replacing them with extreme values and using interpolation techniques to fill in missing data. After that, we use a standard scalar to normalize the data. It makes sure that all features are on the same scale. We split the data set in such a way that 80 % is used as training while 20% as testing. The main reason behind this data split is to make sure there is enough data for training to retain some portion for evaluation. However, we also used cross-validation to verify the model performance across several data subsets to guarantee the reliability and stability of the results. We assigned vehicles a numerical ID according to their category, as mentioned in Table 2. This will help us implement Hierarchical Federated Learning by randomly clustering vehicles according to their similar category."
+                    }
+                ]
+            },
+            "bbox": [
+                173,
+                267,
+                820,
+                542
+            ]
+        },
+        {
+            "type": "title",
+            "content": {
+                "title_content": [
+                    {
+                        "type": "text",
+                        "content": "4.1.4. Baseline Studies"
+                    }
+                ],
+                "level": 2
+            },
+            "bbox": [
+                176,
+                554,
+                379,
+                571
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "We will compare centralized learning, federated learning, clustered federated learning, and federated transfer learning. For comparison, we have used centralized, federated learning, and clustered federated learning as they are most closely related to federated transfer learning. Furthermore, while implementing the search for the most eficient hyperparameters, we utilized a checkpoint that led us to set the number of epochs to 200, the learning rate (α) to 0.1, and the batch size to 128 for both the proposed Federated transfer learning and the baseline algorithms."
+                    }
+                ]
+            },
+            "bbox": [
+                173,
+                574,
+                820,
+                722
+            ]
+        },
+        {
+            "type": "title",
+            "content": {
+                "title_content": [
+                    {
+                        "type": "text",
+                        "content": "4.1.5. Performance Metrics"
+                    }
+                ],
+                "level": 2
+            },
+            "bbox": [
+                176,
+                734,
+                418,
+                752
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "We computed average Model Accuracy, Training Time, Resource Consumption (Computational), Communication Overhead, Latency, Convergence Time, and Throughput. Model accuracy tells us our model’s accuracy in correctly predicting output. Training time refers to the duration required to complete the training process. Resource Consumption refers to the utilization of computational resources during the training process. Communication Overhead describes the amount of data exchanged during transmission. The amount of time required with an input and producing output (prediction) by the model is known as Latency. Convergence Time is the time needed for the training procedure to attain the required accuracy or stable condition (in our case, 90% accuracy). The number of predictions a model can make in an amount of time given is known as Throughput."
+                    }
+                ]
+            },
+            "bbox": [
+                174,
+                753,
+                821,
+                810
+            ]
+        },
+        {
+            "type": "page_footnote",
+            "content": {
+                "page_footnote_content": [
+                    {
+                        "type": "text",
+                        "content": "<sup>3</sup>https://vehicular-mobilitytrace.github.io/index.html#data"
+                    }
+                ]
+            },
+            "bbox": [
+                196,
+                835,
+                630,
+                853
+            ]
+        },
+        {
+            "type": "page_number",
+            "content": {
+                "page_number_content": [
+                    {
+                        "type": "text",
+                        "content": "21"
+                    }
+                ]
+            },
+            "bbox": [
+                485,
+                873,
+                508,
+                887
+            ]
+        }
+    ],
+    [
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": []
+            },
+            "bbox": [
+                173,
+                160,
+                818,
+                325
+            ]
+        },
+        {
+            "type": "chart",
+            "content": {
+                "image_source": {
+                    "path": "images/91f911585d00c54347524f62a5098c022de5b0a5881eeeb6b1674812b036de1c.jpg"
+                },
+                "content": "",
+                "chart_caption": [
+                    {
+                        "type": "text",
+                        "content": "Figure 4: Performance metrics graph results of our proposed Federated Transfer Learning algorithm with Clustered Federated Learning, Federated Learning, and Centralized Learning"
+                    }
+                ],
+                "chart_footnote": []
+            },
+            "bbox": [
+                179,
+                340,
+                818,
+                525
+            ]
+        },
+        {
+            "type": "title",
+            "content": {
+                "title_content": [
+                    {
+                        "type": "text",
+                        "content": "4.1.6. Experimental Results and Performance Analysis"
+                    }
+                ],
+                "level": 2
+            },
+            "bbox": [
+                174,
+                617,
+                643,
+                636
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "We have compared existing centralized learning, federated learning, and clustered federated learning with federated transfer learning. We used a realtime vehicular mobility trace CSV file dataset to make our findings realistic. Figure 4 shows the graph for the performance metrics with 100 simulations to eliminate any bias scenario. Table 3 shows the average performance of our HFTL algorithm over CL and FL."
+                    }
+                ]
+            },
+            "bbox": [
+                174,
+                637,
+                820,
+                748
+            ]
+        },
+        {
+            "type": "page_footnote",
+            "content": {
+                "page_footnote_content": [
+                    {
+                        "type": "text",
+                        "content": "<sup>4</sup>Model Accur = Model Accuracy (Percentage %), Train Time = Training Time (Sec), Resour Consu = Resource Consumption (Percentage %), Comm Ohead = Communication Overhead (Messages), Latncy = Latency (Sec), Conver Time = Convergence Time (sec), Thrput = Throughput (Messages)"
+                    }
+                ]
+            },
+            "bbox": [
+                173,
+                773,
+                818,
+                837
+            ]
+        },
+        {
+            "type": "page_number",
+            "content": {
+                "page_number_content": [
+                    {
+                        "type": "text",
+                        "content": "22"
+                    }
+                ]
+            },
+            "bbox": [
+                485,
+                872,
+                509,
+                887
+            ]
+        }
+    ],
+    [
+        {
+            "type": "table",
+            "content": {
+                "image_source": {
+                    "path": "images/af2a3ba7c023a8b9c4a3f616d53d41e997e74f4c185c1b0441f877d5f1d82aaa.jpg"
+                },
+                "table_caption": [
+                    {
+                        "type": "text",
+                        "content": "Table 3: Experimental results regarding the average performance metrics across learning algorithms with Federated Transfer Learning Algorithm"
+                    }
+                ],
+                "table_footnote": [],
+                "html": "<table><tr><td rowspan=1 colspan=1>Algorithm</td><td rowspan=1 colspan=1>ModelAccur</td><td rowspan=1 colspan=1>TrainTime</td><td rowspan=1 colspan=1>ResourConsu</td><td rowspan=1 colspan=1>CommOhead</td><td rowspan=1 colspan=1>Latncy</td><td rowspan=1 colspan=1>ConverTTime</td><td rowspan=1 colspan=1>hrput</td></tr><tr><td rowspan=1 colspan=1>Centralized Learning</td><td rowspan=1 colspan=1>0.708</td><td rowspan=1 colspan=1>2.03s</td><td rowspan=1 colspan=1>20.19%</td><td rowspan=1 colspan=1>6.19</td><td rowspan=1 colspan=1>2.323s 0.23</td><td rowspan=1 colspan=1>s</td><td rowspan=1 colspan=1>6.20</td></tr><tr><td rowspan=1 colspan=1>Federated Learning</td><td rowspan=1 colspan=1>0.721  1.53</td><td rowspan=1 colspan=1>s</td><td rowspan=1 colspan=1>15.65%</td><td rowspan=1 colspan=1>6.25</td><td rowspan=1 colspan=1>2.314s 0.12</td><td rowspan=1 colspan=1>s</td><td rowspan=1 colspan=1>6.23</td></tr><tr><td rowspan=1 colspan=1>Clustered Federated Learning0</td><td rowspan=1 colspan=1>.752  1.46</td><td rowspan=1 colspan=1>s</td><td rowspan=1 colspan=1>14.96%</td><td rowspan=1 colspan=1>6.21</td><td rowspan=1 colspan=1>2.304s 0.08</td><td rowspan=1 colspan=1>s</td><td rowspan=1 colspan=1>6.24</td></tr><tr><td rowspan=1 colspan=1>Federated Transfer Learning</td><td rowspan=1 colspan=1>0.822  1.02</td><td rowspan=1 colspan=1>s</td><td rowspan=1 colspan=1>8.30%</td><td rowspan=1 colspan=1>6.28</td><td rowspan=1 colspan=1>2.240s 0.04</td><td rowspan=1 colspan=1>s</td><td rowspan=1 colspan=1>6.35</td></tr></table>",
+                "table_type": "complex_table",
+                "table_nest_level": 1
+            },
+            "bbox": [
+                178,
+                199,
+                815,
+                294
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "The Federated transfer learning-based algorithm has the highest model accuracy average because it uses a pre-trained model according to the specific vehicle type. So, its prediction accuracy is better on average than the other two models."
+                    }
+                ]
+            },
+            "bbox": [
+                174,
+                321,
+                818,
+                393
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "For the performance metric Training Time, on average, of a hundred different simulations, our algorithm takes less time because fine-tuning a model requires less time in seconds compared to training a model from scratch."
+                    }
+                ]
+            },
+            "bbox": [
+                176,
+                395,
+                816,
+                450
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "The federated transfer learning model requires fewer computational resources for resource consumption than the other models. That is because fine-tuning requires, on average, fewer computational resources than training from scratch, especially when we have customized models for each vehicle type."
+                    }
+                ]
+            },
+            "bbox": [
+                174,
+                450,
+                818,
+                540
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "The federated transfer learning algorithm has slightly more communication overhead when compared to Centralized learning(CL), Federated learning(FL), and Clustered Federated Learning (CFL). First, a pre-trained model must be fine-tuned and optimized based on each vehicle’s personalized requirements, which will take up more communication overhead. Centralized learning(CL), Federated learning (FL), and Clustered Federated Learning (CFL) don’t require pre-trained models for training, so their communication overhead is lower than our algorithm’s. Having a slight diference in communication overhead does not afect our algorithm eficiency. However, the increased communication overhead is ofset by significant improvements in accuracy and latency, giving HFTL a clear advantage in real-time decisionmaking and prediction precision, particularly in scenarios with high vehicle heterogeneity."
+                    }
+                ]
+            },
+            "bbox": [
+                173,
+                541,
+                818,
+                779
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "The Federated Transfer Learning algorithm has less latency than Centralized learning(CL), Federated learning(FL), and Clustered Federated Learning (CFL). This is due to its use of pre-trained models that require less time to make predictions. Because of pre-trained model fine-tuning, this algorithm also has more throughput, faster convergence, a hierarchical structure, and low resource usage compared to Federated and Centralized learning."
+                    }
+                ]
+            },
+            "bbox": [
+                174,
+                779,
+                818,
+                852
+            ]
+        },
+        {
+            "type": "page_number",
+            "content": {
+                "page_number_content": [
+                    {
+                        "type": "text",
+                        "content": "23"
+                    }
+                ]
+            },
+            "bbox": [
+                486,
+                872,
+                509,
+                887
+            ]
+        }
+    ],
+    [
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": []
+            },
+            "bbox": [
+                174,
+                160,
+                816,
+                196
+            ]
+        },
+        {
+            "type": "chart",
+            "content": {
+                "image_source": {
+                    "path": "images/1549b8330478c48872c2f2d981ac7116e3532afb0463fbc62073c676adce76d2.jpg"
+                },
+                "content": "",
+                "chart_caption": [],
+                "chart_footnote": []
+            },
+            "bbox": [
+                179,
+                210,
+                496,
+                397
+            ]
+        },
+        {
+            "type": "chart",
+            "content": {
+                "image_source": {
+                    "path": "images/b05b709247358405b766cd7c453bfb667d8b2380c0f78e5bc39a35b0ebba18d9.jpg"
+                },
+                "content": "",
+                "chart_caption": [
+                    {
+                        "type": "text",
+                        "content": "Figure 5: Graphical Comparison of Diferent Algorithm’s Model Accuracy, Resource Consumption, Convergence Time, Training Time, Communication Overhead, Latency, Throughput"
+                    }
+                ],
+                "chart_footnote": []
+            },
+            "bbox": [
+                498,
+                213,
+                812,
+                420
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "Figure 5 shows the bar graph comparison of HFTL over CFL, FL, and CL for Model Accuracy, Training Time, and Resource Consumption. HFTL outperforms the other algorithms. However, Figure 5 shows the bar graph comparison of HFTL over CFL, FL, and CL for Communication Overhead, where the other algorithm’s communication overhead is slightly lower than HFTL."
+                    }
+                ]
+            },
+            "bbox": [
+                173,
+                500,
+                818,
+                609
+            ]
+        },
+        {
+            "type": "title",
+            "content": {
+                "title_content": [
+                    {
+                        "type": "text",
+                        "content": "4.1.7. Scalability Experimental Results and Performance Analysis"
+                    }
+                ],
+                "level": 2
+            },
+            "bbox": [
+                176,
+                625,
+                741,
+                642
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "The above results are tailored to a few vehicles and specific network conditions. We want to see how our algorithm performs if we gradually increase the number of vehicles in our network to check whether it remains efective. Figure 6 shows the performance of learning algorithms for scalability metrics. In the Dynamic Environment, as compared to Clustered Federated, Federated, and Centralized Learning, our proposed algorithm performs better except for some underperformance in communication overhead. Table 4 shows the average scalability metrics values for the algorithms."
+                    }
+                ]
+            },
+            "bbox": [
+                173,
+                645,
+                818,
+                790
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "Figure 7 shows these algorithms’ diferences in scalability performance"
+                    }
+                ]
+            },
+            "bbox": [
+                202,
+                790,
+                818,
+                809
+            ]
+        },
+        {
+            "type": "page_number",
+            "content": {
+                "page_number_content": [
+                    {
+                        "type": "text",
+                        "content": "24"
+                    }
+                ]
+            },
+            "bbox": [
+                485,
+                873,
+                509,
+                887
+            ]
+        }
+    ],
+    [
+        {
+            "type": "chart",
+            "content": {
+                "image_source": {
+                    "path": "images/9fb9387d237f55dbe9ce89b64a99d999cff0450270e901866d6dca12bc0fe004.jpg"
+                },
+                "content": "",
+                "chart_caption": [],
+                "chart_footnote": []
+            },
+            "bbox": [
+                178,
+                156,
+                343,
+                251
+            ]
+        },
+        {
+            "type": "chart",
+            "content": {
+                "image_source": {
+                    "path": "images/409b35d9a4da8b4dd2a5eb579f7ebd23506d5ecfe875df48004a29b2bdf93a77.jpg"
+                },
+                "content": "",
+                "chart_caption": [],
+                "chart_footnote": []
+            },
+            "bbox": [
+                339,
+                155,
+                498,
+                251
+            ]
+        },
+        {
+            "type": "chart",
+            "content": {
+                "image_source": {
+                    "path": "images/ae1419cfbc0bf5303ac4c71daeba1a715166adad5625f0431a854bc058698e98.jpg"
+                },
+                "content": "",
+                "chart_caption": [],
+                "chart_footnote": []
+            },
+            "bbox": [
+                493,
+                155,
+                656,
+                252
+            ]
+        },
+        {
+            "type": "chart",
+            "content": {
+                "image_source": {
+                    "path": "images/d9618922423d529bf7413e8e0c93dd7d7606da7729dc56d04b219e13ad891524.jpg"
+                },
+                "content": "",
+                "chart_caption": [],
+                "chart_footnote": []
+            },
+            "bbox": [
+                655,
+                156,
+                818,
+                253
+            ]
+        },
+        {
+            "type": "chart",
+            "content": {
+                "image_source": {
+                    "path": "images/fb4a719d1c9ab7e82e5c9a33204c561a341e716ef27d84b8200874b18e2ba878.jpg"
+                },
+                "content": "",
+                "chart_caption": [],
+                "chart_footnote": []
+            },
+            "bbox": [
+                179,
+                257,
+                339,
+                349
+            ]
+        },
+        {
+            "type": "chart",
+            "content": {
+                "image_source": {
+                    "path": "images/0adca5f5c6f098ac5a9aefb7c6c81faa9205a366ac2ab4a4d7f7601b88703e09.jpg"
+                },
+                "content": "",
+                "chart_caption": [],
+                "chart_footnote": []
+            },
+            "bbox": [
+                338,
+                253,
+                490,
+                349
+            ]
+        },
+        {
+            "type": "chart",
+            "content": {
+                "image_source": {
+                    "path": "images/4eb0bc8376f1ef2a1d9b7b2f876771394aa3cb38676c40ec193ba4c373fa205e.jpg"
+                },
+                "content": "",
+                "chart_caption": [
+                    {
+                        "type": "text",
+                        "content": "Figure 6: Scalability of our Federated Transfer Algorithm with Clustered Federated, Federated, and Centralized Learning"
+                    }
+                ],
+                "chart_footnote": []
+            },
+            "bbox": [
+                488,
+                256,
+                655,
+                349
+            ]
+        },
+        {
+            "type": "table",
+            "content": {
+                "image_source": {
+                    "path": "images/7c41ed4a3626cbcecdd56bc1cc7cfee18bdb050382c7c73729077cd57751b70d.jpg"
+                },
+                "table_caption": [
+                    {
+                        "type": "text",
+                        "content": "Table 4: Experimental results regarding the average scalability metrics across the learning algorithms with Federated Transfer Learning Algorithm"
+                    }
+                ],
+                "table_footnote": [],
+                "html": "<table><tr><td rowspan=1 colspan=1>Algorithm</td><td rowspan=1 colspan=1>ModelAccur</td><td rowspan=1 colspan=1>TrainTime</td><td rowspan=1 colspan=1>ResourConsu</td><td rowspan=1 colspan=1>CommOhead</td><td rowspan=1 colspan=1>Latncy</td><td rowspan=1 colspan=1>ConverTTime</td><td rowspan=1 colspan=1>hrput</td></tr><tr><td rowspan=1 colspan=1>Centralized Learning</td><td rowspan=1 colspan=1>0.682  6.01</td><td rowspan=1 colspan=1>s</td><td rowspan=1 colspan=1>54.06%</td><td rowspan=1 colspan=1>6.77</td><td rowspan=1 colspan=1>2.47s</td><td rowspan=1 colspan=1>45.82s</td><td rowspan=1 colspan=1>6.79</td></tr><tr><td rowspan=1 colspan=1>Federated Learning</td><td rowspan=1 colspan=1>0.689  6.07</td><td rowspan=1 colspan=1>s</td><td rowspan=1 colspan=1>54.73%</td><td rowspan=1 colspan=1>6.82</td><td rowspan=1 colspan=1>2.46s</td><td rowspan=1 colspan=1>45.72s</td><td rowspan=1 colspan=1>6.81</td></tr><tr><td rowspan=1 colspan=1>Clustered Federated Learning</td><td rowspan=1 colspan=1>0.68   5.96</td><td rowspan=1 colspan=1>s</td><td rowspan=1 colspan=1>53.61%</td><td rowspan=1 colspan=1>6.81   2.45</td><td rowspan=1 colspan=1>s</td><td rowspan=1 colspan=1>45.46s</td><td rowspan=1 colspan=1>6.84</td></tr><tr><td rowspan=1 colspan=1>Federated Transfer Learning</td><td rowspan=1 colspan=1>0.823  2.78</td><td rowspan=1 colspan=1>s</td><td rowspan=1 colspan=1>25.87%</td><td rowspan=1 colspan=1>6.90   2.42</td><td rowspan=1 colspan=1>s  29.29</td><td rowspan=1 colspan=1>s</td><td rowspan=1 colspan=1>6.91</td></tr></table>",
+                "table_type": "complex_table",
+                "table_nest_level": 1
+            },
+            "bbox": [
+                178,
+                446,
+                815,
+                542
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "metrics output as a bar graph. <sup>5</sup>"
+                    }
+                ]
+            },
+            "bbox": [
+                174,
+                569,
+                455,
+                588
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "Scalability testing in large-scale VANETs shows that HFTL maintains high model accuracy and fast convergence as the number of nodes increases. However, as the network grows continuously, communication overhead and resource consumption may become limiting factors according to the results. Future work could explore communication compression techniques or asynchronous update mechanisms to further optimize HFTL’s performance in large-scale networks. As we increase the number of vehicles, the communication overhead increases based on the following:"
+                    }
+                ]
+            },
+            "bbox": [
+                173,
+                588,
+                818,
+                736
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "1. The model updates that need to be communicated also increase."
+                    }
+                ]
+            },
+            "bbox": [
+                199,
+                743,
+                769,
+                762
+            ]
+        },
+        {
+            "type": "page_footnote",
+            "content": {
+                "page_footnote_content": [
+                    {
+                        "type": "text",
+                        "content": "<sup>5</sup>Model Accur = Model Accuracy (Percentage %), Train Time = Training Time (Sec), Resour Consu = Resource Consumption (Percentage %), Comm Ohead = Communication Overhead (Messages), Latncy = Latency (Sec), Conver Time = Convergence Time (sec), Thrput = Throughput (Messages)"
+                    }
+                ]
+            },
+            "bbox": [
+                174,
+                787,
+                818,
+                851
+            ]
+        },
+        {
+            "type": "page_number",
+            "content": {
+                "page_number_content": [
+                    {
+                        "type": "text",
+                        "content": "25"
+                    }
+                ]
+            },
+            "bbox": [
+                485,
+                872,
+                509,
+                887
+            ]
+        }
+    ],
+    [
+        {
+            "type": "chart",
+            "content": {
+                "image_source": {
+                    "path": "images/95e8278c1d9e52164dc1d9d9c90688eb3b58fa5a79a4cd45fcad2652f186937a.jpg"
+                },
+                "content": "",
+                "chart_caption": [],
+                "chart_footnote": []
+            },
+            "bbox": [
+                179,
+                157,
+                421,
+                303
+            ]
+        },
+        {
+            "type": "chart",
+            "content": {
+                "image_source": {
+                    "path": "images/2d7725d8803415e9513b781101a555891c6b4f84aadf33e0f23f4e26f2ef873e.jpg"
+                },
+                "content": "",
+                "chart_caption": [],
+                "chart_footnote": []
+            },
+            "bbox": [
+                423,
+                160,
+                656,
+                318
+            ]
+        },
+        {
+            "type": "chart",
+            "content": {
+                "image_source": {
+                    "path": "images/2498c55a288549118f4f0b5f8a375207067c439fd62e8e498ae1ee99247f6a82.jpg"
+                },
+                "content": "",
+                "chart_caption": [
+                    {
+                        "type": "text",
+                        "content": "Figure 7: Scalability of our Federated Transfer Algorithm with Federated and Centralized Learning"
+                    }
+                ],
+                "chart_footnote": []
+            },
+            "bbox": [
+                661,
+                159,
+                812,
+                303
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "2. Aggregation complexity also increases communication overhead as vehicle updates are integrated with the head vehicle DT and sent to the central server."
+                    }
+                ]
+            },
+            "bbox": [
+                199,
+                391,
+                816,
+                444
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "3. More Communication Rounds are needed to achieve convergence because the number of vehicles grows, increasing communication overhead."
+                    }
+                ]
+            },
+            "bbox": [
+                199,
+                446,
+                818,
+                501
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "As the number of vehicles increases, the communication overhead increases because of more data trafic and aggregation complexity. A slightly higher communication overhead than the other algorithms will not afect eficiency, as other performance metrics have greatly improved."
+                    }
+                ]
+            },
+            "bbox": [
+                174,
+                511,
+                818,
+                585
+            ]
+        },
+        {
+            "type": "title",
+            "content": {
+                "title_content": [
+                    {
+                        "type": "text",
+                        "content": "5. Challenges and Limitations"
+                    }
+                ],
+                "level": 2
+            },
+            "bbox": [
+                176,
+                607,
+                473,
+                625
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "Although the above results show the significance of our proposed research, some challenges and limitations are associated with it."
+                    }
+                ]
+            },
+            "bbox": [
+                174,
+                636,
+                816,
+                672
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "1. Data heterogeneity: Significant diferences in the data distribution between digital twins could result in less accuracy, more training time, and ineficient model convergence."
+                    }
+                ]
+            },
+            "bbox": [
+                200,
+                683,
+                816,
+                736
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "2. Network limitations: Real-time synchronization and data transfer between vehicles and their respective digital twins can be afected by environments with erratic, unstable, or low-bandwidth communication links."
+                    }
+                ]
+            },
+            "bbox": [
+                197,
+                738,
+                818,
+                810
+            ]
+        },
+        {
+            "type": "title",
+            "content": {
+                "title_content": [
+                    {
+                        "type": "text",
+                        "content": "3. Model Bias:"
+                    }
+                ],
+                "level": 2
+            },
+            "bbox": [
+                199,
+                814,
+                330,
+                830
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "The global model may inherit bias if the local training data is biased"
+                    }
+                ]
+            },
+            "bbox": [
+                223,
+                830,
+                808,
+                849
+            ]
+        },
+        {
+            "type": "page_number",
+            "content": {
+                "page_number_content": [
+                    {
+                        "type": "text",
+                        "content": "26"
+                    }
+                ]
+            },
+            "bbox": [
+                486,
+                873,
+                509,
+                887
+            ]
+        }
+    ],
+    [
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "4. Dynamic Contexts:"
+                    }
+                ]
+            },
+            "bbox": [
+                199,
+                160,
+                392,
+                176
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "The hierarchical model may take time to adjust in real-time where the vehicle patterns change quickly"
+                    }
+                ]
+            },
+            "bbox": [
+                204,
+                175,
+                816,
+                214
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "5. Heterogeneous VANET Types:"
+                    }
+                ]
+            },
+            "bbox": [
+                199,
+                215,
+                488,
+                233
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "Our HFTL works well in urban and highways. It may struggle in sparely populated regions where data is less available."
+                    }
+                ]
+            },
+            "bbox": [
+                218,
+                233,
+                816,
+                271
+            ]
+        },
+        {
+            "type": "title",
+            "content": {
+                "title_content": [
+                    {
+                        "type": "text",
+                        "content": "6. Conclusion"
+                    }
+                ],
+                "level": 2
+            },
+            "bbox": [
+                176,
+                292,
+                316,
+                309
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "This paper proposes the Hierarchical Federated Transfer Learning architecture and algorithm for the Digital Twin-based Vehicular Ad Hoc Network that provides faster and more accurate predictions. We have also formed clusters based on the specific vehicle type to make precise decision-making. We first designed the high-level architecture of Hierarchical Federated Learning. Then, we describe algorithms for our proposed architecture that are time-eficient and more accurate. Our experimental results demonstrate that HFTL outperforms Clustered Federated Learning (CFL), Federated Learning (FL), and Centralized Learning (CL) across several key metrics, including model convergence speed, throughput, and resource consumption. We also scale our network to see how our technique performs in the dynamic environment. In the future, we plan to conduct further research in the following areas: First, we aim to explore eficient communication compression techniques to reduce communication overhead. Second, we investigate asynchronous model update strategies to improve system real-time performance. Lastly, we intend to optimize lightweight blockchain implementations to ensure data privacy and security in large-scale vehicular networks."
+                    }
+                ]
+            },
+            "bbox": [
+                173,
+                321,
+                818,
+                633
+            ]
+        },
+        {
+            "type": "title",
+            "content": {
+                "title_content": [
+                    {
+                        "type": "text",
+                        "content": "References"
+                    }
+                ],
+                "level": 2
+            },
+            "bbox": [
+                176,
+                654,
+                287,
+                671
+            ]
+        },
+        {
+            "type": "list",
+            "content": {
+                "list_type": "reference_list",
+                "list_items": [
+                    {
+                        "item_type": "text",
+                        "item_content": [
+                            {
+                                "type": "text",
+                                "content": "M. Noor-A-Rahim, Z. Liu, H. Lee, G. M. N. Ali, D. Pesch, and P. Xiao, “A survey on resource allocation in vehicular networks,” IEEE Transactions on Intelligent Transportation Systems, vol. 23, no. 2, pp. 701–721, 2020."
+                            }
+                        ]
+                    },
+                    {
+                        "item_type": "text",
+                        "item_content": [
+                            {
+                                "type": "text",
+                                "content": "Q. Zia, M. S. Farooq, and A. Abid, “Improving response time of vehicular ad hoc networks (VANET),” 2016."
+                            }
+                        ]
+                    },
+                    {
+                        "item_type": "text",
+                        "item_content": [
+                            {
+                                "type": "text",
+                                "content": "C. He, T. H. Luan, R. Lu, Z. Su, and M. Dong, “Security and privacy in vehicular digital twin networks: Challenges and solutions,” IEEE Wireless Communications, 2022."
+                            }
+                        ]
+                    }
+                ]
+            },
+            "bbox": [
+                178,
+                683,
+                816,
+                737
+            ]
+        },
+        {
+            "type": "page_number",
+            "content": {
+                "page_number_content": [
+                    {
+                        "type": "text",
+                        "content": "27"
+                    }
+                ]
+            },
+            "bbox": [
+                486,
+                872,
+                508,
+                887
+            ]
+        }
+    ],
+    [
+        {
+            "type": "list",
+            "content": {
+                "list_type": "reference_list",
+                "list_items": [
+                    {
+                        "item_type": "text",
+                        "item_content": [
+                            {
+                                "type": "text",
+                                "content": "L. U. Khan, E. Mustafa, J. Shuja, F. Rehman, K. Bilal, Z. Han, and C. S. Hong, “Federated learning for digital twin-based vehicular networks: Architecture and challenges,” IEEE Wireless Communications, 2023."
+                            }
+                        ]
+                    },
+                    {
+                        "item_type": "text",
+                        "item_content": [
+                            {
+                                "type": "text",
+                                "content": "S. AbdulRahman, H. Tout, H. Ould-Slimane, A. Mourad, C. Talhi, and M. Guizani, “A survey on federated learning: The journey from centralized to distributed on-site learning and beyond,” IEEE Internet of Things Journal, vol. 8, no. 7, pp. 5476–5497, 2020."
+                            }
+                        ]
+                    },
+                    {
+                        "item_type": "text",
+                        "item_content": [
+                            {
+                                "type": "text",
+                                "content": "B. Li, Y. Wu, J. Song, R. Lu, T. Li, and L. Zhao, “DeepFed: Federated deep learning for intrusion detection in industrial cyber–physical systems, IEEE Transactions on Industrial Informatics, vol. 17, no. 8, pp. 5615–5624, 2020."
+                            }
+                        ]
+                    },
+                    {
+                        "item_type": "text",
+                        "item_content": [
+                            {
+                                "type": "text",
+                                "content": "L. U. Khan, W. Saad, Z. Han, and C. S. Hong, “Dispersed federated learning: Vision, taxonomy, and future directions,” IEEE Wireless Communications, vol. 28, no. 5, pp. 192–198, 2021."
+                            }
+                        ]
+                    },
+                    {
+                        "item_type": "text",
+                        "item_content": [
+                            {
+                                "type": "text",
+                                "content": "J. Konečn`y, H. B. McMahan, F. X. Yu, P. Richtárik, A. T. Suresh, and D. Bacon, “Federated learning: Strategies for improving communication eficiency,” arXiv preprint arXiv:1610.05492, 2016."
+                            }
+                        ]
+                    },
+                    {
+                        "item_type": "text",
+                        "item_content": [
+                            {
+                                "type": "text",
+                                "content": "B. Li, Y. Jiang, Q. Pei, T. Li, L. Liu, and R. Lu, “FEEL: Federated end to-end learning with non-IID data for vehicular ad hoc networks,” IEEE Transactions on Intelligent Transportation Systems, vol. 23, no. 9, pp. 16 728–16 740, 2022."
+                            }
+                        ]
+                    },
+                    {
+                        "item_type": "text",
+                        "item_content": [
+                            {
+                                "type": "text",
+                                "content": "S. S. Sepasgozar and S. Pierre, “Fed-NTP: A federated learning algorithm for network trafic prediction in VANET,” IEEE Access, vol. 10, pp. 119 607– 119 616, 2022."
+                            }
+                        ]
+                    },
+                    {
+                        "item_type": "text",
+                        "item_content": [
+                            {
+                                "type": "text",
+                                "content": "L. Zhang and B. Zhang, “Hierarchical machine learning—a learning methodology inspired by human intelligence,” in International Conference on Rough Sets and Knowledge Technology. Springer, 2006, pp. 28–30."
+                            }
+                        ]
+                    },
+                    {
+                        "item_type": "text",
+                        "item_content": [
+                            {
+                                "type": "text",
+                                "content": "F. Gonçalves, J. Macedo, and A. Santos, “An intelligent hierarchical security framework for VANETs,” Information, vol. 12, no. 11, p. 455, 2021."
+                            }
+                        ]
+                    },
+                    {
+                        "item_type": "text",
+                        "item_content": [
+                            {
+                                "type": "text",
+                                "content": "M. Ahmed, U. Sardar, S. Ali, S. Alam, M. Patterson, and I. U. Khan, “Robust brain age estimation via regression models and MRI-derived features,” International Conference on Computational Collective Intelligence, pp. 661– 674, 2023."
+                            }
+                        ]
+                    }
+                ]
+            },
+            "bbox": [
+                176,
+                159,
+                816,
+                215
+            ]
+        },
+        {
+            "type": "page_number",
+            "content": {
+                "page_number_content": [
+                    {
+                        "type": "text",
+                        "content": "28"
+                    }
+                ]
+            },
+            "bbox": [
+                485,
+                873,
+                509,
+                887
+            ]
+        }
+    ],
+    [
+        {
+            "type": "list",
+            "content": {
+                "list_type": "reference_list",
+                "list_items": [
+                    {
+                        "item_type": "text",
+                        "item_content": [
+                            {
+                                "type": "text",
+                                "content": "M. S. HaghighiFard and S. Coleri, “Hierarchical federated learning in multihop cluster-based VANETs,” arXiv preprint arXiv:2401.10361, 2024."
+                            }
+                        ]
+                    },
+                    {
+                        "item_type": "text",
+                        "item_content": [
+                            {
+                                "type": "text",
+                                "content": "Y. Liu, Y. Kang, C. Xing, T. Chen, and Q. Yang, “A secure federated transfer learning framework,” IEEE Intelligent Systems, vol. 35, no. 4, pp. 70–82, 2020."
+                            }
+                        ]
+                    },
+                    {
+                        "item_type": "text",
+                        "item_content": [
+                            {
+                                "type": "text",
+                                "content": "S. Otoum, N. Guizani, and H. Mouftah, “On the feasibility of split learning, transfer learning and federated learning for preserving security in ITS systems,” IEEE Transactions on Intelligent Transportation Systems, 2022."
+                            }
+                        ]
+                    },
+                    {
+                        "item_type": "text",
+                        "item_content": [
+                            {
+                                "type": "text",
+                                "content": "M. Ahmed, H. Chai, H. Wang, H. Venkateswara, and M. Patterson, “Epi-Former: Learning antigen–antibody interactions for epitope prediction via geometric deep learning,” arXiv preprint arXiv:2606.04154, 2026."
+                            }
+                        ]
+                    },
+                    {
+                        "item_type": "text",
+                        "item_content": [
+                            {
+                                "type": "text",
+                                "content": "Q. Zia, “A survey of data-centric protocols for wireless sensor networks,” Computer Science Systems Biology, OMICS Publishing Group, vol. 8, no. 3, pp. 127–131, 2015."
+                            }
+                        ]
+                    },
+                    {
+                        "item_type": "text",
+                        "item_content": [
+                            {
+                                "type": "text",
+                                "content": "S.-S. Wang and Y.-S. Lin, “PassCAR: A passive clustering aided routing protocol for vehicular ad hoc networks,” Computer Communications, vol. 36, no. 2, pp. 170–179, 2013."
+                            }
+                        ]
+                    },
+                    {
+                        "item_type": "text",
+                        "item_content": [
+                            {
+                                "type": "text",
+                                "content": "S. A. Rashid, L. Audah, M. M. Hamdi, and S. Alani, “Prediction based eficient multi-hop clustering approach with adaptive relay node selection for VANET,” J. Commun., vol. 15, no. 4, pp. 332–344, 2020."
+                            }
+                        ]
+                    },
+                    {
+                        "item_type": "text",
+                        "item_content": [
+                            {
+                                "type": "text",
+                                "content": "M. Ahmed, N. Taj, I. U. Khan, H. Venkateswara, and M. Patterson, “ChiMERa-Bench: A benchmark dataset for epitope-specific antibody design,” ICLR 2026 Workshop on Generative and Experimental Perspectives for Biomolecular Design, 2026."
+                            }
+                        ]
+                    },
+                    {
+                        "item_type": "text",
+                        "item_content": [
+                            {
+                                "type": "text",
+                                "content": "A. Temurnikar, P. Verma, and G. Dhiman, “A PSO enable multi-hop clustering algorithm for VANET,” International Journal of Swarm Intelligence Research (IJSIR), vol. 13, no. 2, pp. 1–14, 2022."
+                            }
+                        ]
+                    },
+                    {
+                        "item_type": "text",
+                        "item_content": [
+                            {
+                                "type": "text",
+                                "content": "Q. Zia, C. Wang, S. Zhu, and Y. Li, “Priority based inter-twin communication in vehicular digital twin networks,” International Journal of Parallel, Emergent and Distributed Systems, pp. 1–16, 2024."
+                            }
+                        ]
+                    }
+                ]
+            },
+            "bbox": [
+                176,
+                159,
+                816,
+                196
+            ]
+        },
+        {
+            "type": "page_number",
+            "content": {
+                "page_number_content": [
+                    {
+                        "type": "text",
+                        "content": "29"
+                    }
+                ]
+            },
+            "bbox": [
+                485,
+                872,
+                509,
+                887
+            ]
+        }
+    ],
+    [
+        {
+            "type": "list",
+            "content": {
+                "list_type": "reference_list",
+                "list_items": [
+                    {
+                        "item_type": "text",
+                        "item_content": [
+                            {
+                                "type": "text",
+                                "content": "Y. Dai and Y. Zhang, “Adaptive digital twin for vehicular edge computing and networks,” Journal of Communications and Information Networks, vol. 7, no. 1, pp. 48–59, 2022."
+                            }
+                        ]
+                    },
+                    {
+                        "item_type": "text",
+                        "item_content": [
+                            {
+                                "type": "text",
+                                "content": "M. Ahmed, S. Ali, A. Jan, I. U. Khan, and M. Patterson, “Improved graphbased antibody-aware epitope prediction with protein language modelbased embeddings,” International Conference on Computational Advances in Bio and Medical Sciences, pp. 290–302, 2025."
+                            }
+                        ]
+                    },
+                    {
+                        "item_type": "text",
+                        "item_content": [
+                            {
+                                "type": "text",
+                                "content": "L. U. Khan, W. Saad, D. Niyato, Z. Han, and C. S. Hong, “Digital-twinenabled 6G: Vision, architectural trends, and future directions,” IEEE Communications Magazine, vol. 60, no. 1, pp. 74–80, 2022."
+                            }
+                        ]
+                    },
+                    {
+                        "item_type": "text",
+                        "item_content": [
+                            {
+                                "type": "text",
+                                "content": "L. U. Khan, Z. Han, W. Saad, E. Hossain, M. Guizani, and C. S. Hong, “Digital twin of wireless systems: Overview, taxonomy, challenges, and opportunities,” IEEE Communications Surveys & Tutorials, vol. 24, no. 4, pp. 2230–2254, 2022."
+                            }
+                        ]
+                    }
+                ]
+            },
+            "bbox": [
+                178,
+                159,
+                816,
+                215
+            ]
+        },
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "Google Colab, Jun 2022. [Online]. Available: https://colab.research. google.com/"
+                    }
+                ]
+            },
+            "bbox": [
+                176,
+                464,
+                813,
+                502
+            ]
+        },
+        {
+            "type": "page_number",
+            "content": {
+                "page_number_content": [
+                    {
+                        "type": "text",
+                        "content": "30"
+                    }
+                ]
+            },
+            "bbox": [
+                485,
+                872,
+                509,
+                887
+            ]
+        }
+    ]
+]
