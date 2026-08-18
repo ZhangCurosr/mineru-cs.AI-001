@@ -3,5 +3,30 @@
  "batch_id": "78f358b9-da09-4e43-9f6b-86695b5b0e3d",
  "token": "sk-owp49a3rO...",
  "created_at": "2026-08-12 16:06:54",
- "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-12/ed855239-f0cb-4310-af20-71b2b4b9d3c8.zip"
+ "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-12/ed855239-f0cb-4310-af20-71b2b4b9d3c8.zip",
+ "summarized": {
+  "model": "agnes-2.5-flash",
+  "at": "2026-08-18 05:22:00",
+  "chunks": 1,
+  "meta": {
+   "keywords": [
+    "多模态情绪识别",
+    "理由引导学习",
+    "双过程理论",
+    "对比学习",
+    "多模态大语言模型",
+    "表示学习"
+   ],
+   "field": "多模态情感计算",
+   "innovations": [
+    "基于双过程理论将MERC转化为认知推理任务，离线MLLM生成三维度理由库引导表征学习",
+    "双头编码器解耦主分类与理由对齐目标，分层对比损失实现直觉-情境-整合的渐进推理建模",
+    "硬负样本挖掘策略迫使模型学习细粒度跨模态语义区分"
+   ],
+   "benchmarks": [
+    "IEMOCAP",
+    "MELD"
+   ]
+  }
+ }
 }

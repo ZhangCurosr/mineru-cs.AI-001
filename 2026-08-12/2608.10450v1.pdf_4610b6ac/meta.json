@@ -3,5 +3,32 @@
  "batch_id": "4610b6ac-5a23-4241-b771-632834a269d7",
  "token": "sk-Ir4JqYCnj...",
  "created_at": "2026-08-12 14:58:59",
- "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-12/ebb82985-0831-4cd1-bc2f-50efc18294c5.zip"
+ "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-12/ebb82985-0831-4cd1-bc2f-50efc18294c5.zip",
+ "summarized": {
+  "model": "agnes-2.5-flash",
+  "at": "2026-08-18 05:22:46",
+  "chunks": 1,
+  "meta": {
+   "keywords": [
+    "persistent software evolution",
+    "recursive delegation",
+    "finite-lived agents",
+    "validation-gated acceptance",
+    "scientific software redevelopment",
+    "multi-model continuity"
+   ],
+   "field": "长周期自主软件工程",
+   "innovations": [
+    "提出版本‑路径局部世界模型，将持续性置于项目而非代理",
+    "实现递归委托与验证门控，支持跨基础模型延续开发",
+    "在$44成本下从零构建完整C编译器并在MESA重构中保留位精确数值行为"
+   ],
+   "benchmarks": [
+    "c-testsuite",
+    "LLVM test programs",
+    "Csmith",
+    "MESA stellar evolution workloads"
+   ]
+  }
+ }
 }

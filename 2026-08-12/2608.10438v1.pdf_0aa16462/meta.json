@@ -3,5 +3,33 @@
  "batch_id": "0aa16462-ea25-4857-b67e-30d391962223",
  "token": "sk-n7iJ0Z1Ol...",
  "created_at": "2026-08-12 15:33:43",
- "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-12/4f1bbb1d-6a5d-42b3-8aee-7142a649fdbb.zip"
+ "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-12/4f1bbb1d-6a5d-42b3-8aee-7142a649fdbb.zip",
+ "summarized": {
+  "model": "agnes-2.5-flash",
+  "at": "2026-08-18 05:17:10",
+  "chunks": 1,
+  "meta": {
+   "keywords": [
+    "Diffusion Language Models",
+    "Asynchronous Tool Use",
+    "Persistent Perceptual Binding",
+    "Typed Cognitive Tensor",
+    "Tool-Augmented Reasoning",
+    "Asymmetric I/O Overlap"
+   ],
+   "field": "扩散语言模型的工具增强推理",
+   "innovations": [
+    "将工具交互融入扩散迭代去噪的模型-运行时协同架构，取代离散调用-等待范式",
+    "持久感知绑定机制，区分外部刷新与认知重投影，支持静态缓存复用与动态源流式刷新",
+    "类型化认知张量配合局部重开机制，实现证据驱动的 selective revision 而非全局重建"
+   ],
+   "benchmarks": [
+    "Static Reference and Copying",
+    "Dynamic State Tracking",
+    "Delayed Retrieval",
+    "Streaming Evidence",
+    "Competing Sources"
+   ]
+  }
+ }
 }

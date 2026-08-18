@@ -3,5 +3,29 @@
  "batch_id": "d1201b58-addf-4a51-a46a-86422b15b449",
  "token": "sk-n7iJ0Z1Ol...",
  "created_at": "2026-08-12 15:33:44",
- "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-12/e20d506a-4182-4d61-b698-920710e695c8.zip"
+ "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-12/e20d506a-4182-4d61-b698-920710e695c8.zip",
+ "summarized": {
+  "model": "agnes-2.5-flash",
+  "at": "2026-08-18 05:17:07",
+  "chunks": 1,
+  "meta": {
+   "keywords": [
+    "Explainable AI",
+    "UAV Intrusion Detection",
+    "Conversational Interface",
+    "Human-AI Collaboration",
+    "Appropriate Reliance",
+    "Trust Calibration"
+   ],
+   "field": "可解释人工智能与人机协作",
+   "innovations": [
+    "首个对话式XAI与仪表板XAI在UAV入侵检测中的受控实证对比",
+    "揭示交互流畅性提升与适当自主性下降之间的权衡",
+    "提出认知强制函数设计以缓解高风险场景中的过度依赖风险"
+   ],
+   "benchmarks": [
+    "UAV-ID dataset"
+   ]
+  }
+ }
 }

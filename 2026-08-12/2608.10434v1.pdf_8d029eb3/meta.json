@@ -3,5 +3,29 @@
  "batch_id": "8d029eb3-d982-433e-9de8-63e4cf4a43b4",
  "token": "sk-Ir4JqYCnj...",
  "created_at": "2026-08-12 14:59:26",
- "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-12/e20d506a-4182-4d61-b698-920710e695c8.zip"
+ "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-12/e20d506a-4182-4d61-b698-920710e695c8.zip",
+ "summarized": {
+  "model": "agnes-2.5-flash",
+  "at": "2026-08-18 05:16:36",
+  "chunks": 1,
+  "meta": {
+   "keywords": [
+    "Explainable AI",
+    "Intrusion Detection System",
+    "UAV Security",
+    "Human-AI Collaboration",
+    "Trust and Reliance",
+    "Conversational Interface"
+   ],
+   "field": "可解释AI与人机协同",
+   "innovations": [
+    "构建共享证据库的对话式与仪表板式XAI严格对照实验框架",
+    "引入RAIR与RSR适当依赖度量揭示对话式XAI的过度依赖风险",
+    "提出认知强制功能设计原则以平衡交互流畅性与证据验证"
+   ],
+   "benchmarks": [
+    "UAV-ID"
+   ]
+  }
+ }
 }

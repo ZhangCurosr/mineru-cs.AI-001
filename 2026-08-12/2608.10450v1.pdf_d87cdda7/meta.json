@@ -3,5 +3,32 @@
  "batch_id": "d87cdda7-e214-4688-b7e8-40a9ff5b5d68",
  "token": "sk-Ar06zcDAy...",
  "created_at": "2026-08-12 15:42:00",
- "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-12/ebb82985-0831-4cd1-bc2f-50efc18294c5.zip"
+ "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-12/ebb82985-0831-4cd1-bc2f-50efc18294c5.zip",
+ "summarized": {
+  "model": "agnes-2.5-flash",
+  "at": "2026-08-18 05:23:10",
+  "chunks": 1,
+  "meta": {
+   "keywords": [
+    "persistent recursive world",
+    "long-horizon software development",
+    "coding agent",
+    "software evolution",
+    "greenfield compiler construction",
+    "scientific software redevelopment"
+   ],
+   "field": "AI-assisted software engineering",
+   "innovations": [
+    "将软件项目版本历史作为持久化对象而非 agent 会话，实现跨有限生命周期 agent 的连续开发",
+    "recursive delegation 与 validation-gated acceptance 的分离设计，使局部探索与全局版本推进解耦",
+    "从空仓库在 120+ 小时/$44 内自主构建通过完整 c-testsuite 的 Rust C 编译器，并在跨模型替换下保持 continuation"
+   ],
+   "benchmarks": [
+    "c-testsuite",
+    "LLVM test programs",
+    "Csmith",
+    "MESA numerical workloads"
+   ]
+  }
+ }
 }

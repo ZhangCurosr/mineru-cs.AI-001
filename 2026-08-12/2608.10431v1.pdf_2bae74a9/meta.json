@@ -3,5 +3,32 @@
  "batch_id": "2bae74a9-8783-480c-bd37-913c392168d2",
  "token": "sk-Ir4JqYCnj...",
  "created_at": "2026-08-12 15:00:10",
- "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-12/151e095a-5c5c-4bad-8ae5-1a43dccda6f5.zip"
+ "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-12/151e095a-5c5c-4bad-8ae5-1a43dccda6f5.zip",
+ "summarized": {
+  "model": "agnes-2.5-flash",
+  "at": "2026-08-18 05:14:59",
+  "chunks": 1,
+  "meta": {
+   "keywords": [
+    "Responsible AI",
+    "RAI实践",
+    "文献综述",
+    "AI治理",
+    "公平性",
+    "可解释性",
+    "实证研究"
+   ],
+   "field": "负责任AI实践研究",
+   "innovations": [
+    "首个半代161篇RAI实证研究系统性综述",
+    "提出进展-挑战双轨分析框架追踪实践演化",
+    "公开开源标注数据库支持元分析"
+   ],
+   "benchmarks": [
+    "ACM/IEEE/DBLP/Semantic Scholar多库检索",
+    "主题分析三阶段编码",
+    "时序对比2019-2025"
+   ]
+  }
+ }
 }

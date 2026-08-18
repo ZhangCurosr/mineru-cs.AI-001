@@ -3,5 +3,31 @@
  "batch_id": "15225e19-dc43-4299-b113-9d14c504007d",
  "token": "sk-owp49a3rO...",
  "created_at": "2026-08-12 16:06:55",
- "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-12/e799da97-acd4-4f9c-84bf-6a5e0b63984b.zip"
+ "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-12/e799da97-acd4-4f9c-84bf-6a5e0b63984b.zip",
+ "summarized": {
+  "model": "agnes-2.5-flash",
+  "at": "2026-08-18 05:22:01",
+  "chunks": 4,
+  "meta": {
+   "keywords": [
+    "模型合并",
+    "推理压缩",
+    "推荐系统",
+    "注意力头",
+    "训练自由",
+    "LLM推荐"
+   ],
+   "field": "大语言模型推荐系统",
+   "innovations": [
+    "首个面向推荐系统的训练自由推理压缩框架REAM，通过头级选择性参数合并平衡推理效率与推荐精度",
+    "检索关键性与决策忠实度双维度头级评估，实现对推理行为重要性的细粒度量化",
+    "Fisher加权头级更新敏感性度量，基于对角化经验Fisher矩阵控制合并强度防止过度扰动"
+   ],
+   "benchmarks": [
+    "Yelp",
+    "Amazon Book",
+    "Amazon Music"
+   ]
+  }
+ }
 }

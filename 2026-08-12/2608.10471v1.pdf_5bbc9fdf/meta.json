@@ -3,5 +3,32 @@
  "batch_id": "5bbc9fdf-0617-441e-977b-6c9a26ccf7eb",
  "token": "sk-owp49a3rO...",
  "created_at": "2026-08-12 16:06:52",
- "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-12/ae732b0f-dc7d-4312-baad-d475db9ba44b.zip"
+ "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-12/ae732b0f-dc7d-4312-baad-d475db9ba44b.zip",
+ "summarized": {
+  "model": "agnes-2.5-flash",
+  "at": "2026-08-18 05:24:56",
+  "chunks": 1,
+  "meta": {
+   "keywords": [
+    "prompt optimization",
+    "recursive language model",
+    "adaptive search",
+    "Pareto selection",
+    "regression floor",
+    "agent-based optimizer"
+   ],
+   "field": "提示工程与语言模型自动优化",
+   "innovations": [
+    "以 RLM 智能体替代固定搜索策略控制提示词优化过程",
+    "引入 harness 侧 Pareto 选择、回归地板与显著性门控的稳定化机制",
+    "系统性刻画优化收益主要由初始 seed 的 headroom 决定而非预算"
+   ],
+   "benchmarks": [
+    "Chia",
+    "HotpotQA",
+    "IFBench-2025",
+    "BFCL multi-turn"
+   ]
+  }
+ }
 }

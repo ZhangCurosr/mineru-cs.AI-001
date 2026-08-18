@@ -3,5 +3,34 @@
  "batch_id": "e5d901c4-f2d4-4c4c-9634-0a108119b910",
  "token": "sk-n7iJ0Z1Ol...",
  "created_at": "2026-08-12 15:03:03",
- "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-12/29f5eee9-3259-4be5-a492-d0d8bf645d1d.zip"
+ "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-12/29f5eee9-3259-4be5-a492-d0d8bf645d1d.zip",
+ "summarized": {
+  "model": "agnes-2.5-flash",
+  "at": "2026-08-18 05:17:40",
+  "chunks": 7,
+  "meta": {
+   "keywords": [
+    "reservoir computing",
+    "universal approximation",
+    "single-member hardware",
+    "atom-mirror cavity",
+    "Volterra kernel",
+    "nonlinearity transfer",
+    "fading memory"
+   ],
+   "field": "物理储层计算与通用近似理论",
+   "innovations": [
+    "单原子+反射镜构成 provably universal reservoir computer，无需遍历多个器件或可调参数",
+    "非线性从读读出转移到硬件内禀原子饱和响应，纯线性读出匹配/超越九阶多项式读出",
+    "非嵌套谱族下的严格单调扩展性，零填充无法复现的非平凡包含关系"
+   ],
+   "benchmarks": [
+    "NARMA10",
+    "Mackey-Glass",
+    "语音识别 (WER)",
+    "肿瘤分类",
+    "金融预测 (S&P 500/Apple/NASDAQ)"
+   ]
+  }
+ }
 }

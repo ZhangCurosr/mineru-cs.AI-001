@@ -3,5 +3,30 @@
  "batch_id": "8797a548-bf8c-4400-a0f8-0391e297986f",
  "token": "sk-Ir4JqYCnj...",
  "created_at": "2026-08-12 14:58:59",
- "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-12/0feb345f-9668-43c6-b084-303bd793f374.zip"
+ "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-12/0feb345f-9668-43c6-b084-303bd793f374.zip",
+ "summarized": {
+  "model": "agnes-2.5-flash",
+  "at": "2026-08-18 05:24:08",
+  "chunks": 1,
+  "meta": {
+   "keywords": [
+    "quantum incremental learning",
+    "mixed-state prototype",
+    "Hilbert-Schmidt distance",
+    "CCPS",
+    "catastrophic forgetting",
+    "quantum metric learning",
+    "NISQ"
+   ],
+   "field": "量子机器学习/持续学习",
+   "innovations": [
+    "基于CCPS混合态原型的可扩展量子增量学习框架，突破正交基态容量瓶颈",
+    "利用HS距离分解与SWAP test实现高效度量学习，避免电路宽度扩张"
+   ],
+   "benchmarks": [
+    "CIFAR-100 Split A/B/C",
+    "Tiny-ImageNet"
+   ]
+  }
+ }
 }

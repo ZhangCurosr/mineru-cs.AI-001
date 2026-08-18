@@ -3,5 +3,31 @@
  "batch_id": "e7cff7d2-cab8-4bbf-9b0b-c2959f9a487a",
  "token": "sk-Ir4JqYCnj...",
  "created_at": "2026-08-12 14:59:27",
- "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-12/410cc81b-7fd6-4875-886c-fe567259d415.zip"
+ "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-12/410cc81b-7fd6-4875-886c-fe567259d415.zip",
+ "summarized": {
+  "model": "agnes-2.5-flash",
+  "at": "2026-08-18 05:15:24",
+  "chunks": 1,
+  "meta": {
+   "keywords": [
+    "幻觉检测",
+    "Agent安全",
+    "可解释AI",
+    "LoRA适配器",
+    "工具调用",
+    "机制可解释性"
+   ],
+   "field": "AI代理安全与幻觉检测",
+   "innovations": [
+    "Latent Critic：通过并发的低秩适配器实时重构残差流几何，将内部不确定性转化为参数级局部化诊断反馈",
+    "遮蔽诊断训练目标：仅在后置触发令牌上计算梯度，迫使适配器专注于不确定性提取",
+    "秩无关的线性可分表征重构：证明接地信号存在于低维子空间，跨分布迁移稳定"
+   ],
+   "benchmarks": [
+    "Qwen3-4B ID/AUD",
+    "Llama-xLAM-2-8B ID/AUD",
+    "ToolAlpaca OOD"
+   ]
+  }
+ }
 }

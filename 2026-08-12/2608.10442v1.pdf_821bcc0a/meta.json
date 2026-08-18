@@ -3,5 +3,29 @@
  "batch_id": "821bcc0a-bf06-44cd-9c22-6f99748d633c",
  "token": "sk-n7iJ0Z1Ol...",
  "created_at": "2026-08-12 15:33:43",
- "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-12/8edeef39-a18d-4656-ac22-dd9a23667f66.zip"
+ "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-12/8edeef39-a18d-4656-ac22-dd9a23667f66.zip",
+ "summarized": {
+  "model": "agnes-2.5-flash",
+  "at": "2026-08-18 05:19:24",
+  "chunks": 1,
+  "meta": {
+   "keywords": [
+    "stress detection",
+    "facial video",
+    "asymmetric attention",
+    "temporal stride",
+    "affective computing",
+    "video understanding"
+   ],
+   "field": "面部视频压力检测",
+   "innovations": [
+    "提出轴折叠+FUSE框架，将完整视频作为单一输入处理，无需时间窗口分割",
+    "非对称注意力架构支持可变长度输入，片段潜状态实现高效全局信息聚合",
+    "揭示时序密度与精度非单调关系，全帧推理与最优配置差距仅0.41%"
+   ],
+   "benchmarks": [
+    "58-subject stress dataset"
+   ]
+  }
+ }
 }

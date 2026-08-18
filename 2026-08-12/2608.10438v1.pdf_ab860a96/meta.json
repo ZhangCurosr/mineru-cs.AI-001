@@ -3,5 +3,29 @@
  "batch_id": "ab860a96-c955-45ad-86db-7ee78fdb3aee",
  "token": "sk-Ir4JqYCnj...",
  "created_at": "2026-08-12 14:59:26",
- "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-12/4f1bbb1d-6a5d-42b3-8aee-7142a649fdbb.zip"
+ "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-12/4f1bbb1d-6a5d-42b3-8aee-7142a649fdbb.zip",
+ "summarized": {
+  "model": "agnes-2.5-flash",
+  "at": "2026-08-18 05:18:58",
+  "chunks": 1,
+  "meta": {
+   "keywords": [
+    "diffusion language model",
+    "tool-augmented reasoning",
+    "asynchronous agent",
+    "continuous latent reasoning",
+    "persistent perceptual binding",
+    "typed cognitive tensor"
+   ],
+   "field": "扩散语言模型与工具增强推理",
+   "innovations": [
+    "提出三通道分离架构（事实/思想/显示）将外部工具交互内化到扩散去噪过程",
+    "定义持久感知绑定区分外部刷新与认知重投影以减少重复I/O",
+    "引入类型认知张量与局部可编辑性调控实现选择性修订与证据同化"
+   ],
+   "benchmarks": [
+    "论文未提供实证基准；建议评估协议包含静态引用复制、动态状态跟踪、延迟检索、流式证据、竞争性来源等任务族"
+   ]
+  }
+ }
 }

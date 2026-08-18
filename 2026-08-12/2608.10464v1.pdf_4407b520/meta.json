@@ -3,5 +3,30 @@
  "batch_id": "4407b520-6c6e-40ba-a9f9-364ce1b89d2c",
  "token": "sk-n7iJ0Z1Ol...",
  "created_at": "2026-08-12 15:02:57",
- "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-12/0feb345f-9668-43c6-b084-303bd793f374.zip"
+ "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-12/0feb345f-9668-43c6-b084-303bd793f374.zip",
+ "summarized": {
+  "model": "agnes-2.5-flash",
+  "at": "2026-08-18 05:24:22",
+  "chunks": 1,
+  "meta": {
+   "keywords": [
+    "quantum incremental learning",
+    "mixed state prototype",
+    "Hilbert-Schmidt distance",
+    "CCPS ansatz",
+    "catastrophic forgetting",
+    "NISQ"
+   ],
+   "field": "量子机器学习与增量学习",
+   "innovations": [
+    "基于CCPS混合态原型的量子增量学习框架，避免电路宽度扩展",
+    "HS距离经SWAP test分解实现硬件友好的度量学习",
+    "两阶段解耦训练：骨干表征学习后独立拟合类原型"
+   ],
+   "benchmarks": [
+    "CIFAR-100 32-class incremental",
+    "Tiny-ImageNet 32-class incremental"
+   ]
+  }
+ }
 }

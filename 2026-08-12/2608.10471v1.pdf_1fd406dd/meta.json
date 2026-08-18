@@ -3,5 +3,32 @@
  "batch_id": "1fd406dd-df5a-4f67-8b88-147dedb0ff5d",
  "token": "sk-Ar06zcDAy...",
  "created_at": "2026-08-12 15:42:00",
- "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-12/ae732b0f-dc7d-4312-baad-d475db9ba44b.zip"
+ "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-12/ae732b0f-dc7d-4312-baad-d475db9ba44b.zip",
+ "summarized": {
+  "model": "agnes-2.5-flash",
+  "at": "2026-08-18 05:25:12",
+  "chunks": 1,
+  "meta": {
+   "keywords": [
+    "prompt optimization",
+    "recursive language model",
+    "adaptive search",
+    "Pareto selection",
+    "multi-component agent",
+    "no-regression floor"
+   ],
+   "field": "Prompt Engineering / LLM System Optimization",
+   "innovations": [
+    "用递归语言模型作为自适应搜索策略控制器，与固定进化/贝叶斯/历史-conditioned 优化器本质不同",
+    "Agent-Harness 职责分离：LLM 做探索，确定性 harness 执行 per-field floor、Pareto 选择与显著性门",
+    "将多组件候选（system prompt/tool description/demonstrations）统一为可独立优化的 component map 并验证于多轮 tool-calling 场景"
+   ],
+   "benchmarks": [
+    "Chia",
+    "HotpotQA",
+    "IFBench-2025",
+    "BFCL multi-turn"
+   ]
+  }
+ }
 }

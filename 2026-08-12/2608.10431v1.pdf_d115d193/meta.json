@@ -3,5 +3,29 @@
  "batch_id": "d115d193-c3d1-40e7-82cb-b9912b0abada",
  "token": "sk-n7iJ0Z1Ol...",
  "created_at": "2026-08-12 15:33:45",
- "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-12/151e095a-5c5c-4bad-8ae5-1a43dccda6f5.zip"
+ "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-12/151e095a-5c5c-4bad-8ae5-1a43dccda6f5.zip",
+ "summarized": {
+  "model": "agnes-2.5-flash",
+  "at": "2026-08-18 05:15:54",
+  "chunks": 1,
+  "meta": {
+   "keywords": [
+    "Responsible AI",
+    "Empirical Literature Review",
+    "Industry Practices",
+    "AI Ethics",
+    "Algorithmic Fairness",
+    "Organizational Challenges"
+   ],
+   "field": "负责任AI实证研究",
+   "innovations": [
+    "首次系统综述161篇工业界RAI实证研究，识别意识提升、专业化、工具采纳、外部参与四大进展及对应挑战",
+    "提出awareness-knowledge-attitude三维度框架分析RAI实践演进",
+    "针对每个挑战综合文献中的应对机会并标注共识/争议点"
+   ],
+   "benchmarks": [
+    "161篇empirical studies corpus (2019-2025)"
+   ]
+  }
+ }
 }

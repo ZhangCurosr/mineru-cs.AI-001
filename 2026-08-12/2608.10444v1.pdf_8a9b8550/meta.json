@@ -3,5 +3,30 @@
  "batch_id": "8a9b8550-98e7-4225-8a8e-23b044b9862a",
  "token": "sk-n7iJ0Z1Ol...",
  "created_at": "2026-08-12 15:02:59",
- "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-12/265abedd-26a5-4e6a-94d3-77d170ad2253.zip"
+ "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-12/265abedd-26a5-4e6a-94d3-77d170ad2253.zip",
+ "summarized": {
+  "model": "agnes-2.5-flash",
+  "at": "2026-08-18 05:19:48",
+  "chunks": 1,
+  "meta": {
+   "keywords": [
+    "reasoning breadth",
+    "multi-point associative reasoning",
+    "LLM evaluation",
+    "MPAR-Bench",
+    "overthinking",
+    "robustness perturbation"
+   ],
+   "field": "大语言模型推理能力评测",
+   "innovations": [
+    "提出首个推理广度基准MPAR-Bench，聚焦多点联想推理能力",
+    "设计多智能体线索合成流水线与嵌入多样性过滤降低数据污染",
+    "提出粗细结合评估协议及四轴扰动测试推理鲁棒性"
+   ],
+   "benchmarks": [
+    "MPAR-Bench English",
+    "MPAR-Bench Chinese"
+   ]
+  }
+ }
 }

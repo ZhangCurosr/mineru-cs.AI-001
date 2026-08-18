@@ -3,5 +3,29 @@
  "batch_id": "9f298117-cf54-42be-9032-7ffafcf477d7",
  "token": "sk-Ir4JqYCnj...",
  "created_at": "2026-08-12 14:59:01",
- "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-12/265abedd-26a5-4e6a-94d3-77d170ad2253.zip"
+ "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-12/265abedd-26a5-4e6a-94d3-77d170ad2253.zip",
+ "summarized": {
+  "model": "agnes-2.5-flash",
+  "at": "2026-08-18 05:19:56",
+  "chunks": 1,
+  "meta": {
+   "keywords": [
+    "reasoning breadth",
+    "multi-point associative reasoning",
+    "LLM evaluation benchmark",
+    "chain-of-thought overthinking",
+    "robustness perturbation",
+    "bilingual benchmark"
+   ],
+   "field": "大语言模型推理评估",
+   "innovations": [
+    "提出MPAR-Bench首个推理广度基准，通过Just One游戏规则构造多源异构线索猜词任务",
+    "设计多代理协同线索生成管线（分角度生成-裁判过滤-嵌入去重-人工核验），大幅降低记忆化污染风险",
+    "揭示推理深度与广度正交：思考模式提升标准设定准确率但不稳定增强抗扰动能力，且存在overthinking覆盖正确答案的现象"
+   ],
+   "benchmarks": [
+    "MPAR-Bench"
+   ]
+  }
+ }
 }

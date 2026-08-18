@@ -3,5 +3,30 @@
  "batch_id": "e6c77687-c72f-4c8f-89e5-1fff05c0f6dd",
  "token": "sk-n7iJ0Z1Ol...",
  "created_at": "2026-08-12 15:02:59",
- "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-12/8edeef39-a18d-4656-ac22-dd9a23667f66.zip"
+ "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-12/8edeef39-a18d-4656-ac22-dd9a23667f66.zip",
+ "summarized": {
+  "model": "agnes-2.5-flash",
+  "at": "2026-08-18 05:19:23",
+  "chunks": 1,
+  "meta": {
+   "keywords": [
+    "stress recognition",
+    "facial video",
+    "asymmetric attention",
+    "temporal stride",
+    "frame-unified",
+    "affective computing"
+   ],
+   "field": "面部视频压力检测",
+   "innovations": [
+    "轴折叠将时间维度融入通道维度实现全帧统一处理",
+    "非对称注意力架构支持输入长度无关的固定计算图",
+    "系统步长扫掠揭示稠密采样不必然提升泛化性能"
+   ],
+   "benchmarks": [
+    "58-subject stress dataset",
+    "stratified subject-level split"
+   ]
+  }
+ }
 }

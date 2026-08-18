@@ -3,5 +3,29 @@
  "batch_id": "4c6044bb-b53a-4329-b787-1edbc58f59f3",
  "token": "sk-n7iJ0Z1Ol...",
  "created_at": "2026-08-12 15:02:59",
- "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-12/e20d506a-4182-4d61-b698-920710e695c8.zip"
+ "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-12/e20d506a-4182-4d61-b698-920710e695c8.zip",
+ "summarized": {
+  "model": "agnes-2.5-flash",
+  "at": "2026-08-18 05:16:18",
+  "chunks": 1,
+  "meta": {
+   "keywords": [
+    "Explainable AI",
+    "Human-AI Interaction",
+    "UAV Security",
+    "Trust and Reliance",
+    "Conversational Interface",
+    "Intrusion Detection"
+   ],
+   "field": "人机交互与可解释AI",
+   "innovations": [
+    "对比对话式与仪表板式XAI在无人机审计中的信任与依赖影响",
+    "揭示流畅自然语言解释可能导致过度依赖且未提升准确率的风险",
+    "提出在对话式XAI中整合认知强制功能的设计方向"
+   ],
+   "benchmarks": [
+    "UAV-ID dataset"
+   ]
+  }
+ }
 }

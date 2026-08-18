@@ -3,5 +3,33 @@
  "batch_id": "a1d37507-60d9-41e3-9b4d-c5759918fd44",
  "token": "sk-n7iJ0Z1Ol...",
  "created_at": "2026-08-12 15:02:58",
- "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-12/e799da97-acd4-4f9c-84bf-6a5e0b63984b.zip"
+ "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-12/e799da97-acd4-4f9c-84bf-6a5e0b63984b.zip",
+ "summarized": {
+  "model": "agnes-2.5-flash",
+  "at": "2026-08-18 05:21:55",
+  "chunks": 4,
+  "meta": {
+   "keywords": [
+    "推理压缩",
+    "模型融合",
+    "推荐系统",
+    "慢思考",
+    "注意力头",
+    "免训练",
+    "Fisher信息",
+    "水填充优化"
+   ],
+   "field": "大模型推荐系统效率优化",
+   "innovations": [
+    "首个面向推荐系统的头级别免训练推理压缩融合框架 REAM",
+    "双信号（检索关键性+决策忠实度）联合评估注意力头重要性",
+    "Fisher-weighted 水填充优化实现预算约束下的最优融合系数分配"
+   ],
+   "benchmarks": [
+    "Yelp",
+    "Amazon Book",
+    "Amazon Music"
+   ]
+  }
+ }
 }

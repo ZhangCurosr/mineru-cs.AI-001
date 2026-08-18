@@ -3,5 +3,30 @@
  "batch_id": "919957df-bdb4-45a8-8fb5-c5cc6271ff1b",
  "token": "sk-Ar06zcDAy...",
  "created_at": "2026-08-12 15:42:02",
- "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-12/ed855239-f0cb-4310-af20-71b2b4b9d3c8.zip"
+ "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-12/ed855239-f0cb-4310-af20-71b2b4b9d3c8.zip",
+ "summarized": {
+  "model": "agnes-2.5-flash",
+  "at": "2026-08-18 05:22:27",
+  "chunks": 1,
+  "meta": {
+   "keywords": [
+    "multimodal emotion recognition",
+    "rationale-guided learning",
+    "contrastive learning",
+    "dual-process theory",
+    "multimodal fusion",
+    "interpretability"
+   ],
+   "field": "多模态情感识别",
+   "innovations": [
+    "提出 RGL 框架，将 MLLM 生成的三类认知推理依据作为中间监督信号引导模型学习",
+    "基于双过程理论的三维度推理依据分解（直觉、上下文、整合）",
+    "双头特征解耦设计，使主任务与推理对齐互不干扰"
+   ],
+   "benchmarks": [
+    "IEMOCAP",
+    "MELD"
+   ]
+  }
+ }
 }

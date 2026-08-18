@@ -3,5 +3,33 @@
  "batch_id": "bfd5cf78-3f63-4108-8110-93d2a0358ee9",
  "token": "sk-Ir4JqYCnj...",
  "created_at": "2026-08-12 14:59:00",
- "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-12/e8a63d3d-6668-42d1-9299-f7d6e99342f0.zip"
+ "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-12/e8a63d3d-6668-42d1-9299-f7d6e99342f0.zip",
+ "summarized": {
+  "model": "agnes-2.5-flash",
+  "at": "2026-08-18 05:23:57",
+  "chunks": 1,
+  "meta": {
+   "keywords": [
+    "LLM-generated text detection",
+    "prototype-based representation",
+    "encoder-only detector",
+    "intra-class variation",
+    "adversarial robustness",
+    "cross-domain generalization"
+   ],
+   "field": "AI-generated text detection",
+   "innovations": [
+    "提出 Prototype Positioning 损失，在去除类共享方向后以软分配加权残差聚合为每个原型构造独立数据驱动目标",
+    "同时为人类与机器两类维护多原型银行并通过 K-Means 初始化，实现类内细粒度结构建模",
+    "仅在输入文本上运行的编码器检测器，在 MAGE CDCM 与 RAID 上取得最高 AvgRec，并在 RAID 同时取得最高 AU-ROC 与最低 FPR95"
+   ],
+   "benchmarks": [
+    "MAGE CDCM",
+    "MAGE Unseen Domains",
+    "MAGE Unseen Models",
+    "RAID",
+    "M4"
+   ]
+  }
+ }
 }

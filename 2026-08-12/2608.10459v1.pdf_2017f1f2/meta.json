@@ -3,5 +3,33 @@
  "batch_id": "2017f1f2-9776-406e-a20b-ff94713d9129",
  "token": "sk-n7iJ0Z1Ol...",
  "created_at": "2026-08-12 15:02:58",
- "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-12/e8a63d3d-6668-42d1-9299-f7d6e99342f0.zip"
+ "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-12/e8a63d3d-6668-42d1-9299-f7d6e99342f0.zip",
+ "summarized": {
+  "model": "agnes-2.5-flash",
+  "at": "2026-08-18 05:23:28",
+  "chunks": 1,
+  "meta": {
+   "keywords": [
+    "LLM-generated text detection",
+    "prototype-based learning",
+    "encoder detector",
+    "domain generalization",
+    "adversarial robustness",
+    "multi-prototype"
+   ],
+   "field": "AI-generated text detection",
+   "innovations": [
+    "提出多原型定位框架 MD-ProTector，同时为人类和机器文本建模类内多样性",
+    "设计 Prototype Positioning loss，通过残差定位实现原型差异化角色",
+    "联合 P2C、S2P、PP 三层损失实现类共享方向与类内变异的解耦学习"
+   ],
+   "benchmarks": [
+    "MAGE CDCM",
+    "MAGE Unseen Domains",
+    "MAGE Unseen Models",
+    "RAID",
+    "M4"
+   ]
+  }
+ }
 }

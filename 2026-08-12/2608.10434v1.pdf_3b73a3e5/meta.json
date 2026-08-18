@@ -3,5 +3,29 @@
  "batch_id": "3b73a3e5-53aa-4e34-8b1f-0a8a1bd37e6e",
  "token": "sk-Ar06zcDAy...",
  "created_at": "2026-08-12 16:06:56",
- "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-12/e20d506a-4182-4d61-b698-920710e695c8.zip"
+ "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-12/e20d506a-4182-4d61-b698-920710e695c8.zip",
+ "summarized": {
+  "model": "agnes-2.5-flash",
+  "at": "2026-08-18 05:16:29",
+  "chunks": 1,
+  "meta": {
+   "keywords": [
+    "XAI",
+    "UAV Intrusion Detection",
+    "Conversational Interface",
+    "Operator Trust",
+    "Appropriate Reliance",
+    "Human-AI Collaboration"
+   ],
+   "field": "可解释人工智能与人机交互",
+   "innovations": [
+    "构建基于LLM的对话式XAI接口并在UAV入侵检测场景验证",
+    "首次系统性实证比较对话式与仪表板式XAI对操作者信任与依赖行为的影响",
+    "揭示流畅性-依赖权衡现象并提供实证证据"
+   ],
+   "benchmarks": [
+    "UAV-ID Dataset"
+   ]
+  }
+ }
 }

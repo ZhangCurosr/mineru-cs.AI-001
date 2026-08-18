@@ -3,5 +3,30 @@
  "batch_id": "74234a22-8fdd-4460-a533-67bb17b2ddd2",
  "token": "sk-owp49a3rO...",
  "created_at": "2026-08-12 16:06:55",
- "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-12/8edeef39-a18d-4656-ac22-dd9a23667f66.zip"
+ "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-12/8edeef39-a18d-4656-ac22-dd9a23667f66.zip",
+ "summarized": {
+  "model": "agnes-2.5-flash",
+  "at": "2026-08-18 05:19:17",
+  "chunks": 1,
+  "meta": {
+   "keywords": [
+    "stress detection",
+    "facial video",
+    "asymmetric attention",
+    "temporal stride",
+    "full-recording inference",
+    "axis folding",
+    "affective computing"
+   ],
+   "field": "stress recognition",
+   "innovations": [
+    "轴折叠将视频时间维度嵌入通道维度，实现无时间窗口分割的全记录处理",
+    "非对称注意力架构通过跨注意力聚合与层级压缩，以固定段状态处理任意长度高分辨率输入",
+    "系统验证时间步长 sweep 在性能与计算效率间的权衡，证明全帧推理可行性"
+   ],
+   "benchmarks": [
+    "58-subject stress dataset (facial video + ECG)"
+   ]
+  }
+ }
 }

@@ -3,5 +3,32 @@
  "batch_id": "055dc3cd-8662-404d-827c-3b7efee87b29",
  "token": "sk-n7iJ0Z1Ol...",
  "created_at": "2026-08-12 15:02:58",
- "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-12/ebb82985-0831-4cd1-bc2f-50efc18294c5.zip"
+ "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-12/ebb82985-0831-4cd1-bc2f-50efc18294c5.zip",
+ "summarized": {
+  "model": "agnes-2.5-flash",
+  "at": "2026-08-18 05:22:34",
+  "chunks": 1,
+  "meta": {
+   "keywords": [
+    "persistent recursive world",
+    "long-horizon coding agent",
+    "software evolution",
+    "compiler construction",
+    "scientific software redevelopment",
+    "validation-gated acceptance"
+   ],
+   "field": "AI-assisted software engineering",
+   "innovations": [
+    "以已接受项目状态替代智能体作为长周期连续性载体",
+    "递归委托+验证门控接受的两阶段演进组织",
+    "跨基础模型替换与跨语言重构中保留数值行为的实证"
+   ],
+   "benchmarks": [
+    "c-testsuite",
+    "LLVM test suites",
+    "Csmith",
+    "MESA numerical workloads"
+   ]
+  }
+ }
 }
