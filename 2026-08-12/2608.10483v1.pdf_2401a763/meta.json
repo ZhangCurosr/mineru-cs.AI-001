@@ -3,5 +3,33 @@
  "batch_id": "2401a763-a5fa-4ac6-82a1-3133233776bf",
  "token": "sk-Ir4JqYCnj...",
  "created_at": "2026-08-12 16:06:48",
- "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-12/2afaca9f-b21b-41b9-9afd-ececd5786275.zip"
+ "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-12/2afaca9f-b21b-41b9-9afd-ececd5786275.zip",
+ "summarized": {
+  "model": "agnes-2.5-flash",
+  "at": "2026-08-18 06:36:37",
+  "chunks": 1,
+  "meta": {
+   "keywords": [
+    "双钙钛矿",
+    "空间群预测",
+    "大语言模型",
+    "少样本学习",
+    "类别不平衡",
+    "检索增强生成",
+    "材料信息学"
+   ],
+   "field": "计算材料学与AI交叉",
+   "innovations": [
+    "多样性增强的动态少样本检索策略，缓解类别不平衡",
+    "融合有序化先验与多源定量证据的规则引导LLM推理框架",
+    "主要SG偏见控制规则提升少数类预测性能"
+   ],
+   "benchmarks": [
+    "Overall Top-1 accuracy",
+    "Overall Top-1 macro-F1 score",
+    "Minor-SG Top-1 accuracy",
+    "Minor-SG Top-3 accuracy"
+   ]
+  }
+ }
 }

@@ -3,5 +3,31 @@
  "batch_id": "c0203e44-24fa-4a10-9d21-683bf63294d3",
  "token": "sk-Ar06zcDAy...",
  "created_at": "2026-08-12 15:41:58",
- "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-12/ccfec961-e3ec-4e25-9104-d54bcf860e11.zip"
+ "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-12/ccfec961-e3ec-4e25-9104-d54bcf860e11.zip",
+ "summarized": {
+  "model": "agnes-2.5-flash",
+  "at": "2026-08-18 06:38:33",
+  "chunks": 1,
+  "meta": {
+   "keywords": [
+    "学生模拟器",
+    "内部推理建模",
+    "Chain-of-Thought",
+    "教育大模型",
+    "代码生成",
+    "Bloom分类法",
+    "行为仿真"
+   ],
+   "field": "教育人工智能 / 学习分析",
+   "innovations": [
+    "提出INSIDE框架联合建模学生可观察动作与潜在内部推理过程",
+    "利用Bloom分类法指导的教师模型回溯性推理生成认知/情感/行动三维度内部对话作为训练信号",
+    "构建动作保真度与推理对齐度双维评估体系，揭示强推理模型不等同于新手推理"
+   ],
+   "benchmarks": [
+    "test_OP",
+    "test_NP"
+   ]
+  }
+ }
 }

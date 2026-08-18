@@ -3,5 +3,38 @@
  "batch_id": "03c1f97b-0fc4-4da2-b929-1a6c79777df3",
  "token": "sk-Ir4JqYCnj...",
  "created_at": "2026-08-12 16:06:51",
- "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-12/cc439245-6227-455a-a32a-5a8924b47ce5.zip"
+ "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-12/cc439245-6227-455a-a32a-5a8924b47ce5.zip",
+ "summarized": {
+  "model": "agnes-2.5-flash",
+  "at": "2026-08-18 06:35:25",
+  "chunks": 1,
+  "meta": {
+   "keywords": [
+    "molecular property prediction",
+    "large language model",
+    "explainable AI",
+    "graph neural network",
+    "substructure attribution",
+    "multi-granular rationale",
+    "MoleculeNet"
+   ],
+   "field": "可解释分子人工智能",
+   "innovations": [
+    "首次将GNN子结构归因序列化为带方向标签的文本证据输入LLM",
+    "三粒度分解框架结合Murcko骨架、BRICS片段和官能团视角",
+    "五项诊断实验验证模型真正读取理由内容而非仅受益于其存在"
+   ],
+   "benchmarks": [
+    "MoleculeNet",
+    "BACE",
+    "BBBP",
+    "ClinTox",
+    "HIV",
+    "SIDER",
+    "Tox21",
+    "ESOL",
+    "Lipo"
+   ]
+  }
+ }
 }

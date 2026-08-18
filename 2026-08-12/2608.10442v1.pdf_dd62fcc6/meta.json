@@ -3,5 +3,30 @@
  "batch_id": "dd62fcc6-2dc1-4d8d-b9a2-f120a0bad236",
  "token": "sk-Ar06zcDAy...",
  "created_at": "2026-08-12 15:42:03",
- "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-12/8edeef39-a18d-4656-ac22-dd9a23667f66.zip"
+ "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-12/8edeef39-a18d-4656-ac22-dd9a23667f66.zip",
+ "summarized": {
+  "model": "agnes-2.5-flash",
+  "at": "2026-08-18 06:28:26",
+  "chunks": 1,
+  "meta": {
+   "keywords": [
+    "stress detection",
+    "facial video",
+    "asymmetric attention",
+    "axis folding",
+    "full-recording inference",
+    "affective computing",
+    "transformer"
+   ],
+   "field": "情感计算与压力识别",
+   "innovations": [
+    "全记录单次推理：将完整面部视频折叠为单一二维表示，无需时间窗口分割",
+    "轴折叠与不对称注意力结合：通过空间段潜态实现长序列的高效全局聚合",
+    "时序步长扫描验证架构通用性与计算‑精度权衡"
+   ],
+   "benchmarks": [
+    "58-subject stress dataset (subject-level stratified split, binary neutral-vs-stress classification)"
+   ]
+  }
+ }
 }

@@ -3,5 +3,31 @@
  "batch_id": "6eef23e2-23a2-4148-af81-4846fc51839a",
  "token": "sk-n7iJ0Z1Ol...",
  "created_at": "2026-08-12 15:02:55",
- "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-12/ccfec961-e3ec-4e25-9104-d54bcf860e11.zip"
+ "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-12/ccfec961-e3ec-4e25-9104-d54bcf860e11.zip",
+ "summarized": {
+  "model": "agnes-2.5-flash",
+  "at": "2026-08-18 06:38:01",
+  "chunks": 1,
+  "meta": {
+   "keywords": [
+    "LLM Student Simulation",
+    "Educational Data Mining",
+    "Chain-of-Thought",
+    "Bloom's Taxonomy",
+    "Student Modeling"
+   ],
+   "field": "教育人工智能",
+   "innovations": [
+    "基于Bloom分类法的认知/情感/行动三维内部对话生成",
+    "联合建模潜在推理与可观察行为的INSIDE框架",
+    "基于代码Diff的原子声明对齐评估方法"
+   ],
+   "benchmarks": [
+    "test_OP (Old Problems)",
+    "test NP (New Problems)",
+    "Wasserstein Distance",
+    "Alignment Score"
+   ]
+  }
+ }
 }

@@ -3,5 +3,31 @@
  "batch_id": "02f829c5-e24a-4434-a46a-0320fe451b0b",
  "token": "sk-owp49a3rO...",
  "created_at": "2026-08-12 15:41:57",
- "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-12/a133450e-d9e3-4c47-851b-f8f492929dbb.zip"
+ "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-12/a133450e-d9e3-4c47-851b-f8f492929dbb.zip",
+ "summarized": {
+  "model": "agnes-2.5-flash",
+  "at": "2026-08-18 06:44:03",
+  "chunks": 1,
+  "meta": {
+   "keywords": [
+    "多智能体系统",
+    "共享内存",
+    "溯源感知",
+    "访问控制",
+    "大语言模型安全",
+    "RAG系统",
+    "合成基准"
+   ],
+   "field": "多智能体协作与安全",
+   "innovations": [
+    "分离语义检索与溯源授权，硬权限过滤与渐变信任解耦",
+    "乘法路径信任沿祖先链累积惩罚，防止单一弱点覆盖",
+    "动作时间门控根据风险等级重新评估支持证据"
+   ],
+   "benchmarks": [
+    "MAP-Graph Synthetic Benchmark (2700 tasks)",
+    "Backbone Transfer Subset (540 tasks)"
+   ]
+  }
+ }
 }

@@ -3,5 +3,30 @@
  "batch_id": "d56c328d-57b3-47e3-a934-6c21689b3e73",
  "token": "sk-Ir4JqYCnj...",
  "created_at": "2026-08-12 14:58:57",
- "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-12/4aed4458-7014-4bd5-aae0-f60ffa18cc8e.zip"
+ "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-12/4aed4458-7014-4bd5-aae0-f60ffa18cc8e.zip",
+ "summarized": {
+  "model": "agnes-2.5-flash",
+  "at": "2026-08-18 06:37:19",
+  "chunks": 1,
+  "meta": {
+   "keywords": [
+    "VLA",
+    "action tokenization",
+    "semantic alignment",
+    "verb grounding",
+    "VQ-VAE",
+    "embodied AI"
+   ],
+   "field": "视觉-语言-动作模型表征学习",
+   "innovations": [
+    "提出SALT在VQ-VAE中引入冻结VLM指令生成的语义对齐损失",
+    "定量证明离散动作标记化系统性侵蚀动词接地信息",
+    "发现语义对齐码本自发涌现动词专业化代码"
+   ],
+   "benchmarks": [
+    "BridgeV2",
+    "SimplerEnv WidowX套件"
+   ]
+  }
+ }
 }

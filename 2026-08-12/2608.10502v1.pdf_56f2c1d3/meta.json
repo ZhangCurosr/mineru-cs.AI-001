@@ -3,5 +3,30 @@
  "batch_id": "56f2c1d3-00f1-4045-b853-bda8d5b7056f",
  "token": "sk-Ir4JqYCnj...",
  "created_at": "2026-08-12 14:59:24",
- "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-12/87598aab-3e86-4760-ba58-124ff986ba42.zip"
+ "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-12/87598aab-3e86-4760-ba58-124ff986ba42.zip",
+ "summarized": {
+  "model": "agnes-2.5-flash",
+  "at": "2026-08-18 06:42:10",
+  "chunks": 4,
+  "meta": {
+   "keywords": [
+    "记忆增强型 Agent",
+    "依赖图",
+    "故障修复",
+    "回滚规划",
+    "RAG 可靠性",
+    "Agent 记忆污染"
+   ],
+   "field": "记忆增强型 Agent 可靠性与修复",
+   "innovations": [
+    "依赖图驱动的记忆污染传播追踪与精准定位",
+    "成本感知回滚集合联合优化解除恢复率与修复代价的权衡",
+    "首个覆盖四类故障与六维指标的Agent记忆修复统一基准"
+   ],
+   "benchmarks": [
+    "150案例自建故障注入基准",
+    "Shopping/Travel/Customer Support 三领域测试"
+   ]
+  }
+ }
 }

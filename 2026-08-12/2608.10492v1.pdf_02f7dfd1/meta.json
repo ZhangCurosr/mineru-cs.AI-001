@@ -3,5 +3,30 @@
  "batch_id": "02f7dfd1-bbdb-4642-a8b0-d9e764b25918",
  "token": "sk-Ir4JqYCnj...",
  "created_at": "2026-08-12 14:59:24",
- "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-12/ccfec961-e3ec-4e25-9104-d54bcf860e11.zip"
+ "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-12/ccfec961-e3ec-4e25-9104-d54bcf860e11.zip",
+ "summarized": {
+  "model": "agnes-2.5-flash",
+  "at": "2026-08-18 06:37:46",
+  "chunks": 1,
+  "meta": {
+   "keywords": [
+    "学生建模",
+    "内部对话",
+    "Chain-of-Thought",
+    "教育AI",
+    "行为模拟",
+    "Bloom's Taxonomy"
+   ],
+   "field": "教育人工智能",
+   "innovations": [
+    "提出INSIDE框架联合建模学生latent reasoning和observable action",
+    "基于Bloom's Taxonomy的structured internal dialogue生成与训练",
+    "双维度评估体系（动作保真度+推理对齐度）"
+   ],
+   "benchmarks": [
+    "test_OP（熟悉问题unseen学生）",
+    "test_NP（新问题unseen学生）"
+   ]
+  }
+ }
 }

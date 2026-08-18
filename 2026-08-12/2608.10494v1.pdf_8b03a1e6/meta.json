@@ -3,5 +3,31 @@
  "batch_id": "8b03a1e6-5faa-4b95-b8a9-344bbf87f46a",
  "token": "sk-Ar06zcDAy...",
  "created_at": "2026-08-12 15:41:58",
- "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-12/bc1b0c8a-fa44-4fc9-ad3f-30dc6377d975.zip"
+ "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-12/bc1b0c8a-fa44-4fc9-ad3f-30dc6377d975.zip",
+ "summarized": {
+  "model": "agnes-2.5-flash",
+  "at": "2026-08-18 06:39:55",
+  "chunks": 1,
+  "meta": {
+   "keywords": [
+    "Earth Observation",
+    "LLM Agent",
+    "Self-Evolving",
+    "Non-Parametric Memory",
+    "Tool-Use Planning",
+    "Remote Sensing"
+   ],
+   "field": "地球观测智能体",
+   "innovations": [
+    "三级非参数记忆架构（工作流图+动作级经验+适配SOP）协同指导EO工具使用",
+    "安全门控轨迹蒸馏实现无参数更新的自进化",
+    "任务条件化检索增强结合模态感知工具过滤的免训练执行框架"
+   ],
+   "benchmarks": [
+    "Earth-Bench",
+    "ThinkGeo",
+    "GeoPlan-Bench"
+   ]
+  }
+ }
 }

@@ -3,5 +3,30 @@
  "batch_id": "4aa3b0d4-7d1f-44f3-b4b0-806346a4f8ff",
  "token": "sk-n7iJ0Z1Ol...",
  "created_at": "2026-08-12 15:02:56",
- "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-12/78471fda-9168-49d0-984a-7055d79eea99.zip"
+ "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-12/78471fda-9168-49d0-984a-7055d79eea99.zip",
+ "summarized": {
+  "model": "agnes-2.5-flash",
+  "at": "2026-08-18 06:29:30",
+  "chunks": 1,
+  "meta": {
+   "keywords": [
+    "offline-to-online reinforcement learning",
+    "critic-free pretraining",
+    "flow matching policy",
+    "behavior cloning",
+    "online fine-tuning",
+    "distribution shift",
+    "actor-critic decoupling"
+   ],
+   "field": "离线到在线强化学习",
+   "innovations": [
+    "完全摒弃离线 Critic 训练，仅用 BC 预训练 Actor 以避免分布偏移导致的悲观值偏差",
+    "从零初始化 Critic 并进行极短时离线数据 Warm-up 完成校准，无需额外在线预训练阶段"
+   ],
+   "benchmarks": [
+    "OGBench (Cube-Double/Triple/Quadruple, Puzzle-4x4, Scene)",
+    "Robomimic (Lift, Can, Square)"
+   ]
+  }
+ }
 }

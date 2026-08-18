@@ -3,5 +3,32 @@
  "batch_id": "0c1956d1-8d46-4c27-86c7-eec2f8aacdd7",
  "token": "sk-Ar06zcDAy...",
  "created_at": "2026-08-12 15:41:58",
- "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-12/1dcb6660-9094-4d29-a928-0c323bd1c015.zip"
+ "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-12/1dcb6660-9094-4d29-a928-0c323bd1c015.zip",
+ "summarized": {
+  "model": "agnes-2.5-flash",
+  "at": "2026-08-18 06:35:14",
+  "chunks": 7,
+  "meta": {
+   "keywords": [
+    "自然语言合同",
+    "LLM多智能体",
+    "契约理性",
+    "合成博弈",
+    "合规评估",
+    "背叛指标",
+    "Provider Scaffold"
+   ],
+   "field": "多智能体系统评估",
+   "innovations": [
+    "Provider Scaffold有界观测缓冲架构",
+    "端到端自然语言合同翻译管道",
+    "系统化理性基线对照与细粒度背叛指标"
+   ],
+   "benchmarks": [
+    "Catering/Hotel/AI Hosting三领域六环境",
+    "180份合成合同变体",
+    "RC/RCC/RE三层理论基线"
+   ]
+  }
+ }
 }

@@ -3,5 +3,29 @@
  "batch_id": "d6169f2a-f25c-4078-8d81-d8c14eac1e2d",
  "token": "sk-Ar06zcDAy...",
  "created_at": "2026-08-12 15:41:59",
- "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-12/cc439245-6227-455a-a32a-5a8924b47ce5.zip"
+ "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-12/cc439245-6227-455a-a32a-5a8924b47ce5.zip",
+ "summarized": {
+  "model": "agnes-2.5-flash",
+  "at": "2026-08-18 06:36:06",
+  "chunks": 1,
+  "meta": {
+   "keywords": [
+    "molecular LLM",
+    "substructure attribution",
+    "rationale-guided generation",
+    "MoleculeNet",
+    "GNN explainability",
+    "multi-task property prediction"
+   ],
+   "field": "分子性质预测与可解释 LLM",
+   "innovations": [
+    "首次将 GNN 掩码归因以多粒度、方向标签的排名文本形式作为 LLM 输入证据",
+    "三视角子结构分解（Murcko/BRICS/官能团）配合掩码差值评分",
+    "设计五项行为与化学一致性诊断证明 LLM 真正阅读依据而非仅利用其存在"
+   ],
+   "benchmarks": [
+    "MoleculeNet (BACE, BBBP, ClinTox, HIV, SIDER, Tox21, ESOL, Lipo)"
+   ]
+  }
+ }
 }

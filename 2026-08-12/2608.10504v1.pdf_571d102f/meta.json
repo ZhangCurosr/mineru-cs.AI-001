@@ -3,5 +3,35 @@
  "batch_id": "571d102f-16f1-4284-80a0-1b056f5a89a7",
  "token": "sk-Ar06zcDAy...",
  "created_at": "2026-08-12 15:41:59",
- "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-12/f17d1ea1-b771-407f-89b9-0e2ea31c8220.zip"
+ "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-12/f17d1ea1-b771-407f-89b9-0e2ea31c8220.zip",
+ "summarized": {
+  "model": "agnes-2.5-flash",
+  "at": "2026-08-18 06:41:54",
+  "chunks": 1,
+  "meta": {
+   "keywords": [
+    "Agent Optimization",
+    "Wisdom Graph",
+    "Compositional Retrieval",
+    "Self-Evolving System",
+    "PCR Triplet",
+    "Seed-Epoch",
+    "Multi-Agent Collaboration",
+    "Skill Composition"
+   ],
+   "field": "Agent 自动化与优化基础设施",
+   "innovations": [
+    "PCR 原子分解与角色流体类型化智慧图支持三类逻辑推理",
+    "PCST 组合检索召回桥接知识突破嵌入相似性局限",
+    "行为 A/B 验证与 Seed-Epoch 归因机制确保优化可复现可归因"
+   ],
+   "benchmarks": [
+    "SkillsBench",
+    "HotpotQA",
+    "IFBench",
+    "HoVer",
+    "PUPA"
+   ]
+  }
+ }
 }

@@ -3,5 +3,31 @@
  "batch_id": "d2d49137-81e8-4475-9a74-9852f4afe18e",
  "token": "sk-Ar06zcDAy...",
  "created_at": "2026-08-12 15:33:42",
- "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-12/b8511e1b-dc05-43f8-b7ab-6e1c59422d54.zip"
+ "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-12/b8511e1b-dc05-43f8-b7ab-6e1c59422d54.zip",
+ "summarized": {
+  "model": "agnes-2.5-flash",
+  "at": "2026-08-18 06:45:45",
+  "chunks": 1,
+  "meta": {
+   "keywords": [
+    "多模态预训练",
+    "医学表格数据",
+    "自监督学习",
+    "语义感知",
+    "图像-表格融合",
+    "连续-离散二元性"
+   ],
+   "field": "医学多模态表示学习",
+   "innovations": [
+    "重要性感知自适应掩码：离线元学习先验构建无标签泄露的课程学习策略",
+    "软标签离散化模块：三角核将连续值转为相邻区间概率分布保留顺序关系",
+    "显式建模医学表格二维层次结构：超越语义无关的扁平向量设计"
+   ],
+   "benchmarks": [
+    "SLICE-3D",
+    "HOP",
+    "EyePACS"
+   ]
+  }
+ }
 }

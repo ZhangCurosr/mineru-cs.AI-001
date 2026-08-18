@@ -3,5 +3,30 @@
  "batch_id": "b2f7a6e0-398c-4ef7-ad65-5ad79e6d52f3",
  "token": "sk-Ar06zcDAy...",
  "created_at": "2026-08-12 15:41:57",
- "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-12/23d8b55e-9e16-498b-97a5-3bbfe92154f6.zip"
+ "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-12/23d8b55e-9e16-498b-97a5-3bbfe92154f6.zip",
+ "summarized": {
+  "model": "agnes-2.5-flash",
+  "at": "2026-08-18 06:40:08",
+  "chunks": 1,
+  "meta": {
+   "keywords": [
+    "federated reinforcement learning",
+    "intrinsic motivation",
+    "personalized FL",
+    "random network distillation",
+    "exploration",
+    "sparse reward"
+   ],
+   "field": "联邦强化学习",
+   "innovations": [
+    "提出EDPFRL-IM框架，将RND内在激励与个性化联邦强化学习结合",
+    "设计压缩探索统计协议，实现隐私保护下的跨客户端协调探索",
+    "引入全局新颖性先验引导有偏经验采样，显著提升稀疏奖励场景下的样本效率"
+   ],
+   "benchmarks": [
+    "MountainCar-v0",
+    "CartPole-sparse"
+   ]
+  }
+ }
 }

@@ -3,5 +3,30 @@
  "batch_id": "b3d9c0f9-c8c3-432f-aab3-6ff334031e3d",
  "token": "sk-Ir4JqYCnj...",
  "created_at": "2026-08-12 16:06:50",
- "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-12/ccfec961-e3ec-4e25-9104-d54bcf860e11.zip"
+ "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-12/ccfec961-e3ec-4e25-9104-d54bcf860e11.zip",
+ "summarized": {
+  "model": "agnes-2.5-flash",
+  "at": "2026-08-18 06:38:23",
+  "chunks": 1,
+  "meta": {
+   "keywords": [
+    "student simulation",
+    "chain-of-thought",
+    "educational AI",
+    "Bloom's Taxonomy",
+    "behavioral fidelity",
+    "reasoning alignment"
+   ],
+   "field": "教育AI / 学习者建模",
+   "innovations": [
+    "基于布鲁姆分类法回溯性重构学生内部对话作为训练监督信号",
+    "联合建模潜在推理与可观察行为的双轴学生模拟器",
+    "提出原子声明对齐度指标量化生成推理与真实代码diff的一致性"
+   ],
+   "benchmarks": [
+    "test_OP（旧题新学生）",
+    "test_NP（新题新学生）"
+   ]
+  }
+ }
 }

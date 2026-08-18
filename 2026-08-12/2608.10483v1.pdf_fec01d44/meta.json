@@ -3,5 +3,35 @@
  "batch_id": "fec01d44-77de-40ef-a9b0-bc332edeae18",
  "token": "sk-Ar06zcDAy...",
  "created_at": "2026-08-12 15:42:00",
- "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-12/2afaca9f-b21b-41b9-9afd-ececd5786275.zip"
+ "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-12/2afaca9f-b21b-41b9-9afd-ececd5786275.zip",
+ "summarized": {
+  "model": "agnes-2.5-flash",
+  "at": "2026-08-18 06:37:13",
+  "chunks": 1,
+  "meta": {
+   "keywords": [
+    "double perovskites",
+    "space group prediction",
+    "large language models",
+    "few-shot learning",
+    "class imbalance",
+    "in-context learning",
+    "materials informatics"
+   ],
+   "field": "材料信息学/晶体结构预测",
+   "innovations": [
+    "多样性增强的动态few-shot检索机制，通过每SG最多取1示例约束防止主类主导prompt",
+    "基于B/B′阳离子排序先验与定量指标（Combined score/Global fit/z-score一致性）的规则引导LLM推理框架",
+    "推理层主SG偏置控制策略，在不修改训练分布下缓解类别不平衡"
+   ],
+   "benchmarks": [
+    "Overall Top-1 accuracy",
+    "Overall Top-1 macro-F1 score",
+    "Overall Top-3 accuracy",
+    "Minor-SG Top-1 accuracy",
+    "Minor-SG Top-1 macro-F1 score",
+    "Minor-SG Top-3 accuracy"
+   ]
+  }
+ }
 }

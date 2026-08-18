@@ -3,5 +3,29 @@
  "batch_id": "ecc54423-3e3c-4ce8-979b-9425077959b1",
  "token": "sk-Ar06zcDAy...",
  "created_at": "2026-08-12 15:41:59",
- "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-12/4aed4458-7014-4bd5-aae0-f60ffa18cc8e.zip"
+ "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-12/4aed4458-7014-4bd5-aae0-f60ffa18cc8e.zip",
+ "summarized": {
+  "model": "agnes-2.5-flash",
+  "at": "2026-08-18 06:38:54",
+  "chunks": 1,
+  "meta": {
+   "keywords": [
+    "Vision-Language-Action Models",
+    "Action Tokenization",
+    "Semantic Alignment",
+    "Robot Learning",
+    "Discrete Representations"
+   ],
+   "field": "具身智能与多模态表征学习",
+   "innovations": [
+    "提出SALT在VQ-VAE训练中增加语言对齐损失，使离散动作token保留动词语义信息",
+    "建立动词信息的双重grounding框架（action goal vs motion dynamics）并系统量化重建-only离散化的语义损失",
+    "证明语言对齐可穿透离散化边界传递至下游策略learning，实现动词专业化codes自然涌现"
+   ],
+   "benchmarks": [
+    "BridgeV2",
+    "SimplerEnv WidowX suite"
+   ]
+  }
+ }
 }

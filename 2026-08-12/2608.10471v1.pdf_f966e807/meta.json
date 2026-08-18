@@ -3,5 +3,32 @@
  "batch_id": "f966e807-4efe-40e9-a1fe-b3491eabf293",
  "token": "sk-n7iJ0Z1Ol...",
  "created_at": "2026-08-12 15:02:58",
- "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-12/ae732b0f-dc7d-4312-baad-d475db9ba44b.zip"
+ "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-12/ae732b0f-dc7d-4312-baad-d475db9ba44b.zip",
+ "summarized": {
+  "model": "agnes-2.5-flash",
+  "at": "2026-08-18 06:28:51",
+  "chunks": 1,
+  "meta": {
+   "keywords": [
+    "prompt optimization",
+    "recursive language models",
+    "adaptive search",
+    "Pareto selection",
+    "no-regression constraint",
+    "multi-component optimization"
+   ],
+   "field": "提示工程与自动优化",
+   "innovations": [
+    "用RLM代理替代固定搜索算法作为提示优化器的外层控制器，实现自适应探索与终止决策",
+    "设计决策-执行分离的分层框架，通过Pareto前沿与无回归约束保障多字段评估下的可靠性",
+    "将提示优化从单字符串推广为组件映射，统一支持多工具Agent系统的轨迹优化"
+   ],
+   "benchmarks": [
+    "Chia",
+    "HotpotQA",
+    "IFBench-2025",
+    "BFCL multi-turn"
+   ]
+  }
+ }
 }

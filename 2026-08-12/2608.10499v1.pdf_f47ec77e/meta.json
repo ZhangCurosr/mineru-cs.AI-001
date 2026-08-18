@@ -3,5 +3,29 @@
  "batch_id": "f47ec77e-5d89-4596-8365-ea87ce48afc1",
  "token": "sk-Ir4JqYCnj...",
  "created_at": "2026-08-12 14:58:56",
- "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-12/23d8b55e-9e16-498b-97a5-3bbfe92154f6.zip"
+ "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-12/23d8b55e-9e16-498b-97a5-3bbfe92154f6.zip",
+ "summarized": {
+  "model": "agnes-2.5-flash",
+  "at": "2026-08-18 06:42:21",
+  "chunks": 1,
+  "meta": {
+   "keywords": [
+    "federated reinforcement learning",
+    "personalized federated learning",
+    "intrinsic motivation",
+    "exploration",
+    "random network distillation",
+    "sparse reward"
+   ],
+   "field": "联邦强化学习",
+   "innovations": [
+    "将RND内在动机与联邦探索协调机制结合，实现隐私保护下的跨客户端协作探索",
+    "设计低维探索统计摘要与全局新颖性先验，以采样偏置方式引导客户端聚焦未探索状态"
+   ],
+   "benchmarks": [
+    "MountainCar-v0",
+    "CartPole-sparse"
+   ]
+  }
+ }
 }

@@ -3,5 +3,31 @@
  "batch_id": "e5edf681-6b02-4684-a9db-11470e9b5a71",
  "token": "sk-Ir4JqYCnj...",
  "created_at": "2026-08-12 15:00:56",
- "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-12/78471fda-9168-49d0-984a-7055d79eea99.zip"
+ "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-12/78471fda-9168-49d0-984a-7055d79eea99.zip",
+ "summarized": {
+  "model": "agnes-2.5-flash",
+  "at": "2026-08-18 06:29:36",
+  "chunks": 1,
+  "meta": {
+   "keywords": [
+    "Offline-to-Online RL",
+    "Critic-Free Pretraining",
+    "Flow Matching Policy",
+    "Reinforcement Learning Fine-tuning",
+    "Distribution Shift",
+    "Behavior Cloning",
+    "Value Function Initialization"
+   ],
+   "field": "离线到在线强化学习",
+   "innovations": [
+    "提出在离线阶段完全放弃Critic训练，仅进行行为克隆预训练的范式，从源头避免离线分布偏差。",
+    "设计了一个极短（如10K步）的离线数据热身阶段，用于校准在线阶段从零初始化的新鲜Critic，平衡了稳定性与效率。",
+    "证明了该范式可广泛兼容多种Flow-based O2O算法（FQL, QCFQL等），并在多个挑战性稀疏奖励任务上显著提升了在线微调性能。"
+   ],
+   "benchmarks": [
+    "OGBench (Cube Double/Triple/Quadruple, Puzzle 4x4, Scene)",
+    "Robomimic (Lift, Can, Square)"
+   ]
+  }
+ }
 }
