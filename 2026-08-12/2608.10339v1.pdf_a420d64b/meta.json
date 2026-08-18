@@ -3,5 +3,31 @@
  "batch_id": "a420d64b-11ea-4551-849d-9b55c4cd1ec6",
  "token": "sk-Ar06zcDAy...",
  "created_at": "2026-08-12 16:07:06",
- "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-12/79889779-bf9a-4cb4-a07f-7b0eb1d57e1c.zip"
+ "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-12/79889779-bf9a-4cb4-a07f-7b0eb1d57e1c.zip",
+ "summarized": {
+  "model": "agnes-2.5-flash",
+  "at": "2026-08-18 02:47:05",
+  "chunks": 1,
+  "meta": {
+   "keywords": [
+    "causal inference",
+    "g-computation",
+    "large language models",
+    "Gantt charts",
+    "hospital quality improvement",
+    "counterfactual reasoning",
+    "confounder selection"
+   ],
+   "field": "因果推断与大模型交叉",
+   "innovations": [
+    "首次将甘特图严格形式化为因果DAG并建立g-计算识别定理",
+    "提出专家引导g-计算（egg-computation）结合专家推理与统计建模",
+    "设计五步LLM管道规模化专家级因果图构建与等待时间预测"
+   ],
+   "benchmarks": [
+    "ZSFG医院11个QI干预评估",
+    "4000患者模拟异构因果结构研究"
+   ]
+  }
+ }
 }

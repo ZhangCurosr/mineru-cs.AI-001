@@ -3,5 +3,33 @@
  "batch_id": "80985e12-9449-41a0-865a-829c12459637",
  "token": "sk-n7iJ0Z1Ol...",
  "created_at": "2026-08-12 15:03:04",
- "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-12/e963d394-8113-47c4-9fa8-dec7e1491ad2.zip"
+ "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-12/e963d394-8113-47c4-9fa8-dec7e1491ad2.zip",
+ "summarized": {
+  "model": "agnes-2.5-flash",
+  "at": "2026-08-18 02:52:30",
+  "chunks": 1,
+  "meta": {
+   "keywords": [
+    "FAIR principles",
+    "nutrition data infrastructure",
+    "agent-mediated research",
+    "food matching",
+    "crosswalk",
+    "retrieval-augmented generation",
+    "MCP",
+    "glycemic index"
+   ],
+   "field": "AI for Science / 营养信息学",
+   "innovations": [
+    "源保留的基础设施将FAIR操作化为Agent可机动接口",
+    "类型化版本化交叉映射支持可审计跨源关联",
+    "Pinned snapshot机制保证Agent分析完全可复现"
+   ],
+   "benchmarks": [
+    "NutriBench v1",
+    "NHANES-to-DFG2",
+    "FNDDS-to-GI crosswalk"
+   ]
+  }
+ }
 }

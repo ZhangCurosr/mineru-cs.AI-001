@@ -3,5 +3,33 @@
  "batch_id": "c421bb3b-23f0-453a-ae4c-ffaed3175556",
  "token": "sk-n7iJ0Z1Ol...",
  "created_at": "2026-08-12 15:03:03",
- "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-12/60e3eea1-31b3-4088-8da8-a55341fdedd8.zip"
+ "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-12/60e3eea1-31b3-4088-8da8-a55341fdedd8.zip",
+ "summarized": {
+  "model": "agnes-2.5-flash",
+  "at": "2026-08-18 02:51:56",
+  "chunks": 1,
+  "meta": {
+   "keywords": [
+    "Speculative Decoding",
+    "Edge AI",
+    "Memory-Aware Scheduling",
+    "Adaptive Draft Selection",
+    "On-Device LLM Inference",
+    "Model Caching"
+   ],
+   "field": "边缘设备大模型推理系统",
+   "innovations": [
+    "解耦草稿选择与执行，预测引导+内存感知工作集管理实现非阻塞自适应投机解码",
+    "以 top-K recall 为目标的轻量排序预测器替代在线探索，显著降低非驻留草稿切换开销",
+    "在 Jetson Orin Nano 上实测：相对 SOTA 自适应基线稳态吞吐 +40.7%，逼近动态 Oracle 95–97%"
+   ],
+   "benchmarks": [
+    "Alpaca",
+    "LiveCodeBench",
+    "Omni-MATH",
+    "MMLU-Law",
+    "MMLU-Medical"
+   ]
+  }
+ }
 }

@@ -3,5 +3,33 @@
  "batch_id": "cba2a23e-8c07-4328-848b-7125284922ce",
  "token": "sk-45Ifw5Iq3...",
  "created_at": "2026-08-12 15:33:53",
- "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-12/397bfad2-c89e-4135-99d8-6a1cede5f1e3.zip"
+ "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-12/397bfad2-c89e-4135-99d8-6a1cede5f1e3.zip",
+ "summarized": {
+  "model": "agnes-2.5-flash",
+  "at": "2026-08-18 02:50:36",
+  "chunks": 1,
+  "meta": {
+   "keywords": [
+    "实时音乐生成",
+    "知识系统",
+    "提示工程",
+    "阿拉伯木卡姆",
+    "流式文本转音乐",
+    "人机共创",
+    "微分音"
+   ],
+   "field": "交互式音乐生成与非西方音乐传统",
+   "innovations": [
+    "将自然语言提示编译实时化为反馈控制律，驱动未微调流式生成器实现响应式伴奏",
+    "构建可检查的手工知识基（6个maqam半降音拼写+114条角色描述+135个参数）替代缺失的API控制",
+    "通过短语回声和乐器抑制两个提示级机制实现call-and-response与分轨控制"
+   ],
+   "benchmarks": [
+    "Maqam grounding ablation (quarter-tone frame %: 22.4% vs 14.9%)",
+    "Latency decomposition (median 263ms, p99 945ms)",
+    "Gating stability (0 reconnects/failures at 166 pushes/min)",
+    "Instrument suppression ablation (negative prompting ineffective)"
+   ]
+  }
+ }
 }

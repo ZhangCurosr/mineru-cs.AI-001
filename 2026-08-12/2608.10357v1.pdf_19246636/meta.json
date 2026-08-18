@@ -3,5 +3,31 @@
  "batch_id": "19246636-5c19-487f-be07-0c956f278c91",
  "token": "sk-Ar06zcDAy...",
  "created_at": "2026-08-12 16:07:05",
- "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-12/fe29a77e-2fc1-41ee-81ca-7ce7930f03da.zip"
+ "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-12/fe29a77e-2fc1-41ee-81ca-7ce7930f03da.zip",
+ "summarized": {
+  "model": "agnes-2.5-flash",
+  "at": "2026-08-18 02:48:38",
+  "chunks": 1,
+  "meta": {
+   "keywords": [
+    "reinforcement learning",
+    "long-horizon agents",
+    "tool-use",
+    "FlexAttention",
+    "GRPO",
+    "attention sinks",
+    "memory-efficient training",
+    "dual-control environments"
+   ],
+   "field": "长程具身/工具使用智能体的强化学习训练系统",
+   "innovations": [
+    "提出 SINKFLEX-RL 模块化系统，整合 Gymnasium 环境封装、VERL 数据流、无价值模型的 GRPO 与 sink-aware FlexAttention 路径",
+    "利用零值 sink 代数等价性避免显式 attention sink token 的材料化，在可微训练路径中保持模型兼容的 sink 缩放",
+    "通过 torch.compile 融合自定义 mask 与 sink-scaling，实现因果+滑动窗口的 block-sparse 执行并减少 HBM 分配"
+   ],
+   "benchmarks": [
+    "τ²-Bench retail domain"
+   ]
+  }
+ }
 }

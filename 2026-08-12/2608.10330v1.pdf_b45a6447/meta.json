@@ -3,5 +3,32 @@
  "batch_id": "b45a6447-9c67-43c4-afca-66063e634d59",
  "token": "sk-n7iJ0Z1Ol...",
  "created_at": "2026-08-12 15:42:07",
- "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-12/b6185fc6-c3a8-4968-ba09-928ea369bc49.zip"
+ "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-12/b6185fc6-c3a8-4968-ba09-928ea369bc49.zip",
+ "summarized": {
+  "model": "agnes-2.5-flash",
+  "at": "2026-08-18 02:44:57",
+  "chunks": 1,
+  "meta": {
+   "keywords": [
+    "command disambiguation",
+    "hierarchical compositionality",
+    "answer set programming",
+    "user preference modeling",
+    "assistive AI agents",
+    "ecological rationality",
+    "heuristic reasoning"
+   ],
+   "field": "人机交互中的指令消歧与个性化",
+   "innovations": [
+    "三层分层组合表示架构实现跨实体偏好迁移",
+    "ASP可行性过滤结合语义/显著性/主题多信号启发式排名",
+    "基于交互快照的用户特定工作流模式挖掘机制"
+   ],
+   "benchmarks": [
+    "noask mode avg accuracy 62.7%",
+    "ask mode overall accuracy 53.2%",
+    "clarification rate 26.6%"
+   ]
+  }
+ }
 }

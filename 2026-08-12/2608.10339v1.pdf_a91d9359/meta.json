@@ -3,5 +3,31 @@
  "batch_id": "a91d9359-4c38-4065-80eb-2ab70e169bb9",
  "token": "sk-n7iJ0Z1Ol...",
  "created_at": "2026-08-12 15:42:08",
- "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-12/79889779-bf9a-4cb4-a07f-7b0eb1d57e1c.zip"
+ "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-12/79889779-bf9a-4cb4-a07f-7b0eb1d57e1c.zip",
+ "summarized": {
+  "model": "agnes-2.5-flash",
+  "at": "2026-08-18 02:47:52",
+  "chunks": 1,
+  "meta": {
+   "keywords": [
+    "因果推断",
+    "g-computation",
+    "大型语言模型",
+    "Gantt图",
+    "医院质量改进",
+    "反事实模拟",
+    "专家引导推理"
+   ],
+   "field": "因果推断与大模型交叉",
+   "innovations": [
+    "将Gantt图形式化为具有概率与因果语义的DAG模型并提出egg-computation识别框架",
+    "设计五步LLM辅助流水线规模化专家级DAG构建与反事实等待时间模拟",
+    "在真实医院11个QI干预上验证LLM-egg-computation与人工专家高度一致且优于传统因果方法"
+   ],
+   "benchmarks": [
+    "模拟研究（4000患者，2种干预，50 replications）",
+    "ZSFG医院真实数据（2193住院轨迹，11个候选干预）"
+   ]
+  }
+ }
 }

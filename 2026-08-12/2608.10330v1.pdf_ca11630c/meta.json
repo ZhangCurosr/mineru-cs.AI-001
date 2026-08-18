@@ -3,5 +3,32 @@
  "batch_id": "ca11630c-6027-4207-880a-7490e5d142a7",
  "token": "sk-9BdnpHblK...",
  "created_at": "2026-08-12 15:33:55",
- "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-12/b6185fc6-c3a8-4968-ba09-928ea369bc49.zip"
+ "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-12/b6185fc6-c3a8-4968-ba09-928ea369bc49.zip",
+ "summarized": {
+  "model": "agnes-2.5-flash",
+  "at": "2026-08-18 02:47:06",
+  "chunks": 1,
+  "meta": {
+   "keywords": [
+    "命令消歧",
+    "层次组合性",
+    "Answer Set Programming",
+    "用户偏好建模",
+    "启发式排序",
+    "神经符号AI",
+    "辅助智能体"
+   ],
+   "field": "人机交互与可解释AI",
+   "innovations": [
+    "三层层次组合表示实现跨实体偏好迁移",
+    "ASP逻辑过滤与三信号启发式排序的混合消歧架构",
+    "小样本下基于lift的工作流模式挖掘支持个性化推荐"
+   ],
+   "benchmarks": [
+    "家庭环境模拟测试集(66实体/3000歧义命令)",
+    "4级歧义难度(A1近上义词至A4代词)",
+    "noask与ask双评估模式"
+   ]
+  }
+ }
 }

@@ -3,5 +3,33 @@
  "batch_id": "204f1ce5-456a-4106-b501-175e93997f1b",
  "token": "sk-owp49a3rO...",
  "created_at": "2026-08-12 14:59:33",
- "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-12/72d77d19-a31e-4374-a02e-319752431348.zip"
+ "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-12/72d77d19-a31e-4374-a02e-319752431348.zip",
+ "summarized": {
+  "model": "agnes-2.5-flash",
+  "at": "2026-08-18 02:47:40",
+  "chunks": 1,
+  "meta": {
+   "keywords": [
+    "face landmark detection",
+    "unified training",
+    "dynamic prediction",
+    "FPALP",
+    "cross-dataset generalization"
+   ],
+   "field": "人脸分析/面部标志点检测",
+   "innovations": [
+    "提出FPALPs将不同N点面部标志点统一为沿部件曲线的归一化进度值，支持跨协议联合训练",
+    "设计文本+FPALP驱动的标志点查询与跨模态解码器，实现按需动态输出任意数量标志点",
+    "在统一训练与动态预测前提下匹配或超越SOTA，并在跨模板零样本场景展现强泛化"
+   ],
+   "benchmarks": [
+    "AFLW-19",
+    "300W",
+    "WFLW",
+    "COFW",
+    "COFW68",
+    "WFLW68"
+   ]
+  }
+ }
 }

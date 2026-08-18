@@ -3,5 +3,30 @@
  "batch_id": "fb770d25-9538-4fa6-bd39-6b76c0c83ff7",
  "token": "sk-n7iJ0Z1Ol...",
  "created_at": "2026-08-12 15:42:05",
- "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-12/d254aeaa-a09e-436d-bb7e-cab52d8fbe9d.zip"
+ "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-12/d254aeaa-a09e-436d-bb7e-cab52d8fbe9d.zip",
+ "summarized": {
+  "model": "agnes-2.5-flash",
+  "at": "2026-08-18 02:53:48",
+  "chunks": 1,
+  "meta": {
+   "keywords": [
+    "Data Science Agent",
+    "GUI Agent",
+    "Benchmark",
+    "OS Interaction",
+    "End-to-End Workflow",
+    "Multimodal Grounding",
+    "Tool Orchestration"
+   ],
+   "field": "数据科学智能体与GUI自动化",
+   "innovations": [
+    "首个面向真实OS环境的数据科学端到端工作流基准DSAgentBench",
+    "截图+A11y Tree混合观察模态提升智能体落地精度",
+    "确定性评估器结合LLM语义评审验证分析正确性"
+   ],
+   "benchmarks": [
+    "DSAgentBench"
+   ]
+  }
+ }
 }

@@ -3,5 +3,31 @@
  "batch_id": "7da65c28-a923-4332-b915-40a12e6d06bf",
  "token": "sk-owp49a3rO...",
  "created_at": "2026-08-12 14:59:31",
- "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-12/10a7e73f-c244-45bd-9f52-3c3de8f4fc31.zip"
+ "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-12/10a7e73f-c244-45bd-9f52-3c3de8f4fc31.zip",
+ "summarized": {
+  "model": "agnes-2.5-flash",
+  "at": "2026-08-18 02:46:17",
+  "chunks": 1,
+  "meta": {
+   "keywords": [
+    "Narrative Keyframing",
+    "Generative Creative Writing",
+    "Character Arc",
+    "Perspective Keyframe",
+    "Human-AI Collaboration",
+    "Interactive Writing System"
+   ],
+   "field": "人机协作创意写作",
+   "innovations": [
+    "提出叙事关键帧交互范式，将动画关键帧思想迁移至生成式写作",
+    "首次引入第一人称视角关键帧作为角色特质外化的中间表征",
+    "支持角色弧的分段定义、自动插值与双向编辑联动"
+   ],
+   "benchmarks": [
+    "CoAuthor dataset",
+    "WritingPrompts dataset",
+    "WQRM-PRE model"
+   ]
+  }
+ }
 }

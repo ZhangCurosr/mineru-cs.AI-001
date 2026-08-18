@@ -3,5 +3,30 @@
  "batch_id": "9c3721fd-56ec-4fcd-be1b-d8db656f7e5c",
  "token": "sk-n7iJ0Z1Ol...",
  "created_at": "2026-08-12 15:42:06",
- "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-12/fe29a77e-2fc1-41ee-81ca-7ce7930f03da.zip"
+ "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-12/fe29a77e-2fc1-41ee-81ca-7ce7930f03da.zip",
+ "summarized": {
+  "model": "agnes-2.5-flash",
+  "at": "2026-08-18 02:49:30",
+  "chunks": 1,
+  "meta": {
+   "keywords": [
+    "Reinforcement Learning",
+    "Tool-Use Agents",
+    "Long-Context Training",
+    "FlexAttention",
+    "GRPO",
+    "Memory-Efficient Training",
+    "Dual-Control Environment"
+   ],
+   "field": "长程智能体强化学习系统",
+   "innovations": [
+    "Sink-aware FlexAttention 路径：通过零值 sink 代数等价与可编程 mask 融合，在保留模型特定 sink 语义的同时显著降低长上下文 RL 训练的峰值显存",
+    "无价值模型的 GRPO 整合方案：结合 Gymnasium 环境封装与 VERL 风格 rollout 数据流，避免单独训练 critic 带来的显存开销",
+    "多组件系统级集成：将环境接口、RL 更新与 attention kernel 设计统一为可复用的 modular pipeline，解决长程工具调用场景的显存可行性问题"
+   ],
+   "benchmarks": [
+    "τ²-Bench retail domain"
+   ]
+  }
+ }
 }

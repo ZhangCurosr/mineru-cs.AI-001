@@ -3,5 +3,30 @@
  "batch_id": "45e74cc6-b858-4fcb-a6a1-7653b571235d",
  "token": "sk-9BdnpHblK...",
  "created_at": "2026-08-12 15:33:55",
- "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-12/10a7e73f-c244-45bd-9f52-3c3de8f4fc31.zip"
+ "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-12/10a7e73f-c244-45bd-9f52-3c3de8f4fc31.zip",
+ "summarized": {
+  "model": "agnes-2.5-flash",
+  "at": "2026-08-18 02:45:43",
+  "chunks": 1,
+  "meta": {
+   "keywords": [
+    "创意写作",
+    "人机交互",
+    "叙事生成",
+    "角色塑造",
+    "大语言模型",
+    "可追溯性"
+   ],
+   "field": "生成式创意写作中的人机协同",
+   "innovations": [
+    "提出叙事关键帧交互范式，将动画关键帧思想迁移至自然语言生成领域，支持情节/角色/视角三类关键帧的离散约束与插值生成",
+    "首次将第一人称视角叙述作为中间表示用于控制角色刻画与聚焦，实现从抽象特质到具体文本证据再到第三人称叙事的分层生成管线"
+   ],
+   "benchmarks": [
+    "CoAuthor 数据集",
+    "WritingPrompts 数据集",
+    "WQRM-PRE 自动评估"
+   ]
+  }
+ }
 }

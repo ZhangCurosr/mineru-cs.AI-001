@@ -3,5 +3,31 @@
  "batch_id": "01a41d90-d9c4-4611-bcb7-027ab15e96cb",
  "token": "sk-Ar06zcDAy...",
  "created_at": "2026-08-12 16:07:02",
- "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-12/e963d394-8113-47c4-9fa8-dec7e1491ad2.zip"
+ "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-12/e963d394-8113-47c4-9fa8-dec7e1491ad2.zip",
+ "summarized": {
+  "model": "agnes-2.5-flash",
+  "at": "2026-08-18 02:53:06",
+  "chunks": 1,
+  "meta": {
+   "keywords": [
+    "nutrition data infrastructure",
+    "FAIR principles",
+    "food record matching",
+    "crosswalk",
+    "AI agents",
+    "reproducible research"
+   ],
+   "field": "营养信息学与多源数据对齐",
+   "innovations": [
+    "将食品描述解析与类型化 crosswalk 作为可审计、可 pin 的基础设施能力",
+    "在 Nutrition Data Service 中操作化 FAIR 原则以支持 AI 代理的可复现工作流",
+    "以显式 abstention 与 typed relations 替代静默近似匹配"
+   ],
+   "benchmarks": [
+    "NutriBench",
+    "NHANES",
+    "DFG2"
+   ]
+  }
+ }
 }

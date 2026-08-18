@@ -3,5 +3,32 @@
  "batch_id": "eabedd81-d963-4cc2-ad18-692ee88f204f",
  "token": "sk-45Ifw5Iq3...",
  "created_at": "2026-08-12 15:33:50",
- "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-12/835d7afd-7ab2-4188-be88-03ee8e42e319.zip"
+ "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-12/835d7afd-7ab2-4188-be88-03ee8e42e319.zip",
+ "summarized": {
+  "model": "agnes-2.5-flash",
+  "at": "2026-08-18 02:55:04",
+  "chunks": 1,
+  "meta": {
+   "keywords": [
+    "volatility control",
+    "routing",
+    "portfolio management",
+    "LLM decision-making",
+    "risk management",
+    "strategy selection"
+   ],
+   "field": "金融风险管理",
+   "innovations": [
+    "将波动率控制重构为状态条件路由问题，提出三阶段路由器架构",
+    "设计支持规则/可学习/LLM三种实例化的模块化VoLRouTER框架",
+    "实证刻画路由有效性边界：在状态异质性高的环境（股票/加密）有效，在稳定环境（USDT）价值有限"
+   ],
+   "benchmarks": [
+    "S&P 500",
+    "Multi-Asset",
+    "Bitcoin",
+    "USDT"
+   ]
+  }
+ }
 }

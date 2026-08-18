@@ -3,5 +3,30 @@
  "batch_id": "148bfed1-5345-49d2-871f-2c90f62a2489",
  "token": "sk-Ar06zcDAy...",
  "created_at": "2026-08-12 16:07:06",
- "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-12/10a7e73f-c244-45bd-9f52-3c3de8f4fc31.zip"
+ "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-12/10a7e73f-c244-45bd-9f52-3c3de8f4fc31.zip",
+ "summarized": {
+  "model": "agnes-2.5-flash",
+  "at": "2026-08-18 02:46:23",
+  "chunks": 1,
+  "meta": {
+   "keywords": [
+    "叙事关键帧",
+    "创意写作",
+    "人机交互",
+    "角色塑造",
+    "生成式AI",
+    "叙述焦点化"
+   ],
+   "field": "AI辅助创意写作与人机交互",
+   "innovations": [
+    "提出叙事关键帧交互范式，将动画关键帧原理迁移至生成式创意写作",
+    "首创视角关键帧作为角色塑造的中间表示，利用第一人称叙述连接角色设定与叙事生成"
+   ],
+   "benchmarks": [
+    "CoAuthor dataset",
+    "WritingPrompts dataset",
+    "WQRM-PRE"
+   ]
+  }
+ }
 }

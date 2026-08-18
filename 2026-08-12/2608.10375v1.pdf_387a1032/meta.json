@@ -3,5 +3,32 @@
  "batch_id": "387a1032-3b43-4897-9a2d-73faeba6b5b9",
  "token": "sk-Ir4JqYCnj...",
  "created_at": "2026-08-12 15:00:38",
- "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-12/835d7afd-7ab2-4188-be88-03ee8e42e319.zip"
+ "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-12/835d7afd-7ab2-4188-be88-03ee8e42e319.zip",
+ "summarized": {
+  "model": "agnes-2.5-flash",
+  "at": "2026-08-18 02:55:01",
+  "chunks": 1,
+  "meta": {
+   "keywords": [
+    "volatility targeting",
+    "routing",
+    "risk control",
+    "portfolio management",
+    "LLM router",
+    "regime-aware control"
+   ],
+   "field": "金融风控与组合优化",
+   "innovations": [
+    "将波动率控制重构为状态条件路由问题，引入显式策略选择层",
+    "模块化VoLRouTER框架支持规则/学习型/LLM-based Router三态实例化",
+    "系统刻画路由有效的边界条件：状态异质性越高路由价值越大"
+   ],
+   "benchmarks": [
+    "S&P 500 (SPY/ES futures)",
+    "Multi-Asset cross-asset panel",
+    "Bitcoin (BTCUSD)",
+    "USDT (USDTUSD)"
+   ]
+  }
+ }
 }

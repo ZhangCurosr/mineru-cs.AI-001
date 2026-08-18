@@ -3,5 +3,29 @@
  "batch_id": "196bba3b-d8fc-4bbc-88a7-4156821ffc47",
  "token": "sk-owp49a3rO...",
  "created_at": "2026-08-12 14:59:31",
- "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-12/d254aeaa-a09e-436d-bb7e-cab52d8fbe9d.zip"
+ "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-12/d254aeaa-a09e-436d-bb7e-cab52d8fbe9d.zip",
+ "summarized": {
+  "model": "agnes-2.5-flash",
+  "at": "2026-08-18 02:53:08",
+  "chunks": 1,
+  "meta": {
+   "keywords": [
+    "Data Science Agent",
+    "Benchmark",
+    "GUI Agent",
+    "Computer Environment",
+    "End-to-End Workflow",
+    "OS-level Evaluation"
+   ],
+   "field": "数据科学Agent评测基准",
+   "innovations": [
+    "首个在真实操作系统中评估端到端数据科学工作流的基准，覆盖完整数据科学生命周期",
+    "确定性执行评估体系：数值容差验证+可视化元数据检查+LLM视觉评判员两阶段设计",
+    "基于OSWorld增强的数据科学执行环境，集成多工具（VS Code/Jupyter/终端/Chrome）协同"
+   ],
+   "benchmarks": [
+    "DSAgentBench"
+   ]
+  }
+ }
 }

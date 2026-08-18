@@ -3,5 +3,31 @@
  "batch_id": "a73d3104-74ea-4caa-9133-2c21edb01390",
  "token": "sk-owp49a3rO...",
  "created_at": "2026-08-12 14:59:33",
- "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-12/79889779-bf9a-4cb4-a07f-7b0eb1d57e1c.zip"
+ "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-12/79889779-bf9a-4cb4-a07f-7b0eb1d57e1c.zip",
+ "summarized": {
+  "model": "agnes-2.5-flash",
+  "at": "2026-08-18 02:47:21",
+  "chunks": 1,
+  "meta": {
+   "keywords": [
+    "因果推断",
+    "g-computation",
+    "大型语言模型",
+    "甘特图",
+    "医院质量改进",
+    "反事实模拟",
+    "专家引导推理"
+   ],
+   "field": "因果推断与医疗AI交叉",
+   "innovations": [
+    "将甘特图形式化为因果DAG并证明平均节省时间的可识别性，提出egg-computation框架",
+    "开发五步LLM prompt流水线实现患者级个性化DAG构建与反事实时序模拟",
+    "在患者异质性因果结构下，仿真证明可消除单一DAG方法高达14小时的估计偏差"
+   ],
+   "benchmarks": [
+    "ZSFG医院11项候选QI干预真实评估",
+    "4,000例仿真研究（CT/MRI依赖异质性因果结构）"
+   ]
+  }
+ }
 }

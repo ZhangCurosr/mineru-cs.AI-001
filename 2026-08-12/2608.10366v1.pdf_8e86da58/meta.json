@@ -3,5 +3,28 @@
  "batch_id": "8e86da58-de08-4909-a88e-5a382e95ad37",
  "token": "sk-45Ifw5Iq3...",
  "created_at": "2026-08-12 15:33:52",
- "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-12/d254aeaa-a09e-436d-bb7e-cab52d8fbe9d.zip"
+ "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-12/d254aeaa-a09e-436d-bb7e-cab52d8fbe9d.zip",
+ "summarized": {
+  "model": "agnes-2.5-flash",
+  "at": "2026-08-18 02:53:36",
+  "chunks": 1,
+  "meta": {
+   "keywords": [
+    "数据科学智能体",
+    "GUI 自动化",
+    "长程推理",
+    "基准测试",
+    "端到端工作流"
+   ],
+   "field": "AI Agent 与自动化",
+   "innovations": [
+    "首个真实 OS 环境中端到端数据科学工作流基准",
+    "确定性执行评估框架结合数值/可视化/模型性能验证",
+    "275 个人工标注任务覆盖数据科学全生命周期"
+   ],
+   "benchmarks": [
+    "DSAgentBench"
+   ]
+  }
+ }
 }

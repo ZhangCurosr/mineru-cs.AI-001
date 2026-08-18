@@ -3,5 +3,32 @@
  "batch_id": "bb85dd5d-79be-44bf-b15c-e9dc43560280",
  "token": "sk-Ar06zcDAy...",
  "created_at": "2026-08-12 16:07:04",
- "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-12/397bfad2-c89e-4135-99d8-6a1cede5f1e3.zip"
+ "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-12/397bfad2-c89e-4135-99d8-6a1cede5f1e3.zip",
+ "summarized": {
+  "model": "agnes-2.5-flash",
+  "at": "2026-08-18 02:50:16",
+  "chunks": 1,
+  "meta": {
+   "keywords": [
+    "real-time music accompaniment",
+    "Arabic maqam",
+    "prompt compilation",
+    "knowledge-based system",
+    "streaming text-to-music",
+    "microtonal generation",
+    "human-AI co-creation"
+   ],
+   "field": "交互式生成音乐",
+   "innovations": [
+    "将自然语言提示编译定义为实时反馈控制律，驱动未微调流式音频生成器",
+    "微音程调式的手工知识-base 构建与提示级锚定机制替代模型微调",
+    "确定性编译器+随机生成器的神经符号分工架构"
+   ],
+   "benchmarks": [
+    "Maqam grounding ablation (quarter-tone frame percentage)",
+    "Gating ablation (on/off/static push rate comparison)",
+    "Latency decomposition (key-press to audible)"
+   ]
+  }
+ }
 }

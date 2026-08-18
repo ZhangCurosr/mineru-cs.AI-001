@@ -3,5 +3,31 @@
  "batch_id": "ac389228-0fb7-4a4a-914a-e3289087e680",
  "token": "sk-owp49a3rO...",
  "created_at": "2026-08-12 14:59:33",
- "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-12/b6185fc6-c3a8-4968-ba09-928ea369bc49.zip"
+ "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-12/b6185fc6-c3a8-4968-ba09-928ea369bc49.zip",
+ "summarized": {
+  "model": "agnes-2.5-flash",
+  "at": "2026-08-18 02:44:57",
+  "chunks": 1,
+  "meta": {
+   "keywords": [
+    "hierarchical compositionality",
+    "command disambiguation",
+    "assistive AI agents",
+    "answer set programming",
+    "user preference modeling",
+    "heuristic reasoning"
+   ],
+   "field": "embodied AI & human-robot interaction",
+   "innovations": [
+    "Three-layer compositional hierarchy enabling cross-entity preference transfer",
+    "Multi-signal heuristic fusion (semantic, salience, thematic) with uncertainty-aware clarification",
+    "Hybrid ASP filtering and statistical ranking architecture for reliable disambiguation"
+   ],
+   "benchmarks": [
+    "Simulated household environment (66 entities, 4 rooms)",
+    "4-level ambiguity test suite (A1 hypernym to A4 pronoun)",
+    "5-user personalized interaction history benchmark"
+   ]
+  }
+ }
 }

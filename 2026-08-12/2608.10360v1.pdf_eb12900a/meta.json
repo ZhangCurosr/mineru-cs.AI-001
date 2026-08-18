@@ -3,5 +3,30 @@
  "batch_id": "eb12900a-e386-43a9-9516-3ef6c83e66ac",
  "token": "sk-owp49a3rO...",
  "created_at": "2026-08-12 14:59:32",
- "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-12/397bfad2-c89e-4135-99d8-6a1cede5f1e3.zip"
+ "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-12/397bfad2-c89e-4135-99d8-6a1cede5f1e3.zip",
+ "summarized": {
+  "model": "agnes-2.5-flash",
+  "at": "2026-08-18 02:51:22",
+  "chunks": 1,
+  "meta": {
+   "keywords": [
+    "实时音乐生成",
+    "提示工程",
+    "基于知识的系统",
+    "阿拉伯马卡姆",
+    "人机共创",
+    "流式音频"
+   ],
+   "field": "实时人机交互音乐生成",
+   "innovations": [
+    "将自然语言提示编译构建为实时性能状态到生成模型的确定性控制律",
+    "通过提示级接地与负向引导，免微调实现非西方微分音调式音乐的交互伴奏"
+   ],
+   "benchmarks": [
+    "马卡姆接地消融(pYIN微分音内容)",
+    "网关稳定性与延迟分解",
+    "乐器抑制约束审计(PANNs)"
+   ]
+  }
+ }
 }

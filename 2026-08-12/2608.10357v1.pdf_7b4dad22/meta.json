@@ -3,5 +3,30 @@
  "batch_id": "7b4dad22-4ae4-4b42-a579-6cfcf79c7ec4",
  "token": "sk-LV19Ft0NN...",
  "created_at": "2026-08-12 15:03:04",
- "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-12/fe29a77e-2fc1-41ee-81ca-7ce7930f03da.zip"
+ "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-12/fe29a77e-2fc1-41ee-81ca-7ce7930f03da.zip",
+ "summarized": {
+  "model": "agnes-2.5-flash",
+  "at": "2026-08-18 02:48:59",
+  "chunks": 1,
+  "meta": {
+   "keywords": [
+    "agentic RL",
+    "GRPO",
+    "long-horizon tool use",
+    "FlexAttention",
+    "attention sink",
+    "memory-efficient training",
+    "dual-control environment"
+   ],
+   "field": "长程工具使用智能体的内存高效 RL 训练",
+   "innovations": [
+    "零值 sink 代数恒等式替代显式 sink token 物化，使 sink 缩放进入可微训练图",
+    "Gymnasium 兼容 dual-control 环境封装 + VERL 风格 rollout 数据流，实现 benchmark 逻辑与 trainer 解耦",
+    "基于 FlexAttention 的可编程 sink-aware attention 路径，支持因果/滑动窗口/always-visible prefix 混合 mask"
+   ],
+   "benchmarks": [
+    "τ²-Bench retail"
+   ]
+  }
+ }
 }

@@ -3,5 +3,34 @@
  "batch_id": "e7a2e5c2-4e57-4c11-bbab-07894a6d5e8b",
  "token": "sk-owp49a3rO...",
  "created_at": "2026-08-12 14:59:31",
- "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-12/e963d394-8113-47c4-9fa8-dec7e1491ad2.zip"
+ "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-12/e963d394-8113-47c4-9fa8-dec7e1491ad2.zip",
+ "summarized": {
+  "model": "agnes-2.5-flash",
+  "at": "2026-08-18 02:53:20",
+  "chunks": 1,
+  "meta": {
+   "keywords": [
+    "FAIR",
+    "nutrition data infrastructure",
+    "agent-mediated research",
+    "food matching",
+    "crosswalk",
+    "reproducibility",
+    "MCP",
+    "NDS"
+   ],
+   "field": "营养信息学 / AI代理数据基础设施",
+   "innovations": [
+    "源保留型FAIR基础设施NDS，将描述解析、类型化crosswalk与MCP接口统一为可审计可重放的代理调用层",
+    "Typed release-aware mapping与explicit abstention设计，使跨源连接可追溯且不掩盖不确定性",
+    "通过pinned mapping release实现跨模型跨运行完全相同的代理分析结果"
+   ],
+   "benchmarks": [
+    "NutriBench v1",
+    "NHANES-to-DFG2 benchmark (Lemay et al.)",
+    "FNDDS-to-GI crosswalk audit",
+    "NHANES GL reproducibility experiment"
+   ]
+  }
+ }
 }

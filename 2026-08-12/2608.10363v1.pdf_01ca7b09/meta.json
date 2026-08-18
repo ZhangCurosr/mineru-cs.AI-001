@@ -3,5 +3,32 @@
  "batch_id": "01ca7b09-5d9c-4166-82d0-2da8d6af995d",
  "token": "sk-45Ifw5Iq3...",
  "created_at": "2026-08-12 15:33:51",
- "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-12/e963d394-8113-47c4-9fa8-dec7e1491ad2.zip"
+ "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-12/e963d394-8113-47c4-9fa8-dec7e1491ad2.zip",
+ "summarized": {
+  "model": "agnes-2.5-flash",
+  "at": "2026-08-18 02:52:42",
+  "chunks": 1,
+  "meta": {
+   "keywords": [
+    "FAIR",
+    "crosswalk",
+    "retrieval-augmented generation",
+    "nutrition data",
+    "agent-mediated research",
+    "entity resolution",
+    "data infrastructure"
+   ],
+   "field": "科学数据基础设施与AI辅助研究",
+   "innovations": [
+    "提出保留源身份的版本化NDS基础设施，将FAIR原则操作化为机器可执行接口",
+    "设计描述驱动的食物匹配管线（LLM解析+混合检索+reranking+显式拒连）",
+    "构建类型化crosswalk与pinned release机制，实现agent营养分析的可审计可复现"
+   ],
+   "benchmarks": [
+    "NutriBench v1",
+    "NHANES-to-DFG2 crosswalk benchmark",
+    "FNDDS-to-GI crosswalk"
+   ]
+  }
+ }
 }

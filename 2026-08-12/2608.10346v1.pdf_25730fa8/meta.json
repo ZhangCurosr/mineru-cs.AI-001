@@ -3,5 +3,34 @@
  "batch_id": "25730fa8-a03b-4521-a5e2-80dca0ad4fc7",
  "token": "sk-Ar06zcDAy...",
  "created_at": "2026-08-12 16:07:05",
- "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-12/7a4cb28c-3b0c-45f1-8dd4-013007513a79.zip"
+ "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-12/7a4cb28c-3b0c-45f1-8dd4-013007513a79.zip",
+ "summarized": {
+  "model": "agnes-2.5-flash",
+  "at": "2026-08-18 02:49:01",
+  "chunks": 1,
+  "meta": {
+   "keywords": [
+    "face landmark detection",
+    "unified training",
+    "dynamic prediction",
+    "FPALP",
+    "cross-template generalization",
+    "multi-dataset fusion"
+   ],
+   "field": "人脸分析/地标检测",
+   "innovations": [
+    "提出 FPALP 将地标统一编码为沿面部分轮廓的 0-1 进度值，首次实现无辅助信息的跨 N-point 数据集端到端联合训练",
+    "基于 FPALP+文本嵌入构造地标查询，经跨模态 decoder 迭代精化，实现推理时按需输出任意数量/密度地标",
+    "证明仅 300W 训练即可对 300W 缺失的 28 个 WFLW 地标进行零样本预测，优于三次样条插值 16-19%"
+   ],
+   "benchmarks": [
+    "AFLW-19",
+    "300W",
+    "WFLW",
+    "COFW",
+    "COFW68",
+    "WFLW68"
+   ]
+  }
+ }
 }

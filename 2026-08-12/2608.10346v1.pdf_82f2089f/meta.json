@@ -3,5 +3,34 @@
  "batch_id": "82f2089f-b7e4-42b3-bdb6-444bf70d712b",
  "token": "sk-LV19Ft0NN...",
  "created_at": "2026-08-12 15:03:04",
- "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-12/7a4cb28c-3b0c-45f1-8dd4-013007513a79.zip"
+ "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-12/7a4cb28c-3b0c-45f1-8dd4-013007513a79.zip",
+ "summarized": {
+  "model": "agnes-2.5-flash",
+  "at": "2026-08-18 02:48:26",
+  "chunks": 1,
+  "meta": {
+   "keywords": [
+    "face landmark detection",
+    "unified training",
+    "dynamic landmark prediction",
+    "FPALP",
+    "cross-dataset generalization",
+    "2D facial alignment"
+   ],
+   "field": "人脸地标检测与统一表示学习",
+   "innovations": [
+    "提出FPALP将跨数据集地标统一为面部分区归一化进度表示，实现端到端统一训练",
+    "基于FPALP与文本编码构建图像无关地标查询，支持推理时按需动态预测任意数量地标",
+    "以纯2D标注完成跨模板零/近零样本预测，并在插值对比中显著优于三次样条基线"
+   ],
+   "benchmarks": [
+    "AFLW-19",
+    "300W",
+    "WFLW",
+    "COFW",
+    "COFW68",
+    "WFLW68"
+   ]
+  }
+ }
 }
