@@ -3,5 +3,33 @@
  "batch_id": "65e55ca4-8af5-47b8-95ed-7784441dbef5",
  "token": "sk-Ir4JqYCnj...",
  "created_at": "2026-08-13 02:45:20",
- "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-13/4fef70cb-64fb-4cfd-a648-372b60cd26db.zip"
+ "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-13/4fef70cb-64fb-4cfd-a648-372b60cd26db.zip",
+ "summarized": {
+  "model": "agnes-2.5-flash",
+  "at": "2026-08-18 08:53:34",
+  "chunks": 1,
+  "meta": {
+   "keywords": [
+    "test-time distillation",
+    "strong-to-weak transfer",
+    "inference-time harness",
+    "theory of mind",
+    "cognitive load reduction",
+    "deterministic offloading",
+    "harness engineering"
+   ],
+   "field": "大模型推理增强与能力转移",
+   "innovations": [
+    "提出并系统验证测试时强→弱能力转移范式，完全不经参数更新",
+    "揭示 headroom law：提升幅度由 target 剩余可修复误差量决定",
+    "证明确定性 offload（代码/规则替换易编译子任务）是主要增益机制，且 builder 推理努力单调提升 harness 质量"
+   ],
+   "benchmarks": [
+    "BigToM",
+    "Hi-ToM",
+    "MMToM-QA",
+    "MuMA-ToM"
+   ]
+  }
+ }
 }

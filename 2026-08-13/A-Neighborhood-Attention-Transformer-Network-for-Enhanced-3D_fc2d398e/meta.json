@@ -4,5 +4,31 @@
  "title": "A-Neighborhood-Attention-Transformer-Network-for-Enhanced-3D",
  "token": "sk-45Ifw5Iq3...",
  "created_at": "2026-08-13 07:11:33",
- "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-13/3476909b-b0f5-4661-b1c7-3d088c9e695b.zip"
+ "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-13/3476909b-b0f5-4661-b1c7-3d088c9e695b.zip",
+ "summarized": {
+  "model": "agnes-2.5-flash",
+  "at": "2026-08-18 08:56:41",
+  "chunks": 1,
+  "meta": {
+   "keywords": [
+    "LAD动脉分割",
+    "Neighborhood Attention",
+    "3D Transformer",
+    "非对比CT",
+    "LoRA微调",
+    "不确定性感知的复合损失",
+    "冠脉分割"
+   ],
+   "field": "医学图像分割",
+   "innovations": [
+    "提出NA-UNETR将Neighborhood Attention与Dilated NA嵌入3D UNETR用于细薄血管分割",
+    "同方差不确定性加权联合Dice-Focal与Hausdorff边界损失实现动态多任务平衡",
+    "跨模态预训练(CTA)加LoRA高效微调解决非对比CT上LAD小样本分割瓶颈"
+   ],
+   "benchmarks": [
+    "LAD-SEG",
+    "ImageCAS"
+   ]
+  }
+ }
 }

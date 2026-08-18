@@ -3,5 +3,29 @@
  "batch_id": "61b3c1d2-56d7-40d4-82f5-dc1969862ffd",
  "token": "sk-owp49a3rO...",
  "created_at": "2026-08-12 15:41:55",
- "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-12/46e882df-bc26-46e1-ae82-3cd2fe7b3322.zip"
+ "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-12/46e882df-bc26-46e1-ae82-3cd2fe7b3322.zip",
+ "summarized": {
+  "model": "agnes-2.5-flash",
+  "at": "2026-08-18 08:34:22",
+  "chunks": 1,
+  "meta": {
+   "keywords": [
+    "Vision-Language Navigation",
+    "Dynamic Context Adapter",
+    "Efficient VLM",
+    "Parameter-Efficient Fine-Tuning",
+    "Historical Context Integration",
+    "POMDP Navigation"
+   ],
+   "field": "具身视觉-语言导航与高效时序记忆",
+   "innovations": [
+    "固定大小可学习记忆向量 + 交叉注意力压缩，替代历史帧 token 拼接",
+    "逐层 cross-attention 记忆注入适配器，冻结预训练骨干仅训练少量权重",
+    "双管线解耦架构，在 3B 骨干上追平 7B 基线并降低 25%+ FLOPs"
+   ],
+   "benchmarks": [
+    "VLN-CE R2R Val-Unseen"
+   ]
+  }
+ }
 }

@@ -3,5 +3,32 @@
  "batch_id": "1a84758d-766b-45dc-a017-30ab9a63acc6",
  "token": "sk-owp49a3rO...",
  "created_at": "2026-08-13 02:45:23",
- "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-13/1f0653d2-76f2-40a1-b2b4-aa64464ee0e9.zip"
+ "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-13/1f0653d2-76f2-40a1-b2b4-aa64464ee0e9.zip",
+ "summarized": {
+  "model": "agnes-2.5-flash",
+  "at": "2026-08-18 08:44:51",
+  "chunks": 1,
+  "meta": {
+   "keywords": [
+    "multi-agent RL",
+    "simulator collapse",
+    "co-training",
+    "verbalized sampling",
+    "LLM user simulation",
+    "policy entropy",
+    "population-based training"
+   ],
+   "field": "多智能体强化学习",
+   "innovations": [
+    "形式化定义并证明模拟器坍缩导致策略梯度偏置至模式用户目标",
+    "提出推理时 Verbalized Sampling 从语言化分布采样恢复多样性",
+    "提出训练时 Co-Training 使模拟器模式动态演化打破几何收敛"
+   ],
+   "benchmarks": [
+    "Persuasion for Good",
+    "τ²-bench",
+    "CooperBench"
+   ]
+  }
+ }
 }

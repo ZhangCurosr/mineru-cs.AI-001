@@ -3,5 +3,33 @@
  "batch_id": "daf74757-3846-4d82-9c64-93709fc92d9c",
  "token": "sk-Ar06zcDAy...",
  "created_at": "2026-08-12 15:33:40",
- "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-12/95f62e26-3ba8-4d0f-8082-96064539738a.zip"
+ "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-12/95f62e26-3ba8-4d0f-8082-96064539738a.zip",
+ "summarized": {
+  "model": "agnes-2.5-flash",
+  "at": "2026-08-18 08:38:39",
+  "chunks": 1,
+  "meta": {
+   "keywords": [
+    "Image Restoration",
+    "Flow Matching",
+    "Perceptual Loss",
+    "Few-Step Inference",
+    "Distortion-Perception Tradeoff",
+    "Gradient Alignment",
+    "Consistency Model"
+   ],
+   "field": "图像复原与生成模型",
+   "innovations": [
+    "统一潜空间流匹配框架，直接联合优化失真与感知质量，实现少步推理",
+    "设计潜一致性感知损失（LCPL）与无冲突梯度对齐，解决多目标优化中的梯度冲突",
+    "轻量级仅卷积 U-Net 架构，在极低参数量下达到或超越重型扩散模型的感知性能"
+   ],
+   "benchmarks": [
+    "CelebA-Test",
+    "LFW-Test",
+    "CelebAdult",
+    "FFHQ"
+   ]
+  }
+ }
 }

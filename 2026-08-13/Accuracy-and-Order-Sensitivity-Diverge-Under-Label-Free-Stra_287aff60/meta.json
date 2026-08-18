@@ -4,5 +4,30 @@
  "title": "Accuracy-and-Order-Sensitivity-Diverge-Under-Label-Free-Stra",
  "token": "sk-JiEKTe0tT...",
  "created_at": "2026-08-13 05:40:21",
- "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-13/0f29f2c8-be68-45e7-955b-3b0e6055648c.zip"
+ "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-13/0f29f2c8-be68-45e7-955b-3b0e6055648c.zip",
+ "summarized": {
+  "model": "agnes-2.5-flash",
+  "at": "2026-08-18 09:05:34",
+  "chunks": 1,
+  "meta": {
+   "keywords": [
+    "multiple-choice benchmark",
+    "option-order sensitivity",
+    "label-free prompting",
+    "debiasing LLM evaluation",
+    "flip rate",
+    "independent hypothesis scoring"
+   ],
+   "field": "LLM 评测方法论与偏差缓解",
+   "innovations": [
+    "两阶段提示的2×2诊断分解揭示瓶颈在Stage 1隐藏选项而非匹配步骤",
+    "提出flip rate作为题级选项顺序敏感性直接度量并与RStd双诊断组合",
+    "实证证明消除位置影响并不必然带来多选题准确率增益"
+   ],
+   "benchmarks": [
+    "MMLU",
+    "ARC-Challenge"
+   ]
+  }
+ }
 }

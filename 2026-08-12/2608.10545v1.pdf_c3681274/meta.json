@@ -3,5 +3,30 @@
  "batch_id": "c3681274-5760-4a0b-a2d8-bbe730a015b1",
  "token": "sk-owp49a3rO...",
  "created_at": "2026-08-12 15:33:36",
- "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-12/d500924f-38d7-491c-898f-bcb89c457eff.zip"
+ "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-12/d500924f-38d7-491c-898f-bcb89c457eff.zip",
+ "summarized": {
+  "model": "agnes-2.5-flash",
+  "at": "2026-08-18 08:37:59",
+  "chunks": 1,
+  "meta": {
+   "keywords": [
+    "Edge LLM",
+    "KV cache transfer",
+    "resource allocation",
+    "handover",
+    "water-filling",
+    "edge computing",
+    "token communications"
+   ],
+   "field": "边缘LLM推理与资源分配",
+   "innovations": [
+    "重要性排序的部分KV Cache传输框架，将多用户回程带宽分配形式化为效用最大化问题",
+    "在RULER上验证部分缓存精度呈Sigmoid分布（R²>0.99），重要性排序使凹区间覆盖近乎整个操作范围",
+    "加权水填两阶段allocator，闭式求解+EB fallback，支持anytime推理"
+   ],
+   "benchmarks": [
+    "RULER"
+   ]
+  }
+ }
 }

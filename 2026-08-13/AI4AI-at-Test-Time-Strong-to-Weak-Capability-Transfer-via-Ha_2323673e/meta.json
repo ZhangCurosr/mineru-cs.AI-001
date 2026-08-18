@@ -4,5 +4,32 @@
  "title": "AI4AI-at-Test-Time-Strong-to-Weak-Capability-Transfer-via-Ha",
  "token": "sk-aQHhxC28I...",
  "created_at": "2026-08-13 14:54:53",
- "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-13/4fef70cb-64fb-4cfd-a648-372b60cd26db.zip"
+ "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-13/4fef70cb-64fb-4cfd-a648-372b60cd26db.zip",
+ "summarized": {
+  "model": "agnes-2.5-flash",
+  "at": "2026-08-18 08:57:51",
+  "chunks": 1,
+  "meta": {
+   "keywords": [
+    "strong-to-weak scaffolding",
+    "test-time capability transfer",
+    "inference-time harness",
+    "theory of mind",
+    "deterministic offloading",
+    "cognitive load reduction"
+   ],
+   "field": "推理时模型辅助与能力转移",
+   "innovations": [
+    "形式化强-弱脚手架为推理时能力转移新范式，无需更新目标模型参数",
+    "系统分析脚手架构建中构建器能力、推理努力、平台效应的相对贡献",
+    "发现确定性卸载比例与性能强相关(r=0.72)且存在headroom law规律"
+   ],
+   "benchmarks": [
+    "BigToM",
+    "Hi-ToM",
+    "MMToM-QA",
+    "MuMA-ToM"
+   ]
+  }
+ }
 }

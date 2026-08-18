@@ -4,5 +4,34 @@
  "title": "A-Conceptual-Framework-for-Enhancing-Workforce-Readiness-for",
  "token": "sk-gpAzKtmRM...",
  "created_at": "2026-08-13 14:56:02",
- "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-13/09fdb2e4-c208-41ca-86e0-b4d7467cd6f8.zip"
+ "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-13/09fdb2e4-c208-41ca-86e0-b4d7467cd6f8.zip",
+ "summarized": {
+  "model": "agnes-2.5-flash",
+  "at": "2026-08-18 08:58:10",
+  "chunks": 1,
+  "meta": {
+   "keywords": [
+    "Workforce Readiness Level",
+    "smart manufacturing",
+    "competency assessment",
+    "Engineering Education",
+    "Industry 4.0",
+    "no-thin-pillar rule",
+    "artifact-based assessment"
+   ],
+   "field": "工程教育与能力认证",
+   "innovations": [
+    "将TRL九级结构首次迁移至个人智能制造能力认证，定义WRL九阶段行为锚定量表",
+    "提出no-thin-pillar规则防止偏科型证书膨胀，编码AI时代制造能力必须多维均衡的约束",
+    "构建四支柱（P1-P4）评估框架并直接映射至ABET SO1-SO7，提供可对接认证的数字化证据源"
+   ],
+   "benchmarks": [
+    "MSSC CPT+",
+    "SME Smart Manufacturing Certificate",
+    "DigComp 2.2",
+    "ACATECH Industrie 4.0 Maturity Index",
+    "ABET Student Outcomes"
+   ]
+  }
+ }
 }

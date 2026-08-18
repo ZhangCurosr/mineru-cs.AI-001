@@ -3,5 +3,34 @@
  "batch_id": "96b7db49-2566-40c0-8569-b8f91bf35b12",
  "token": "sk-owp49a3rO...",
  "created_at": "2026-08-12 15:33:38",
- "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-12/39e7ee5a-39c1-4fbd-8db6-cf00a0e077a8.zip"
+ "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-12/39e7ee5a-39c1-4fbd-8db6-cf00a0e077a8.zip",
+ "summarized": {
+  "model": "agnes-2.5-flash",
+  "at": "2026-08-18 08:36:24",
+  "chunks": 1,
+  "meta": {
+   "keywords": [
+    "Sparse Autoencoders",
+    "Mechanistic Interpretability",
+    "Feature Nonlocality",
+    "Semantic Abstractness",
+    "Activation Steering",
+    "Jailbreak Mitigation",
+    "Gradient-based Metric"
+   ],
+   "field": "大语言模型机械可解释性",
+   "innovations": [
+    "提出基于梯度影响熵的特征非局部性(FNL)度量语义抽象度",
+    "验证FNL与词元注入/释义不变性代理指标的相关性",
+    "揭示越狱缓解特征多为低FNL位置指示器而非语义识别器"
+   ],
+   "benchmarks": [
+    "MATH-500",
+    "StrongReject",
+    "Few-Shot-Json",
+    "GSM8K",
+    "WikiText"
+   ]
+  }
+ }
 }

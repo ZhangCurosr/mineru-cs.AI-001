@@ -4,5 +4,32 @@
  "title": "Accuracy-and-Order-Sensitivity-Diverge-Under-Label-Free-Stra",
  "token": "sk-zw57yHIgm...",
  "created_at": "2026-08-13 14:55:09",
- "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-13/0f29f2c8-be68-45e7-955b-3b0e6055648c.zip"
+ "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-13/0f29f2c8-be68-45e7-955b-3b0e6055648c.zip",
+ "summarized": {
+  "model": "agnes-2.5-flash",
+  "at": "2026-08-18 09:04:09",
+  "chunks": 1,
+  "meta": {
+   "keywords": [
+    "multiple-choice evaluation",
+    "positional bias",
+    "prompting strategy",
+    "debiasing",
+    "LLM evaluation",
+    "answer matching",
+    "order sensitivity",
+    "few-shot calibration"
+   ],
+   "field": "语言模型评估方法论",
+   "innovations": [
+    "2×2 因子分解揭示两阶段提示瓶颈在于隐藏选项而非匹配",
+    "flip rate 单题级度量证明去偏与提准解耦",
+    "独立假设打分构造上消除位置影响但仍不可靠提准"
+   ],
+   "benchmarks": [
+    "MMLU",
+    "ARC-Challenge"
+   ]
+  }
+ }
 }

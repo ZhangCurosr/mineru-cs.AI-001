@@ -4,5 +4,33 @@
  "title": "A-12-CNOT-Double-Qubit-Excitation-Gate",
  "token": "sk-4qwN7yoJ8...",
  "created_at": "2026-08-13 14:55:37",
- "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-13/1a4a0ed7-cc91-41de-bd41-c02701cca290.zip"
+ "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-13/1a4a0ed7-cc91-41de-bd41-c02701cca290.zip",
+ "summarized": {
+  "model": "agnes-2.5-flash",
+  "at": "2026-08-18 08:52:03",
+  "chunks": 1,
+  "meta": {
+   "keywords": [
+    "quantum gate decomposition",
+    "double qubit excitation",
+    "CNOT optimization",
+    "Clifford synthesis",
+    "VQE ansatz",
+    "quantum circuit compilation"
+   ],
+   "field": "量子门合成与电路优化",
+   "innovations": [
+    "首次提出12-CNOT双量子比特激发算子分解，突破13-CNOT SOTA",
+    "协同Clifford/CNOT+Rz/KAK合成工具进行系统化搜索与死路剪枝",
+    "在CNOT数、CNOT深度与总深度三项指标上同步最优，打破门数-深度零和权衡"
+   ],
+   "benchmarks": [
+    "Double Qubit Excitation Operator",
+    "CNOT count",
+    "CNOT depth",
+    "single-qubit gate count",
+    "total circuit depth"
+   ]
+  }
+ }
 }

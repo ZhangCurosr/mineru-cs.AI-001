@@ -4,5 +4,32 @@
  "title": "A-Hybrid-Framework-of-Vision-Transformer-and-Gated-Recurrent",
  "token": "sk-o7hgvdkWW...",
  "created_at": "2026-08-13 14:55:48",
- "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-13/dd4e76bf-040b-4aed-8b0b-b789959fd172.zip"
+ "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-13/dd4e76bf-040b-4aed-8b0b-b789959fd172.zip",
+ "summarized": {
+  "model": "agnes-2.5-flash",
+  "at": "2026-08-18 08:56:24",
+  "chunks": 1,
+  "meta": {
+   "keywords": [
+    "Vision Transformer",
+    "ConvGRU",
+    "Video Classification",
+    "Mosquito Behavior Analysis",
+    "Object Detection",
+    "YOLO",
+    "Spatiotemporal Modeling"
+   ],
+   "field": "生物医学视频分析",
+   "innovations": [
+    "提出YOLO 11M+ViT+ConvGRU三阶段混合框架实现小目标视频分类",
+    "系统验证ConvGRU在保留空间结构的同时建模长时序依赖的最优性",
+    "目标中心型预处理（检测+背景消除）显著降低复杂环境噪声干扰"
+   ],
+   "benchmarks": [
+    "Mosquito Video Dataset (Control/DENV2/ZIKV, 3-class)",
+    "YOLO mAP50 comparison",
+    "Five-fold cross-validation Accuracy/Precision/Recall/F1"
+   ]
+  }
+ }
 }

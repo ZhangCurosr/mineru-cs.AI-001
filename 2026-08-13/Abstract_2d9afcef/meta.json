@@ -4,5 +4,31 @@
  "title": "Abstract",
  "token": "sk-tFRB7xMvI...",
  "created_at": "2026-08-13 14:56:31",
- "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-13/24dfb34e-4089-43e6-8918-2305e2a60acc.zip"
+ "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-13/24dfb34e-4089-43e6-8918-2305e2a60acc.zip",
+ "summarized": {
+  "model": "agnes-2.5-flash",
+  "at": "2026-08-18 09:01:30",
+  "chunks": 1,
+  "meta": {
+   "keywords": [
+    "World Action Models",
+    "rollout-free inference",
+    "K/V cache intervention",
+    "flow matching",
+    "robot manipulation",
+    "anticipation tokens",
+    "future prediction"
+   ],
+   "field": "世界动作模型的高效推理",
+   "innovations": [
+    "提出 rollout-free 的 future K/V cache 构建方法 Rift，一次前向替代迭代视频 rollout",
+    "设计 paired closed-loop K/V cache 干预协议，分离 future 表示与 rollout 过程对执行的影响",
+    "使用 conditional flow-matching 替代 L2 回归训练 anticipate tokens，保留显式 future interface 同时消除部署延迟"
+   ],
+   "benchmarks": [
+    "LIBERO",
+    "RoboTwin 2.0"
+   ]
+  }
+ }
 }

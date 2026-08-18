@@ -3,5 +3,32 @@
  "batch_id": "ce274f4f-6f71-4421-ad9c-89f02a5bd4c9",
  "token": "sk-n7iJ0Z1Ol...",
  "created_at": "2026-08-12 15:02:56",
- "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-12/1dcb6660-9094-4d29-a928-0c323bd1c015.zip"
+ "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-12/1dcb6660-9094-4d29-a928-0c323bd1c015.zip",
+ "summarized": {
+  "model": "agnes-2.5-flash",
+  "at": "2026-08-18 08:41:28",
+  "chunks": 7,
+  "meta": {
+   "keywords": [
+    "LLM Negotiation",
+    "Rational Contracting",
+    "Multi-Agent Systems",
+    "Economic Evaluation",
+    "Natural Language Contracts",
+    "Agent Reliability"
+   ],
+   "field": "多智能体经济博弈",
+   "innovations": [
+    "提出合约-策略约束形式化框架，将自然语言合约翻译为可量化合规概率的轨迹约束",
+    "设计RC/RE/RCC三层理性基线代理体系，定义条件合规切换机制",
+    "首次在多步随机环境下评估LLM代理动态条件性合约的协商效率与执行可靠性"
+   ],
+   "benchmarks": [
+    "ContractSim",
+    "Catering",
+    "Hotel Cleaning",
+    "AI Hosting"
+   ]
+  }
+ }
 }

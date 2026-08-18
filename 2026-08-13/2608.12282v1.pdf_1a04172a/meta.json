@@ -3,5 +3,33 @@
  "batch_id": "1a04172a-4e4b-4ac2-a8bb-a4ce98e6726c",
  "token": "sk-n7iJ0Z1Ol...",
  "created_at": "2026-08-13 02:58:53",
- "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-13/922ded5a-a6e7-44ab-a7f3-23585d7a5201.zip"
+ "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-13/922ded5a-a6e7-44ab-a7f3-23585d7a5201.zip",
+ "summarized": {
+  "model": "agnes-2.5-flash",
+  "at": "2026-08-18 08:47:07",
+  "chunks": 1,
+  "meta": {
+   "keywords": [
+    "tool-use policy",
+    "multi-hop reasoning",
+    "agent benchmark",
+    "executabled apis",
+    "cross-source grounding",
+    "trajectory evaluation"
+   ],
+   "field": "工具使用与多跳推理评测",
+   "innovations": [
+    "构建包含8,000+可执行API与文档检索的跨源多跳推理基准VAKRA",
+    "设计轨迹级重放验证框架，容忍路径等价性并支持策略遵循确定性检查",
+    "揭示多跳推理失败集中于语言中介步骤（实体消歧、跨源对齐）而非工具调用机械操作"
+   ],
+   "benchmarks": [
+    "VAKRA",
+    "BIRD-SQL",
+    "LiveAPIBench",
+    "τ-bench",
+    "ToolHop"
+   ]
+  }
+ }
 }

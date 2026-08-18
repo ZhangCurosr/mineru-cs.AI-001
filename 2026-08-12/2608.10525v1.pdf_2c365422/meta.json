@@ -3,5 +3,32 @@
  "batch_id": "2c365422-6466-4452-a7b9-580c9649b992",
  "token": "sk-owp49a3rO...",
  "created_at": "2026-08-12 15:33:39",
- "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-12/46e882df-bc26-46e1-ae82-3cd2fe7b3322.zip"
+ "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-12/46e882df-bc26-46e1-ae82-3cd2fe7b3322.zip",
+ "summarized": {
+  "model": "agnes-2.5-flash",
+  "at": "2026-08-18 08:34:15",
+  "chunks": 1,
+  "meta": {
+   "keywords": [
+    "Vision-Language Navigation",
+    "Dynamic Context Adapter",
+    "Parameter-Efficient Fine-Tuning",
+    "Historical Context Integration",
+    "Vision-Language Models",
+    "Embodied AI"
+   ],
+   "field": "视觉-语言导航中的时序记忆机制",
+   "innovations": [
+    "跨层适配器注入压缩记忆向量实现线性复杂度历史整合",
+    "双流水线架构解耦主VLM与上下文处理避免序列膨胀",
+    "可学习固定容量记忆向量替代循环隐状态保留时序细节"
+   ],
+   "benchmarks": [
+    "VLN-CE R2R Val-Unseen",
+    "SR",
+    "SPL",
+    "OSR"
+   ]
+  }
+ }
 }

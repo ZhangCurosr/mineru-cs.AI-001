@@ -3,5 +3,28 @@
  "batch_id": "610d853a-3fb7-4655-8c22-6c101325a254",
  "token": "sk-owp49a3rO...",
  "created_at": "2026-08-12 15:33:38",
- "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-12/6b36da73-348d-4f3b-b156-e17a18ad1781.zip"
+ "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-12/6b36da73-348d-4f3b-b156-e17a18ad1781.zip",
+ "summarized": {
+  "model": "agnes-2.5-flash",
+  "at": "2026-08-18 08:35:08",
+  "chunks": 1,
+  "meta": {
+   "keywords": [
+    "multi-agent bandits",
+    "heavy-tailed rewards",
+    "decentralized learning",
+    "information asymmetry",
+    "regret analysis"
+   ],
+   "field": "多智能体强化学习",
+   "innovations": [
+    "三种信息不对称结构下无通信多智能体重尾老虎机的统一 regret 保证",
+    "利用动作偏离作为 1-bit 隐式信号通道实现轮询淘汰",
+    "揭示动作可观测性可在主项代价上补偿共同奖励的缺失"
+   ],
+   "benchmarks": [
+    "Pareto reward environment (M=2, K=2, T=1e6)"
+   ]
+  }
+ }
 }

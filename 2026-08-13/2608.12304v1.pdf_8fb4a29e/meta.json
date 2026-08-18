@@ -3,5 +3,10 @@
  "batch_id": "8fb4a29e-b177-4f76-b917-b6823f57ca1f",
  "token": "sk-n7iJ0Z1Ol...",
  "created_at": "2026-08-13 02:58:51",
- "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-13/20cd8126-969c-4eb4-80ed-4b12a6ee4d8f.zip"
+ "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-13/20cd8126-969c-4eb4-80ed-4b12a6ee4d8f.zip",
+ "summarized": {
+  "model": "agnes-2.5-flash",
+  "at": "2026-08-18 08:46:25",
+  "chunks": 1
+ }
 }

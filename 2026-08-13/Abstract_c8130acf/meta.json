@@ -4,5 +4,30 @@
  "title": "Abstract",
  "token": "sk-YrIlRFySy...",
  "created_at": "2026-08-13 07:11:23",
- "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-13/24dfb34e-4089-43e6-8918-2305e2a60acc.zip"
+ "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-13/24dfb34e-4089-43e6-8918-2305e2a60acc.zip",
+ "summarized": {
+  "model": "agnes-2.5-flash",
+  "at": "2026-08-18 09:01:15",
+  "chunks": 1,
+  "meta": {
+   "keywords": [
+    "World Action Models",
+    "rollout-free",
+    "future cache",
+    "flow-matching",
+    "robot control",
+    "attention intervention"
+   ],
+   "field": "机器人学习与世界模型",
+   "innovations": [
+    "提出Rift通过单次prefill生成完整future K/V cache消除迭代rollout开销",
+    "建立paired closed-loop干预协议分离未来表征与迭代过程的贡献",
+    "使用conditional flow-matching辅助监督塑造多模态未来分布"
+   ],
+   "benchmarks": [
+    "LIBERO",
+    "RoboTwin 2.0"
+   ]
+  }
+ }
 }

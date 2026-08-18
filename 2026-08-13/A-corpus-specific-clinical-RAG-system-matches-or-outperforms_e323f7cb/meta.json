@@ -4,5 +4,29 @@
  "title": "A-corpus-specific-clinical-RAG-system-matches-or-outperforms",
  "token": "sk-9BdnpHblK...",
  "created_at": "2026-08-13 07:10:22",
- "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-13/959b024a-0eee-482d-a5fe-330e5844809a.zip"
+ "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-13/959b024a-0eee-482d-a5fe-330e5844809a.zip",
+ "summarized": {
+  "model": "agnes-2.5-flash",
+  "at": "2026-08-18 08:58:48",
+  "chunks": 1,
+  "meta": {
+   "keywords": [
+    "RAG",
+    "临床AI",
+    "HealthBench",
+    "语料特异性",
+    "LMIC",
+    "医疗评估"
+   ],
+   "field": "临床自然语言处理",
+   "innovations": [
+    "验证了语料特异性RAG系统在HealthBench上可匹敌或超越前沿通用LLM",
+    "提出双阶段评估框架以缓解评估偏倚",
+    "在独立中立裁判下证实VITA临床准确性优势持续存在"
+   ],
+   "benchmarks": [
+    "HealthBench"
+   ]
+  }
+ }
 }

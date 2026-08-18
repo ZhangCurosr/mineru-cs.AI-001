@@ -3,5 +3,37 @@
  "batch_id": "321f7725-dff7-42de-ab5f-77050232fbdf",
  "token": "sk-owp49a3rO...",
  "created_at": "2026-08-12 15:33:38",
- "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-12/dc140924-e611-4d1f-a682-a32caedc186f.zip"
+ "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-12/dc140924-e611-4d1f-a682-a32caedc186f.zip",
+ "summarized": {
+  "model": "agnes-2.5-flash",
+  "at": "2026-08-18 08:35:41",
+  "chunks": 1,
+  "meta": {
+   "keywords": [
+    "Agentic LLM",
+    "LLM Security",
+    "Prompt Injection",
+    "Vulnerability Taxonomy",
+    "Systematic Review",
+    "Agent Safety",
+    "Tool-Augmented LLM"
+   ],
+   "field": "大语言模型安全与鲁棒性",
+   "innovations": [
+    "首个PRISMA合规的Agentic LLM安全系统综述，提出四层架构13种漏洞分类体系",
+    "量化揭示攻击:防御=3.9:1及感知层与行动层14倍研究覆盖差距",
+    "识别七个关键开放问题并提出短/中/长期研究议程"
+   ],
+   "benchmarks": [
+    "Agent Security Bench (ASB)",
+    "InjecAgent",
+    "AgentDojo",
+    "AgentHarm",
+    "GOAT",
+    "AdvWeb",
+    "MAD-Spear Dataset",
+    "Mobile Agent Security Matrix"
+   ]
+  }
+ }
 }

@@ -4,5 +4,36 @@
  "title": "A-Conceptual-Framework-for-Enhancing-Workforce-Readiness-for",
  "token": "sk-YrIlRFySy...",
  "created_at": "2026-08-13 07:11:20",
- "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-13/09fdb2e4-c208-41ca-86e0-b4d7467cd6f8.zip"
+ "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-13/09fdb2e4-c208-41ca-86e0-b4d7467cd6f8.zip",
+ "summarized": {
+  "model": "agnes-2.5-flash",
+  "at": "2026-08-18 08:54:25",
+  "chunks": 1,
+  "meta": {
+   "keywords": [
+    "workforce readiness",
+    "smart manufacturing",
+    "competency assessment",
+    "Technology Readiness Level",
+    "engineering education",
+    "Industry 4.0",
+    "no-thin-pillar rule",
+    "ABET accreditation"
+   ],
+   "field": "工程教育与 workforce development",
+   "innovations": [
+    "将NASA TRL九阶段结构迁移至个体劳动者能力评估，提出WRL框架",
+    "设计'无薄弱环节'认证规则，以min-pillar-floor约束防止多维能力失衡",
+    "四支柱评价量规（P1-P4）覆盖AI时代制造核心能力并以artifact-anchored方式评分"
+   ],
+   "benchmarks": [
+    "MSSC CPT+ Certification",
+    "SME Smart Manufacturing Certificate",
+    "DigComp 2.2",
+    "ACATECH Industrie 4.0 Maturity Index",
+    "O*NET",
+    "TRL/MRL scales"
+   ]
+  }
+ }
 }
