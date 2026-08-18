@@ -4,5 +4,35 @@
  "title": "Class-Activation-Mapping-in-Explainable-Computer-Vision-A-Me",
  "token": "sk-45Ifw5Iq3...",
  "created_at": "2026-08-13 07:11:25",
- "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-13/81b78f8e-03c2-43b8-84c6-5977a358307e.zip"
+ "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-13/81b78f8e-03c2-43b8-84c6-5977a358307e.zip",
+ "summarized": {
+  "model": "agnes-2.5-flash",
+  "at": "2026-08-18 09:47:03",
+  "chunks": 1,
+  "meta": {
+   "keywords": [
+    "Class Activation Mapping",
+    "explainable AI",
+    "vision transformer",
+    "gradient-based attribution",
+    "foundation model explanation",
+    "weakly supervised localization",
+    "faithfulness evaluation"
+   ],
+   "field": "可解释计算机视觉",
+   "innovations": [
+    "构建首个严格方法中心CAM综述分类体系，涵盖57篇2016-2026年论文",
+    "首次在一致协议下横向对比梯度与无梯度CAM的忠实度、定位与效率",
+    "提出CAM研究五项开放挑战与标准化评估卡片建议"
+   ],
+   "benchmarks": [
+    "ImageNet",
+    "PASCAL VOC 2007",
+    "CUB-200-2011",
+    "ILSVRC2012",
+    "COCO",
+    "ProMRI/ACDC/CHAOS"
+   ]
+  }
+ }
 }

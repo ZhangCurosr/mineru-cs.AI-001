@@ -3,5 +3,30 @@
  "batch_id": "be34fcad-1ef5-4b00-aa3e-a5e4d03cc178",
  "token": "sk-n7iJ0Z1Ol...",
  "created_at": "2026-08-13 02:58:54",
- "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-13/d3e34074-76cc-4531-9222-dff054d50026.zip"
+ "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-13/d3e34074-76cc-4531-9222-dff054d50026.zip",
+ "summarized": {
+  "model": "agnes-2.5-flash",
+  "at": "2026-08-18 09:30:13",
+  "chunks": 1,
+  "meta": {
+   "keywords": [
+    "离线强化学习",
+    "安全 RL",
+    "CMDP",
+    "回报分解",
+    "信用分配",
+    "稀疏监督"
+   ],
+   "field": "安全强化学习",
+   "innovations": [
+    "提出RCI框架，通过回报分解将轨迹级停止反馈转化为密集每步成本",
+    "证明回报等价重分布保持CMDP可行策略集与拉格朗日鞍点不变",
+    "在HighwayEnv和Safe-FetchReach上实现约五倍违规率下降且无显著性能损失"
+   ],
+   "benchmarks": [
+    "HighwayEnv",
+    "Safe-FetchReach"
+   ]
+  }
+ }
 }

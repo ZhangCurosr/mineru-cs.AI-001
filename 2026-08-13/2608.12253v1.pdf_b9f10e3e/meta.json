@@ -3,5 +3,32 @@
  "batch_id": "b9f10e3e-e689-48d5-b7f2-4c12dbdd5384",
  "token": "sk-45Ifw5Iq3...",
  "created_at": "2026-08-13 02:58:57",
- "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-13/1f0653d2-76f2-40a1-b2b4-aa64464ee0e9.zip"
+ "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-13/1f0653d2-76f2-40a1-b2b4-aa64464ee0e9.zip",
+ "summarized": {
+  "model": "agnes-2.5-flash",
+  "at": "2026-08-18 09:34:57",
+  "chunks": 1,
+  "meta": {
+   "keywords": [
+    "multi-agent RL",
+    "LLM simulator",
+    "mode collapse",
+    "co-training",
+    "verbalized sampling",
+    "policy entropy",
+    "population training"
+   ],
+   "field": "多智能体强化学习",
+   "innovations": [
+    "形式化模拟器坍缩现象：证明 mode-collapsed LLM 模拟器使策略梯度偏向确定性 mode-user 目标并导致策略熵几何级数塌缩",
+    "提出推理时 Verbalized Sampling 与训练时 Co-Training/Population Co-Training 两种互补解决方案，在三个多轮基准上显著提升 OOD 泛化",
+    "开源 SCOPE 框架统一支持异构模拟器轮换、checkpoint 队列与推理时语理化采样"
+   ],
+   "benchmarks": [
+    "Persuasion for Good",
+    "τ2-bench",
+    "CooperBench"
+   ]
+  }
+ }
 }

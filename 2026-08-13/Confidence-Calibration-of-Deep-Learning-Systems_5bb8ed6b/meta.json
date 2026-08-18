@@ -4,5 +4,10 @@
  "title": "Confidence-Calibration-of-Deep-Learning-Systems",
  "token": "sk-9BdnpHblK...",
  "created_at": "2026-08-13 07:12:04",
- "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-13/41cb6a18-3040-42b9-b419-ca86a06bee2d.zip"
+ "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-13/41cb6a18-3040-42b9-b419-ca86a06bee2d.zip",
+ "summarized": {
+  "model": "agnes-2.5-flash",
+  "at": "2026-08-18 09:58:31",
+  "chunks": 5
+ }
 }

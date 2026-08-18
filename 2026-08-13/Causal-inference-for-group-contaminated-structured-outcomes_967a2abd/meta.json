@@ -4,5 +4,32 @@
  "title": "Causal-inference-for-group-contaminated-structured-outcomes",
  "token": "sk-dD4E81LFV...",
  "created_at": "2026-08-13 14:56:29",
- "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-13/7d6d7a54-5d5a-41a0-820b-881a66b57f4f.zip"
+ "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-13/7d6d7a54-5d5a-41a0-820b-881a66b57f4f.zip",
+ "summarized": {
+  "model": "agnes-2.5-flash",
+  "at": "2026-08-18 09:45:52",
+  "chunks": 1,
+  "meta": {
+   "keywords": [
+    "causal inference",
+    "group action",
+    "maximal invariant",
+    "quotient space",
+    "randomization test",
+    "structured outcomes",
+    "microscopy image",
+    "MMD"
+   ],
+   "field": "因果推断与群不变结构数据分析",
+   "innovations": [
+    "在完全无关于未知群污染Γ的条件下给出可观测目标的sharp边界（轨道不变性充要条件）",
+    "提出商忠实核概念并证明商约简统计充分性的充要条件（Blackwell等价刻画）",
+    "区分乘积作用与对角作用，给出分量规范化何时保留相对信息的精确判据"
+   ],
+   "benchmarks": [
+    "RxRx1 HUVEC paired comparison",
+    "Simulation study with lattice rigid-motion contamination"
+   ]
+  }
+ }
 }

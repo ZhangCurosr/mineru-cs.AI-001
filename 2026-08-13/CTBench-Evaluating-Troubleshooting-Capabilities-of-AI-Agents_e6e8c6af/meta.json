@@ -4,5 +4,36 @@
  "title": "CTBench-Evaluating-Troubleshooting-Capabilities-of-AI-Agents",
  "token": "sk-7NOZt17oN...",
  "created_at": "2026-08-13 07:12:17",
- "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-13/301099eb-9759-4704-a8d0-b25a2daeb64b.zip"
+ "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-13/301099eb-9759-4704-a8d0-b25a2daeb64b.zip",
+ "summarized": {
+  "model": "agnes-2.5-flash",
+  "at": "2026-08-18 09:45:25",
+  "chunks": 1,
+  "meta": {
+   "keywords": [
+    "AI Agent",
+    "电信网络运维",
+    "故障根因分析",
+    "基准评测",
+    "证据驱动诊断",
+    "多智能体",
+    "部分可观测推理"
+   ],
+   "field": "AI for Network Operations & Maintenance",
+   "innovations": [
+    "提出首个覆盖 RCA 与路径恢复双任务、含专家黄金证据标注的电信 Agent 排障公开基准",
+    "设计解耦最终答案与证据链的多维评估体系（IoU/F1 + 层级化辅助评分）",
+    "引入结构化任务元数据（可观测性/异构性/传播链/协议复杂度）支持 beyond-accuracy 难度归因分析"
+   ],
+   "benchmarks": [
+    "CTBench",
+    "NIKA",
+    "NetArena",
+    "NetAgentBench",
+    "TelcoAgentBench",
+    "TeleQnA",
+    "ORAN-Bench"
+   ]
+  }
+ }
 }

@@ -4,5 +4,32 @@
  "title": "Claim-Level-Reliability-Assessment-for-Efficient-Test-Time-R",
  "token": "sk-7NOZt17oN...",
  "created_at": "2026-08-13 07:12:19",
- "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-13/2dc005d9-097f-4ae3-a6cf-738b81c54d31.zip"
+ "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-13/2dc005d9-097f-4ae3-a6cf-738b81c54d31.zip",
+ "summarized": {
+  "model": "agnes-2.5-flash",
+  "at": "2026-08-18 09:46:27",
+  "chunks": 1,
+  "meta": {
+   "keywords": [
+    "test-time scaling",
+    "claim-level falsification",
+    "self-consistency",
+    "reliability assessment",
+    "reasoning verification",
+    "training-free framework"
+   ],
+   "field": "大语言模型推理与测试时优化",
+   "innovations": [
+    "提出声明级证伪原则，将测试时计算从多采样转向针对性验证",
+    "设计训练无的两阶段框架 CLR，通过不对称证伪提取决策关键声明并加权聚合",
+    "引入非线性可靠性评分（$r_k=s_k^M$），使少数高可靠轨迹可推翻错误多数共识"
+   ],
+   "benchmarks": [
+    "HMMT25",
+    "HMMT26",
+    "CMIMC25",
+    "Apex-shortlist"
+   ]
+  }
+ }
 }

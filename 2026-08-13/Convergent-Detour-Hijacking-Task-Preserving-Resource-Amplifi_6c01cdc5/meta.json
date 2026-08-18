@@ -4,5 +4,32 @@
  "title": "Convergent-Detour-Hijacking-Task-Preserving-Resource-Amplifi",
  "token": "sk-331OfnzjD...",
  "created_at": "2026-08-13 14:54:55",
- "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-13/a3939e02-8380-4d21-b81e-e5279667519e.zip"
+ "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-13/a3939e02-8380-4d21-b81e-e5279667519e.zip",
+ "summarized": {
+  "model": "agnes-2.5-flash",
+  "at": "2026-08-18 09:58:38",
+  "chunks": 1,
+  "meta": {
+   "keywords": [
+    "LLM Agent",
+    "Skill Registry",
+    "Convergent Detour Hijacking",
+    "Progressive Disclosure",
+    "Supply-Chain Attack",
+    "Resource Amplification",
+    "Trajectory Necessity"
+   ],
+   "field": "LLM Agent 安全与鲁棒性",
+   "innovations": [
+    "提出 CDH 跨阶段攻击形式化与 Attract–Detour–Converge 构造方法",
+    "构建 491 任务 OpenClaw 配对评测基准并证明任务正确不蕴含轨迹必要",
+    "在无运行时反馈、payload-less 条件下实现最高 80.51% ASR 与 ~90% 资源放大"
+   ],
+   "benchmarks": [
+    "OpenClaw default registry 53 skills",
+    "491 held-out tasks (9 functional groups)",
+    "30 independently authored generalization tasks"
+   ]
+  }
+ }
 }

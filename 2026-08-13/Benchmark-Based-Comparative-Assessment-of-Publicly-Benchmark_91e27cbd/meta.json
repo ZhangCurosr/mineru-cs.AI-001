@@ -4,5 +4,45 @@
  "title": "Benchmark-Based-Comparative-Assessment-of-Publicly-Benchmark",
  "token": "sk-AG7sAmdzS...",
  "created_at": "2026-08-13 14:55:11",
- "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-13/f0b414b7-03ef-44cf-9ee4-252129ac94be.zip"
+ "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-13/f0b414b7-03ef-44cf-9ee4-252129ac94be.zip",
+ "summarized": {
+  "model": "agnes-2.5-flash",
+  "at": "2026-08-18 09:44:05",
+  "chunks": 1,
+  "meta": {
+   "keywords": [
+    "基准评估",
+    "印度基础模型",
+    "基准成熟度指数",
+    "AI能力评估",
+    "基准饱和",
+    "国家AI生态",
+    "公开报告偏差"
+   ],
+   "field": "AI基准评估与国家能力评估",
+   "innovations": [
+    "提出三级印度开发AI模型定义以区分研发亲缘性与评估透明度",
+    "提出四维度基准成熟度指数（BMI）量化评估生态成熟度",
+    "系统性论证'基准沉默不等于能力缺失'并揭示印度在8域中的评估生态不均衡"
+   ],
+   "benchmarks": [
+    "MMLU",
+    "MATH-500",
+    "GPQA Diamond",
+    "HLE",
+    "HumanEval",
+    "MBPP",
+    "SWE-bench Pro",
+    "BrowseComp",
+    "MMMU",
+    "LiveCodeBench",
+    "Teriminal-Bench 2.1",
+    "Video-MME",
+    "MMVU",
+    "SANSKRITI",
+    "MILU",
+    "BharatBench"
+   ]
+  }
+ }
 }

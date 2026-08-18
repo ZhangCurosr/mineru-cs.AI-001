@@ -4,5 +4,29 @@
  "title": "CoAdapt-GUI-Joint-Workflow-Context-and-Policy-Adaptation-for",
  "token": "sk-xfpcKPjW4...",
  "created_at": "2026-08-13 07:11:19",
- "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-13/9f8d3188-b202-43fd-b7d2-f2571450f1e0.zip"
+ "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-13/9f8d3188-b202-43fd-b7d2-f2571450f1e0.zip",
+ "summarized": {
+  "model": "agnes-2.5-flash",
+  "at": "2026-08-18 09:52:56",
+  "chunks": 4,
+  "meta": {
+   "keywords": [
+    "Test-Time Adaptation",
+    "GUI Agent",
+    "Workflow Context",
+    "Policy Adaptation",
+    "AndroidGeneralization"
+   ],
+   "field": "GUI 智能体泛化",
+   "innovations": [
+    "联合工作流上下文与策略的测试时适应机制",
+    "可转移性过滤与双通道解耦更新架构",
+    "Task-context-matched group-relative 策略优势估计"
+   ],
+   "benchmarks": [
+    "AndroidWorld-Generalization",
+    "AndroidWorld Plus"
+   ]
+  }
+ }
 }

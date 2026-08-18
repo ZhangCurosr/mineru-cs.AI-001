@@ -4,5 +4,30 @@
  "title": "AgenticTwin-An-Agentic-LLM-Framework-Integrated-with-Digital",
  "token": "sk-rXToje7Gi...",
  "created_at": "2026-08-13 14:55:42",
- "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-13/f9671ddf-dc7c-4c2a-8d68-9515ef555b52.zip"
+ "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-13/f9671ddf-dc7c-4c2a-8d68-9515ef555b52.zip",
+ "summarized": {
+  "model": "agnes-2.5-flash",
+  "at": "2026-08-18 09:37:42",
+  "chunks": 1,
+  "meta": {
+   "keywords": [
+    "digital twin",
+    "agentic LLM",
+    "anomaly detection",
+    "cyber-physical systems",
+    "multi-agent reasoning",
+    "lightweight LLM"
+   ],
+   "field": "数字孪生与LLM集成的异常检测",
+   "innovations": [
+    "将DT异常检测与多智能体LLM推理结合，实现可解释CPS异常诊断",
+    "构建合成异常注入的benchmark数据集，支持可控的三元评估",
+    "证明轻量级开源LLM协作智能体可全面超越70B单体模型"
+   ],
+   "benchmarks": [
+    "Jena Weather Dataset",
+    "12000 synthetic operator queries"
+   ]
+  }
+ }
 }

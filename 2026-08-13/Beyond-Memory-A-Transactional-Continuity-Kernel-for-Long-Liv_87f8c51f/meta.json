@@ -4,5 +4,28 @@
  "title": "Beyond-Memory-A-Transactional-Continuity-Kernel-for-Long-Liv",
  "token": "sk-yjjHVmEWF...",
  "created_at": "2026-08-13 07:10:54",
- "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-13/c392fb3c-70d9-48e5-8b03-1d2b81f3a810.zip"
+ "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-13/c392fb3c-70d9-48e5-8b03-1d2b81f3a810.zip",
+ "summarized": {
+  "model": "agnes-2.5-flash",
+  "at": "2026-08-18 09:40:46",
+  "chunks": 1,
+  "meta": {
+   "keywords": [
+    "AI agent memory",
+    "state governance",
+    "transactional continuity",
+    "formal verification",
+    "branch head",
+    "activation protocol"
+   ],
+   "field": "多Agent系统与持久化记忆治理",
+   "innovations": [
+    "将候选状态提案与原子激活分离的Continuity Kernel激活契约",
+    "17阶段前驱状态授权验证协议与四态终端处置机制"
+   ],
+   "benchmarks": [
+    "有界模型检查（2,808,230状态，5,526,474转换，零不变量违反）"
+   ]
+  }
+ }
 }

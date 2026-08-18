@@ -4,5 +4,30 @@
  "title": "CoAdapt-GUI-Joint-Workflow-Context-and-Policy-Adaptation-for",
  "token": "sk-ZWbnnHdTr...",
  "created_at": "2026-08-13 14:55:47",
- "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-13/9f8d3188-b202-43fd-b7d2-f2571450f1e0.zip"
+ "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-13/9f8d3188-b202-43fd-b7d2-f2571450f1e0.zip",
+ "summarized": {
+  "model": "agnes-2.5-flash",
+  "at": "2026-08-18 09:53:51",
+  "chunks": 4,
+  "meta": {
+   "keywords": [
+    "GUI Agent",
+    "Test-Time Adaptation",
+    "Workflow Context",
+    "Policy Adaptation",
+    "Mobile Automation",
+    "Cross-App Generalization"
+   ],
+   "field": "GUI Agent 跨应用泛化",
+   "innovations": [
+    "提出CoAdapt-GUI联合TTA框架，同步更新structured workflow context与LoRA policy adapter",
+    "设计transfer-constrained workflow表示与population-based evolution机制，避免negative transfer",
+    "构建AndroidWorld Plus数据集，严格区分Category-Shared与Category-Novel支持细粒度消融"
+   ],
+   "benchmarks": [
+    "AndroidWorld-Generalization",
+    "AndroidWorld Plus"
+   ]
+  }
+ }
 }

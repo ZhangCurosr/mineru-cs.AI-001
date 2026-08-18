@@ -4,5 +4,32 @@
  "title": "CLAIM-Leading-Open-domain-Active-Clarification-of-Large-Lang",
  "token": "sk-EKBGNBzZY...",
  "created_at": "2026-08-13 14:56:00",
- "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-13/b510eb35-c4ea-4db1-b861-edf249d19c7a.zip"
+ "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-13/b510eb35-c4ea-4db1-b861-edf249d19c7a.zip",
+ "summarized": {
+  "model": "agnes-2.5-flash",
+  "at": "2026-08-18 09:47:17",
+  "chunks": 1,
+  "meta": {
+   "keywords": [
+    "Open-domain Clarification",
+    "Uncertainty Estimation",
+    "Large Language Models",
+    "Active Decision Learning",
+    "Synthetic Data",
+    "GRPO",
+    "Semantic Entropy"
+   ],
+   "field": "开放域人机交互与大模型",
+   "innovations": [
+    "多模型语义分歧熵替代人工标注构建澄清训练数据",
+    "SFT+GRPO两阶段训练提升高不确定性边界决策鲁棒性",
+    "熵信号与LLM推理信号融合加冲突仲裁机制"
+   ],
+   "benchmarks": [
+    "ClariLM-test",
+    "IN3",
+    "CLAMBER"
+   ]
+  }
+ }
 }

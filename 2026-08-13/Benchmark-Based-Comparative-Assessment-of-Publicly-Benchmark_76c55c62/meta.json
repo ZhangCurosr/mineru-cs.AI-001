@@ -4,5 +4,41 @@
  "title": "Benchmark-Based-Comparative-Assessment-of-Publicly-Benchmark",
  "token": "sk-JiEKTe0tT...",
  "created_at": "2026-08-13 05:40:23",
- "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-13/f0b414b7-03ef-44cf-9ee4-252129ac94be.zip"
+ "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-13/f0b414b7-03ef-44cf-9ee4-252129ac94be.zip",
+ "summarized": {
+  "model": "agnes-2.5-flash",
+  "at": "2026-08-18 09:38:43",
+  "chunks": 1,
+  "meta": {
+   "keywords": [
+    "foundation models",
+    "benchmarking",
+    "Indian AI",
+    "Benchmark Maturity Index",
+    "capability assessment",
+    "sovereign AI",
+    "evaluation ecology"
+   ],
+   "field": "AI评估与基准测试",
+   "innovations": [
+    "提出三层印度AI模型定义（Tier 1/2/3）区分本土程度",
+    "提出Benchmark Maturity Index (BMI)四维评分量化评估生态成熟度",
+    "系统性区分'能力差距'与'评估披露差距'的方法论框架"
+   ],
+   "benchmarks": [
+    "MMLU",
+    "MATH-500",
+    "GPQA Diamond",
+    "HLE",
+    "HumanEval",
+    "MBPP",
+    "SWE-bench Pro",
+    "BrowseComp",
+    "OSWorld",
+    "MILU",
+    "SANSKRITI",
+    "BharatBench"
+   ]
+  }
+ }
 }

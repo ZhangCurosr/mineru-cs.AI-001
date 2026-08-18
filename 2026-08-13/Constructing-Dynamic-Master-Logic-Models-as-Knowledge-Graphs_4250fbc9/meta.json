@@ -4,5 +4,30 @@
  "title": "Constructing-Dynamic-Master-Logic-Models-as-Knowledge-Graphs",
  "token": "sk-xjs1Z4GZW...",
  "created_at": "2026-08-13 14:54:52",
- "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-13/20cd8126-969c-4eb4-80ed-4b12a6ee4d8f.zip"
+ "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-13/20cd8126-969c-4eb4-80ed-4b12a6ee4d8f.zip",
+ "summarized": {
+  "model": "agnes-2.5-flash",
+  "at": "2026-08-18 09:54:51",
+  "chunks": 1,
+  "meta": {
+   "keywords": [
+    "Dynamic Master Logic",
+    "Knowledge Graph",
+    "RAG",
+    "Fault Diagnosis",
+    "Functional Modeling",
+    "Large Language Models",
+    "System Reliability"
+   ],
+   "field": "工程系统功能建模与智能诊断",
+   "innovations": [
+    "分层RAG驱动DML从技术文档自动构建",
+    "多层级KG-DML评估框架含完整性分数",
+    "支持嵌套布尔逻辑门的上下向传播交互推理"
+   ],
+   "benchmarks": [
+    "Millstone Point Unit 1 LPCI系统"
+   ]
+  }
+ }
 }

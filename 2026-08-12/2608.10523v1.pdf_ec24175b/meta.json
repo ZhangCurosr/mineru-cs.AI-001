@@ -3,5 +3,32 @@
  "batch_id": "ec24175b-05e6-4040-b776-afaa08b4b3f8",
  "token": "sk-owp49a3rO...",
  "created_at": "2026-08-12 15:41:55",
- "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-12/eaee0fad-c918-4de2-8f70-fc9c6f041813.zip"
+ "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-12/eaee0fad-c918-4de2-8f70-fc9c6f041813.zip",
+ "summarized": {
+  "model": "agnes-2.5-flash",
+  "at": "2026-08-18 09:30:19",
+  "chunks": 1,
+  "meta": {
+   "keywords": [
+    "TensorSketch",
+    "多项式核近似",
+    "复值随机变量",
+    "Complex-to-Real",
+    "方差降低",
+    "随机投影",
+    "输入稀疏性"
+   ],
+   "field": "随机化数值线性代数/机器学习核方法",
+   "innovations": [
+    "提出CtR TensorSketch，将方差指数依赖从3^p降至2^p并保留输入稀疏时间",
+    "揭示复值CountSketch单独无法降方差，需配合TensorSketch卷积结构才能产生交叉项消失效应"
+   ],
+   "benchmarks": [
+    "COD-RNA",
+    "MAGIC Gamma Telescope",
+    "合成高斯数据",
+    "线性SVM下游分类"
+   ]
+  }
+ }
 }
