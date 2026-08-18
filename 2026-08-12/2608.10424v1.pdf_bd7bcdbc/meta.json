@@ -3,5 +3,31 @@
  "batch_id": "bd7bcdbc-ebaf-4f1e-878e-c88ddcd7c416",
  "token": "sk-Ir4JqYCnj...",
  "created_at": "2026-08-12 15:00:11",
- "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-12/fcb9f921-be55-4710-9fae-0de1bde2a117.zip"
+ "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-12/fcb9f921-be55-4710-9fae-0de1bde2a117.zip",
+ "summarized": {
+  "model": "agnes-2.5-flash",
+  "at": "2026-08-18 04:36:08",
+  "chunks": 1,
+  "meta": {
+   "keywords": [
+    "autoresearch",
+    "tree search agents",
+    "compute waste",
+    "debug consultant",
+    "hyperparameter tuning",
+    "Thompson sampling",
+    "MLE-bench"
+   ],
+   "field": "自动机器学习代理",
+   "innovations": [
+    "全局调试顾问共享运行时约束以消除重复错误",
+    "预算感知的超参数调优控制循环",
+    "Thompson Sampling增强的回溯算法提升搜索稳定性"
+   ],
+   "benchmarks": [
+    "MLE-bench",
+    "Kaggle表格竞赛"
+   ]
+  }
+ }
 }

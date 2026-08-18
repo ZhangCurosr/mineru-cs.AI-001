@@ -3,5 +3,33 @@
  "batch_id": "c6b19109-9463-4024-8116-c3f70152216c",
  "token": "sk-45Ifw5Iq3...",
  "created_at": "2026-08-12 15:03:05",
- "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-12/10a7e73f-c244-45bd-9f52-3c3de8f4fc31.zip"
+ "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-12/10a7e73f-c244-45bd-9f52-3c3de8f4fc31.zip",
+ "summarized": {
+  "model": "agnes-2.5-flash",
+  "at": "2026-08-18 04:25:15",
+  "chunks": 1,
+  "meta": {
+   "keywords": [
+    "creative writing",
+    "human-AI interaction",
+    "narrative keyframing",
+    "characterization",
+    "first-person perspective",
+    "controllable generation",
+    "generative creative tools"
+   ],
+   "field": "人机协同创意写作与叙事生成",
+   "innovations": [
+    "提出叙事关键帧交互范式，将动画关键帧思想迁移到生成式创意写作",
+    "以第一人称视角关键帧作为中间表示，支持角色特质到文本证据的可追溯重组",
+    "在情节—角色—视角多层关键帧上实现可控制、可解释的第三视角叙事生成"
+   ],
+   "benchmarks": [
+    "CoAuthor",
+    "WritingPrompts",
+    "WQRM-PRE expert preference model",
+    "12-participant user study vs. chatbot baseline"
+   ]
+  }
+ }
 }

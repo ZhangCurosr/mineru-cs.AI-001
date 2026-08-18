@@ -3,5 +3,32 @@
  "batch_id": "c07a7f76-0cac-42e4-a766-fee2663c67aa",
  "token": "sk-n7iJ0Z1Ol...",
  "created_at": "2026-08-12 15:42:06",
- "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-12/e963d394-8113-47c4-9fa8-dec7e1491ad2.zip"
+ "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-12/e963d394-8113-47c4-9fa8-dec7e1491ad2.zip",
+ "summarized": {
+  "model": "agnes-2.5-flash",
+  "at": "2026-08-18 04:25:12",
+  "chunks": 1,
+  "meta": {
+   "keywords": [
+    "nutrition data",
+    "FAIR principles",
+    "AI agents",
+    "crosswalk",
+    "food matching",
+    "retrieval-augmented generation",
+    "data infrastructure"
+   ],
+   "field": "AI for Science / 营养信息学",
+   "innovations": [
+    "描述驱动的食物匹配管道，支持显式abstention和类型化交叉对照",
+    "版本化不可变mapping release，支持pinned agent操作的可重复性",
+    "FAIR原则操作化为AI代理可执行的基础设施标准"
+   ],
+   "benchmarks": [
+    "NutriBench v1",
+    "NHANES-to-DFG2",
+    "FNDDS-to-GI crosswalk"
+   ]
+  }
+ }
 }

@@ -3,5 +3,27 @@
  "batch_id": "e0138f8d-9610-44a4-9e88-7381b51a8e3a",
  "token": "sk-Ir4JqYCnj...",
  "created_at": "2026-08-12 14:59:28",
- "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-12/92f9b060-1c89-4aef-aae1-0b81e333f213.zip"
+ "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-12/92f9b060-1c89-4aef-aae1-0b81e333f213.zip",
+ "summarized": {
+  "model": "agnes-2.5-flash",
+  "at": "2026-08-18 04:32:52",
+  "chunks": 1,
+  "meta": {
+   "keywords": [
+    "inverse distance attention",
+    "Polyak-Lojasiewicz inequality",
+    "hyperbolic geometry",
+    "spherical attention",
+    "effective rank",
+    "sparse routing",
+    "non-Euclidean deep learning"
+   ],
+   "field": "注意力机制理论分析",
+   "innovations": [
+    "证明逆距离注意力（IDA）在表达能力上优于softmax：精确检索需O(1)资源而softmax需Ω((log n)^2)宽度",
+    "建立IDA的PL不等式，证明其收敛常数为softmax的Ω(e^{Δ²/√d}/Δ²)倍，无假局部最优",
+    "提出含十个模块的Riemann GeoResolver框架，统一双曲存储与球面路由并给出可证明界限"
+   ]
+  }
+ }
 }

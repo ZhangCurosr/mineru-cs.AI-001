@@ -3,5 +3,30 @@
  "batch_id": "ab7e525a-0637-450b-9680-0801c3dd3f63",
  "token": "sk-Ar06zcDAy...",
  "created_at": "2026-08-12 16:07:01",
- "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-12/daac83c1-bc4e-4cfb-a9a7-61e9c8bd1f56.zip"
+ "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-12/daac83c1-bc4e-4cfb-a9a7-61e9c8bd1f56.zip",
+ "summarized": {
+  "model": "agnes-2.5-flash",
+  "at": "2026-08-18 04:27:52",
+  "chunks": 1,
+  "meta": {
+   "keywords": [
+    "LLM-as-a-Judge",
+    "Information Retrieval Evaluation",
+    "Persona Conditioning",
+    "Relevance Assessment",
+    "Evaluation Stability",
+    "Assessor Sensitivity"
+   ],
+   "field": "LLM-based IR Evaluation",
+   "innovations": [
+    "将 persona conditioning 定位为 LLM IR 评估的敏感性诊断探针而非标签改进器",
+    "五角色 assessor 框架 + 双源 persona 的对照实验揭示容量依赖的敏感度模式",
+    "首次系统定位神经排名/重排系统和 RAG 管道对 assessor framing 最敏感"
+   ],
+   "benchmarks": [
+    "TREC DL20",
+    "TREC RAG24"
+   ]
+  }
+ }
 }

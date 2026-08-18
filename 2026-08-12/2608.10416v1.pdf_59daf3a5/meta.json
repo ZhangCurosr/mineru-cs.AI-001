@@ -3,5 +3,26 @@
  "batch_id": "59daf3a5-714d-4c3b-93c3-f22fc5d96a62",
  "token": "sk-Ar06zcDAy...",
  "created_at": "2026-08-12 16:06:59",
- "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-12/92f9b060-1c89-4aef-aae1-0b81e333f213.zip"
+ "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-12/92f9b060-1c89-4aef-aae1-0b81e333f213.zip",
+ "summarized": {
+  "model": "agnes-2.5-flash",
+  "at": "2026-08-18 04:32:26",
+  "chunks": 1,
+  "meta": {
+   "keywords": [
+    "inverse distance attention",
+    "Polyak-Lojasiewicz inequality",
+    "hyperbolic geometry",
+    "spherical attention",
+    "effective rank",
+    "non-Euclidean deep learning",
+    "attention mechanism theory"
+   ],
+   "field": "注意力机制理论基础",
+   "innovations": [
+    "证明逆距离注意力在表达能力、优化收敛、泛化性上优于softmax的三大定理",
+    "提出从双曲存储到球面路由的十模块Riemann GeoResolver框架"
+   ]
+  }
+ }
 }

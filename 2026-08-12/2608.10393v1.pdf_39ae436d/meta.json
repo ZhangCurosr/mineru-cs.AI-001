@@ -3,5 +3,30 @@
  "batch_id": "39ae436d-a047-4dd8-a2be-5ef88ba025ff",
  "token": "sk-n7iJ0Z1Ol...",
  "created_at": "2026-08-12 15:03:02",
- "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-12/9ab0c399-7ded-4265-b2bc-410743d017c5.zip"
+ "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-12/9ab0c399-7ded-4265-b2bc-410743d017c5.zip",
+ "summarized": {
+  "model": "agnes-2.5-flash",
+  "at": "2026-08-18 04:28:47",
+  "chunks": 1,
+  "meta": {
+   "keywords": [
+    "Vision-Language-Action",
+    "adversarial attack",
+    "diffusion model",
+    "robotic safety",
+    "black-box attack",
+    "unrestricted patch"
+   ],
+   "field": "具身AI安全与对抗鲁棒性",
+   "innovations": [
+    "扩散潜轨迹引导的自然对抗补丁生成",
+    "统一白盒/黑盒攻击框架与score-function估计",
+    "跨任务单一补丁联合优化提升迁移性"
+   ],
+   "benchmarks": [
+    "LIBERO",
+    "BridgeData V2"
+   ]
+  }
+ }
 }

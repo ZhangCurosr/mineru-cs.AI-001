@@ -3,5 +3,30 @@
  "batch_id": "4113918a-4f20-4d0e-8e2f-0d3850e4ed2d",
  "token": "sk-Ir4JqYCnj...",
  "created_at": "2026-08-12 14:59:28",
- "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-12/0d4db44c-205b-4e60-9142-b17d62cc93f0.zip"
+ "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-12/0d4db44c-205b-4e60-9142-b17d62cc93f0.zip",
+ "summarized": {
+  "model": "agnes-2.5-flash",
+  "at": "2026-08-18 04:31:45",
+  "chunks": 1,
+  "meta": {
+   "keywords": [
+    "强化学习",
+    "自动驾驶",
+    "场景扰动",
+    "安全关键场景",
+    "在线学习",
+    "威胁评估"
+   ],
+   "field": "自动驾驶安全强化学习",
+   "innovations": [
+    "策略感知定向场景扰动闭环框架",
+    "威胁差异引导的场景扰动网络优化",
+    "冻结策略隐层特征辅助的极端场景生成"
+   ],
+   "benchmarks": [
+    "NAVSIM v2 navhard_two_stage",
+    "GPUDrive仿真"
+   ]
+  }
+ }
 }

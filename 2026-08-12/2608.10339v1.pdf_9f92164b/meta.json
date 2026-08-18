@@ -3,5 +3,30 @@
  "batch_id": "9f92164b-31f4-4bf7-99e1-957f9d8f99f7",
  "token": "sk-9BdnpHblK...",
  "created_at": "2026-08-12 15:33:54",
- "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-12/79889779-bf9a-4cb4-a07f-7b0eb1d57e1c.zip"
+ "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-12/79889779-bf9a-4cb4-a07f-7b0eb1d57e1c.zip",
+ "summarized": {
+  "model": "agnes-2.5-flash",
+  "at": "2026-08-18 04:26:06",
+  "chunks": 1,
+  "meta": {
+   "keywords": [
+    "因果推断",
+    "g-computation",
+    "大型语言模型",
+    "甘特图",
+    "医院质量改进",
+    "平均住院时间"
+   ],
+   "field": "因果推断与LLM交叉",
+   "innovations": [
+    "首次将甘特图形式化为等待时间因果DAG并建立g-computation识别定理",
+    "提出Type I/II/III节点分类的专家引导因果推断框架",
+    "开发五步LLM辅助管道实现大规模专家推理规模化"
+   ],
+   "benchmarks": [
+    "模拟研究（n=4000，50次重复，偏差对比）",
+    "ZSFG医院11个QI干预真实世界评估（2193条住院记录）"
+   ]
+  }
+ }
 }

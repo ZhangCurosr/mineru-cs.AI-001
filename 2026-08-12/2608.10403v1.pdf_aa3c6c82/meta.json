@@ -3,5 +3,32 @@
  "batch_id": "aa3c6c82-4fde-4633-bcf0-1bab8687288a",
  "token": "sk-n7iJ0Z1Ol...",
  "created_at": "2026-08-12 15:03:01",
- "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-12/0d4db44c-205b-4e60-9142-b17d62cc93f0.zip"
+ "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-12/0d4db44c-205b-4e60-9142-b17d62cc93f0.zip",
+ "summarized": {
+  "model": "agnes-2.5-flash",
+  "at": "2026-08-18 04:31:56",
+  "chunks": 1,
+  "meta": {
+   "keywords": [
+    "在线强化学习",
+    "自动驾驶安全",
+    "场景扰动",
+    "策略感知",
+    "威胁引导",
+    "长尾场景",
+    "NAVSIM v2",
+    "GPUDrive"
+   ],
+   "field": "自动驾驶安全强化学习",
+   "innovations": [
+    "提出策略感知场景编码器，将冻结策略隐层表示融入场景联合特征以对齐扰动生成",
+    "设计定向扰动模块，基于物体重要性评分选取 top-K 关键对象进行速度/时间/状态修改",
+    "引入威胁差异优化信号，通过扰动前后同策略 rollout 威胁分数变化驱动扰动网络迭代"
+   ],
+   "benchmarks": [
+    "NAVSIM v2 navhard_two_stage",
+    "GPUDrive simulation"
+   ]
+  }
+ }
 }

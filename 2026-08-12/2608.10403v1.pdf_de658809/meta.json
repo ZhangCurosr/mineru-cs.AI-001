@@ -3,5 +3,30 @@
  "batch_id": "de658809-5ff9-405a-aeb9-863f2cd86029",
  "token": "sk-45Ifw5Iq3...",
  "created_at": "2026-08-12 15:33:51",
- "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-12/0d4db44c-205b-4e60-9142-b17d62cc93f0.zip"
+ "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-12/0d4db44c-205b-4e60-9142-b17d62cc93f0.zip",
+ "summarized": {
+  "model": "agnes-2.5-flash",
+  "at": "2026-08-18 04:32:27",
+  "chunks": 1,
+  "meta": {
+   "keywords": [
+    "自动驾驶",
+    "强化学习",
+    "安全关键场景",
+    "场景扰动",
+    "威胁引导",
+    "策略感知",
+    "NAVSIM"
+   ],
+   "field": "自动驾驶安全强化学习",
+   "innovations": [
+    "策略感知场景编码器，将冻结策略隐层表征融入场景编码以对齐策略弱点",
+    "目标场景扰动模块，基于重要性评分选择 top‑K 物体进行定向速度/时间/状态修改",
+    "威胁引导优化，利用扰动前后策略 rollout 威胁分差异作为监督信号实现闭环优化"
+   ],
+   "benchmarks": [
+    "NAVSIM v2 navhard_two_stage"
+   ]
+  }
+ }
 }

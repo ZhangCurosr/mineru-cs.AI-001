@@ -3,5 +3,33 @@
  "batch_id": "ac279d2f-bdc8-4744-b96b-e83f5f33a0df",
  "token": "sk-Ir4JqYCnj...",
  "created_at": "2026-08-12 15:00:25",
- "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-12/b2ee3525-a41a-4662-bfd6-dab5513956bf.zip"
+ "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-12/b2ee3525-a41a-4662-bfd6-dab5513956bf.zip",
+ "summarized": {
+  "model": "agnes-2.5-flash",
+  "at": "2026-08-18 04:32:07",
+  "chunks": 1,
+  "meta": {
+   "keywords": [
+    "端到端语音大模型",
+    "拒绝服务攻击",
+    "对抗攻击",
+    "音频大语言模型",
+    "自回归生成",
+    "语音安全"
+   ],
+   "field": "多模态大模型安全与鲁棒性",
+   "innovations": [
+    "首次提出面向E2E ALLMs的端到端DoS攻击框架，突破文本离散token策略在连续音频上的迁移瓶颈",
+    "设计四分量复合损失函数（加权EOS loss+length loss+top-k loss+语义对齐loss）实现多目标联合优化",
+    "引入VAD引导的区域化扰动策略，仅在语音活动段添加不可感知扰动以提升攻击隐蔽性"
+   ],
+   "benchmarks": [
+    "OpenSLR",
+    "QCRI",
+    "LFM2.5-Audio-1.5B",
+    "FunAudioChat-8B",
+    "Qwen2-Audio-7B-Instruct"
+   ]
+  }
+ }
 }

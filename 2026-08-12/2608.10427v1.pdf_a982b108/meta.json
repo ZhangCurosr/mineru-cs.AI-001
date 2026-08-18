@@ -3,5 +3,32 @@
  "batch_id": "a982b108-1211-4628-aa76-fa05fa3f25be",
  "token": "sk-n7iJ0Z1Ol...",
  "created_at": "2026-08-12 15:03:00",
- "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-12/a835ebbd-9c7d-4f9c-bb00-f317aeaccf77.zip"
+ "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-12/a835ebbd-9c7d-4f9c-bb00-f317aeaccf77.zip",
+ "summarized": {
+  "model": "agnes-2.5-flash",
+  "at": "2026-08-18 04:38:44",
+  "chunks": 1,
+  "meta": {
+   "keywords": [
+    "causality sum rules",
+    "scattering matrix",
+    "Schur function",
+    "domain-delay correction",
+    "Rozanov bound",
+    "determinant bound",
+    "coherent suppression",
+    "AI-human discovery"
+   ],
+   "field": "光子/电磁学因果极限与多通道散射理论",
+   "innovations": [
+    "域延迟校正将常规S矩阵转化为Schur函数，实现因果求和规则直接在入射-出射散射矩阵上表述",
+    "导出投影与行列式两条算子级因果求和规则，分别刻画相干信道叠加与集体奇异值衰减的硬约束",
+    "将算子级求和规则翻译为实验可测的相干回波抑制、几何均值奇异值衰减与被抑制通道数上限"
+   ],
+   "benchmarks": [
+    "Rozanov absorber bound (scalar recovery)",
+    "Bernland-Gustafsson spherical-multipole bound (scalar recovery)"
+   ]
+  }
+ }
 }

@@ -3,5 +3,30 @@
  "batch_id": "c516eaa5-6418-4e84-8d7c-1cd2c24c6d69",
  "token": "sk-n7iJ0Z1Ol...",
  "created_at": "2026-08-12 15:03:01",
- "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-12/92f9b060-1c89-4aef-aae1-0b81e333f213.zip"
+ "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-12/92f9b060-1c89-4aef-aae1-0b81e333f213.zip",
+ "summarized": {
+  "model": "agnes-2.5-flash",
+  "at": "2026-08-18 04:32:44",
+  "chunks": 1,
+  "meta": {
+   "keywords": [
+    "inverse distance attention",
+    "hyperbolic geometry",
+    "spherical routing",
+    "PL inequality",
+    "effective rank",
+    "efficient attention",
+    "Riemann manifold"
+   ],
+   "field": "注意力机制理论与高效Transformer",
+   "innovations": [
+    "IDA在欧氏空间实现O(1)精确检索而softmax需Ω((log n)²)宽度",
+    "IDA满足比softmax大指数倍的PL常数且无虚假局部极小",
+    "IDA有效秩与隐藏宽度无关从而抑制噪声记忆"
+   ],
+   "benchmarks": [
+    "未提供实验结果，论文为纯理论工作"
+   ]
+  }
+ }
 }

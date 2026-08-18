@@ -3,5 +3,34 @@
  "batch_id": "4eeddfb8-d860-44da-86ba-9d0ad3a26e8f",
  "token": "sk-n7iJ0Z1Ol...",
  "created_at": "2026-08-12 15:33:46",
- "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-12/e55db3cd-d975-418a-a6bf-901bcabdc393.zip"
+ "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-12/e55db3cd-d975-418a-a6bf-901bcabdc393.zip",
+ "summarized": {
+  "model": "agnes-2.5-flash",
+  "at": "2026-08-18 04:35:19",
+  "chunks": 1,
+  "meta": {
+   "keywords": [
+    "autoresearch",
+    "tree search",
+    "LLM agents",
+    "AutoML",
+    "hyperparameter tuning",
+    "Thompson Sampling",
+    "debugging"
+   ],
+   "field": "LLM代理与自动化机器学习",
+   "innovations": [
+    "上下文感知调试顾问：全局共享运行时约束注册表消除跨分支重复调试",
+    "预算感知超参调优强制机制：时序感知的奖励塑形引导充分使用计算预算",
+    "Thompson Sampling增强回溯：用贝叶斯信念更新替代随机选择提升搜索稳定性"
+   ],
+   "benchmarks": [
+    "MLE-bench",
+    "Kaggle Playground Series",
+    "GNSS Classification",
+    "Spaceship Titanic",
+    "Wine Quality Ordinal"
+   ]
+  }
+ }
 }

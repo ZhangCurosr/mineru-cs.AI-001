@@ -3,5 +3,30 @@
  "batch_id": "b0e4b8ba-b5d9-44f5-959b-9a8f15a62883",
  "token": "sk-n7iJ0Z1Ol...",
  "created_at": "2026-08-12 15:42:04",
- "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-12/9ab0c399-7ded-4265-b2bc-410743d017c5.zip"
+ "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-12/9ab0c399-7ded-4265-b2bc-410743d017c5.zip",
+ "summarized": {
+  "model": "agnes-2.5-flash",
+  "at": "2026-08-18 04:30:00",
+  "chunks": 1,
+  "meta": {
+   "keywords": [
+    "VLA模型",
+    "对抗攻击",
+    "扩散模型",
+    "黑盒攻击",
+    "对抗补丁",
+    "机器人安全"
+   ],
+   "field": "机器人对抗机器学习",
+   "innovations": [
+    "提出DURA，首次将扩散潜在轨迹用于VLA自然对抗patch生成，统一支持白盒与黑盒攻击",
+    "设计score-function估计器在扩散潜在空间估计黑盒攻击方向，提升查询效率",
+    "通过clean anchor软约束联合跨frame优化单个patch，实现高迁移性与视觉自然性"
+   ],
+   "benchmarks": [
+    "LIBERO",
+    "BridgeData V2"
+   ]
+  }
+ }
 }

@@ -3,5 +3,31 @@
  "batch_id": "50efa748-71d5-44b0-98ee-99df3580007a",
  "token": "sk-LV19Ft0NN...",
  "created_at": "2026-08-12 15:03:04",
- "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-12/79889779-bf9a-4cb4-a07f-7b0eb1d57e1c.zip"
+ "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-12/79889779-bf9a-4cb4-a07f-7b0eb1d57e1c.zip",
+ "summarized": {
+  "model": "agnes-2.5-flash",
+  "at": "2026-08-18 04:25:17",
+  "chunks": 1,
+  "meta": {
+   "keywords": [
+    "因果推断",
+    "g-computation",
+    "大型语言模型",
+    "甘特图",
+    "医院质量改进",
+    "反事实推理",
+    "专家知识"
+   ],
+   "field": "因果推断与大语言模型交叉",
+   "innovations": [
+    "将甘特图形式化为因果 DAG 并建立等待时间因果模型，首次为 Gantt 图提供因果识别保证",
+    "提出 egg-computation，按三类型节点分别采用专家输入与数据统计建模实现专家-数据互补",
+    "构建五步 LLM 辅助管道，实现从非结构化临床笔记到患者级个性化 DAG 的大规模自动化构建"
+   ],
+   "benchmarks": [
+    "ZSFG 医院 2193 条住院记录（5 个诊断组，11 项 QI 干预）",
+    "模拟研究（n=4000，CT/MRI 依赖结构异质性）"
+   ]
+  }
+ }
 }

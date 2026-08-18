@@ -3,5 +3,30 @@
  "batch_id": "61d52356-27c1-4584-9f33-0072efecb6eb",
  "token": "sk-Ir4JqYCnj...",
  "created_at": "2026-08-12 15:00:10",
- "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-12/a835ebbd-9c7d-4f9c-bb00-f317aeaccf77.zip"
+ "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-12/a835ebbd-9c7d-4f9c-bb00-f317aeaccf77.zip",
+ "summarized": {
+  "model": "agnes-2.5-flash",
+  "at": "2026-08-18 04:37:18",
+  "chunks": 1,
+  "meta": {
+   "keywords": [
+    "因果性求和规则",
+    "散射矩阵",
+    "Schur函数",
+    "Rozanov界限",
+    "多通道电磁散射",
+    "域延迟修正"
+   ],
+   "field": "电磁散射物理极限",
+   "innovations": [
+    "提出域延迟修正将常规散射矩阵转换为Schur函数",
+    "推导投影求和规则约束相干通道叠加的宽带抑制",
+    "推导行列式求和规则建立多通道集体衰减的无基底约束"
+   ],
+   "benchmarks": [
+    "Rozanov吸收体界限",
+    "球面多极子散射界限"
+   ]
+  }
+ }
 }

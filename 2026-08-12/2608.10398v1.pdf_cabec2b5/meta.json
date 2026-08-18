@@ -3,5 +3,30 @@
  "batch_id": "cabec2b5-4913-46af-a47c-1bc6c3b2aec4",
  "token": "sk-n7iJ0Z1Ol...",
  "created_at": "2026-08-12 15:03:02",
- "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-12/8808aff0-4762-45bf-b292-4f9dd6201dfb.zip"
+ "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-12/8808aff0-4762-45bf-b292-4f9dd6201dfb.zip",
+ "summarized": {
+  "model": "agnes-2.5-flash",
+  "at": "2026-08-18 04:31:15",
+  "chunks": 1,
+  "meta": {
+   "keywords": [
+    "evidential learning",
+    "variational autoencoder",
+    "uncertainty-aware generation",
+    "normal-inverse-gamma",
+    "epistemic uncertainty",
+    "MNIST",
+    "generative AI"
+   ],
+   "field": "不确定性感知生成模型",
+   "innovations": [
+    "将证据学习的NIG层次结构引入VAE潜在变量，显式分解潜在位置不确定性u_ep i与条件变异性u_var",
+    "证明NIG正则化对识别不确定性分解的必要性并推导ELBO的严格似然解释",
+    "设计零位移控制与生成归因失败的解耦评估框架验证u_ep i的生成控制价值"
+   ],
+   "benchmarks": [
+    "MNIST 10,000 held-out test set"
+   ]
+  }
+ }
 }

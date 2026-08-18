@@ -3,5 +3,31 @@
  "batch_id": "65eaf317-2ad3-42f0-b527-751b257324aa",
  "token": "sk-Ar06zcDAy...",
  "created_at": "2026-08-12 16:07:00",
- "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-12/0d4db44c-205b-4e60-9142-b17d62cc93f0.zip"
+ "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-12/0d4db44c-205b-4e60-9142-b17d62cc93f0.zip",
+ "summarized": {
+  "model": "agnes-2.5-flash",
+  "at": "2026-08-18 04:31:24",
+  "chunks": 1,
+  "meta": {
+   "keywords": [
+    "安全关键场景生成",
+    "在线强化学习",
+    "策略感知扰动",
+    "自动驾驶",
+    "威胁引导优化",
+    "NAVSIM",
+    "场景增强"
+   ],
+   "field": "自动驾驶安全强化学习",
+   "innovations": [
+    "冻结策略投影构建策略感知场景表示，实现扰动与当前策略弱点对齐",
+    "以扰动前后同策略轨迹威胁差作为归一化优势训练场景生成网络",
+    "在NAVSIM v2上以约400万公里交互刷新NC与TTC安全记录"
+   ],
+   "benchmarks": [
+    "NAVSIM v2 navhard_two_stage",
+    "GPUDrive仿真训练"
+   ]
+  }
+ }
 }

@@ -3,5 +3,30 @@
  "batch_id": "7c739af5-ba62-4f96-9242-09e6b9e7276b",
  "token": "sk-45Ifw5Iq3...",
  "created_at": "2026-08-12 15:33:48",
- "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-12/9ab0c399-7ded-4265-b2bc-410743d017c5.zip"
+ "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-12/9ab0c399-7ded-4265-b2bc-410743d017c5.zip",
+ "summarized": {
+  "model": "agnes-2.5-flash",
+  "at": "2026-08-18 04:28:36",
+  "chunks": 1,
+  "meta": {
+   "keywords": [
+    "VLA模型",
+    "对抗攻击",
+    "扩散模型",
+    "无约束补丁",
+    "黑盒攻击",
+    "机器人安全"
+   ],
+   "field": "机器人AI安全与鲁棒性",
+   "innovations": [
+    "提出基于扩散潜轨迹的无约束对抗补丁生成框架DURA",
+    "统一支持白盒梯度反向传播与黑盒分数函数估计两种攻击模式",
+    "在OpenVLA和π₀-FAST上实现100%攻击成功率并验证物理部署可行性"
+   ],
+   "benchmarks": [
+    "LIBERO",
+    "BridgeData V2"
+   ]
+  }
+ }
 }

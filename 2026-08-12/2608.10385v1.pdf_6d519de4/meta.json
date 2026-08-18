@@ -3,5 +3,30 @@
  "batch_id": "6d519de4-1c2a-48f9-b5dd-fece2ce4fc9f",
  "token": "sk-Ir4JqYCnj...",
  "created_at": "2026-08-12 14:59:53",
- "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-12/daac83c1-bc4e-4cfb-a9a7-61e9c8bd1f56.zip"
+ "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-12/daac83c1-bc4e-4cfb-a9a7-61e9c8bd1f56.zip",
+ "summarized": {
+  "model": "agnes-2.5-flash",
+  "at": "2026-08-18 04:27:39",
+  "chunks": 1,
+  "meta": {
+   "keywords": [
+    "LLM-as-Judge",
+    "Information Retrieval Evaluation",
+    "Persona Conditioning",
+    "Relevance Assessment",
+    "Evaluation Stability",
+    "System Ranking"
+   ],
+   "field": "信息检索评估与LLM判决",
+   "innovations": [
+    "提出persona conditioning作为诊断探针而非标签改进手段",
+    "揭示LLM评估器敏感性呈结构化分布集中于特定系统类型",
+    "证明persona来源效应次要于角色类型与模型容量"
+   ],
+   "benchmarks": [
+    "TREC DL20",
+    "TREC RAG24"
+   ]
+  }
+ }
 }

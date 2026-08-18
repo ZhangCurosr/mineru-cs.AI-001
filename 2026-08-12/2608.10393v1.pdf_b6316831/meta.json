@@ -3,5 +3,31 @@
  "batch_id": "b6316831-22c7-488b-a98a-6c1c79fec5ac",
  "token": "sk-Ar06zcDAy...",
  "created_at": "2026-08-12 16:07:01",
- "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-12/9ab0c399-7ded-4265-b2bc-410743d017c5.zip"
+ "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-12/9ab0c399-7ded-4265-b2bc-410743d017c5.zip",
+ "summarized": {
+  "model": "agnes-2.5-flash",
+  "at": "2026-08-18 04:29:36",
+  "chunks": 1,
+  "meta": {
+   "keywords": [
+    "Vision-Language-Action Models",
+    "Adversarial Attack",
+    "Diffusion Model",
+    "Robotic Safety",
+    "Black-box Attack",
+    "Adversarial Patch",
+    "Unrestricted Attack"
+   ],
+   "field": "机器人智能与安全",
+   "innovations": [
+    "提出 DURA 框架，利用预训练扩散模型潜在轨迹生成视觉自然的无限制对抗补丁攻击 VLA 模型",
+    "统一支持白盒（梯度）与黑盒（仅动作查询）两种攻击设定，黑盒通过 score-function estimator 估计攻击方向",
+    "在仿真（LIBERO）与真实物理机器人（Franka）上均实现高攻击成功率与强定向控制能力，显著提升视觉隐蔽性"
+   ],
+   "benchmarks": [
+    "LIBERO",
+    "Franka Robot Arm"
+   ]
+  }
+ }
 }
