@@ -4,5 +4,31 @@
  "title": "Explanatory-Engagement-Under-Rare-Anomalous-Failure",
  "token": "sk-qk0HszLxn...",
  "created_at": "2026-08-14 14:49:14",
- "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-14/19da772b-07b3-4f86-947e-7b5b4fa1627b.zip"
+ "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-14/19da772b-07b3-4f86-947e-7b5b4fa1627b.zip",
+ "summarized": {
+  "model": "agnes-2.5-flash",
+  "at": "2026-08-18 19:27:03",
+  "chunks": 1,
+  "meta": {
+   "keywords": [
+    "rare-event detection",
+    "explanatory engagement",
+    "elicitation condition",
+    "self-reported confidence",
+    "local language models",
+    "recognition-engagement dissociation",
+    "tool-use failure"
+   ],
+   "field": "LLM 行为学与鲁棒性评估",
+   "innovations": [
+    "证明提示结构是决定可检测性阈值效应是否可观测的一级调节变量",
+    "形式化定义空尾 artifact 并揭示其在稀有事件研究中的系统性风险",
+    "提出识别-投入解离框架并通过三模型五条件交叉实验验证"
+   ],
+   "benchmarks": [
+    "Phase A 真随机八档失败率调度",
+    "Phase A.1 保证失败恢复设计（三最稀有档位 90 单元格）"
+   ]
+  }
+ }
 }

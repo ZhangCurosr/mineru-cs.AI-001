@@ -4,5 +4,30 @@
  "title": "Into-the-ORBIT-for-Time-Series-Training-Regimes-for-Foundati",
  "token": "sk-Hms67LeAf...",
  "created_at": "2026-08-14 04:13:37",
- "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-14/064a2166-feee-4af5-9423-5baa8af966fe.zip"
+ "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-14/064a2166-feee-4af5-9423-5baa8af966fe.zip",
+ "summarized": {
+  "model": "agnes-2.5-flash",
+  "at": "2026-08-18 19:31:44",
+  "chunks": 1,
+  "meta": {
+   "keywords": [
+    "时间序列基础模型",
+    "训练范式",
+    "ORBIT",
+    "预训练分布控制",
+    "零样本预测",
+    "分位数预测"
+   ],
+   "field": "时间序列基础模型训练",
+   "innovations": [
+    "提出ORBIT训练范式显式控制异构时间序列预训练分布",
+    "Bootstrap多层采样与Omni-Range增量训练协同设计",
+    "Rank-Guided Cross-Depth Alignment训练时正则化浅层表示"
+   ],
+   "benchmarks": [
+    "GIFT-Eval",
+    "fev-bench"
+   ]
+  }
+ }
 }

@@ -4,5 +4,31 @@
  "title": "InFactPlanner-Planning-Sustainable-Geo-Distributed-LLM-Data",
  "token": "sk-aeujzMN4P...",
  "created_at": "2026-08-14 14:49:21",
- "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-14/e04f3094-6533-455c-b659-6b03a64d71af.zip"
+ "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-14/e04f3094-6533-455c-b659-6b03a64d71af.zip",
+ "summarized": {
+  "model": "agnes-2.5-flash",
+  "at": "2026-08-18 19:31:43",
+  "chunks": 1,
+  "meta": {
+   "keywords": [
+    "LLM inference",
+    "sustainability",
+    "data center planning",
+    "carbon-aware routing",
+    "renewable energy",
+    "geo-distributed deployment",
+    "what-if analysis"
+   ],
+   "field": "LLM 推理系统可持续性规划",
+   "innovations": [
+    "部署级硬件-模型抽象配置文件实现快速跨配置能耗-碳-水-延迟联合估算",
+    "模块化可替换接口支持局部保真度提升而不重写整体框架",
+    "碳成本与利用率联合加权评分的地理分布式路由策略"
+   ],
+   "benchmarks": [
+    "Azure LLM Inference Dataset",
+    "DeepSeek-R1 on DGX H100/B200"
+   ]
+  }
+ }
 }

@@ -4,5 +4,31 @@
  "title": "Fast-mathrm-A-mathrm-B-mathrm-n-Testing-Exact-Multi-Policy-C",
  "token": "sk-U9tZkJPsQ...",
  "created_at": "2026-08-14 04:10:10",
- "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-14/fbf111aa-50c4-4f12-a42e-f179ea8ca1cd.zip"
+ "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-14/fbf111aa-50c4-4f12-a42e-f179ea8ca1cd.zip",
+ "summarized": {
+  "model": "agnes-2.5-flash",
+  "at": "2026-08-18 19:28:53",
+  "chunks": 1,
+  "meta": {
+   "keywords": [
+    "A/B testing",
+    "contextual bandits",
+    "maximal coupling",
+    "multi-policy comparison",
+    "feedback sharing",
+    "online experimentation"
+   ],
+   "field": "在线实验与策略评估",
+   "innovations": [
+    "树耦合A/B测试（TCAB）：在保持各策略独立轨迹律精确不变的前提下，通过生成树上最大耦合与奖励继承实现多策略对比的查询成本节约",
+    "证明精确路径成本恒等式N(T)=T+∑D_{e,t}及条件边局部最优性",
+    "建立sublinear pseudo-regret下E[N(T)]=T+o(T)的效率界并给出有限样本方差界"
+   ],
+   "benchmarks": [
+    "RewardBench",
+    "MMLU-Pro",
+    "MSLR-WEB10K"
+   ]
+  }
+ }
 }

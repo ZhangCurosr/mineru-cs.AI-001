@@ -4,5 +4,31 @@
  "title": "FSGR-Mitigating-Token-Frequency-Bias-for-Fair-SID-Based-Gene",
  "token": "sk-QooHq4eB2...",
  "created_at": "2026-08-14 14:49:33",
- "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-14/4c585472-8838-4705-8e10-9d84103818e0.zip"
+ "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-14/4c585472-8838-4705-8e10-9d84103818e0.zip",
+ "summarized": {
+  "model": "agnes-2.5-flash",
+  "at": "2026-08-18 19:28:17",
+  "chunks": 1,
+  "meta": {
+   "keywords": [
+    "Token Frequency Bias",
+    "Semantic ID",
+    "Generative Recommendation",
+    "Fairness",
+    "Optimal Transport",
+    "Hierarchical Frequency Calibration"
+   ],
+   "field": "生成式推荐系统公平性",
+   "innovations": [
+    "首次定义并量化SID生成式推荐中的Token Frequency Bias公平性问题",
+    "提出FSGR框架联合优化SID构建（平衡码本利用）与推荐训练（分层频率校准）",
+    "设计层次感知频率校准HFC，适配SID token的层次语义结构进行差异化去偏"
+   ],
+   "benchmarks": [
+    "Amazon Luxury Beauty",
+    "Amazon Industrial and Scientific",
+    "Amazon Software"
+   ]
+  }
+ }
 }

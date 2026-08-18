@@ -4,5 +4,30 @@
  "title": "Falsehood-and-Impossibility-Are-Diferent-Directions-in-an-AI",
  "token": "sk-ceCpd81tF...",
  "created_at": "2026-08-14 14:49:32",
- "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-14/fbd350ac-802d-4c5e-a872-ebdbc3e3d753.zip"
+ "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-14/fbd350ac-802d-4c5e-a872-ebdbc3e3d753.zip",
+ "summarized": {
+  "model": "agnes-2.5-flash",
+  "at": "2026-08-18 19:28:13",
+  "chunks": 1,
+  "meta": {
+   "keywords": [
+    "mechanistic interpretability",
+    "truth probing",
+    "impossibility",
+    "sparse autoencoders",
+    "linear probes",
+    "Gemma 3"
+   ],
+   "field": "LLM 可解释性/机制可解释性",
+   "innovations": [
+    "揭示真值方向与不可能方向在 transformer 残差流中近乎正交，偶假与必然假非同一轴的两端",
+    "构建匹配模态刺激集验证双解离：输出混淆两类假而内部表征分离",
+    "SAE 特征 firing profile 印证探针几何，表明不可能性为分布式表征而非单 neuron"
+   ],
+   "benchmarks": [
+    "Philosophical set (85 prompts)",
+    "Modality set (75 prompts, 15 topic families × 5 conditions)"
+   ]
+  }
+ }
 }

@@ -4,5 +4,30 @@
  "title": "From-Atomic-Evidence-to-Logical-Composition-Structured-Compo",
  "token": "sk-UDLQGxzLo...",
  "created_at": "2026-08-14 04:10:34",
- "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-14/fd5370cd-284d-4d3f-b466-81b42d1294c5.zip"
+ "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-14/fd5370cd-284d-4d3f-b466-81b42d1294c5.zip",
+ "summarized": {
+  "model": "agnes-2.5-flash",
+  "at": "2026-08-18 19:28:43",
+  "chunks": 1,
+  "meta": {
+   "keywords": [
+    "logical reasoning",
+    "compositional reasoning",
+    "structured inference",
+    "large language models",
+    "integer linear programming",
+    "calibration"
+   ],
+   "field": "大模型逻辑推理",
+   "innovations": [
+    "将原子证据提取与逻辑组合分离，用算子约束ILP强制遵守布尔语义",
+    "提出相对校准方法，捕捉原子分数的实例内相对排名以提升组合推理",
+    "从SATA-Bench构建首个带显式布尔运算符的阅读理解复合答案基准LOGICAL-SATA"
+   ],
+   "benchmarks": [
+    "LOGICAL-COMMONSENSEQA",
+    "LOGICAL-SATA"
+   ]
+  }
+ }
 }

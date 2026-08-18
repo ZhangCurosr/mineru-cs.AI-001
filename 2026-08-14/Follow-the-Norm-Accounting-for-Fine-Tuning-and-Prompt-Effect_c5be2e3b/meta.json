@@ -4,5 +4,10 @@
  "title": "Follow-the-Norm-Accounting-for-Fine-Tuning-and-Prompt-Effect",
  "token": "sk-nY8L7ieIq...",
  "created_at": "2026-08-14 14:49:07",
- "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-14/0ac2768c-35df-4b5a-86c8-8297718e7c8b.zip"
+ "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-14/0ac2768c-35df-4b5a-86c8-8297718e7c8b.zip",
+ "summarized": {
+  "model": "agnes-2.5-flash",
+  "at": "2026-08-18 19:28:49",
+  "chunks": 1
+ }
 }

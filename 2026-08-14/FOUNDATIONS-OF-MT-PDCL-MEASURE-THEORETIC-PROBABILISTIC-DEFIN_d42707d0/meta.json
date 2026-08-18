@@ -4,5 +4,32 @@
  "title": "FOUNDATIONS-OF-MT-PDCL-MEASURE-THEORETIC-PROBABILISTIC-DEFIN",
  "token": "sk-Tq65tdoLK...",
  "created_at": "2026-08-14 04:13:16",
- "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-14/f69691fc-cdd1-4ddb-8e74-58df6f8754ff.zip"
+ "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-14/f69691fc-cdd1-4ddb-8e74-58df6f8754ff.zip",
+ "summarized": {
+  "model": "agnes-2.5-flash",
+  "at": "2026-08-18 19:27:39",
+  "chunks": 1,
+  "meta": {
+   "keywords": [
+    "概率逻辑编程",
+    "测度论",
+    "连续推理",
+    "神经符号AI",
+    "可微逻辑",
+    "分布语义",
+    "Noisy-OR"
+   ],
+   "field": "神经符号推理与连续概率逻辑",
+   "innovations": [
+    "提出连续分布语义，以勒贝格积分取代离散命题基化实现免基化的连续域逻辑推理",
+    "定义连续顺承算子与连续Noisy-OR聚合，证明其单调收敛性与处处可微性",
+    "建立循环测度γ作为收缩/扩张判据，给出迭代收敛的理论边界与误差动态界限"
+   ],
+   "benchmarks": [
+    "解析trace: 无限视野破产概率",
+    "解析trace: 安全到达可达集",
+    "解析trace: 连续信号传播树"
+   ]
+  }
+ }
 }

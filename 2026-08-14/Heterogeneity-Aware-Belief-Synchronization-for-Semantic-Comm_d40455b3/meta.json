@@ -4,5 +4,31 @@
  "title": "Heterogeneity-Aware-Belief-Synchronization-for-Semantic-Comm",
  "token": "sk-JdJPQj6CY...",
  "created_at": "2026-08-14 14:49:00",
- "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-14/fd63d87c-246e-4d0e-b35a-df4822876565.zip"
+ "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-14/fd63d87c-246e-4d0e-b35a-df4822876565.zip",
+ "summarized": {
+  "model": "agnes-2.5-flash",
+  "at": "2026-08-18 19:30:01",
+  "chunks": 1,
+  "meta": {
+   "keywords": [
+    "语义通信",
+    "信念同步",
+    "异构AI代理",
+    "6G网络",
+    "MEC卸载",
+    "潜空间翻译"
+   ],
+   "field": "语义通信与网络AI化",
+   "innovations": [
+    "基于MEC潜空间翻译模型的异构信念同步框架",
+    "按需增量同步机制降低开销与知识漂移",
+    "68.1%误差降低同时保持最低通信开销"
+   ],
+   "benchmarks": [
+    "Baseline Homogeneous",
+    "Full Model Transfer",
+    "No Synchronization"
+   ]
+  }
+ }
 }

@@ -4,5 +4,31 @@
  "title": "From-Local-Mismatch-to-Global-Impact-Optimizing-Cache-Reuse",
  "token": "sk-2d8Cyf5aG...",
  "created_at": "2026-08-14 14:49:28",
- "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-14/2a140ec4-a4d2-4d39-8d62-c587691d1d6d.zip"
+ "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-14/2a140ec4-a4d2-4d39-8d62-c587691d1d6d.zip",
+ "summarized": {
+  "model": "agnes-2.5-flash",
+  "at": "2026-08-18 19:29:14",
+  "chunks": 1,
+  "meta": {
+   "keywords": [
+    "diffusion model acceleration",
+    "cache reuse",
+    "error propagation",
+    "bilevel optimization",
+    "video generation"
+   ],
+   "field": "扩散模型推理加速",
+   "innovations": [
+    "揭示局部缓存复用误差与全局生成质量的错位并建立理论误差传播上界",
+    "提出GCache双层优化框架，用Bernstein多项式参数化传播指数并通过贝叶斯优化对齐理论与经验",
+    "在不引入额外纠错模块的情况下超越当前最强基线ERTACache"
+   ],
+   "benchmarks": [
+    "VBench",
+    "LPIPS",
+    "SSIM",
+    "PSNR"
+   ]
+  }
+ }
 }

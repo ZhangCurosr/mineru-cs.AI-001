@@ -4,5 +4,10 @@
  "title": "GEM-A-Generative-Embedding-Model-Bridging-Reasoning-and-Retr",
  "token": "sk-aknYEUs8O...",
  "created_at": "2026-08-14 04:12:41",
- "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-14/0f41e406-782b-47c1-8d51-18251f8e4623.zip"
+ "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-14/0f41e406-782b-47c1-8d51-18251f8e4623.zip",
+ "summarized": {
+  "model": "agnes-2.5-flash",
+  "at": "2026-08-18 19:29:41",
+  "chunks": 1
+ }
 }

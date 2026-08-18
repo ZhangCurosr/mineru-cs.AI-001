@@ -4,5 +4,30 @@
  "title": "HybridSB-MoE-Dual-Domain-Schr-dinger-Bridges-with-Scene-Adap",
  "token": "sk-TohzZhzLz...",
  "created_at": "2026-08-14 14:49:40",
- "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-14/7c673687-9824-4afd-b7e5-33640f173f4e.zip"
+ "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-14/7c673687-9824-4afd-b7e5-33640f173f4e.zip",
+ "summarized": {
+  "model": "agnes-2.5-flash",
+  "at": "2026-08-18 19:30:51",
+  "chunks": 1,
+  "meta": {
+   "keywords": [
+    "Speech Enhancement",
+    "Schrödinger Bridge",
+    "Mixture of Experts",
+    "Dual-domain",
+    "Uncertainty Fusion",
+    "Few-step Generation",
+    "Epistemic/Aleatoric Uncertainty"
+   ],
+   "field": "语音增强与生成模型",
+   "innovations": [
+    "非对称不确定性融合：频谱路径的认知不确定性与波形路径的偶然不确定性分别驱动路由",
+    "异构 MoE：5 种不同架构原型使专家分歧反映归纳偏置不匹配",
+    "K 步离散化误差界：path/trajectory regularizers 使小 K 推理成为训练目标的推论"
+   ],
+   "benchmarks": [
+    "VoiceBank+DEMAND"
+   ]
+  }
+ }
 }

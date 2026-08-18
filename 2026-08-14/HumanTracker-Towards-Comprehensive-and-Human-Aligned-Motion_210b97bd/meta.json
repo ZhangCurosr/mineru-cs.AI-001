@@ -4,5 +4,10 @@
  "title": "HumanTracker-Towards-Comprehensive-and-Human-Aligned-Motion",
  "token": "sk-EqwJR1nOB...",
  "created_at": "2026-08-14 14:48:50",
- "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-14/e2514529-44dc-44de-b6db-ead3028d3d24.zip"
+ "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-14/e2514529-44dc-44de-b6db-ead3028d3d24.zip",
+ "summarized": {
+  "model": "agnes-2.5-flash",
+  "at": "2026-08-18 19:31:01",
+  "chunks": 1
+ }
 }

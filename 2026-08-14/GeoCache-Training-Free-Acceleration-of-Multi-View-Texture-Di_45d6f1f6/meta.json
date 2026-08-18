@@ -4,5 +4,31 @@
  "title": "GeoCache-Training-Free-Acceleration-of-Multi-View-Texture-Di",
  "token": "sk-5WOIsMt5v...",
  "created_at": "2026-08-14 14:49:06",
- "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-14/d14808d0-36b1-4d6b-89f4-850d74bd23f1.zip"
+ "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-14/d14808d0-36b1-4d6b-89f4-850d74bd23f1.zip",
+ "summarized": {
+  "model": "agnes-2.5-flash",
+  "at": "2026-08-18 19:29:56",
+  "chunks": 1,
+  "meta": {
+   "keywords": [
+    "multi-view texture diffusion",
+    "training-free acceleration",
+    "geometric delta transport",
+    "cross-view redundancy",
+    "diffusion cache",
+    "3D generation"
+   ],
+   "field": "多视角纹理生成加速",
+   "innovations": [
+    "首次实证跨视角几何冗余并提取x0增量传输机制",
+    "提出无训练GeoCache插件，通过几何对应算子实现锚点视角增量向非锚点视角的安全传播",
+    "在Hunyuan3D-2.1/SyncMVD/MVPainter三条backbone上实现2×以上加速且保真度最优"
+   ],
+   "benchmarks": [
+    "eval200 (GSO+Objaverse)",
+    "TexVerse-100",
+    "ABO-100"
+   ]
+  }
+ }
 }

@@ -4,5 +4,31 @@
  "title": "Enhancing-Virtual-Agents-through-SLMs-and-Edge-Computing-An",
  "token": "sk-oJ013oevc...",
  "created_at": "2026-08-14 14:49:25",
- "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-14/f4cc79e6-5da7-40d1-8d04-79a0448a862a.zip"
+ "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-14/f4cc79e6-5da7-40d1-8d04-79a0448a862a.zip",
+ "summarized": {
+  "model": "agnes-2.5-flash",
+  "at": "2026-08-18 19:26:30",
+  "chunks": 1,
+  "meta": {
+   "keywords": [
+    "Small Language Models",
+    "Edge Computing",
+    "Embodied Agents",
+    "Agent Memory",
+    "Service Routing",
+    "CEAA",
+    "Virtual Agents"
+   ],
+   "field": "边缘智能体架构",
+   "innovations": [
+    "通过服务路由部分实现CEAA Think过程并在边缘设备上验证",
+    "系统比较Qwen2.5三种规模模型在边缘上的路由与记忆性能揭示准确率-延迟权衡",
+    "构建集成Qwen2.5/LangMem/SQLite的边缘虚拟代理网关原型系统"
+   ],
+   "benchmarks": [
+    "1000条10类路由prompt",
+    "250条端到端记忆write-read配对prompt"
+   ]
+  }
+ }
 }

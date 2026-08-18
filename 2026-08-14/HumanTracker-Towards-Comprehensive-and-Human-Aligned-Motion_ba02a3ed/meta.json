@@ -4,5 +4,33 @@
  "title": "HumanTracker-Towards-Comprehensive-and-Human-Aligned-Motion",
  "token": "sk-EqwJR1nOB...",
  "created_at": "2026-08-14 04:10:40",
- "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-14/e2514529-44dc-44de-b6db-ead3028d3d24.zip"
+ "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-14/e2514529-44dc-44de-b6db-ead3028d3d24.zip",
+ "summarized": {
+  "model": "agnes-2.5-flash",
+  "at": "2026-08-18 19:30:46",
+  "chunks": 1,
+  "meta": {
+   "keywords": [
+    "humanoid motion tracking",
+    "benchmark",
+    "human-aligned evaluation",
+    "preference learning",
+    "reward model",
+    "motion quality metric"
+   ],
+   "field": "假人/人形机器人运动跟踪评测",
+   "innovations": [
+    "提出 HumanTracker：153 小时四家族分类假人跟踪基准，弥补现有测试集多样性与诊断能力不足",
+    "提出 HumanScore：基于 12K 配对偏好训练的时序 Transformer 奖励模型，0-100 分与人类判断 Align Rate=90.83%",
+    "建立统一标准化评测协议，保持各 tracker 原生策略接口不变，在 GMT/TWIST2/SONIC/Humanoid-GPT 上首次给出多维度横向对比"
+   ],
+   "benchmarks": [
+    "HumanTracker (train/test 9:1)",
+    "AMASS",
+    "HumanML3D",
+    "PHUMA",
+    "Switch-JustDance"
+   ]
+  }
+ }
 }

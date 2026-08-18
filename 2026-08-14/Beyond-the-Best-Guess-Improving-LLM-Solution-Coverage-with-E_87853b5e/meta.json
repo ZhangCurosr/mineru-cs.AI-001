@@ -4,5 +4,32 @@
  "title": "Beyond-the-Best-Guess-Improving-LLM-Solution-Coverage-with-E",
  "token": "sk-tFRB7xMvI...",
  "created_at": "2026-08-14 14:49:41",
- "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-14/08c96a75-eeee-43a1-b2ae-96121f42091e.zip"
+ "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-14/08c96a75-eeee-43a1-b2ae-96121f42091e.zip",
+ "summarized": {
+  "model": "agnes-2.5-flash",
+  "at": "2026-08-18 19:26:17",
+  "chunks": 1,
+  "meta": {
+   "keywords": [
+    "Pass@k",
+    "Evolution Strategies",
+    "Reinforcement Learning",
+    "Test-time Scaling",
+    "LLM Post-training",
+    "Solution Coverage"
+   ],
+   "field": "大语言模型后训练与推理",
+   "innovations": [
+    "系统证明ES在保持解覆盖度上优于RL，使pass@k持续随测试时计算提升",
+    "从分布分析揭示ES减少退化、增加进步且失败时保持高熵的机制",
+    "将ES优势扩展到自我一致性投票等测试时计算方法"
+   ],
+   "benchmarks": [
+    "GSM8K",
+    "MATH500",
+    "Olympiad Bench",
+    "Minerva"
+   ]
+  }
+ }
 }

@@ -4,5 +4,32 @@
  "title": "FLASHDRIVE-FLASH-VISION-LANGUAGE-ACTION-INFERENCE-FOR-AUTONO",
  "token": "sk-3sasXMHBZ...",
  "created_at": "2026-08-14 04:13:38",
- "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-14/cf825791-0d48-4674-b0b0-2f758babecd6.zip"
+ "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-14/cf825791-0d48-4674-b0b0-2f758babecd6.zip",
+ "summarized": {
+  "model": "agnes-2.5-flash",
+  "at": "2026-08-18 19:27:15",
+  "chunks": 1,
+  "meta": {
+   "keywords": [
+    "Vision-Language-Action",
+    "Autonomous Driving",
+    "Efficient Inference",
+    "Speculative Decoding",
+    "Flow Matching",
+    "Model Quantization",
+    "Algorithm-System Co-design"
+   ],
+   "field": "自动驾驶高效推理",
+   "innovations": [
+    "流式推理+pre-RoPE缓存实现75%序列长度缩减",
+    "扩散并行草稿模型DFlash利用驾驶推理低熵高块内相关性",
+    "自适应步长流匹配缓存速度场中间值利用U形冗余结构"
+   ],
+   "benchmarks": [
+    "NVIDIA Autonomous Vehicle Dataset",
+    "AlpaSim Closed-loop Evaluation",
+    "minADE @6.4s"
+   ]
+  }
+ }
 }

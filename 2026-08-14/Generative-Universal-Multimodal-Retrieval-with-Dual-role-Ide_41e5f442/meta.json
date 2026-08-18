@@ -4,5 +4,31 @@
  "title": "Generative-Universal-Multimodal-Retrieval-with-Dual-role-Ide",
  "token": "sk-NVka6yfS0...",
  "created_at": "2026-08-14 04:13:50",
- "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-14/3499094a-1df7-46ff-900a-4b7c362e8d27.zip"
+ "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-14/3499094a-1df7-46ff-900a-4b7c362e8d27.zip",
+ "summarized": {
+  "model": "agnes-2.5-flash",
+  "at": "2026-08-18 19:29:20",
+  "chunks": 1,
+  "meta": {
+   "keywords": [
+    "生成式信息检索",
+    "通用多模态检索",
+    "双角色标识符",
+    "残差量化",
+    "混合检索",
+    "约束束搜索"
+   ],
+   "field": "多模态生成式检索",
+   "innovations": [
+    "提出双角色标识符：单一残差量化标识符同时支持序列生成和集合全局相关性估计",
+    "双引导约束解码：结合Trie前缀约束与集合角色先验缓解局部最优",
+    "混合检索策略：生成式候选生成结合密集向量重排序实现效率-效果权衡"
+   ],
+   "benchmarks": [
+    "M-BEIR",
+    "Flickr30K",
+    "MSCOCO"
+   ]
+  }
+ }
 }

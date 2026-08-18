@@ -4,5 +4,31 @@
  "title": "FOUNDATIONS-OF-MT-PDCL-MEASURE-THEORETIC-PROBABILISTIC-DEFIN",
  "token": "sk-Tq65tdoLK...",
  "created_at": "2026-08-14 14:49:18",
- "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-14/f69691fc-cdd1-4ddb-8e74-58df6f8754ff.zip"
+ "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-14/f69691fc-cdd1-4ddb-8e74-58df6f8754ff.zip",
+ "summarized": {
+  "model": "agnes-2.5-flash",
+  "at": "2026-08-18 19:27:37",
+  "chunks": 1,
+  "meta": {
+   "keywords": [
+    "probabilistic logic programming",
+    "measure-theoretic semantics",
+    "continuous domains",
+    "neural-symbolic integration",
+    "Noisy-OR",
+    "fixed-point convergence"
+   ],
+   "field": "神经符号人工智能",
+   "innovations": [
+    "以 Lebesgue 积分替代离散基化，原生支持连续可测空间上的概率逻辑推理",
+    "证明连续后果算子在 ICI 假设下单调、可微且收敛至最小不动点",
+    "统一处理连续-离散混合测度的索引-生成分离句法"
+   ],
+   "benchmarks": [
+    "Infinite-horizon ruin probability",
+    "AGV backward reachable set",
+    "Hierarchical sensor network signal propagation"
+   ]
+  }
+ }
 }

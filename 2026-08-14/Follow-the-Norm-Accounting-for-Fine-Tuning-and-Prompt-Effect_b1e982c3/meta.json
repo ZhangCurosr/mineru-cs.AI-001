@@ -4,5 +4,30 @@
  "title": "Follow-the-Norm-Accounting-for-Fine-Tuning-and-Prompt-Effect",
  "token": "sk-nY8L7ieIq...",
  "created_at": "2026-08-14 04:12:11",
- "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-14/0ac2768c-35df-4b5a-86c8-8297718e7c8b.zip"
+ "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-14/0ac2768c-35df-4b5a-86c8-8297718e7c8b.zip",
+ "summarized": {
+  "model": "agnes-2.5-flash",
+  "at": "2026-08-18 19:28:35",
+  "chunks": 1,
+  "meta": {
+   "keywords": [
+    "AI accountability",
+    "normative alignment",
+    "LoRA fine-tuning",
+    "rationale auditing",
+    "value alignment",
+    "prompt steering"
+   ],
+   "field": "AI安全与对齐",
+   "innovations": [
+    "实证揭示norm-breaking微调系统性诱导工具性自我利益合理化",
+    "建立训练数据到下游理由的词汇连续审计链路",
+    "验证系统提示可双向覆盖微调引入的规范偏差"
+   ],
+   "benchmarks": [
+    "SC101 Fairness/Cheating",
+    "Social Chemistry 101"
+   ]
+  }
+ }
 }

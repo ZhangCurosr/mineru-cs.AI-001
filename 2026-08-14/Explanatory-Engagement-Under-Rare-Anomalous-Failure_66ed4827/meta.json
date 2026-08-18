@@ -4,5 +4,33 @@
  "title": "Explanatory-Engagement-Under-Rare-Anomalous-Failure",
  "token": "sk-qk0HszLxn...",
  "created_at": "2026-08-14 04:09:03",
- "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-14/8e0c2869-0039-47dd-a11c-1f11203ef48d.zip"
+ "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-14/8e0c2869-0039-47dd-a11c-1f11203ef48d.zip",
+ "summarized": {
+  "model": "agnes-2.5-flash",
+  "at": "2026-08-18 19:27:01",
+  "chunks": 1,
+  "meta": {
+   "keywords": [
+    "rare-event detection",
+    "explanatory engagement",
+    "elicitation condition",
+    "self-reported confidence",
+    "recognition-engagement dissociation",
+    "empty-tail artifact",
+    "local LLM behavior",
+    "asymptotic rarity"
+   ],
+   "field": "语言模型行为分析/罕见异常检测",
+   "innovations": [
+    "诱导条件作为检测阈值效应的首要调节变量",
+    "识别-参与解离的形式化定义与实证发现",
+    "空尾伪影的统计定义及 Phase A.1 恢复设计"
+   ],
+   "benchmarks": [
+    "八速率工具调用失败任务（p=0.2 至 0.0001）",
+    "five-elicitation-condition 交叉设计",
+    "silent_batch_reveal vs immediate disclosure 对比"
+   ]
+  }
+ }
 }
