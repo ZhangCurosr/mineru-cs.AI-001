@@ -4,5 +4,33 @@
  "title": "Faithful-Suficient-and-Understandable-Rethinking-Graph-Count",
  "token": "sk-9BdnpHblK...",
  "created_at": "2026-08-13 07:12:18",
- "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-13/228c13e8-7259-4fb4-989b-1da091adae58.zip"
+ "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-13/228c13e8-7259-4fb4-989b-1da091adae58.zip",
+ "summarized": {
+  "model": "agnes-2.5-flash",
+  "at": "2026-08-18 10:34:37",
+  "chunks": 1,
+  "meta": {
+   "keywords": [
+    "Graph Counterfactual Explanation",
+    "Diffusion Models",
+    "Discrete Denoising Diffusion",
+    "Gumbel-Max Inversion",
+    "Explainable AI",
+    "Molecular Graphs",
+    "Classifier-Free Guidance"
+   ],
+   "field": "可解释图神经网络",
+   "innovations": [
+    "基于Gumbel-Max后验噪声记录的离散扩散反演框架，实现精确重构与条件驱动最小编辑的统一",
+    "提出三维稀疏度评估体系（Edge/Node/Edge Type Sparsity）与NAFR统一评估基准",
+    "动态预算搜索τ替代训练时稀疏惩罚，控制反事实编辑粒度"
+   ],
+   "benchmarks": [
+    "Mutagenicity",
+    "Benzene",
+    "PROTEINS",
+    "TWITTER"
+   ]
+  }
+ }
 }

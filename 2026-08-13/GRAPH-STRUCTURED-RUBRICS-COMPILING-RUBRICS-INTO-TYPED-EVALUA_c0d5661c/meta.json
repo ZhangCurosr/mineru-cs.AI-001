@@ -4,5 +4,35 @@
  "title": "GRAPH-STRUCTURED-RUBRICS-COMPILING-RUBRICS-INTO-TYPED-EVALUA",
  "token": "sk-9BdnpHblK...",
  "created_at": "2026-08-13 07:12:05",
- "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-13/b8af8902-c83a-4767-b86a-360e4f59652c.zip"
+ "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-13/b8af8902-c83a-4767-b86a-360e4f59652c.zip",
+ "summarized": {
+  "model": "agnes-2.5-flash",
+  "at": "2026-08-18 10:40:01",
+  "chunks": 1,
+  "meta": {
+   "keywords": [
+    "graph-structured rubrics",
+    "LLM evaluation",
+    "rubric compilation",
+    "typed evaluation graph",
+    "pointwise scoring",
+    "pairwise preference",
+    "audit trace"
+   ],
+   "field": "自动评估与LLM裁判",
+   "innovations": [
+    "响应无关的评分表到类型化DAG的静态编译框架",
+    "拓扑序执行与审计可重放的跨标准组合语义",
+    "统一支撑点式评分与成对偏好的单图接口"
+   ],
+   "benchmarks": [
+    "UltraFeedback–TruthfulQA",
+    "HelpSteer2",
+    "SummEval Relevance",
+    "BiGGen",
+    "MT-Bench",
+    "RubricBench"
+   ]
+  }
+ }
 }

@@ -4,5 +4,35 @@
  "title": "Galaxea-G0-5-One-Autoregressive-Stream-for-Robot-Reasoning-a",
  "token": "sk-vCwdEIcnG...",
  "created_at": "2026-08-13 14:56:43",
- "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-13/3fae82fb-c357-4388-8ab5-92516d293467.zip"
+ "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-13/3fae82fb-c357-4388-8ab5-92516d293467.zip",
+ "summarized": {
+  "model": "agnes-2.5-flash",
+  "at": "2026-08-18 10:44:54",
+  "chunks": 1,
+  "meta": {
+   "keywords": [
+    "Vision-Language-Action",
+    "Autoregressive VLA",
+    "Cross-Embodiment Action Tokenization",
+    "Chain-of-Thought Reasoning",
+    "Robot Manipulation",
+    "Behavior Foundation Model",
+    "Prompt-Driven Policy Steering"
+   ],
+   "field": "具身智能与机器人基础模型",
+   "innovations": [
+    "将跨构型可学习 ActionCodec 与原生 CoT 推理流统一到单自回归 stream 中，使 VLM 既是条件编码器又是决策者",
+    "利用 CoT 内生于自回归流带来的 prompt 驱动行为调控涌现能力，零样本条件下指令措辞可改变政策行为"
+   ],
+   "benchmarks": [
+    "2025 BEHAVIOR Challenge",
+    "DROID Environment & Object Zero-Shot",
+    "Bridge-SimplerEnv",
+    "RoboTwin 2.0",
+    "LIBERO",
+    "Pick-and-Place Benchmark (PP Bench)",
+    "R1-Lite / R1-Pro Real-World Fine-Tuning"
+   ]
+  }
+ }
 }

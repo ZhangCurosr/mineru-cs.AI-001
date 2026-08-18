@@ -4,5 +4,34 @@
  "title": "GRAPH-STRUCTURED-RUBRICS-COMPILING-RUBRICS-INTO-TYPED-EVALUA",
  "token": "sk-9BdnpHblK...",
  "created_at": "2026-08-13 14:56:14",
- "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-13/b8af8902-c83a-4767-b86a-360e4f59652c.zip"
+ "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-13/b8af8902-c83a-4767-b86a-360e4f59652c.zip",
+ "summarized": {
+  "model": "agnes-2.5-flash",
+  "at": "2026-08-18 10:39:14",
+  "chunks": 1,
+  "meta": {
+   "keywords": [
+    "LLM-as-a-Judge",
+    "Rubric Compilation",
+    "Evaluation Graph",
+    "Graph-Structured Rubrics",
+    "Pointwise Scoring",
+    "Pairwise Preference"
+   ],
+   "field": "LLM 自动评测方法",
+   "innovations": [
+    "首个响应无关 rubric 编译为有类型跨准则评估 DAG 的框架",
+    "定义拓扑序确定性执行语义与可审计可重放机制",
+    "统一 pointwise/pairwise 共享准则节点与算子语义接口"
+   ],
+   "benchmarks": [
+    "UltraFeedback-TruthfulQA",
+    "HelpSteer2",
+    "SummEval Relevance",
+    "BiGGen",
+    "MT-Bench",
+    "RubricBench"
+   ]
+  }
+ }
 }

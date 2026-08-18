@@ -4,5 +4,32 @@
  "title": "From-Safety-Documentation-to-Safety-Knowledge-Support-An-Evi",
  "token": "sk-7NOZt17oN...",
  "created_at": "2026-08-13 07:12:14",
- "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-13/e4a7e818-13f7-4d39-aeaf-a35bf84149fa.zip"
+ "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-13/e4a7e818-13f7-4d39-aeaf-a35bf84149fa.zip",
+ "summarized": {
+  "model": "agnes-2.5-flash",
+  "at": "2026-08-18 10:35:54",
+  "chunks": 1,
+  "meta": {
+   "keywords": [
+    "Large Language Models",
+    "Medical Devices",
+    "Safety Analysis",
+    "Risk Management",
+    "Traceability",
+    "ISO 14971",
+    "RAG",
+    "Expert Review"
+   ],
+   "field": "受监管领域安全工程中的 LLM 辅助分析",
+   "innovations": [
+    "提出源链接安全项工件，将 LLM 输出显式绑定来源证据、假设、不确定性与审核状态",
+    "构建覆盖证据采集、知识存储、方法特定生成、批判检查、专家审核与生命周期更新的完整框架",
+    "设计面向医疗器械受监管场景的九维安全特定评估策略，避免训练数据污染与文本指标不足"
+   ],
+   "benchmarks": [
+    "非公开/新建医疗器械案例（输液泵、AI 联网设备）",
+    "专家参考基线分析"
+   ]
+  }
+ }
 }

@@ -4,5 +4,35 @@
  "title": "Domain-Aware-Lightweight-Spectral-Grouped-Convolutions-for-H",
  "token": "sk-CZoysi7P5...",
  "created_at": "2026-08-13 14:55:23",
- "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-13/c30c3a34-128b-4968-83c1-12f6bbca757a.zip"
+ "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-13/c30c3a34-128b-4968-83c1-12f6bbca757a.zip",
+ "summarized": {
+  "model": "agnes-2.5-flash",
+  "at": "2026-08-18 10:25:58",
+  "chunks": 1,
+  "meta": {
+   "keywords": [
+    "hyperspectral imaging",
+    "fish freshness",
+    "spectral-grouped convolution",
+    "lightweight CNN",
+    "ordinal classification",
+    "domain-aware architecture",
+    "dual attention"
+   ],
+   "field": "高光谱图像分类",
+   "innovations": [
+    "显式光谱-空间因子分解：分组逐点卷积+深度可分离空间路径分离处理光谱与空间特征",
+    "轻量双注意力门控：通道SE与空间1x1注意力耦合，参数量低于block 5%",
+    "域感知分层编码器：在小样本高维食品HSI场景下以4.75M参数超越5–18倍参数量的ResNet/ViT"
+   ],
+   "benchmarks": [
+    "Salmon 16-day refrigerated HSI dataset (800 cubes, 462 bands)",
+    "ResNet-50",
+    "ViT-B/16",
+    "Swin-T",
+    "ConvNeXt-T",
+    "HybridSN"
+   ]
+  }
+ }
 }

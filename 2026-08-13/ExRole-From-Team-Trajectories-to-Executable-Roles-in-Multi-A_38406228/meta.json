@@ -4,5 +4,30 @@
  "title": "ExRole-From-Team-Trajectories-to-Executable-Roles-in-Multi-A",
  "token": "sk-JiEKTe0tT...",
  "created_at": "2026-08-13 05:40:21",
- "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-13/03c7063c-c530-499e-87b5-a8300c3f6570.zip"
+ "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-13/03c7063c-c530-499e-87b5-a8300c3f6570.zip",
+ "summarized": {
+  "model": "agnes-2.5-flash",
+  "at": "2026-08-18 10:32:48",
+  "chunks": 1,
+  "meta": {
+   "keywords": [
+    "multi-agent systems",
+    "role induction",
+    "LoRA routing",
+    "reinforcement learning",
+    "language agents",
+    "credit assignment"
+   ],
+   "field": "多智能体强化学习与角色专用化",
+   "innovations": [
+    "从轨迹中学习未来感知角色原型并绑定为可执行指令与token对齐标记",
+    "角色条件化的稀疏LoRA路由与回合对齐GRPO信用分配"
+   ],
+   "benchmarks": [
+    "MuSiQue",
+    "2WikiMultiHopQA",
+    "HotpotQA"
+   ]
+  }
+ }
 }

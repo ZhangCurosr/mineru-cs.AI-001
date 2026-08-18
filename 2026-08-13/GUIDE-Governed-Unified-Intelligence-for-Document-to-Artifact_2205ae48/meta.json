@@ -4,5 +4,30 @@
  "title": "GUIDE-Governed-Unified-Intelligence-for-Document-to-Artifact",
  "token": "sk-7NOZt17oN...",
  "created_at": "2026-08-13 07:10:23",
- "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-13/dc9d9fcb-1e0f-4fed-867f-c7b7e726b57b.zip"
+ "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-13/dc9d9fcb-1e0f-4fed-867f-c7b7e726b57b.zip",
+ "summarized": {
+  "model": "agnes-2.5-flash",
+  "at": "2026-08-18 10:42:24",
+  "chunks": 1,
+  "meta": {
+   "keywords": [
+    "多智能体系统",
+    "文档抽取",
+    "人机协作",
+    "企业级数据管线",
+    "VLM",
+    "治理框架"
+   ],
+   "field": "企业文档智能处理与多智能体协同",
+   "innovations": [
+    "版本化模式验证共享规则存储实现跨智能体契约与端到端溯源",
+    "L1结构校验+L2语义评估两级质量控制管线",
+    "依赖感知的分阶段HITL路由机制"
+   ],
+   "benchmarks": [
+    "120份企业指南文档",
+    "Qwen2.5-VL-32B VLM选型基准"
+   ]
+  }
+ }
 }

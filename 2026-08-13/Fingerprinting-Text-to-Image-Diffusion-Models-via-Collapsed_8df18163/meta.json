@@ -4,5 +4,33 @@
  "title": "Fingerprinting-Text-to-Image-Diffusion-Models-via-Collapsed",
  "token": "sk-dY4OBV5wM...",
  "created_at": "2026-08-13 07:12:41",
- "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-13/36ad2188-6faa-4b7f-ae4e-da966e2e81e2.zip"
+ "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-13/36ad2188-6faa-4b7f-ae4e-da966e2e81e2.zip",
+ "summarized": {
+  "model": "agnes-2.5-flash",
+  "at": "2026-08-18 10:35:26",
+  "chunks": 1,
+  "meta": {
+   "keywords": [
+    "Text-to-Image Diffusion Models",
+    "Intellectual Property Protection",
+    "Model Fingerprinting",
+    "Collapsed Generation",
+    "Non-invasive Verification",
+    "White-box Black-box"
+   ],
+   "field": "扩散模型安全与版权保护",
+   "innovations": [
+    "利用坍塌生成跨种子一致性作为非侵入式模型指纹",
+    "统一白盒连续嵌入与黑盒自然提示词验证框架",
+    "截断优化与训练低损失挖掘实现高效指纹构造"
+   ],
+   "benchmarks": [
+    "CIFAR-10 DDPM",
+    "Stable Diffusion 1.4/2.1",
+    "PixArt-α",
+    "Stable Diffusion 3",
+    "DeciDiffusion v1.0"
+   ]
+  }
+ }
 }

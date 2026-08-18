@@ -4,5 +4,32 @@
  "title": "DreamFly-Causal-Memory-and-Receding-Horizon-Difusion-Plannin",
  "token": "sk-WJrSFDicB...",
  "created_at": "2026-08-13 14:54:53",
- "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-13/262d9fad-31cf-444c-922e-c2b1713ca90f.zip"
+ "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-13/262d9fad-31cf-444c-922e-c2b1713ca90f.zip",
+ "summarized": {
+  "model": "agnes-2.5-flash",
+  "at": "2026-08-18 10:28:29",
+  "chunks": 1,
+  "meta": {
+   "keywords": [
+    "Aerial Vision-Language Navigation",
+    "Diffusion Policy",
+    "Receding-Horizon Planning",
+    "Causal Memory",
+    "Termination Control",
+    "VLA Models",
+    "UAV Navigation"
+   ],
+   "field": "无人机视觉语言导航",
+   "innovations": [
+    "因果对齐历史记忆：先读后写协议确保训练部署时间边界一致",
+    "滑动horizon扩散规划：K步chunk预测仅执行第一步后重规划",
+    "LiteStop解耦终止：从全mask logit网格独立估计停止概率"
+   ],
+   "benchmarks": [
+    "OpenFly",
+    "test-seen",
+    "test-unseen"
+   ]
+  }
+ }
 }

@@ -4,5 +4,30 @@
  "title": "Generative-Semantic-Segmentation-via-an-Observable-Semantic",
  "token": "sk-YrIlRFySy...",
  "created_at": "2026-08-13 07:11:34",
- "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-13/c7c8b959-1538-4972-b02e-46a4c60b3776.zip"
+ "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-13/c7c8b959-1538-4972-b02e-46a4c60b3776.zip",
+ "summarized": {
+  "model": "agnes-2.5-flash",
+  "at": "2026-08-18 10:47:44",
+  "chunks": 1,
+  "meta": {
+   "keywords": [
+    "生成式语义分割",
+    "可观察接口",
+    "层级特征对齐",
+    "误差排序",
+    "域泛化"
+   ],
+   "field": "视觉感知与生成式分割",
+   "innovations": [
+    "固定颜色代码本实现可独立评估的语义图像概率接口",
+    "零初始化残差头进行层级生成器证据的加性精炼",
+    "无附加前向传播的上下文接口‑层次分歧像素误差排序读出"
+   ],
+   "benchmarks": [
+    "Cityscapes val500",
+    "BDD100K val1000",
+    "ACDC val406"
+   ]
+  }
+ }
 }

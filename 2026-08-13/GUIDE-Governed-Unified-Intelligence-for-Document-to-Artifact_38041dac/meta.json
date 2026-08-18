@@ -4,5 +4,33 @@
  "title": "GUIDE-Governed-Unified-Intelligence-for-Document-to-Artifact",
  "token": "sk-hwXfRrBR3...",
  "created_at": "2026-08-13 14:55:01",
- "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-13/dc9d9fcb-1e0f-4fed-867f-c7b7e726b57b.zip"
+ "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-13/dc9d9fcb-1e0f-4fed-867f-c7b7e726b57b.zip",
+ "summarized": {
+  "model": "agnes-2.5-flash",
+  "at": "2026-08-18 10:48:43",
+  "chunks": 1,
+  "meta": {
+   "keywords": [
+    "多智能体系统",
+    "文档抽取",
+    "人机协作HITL",
+    "企业文档处理",
+    "结构化提取",
+    "VLM",
+    "LLM-as-judge",
+    "治理型AI"
+   ],
+   "field": "企业级文档智能与多智能体系统",
+   "innovations": [
+    "版本化模式验证共享暂存层实现跨智能体结构化通信与端到端溯源",
+    "两阶段L1/L2评估结合确定性结构校验与LLM语义评分实现质量门控",
+    "依赖感知分层HITL路由按对象类型严重程度缩减人工审阅负担"
+   ],
+   "benchmarks": [
+    "120份企业指南文档（不可公开）",
+    "Qwen2.5-VL-32B vs Qwen3-32B vs LLaVA-13B VLM对比",
+    "单模型无治理一_pass_基线对照"
+   ]
+  }
+ }
 }

@@ -4,5 +4,32 @@
  "title": "Diagram-MMU-A-Multi-Modal-Benchmark-for-Scientific-Diagrams",
  "token": "sk-45Ifw5Iq3...",
  "created_at": "2026-08-13 07:11:43",
- "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-13/18a0dd18-1792-40ed-b785-fcbfc0b76c54.zip"
+ "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-13/18a0dd18-1792-40ed-b785-fcbfc0b76c54.zip",
+ "summarized": {
+  "model": "agnes-2.5-flash",
+  "at": "2026-08-18 10:32:25",
+  "chunks": 4,
+  "meta": {
+   "keywords": [
+    "scientific diagrams",
+    "multimodal benchmark",
+    "TikZ",
+    "code generation",
+    "MLLM evaluation",
+    "semantic object model"
+   ],
+   "field": "多模态大模型评测基准",
+   "innovations": [
+    "首个覆盖6大科学领域且原生支持TikZ/LaTeX生态的综合基准",
+    "提出SOM管道实现从LaTeX源码到SVG的对象级自动评测",
+    "揭示MLLM在科学图表理解中的感知-编码鸿沟"
+   ],
+   "benchmarks": [
+    "Diagram-MMU",
+    "D2C-P",
+    "D2C-E",
+    "DQA"
+   ]
+  }
+ }
 }

@@ -4,5 +4,32 @@
  "title": "Agent-Skills-Can-Be-Harmful-An-Empirical-Study-of-Skill-Indu",
  "token": "sk-iG65PZaJv...",
  "created_at": "2026-08-13 14:55:11",
- "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-13/1f0a7cfd-d046-4295-850c-5b4fc366e3cb.zip"
+ "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-13/1f0a7cfd-d046-4295-850c-5b4fc366e3cb.zip",
+ "summarized": {
+  "model": "agnes-2.5-flash",
+  "at": "2026-08-18 10:20:25",
+  "chunks": 1,
+  "meta": {
+   "keywords": [
+    "Agent Skills",
+    "LLM Agents",
+    "Skill-Induced Failures",
+    "Differential Testing",
+    "Efficiency Regression",
+    "Skill Attribution",
+    "SkillsBench",
+    "SWE-Skills-Bench"
+   ],
+   "field": "LLM Agent 可靠性与效率分析",
+   "innovations": [
+    "构建首个技能诱导故障差分对比数据集（307 例）并系统分类根因",
+    "提出 SKILLTRIAGE 自动化工具，实现 taxonomy-guided 故障归因（功能故障子类别准确率 88.8%）",
+    "揭示技能失效主要源于看似相关技能导致的实现错误/遗漏与过度流程，而非明显无关技能"
+   ],
+   "benchmarks": [
+    "SkillsBench",
+    "SWE-Skills-Bench"
+   ]
+  }
+ }
 }

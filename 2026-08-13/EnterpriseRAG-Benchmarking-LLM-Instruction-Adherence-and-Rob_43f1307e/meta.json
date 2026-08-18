@@ -4,5 +4,30 @@
  "title": "EnterpriseRAG-Benchmarking-LLM-Instruction-Adherence-and-Rob",
  "token": "sk-xfpcKPjW4...",
  "created_at": "2026-08-13 07:11:11",
- "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-13/1f254837-5d02-40e0-a8ea-6aa59d52073d.zip"
+ "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-13/1f254837-5d02-40e0-a8ea-6aa59d52073d.zip",
+ "summarized": {
+  "model": "agnes-2.5-flash",
+  "at": "2026-08-18 10:32:10",
+  "chunks": 1,
+  "meta": {
+   "keywords": [
+    "RAG benchmark",
+    "instruction following",
+    "LLM robustness",
+    "enterprise retrieval",
+    "knowledge gaps",
+    "factual conflicts",
+    "retrieval noise"
+   ],
+   "field": "检索增强生成评估",
+   "innovations": [
+    "提出 EnterpriseRAG 基准，首次量化 LLM 在企业非理想检索下的编排差距",
+    "设计 Loose/Strict IAS 双维度指令遵循评估框架，揭示单约束满足与全约束合规的差距",
+    "构建三类非理想检索模式（噪声、知识间隙、事实冲突）与复杂多约束指令的组合评测体系"
+   ],
+   "benchmarks": [
+    "EnterpriseRAG"
+   ]
+  }
+ }
 }

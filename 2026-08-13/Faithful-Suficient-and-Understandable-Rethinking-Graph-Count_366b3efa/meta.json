@@ -4,5 +4,33 @@
  "title": "Faithful-Suficient-and-Understandable-Rethinking-Graph-Count",
  "token": "sk-Ir4JqYCnj...",
  "created_at": "2026-08-13 14:56:24",
- "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-13/228c13e8-7259-4fb4-989b-1da091adae58.zip"
+ "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-13/228c13e8-7259-4fb4-989b-1da091adae58.zip",
+ "summarized": {
+  "model": "agnes-2.5-flash",
+  "at": "2026-08-18 10:34:42",
+  "chunks": 1,
+  "meta": {
+   "keywords": [
+    "Graph Neural Networks",
+    "Counterfactual Explanations",
+    "Discrete Diffusion Models",
+    "Explainable AI",
+    "Molecular Graphs",
+    "Gumbel-Max Inversion",
+    "Classifier-Free Guidance"
+   ],
+   "field": "图神经网络可解释性",
+   "innovations": [
+    "首个将离散图扩散与Gumbel-Max后验一致反演结合的图反事实生成框架",
+    "通过截断Gumbel(A*-sampling)构造实现离散轨迹精确重建与最小可控编辑",
+    "提出NAFR/NA/三元稀疏性分解的统一评估框架并验证四基准全面领先"
+   ],
+   "benchmarks": [
+    "Mutagenicity",
+    "Benzene",
+    "PROTEINS",
+    "TWITTER"
+   ]
+  }
+ }
 }

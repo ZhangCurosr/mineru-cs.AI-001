@@ -4,5 +4,31 @@
  "title": "GCPO-Diagnosing-and-Constraining-Subspace-Geometry-in-Rollou",
  "token": "sk-zw57yHIgm...",
  "created_at": "2026-08-13 07:11:08",
- "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-13/e41fc9d4-5918-473c-9cc1-e60b62799de4.zip"
+ "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-13/e41fc9d4-5918-473c-9cc1-e60b62799de4.zip",
+ "summarized": {
+  "model": "agnes-2.5-flash",
+  "at": "2026-08-18 10:37:42",
+  "chunks": 1,
+  "meta": {
+   "keywords": [
+    "Reinforcement Learning",
+    "Large Language Models",
+    "Policy Optimization",
+    "Geometric Constraint",
+    "Subspace Analysis",
+    "RLHF"
+   ],
+   "field": "大语言模型对齐与强化学习",
+   "innovations": [
+    "提出Principal-Subspace Overlap诊断指标揭示rollout RL中的有害更新方向",
+    "设计GCPO通过硬双边正交投影约束策略更新到主子空间补空间",
+    "证明几何约束可同时提升性能、保持跨任务能力和抑制长度膨胀"
+   ],
+   "benchmarks": [
+    "MATH500",
+    "HumanEval+",
+    "ToolAlpaca"
+   ]
+  }
+ }
 }

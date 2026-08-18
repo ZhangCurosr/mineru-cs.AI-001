@@ -4,5 +4,10 @@
  "title": "GCPO-Diagnosing-and-Constraining-Subspace-Geometry-in-Rollou",
  "token": "sk-tFmPcED8R...",
  "created_at": "2026-08-13 14:55:42",
- "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-13/e41fc9d4-5918-473c-9cc1-e60b62799de4.zip"
+ "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-13/e41fc9d4-5918-473c-9cc1-e60b62799de4.zip",
+ "summarized": {
+  "model": "agnes-2.5-flash",
+  "at": "2026-08-18 10:38:21",
+  "chunks": 1
+ }
 }

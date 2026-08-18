@@ -4,5 +4,39 @@
  "title": "Do-LLMs-Take-Care-of-Their-Own-Similarity-Signals-Can-Induce",
  "token": "sk-haVkJ3VAf...",
  "created_at": "2026-08-13 14:55:26",
- "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-13/0612d034-7627-4bca-aa8d-ac341d5d50dc.zip"
+ "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-13/0612d034-7627-4bca-aa8d-ac341d5d50dc.zip",
+ "summarized": {
+  "model": "agnes-2.5-flash",
+  "at": "2026-08-18 10:24:43",
+  "chunks": 1,
+  "meta": {
+   "keywords": [
+    "LLM cooperation",
+    "similarity signaling",
+    "b-similarity equilibrium",
+    "evidential decision theory",
+    "multi-agent game theory",
+    "CoT analysis",
+    "CoopEval"
+   ],
+   "field": "合作型 AI / 多智能体博弈",
+   "innovations": [
+    "提出b-相似度均衡作为Nash与EDT间的连续插值框架，证明高相似度下可恢复社会福利最优",
+    "构建首个端到端的LLM相似度信号评测框架，区分外生/内生信号并系统比较10个基准域",
+    "发现LLM对相似度信号来源域不敏感（包括随机噪声也能诱导合作），揭示信号可靠性风险"
+   ],
+   "benchmarks": [
+    "Prisoner's Dilemma",
+    "Public Goods Game",
+    "Traveler's Dilemma",
+    "Stag Hunt",
+    "Chicken",
+    "HLE",
+    "TRAIT",
+    "Moral Choice",
+    "Newcomb-like Problems",
+    "Greatest Good Benchmark"
+   ]
+  }
+ }
 }

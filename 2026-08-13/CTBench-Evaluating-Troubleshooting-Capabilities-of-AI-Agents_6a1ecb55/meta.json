@@ -4,5 +4,30 @@
  "title": "CTBench-Evaluating-Troubleshooting-Capabilities-of-AI-Agents",
  "token": "sk-sKVjU65N5...",
  "created_at": "2026-08-13 14:56:27",
- "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-13/301099eb-9759-4704-a8d0-b25a2daeb64b.zip"
+ "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-13/301099eb-9759-4704-a8d0-b25a2daeb64b.zip",
+ "summarized": {
+  "model": "agnes-2.5-flash",
+  "at": "2026-08-18 10:22:08",
+  "chunks": 1,
+  "meta": {
+   "keywords": [
+    "AI Agent",
+    "电信网络运维",
+    "排障基准",
+    "根本原因分析",
+    "路径恢复",
+    "证据驱动评估",
+    "部分可观测性"
+   ],
+   "field": "通信网络智能运维",
+   "innovations": [
+    "提出CTBench公开基准，首次同时覆盖专家验证证据、部分可观测性与异构设备支持",
+    "定义多维能力指标与任务难度元数据体系，支持细粒度诊断分析",
+    "揭示当前Agent在证据驱动RCA与异构环境适应方面的系统性短板"
+   ],
+   "benchmarks": [
+    "CTBench"
+   ]
+  }
+ }
 }

@@ -4,5 +4,29 @@
  "title": "FrontierFinance-A-Challenging-Benchmark-for-Measuring-Fronti",
  "token": "sk-dD4E81LFV...",
  "created_at": "2026-08-13 07:10:41",
- "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-13/848f382d-00b0-4c1f-934e-51dfb2b7facd.zip"
+ "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-13/848f382d-00b0-4c1f-934e-51dfb2b7facd.zip",
+ "summarized": {
+  "model": "agnes-2.5-flash",
+  "at": "2026-08-18 10:37:12",
+  "chunks": 1,
+  "meta": {
+   "keywords": [
+    "金融 Agent",
+    "评测基准",
+    "Rubric 评分",
+    "Bradley-Terry 难度建模",
+    "长文本评测",
+    "Agent 轨迹分析"
+   ],
+   "field": "金融 AI Agent 评测",
+   "innovations": [
+    "发布 FrontierFinance 开源基准（220 查询/11,543 rubric，覆盖完整投资工作流六大用例）",
+    "基于 Bradley-Terry 模型的查询难度量化体系并与人类解决时间相关验证",
+    "三维度（质量/成本/延迟）解耦评测并揭示 harness 对性能的主导作用"
+   ],
+   "benchmarks": [
+    "FrontierFinance"
+   ]
+  }
+ }
 }

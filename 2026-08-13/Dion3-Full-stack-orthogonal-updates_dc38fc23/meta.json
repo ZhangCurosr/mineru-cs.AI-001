@@ -4,5 +4,31 @@
  "title": "Dion3-Full-stack-orthogonal-updates",
  "token": "sk-AG7sAmdzS...",
  "created_at": "2026-08-13 07:11:06",
- "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-13/68ebd6b0-646b-4a01-afb7-7f7baa006bfe.zip"
+ "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-13/68ebd6b0-646b-4a01-afb7-7f7baa006bfe.zip",
+ "summarized": {
+  "model": "agnes-2.5-flash",
+  "at": "2026-08-18 10:24:02",
+  "chunks": 1,
+  "meta": {
+   "keywords": [
+    "Muon optimizer",
+    "Newton-Schulz orthogonalization",
+    "Gram Newton-Schulz",
+    "distributed optimization",
+    "large language model training",
+    "symmetric GEMM",
+    "communication-efficient optimization"
+   ],
+   "field": "分布式深度学习优化器",
+   "innovations": [
+    "Gram Newton-Schulz算法在Gram矩阵上迭代以降低FLOP成本并保持数学等价性",
+    "Dion3行子采样更新规则配合误差反馈实现优化步骤最高6.5倍加速",
+    "Megabatching策略将分布式正交优化的通信轮数从O(N)降至O(1)"
+   ],
+   "benchmarks": [
+    "ClimbMix语言模型预训练",
+    "12项标准下游基准（ARC、MMLU、BoolQ等）"
+   ]
+  }
+ }
 }

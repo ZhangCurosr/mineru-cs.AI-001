@@ -4,5 +4,31 @@
  "title": "GRPO-for-Financial-Advice-Generation-Outperforming-Commercia",
  "token": "sk-ZGznq9xBq...",
  "created_at": "2026-08-13 14:55:35",
- "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-13/0c288b41-f90e-4d8e-99a4-bc482f5e9bd7.zip"
+ "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-13/0c288b41-f90e-4d8e-99a4-bc482f5e9bd7.zip",
+ "summarized": {
+  "model": "agnes-2.5-flash",
+  "at": "2026-08-18 10:42:54",
+  "chunks": 1,
+  "meta": {
+   "keywords": [
+    "GRPO",
+    "LLM-as-a-judge",
+    "causal audit",
+    "CATE",
+    "financial advice generation",
+    "off-policy evaluation",
+    "safety gate"
+   ],
+   "field": "金融自然语言处理与因果评估",
+   "innovations": [
+    "安全门控与多准则 rubric 结合的 GRPO 金融建议生成训练",
+    "基于 AIPW 的双稳健因果审计评估 LLM 建议业务价值",
+    "judge-based 评分与 judge-independent 因果审计双轨评测并揭示排序分歧"
+   ],
+   "benchmarks": [
+    "LLM-as-a-judge rubric (n=2500)",
+    "DR-CATE causal audit (lift/downside rate/CVaR)"
+   ]
+  }
+ }
 }

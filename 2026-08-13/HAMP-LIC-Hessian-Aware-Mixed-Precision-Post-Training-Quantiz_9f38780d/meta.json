@@ -4,5 +4,31 @@
  "title": "HAMP-LIC-Hessian-Aware-Mixed-Precision-Post-Training-Quantiz",
  "token": "sk-vBvZ06NsJ...",
  "created_at": "2026-08-13 14:54:56",
- "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-13/8fbdecb2-638d-4829-a640-6c4d2209f569.zip"
+ "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-13/8fbdecb2-638d-4829-a640-6c4d2209f569.zip",
+ "summarized": {
+  "model": "agnes-2.5-flash",
+  "at": "2026-08-18 10:48:26",
+  "chunks": 1,
+  "meta": {
+   "keywords": [
+    "学习图像压缩",
+    "后训练量化",
+    "混合精度量化",
+    "Hessian敏感度",
+    "率失真优化",
+    "模型压缩"
+   ],
+   "field": "学习图像压缩量化",
+   "innovations": [
+    "Hessian迹与率失真任务损失的复合敏感度度量",
+    "帕累托前沿搜索将指数比特分配降至多项式复杂度",
+    "块级缩放与圆整联合任务约束重建优化"
+   ],
+   "benchmarks": [
+    "Kodak",
+    "Tecnick",
+    "CLIC 2020 Validation"
+   ]
+  }
+ }
 }
