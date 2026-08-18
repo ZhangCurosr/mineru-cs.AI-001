@@ -4,5 +4,35 @@
  "title": "TELLME-Test-Enhanced-Learning-for-Language-Model-Enrichment",
  "token": "sk-Ar06zcDAy...",
  "created_at": "2026-08-13 05:40:05",
- "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-13/bdf8f082-21c6-4341-b750-4080d8fef10f.zip"
+ "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-13/bdf8f082-21c6-4341-b750-4080d8fef10f.zip",
+ "summarized": {
+  "model": "agnes-2.5-flash",
+  "at": "2026-08-18 13:51:20",
+  "chunks": 1,
+  "meta": {
+   "keywords": [
+    "Continual Pre-training",
+    "Test-Enhanced Learning",
+    "QA-based CPT",
+    "Domain Adaptation",
+    "Loss Masking",
+    "Language Model Enrichment"
+   ],
+   "field": "大语言模型领域适应",
+   "innovations": [
+    "将教育心理学TEL原理融入CPT，通过描述型QA和loss masking设计实现单阶段高效领域适应",
+    "低成本100K QA合成管道（GPT-4o-mini，约$12），排除问题token的loss设计",
+    "在金融领域较CPT+IT基线最高提升23.6%，长期记忆保持提升9.8%，训练效率达1.4倍"
+   ],
+   "benchmarks": [
+    "FOMC",
+    "NIFTY",
+    "MMLU-F",
+    "HeadQA",
+    "MedMCQA",
+    "MMLU-C",
+    "KoBEST"
+   ]
+  }
+ }
 }

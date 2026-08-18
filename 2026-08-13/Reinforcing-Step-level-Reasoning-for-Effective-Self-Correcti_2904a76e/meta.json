@@ -4,5 +4,33 @@
  "title": "Reinforcing-Step-level-Reasoning-for-Effective-Self-Correcti",
  "token": "sk-5WOIsMt5v...",
  "created_at": "2026-08-13 05:40:18",
- "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-13/cfb6abbb-9a9b-4901-bd6e-9da1c41e21f1.zip"
+ "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-13/cfb6abbb-9a9b-4901-bd6e-9da1c41e21f1.zip",
+ "summarized": {
+  "model": "agnes-2.5-flash",
+  "at": "2026-08-18 13:50:55",
+  "chunks": 1,
+  "meta": {
+   "keywords": [
+    "self-correction",
+    "step-level reasoning",
+    "preference optimization",
+    "reinforcement learning",
+    "LLM reasoning",
+    "mathematical reasoning",
+    "DPO"
+   ],
+   "field": "大语言模型推理增强",
+   "innovations": [
+    "两阶段RL框架：先逐步级偏好优化建立推理基础，再显式训练自我验证与自我纠错",
+    "教师辅助变体SFS-DPO-R：引入GPT-4o生成错误解释理据作为额外监督信号",
+    "揭示自校正频率与准确率非单调关系，证明选择性校正优于高频校正"
+   ],
+   "benchmarks": [
+    "MATH",
+    "GSM8K",
+    "GK2023",
+    "OCW-Courses"
+   ]
+  }
+ }
 }

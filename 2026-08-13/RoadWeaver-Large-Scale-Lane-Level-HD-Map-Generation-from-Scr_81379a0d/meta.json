@@ -4,5 +4,29 @@
  "title": "RoadWeaver-Large-Scale-Lane-Level-HD-Map-Generation-from-Scr",
  "token": "sk-5WOIsMt5v...",
  "created_at": "2026-08-13 05:40:30",
- "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-13/b614cd7a-2721-4b2e-8068-0563bf163a81.zip"
+ "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-13/b614cd7a-2721-4b2e-8068-0563bf163a81.zip",
+ "summarized": {
+  "model": "agnes-2.5-flash",
+  "at": "2026-08-18 13:50:15",
+  "chunks": 1,
+  "meta": {
+   "keywords": [
+    "HD Map Generation",
+    "Autonomous Driving Simulation",
+    "Road Network Generation",
+    "Latent Diffusion",
+    "Map Synthesis"
+   ],
+   "field": "自动驾驶仿真与地图生成",
+   "innovations": [
+    "由粗到精的三阶段从零生成大规模车道级HD地图框架",
+    "结合VQ-VAE离散latent与结构张量场实现全局拓扑+局部几何联合建模",
+    "生成地图直接导出OSM/OpenDRIVE格式并成功部署至Tactics2D仿真器"
+   ],
+   "benchmarks": [
+    "OSM Road Networks",
+    "Tactics2D Simulator"
+   ]
+  }
+ }
 }

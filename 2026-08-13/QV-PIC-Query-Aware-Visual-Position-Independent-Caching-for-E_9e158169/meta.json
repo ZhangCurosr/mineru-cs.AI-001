@@ -4,5 +4,34 @@
  "title": "QV-PIC-Query-Aware-Visual-Position-Independent-Caching-for-E",
  "token": "sk-Ir4JqYCnj...",
  "created_at": "2026-08-13 05:39:50",
- "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-13/cc417ab3-95f1-4f36-ad1b-b09be1ae5139.zip"
+ "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-13/cc417ab3-95f1-4f36-ad1b-b09be1ae5139.zip",
+ "summarized": {
+  "model": "agnes-2.5-flash",
+  "at": "2026-08-18 13:49:22",
+  "chunks": 1,
+  "meta": {
+   "keywords": [
+    "Position-Independent Caching",
+    "Rendered-Image PIC",
+    "RAG Serving",
+    "Visual-Text Compression",
+    "KV Cache Reuse",
+    "Query-Aware Allocation"
+   ],
+   "field": "高效LLM/RAG推理服务",
+   "innovations": [
+    "模型原生模板条件编译：离线使用原生chat-template前缀编译KV缓存，消除编译-推理上下文不匹配，无需在线重计算",
+    "查询感知双分辨率分配：基于BGE-M3相关性评分选择性升级最多4个chunk至高分辨率缓存，平衡质量与效率"
+   ],
+   "benchmarks": [
+    "LongBench (六个QA子任务)",
+    "2WikiMQA",
+    "HotpotQA",
+    "MuSiQue",
+    "MultiFieldQA-en",
+    "NarrativeQA",
+    "TriviaQA"
+   ]
+  }
+ }
 }

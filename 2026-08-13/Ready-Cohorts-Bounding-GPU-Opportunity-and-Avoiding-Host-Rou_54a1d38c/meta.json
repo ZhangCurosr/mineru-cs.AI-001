@@ -4,5 +4,32 @@
  "title": "Ready-Cohorts-Bounding-GPU-Opportunity-and-Avoiding-Host-Rou",
  "token": "sk-Ir4JqYCnj...",
  "created_at": "2026-08-13 05:39:50",
- "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-13/9af126bf-a6db-4581-b362-91a6493191d0.zip"
+ "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-13/9af126bf-a6db-4581-b362-91a6493191d0.zip",
+ "summarized": {
+  "model": "agnes-2.5-flash",
+  "at": "2026-08-18 13:49:54",
+  "chunks": 1,
+  "meta": {
+   "keywords": [
+    "LLM agent serving",
+    "GPU control plane",
+    "batch scheduling",
+    "ready-cohort",
+    "device-resident execution",
+    "trace replay",
+    "CPU-GPU boundary"
+   ],
+   "field": "LLM/Agent Serving 系统优化",
+   "innovations": [
+    "提出 ready-cohort 边界与 F/P*/U/A 四量度体系，将 GPU agent 控制可行性拆为供给侧与放置侧两道门控",
+    "在等相对 launch deadline 假设下给出精确 DP offline packing 求解器，作为可复现的 workload oracle",
+    "在四种 named GPU 放置上证明 device-resident 机制相对 host round-trip 的 1.19x–2.39x 加速，并用嵌套 launch 反例排除单一 device-launch 解释"
+   ],
+   "benchmarks": [
+    "Exgentic tau2 agent-trace (airline/retail/telecom)",
+    "τ²-Bench 三类环境",
+    "four named GPU placements: GTX 1660 Ti / Modal L4 / RunPod L4 / Lambda H100 SXM5"
+   ]
+  }
+ }
 }

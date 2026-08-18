@@ -4,5 +4,34 @@
  "title": "MOON-Multi-Objective-OrthoNormalized-Updates-for-Multitask-L",
  "token": "sk-mBuyDYvkR...",
  "created_at": "2026-08-13 07:10:33",
- "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-13/f0ee44dc-85e1-40bc-ada5-32837da6845a.zip"
+ "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-13/f0ee44dc-85e1-40bc-ada5-32837da6845a.zip",
+ "summarized": {
+  "model": "agnes-2.5-flash",
+  "at": "2026-08-18 13:48:01",
+  "chunks": 1,
+  "meta": {
+   "keywords": [
+    "多任务学习",
+    "多目标优化",
+    "矩阵参数优化",
+    "正交归一化更新",
+    "谱-核范数",
+    "Muon",
+    "收敛性分析"
+   ],
+   "field": "多任务学习与多目标优化",
+   "innovations": [
+    "将多目标优化从欧氏几何推广至谱-核范数矩阵几何，提出结构感知的正交归一化更新规则",
+    "建立光滑非凸目标下 MOON 的 Pareto 平稳收敛率 O(T^{-1/2})（确定性）和 O(T^{-1/4})（随机）",
+    "设计实用 MOON 实现：梯度动量 + Newton-Schulz 极因子近似 + 在线对偶权重更新"
+   ],
+   "benchmarks": [
+    "MultiMNIST",
+    "NYU-v2",
+    "CityScapes",
+    "QM9",
+    "CelebA"
+   ]
+  }
+ }
 }

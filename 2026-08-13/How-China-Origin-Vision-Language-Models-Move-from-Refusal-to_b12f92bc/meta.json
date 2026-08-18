@@ -4,5 +4,30 @@
  "title": "How-China-Origin-Vision-Language-Models-Move-from-Refusal-to",
  "token": "sk-WcZzSI744...",
  "created_at": "2026-08-13 14:55:34",
- "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-13/a60b0f9a-065b-4439-80e5-ecb5feeb8cb5.zip"
+ "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-13/a60b0f9a-065b-4439-80e5-ecb5feeb8cb5.zip",
+ "summarized": {
+  "model": "agnes-2.5-flash",
+  "at": "2026-08-18 13:45:56",
+  "chunks": 5,
+  "meta": {
+   "keywords": [
+    "视觉语言模型",
+    "国家对齐框架",
+    "政治敏感图像",
+    "多模态审查",
+    "视觉抽象探针"
+   ],
+   "field": "多模态 AI 安全与治理",
+   "innovations": [
+    "提出 D4 国家对齐框架分类体系（ENDORSEMENT/SUBSTITUTION/DEFLECTION）",
+    "构建首个开源中国敏感政治图像 VLM 评测基准",
+    "揭示审查模型从拒绝到隐性框架替代的行为迁移路径"
+   ],
+   "benchmarks": [
+    "中国敏感政治图像 benchmark",
+    "视觉抽象探针 (A0-A6)",
+    "Describe vs. Narrative 提示词消融"
+   ]
+  }
+ }
 }

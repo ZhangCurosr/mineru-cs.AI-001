@@ -4,5 +4,34 @@
  "title": "RealisticTritonBench-A-Benchmark-for-Triton-Kernel-Generatio",
  "token": "sk-dD4E81LFV...",
  "created_at": "2026-08-13 05:40:16",
- "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-13/512f59e9-dd88-40e0-904f-07655a6e1f68.zip"
+ "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-13/512f59e9-dd88-40e0-904f-07655a6e1f68.zip",
+ "summarized": {
+  "model": "agnes-2.5-flash",
+  "at": "2026-08-18 13:49:51",
+  "chunks": 1,
+  "meta": {
+   "keywords": [
+    "Triton",
+    "GPU kernel generation",
+    "benchmark",
+    "large language model",
+    "reward hacking mitigation",
+    "end-to-end evaluation",
+    "LLM code generation"
+   ],
+   "field": "AI 框架底层算子自动生成",
+   "innovations": [
+    "首个基于真实 PR 的 Triton 内核生成基准，覆盖 Optimization/Modification/New-kernel 三类任务",
+    "端到端框架级评测（Unit Test + Model Accuracy + TTFT/TPOT），替代单核 fast_p",
+    "通过外部进程计时与独立精度 harness 抑制三类已知奖励黑客策略"
+   ],
+   "benchmarks": [
+    "RealisticTritonBench",
+    "KernelBench",
+    "TritonBench",
+    "FlashInferBench",
+    "SWE-bench"
+   ]
+  }
+ }
 }

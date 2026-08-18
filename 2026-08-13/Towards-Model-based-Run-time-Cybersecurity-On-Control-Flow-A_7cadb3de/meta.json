@@ -4,5 +4,29 @@
  "title": "Towards-Model-based-Run-time-Cybersecurity-On-Control-Flow-A",
  "token": "sk-Ar06zcDAy...",
  "created_at": "2026-08-13 05:39:53",
- "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-13/78824180-db8b-44cf-b50a-8ecfcba1242b.zip"
+ "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-13/78824180-db8b-44cf-b50a-8ecfcba1242b.zip",
+ "summarized": {
+  "model": "agnes-2.5-flash",
+  "at": "2026-08-18 13:52:09",
+  "chunks": 1,
+  "meta": {
+   "keywords": [
+    "运行时安全",
+    "控制流完整性",
+    "攻击树诊断",
+    "硬件辅助监控",
+    "控制流伪装",
+    "入侵检测"
+   ],
+   "field": "运行时系统安全与形式化监控",
+   "innovations": [
+    "形式化刻画控制流观测伪装作为诊断失效模式",
+    "提出软硬件协同的独立双通道监控架构",
+    "将延迟输出缓冲区整合进检测-诊断闭环实现containment"
+   ],
+   "benchmarks": [
+    "认证服务案例（13基本块）"
+   ]
+  }
+ }
 }

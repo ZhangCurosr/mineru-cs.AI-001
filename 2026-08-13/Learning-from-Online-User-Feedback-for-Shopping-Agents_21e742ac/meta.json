@@ -4,5 +4,30 @@
  "title": "Learning-from-Online-User-Feedback-for-Shopping-Agents",
  "token": "sk-AG7sAmdzS...",
  "created_at": "2026-08-13 07:11:07",
- "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-13/5c3e5c74-2a00-4073-ac6a-50c60edd5e7b.zip"
+ "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-13/5c3e5c74-2a00-4073-ac6a-50c60edd5e7b.zip",
+ "summarized": {
+  "model": "agnes-2.5-flash",
+  "at": "2026-08-18 13:44:28",
+  "chunks": 1,
+  "meta": {
+   "keywords": [
+    "shopping agent",
+    "reinforcement learning",
+    "on-policy distillation",
+    "online user feedback",
+    "recommendation",
+    "conversational recommendation"
+   ],
+   "field": "对话式推荐系统",
+   "innovations": [
+    "双源在线反馈（行为+对话）联合学习框架LOFA",
+    "基于特权未来信息的反馈感知teacher实现on-policy蒸馏",
+    "RL→OPD顺序训练提升推荐质量与对话修复成功率"
+   ],
+   "benchmarks": [
+    "JD-Search",
+    "JD-conv"
+   ]
+  }
+ }
 }

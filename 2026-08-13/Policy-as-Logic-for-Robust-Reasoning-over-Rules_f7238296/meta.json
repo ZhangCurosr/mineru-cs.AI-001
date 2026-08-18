@@ -4,5 +4,30 @@
  "title": "Policy-as-Logic-for-Robust-Reasoning-over-Rules",
  "token": "sk-JiEKTe0tT...",
  "created_at": "2026-08-13 05:40:23",
- "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-13/f8ac2c72-268c-4aaf-ab2d-23cddcdfa29b.zip"
+ "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-13/f8ac2c72-268c-4aaf-ab2d-23cddcdfa29b.zip",
+ "summarized": {
+  "model": "agnes-2.5-flash",
+  "at": "2026-08-18 13:49:02",
+  "chunks": 1,
+  "meta": {
+   "keywords": [
+    "Policy-as-Logic",
+    "Answer Set Programming",
+    "Neurosymbolic AI",
+    "Robust Reasoning",
+    "Policy Compliance",
+    "LLM Fact Extraction"
+   ],
+   "field": "神经符号人工智能与可信赖AI",
+   "innovations": [
+    "将策略翻译为ASP并分离LLM提取与符号推理的PaL架构",
+    "六类语言扰动下的系统性鲁棒性评估协议",
+    "仅传schema不传完整政策的token效率优化策略"
+   ],
+   "benchmarks": [
+    "RuleArena",
+    "PolyGuard"
+   ]
+  }
+ }
 }

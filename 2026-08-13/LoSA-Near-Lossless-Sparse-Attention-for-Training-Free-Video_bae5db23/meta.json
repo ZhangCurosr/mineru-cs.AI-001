@@ -4,5 +4,33 @@
  "title": "LoSA-Near-Lossless-Sparse-Attention-for-Training-Free-Video",
  "token": "sk-7NOZt17oN...",
  "created_at": "2026-08-13 07:12:16",
- "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-13/e707187f-9715-4cb4-91a3-eb746f1acfd8.zip"
+ "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-13/e707187f-9715-4cb4-91a3-eb746f1acfd8.zip",
+ "summarized": {
+  "model": "agnes-2.5-flash",
+  "at": "2026-08-18 13:45:33",
+  "chunks": 1,
+  "meta": {
+   "keywords": [
+    "稀疏注意力",
+    "视频扩散模型",
+    "推理加速",
+    "训练自由",
+    "特征缓存",
+    "near-lossless",
+    "attention sparsification"
+   ],
+   "field": "高效视频生成推理",
+   "innovations": [
+    "提出 retained-mass 阈值替代固定稀疏比例的近无损稀疏注意力设计",
+    "利用高注意力质量支持区域的跨步稳定性实现 once-construct freeze-reuse 机制",
+    "证明低误差稀疏模块是可组合加速 pipeline 的关键基础构件"
+   ],
+   "benchmarks": [
+    "VBench",
+    "Wan2.1-T2V-1.3B",
+    "Wan2.1-T2V-14B",
+    "HunyuanVideo-13B"
+   ]
+  }
+ }
 }

@@ -4,5 +4,33 @@
  "title": "M-Net-Integrating-Spectral-Features-and-Physical-Field-Opera",
  "token": "sk-9BdnpHblK...",
  "created_at": "2026-08-13 07:11:59",
- "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-13/4c7575d2-ca7a-47ff-a692-cf70bf70e80f.zip"
+ "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-13/4c7575d2-ca7a-47ff-a692-cf70bf70e80f.zip",
+ "summarized": {
+  "model": "agnes-2.5-flash",
+  "at": "2026-08-18 13:46:44",
+  "chunks": 1,
+  "meta": {
+   "keywords": [
+    "医学图像分割",
+    "U-Net",
+    "条件数",
+    "奇异值分解",
+    "散度",
+    "旋度",
+    "注意力机制",
+    "归纳偏置"
+   ],
+   "field": "医学图像分割",
+   "innovations": [
+    "提出基于均值中心化局部像素矩阵的连续条件数作为可微纹理谱特征，修正了二值可逆性特征的信息损失问题",
+    "引入散度与离散旋度算子作为固定权重的物理归纳偏置，分别捕获局域强度极值与边界非光滑性",
+    "设计 Math-Attention Gate（MAG）机制，在跳跃连接处利用数学特征自适应融合 CNN 深度特征，防止先验信息稀释"
+   ],
+   "benchmarks": [
+    "LiTS",
+    "KiTS23",
+    "BraTS24"
+   ]
+  }
+ }
 }

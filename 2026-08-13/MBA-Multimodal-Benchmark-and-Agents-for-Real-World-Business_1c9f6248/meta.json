@@ -4,5 +4,31 @@
  "title": "MBA-Multimodal-Benchmark-and-Agents-for-Real-World-Business",
  "token": "sk-gD7m2ian9...",
  "created_at": "2026-08-13 07:11:11",
- "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-13/6ca57983-0680-45cf-98a9-996ecdb43705.zip"
+ "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-13/6ca57983-0680-45cf-98a9-996ecdb43705.zip",
+ "summarized": {
+  "model": "agnes-2.5-flash",
+  "at": "2026-08-18 13:47:03",
+  "chunks": 1,
+  "meta": {
+   "keywords": [
+    "多模态大语言模型",
+    "商业创意生成",
+    "强化学习",
+    "GRPO",
+    "基准构建",
+    "检索增强生成",
+    "MLLM-as-a-Judge"
+   ],
+   "field": "多模态大语言模型应用",
+   "innovations": [
+    "首个多模态商业创意基准MBA-Bench（30K样本、六域、八指标）",
+    "盲评与已知设置的专用智能体MBA-b/MBA-k及双奖励设计",
+    "基于外部知识库MBA-Library的可行性验证机制"
+   ],
+   "benchmarks": [
+    "MBA-Bench",
+    "PBIG六维度评估体系"
+   ]
+  }
+ }
 }

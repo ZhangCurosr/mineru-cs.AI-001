@@ -4,5 +4,31 @@
  "title": "Proportional-Analogies-on-Probability-Distributions-via-Baye",
  "token": "sk-JiEKTe0tT...",
  "created_at": "2026-08-13 05:40:31",
- "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-13/36b4c60b-47ed-4036-a718-0670773aeac4.zip"
+ "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-13/36b4c60b-47ed-4036-a718-0670773aeac4.zip",
+ "summarized": {
+  "model": "agnes-2.5-flash",
+  "at": "2026-08-18 13:49:24",
+  "chunks": 1,
+  "meta": {
+   "keywords": [
+    "proportional analogy",
+    "Bayesian updating",
+    "exponential family",
+    "probability distributions",
+    "natural parameter",
+    "Wasserstein distance",
+    "importance sampling",
+    "analogical equation"
+   ],
+   "field": "类比推理与概率建模",
+   "innovations": [
+    "基于贝叶斯更新定义概率分布间的比例类比，满足自反/对称/中心置换公理",
+    "证明指数族类比在自然参数空间中等价于算术类比",
+    "提出基于粒子采样与Wasserstein距离的非参数类比方程求解算法"
+   ],
+   "benchmarks": [
+    "Synthetic Normal Analogies Benchmark (N=3121)"
+   ]
+  }
+ }
 }

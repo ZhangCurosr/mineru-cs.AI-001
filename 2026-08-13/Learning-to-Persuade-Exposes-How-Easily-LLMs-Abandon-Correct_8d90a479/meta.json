@@ -4,5 +4,33 @@
  "title": "Learning-to-Persuade-Exposes-How-Easily-LLMs-Abandon-Correct",
  "token": "sk-gD7m2ian9...",
  "created_at": "2026-08-13 07:12:10",
- "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-13/3645fbf9-e679-46cb-8d32-1f86a05827e3.zip"
+ "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-13/3645fbf9-e679-46cb-8d32-1f86a05827e3.zip",
+ "summarized": {
+  "model": "agnes-2.5-flash",
+  "at": "2026-08-18 13:45:09",
+  "chunks": 1,
+  "meta": {
+   "keywords": [
+    "adversarial persuasion",
+    "reinforcement learning",
+    "LLM safety",
+    "red-teaming",
+    "misinformation susceptibility",
+    "multi-agent systems"
+   ],
+   "field": "LLM 安全与对齐",
+   "innovations": [
+    "提出基于 GRPO 的对抗性说服 RL 框架，将 Persuadee 视为冻结环境以揭示最坏情况脆弱性",
+    "通过课程学习 warm-start 实现对 GPT-4o-mini 等更强闭源模型的有效攻击（PSR 从 25% 提升至 38%）",
+    "扩展说服技术分类法至 52 种技法，发现 RL 训练涌现的 Deception 与 Credibility-based 策略主导现象"
+   ],
+   "benchmarks": [
+    "TruthfulQA",
+    "MMLU",
+    "CommonsenseQA",
+    "MedQA",
+    "ARC-Challenge"
+   ]
+  }
+ }
 }

@@ -4,5 +4,37 @@
  "title": "LoongReflect-Boosting-Long-Horizon-Reflection-in-Search-Agen",
  "token": "sk-wGl2gwQjA...",
  "created_at": "2026-08-13 14:56:28",
- "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-13/816d70cc-3d3a-43aa-8cf3-078e11fead6c.zip"
+ "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-13/816d70cc-3d3a-43aa-8cf3-078e11fead6c.zip",
+ "summarized": {
+  "model": "agnes-2.5-flash",
+  "at": "2026-08-18 13:46:28",
+  "chunks": 1,
+  "meta": {
+   "keywords": [
+    "long-horizon agent",
+    "reflection",
+    "search RAG",
+    "reinforcement learning",
+    "knowledge distillation",
+    "trajectory control"
+   ],
+   "field": "LLM Agent 与长程推理",
+   "innovations": [
+    "将反思形式化为可逆轨迹树上的显式记忆控制策略（reflect/backtrack）",
+    "答案遮蔽 EMA 教师蒸馏 + GRPO 轨迹级优化的双通道学习框架",
+    "基于外梯度投影的前瞻协调机制对齐局部密集监督与全局结果监督"
+   ],
+   "benchmarks": [
+    "HotpotQA",
+    "2WikiMultiHopQA",
+    "Bamboogle",
+    "FRAMES",
+    "MuSiQue",
+    "NQ",
+    "TriviaQA",
+    "MATH",
+    "GSM8K"
+   ]
+  }
+ }
 }

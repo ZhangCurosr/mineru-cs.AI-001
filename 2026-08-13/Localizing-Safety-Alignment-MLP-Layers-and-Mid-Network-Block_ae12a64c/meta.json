@@ -4,5 +4,32 @@
  "title": "Localizing-Safety-Alignment-MLP-Layers-and-Mid-Network-Block",
  "token": "sk-mqXJxPMnY...",
  "created_at": "2026-08-13 14:55:48",
- "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-13/cc657b2b-dc79-4fb9-9e93-644a064a43cd.zip"
+ "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-13/cc657b2b-dc79-4fb9-9e93-644a064a43cd.zip",
+ "summarized": {
+  "model": "agnes-2.5-flash",
+  "at": "2026-08-18 13:45:27",
+  "chunks": 1,
+  "meta": {
+   "keywords": [
+    "safety alignment",
+    "mechanistic interpretability",
+    "weight transplantation",
+    "refusal behavior",
+    "MLP layers",
+    "model localization"
+   ],
+   "field": "LLM安全性与机制可解释性",
+   "innovations": [
+    "发现可转移拒绝行为主要由MLP权重介导而非Attention（至少2.7倍优势）",
+    "定位到中间深度Block 3 (layers 8-11)为拒绝行为最集中区域，跨两种模型架构一致",
+    "揭示MLP块组合的非加性交互，6块子集优于全MLP移植"
+   ],
+   "benchmarks": [
+    "TwinPrompt",
+    "SGXSTest",
+    "AdvBench",
+    "OR-Bench"
+   ]
+  }
+ }
 }

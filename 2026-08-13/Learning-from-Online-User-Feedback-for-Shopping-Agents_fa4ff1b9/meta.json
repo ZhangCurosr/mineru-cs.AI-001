@@ -4,5 +4,30 @@
  "title": "Learning-from-Online-User-Feedback-for-Shopping-Agents",
  "token": "sk-buEDzpHKC...",
  "created_at": "2026-08-13 14:55:47",
- "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-13/5c3e5c74-2a00-4073-ac6a-50c60edd5e7b.zip"
+ "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-13/5c3e5c74-2a00-4073-ac6a-50c60edd5e7b.zip",
+ "summarized": {
+  "model": "agnes-2.5-flash",
+  "at": "2026-08-18 13:44:26",
+  "chunks": 1,
+  "meta": {
+   "keywords": [
+    "购物代理",
+    "在线反馈学习",
+    "强化学习",
+    "在线蒸馏",
+    "推荐系统",
+    "对话系统"
+   ],
+   "field": "对话式推荐系统",
+   "innovations": [
+    "提出LOFA框架，从在线用户反馈中自动学习购物代理，无需人工标注",
+    "设计双反馈优化策略，结合购买结果强化学习与对话内指令在线蒸馏",
+    "构建反馈感知自蒸馏机制，将稀疏对话反馈转化为密集token级监督信号"
+   ],
+   "benchmarks": [
+    "JD-Search",
+    "JD-conv"
+   ]
+  }
+ }
 }

@@ -4,5 +4,32 @@
  "title": "TailBooster-A-Dual-Layer-Generative-Framework-for-Extreme-Va",
  "token": "sk-JiEKTe0tT...",
  "created_at": "2026-08-13 05:40:22",
- "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-13/cca478b3-00f7-43bd-bcd0-eb734fb9719b.zip"
+ "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-13/cca478b3-00f7-43bd-bcd0-eb734fb9719b.zip",
+ "summarized": {
+  "model": "agnes-2.5-flash",
+  "at": "2026-08-18 13:52:05",
+  "chunks": 1,
+  "meta": {
+   "keywords": [
+    "极值生成",
+    "合成数据增强",
+    "异常检测",
+    "混合类型表格数据",
+    "航空运行",
+    "变分自编码器",
+    "操作有效性"
+   ],
+   "field": "极端事件预测与合成数据生成",
+   "innovations": [
+    "双层生成框架：IQR极值提取+自编码器操作清洗联合解决尾部欠代表与操作无效性问题",
+    "数据驱动操作有效性强制：无需手工规则即可过滤物理不可行合成记录",
+    "极端值定向增强显著提升回归预测精度：MAE降低29-57%"
+   ],
+   "benchmarks": [
+    "BTS U.S. Domestic Flight Records (New York State, Jan 2023)",
+    "Extreme Air Time Prediction",
+    "Extreme Arrival Delay Prediction"
+   ]
+  }
+ }
 }
