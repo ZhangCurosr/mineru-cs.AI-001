@@ -4,5 +4,26 @@
  "title": "How-Organizations-Use-AI-Evidence-from-ChatGPT",
  "token": "sk-45Ifw5Iq3...",
  "created_at": "2026-08-13 07:11:57",
- "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-13/9a70cee2-fe7f-4d93-872e-c2261f3de880.zip"
+ "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-13/9a70cee2-fe7f-4d93-872e-c2261f3de880.zip",
+ "summarized": {
+  "model": "agnes-2.5-flash",
+  "at": "2026-08-18 12:25:37",
+  "chunks": 1,
+  "meta": {
+   "keywords": [
+    "enterprise AI adoption",
+    "generative AI telemetry",
+    "ChatGPT Enterprise",
+    "organizational diffusion",
+    "intangible complements",
+    "task classification"
+   ],
+   "field": "企业生成式 AI 采纳与组织内扩散",
+   "innovations": [
+    "首次将 ChatGPT Enterprise 日志链接到 Compustat 美股财务面板，刻画 adoption 的规模与无形资本决定因素",
+    "在六个月采纳窗口后分解 composition vs. intensity 双边际，发现 early-career 员工人均消息比同 firm 均值高 8–9 条",
+    "构建 60 类两层任务 taxonomy 与 prevalence/message-share 双指标框架，证实企业 AI 使用呈长尾分布而非单场景主导"
+   ]
+  }
+ }
 }

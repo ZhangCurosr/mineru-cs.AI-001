@@ -4,5 +4,33 @@
  "title": "Do-You-See-What-You-Draw-A-Semantic-Closed-Loop-Framework-fo",
  "token": "sk-zybFjYcVd...",
  "created_at": "2026-08-13 07:10:26",
- "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-13/34171c5b-8d6c-445d-bf9a-ffa834f13c41.zip"
+ "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-13/34171c5b-8d6c-445d-bf9a-ffa834f13c41.zip",
+ "summarized": {
+  "model": "agnes-2.5-flash",
+  "at": "2026-08-18 12:11:47",
+  "chunks": 1,
+  "meta": {
+   "keywords": [
+    "Unified Multimodal Models",
+    "SGU",
+    "closed-loop evaluation",
+    "visual understanding",
+    "visual generation",
+    "VQA benchmark",
+    "system-level evaluation"
+   ],
+   "field": "多模态统一模型评测",
+   "innovations": [
+    "提出 SGU 语义闭环评估框架，通过模型自身生成产物上的最终推理给出系统级分数",
+    "构建无标注可扩展的闭环评测协议并定义相对上界分数 s_umm,r",
+    "通过阶段替换、提示敏感性与图像交换检测提供可解释的诊断分析"
+   ],
+   "benchmarks": [
+    "MMStar",
+    "MMBench",
+    "MathVista",
+    "OCR-VQA"
+   ]
+  }
+ }
 }

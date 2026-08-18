@@ -4,5 +4,30 @@
  "title": "Learning-Based-Behavior-Planning-for-Automated-Driving-Real",
  "token": "sk-jywkrqzJV...",
  "created_at": "2026-08-13 14:55:24",
- "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-13/7cc27a63-2a55-42ba-a07b-5b4e28bca9f5.zip"
+ "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-13/7cc27a63-2a55-42ba-a07b-5b4e28bca9f5.zip",
+ "summarized": {
+  "model": "agnes-2.5-flash",
+  "at": "2026-08-18 12:38:22",
+  "chunks": 1,
+  "meta": {
+   "keywords": [
+    "hybrid planning",
+    "behavior planning",
+    "imitation learning",
+    "trajectory optimization",
+    "automated driving",
+    "safety layer"
+   ],
+   "field": "自动驾驶行为规划",
+   "innovations": [
+    "提出学习式行为规划与优化式轨迹监督的混合架构，解耦决策与安全性验证",
+    "在向量化场景表示基础上设计Transformer规划器并引入辅助任务促进域迁移",
+    "完成从算法到实车部署的完整工程链路并在公开测试场验证"
+   ],
+   "benchmarks": [
+    "DrivIng dataset",
+    "test track dataset"
+   ]
+  }
+ }
 }

@@ -4,5 +4,29 @@
  "title": "Dion3-Full-stack-orthogonal-updates",
  "token": "sk-zKZtEfvnM...",
  "created_at": "2026-08-13 14:56:01",
- "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-13/68ebd6b0-646b-4a01-afb7-7f7baa006bfe.zip"
+ "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-13/68ebd6b0-646b-4a01-afb7-7f7baa006bfe.zip",
+ "summarized": {
+  "model": "agnes-2.5-flash",
+  "at": "2026-08-18 12:10:57",
+  "chunks": 1,
+  "meta": {
+   "keywords": [
+    "Muon优化器",
+    "Newton-Schulz正交化",
+    "分布式训练",
+    "GPU内核优化",
+    "大语言模型训练"
+   ],
+   "field": "分布式优化器",
+   "innovations": [
+    "Gram Newton-Schulz算法通过迭代小对称Gram矩阵降低正交化FLOP成本",
+    "Dion3选择性行更新规则结合误差反馈实现计算与通信双重压缩",
+    "CuteDSL对称GEMM核与Megabatching通信策略的全栈协同优化"
+   ],
+   "benchmarks": [
+    "ClimbMix语言模型预训练",
+    "12项下游基准评测（ARC/MMLU/HellaSwag等）"
+   ]
+  }
+ }
 }

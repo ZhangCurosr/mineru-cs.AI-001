@@ -4,5 +4,33 @@
  "title": "HyperANFIS-Enhancing-Rule-Representation-and-Interpretabilit",
  "token": "sk-sKVjU65N5...",
  "created_at": "2026-08-13 07:10:36",
- "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-13/6c5e96f5-e340-4aec-ab86-d90e11663b29.zip"
+ "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-13/6c5e96f5-e340-4aec-ab86-d90e11663b29.zip",
+ "summarized": {
+  "model": "agnes-2.5-flash",
+  "at": "2026-08-18 12:30:43",
+  "chunks": 1,
+  "meta": {
+   "keywords": [
+    "ANFIS",
+    "双曲几何",
+    "可解释机器学习",
+    "神经模糊系统",
+    "Fréchet 均值",
+    "IF-THEN 规则"
+   ],
+   "field": "可解释机器学习与神经模糊系统",
+   "innovations": [
+    "将ANFIS规则匹配、激活与后件聚合统一到双曲流形上以提升规则表达容量",
+    "引入规则平衡/专注/分离三重正则化稳定双曲规则学习",
+    "首次系统性地把双曲几何引入可解释模糊推理框架并验证规则质量提升"
+   ],
+   "benchmarks": [
+    "Spambase",
+    "Car",
+    "Zoo",
+    "WDBC",
+    "NSL-KDD"
+   ]
+  }
+ }
 }

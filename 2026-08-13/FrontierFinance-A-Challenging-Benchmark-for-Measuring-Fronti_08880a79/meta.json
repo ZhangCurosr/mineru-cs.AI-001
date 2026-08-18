@@ -4,5 +4,34 @@
  "title": "FrontierFinance-A-Challenging-Benchmark-for-Measuring-Fronti",
  "token": "sk-NSDKB0rML...",
  "created_at": "2026-08-13 14:55:41",
- "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-13/848f382d-00b0-4c1f-934e-51dfb2b7facd.zip"
+ "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-13/848f382d-00b0-4c1f-934e-51dfb2b7facd.zip",
+ "summarized": {
+  "model": "agnes-2.5-flash",
+  "at": "2026-08-18 12:10:54",
+  "chunks": 1,
+  "meta": {
+   "keywords": [
+    "金融AI代理",
+    "基准测试",
+    "开放端研报",
+    "Rubric评估",
+    "Bradley-Terry难度",
+    "工具harness",
+    "长表单生成"
+   ],
+   "field": "金融NLP/智能体评估",
+   "innovations": [
+    "首个覆盖完整投资者工作流的开源金融代理基准，包含220查询和11,543个来源归因rubric",
+    "引入细粒度来源归因的专家撰写二分评估标准体系，支持可解释评分",
+    "通过BT模型量化查询难度并与人类专家求解时间交叉验证"
+   ],
+   "benchmarks": [
+    "FrontierFinance",
+    "FinanceBench",
+    "BigFinanceBench",
+    "Finance Agent Benchmark v2",
+    "FinResearchBench II"
+   ]
+  }
+ }
 }

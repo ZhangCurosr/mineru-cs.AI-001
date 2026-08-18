@@ -4,5 +4,29 @@
  "title": "IS-PER-AGENT-POLICY-COMPOSITION-SAFE-RE-THINKING-SUCCESSOR-F",
  "token": "sk-Nw8TqBTK6...",
  "created_at": "2026-08-13 14:55:43",
- "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-13/838ff070-b5ae-4a59-b2bb-0ecc253c868d.zip"
+ "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-13/838ff070-b5ae-4a59-b2bb-0ecc253c868d.zip",
+ "summarized": {
+  "model": "agnes-2.5-flash",
+  "at": "2026-08-18 12:31:59",
+  "chunks": 1,
+  "meta": {
+   "keywords": [
+    "多智能体强化学习",
+    "策略迁移",
+    "后随特征",
+    "广义策略改进",
+    "安全组合",
+    "零适配部署"
+   ],
+   "field": "多智能体强化学习策略转移",
+   "innovations": [
+    "揭示独立per-agent策略组合的不安全性并给出充要安全条件",
+    "提出MA-USFA双层分层方法实现安全且灵活的零适配多智能体策略组合"
+   ],
+   "benchmarks": [
+    "SFWorld网格世界",
+    "Manhattan交通信号控制(196智能体)"
+   ]
+  }
+ }
 }

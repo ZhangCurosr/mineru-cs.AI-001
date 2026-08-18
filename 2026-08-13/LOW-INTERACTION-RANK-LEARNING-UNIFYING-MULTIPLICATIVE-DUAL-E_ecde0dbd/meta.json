@@ -4,5 +4,35 @@
  "title": "LOW-INTERACTION-RANK-LEARNING-UNIFYING-MULTIPLICATIVE-DUAL-E",
  "token": "sk-Zs9k8BxOo...",
  "created_at": "2026-08-13 07:10:51",
- "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-13/43e75233-7a64-4c7f-aea9-23b4fa1defe9.zip"
+ "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-13/43e75233-7a64-4c7f-aea9-23b4fa1defe9.zip",
+ "summarized": {
+  "model": "agnes-2.5-flash",
+  "at": "2026-08-18 12:38:11",
+  "chunks": 1,
+  "meta": {
+   "keywords": [
+    "multiplicative dual-encoder",
+    "interaction spectrum",
+    "gauge symmetry",
+    "whitening identifiability",
+    "sample complexity",
+    "late vs early interaction",
+    "operator learning",
+    "contrastive representation"
+   ],
+   "field": "表示学习与算子学习的统一理论",
+   "innovations": [
+    "以交互谱统一十个跨社区的双编码器架构并给出近似误差分解",
+    "证明 whitening 在谱隙条件下唯一固定规范至置换和符号",
+    "提出基于有效交互秩的事前可用性感知判据"
+   ],
+   "benchmarks": [
+    "Synthetic Legendre kernel",
+    "Boolean equality kernel on {-1,1}^m",
+    "Narrowband periodic Gaussian kernel",
+    "DeepONet heat/antiderivative/Burgers/Darcy operators",
+    "CLIP ViT-B/32 and RN50 on CIFAR-100"
+   ]
+  }
+ }
 }

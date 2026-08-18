@@ -4,5 +4,30 @@
  "title": "IS-PER-AGENT-POLICY-COMPOSITION-SAFE-RE-THINKING-SUCCESSOR-F",
  "token": "sk-Zs9k8BxOo...",
  "created_at": "2026-08-13 07:10:50",
- "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-13/838ff070-b5ae-4a59-b2bb-0ecc253c868d.zip"
+ "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-13/838ff070-b5ae-4a59-b2bb-0ecc253c868d.zip",
+ "summarized": {
+  "model": "agnes-2.5-flash",
+  "at": "2026-08-18 12:31:38",
+  "chunks": 1,
+  "meta": {
+   "keywords": [
+    "multi-agent reinforcement learning",
+    "successor features",
+    "policy transfer",
+    "generalized policy improvement",
+    "cooperative MARL",
+    "value decomposition"
+   ],
+   "field": "多智能体强化学习",
+   "innovations": [
+    "证明独立 per-agent 策略组合在一般情况下不安全，给出安全/不安全边界条件",
+    "提出 MA-USFA 双层分层方法：条件化 per-agent 后继特征下层 + 跨智能体校正选择器上层",
+    "导出超模性与权重锥等可检查的充分条件，使独立组合在可判定的安全区域内仍可使用"
+   ],
+   "benchmarks": [
+    "SFWorld",
+    "Manhattan 28x7 Traffic Signal Control"
+   ]
+  }
+ }
 }

@@ -4,5 +4,29 @@
  "title": "JieZi-A-Large-Scale-Expert-Audited-Dataset-and-Benchmark-for",
  "token": "sk-Tq65tdoLK...",
  "created_at": "2026-08-13 14:55:36",
- "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-13/0dfba816-b8b5-4f62-8af9-5f465f055da3.zip"
+ "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-13/0dfba816-b8b5-4f62-8af9-5f465f055da3.zip",
+ "summarized": {
+  "model": "agnes-2.5-flash",
+  "at": "2026-08-18 12:35:15",
+  "chunks": 1,
+  "meta": {
+   "keywords": [
+    "Ancient Chinese Character Exegesis",
+    "Vision-Language VQA",
+    "Paleographic Dataset",
+    "Expert-Audited Data",
+    "Multimodal Large Language Model",
+    "Chinese Philology AI"
+   ],
+   "field": "文化遗产计算分析",
+   "innovations": [
+    "首次将古代汉字训诂形式化为四层递进视觉语言问答任务",
+    "构建首个大规模专家审核多字期多维度VQA训练数据集（50万+ QA对）",
+    "创建严格隔离、专家逐条核验的训诂能力综合评估基准（JieZi-Bench）"
+   ],
+   "benchmarks": [
+    "JieZi-Bench"
+   ]
+  }
+ }
 }

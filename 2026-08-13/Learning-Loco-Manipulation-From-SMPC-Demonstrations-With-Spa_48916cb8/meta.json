@@ -4,5 +4,30 @@
  "title": "Learning-Loco-Manipulation-From-SMPC-Demonstrations-With-Spa",
  "token": "sk-9BdnpHblK...",
  "created_at": "2026-08-13 07:12:18",
- "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-13/1fdda990-681f-4863-8f5b-85f57a1ae795.zip"
+ "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-13/1fdda990-681f-4863-8f5b-85f57a1ae795.zip",
+ "summarized": {
+  "model": "agnes-2.5-flash",
+  "at": "2026-08-18 12:38:22",
+  "chunks": 1,
+  "meta": {
+   "keywords": [
+    "强化学习",
+    "模型预测控制",
+    "位移操作",
+    "稀疏奖励",
+    "离线到在线学习",
+    "Sim-to-Real"
+   ],
+   "field": "机器人强化学习",
+   "innovations": [
+    "利用SMPC自动生成专家数据实现稀疏奖励RL训练",
+    "bounded critic架构提高训练稳定性",
+    "跨形态 locomotion-manipulation 策略部署"
+   ],
+   "benchmarks": [
+    "Spot四足机器人任务",
+    "G1人形机器人推箱子"
+   ]
+  }
+ }
 }

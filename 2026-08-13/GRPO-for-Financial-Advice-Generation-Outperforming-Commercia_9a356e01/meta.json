@@ -4,5 +4,32 @@
  "title": "GRPO-for-Financial-Advice-Generation-Outperforming-Commercia",
  "token": "sk-sKVjU65N5...",
  "created_at": "2026-08-13 07:10:31",
- "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-13/0c288b41-f90e-4d8e-99a4-bc482f5e9bd7.zip"
+ "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-13/0c288b41-f90e-4d8e-99a4-bc482f5e9bd7.zip",
+ "summarized": {
+  "model": "agnes-2.5-flash",
+  "at": "2026-08-18 12:11:39",
+  "chunks": 1,
+  "meta": {
+   "keywords": [
+    "GRPO",
+    "RLAIF",
+    "财务建议生成",
+    "因果审计",
+    "DR-CATE",
+    "LLM-as-a-judge",
+    "安全门奖励",
+    "离线策略评估"
+   ],
+   "field": "金融NLP与因果强化学习",
+   "innovations": [
+    "在财务建议生成中引入safety-gated GRPO与多准则rubric奖励",
+    "基于AIPW双重稳健估计器的judge-independent因果审计框架",
+    "揭示rubric评分与业务价值指标的解耦并通过双轨评估降低reward hacking风险"
+   ],
+   "benchmarks": [
+    "LLM-as-a-judge rubric (n=2500 per model)",
+    "DR-CATE causal audit (lift, DR%, CVaR_0.10)"
+   ]
+  }
+ }
 }

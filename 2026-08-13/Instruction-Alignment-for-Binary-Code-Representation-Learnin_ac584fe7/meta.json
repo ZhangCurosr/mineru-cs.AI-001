@@ -4,5 +4,29 @@
  "title": "Instruction-Alignment-for-Binary-Code-Representation-Learnin",
  "token": "sk-RsHYrwqhL...",
  "created_at": "2026-08-13 14:55:36",
- "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-13/e5f720e2-c8a2-4736-a9e1-b313aaf1833c.zip"
+ "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-13/e5f720e2-c8a2-4736-a9e1-b313aaf1833c.zip",
+ "summarized": {
+  "model": "agnes-2.5-flash",
+  "at": "2026-08-18 12:33:23",
+  "chunks": 1,
+  "meta": {
+   "keywords": [
+    "Binary Code Similarity",
+    "Representation Learning",
+    "Instruction Alignment",
+    "Contrastive Learning",
+    "Binary Analysis"
+   ],
+   "field": "二进制代码表示学习",
+   "innovations": [
+    "首次将指令对齐作为辅助目标用于二进制表示学习",
+    "提出多正样本InfoNCE损失处理一对多指令对应关系",
+    "MAS指标与协同评分提供可解释的细粒度相似性证据"
+   ],
+   "benchmarks": [
+    "BinKit",
+    "BinaryCorp"
+   ]
+  }
+ }
 }

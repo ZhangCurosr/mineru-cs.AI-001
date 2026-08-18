@@ -4,5 +4,32 @@
  "title": "Hamilton-Zero-A-Neural-Tensor-Network-Foundation-Model-for-G",
  "token": "sk-yjjHVmEWF...",
  "created_at": "2026-08-13 14:55:33",
- "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-13/7e4fa82b-55c6-4e2f-ae79-229bc0581cea.zip"
+ "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-13/7e4fa82b-55c6-4e2f-ae79-229bc0581cea.zip",
+ "summarized": {
+  "model": "agnes-2.5-flash",
+  "at": "2026-08-18 12:24:08",
+  "chunks": 7,
+  "meta": {
+   "keywords": [
+    "Neural Quantum States",
+    "Foundation Model",
+    "SU(2) Equivariance",
+    "Tensor Network",
+    "Quantum Phase Transition",
+    "Variational Monte Carlo"
+   ],
+   "field": "量子多体计算与神经波函数",
+   "innovations": [
+    "Hamilton-Zero 基础模型：预训练神经张量网络实现跨哈密顿量零样本量子基态计算",
+    "SU(2) 连续流形等变框架：通过左不变矢量场与 Peter-Weyl 分解保证物理子空间约束",
+    "Learned Merge Tree Router：自动学习可泛化的多尺度张量收缩拓扑层级"
+   ],
+   "benchmarks": [
+    "MaxCut-12 (N=256/512/1024)",
+    "PPP-Ohno (N=256/512)",
+    "Periodic Transverse-Field Ising Model",
+    "Square J1-J2 2D Ising (22x22, 32x32)"
+   ]
+  }
+ }
 }

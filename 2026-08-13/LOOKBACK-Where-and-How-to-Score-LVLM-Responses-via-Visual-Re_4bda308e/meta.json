@@ -4,5 +4,33 @@
  "title": "LOOKBACK-Where-and-How-to-Score-LVLM-Responses-via-Visual-Re",
  "token": "sk-nY8L7ieIq...",
  "created_at": "2026-08-13 07:10:28",
- "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-13/d5693161-513c-47da-b78c-d65ff9ed2f64.zip"
+ "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-13/d5693161-513c-47da-b78c-d65ff9ed2f64.zip",
+ "summarized": {
+  "model": "agnes-2.5-flash",
+  "at": "2026-08-18 12:36:33",
+  "chunks": 1,
+  "meta": {
+   "keywords": [
+    "LVLM",
+    "响应评分",
+    "视觉幻觉",
+    "Best-of-N",
+    "视觉回溯",
+    "无需训练评分",
+    "多模态大模型"
+   ],
+   "field": "多模态大模型评估与可靠性",
+   "innovations": [
+    "揭示LVLM输出置信度对图像不敏感的缺陷并提出视觉回溯分数作为互补信号",
+    "提出LOOKBACK框架，通过token级看回校准与响应级视觉相关性加权实现无需训练的视觉感知响应评分",
+    "证明视觉回溯分数与输出置信度在词性层面的互补性，并提供熵正则化软选择聚合方法"
+   ],
+   "benchmarks": [
+    "VQAv2",
+    "CHAIR",
+    "AMBER",
+    "HallusionBench"
+   ]
+  }
+ }
 }

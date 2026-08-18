@@ -4,5 +4,35 @@
  "title": "Information-Abundance-Paradox-Long-Context-Training-Undermin",
  "token": "sk-Wt6bONApk...",
  "created_at": "2026-08-13 14:54:58",
- "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-13/610bf621-dd04-4898-b3a0-a4e33fe2669a.zip"
+ "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-13/610bf621-dd04-4898-b3a0-a4e33fe2669a.zip",
+ "summarized": {
+  "model": "agnes-2.5-flash",
+  "at": "2026-08-18 12:32:41",
+  "chunks": 1,
+  "meta": {
+   "keywords": [
+    "长上下文训练",
+    "信息丰裕悖论",
+    "参数化知识",
+    "上下文依赖",
+    "学习模式转变"
+   ],
+   "field": "大语言模型训练动力学",
+   "innovations": [
+    "提出信息丰裕悖论：训练上下文中的丰富信息会削弱参数化内化激励",
+    "发现预训练上下文窗口与下游性能呈倒U型关系",
+    "通过FFN/SA梯度分配与模块限制微调提供因果机制证据"
+   ],
+   "benchmarks": [
+    "SuperGLUE",
+    "MMLU-Pro",
+    "ARC",
+    "CommonsenseQA",
+    "PIQA",
+    "LAMBADA",
+    "WikiSPAN",
+    "PTB"
+   ]
+  }
+ }
 }

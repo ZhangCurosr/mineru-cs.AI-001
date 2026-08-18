@@ -4,5 +4,10 @@
  "title": "How-to-Spend-Your-Oracle-Budget-Practical-Guidance-for-Prote",
  "token": "sk-45Ifw5Iq3...",
  "created_at": "2026-08-13 07:10:21",
- "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-13/7edcb0a4-52b8-4bdd-9e76-63369f81b44c.zip"
+ "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-13/7edcb0a4-52b8-4bdd-9e76-63369f81b44c.zip",
+ "summarized": {
+  "model": "agnes-2.5-flash",
+  "at": "2026-08-18 12:29:08",
+  "chunks": 1
+ }
 }

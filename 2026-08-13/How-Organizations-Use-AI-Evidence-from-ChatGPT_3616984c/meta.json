@@ -4,5 +4,32 @@
  "title": "How-Organizations-Use-AI-Evidence-from-ChatGPT",
  "token": "sk-twhrLv2pG...",
  "created_at": "2026-08-13 14:56:04",
- "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-13/9a70cee2-fe7f-4d93-872e-c2261f3de880.zip"
+ "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-13/9a70cee2-fe7f-4d93-872e-c2261f3de880.zip",
+ "summarized": {
+  "model": "agnes-2.5-flash",
+  "at": "2026-08-18 12:24:56",
+  "chunks": 1,
+  "meta": {
+   "keywords": [
+    "企业 AI 采用",
+    "生成式 AI",
+    "遥测数据",
+    "通用目的技术",
+    "任务分类",
+    "无形资产互补",
+    "ChatGPT Enterprise"
+   ],
+   "field": "企业级 AI 采用与扩散",
+   "innovations": [
+    "将 ChatGPT Enterprise 管理遥测数据与 Compustat 财务数据链接，首次在企业层面同时分析采用决策、使用强度和任务构成的异质性",
+    "构建 60 类工作任务自动分类器，实现大规模消息级知识工作分类",
+    "用永续盘存法量化 SG&A/R&D/软件存量作为互补性资本，论证其对 AI 采用概率的正向影响"
+   ],
+   "benchmarks": [
+    "Compustat 上市公司财务面板",
+    "ChatGPT Enterprise 组织-周使用面板",
+    "60 类工作任务分类体系"
+   ]
+  }
+ }
 }
