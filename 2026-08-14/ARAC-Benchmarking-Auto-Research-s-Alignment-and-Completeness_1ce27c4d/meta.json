@@ -4,5 +4,29 @@
  "title": "ARAC-Benchmarking-Auto-Research-s-Alignment-and-Completeness",
  "token": "sk-Gq5lt3OzO...",
  "created_at": "2026-08-14 04:10:09",
- "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-14/9bcf9ce6-a0e8-4413-9798-96ebc52cdef6.zip"
+ "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-14/9bcf9ce6-a0e8-4413-9798-96ebc52cdef6.zip",
+ "summarized": {
+  "model": "agnes-2.5-flash",
+  "at": "2026-08-18 14:46:27",
+  "chunks": 1,
+  "meta": {
+   "keywords": [
+    "Auto-Research",
+    "Benchmark",
+    "LLM Evaluation",
+    "Research Alignment",
+    "Academic Cognition Skills",
+    "Agent Benchmarking"
+   ],
+   "field": "Auto-Research 评估与对齐",
+   "innovations": [
+    "提出首个研究者模仿评估框架 ARAC-Bench，从结果评估转向过程评估",
+    "构建从审稿认知中蒸馏的 ACS 技能库，实现隐性专家知识显式化与可量化",
+    "三阶段解耦诊断协议（Proposal/Experiment/Synthesis）实现可追溯的认知对齐评估"
+   ],
+   "benchmarks": [
+    "ARAC-Bench"
+   ]
+  }
+ }
 }

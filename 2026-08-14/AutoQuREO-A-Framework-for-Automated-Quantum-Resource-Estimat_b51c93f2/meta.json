@@ -4,5 +4,30 @@
  "title": "AutoQuREO-A-Framework-for-Automated-Quantum-Resource-Estimat",
  "token": "sk-F0hECVUrq...",
  "created_at": "2026-08-14 04:08:09",
- "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-14/ffe65c76-74aa-4c39-bcab-637990482865.zip"
+ "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-14/ffe65c76-74aa-4c39-bcab-637990482865.zip",
+ "summarized": {
+  "model": "agnes-2.5-flash",
+  "at": "2026-08-18 14:52:31",
+  "chunks": 4,
+  "meta": {
+   "keywords": [
+    "量子资源估计",
+    "设计空间探索",
+    "代理模型合成",
+    "神经符号学习",
+    "终身学习",
+    "量子计算框架",
+    "全栈优化"
+   ],
+   "field": "量子计算编译与资源估计",
+   "innovations": [
+    "Module-Model二元架构配合confidence动态更新的代理合成机制",
+    "NEAT→PySR神经符号融合实现高精度可解释资源代理",
+    "资源树采样遍历结合终身学习的自动化多目标Pareto优化管线"
+   ],
+   "benchmarks": [
+    "框架架构示例演示（非标准benchmark）"
+   ]
+  }
+ }
 }

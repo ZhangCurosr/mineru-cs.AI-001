@@ -4,5 +4,31 @@
  "title": "AutoDesign-Meta-Harness-Optimization-for-Long-Horizon-Agenti",
  "token": "sk-WJrSFDicB...",
  "created_at": "2026-08-14 04:08:14",
- "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-14/b587fc2f-9214-4031-928d-e4b00f3b0e50.zip"
+ "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-14/b587fc2f-9214-4031-928d-e4b00f3b0e50.zip",
+ "summarized": {
+  "model": "agnes-2.5-flash",
+  "at": "2026-08-18 14:50:59",
+  "chunks": 1,
+  "meta": {
+   "keywords": [
+    "Meta-Harness Optimization",
+    "Agentic Design",
+    "Multimodal Generation",
+    "Paper-to-Poster",
+    "PosterBench",
+    "Self-Improving Agent",
+    "Artifact Editing"
+   ],
+   "field": "多模态智能体系统设计",
+   "innovations": [
+    "将多模态设计生成形式化为对设计Harness本身的递归元优化，而非单次artifact生成",
+    "提出包含单组件有界更新与dev集接受门的meta循环机制，防止训练集过拟合并保证可归因性",
+    "构建PosterBench七维综合评测协议并结合record-level天花板防御畸形高分"
+   ],
+   "benchmarks": [
+    "PosterBench Main Track (100 papers)",
+    "PosterBench-mini (10 papers)"
+   ]
+  }
+ }
 }

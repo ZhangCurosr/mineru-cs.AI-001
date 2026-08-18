@@ -4,5 +4,34 @@
  "title": "Ab-sub-s-sub-t-sub-rac-sub-t",
  "token": "sk-RdV3tP4AZ...",
  "created_at": "2026-08-14 14:49:05",
- "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-14/fd2806d5-477f-4107-800c-af7c158063a2.zip"
+ "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-14/fd2806d5-477f-4107-800c-af7c158063a2.zip",
+ "summarized": {
+  "model": "agnes-2.5-flash",
+  "at": "2026-08-18 14:46:40",
+  "chunks": 1,
+  "meta": {
+   "keywords": [
+    "KV Cache",
+    "PagedAttention",
+    "Token-level Eviction",
+    "Memory Virtualization",
+    "LLM Serving",
+    "Intra-block Fragmentation",
+    "vLLM"
+   ],
+   "field": "LLM 推理系统内存管理",
+   "innovations": [
+    "提出 token-level 虚拟化层解耦逻辑存活与物理块放置",
+    "阶段感知异步重打包回收块内碎片并避免 HBM 争用",
+    "以 <50 行策略适配器使驱逐算法零 block 知识接入块级运行时"
+   ],
+   "benchmarks": [
+    "ShareGPT",
+    "LongBench",
+    "Mistral-7B",
+    "Llama-3.1-8B",
+    "Qwen2.5-14B"
+   ]
+  }
+ }
 }

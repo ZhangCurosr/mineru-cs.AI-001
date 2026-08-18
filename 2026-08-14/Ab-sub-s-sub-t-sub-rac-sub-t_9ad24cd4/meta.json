@@ -4,5 +4,30 @@
  "title": "Ab-sub-s-sub-t-sub-rac-sub-t",
  "token": "sk-RdV3tP4AZ...",
  "created_at": "2026-08-14 04:12:09",
- "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-14/fd2806d5-477f-4107-800c-af7c158063a2.zip"
+ "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-14/fd2806d5-477f-4107-800c-af7c158063a2.zip",
+ "summarized": {
+  "model": "agnes-2.5-flash",
+  "at": "2026-08-18 14:48:10",
+  "chunks": 1,
+  "meta": {
+   "keywords": [
+    "LLM Inference",
+    "KV Cache",
+    "Memory Management",
+    "PagedAttention",
+    "Token Eviction",
+    "System Optimization"
+   ],
+   "field": "大模型推理系统",
+   "innovations": [
+    "提出 token 级虚拟化层解耦逻辑存活与物理放置，解决 intra-block 碎片",
+    "Token table + 异步 compaction 实现物理回收，保持 CUDA Graph 兼容",
+    "集成代码从 500+ 行降至 <50 行，支持 H2O/Scissorhands/Random 等多种驱逐策略"
+   ],
+   "benchmarks": [
+    "ShareGPT",
+    "LongBench"
+   ]
+  }
+ }
 }

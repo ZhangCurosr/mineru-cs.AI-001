@@ -4,5 +4,10 @@
  "title": "AutoQuREO-A-Framework-for-Automated-Quantum-Resource-Estimat",
  "token": "sk-F0hECVUrq...",
  "created_at": "2026-08-14 14:49:20",
- "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-14/ffe65c76-74aa-4c39-bcab-637990482865.zip"
+ "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-14/ffe65c76-74aa-4c39-bcab-637990482865.zip",
+ "summarized": {
+  "model": "agnes-2.5-flash",
+  "at": "2026-08-18 14:52:46",
+  "chunks": 4
+ }
 }

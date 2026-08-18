@@ -4,5 +4,31 @@
  "title": "Algebraic-Decomposition-Theory-for-Transformer-Length-Genera",
  "token": "sk-jywkrqzJV...",
  "created_at": "2026-08-14 04:11:08",
- "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-14/9f8f0c4e-423e-4f0f-ad4c-8a09b5a29d5e.zip"
+ "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-14/9f8f0c4e-423e-4f0f-ad4c-8a09b5a29d5e.zip",
+ "summarized": {
+  "model": "agnes-2.5-flash",
+  "at": "2026-08-18 14:51:18",
+  "chunks": 4,
+  "meta": {
+   "keywords": [
+    "C-RASP",
+    "Transformer长度泛化",
+    "Typed Monoid",
+    "Wreath Product",
+    "Syntactic Monoid",
+    "代数刻画",
+    "正则语言",
+    "Krohn-Rhodes"
+   ],
+   "field": "神经网络的理论分析",
+   "innovations": [
+    "提出Typed Monoid框架与Typed Wreath Product限制机制，避免经典wreath product过强",
+    "建立C-RASP语言类与wpc(Z)的精确代数等价刻画定理",
+    "给出多项式时间syntactic monoid成员判定算法，基于派生范畴与Z-模构造"
+   ],
+   "benchmarks": [
+    "理论代数刻画（无数值benchmark）"
+   ]
+  }
+ }
 }

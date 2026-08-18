@@ -4,5 +4,29 @@
  "title": "AlayaWorld-Interactive-Long-Horizon-World-Modeling-Full-Tech",
  "token": "sk-ZHrWl9Czg...",
  "created_at": "2026-08-14 14:49:24",
- "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-14/bb484240-7697-4cde-92c2-46bfed5c517f.zip"
+ "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-14/bb484240-7697-4cde-92c2-46bfed5c517f.zip",
+ "summarized": {
+  "model": "agnes-2.5-flash",
+  "at": "2026-08-18 14:49:22",
+  "chunks": 1,
+  "meta": {
+   "keywords": [
+    "World Modeling",
+    "Interactive Video Generation",
+    "3D Geometry",
+    "Causal VAE",
+    "Long-Horizon Consistency",
+    "Memory Mechanism"
+   ],
+   "field": "视频生成与世界模型",
+   "innovations": [
+    "流式3D点缓存渲染器替代深度扭曲，提升长期几何一致性",
+    "因果VAE对齐条件与生成内容的潜在表示和时间结构",
+    "硬内存Dropout直接移除token，避免结构信息泄漏"
+   ],
+   "benchmarks": [
+    "WBench Navigation Split"
+   ]
+  }
+ }
 }

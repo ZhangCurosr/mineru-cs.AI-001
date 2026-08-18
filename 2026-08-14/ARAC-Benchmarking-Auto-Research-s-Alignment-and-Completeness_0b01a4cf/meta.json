@@ -4,5 +4,30 @@
  "title": "ARAC-Benchmarking-Auto-Research-s-Alignment-and-Completeness",
  "token": "sk-Gq5lt3OzO...",
  "created_at": "2026-08-14 14:49:35",
- "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-14/9bcf9ce6-a0e8-4413-9798-96ebc52cdef6.zip"
+ "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-14/9bcf9ce6-a0e8-4413-9798-96ebc52cdef6.zip",
+ "summarized": {
+  "model": "agnes-2.5-flash",
+  "at": "2026-08-18 14:46:16",
+  "chunks": 1,
+  "meta": {
+   "keywords": [
+    "Auto-Research",
+    "Benchmark",
+    "评估框架",
+    "学术认知技能",
+    "研究者模拟",
+    "过程导向评估",
+    "LLM Agent"
+   ],
+   "field": "自主科学研究系统的评估与诊断",
+   "innovations": [
+    "提出首个从结果匹配转向过程复现的研究者模拟评估框架ARAC-Bench",
+    "从7000篇顶会论文及rebuttal提炼ACS学术认知技能库实现可量化的人类认知对齐评估",
+    "三阶段模块化诊断协议实现细粒度能力归因与公平可比评估"
+   ],
+   "benchmarks": [
+    "ARAC-Bench"
+   ]
+  }
+ }
 }

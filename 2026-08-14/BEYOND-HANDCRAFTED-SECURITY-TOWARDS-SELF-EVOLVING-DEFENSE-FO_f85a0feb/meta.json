@@ -4,5 +4,31 @@
  "title": "BEYOND-HANDCRAFTED-SECURITY-TOWARDS-SELF-EVOLVING-DEFENSE-FO",
  "token": "sk-uDfT0rM1x...",
  "created_at": "2026-08-14 04:08:08",
- "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-14/780849d3-7930-4e8d-948a-135796a2b8e7.zip"
+ "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-14/780849d3-7930-4e8d-948a-135796a2b8e7.zip",
+ "summarized": {
+  "model": "agnes-2.5-flash",
+  "at": "2026-08-18 14:51:43",
+  "chunks": 1,
+  "meta": {
+   "keywords": [
+    "LLM Agent安全",
+    "运行时防御",
+    "提示注入",
+    "自演化",
+    "Harness优化",
+    "AgentCanary"
+   ],
+   "field": "LLM Agent安全与防御",
+   "innovations": [
+    "提出Harness中心化运行时防御形式化框架，将防御设计建模为安全-效用优化问题",
+    "提出HARD自主演化框架，通过失败溯源路由至context/action双层evolver实现定向防御改进",
+    "联合演化context-side policy与action-side gate两类防御工件，在四类攻击与两种自适应攻击下显著优于手工防御"
+   ],
+   "benchmarks": [
+    "AgentCanary",
+    "AgentHazard",
+    "PinchBench"
+   ]
+  }
+ }
 }

@@ -4,5 +4,29 @@
  "title": "User-Assisted-Collaborative-Distributed-Inference-for-Eficie",
  "token": "sk-Ar06zcDAy...",
  "created_at": "2026-08-13 05:39:53",
- "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-13/409def95-81de-4aab-bee6-244074b931bb.zip"
+ "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-13/409def95-81de-4aab-bee6-244074b931bb.zip",
+ "summarized": {
+  "model": "agnes-2.5-flash",
+  "at": "2026-08-18 14:44:54",
+  "chunks": 1,
+  "meta": {
+   "keywords": [
+    "Distributed AI Inference",
+    "QoS-Aware Autoscaling",
+    "Generative Markov Model",
+    "Volunteer Computing",
+    "Task Scheduling",
+    "Resource Allocation"
+   ],
+   "field": "分布式AI推理与资源调度",
+   "innovations": [
+    "提出专用服务器与用户志愿者设备协同的分布式推理架构并验证QoS收益",
+    "构建支持高维状态稀疏因式分解的生成马尔可夫模型以统一仿真调度与资源动态",
+    "对比集中式与两种分布式调度策略在大规模用户下的完成率、P99延迟与专用资源消耗"
+   ],
+   "benchmarks": [
+    "不同用户规模（100/1000/5000/10000）与服务器容量（10×/30×/50×/80×/100×）配置下的请求完成率与P99延迟对比"
+   ]
+  }
+ }
 }

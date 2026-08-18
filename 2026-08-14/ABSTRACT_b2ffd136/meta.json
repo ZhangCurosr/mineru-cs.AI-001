@@ -4,5 +4,31 @@
  "title": "ABSTRACT",
  "token": "sk-tFmPcED8R...",
  "created_at": "2026-08-14 04:09:38",
- "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-14/e36a2bee-7944-4791-ac17-cae72da914d8.zip"
+ "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-14/e36a2bee-7944-4791-ac17-cae72da914d8.zip",
+ "summarized": {
+  "model": "agnes-2.5-flash",
+  "at": "2026-08-18 14:46:07",
+  "chunks": 1,
+  "meta": {
+   "keywords": [
+    "AI Liability",
+    "Consumer Protection",
+    "Product Liability",
+    "Regulatory Framework",
+    "India",
+    "Algorithmic Bias",
+    "Dark Patterns"
+   ],
+   "field": "AI治理与法律责任",
+   "innovations": [
+    "系统性映射印度消费者保护法条款与AI损害类型，验证技术中立性",
+    "揭示法定责任主体与AI价值链的角色错配，提出设计缺陷与分销链责任参照框架"
+   ],
+   "benchmarks": [
+    "Consumer Protection Act 2019",
+    "NIST AI RMF",
+    "CCPA Dark Pattern Guidelines"
+   ]
+  }
+ }
 }

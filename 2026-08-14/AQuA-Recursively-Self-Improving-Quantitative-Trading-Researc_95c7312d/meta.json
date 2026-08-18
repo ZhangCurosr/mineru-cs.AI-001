@@ -4,5 +4,31 @@
  "title": "AQuA-Recursively-Self-Improving-Quantitative-Trading-Researc",
  "token": "sk-EKBGNBzZY...",
  "created_at": "2026-08-14 14:49:34",
- "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-14/428803e2-1b34-41a6-ba4b-2c9053152feb.zip"
+ "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-14/428803e2-1b34-41a6-ba4b-2c9053152feb.zip",
+ "summarized": {
+  "model": "agnes-2.5-flash",
+  "at": "2026-08-18 14:46:12",
+  "chunks": 1,
+  "meta": {
+   "keywords": [
+    "recursive self-improvement",
+    "quantitative trading",
+    "alpha mining",
+    "LLM agent",
+    "sealed sandbox",
+    "factor discovery",
+    "time series model"
+   ],
+   "field": "量化投资与自主研究代理",
+   "innovations": [
+    "通过密封沙盒与受限 DSL 结构性隔离数据泄漏，实现因子发现与模型开发的递归自改进",
+    "proposal-first 可证伪假设框架使 LLM 生成从黑箱输出变为可审计推理链",
+    "config-diff 驱动的可比变体搜索确保搜索过程无泄漏且变体间仅差已改旋钮"
+   ],
+   "benchmarks": [
+    "crypto five-minute universe",
+    "US equity 30-minute forward return prediction"
+   ]
+  }
+ }
 }

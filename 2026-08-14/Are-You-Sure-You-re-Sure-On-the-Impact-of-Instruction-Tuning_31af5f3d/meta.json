@@ -4,5 +4,31 @@
  "title": "Are-You-Sure-You-re-Sure-On-the-Impact-of-Instruction-Tuning",
  "token": "sk-4GZLsbGFG...",
  "created_at": "2026-08-14 14:48:57",
- "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-14/6f164ab0-bd88-4ae0-9eb6-8991c5662107.zip"
+ "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-14/6f164ab0-bd88-4ae0-9eb6-8991c5662107.zip",
+ "summarized": {
+  "model": "agnes-2.5-flash",
+  "at": "2026-08-18 14:49:49",
+  "chunks": 1,
+  "meta": {
+   "keywords": [
+    "instruction tuning",
+    "model confidence",
+    "lexical diversity",
+    "calibration",
+    "rationale generation",
+    "uncertainty estimation"
+   ],
+   "field": "大语言模型评估与可靠性",
+   "innovations": [
+    "首次系统研究指令微调对置信度和理由词汇多样性的联合影响",
+    "提出受控对比设计以隔离答案选择和生成长度对多样性的混杂效应",
+    "揭示跨理由多样性稳定下降与表面词汇多样性异质性变化并存的新现象"
+   ],
+   "benchmarks": [
+    "ARC-Easy",
+    "MMLU",
+    "CommonsenseQA"
+   ]
+  }
+ }
 }

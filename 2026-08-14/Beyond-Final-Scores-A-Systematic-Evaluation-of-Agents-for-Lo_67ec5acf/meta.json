@@ -4,5 +4,34 @@
  "title": "Beyond-Final-Scores-A-Systematic-Evaluation-of-Agents-for-Lo",
  "token": "sk-9ieZJEGxv...",
  "created_at": "2026-08-14 14:48:58",
- "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-14/11da81c1-5585-4390-a366-15c2202615d8.zip"
+ "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-14/11da81c1-5585-4390-a366-15c2202615d8.zip",
+ "summarized": {
+  "model": "agnes-2.5-flash",
+  "at": "2026-08-18 14:52:55",
+  "chunks": 1,
+  "meta": {
+   "keywords": [
+    "自主AI研究",
+    "agent评估",
+    "过程级评估",
+    "经验复用",
+    "harness设计",
+    "long-horizon research"
+   ],
+   "field": "自主AI研究与agent评估",
+   "innovations": [
+    "提出C1/C2/C3三维度过程评估框架，超越单一最终分数",
+    "通过反事实经验擦除实验量化任务内与跨任务的自改进效应",
+    "系统比较shared/native/open-source三类harness对agent性能稳定性的影响"
+   ],
+   "benchmarks": [
+    "AutoLab",
+    "MLAgentBench",
+    "MLE-bench",
+    "RE-Bench",
+    "AgentBoard",
+    "TRAJECT-Bench"
+   ]
+  }
+ }
 }

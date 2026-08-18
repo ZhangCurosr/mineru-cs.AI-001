@@ -4,5 +4,35 @@
  "title": "XBRIDGE-Entity-Grounded-Latent-Bridge-for-Heterogeneous-LLM",
  "token": "sk-zybFjYcVd...",
  "created_at": "2026-08-13 05:39:56",
- "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-13/71af06c8-afb9-4d8a-ae84-feb1c0d11b66.zip"
+ "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-13/71af06c8-afb9-4d8a-ae84-feb1c0d11b66.zip",
+ "summarized": {
+  "model": "agnes-2.5-flash",
+  "at": "2026-08-18 14:45:23",
+  "chunks": 1,
+  "meta": {
+   "keywords": [
+    "heterogeneous LLM communication",
+    "entity grounding",
+    "latent bridge",
+    "cross-architecture",
+    "multi-agent systems",
+    "decode-free protocol"
+   ],
+   "field": "大语言模型多智能体通信",
+   "innovations": [
+    "提出实体定界问题并证明连续桥接器存在罕见token压缩坍塌",
+    "设计LAM+LEB双通道免解码异构通信协议",
+    "轻量级门控交叉注意力桥接仅需264M参数即可跨模型族传递上下文"
+   ],
+   "benchmarks": [
+    "HotpotQA",
+    "MuSiQue",
+    "QASPER",
+    "2WikiMultihopQA",
+    "MultiFieldQA-en",
+    "Countries",
+    "Tipsheets"
+   ]
+  }
+ }
 }

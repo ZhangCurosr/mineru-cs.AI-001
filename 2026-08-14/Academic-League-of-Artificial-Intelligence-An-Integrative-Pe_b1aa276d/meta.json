@@ -4,5 +4,33 @@
  "title": "Academic-League-of-Artificial-Intelligence-An-Integrative-Pe",
  "token": "sk-kdPBKi9MQ...",
  "created_at": "2026-08-14 04:09:47",
- "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-14/6eb66ad6-fd88-4abf-a737-d72b4ce40931.zip"
+ "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-14/6eb66ad6-fd88-4abf-a737-d72b4ce40931.zip",
+ "summarized": {
+  "model": "agnes-2.5-flash",
+  "at": "2026-08-18 14:48:42",
+  "chunks": 1,
+  "meta": {
+   "keywords": [
+    "academic league",
+    "teaching-research-extension integration",
+    "student-centered organization",
+    "AI education",
+    "knowledge management",
+    "multi-agent competition",
+    "accessible AI"
+   ],
+   "field": "计算/AI 教育与学生组织治理",
+   "innovations": [
+    "提出行政–项目双层解耦的学生主导学术联盟框架，首次系统整合教学/科研/extension三支柱",
+    "建立学习小组→项目产出→公开知识库（RepoAI）的制度化知识沉淀闭环",
+    "通过竞赛/公开课/开源仓库/社会影响应用等项目组合实现多形态教育覆盖与可持续传承"
+   ],
+   "benchmarks": [
+    "MAPC 总决赛第四名",
+    "SBSC 2026 发表论文",
+    "在线课程完成四届",
+    "RepoAI 开源知识库持续运维"
+   ]
+  }
+ }
 }

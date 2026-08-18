@@ -4,5 +4,31 @@
  "title": "Beyond-Outcome-Rewards-Step-Level-Self-Distilled-Policy-Opti",
  "token": "sk-buEDzpHKC...",
  "created_at": "2026-08-14 14:49:37",
- "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-14/951897c3-67d2-44b9-9249-55a22113617f.zip"
+ "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-14/951897c3-67d2-44b9-9249-55a22113617f.zip",
+ "summarized": {
+  "model": "agnes-2.5-flash",
+  "at": "2026-08-18 14:53:29",
+  "chunks": 1,
+  "meta": {
+   "keywords": [
+    "self-distillation",
+    "reinforcement learning",
+    "search agents",
+    "GRPO",
+    "process supervision",
+    "credit assignment",
+    "Evidence Anchors"
+   ],
+   "field": "Agent 强化学习训练",
+   "innovations": [
+    "提出Evidence Anchors构造搜索代理特权信息，避免完整答案泄露",
+    "将自蒸馏信号转为步级优势权重应用于错误轨迹，解耦更新方向与幅度"
+   ],
+   "benchmarks": [
+    "BrowseComp",
+    "GAIA",
+    "FRAMES"
+   ]
+  }
+ }
 }

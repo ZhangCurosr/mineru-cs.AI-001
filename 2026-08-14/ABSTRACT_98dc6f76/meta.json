@@ -4,5 +4,31 @@
  "title": "ABSTRACT",
  "token": "sk-tFmPcED8R...",
  "created_at": "2026-08-14 14:49:31",
- "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-14/e36a2bee-7944-4791-ac17-cae72da914d8.zip"
+ "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-14/e36a2bee-7944-4791-ac17-cae72da914d8.zip",
+ "summarized": {
+  "model": "agnes-2.5-flash",
+  "at": "2026-08-18 14:45:43",
+  "chunks": 1,
+  "meta": {
+   "keywords": [
+    "AI liability",
+    "Consumer protection",
+    "Product liability",
+    "AI value chain",
+    "Regulatory framework",
+    "India",
+    "Algorithmic bias",
+    "Dark patterns"
+   ],
+   "field": "AI治理与法律政策",
+   "innovations": [
+    "首次系统分析印度CPA 2019产品责任框架在AI消费者保护场景的适用性与空白",
+    "引入比较法视角（美国design defect与chain-of-distribution原则）为多主体AI责任分摊提供法律路径参照",
+    "构建了AI危害类型与CPA条款的映射表，并提出监管能力建设与配套立法的分层政策建议"
+   ],
+   "benchmarks": [
+    "Legal policy analysis paper - no quantitative benchmarks"
+   ]
+  }
+ }
 }

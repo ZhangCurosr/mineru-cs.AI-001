@@ -4,5 +4,31 @@
  "title": "Algebraic-Decomposition-Theory-for-Transformer-Length-Genera",
  "token": "sk-jywkrqzJV...",
  "created_at": "2026-08-14 14:48:56",
- "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-14/9f8f0c4e-423e-4f0f-ad4c-8a09b5a29d5e.zip"
+ "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-14/9f8f0c4e-423e-4f0f-ad4c-8a09b5a29d5e.zip",
+ "summarized": {
+  "model": "agnes-2.5-flash",
+  "at": "2026-08-18 14:51:08",
+  "chunks": 4,
+  "meta": {
+   "keywords": [
+    "Transformer",
+    "length generalization",
+    "C-RASP",
+    "algebraic decomposition",
+    "regular languages",
+    "syntactic monoid",
+    "wreath product"
+   ],
+   "field": "Transformer 理论分析与泛化能力",
+   "innovations": [
+    "首次给出 Transformer 在正则语言上长度泛化的完整代数刻画",
+    "提出类型化幺半群与类型化 wreath product 实现可判定性",
+    "建立 C-RASP ∩ REG = wpc(Dy) 的层级刻画并提供多项式时间判定算法"
+   ],
+   "benchmarks": [
+    "125 正则语言 PCFG 套件",
+    "GPT-2 next-token prediction"
+   ]
+  }
+ }
 }

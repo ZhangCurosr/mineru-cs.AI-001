@@ -4,5 +4,33 @@
  "title": "Beyond-Retrieval-Query-Conditioned-Reuse-of-Long-Horizon-Age",
  "token": "sk-Nw8TqBTK6...",
  "created_at": "2026-08-14 14:49:32",
- "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-14/9484515a-ff44-4b70-8051-625a66182ea7.zip"
+ "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-14/9484515a-ff44-4b70-8051-625a66182ea7.zip",
+ "summarized": {
+  "model": "agnes-2.5-flash",
+  "at": "2026-08-18 14:53:38",
+  "chunks": 1,
+  "meta": {
+   "keywords": [
+    "agent memory",
+    "trajectory reuse",
+    "retrieval-augmented agent",
+    "long-horizon planning",
+    "query-conditioned reuse",
+    "binding shift",
+    "WebArena",
+    "AppWorld"
+   ],
+   "field": "Agent Memory & Retrieval",
+   "innovations": [
+    "提出查询条件化复用(QCR)框架，在固定检索后对长轨迹进行目标导向重构，显式分离可迁移工作流与需重新绑定的值",
+    "构建统一的查询条件化轨迹复用评测框架，隔离检索质量与复用效果的因果贡献",
+    "揭示长轨迹复用中绑定漂移的失效模式，证明Full Trajectory在长轨迹下仅保留15.8%的短期效用而QCR保留60.3%"
+   ],
+   "benchmarks": [
+    "WebArena",
+    "WorkArena",
+    "AppWorld"
+   ]
+  }
+ }
 }

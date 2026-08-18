@@ -4,5 +4,31 @@
  "title": "AQuA-Recursively-Self-Improving-Quantitative-Trading-Researc",
  "token": "sk-EKBGNBzZY...",
  "created_at": "2026-08-14 04:11:00",
- "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-14/9152c5f9-e1a3-4c66-8e12-a37675cca553.zip"
+ "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-14/9152c5f9-e1a3-4c66-8e12-a37675cca553.zip",
+ "summarized": {
+  "model": "agnes-2.5-flash",
+  "at": "2026-08-18 14:45:45",
+  "chunks": 1,
+  "meta": {
+   "keywords": [
+    "量化投资",
+    "因子发现",
+    "大语言模型智能体",
+    "递归自我改进",
+    "时间序列预测",
+    "密封沙盒",
+    "信息系数"
+   ],
+   "field": "金融科技中的机器学习",
+   "innovations": [
+    "将量化研究中的泄露分为生成泄露和选择泄露两个通道并分别通过密封沙盒和指标分离关闭",
+    "设计配置驱动的双系统自主研究循环，每个系统独立闭环递归改进研究过程而非评估标准",
+    "在加密和美股市场实现样本外可复现的交易信号，夏普比率达+2.50且逐年为正"
+   ],
+   "benchmarks": [
+    "BTCUSDT_5m加密货币因子发现",
+    "US Equity日内30分钟预测"
+   ]
+  }
+ }
 }

@@ -4,5 +4,32 @@
  "title": "Abstract",
  "token": "sk-sKVjU65N5...",
  "created_at": "2026-08-14 14:49:26",
- "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-14/be4ae4f1-e778-468a-a72d-7ae6d87e7889.zip"
+ "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-14/be4ae4f1-e778-468a-a72d-7ae6d87e7889.zip",
+ "summarized": {
+  "model": "agnes-2.5-flash",
+  "at": "2026-08-18 14:49:17",
+  "chunks": 5,
+  "meta": {
+   "keywords": [
+    "TsuGO",
+    "围棋死活题",
+    "过程评估",
+    "搜索效率",
+    "LLM推理",
+    "对抗性搜索",
+    "SearchE"
+   ],
+   "field": "大语言模型过程评估与搜索推理",
+   "innovations": [
+    "提出TsuGO基准与SearchE/TokenE双轨过程度量体系，揭示搜索资源指向性比消耗量更重要",
+    "构建K-Search控制解空间方法与分层失败归因框架，诊断LLM在对抗搜索中的系统性失配",
+    "对比盲目搜索与神经网络引导搜索，证明当前LLM尚未形成问题自适应的局部搜索控制能力"
+   ],
+   "benchmarks": [
+    "TsuGO",
+    "K=4受限候选",
+    "Open设置"
+   ]
+  }
+ }
 }

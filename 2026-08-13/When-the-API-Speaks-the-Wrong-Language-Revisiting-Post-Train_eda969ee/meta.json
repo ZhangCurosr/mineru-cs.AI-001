@@ -4,5 +4,31 @@
  "title": "When-the-API-Speaks-the-Wrong-Language-Revisiting-Post-Train",
  "token": "sk-JiEKTe0tT...",
  "created_at": "2026-08-13 05:40:32",
- "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-13/02ec91f8-0565-4e50-8a6f-d6f110a8f60d.zip"
+ "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-13/02ec91f8-0565-4e50-8a6f-d6f110a8f60d.zip",
+ "summarized": {
+  "model": "agnes-2.5-flash",
+  "at": "2026-08-18 14:45:05",
+  "chunks": 1,
+  "meta": {
+   "keywords": [
+    "多语言API调用",
+    "参数语言不匹配",
+    "监督微调",
+    "强化学习",
+    "结构化生成",
+    "Berkeley Function Calling"
+   ],
+   "field": "多语言工具使用与函数调用",
+   "innovations": [
+    "形式化参数语言不匹配（ALM）失败模式并提出层次化评估指标",
+    "证明SFT已能解决大部分ALM问题，RL仅提供增量收益",
+    "设计参数因子化奖励与token加权机制，实现细粒度语言一致性优化"
+   ],
+   "benchmarks": [
+    "Berkeley Function Calling (BFC) multilingual extension",
+    "Split-1 (Learnability) / Split-2 (Generalization)",
+    "Multilingual MGSM for reasoning preservation"
+   ]
+  }
+ }
 }

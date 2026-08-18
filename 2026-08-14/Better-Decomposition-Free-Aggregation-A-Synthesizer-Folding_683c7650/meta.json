@@ -4,5 +4,29 @@
  "title": "Better-Decomposition-Free-Aggregation-A-Synthesizer-Folding",
  "token": "sk-dD4E81LFV...",
  "created_at": "2026-08-14 14:49:10",
- "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-14/3548aced-69b8-4df7-9fff-72b554652ad3.zip"
+ "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-14/3548aced-69b8-4df7-9fff-72b554652ad3.zip",
+ "summarized": {
+  "model": "agnes-2.5-flash",
+  "at": "2026-08-18 14:52:58",
+  "chunks": 1,
+  "meta": {
+   "keywords": [
+    "多语言检索增强生成",
+    "多跳问答",
+    "问题分解",
+    "跨语言推理",
+    "合成器折叠"
+   ],
+   "field": "多语言问答与推理",
+   "innovations": [
+    "将聚合折叠为终端子问题使分解质量可验证",
+    "忠实度门控驱动的条件性双语回退策略"
+   ],
+   "benchmarks": [
+    "HotpotQA",
+    "2WikiMultiHopQA",
+    "MuSiQue"
+   ]
+  }
+ }
 }

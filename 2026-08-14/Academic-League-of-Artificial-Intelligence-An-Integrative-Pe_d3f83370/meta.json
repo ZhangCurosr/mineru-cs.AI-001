@@ -4,5 +4,31 @@
  "title": "Academic-League-of-Artificial-Intelligence-An-Integrative-Pe",
  "token": "sk-kdPBKi9MQ...",
  "created_at": "2026-08-14 14:48:55",
- "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-14/6eb66ad6-fd88-4abf-a737-d72b4ce40931.zip"
+ "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-14/6eb66ad6-fd88-4abf-a737-d72b4ce40931.zip",
+ "summarized": {
+  "model": "agnes-2.5-flash",
+  "at": "2026-08-18 14:48:41",
+  "chunks": 1,
+  "meta": {
+   "keywords": [
+    "学术联盟",
+    "教学-研究-推广整合",
+    "学生中心教育",
+    "计算机科学教育",
+    "项目驱动学习",
+    "知识管理"
+   ],
+   "field": "计算领域高等教育组织模式",
+   "innovations": [
+    "首次提出计算机/AI领域学术联盟的双层组织框架（稳定治理+动态项目）",
+    "建立学习小组-竞赛/研究-知识库-社会应用的知识闭环机制",
+    "通过Demo案例验证框架在多智能体竞赛、无障碍教育等多元场景的适用性"
+   ],
+   "benchmarks": [
+    "LI(A)RA: MAPC 2022 第4名",
+    "RepoAI: 开源知识库（GitHub）",
+    "GAIA/Forca Libras: SBSC 2026"
+   ]
+  }
+ }
 }

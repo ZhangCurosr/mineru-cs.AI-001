@@ -4,5 +4,29 @@
  "title": "A-Compositional-Theory-of-Curvature-in-Probabilistic-Circuit",
  "token": "sk-iaeYeK7Vr...",
  "created_at": "2026-08-14 14:49:32",
- "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-14/b8de0bb0-beb4-49a6-b9d8-6b7d732a0878.zip"
+ "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-14/b8de0bb0-beb4-49a6-b9d8-6b7d732a0878.zip",
+ "summarized": {
+  "model": "agnes-2.5-flash",
+  "at": "2026-08-18 14:45:23",
+  "chunks": 1,
+  "meta": {
+   "keywords": [
+    "Probabilistic Circuits",
+    "Sharpness-Aware Regularization",
+    "Hessian Trace",
+    "Compositional Curvature",
+    "Tractable Inference",
+    "EM Learning"
+   ],
+   "field": "可tractable概率模型与生成模型",
+   "innovations": [
+    "证明PC中sum节点的Hessian trace贡献可精确分解为电路流平方与局部曲率的乘积（T_n = F_n² · t_n）",
+    "提出基于局部曲率的自适应门控sharpness正则化方法，保持封闭形式EM更新",
+    "揭示全局trace正则化深度偏差的理论机制并给出实证验证"
+   ],
+   "benchmarks": [
+    "DEBD (20 binary density estimation datasets)"
+   ]
+  }
+ }
 }
