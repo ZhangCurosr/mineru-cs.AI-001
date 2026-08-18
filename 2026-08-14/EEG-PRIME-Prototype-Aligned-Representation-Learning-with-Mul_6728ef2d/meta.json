@@ -4,5 +4,36 @@
  "title": "EEG-PRIME-Prototype-Aligned-Representation-Learning-with-Mul",
  "token": "sk-jX4FaQZVZ...",
  "created_at": "2026-08-14 14:49:28",
- "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-14/196aac7d-12aa-4c98-bc90-40bb01eb7a5e.zip"
+ "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-14/196aac7d-12aa-4c98-bc90-40bb01eb7a5e.zip",
+ "summarized": {
+  "model": "agnes-2.5-flash",
+  "at": "2026-08-18 16:26:00",
+  "chunks": 1,
+  "meta": {
+   "keywords": [
+    "EEG foundation model",
+    "instruction tuning",
+    "prototype alignment",
+    "multi-level conditioning",
+    "zero-shot decoding"
+   ],
+   "field": "EEG 解码与脑机接口基础模型",
+   "innovations": [
+    "语言引导的三级条件框架实现任务-数据集-受试者多维控制",
+    "逐层查询调制 LQM 细粒度控制 Q-Former 表征",
+    "文本锚定原型分类统一跨异构标签空间的预测"
+   ],
+   "benchmarks": [
+    "BCIC-IV-2a",
+    "OpenBMI-MI",
+    "SEED",
+    "SEED-IV",
+    "FACED",
+    "ADHD-AliMotie",
+    "BCIC-Speech",
+    "Dreyer2023A",
+    "Weibo2014"
+   ]
+  }
+ }
 }

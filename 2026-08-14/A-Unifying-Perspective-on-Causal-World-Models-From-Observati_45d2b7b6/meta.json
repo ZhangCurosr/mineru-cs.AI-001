@@ -4,5 +4,10 @@
  "title": "A-Unifying-Perspective-on-Causal-World-Models-From-Observati",
  "token": "sk-07nfPn8BZ...",
  "created_at": "2026-08-14 14:48:56",
- "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-14/351d0745-f435-49d7-8a05-e8fa229c7116.zip"
+ "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-14/351d0745-f435-49d7-8a05-e8fa229c7116.zip",
+ "summarized": {
+  "model": "agnes-2.5-flash",
+  "at": "2026-08-18 16:19:27",
+  "chunks": 1
+ }
 }

@@ -4,5 +4,34 @@
  "title": "CABS-Efficient-and-Scalable-Model-Merging-via-Conflict-Aware",
  "token": "sk-hRG9yTz20...",
  "created_at": "2026-08-14 04:10:09",
- "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-14/4bc01881-4de7-4e57-aca8-4a340ab78b18.zip"
+ "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-14/4bc01881-4de7-4e57-aca8-4a340ab78b18.zip",
+ "summarized": {
+  "model": "agnes-2.5-flash",
+  "at": "2026-08-18 16:21:07",
+  "chunks": 1,
+  "meta": {
+   "keywords": [
+    "Model Merging",
+    "Task Vector",
+    "Structured Pruning",
+    "CMA-ES",
+    "Model Mergeability",
+    "Gradient-Free Optimization",
+    "Sparsification"
+   ],
+   "field": "模型合并与多任务学习",
+   "innovations": [
+    "提出AWA无梯度进化策略替代网格搜索，将合并时间复杂度从指数级降至多项式级且显存降至O(1)",
+    "设计非对称适应度函数处理多任务损失尺度差异，防止高损失任务主导优化",
+    "提出RSS指标并系统实证量化六大因素对模型可合并性的影响"
+   ],
+   "benchmarks": [
+    "LLM Leaderboard",
+    "Open LLM Leaderboard 2",
+    "GLUE",
+    "FusionBench",
+    "ViT-B/32 六视觉任务"
+   ]
+  }
+ }
 }

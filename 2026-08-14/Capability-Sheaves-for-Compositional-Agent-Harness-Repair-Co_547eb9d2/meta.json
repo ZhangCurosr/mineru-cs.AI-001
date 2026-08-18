@@ -4,5 +4,31 @@
  "title": "Capability-Sheaves-for-Compositional-Agent-Harness-Repair-Co",
  "token": "sk-OZiRtsQic...",
  "created_at": "2026-08-14 14:49:07",
- "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-14/90a720e3-8205-4256-97ad-f844513bad43.zip"
+ "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-14/90a720e3-8205-4256-97ad-f844513bad43.zip",
+ "summarized": {
+  "model": "agnes-2.5-flash",
+  "at": "2026-08-18 16:22:04",
+  "chunks": 1,
+  "meta": {
+   "keywords": [
+    "capability sheaf",
+    "agent harness repair",
+    "sheaf cohomology",
+    "constraint satisfaction",
+    "SWE-bench",
+    "patch fusion",
+    "hidden-state quotient"
+   ],
+   "field": "AI agent harness optimization",
+   "innovations": [
+    "构造五需求有限capability sheaf并将精确CSP与线性上同调诊断分离",
+    "证明隐藏内态商化可消除nuisance并减少50%搜索预算",
+    "发现全pool上同调类对patch选择恒同的缺陷并提出candidate-indexed修复"
+   ],
+   "benchmarks": [
+    "SWE-bench Multilingual Pool (PatchFusion)",
+    "Generated JSON migration task (20 clusters)"
+   ]
+  }
+ }
 }

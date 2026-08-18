@@ -4,5 +4,33 @@
  "title": "Beyond-the-Best-Guess-Improving-LLM-Solution-Coverage-with-E",
  "token": "sk-tFRB7xMvI...",
  "created_at": "2026-08-14 04:10:38",
- "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-14/08c96a75-eeee-43a1-b2ae-96121f42091e.zip"
+ "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-14/08c96a75-eeee-43a1-b2ae-96121f42091e.zip",
+ "summarized": {
+  "model": "agnes-2.5-flash",
+  "at": "2026-08-18 16:19:50",
+  "chunks": 1,
+  "meta": {
+   "keywords": [
+    "Evolution Strategies",
+    "Reinforcement Learning",
+    "pass@k",
+    "Test-Time Scaling",
+    "Distribution Collapse",
+    "LLM Post-training",
+    "Solution Coverage"
+   ],
+   "field": "大语言模型后训练方法",
+   "innovations": [
+    "系统证明ES在pass@k上优于RL且优势跨模型规模一致",
+    "揭示RL分布坍缩导致bin 0.0增加而ES减少此现象的机制",
+    "提出准确率分布/回归进展/熵分析的组合评估框架"
+   ],
+   "benchmarks": [
+    "GSM8K",
+    "MATH500",
+    "Olympiad Bench",
+    "Minerva"
+   ]
+  }
+ }
 }

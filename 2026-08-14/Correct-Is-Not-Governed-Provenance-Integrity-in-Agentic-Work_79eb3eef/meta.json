@@ -4,5 +4,10 @@
  "title": "Correct-Is-Not-Governed-Provenance-Integrity-in-Agentic-Work",
  "token": "sk-EQhZ10Ty5...",
  "created_at": "2026-08-14 14:49:37",
- "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-14/5bfa213a-fd6a-46df-a0ce-a30228fdd1d5.zip"
+ "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-14/5bfa213a-fd6a-46df-a0ce-a30228fdd1d5.zip",
+ "summarized": {
+  "model": "agnes-2.5-flash",
+  "at": "2026-08-18 16:23:26",
+  "chunks": 1
+ }
 }

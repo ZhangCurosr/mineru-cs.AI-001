@@ -4,5 +4,31 @@
  "title": "EgoMonth-A-Month-Level-Egocentric-Video-Benchmark-for-Long-T",
  "token": "sk-I70XXkbCl...",
  "created_at": "2026-08-14 04:13:23",
- "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-14/b7d53fcb-e1fa-4663-942a-33b2d2787ed3.zip"
+ "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-14/b7d53fcb-e1fa-4663-942a-33b2d2787ed3.zip",
+ "summarized": {
+  "model": "agnes-2.5-flash",
+  "at": "2026-08-18 16:26:50",
+  "chunks": 1,
+  "meta": {
+   "keywords": [
+    "自我中心视频理解",
+    "长期时空记忆",
+    "多模态大语言模型",
+    "视频基准",
+    "认知评测",
+    "长视频 QA",
+    "跨视频推理",
+    "Egocentric Video"
+   ],
+   "field": "多模态视频理解与长程记忆",
+   "innovations": [
+    "首个月度(20-120天)自我中心视频基准，支持跨视频推理与三级认知评测",
+    "受认知心理学理论驱动的14任务三级分层评测框架(图式巩固/情节索引/级联推理)",
+    "揭示MLLM是'有损摘要器'而非'忠实记忆者'，提出精确索引与结构化时空表征的改进方向"
+   ],
+   "benchmarks": [
+    "EgoMonth"
+   ]
+  }
+ }
 }

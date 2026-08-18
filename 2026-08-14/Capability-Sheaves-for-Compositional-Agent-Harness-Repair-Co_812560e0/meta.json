@@ -4,5 +4,30 @@
  "title": "Capability-Sheaves-for-Compositional-Agent-Harness-Repair-Co",
  "token": "sk-OZiRtsQic...",
  "created_at": "2026-08-14 04:12:11",
- "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-14/90a720e3-8205-4256-97ad-f844513bad43.zip"
+ "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-14/90a720e3-8205-4256-97ad-f844513bad43.zip",
+ "summarized": {
+  "model": "agnes-2.5-flash",
+  "at": "2026-08-18 16:22:40",
+  "chunks": 1,
+  "meta": {
+   "keywords": [
+    "sheaf theory",
+    "agent harness",
+    "constraint satisfaction",
+    "cohomology",
+    "patch fusion",
+    "SWE-bench"
+   ],
+   "field": "AI agent 系统与自动化软件修复",
+   "innovations": [
+    "将 agent harness 子系统建模为有限能力层并定义精确 CSP 作为语义决策规则",
+    "通过隐藏状态商空间消除内部表示噪声并提供不变诊断",
+    "在受控实验中验证机制不变性但在真实仓库评估中未发现统计显著优势"
+   ],
+   "benchmarks": [
+    "SWE-bench Multilingual",
+    "PatchFuseBench"
+   ]
+  }
+ }
 }

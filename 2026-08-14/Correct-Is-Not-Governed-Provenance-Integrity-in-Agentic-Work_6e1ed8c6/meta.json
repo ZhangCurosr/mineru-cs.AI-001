@@ -4,5 +4,34 @@
  "title": "Correct-Is-Not-Governed-Provenance-Integrity-in-Agentic-Work",
  "token": "sk-EQhZ10Ty5...",
  "created_at": "2026-08-14 04:10:36",
- "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-14/5bfa213a-fd6a-46df-a0ce-a30228fdd1d5.zip"
+ "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-14/5bfa213a-fd6a-46df-a0ce-a30228fdd1d5.zip",
+ "summarized": {
+  "model": "agnes-2.5-flash",
+  "at": "2026-08-18 16:23:03",
+  "chunks": 1,
+  "meta": {
+   "keywords": [
+    "agentic workflow",
+    "provenance integrity",
+    "governed execution",
+    "causal state layer",
+    "verification",
+    "dependency tracking",
+    "institutional audit"
+   ],
+   "field": "AI Agent治理与溯源",
+   "innovations": [
+    "将受治理执行定义为决策、执行和变更溯源三要素合取并独立测量",
+    "Matrix确定性因果状态层实现版本化权威绑定、收据验证和依赖范围恢复",
+    "同结果对比实验揭示正确性与治理性可分离，及迁移合同特异性为零的负向结果"
+   ],
+   "benchmarks": [
+    "Experiment 5决策溯源测试",
+    "C4/C5完成验证fixture",
+    "C6变更恢复测试",
+    "Experiment 6完整性合同测试",
+    "Experiment 7迁移挑战"
+   ]
+  }
+ }
 }

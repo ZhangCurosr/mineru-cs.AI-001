@@ -4,5 +4,31 @@
  "title": "Deliberate-Practice-Learning-Robot-Skills-under-a-Budget",
  "token": "sk-MljcAo9Bd...",
  "created_at": "2026-08-14 14:49:25",
- "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-14/b2268ecc-4d6f-4e1d-9fdc-7788382f3b2d.zip"
+ "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-14/b2268ecc-4d6f-4e1d-9fdc-7788382f3b2d.zip",
+ "summarized": {
+  "model": "agnes-2.5-flash",
+  "at": "2026-08-18 16:24:16",
+  "chunks": 1,
+  "meta": {
+   "keywords": [
+    "Budgeted Skill Learning",
+    "Task and Motion Planning",
+    "Active Learning",
+    "Bilinear Programming",
+    "Robot Manipulation",
+    "Deliberate Practice"
+   ],
+   "field": "机器人技能学习与预算优化",
+   "innovations": [
+    "将双层优化精确转化为单层双线性规划以全局最优求解预算分配",
+    "提出预算感知的主动技能学习框架DP，支持线性/分段线性/指数熟练度预测模型",
+    "利用LP对偶与McCormick Envelopes实现无贪心近似的理论最优练习分配"
+   ],
+   "benchmarks": [
+    "LIBERO Cleanup",
+    "LIBERO Cleanup-Multi",
+    "Real-world Franka Panda Breakfast"
+   ]
+  }
+ }
 }

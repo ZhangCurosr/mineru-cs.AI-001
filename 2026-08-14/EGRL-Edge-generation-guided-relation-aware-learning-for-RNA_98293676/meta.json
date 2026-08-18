@@ -4,5 +4,32 @@
  "title": "EGRL-Edge-generation-guided-relation-aware-learning-for-RNA",
  "token": "sk-rvQMAAO2D...",
  "created_at": "2026-08-14 04:10:58",
- "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-14/36eb9e0b-6ad2-4450-a4df-a72f87d8032c.zip"
+ "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-14/36eb9e0b-6ad2-4450-a4df-a72f87d8032c.zip",
+ "summarized": {
+  "model": "agnes-2.5-flash",
+  "at": "2026-08-18 16:25:32",
+  "chunks": 1,
+  "meta": {
+   "keywords": [
+    "RNA-Protein Interaction",
+    "Graph Neural Network",
+    "Cold-start Prediction",
+    "Implicit Meta-path",
+    "Multi-relational GAT",
+    "Heterogeneous Graph"
+   ],
+   "field": "生物信息网络预测",
+   "innovations": [
+    "隐式元路径学习自动捕获关系语义",
+    "图生成器预测软边支持冷启动节点",
+    "多关系GAT与多特征融合预测器联合优化"
+   ],
+   "benchmarks": [
+    "RPI369",
+    "RPI1807",
+    "RPI2241",
+    "NPInter2"
+   ]
+  }
+ }
 }

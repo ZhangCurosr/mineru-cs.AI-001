@@ -4,5 +4,31 @@
  "title": "CRAFT-LLM-Based-Iterative-Refinement-for-Temporal-Reasoning",
  "token": "sk-zKZtEfvnM...",
  "created_at": "2026-08-14 04:11:00",
- "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-14/c846457e-64d2-46e8-9c1e-c8e02f42c1b2.zip"
+ "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-14/c846457e-64d2-46e8-9c1e-c8e02f42c1b2.zip",
+ "summarized": {
+  "model": "agnes-2.5-flash",
+  "at": "2026-08-18 16:21:48",
+  "chunks": 1,
+  "meta": {
+   "keywords": [
+    "Clinical Temporal Reasoning",
+    "Iterative Refinement",
+    "Generator-Verifier Framework",
+    "MedTempo Benchmark",
+    "LLM-based Structured Prediction",
+    "Symptom Trajectory Reconstruction"
+   ],
+   "field": "临床自然语言处理与时间推理",
+   "innovations": [
+    "提出CRAFT生成器-验证器迭代框架，通过多准则加法验证器提供可操作反馈以细化症状时间轨迹",
+    "构建MedTempo专家标注基准，填补锚点稀疏单报告临床叙事情景下的结构化时间顺序评测空白",
+    "系统解耦迭代精炼中生成器与验证器的独立贡献，揭示迭代增益与模型能力之间的分层依赖关系"
+   ],
+   "benchmarks": [
+    "MedTempo",
+    "MedTempo-T",
+    "MedTempo-NT"
+   ]
+  }
+ }
 }

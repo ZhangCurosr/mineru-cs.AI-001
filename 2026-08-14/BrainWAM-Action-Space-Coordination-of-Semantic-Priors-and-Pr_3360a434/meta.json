@@ -4,5 +4,10 @@
  "title": "BrainWAM-Action-Space-Coordination-of-Semantic-Priors-and-Pr",
  "token": "sk-b5uWIpmTE...",
  "created_at": "2026-08-14 04:09:38",
- "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-14/2eb1ff6e-1bc8-4c29-a692-29c43f15a45a.zip"
+ "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-14/2eb1ff6e-1bc8-4c29-a692-29c43f15a45a.zip",
+ "summarized": {
+  "model": "agnes-2.5-flash",
+  "at": "2026-08-18 16:20:56",
+  "chunks": 1
+ }
 }

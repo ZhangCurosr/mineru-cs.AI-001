@@ -4,5 +4,33 @@
  "title": "CAPRI-Contract-Aware-Proof-Repair-for-Isabelle",
  "token": "sk-twhrLv2pG...",
  "created_at": "2026-08-14 04:11:06",
- "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-14/b40e8ceb-623f-44d8-a634-a5243b55711d.zip"
+ "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-14/b40e8ceb-623f-44d8-a634-a5243b55711d.zip",
+ "summarized": {
+  "model": "agnes-2.5-flash",
+  "at": "2026-08-18 16:21:38",
+  "chunks": 1,
+  "meta": {
+   "keywords": [
+    "Isabelle/HOL",
+    "large language models",
+    "proof repair",
+    "contract-aware verification",
+    "false success",
+    "formal methods",
+    "reproducibility"
+   ],
+   "field": "定理证明辅助与大语言模型",
+   "innovations": [
+    "将证明接受性与修复授权性拆分为独立谓词的双判定框架",
+    "基于机器可读契约与仓库diff的独立合规检查器",
+    "证明体接口预防性约束LLM编辑范围以减少越权风险"
+   ],
+   "benchmarks": [
+    "SLEEC",
+    "Temporal UTP",
+    "Defeasible Logic",
+    "BorderSafe"
+   ]
+  }
+ }
 }

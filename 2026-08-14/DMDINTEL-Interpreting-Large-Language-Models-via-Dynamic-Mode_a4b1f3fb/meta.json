@@ -4,5 +4,10 @@
  "title": "DMDINTEL-Interpreting-Large-Language-Models-via-Dynamic-Mode",
  "token": "sk-ZGznq9xBq...",
  "created_at": "2026-08-14 14:49:16",
- "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-14/3e65e324-8a27-473a-9817-8cf89bd890ec.zip"
+ "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-14/3e65e324-8a27-473a-9817-8cf89bd890ec.zip",
+ "summarized": {
+  "model": "agnes-2.5-flash",
+  "at": "2026-08-18 16:25:17",
+  "chunks": 1
+ }
 }

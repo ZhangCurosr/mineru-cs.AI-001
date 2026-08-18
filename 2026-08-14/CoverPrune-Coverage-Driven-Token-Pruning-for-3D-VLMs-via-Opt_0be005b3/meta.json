@@ -4,5 +4,31 @@
  "title": "CoverPrune-Coverage-Driven-Token-Pruning-for-3D-VLMs-via-Opt",
  "token": "sk-JMLCbBCEj...",
  "created_at": "2026-08-14 04:13:13",
- "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-14/3a326637-c577-4f52-98a8-425f1eb67741.zip"
+ "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-14/3a326637-c577-4f52-98a8-425f1eb67741.zip",
+ "summarized": {
+  "model": "agnes-2.5-flash",
+  "at": "2026-08-18 16:23:52",
+  "chunks": 1,
+  "meta": {
+   "keywords": [
+    "Visual Token Pruning",
+    "Optimal Transport",
+    "3D VLM",
+    "Spatial Reasoning",
+    "Training-free Acceleration"
+   ],
+   "field": "3D视觉语言模型推理加速",
+   "innovations": [
+    "将3D VLM Token剪枝从多样性最大化重新定义为覆盖度最大化，基于半松弛最优运输理论形式化",
+    "设计FST多维运输代价与信息感知容量向量，联合建模特征-空间-时序多域Token关系",
+    "提出SGS贪心算法与CoverPrune-Lite块结构OT近似，实现高效训练无关即插即用剪枝"
+   ],
+   "benchmarks": [
+    "ScanQA",
+    "SQA3D",
+    "Scan2Cap",
+    "VSI-Bench"
+   ]
+  }
+ }
 }

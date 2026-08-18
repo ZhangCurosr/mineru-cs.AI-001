@@ -4,5 +4,33 @@
  "title": "Discovering-Eficient-and-Explainable-Communication-Topologie",
  "token": "sk-1TedD2e6f...",
  "created_at": "2026-08-14 04:14:01",
- "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-14/1df45dc1-2860-4ab5-a32e-3f00763d64c6.zip"
+ "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-14/1df45dc1-2860-4ab5-a32e-3f00763d64c6.zip",
+ "summarized": {
+  "model": "agnes-2.5-flash",
+  "at": "2026-08-18 16:26:14",
+  "chunks": 4,
+  "meta": {
+   "keywords": [
+    "Multi-Agent Communication",
+    "Topology Discovery",
+    "Explainable AI",
+    "Token Efficiency",
+    "Causal Analysis",
+    "Zero-shot Generalization"
+   ],
+   "field": "多智能体系统与可解释AI",
+   "innovations": [
+    "提出E2-Explainer实现基于realized trace的可解释拓扑精炼",
+    "零样本泛化至5类人工拓扑并全面降本增效",
+    "通过因果一致性检验避免冗余剪枝导致的性能坍塌"
+   ],
+   "benchmarks": [
+    "MMLU",
+    "HumanEval",
+    "SVAMP",
+    "AQuA",
+    "OFA-MAS"
+   ]
+  }
+ }
 }

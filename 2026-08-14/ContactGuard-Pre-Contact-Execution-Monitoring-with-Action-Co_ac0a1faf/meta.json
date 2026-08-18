@@ -4,5 +4,37 @@
  "title": "ContactGuard-Pre-Contact-Execution-Monitoring-with-Action-Co",
  "token": "sk-Wt6bONApk...",
  "created_at": "2026-08-14 04:09:47",
- "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-14/3d8efa2b-fa79-4e42-926a-02d7d9f11644.zip"
+ "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-14/3d8efa2b-fa79-4e42-926a-02d7d9f11644.zip",
+ "summarized": {
+  "model": "agnes-2.5-flash",
+  "at": "2026-08-18 16:23:02",
+  "chunks": 1,
+  "meta": {
+   "keywords": [
+    "pre-contact execution monitoring",
+    "action-conditioned latent world model",
+    "JEPA",
+    "runtime failure prediction",
+    "chunked visuomotor policy",
+    "policy-decoupled verifier",
+    "contact-rich manipulation"
+   ],
+   "field": "机器人操作实时失败预测与监控",
+   "innovations": [
+    "policy-decoupled 的预接触执行监控器，对黑盒 chunked 策略仅消费观察与 action chunk 即可插拔",
+    "基于 JEPA 的 action-conditioned 多视角 latent 世界模型 + 轻量线性失败探针的两阶段解耦训练",
+    "通过 action-corruption 与 counterfactual action-swap 消融证明信号来自对特定 pending action 的后果模拟而非静态视觉风险"
+   ],
+   "benchmarks": [
+    "Cup pick-and-place",
+    "Box pick-and-place",
+    "Pencil pick-and-notebook",
+    "Towel fold",
+    "FAIL-Detect",
+    "RND",
+    "SAFE",
+    "LeWM baseline"
+   ]
+  }
+ }
 }

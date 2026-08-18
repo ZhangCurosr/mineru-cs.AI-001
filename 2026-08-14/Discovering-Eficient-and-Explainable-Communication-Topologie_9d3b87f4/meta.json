@@ -4,5 +4,32 @@
  "title": "Discovering-Eficient-and-Explainable-Communication-Topologie",
  "token": "sk-1TedD2e6f...",
  "created_at": "2026-08-14 14:49:23",
- "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-14/1df45dc1-2860-4ab5-a32e-3f00763d64c6.zip"
+ "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-14/1df45dc1-2860-4ab5-a32e-3f00763d64c6.zip",
+ "summarized": {
+  "model": "agnes-2.5-flash",
+  "at": "2026-08-18 16:26:04",
+  "chunks": 4,
+  "meta": {
+   "keywords": [
+    "多智能体系统",
+    "通信拓扑",
+    "因果解释",
+    "图剪枝",
+    "LLM"
+   ],
+   "field": "多智能体大语言模型",
+   "innovations": [
+    "提出Granger-style边级因果贡献评估结合语义熵辅助信号的拓扑解释框架",
+    "设计预算条件图到子图映射模型实现Amortized可迁移部署",
+    "输出可直接执行的紧凑可执行子图而非仅inspect用解释"
+   ],
+   "benchmarks": [
+    "G-Designer",
+    "ARG-Designer",
+    "AgentPrune",
+    "GNNEexplainer",
+    "PGEexplainer"
+   ]
+  }
+ }
 }

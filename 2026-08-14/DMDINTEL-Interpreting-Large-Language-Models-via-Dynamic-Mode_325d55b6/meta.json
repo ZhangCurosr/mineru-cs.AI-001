@@ -4,5 +4,32 @@
  "title": "DMDINTEL-Interpreting-Large-Language-Models-via-Dynamic-Mode",
  "token": "sk-ZGznq9xBq...",
  "created_at": "2026-08-14 04:10:28",
- "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-14/3e65e324-8a27-473a-9817-8cf89bd890ec.zip"
+ "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-14/3e65e324-8a27-473a-9817-8cf89bd890ec.zip",
+ "summarized": {
+  "model": "agnes-2.5-flash",
+  "at": "2026-08-18 16:24:07",
+  "chunks": 1,
+  "meta": {
+   "keywords": [
+    "可解释性",
+    "大语言模型",
+    "动态模态分解",
+    "输入归因",
+    "DMD",
+    "HODMD",
+    "LLM interpretability"
+   ],
+   "field": "大语言模型可解释性",
+   "innovations": [
+    "将 SFT LLM 隐藏状态视为离散动力系统并用 DMD/HODMD 提取时空模态用于输入 token 归因",
+    "提出 instruction bias 去噪与 cosine-similarity 启发式层选择两步预处理",
+    "在 3 模型族×3 数据集上证明 DMDINTEL 在 MC/RBO/Recall 及 token-masking 保真度上全面优于 IG/SHAP/PCA"
+   ],
+   "benchmarks": [
+    "Sentiment (Amazon polarity)",
+    "HateXplain",
+    "FakeEdit"
+   ]
+  }
+ }
 }

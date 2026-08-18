@@ -4,5 +4,31 @@
  "title": "BoardroomAI-Dependency-Aware-Human-Steerable-Multi-Agent-Del",
  "token": "sk-TPYWIhRwY...",
  "created_at": "2026-08-14 04:13:16",
- "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-14/4a22332c-2666-4c45-ad55-9000cf5efdd6.zip"
+ "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-14/4a22332c-2666-4c45-ad55-9000cf5efdd6.zip",
+ "summarized": {
+  "model": "agnes-2.5-flash",
+  "at": "2026-08-18 16:20:13",
+  "chunks": 1,
+  "meta": {
+   "keywords": [
+    "human-AI co-creation",
+    "multi-agent deliberation",
+    "dependency-aware propagation",
+    "selective repair",
+    "decision graphs",
+    "human steerability",
+    "revision routing"
+   ],
+   "field": "多智能体协同决策与人机交互",
+   "innovations": [
+    "将人类干预形式化为八类类型化图操作并通过最小不动点传播影响",
+    "基于签名比较的选择性专家修复机制避免全量重算",
+    "提出决策充分性闭包DSC解决正确路由但上下文不足导致的弃权问题"
+   ],
+   "benchmarks": [
+    "DynaBoard 12-case synthetic pilot",
+    "600 decision DAG interventions"
+   ]
+  }
+ }
 }

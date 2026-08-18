@@ -4,5 +4,30 @@
  "title": "A-Compositional-Theory-of-Curvature-in-Probabilistic-Circuit",
  "token": "sk-iaeYeK7Vr...",
  "created_at": "2026-08-14 04:13:39",
- "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-14/9d6a8d7e-4d15-4102-ada7-071c1968d27d.zip"
+ "result_url": "https://cdn-mineru.openxlab.org.cn/pdf/2026-08-14/9d6a8d7e-4d15-4102-ada7-071c1968d27d.zip",
+ "summarized": {
+  "model": "agnes-2.5-flash",
+  "at": "2026-08-18 16:19:11",
+  "chunks": 1,
+  "meta": {
+   "keywords": [
+    "Probabilistic Circuits",
+    "Hessian trace",
+    "sharpness-aware regularization",
+    "circuit flow",
+    "compositional curvature decomposition",
+    "gated EM",
+    "DEBD"
+   ],
+   "field": "可 tractable 概率建模与损失曲面几何",
+   "innovations": [
+    "证明概率电路 Hessian trace 可按 sum 节点精确分解为电路流量平方与局部曲率的乘积",
+    "提出基于局部曲率的自适应门控 sharpness 正则化并保留闭合 EM 更新形式",
+    "给出全局排名与局部曲率排名冲突的精确条件以解释全局正则化欠拟合成因"
+   ],
+   "benchmarks": [
+    "DEBD (20 binary density estimation datasets)"
+   ]
+  }
+ }
 }
